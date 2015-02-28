@@ -1,0 +1,645 @@
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccV8ay3x.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"LCD_Bar.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.quickBar,"ax",%progbits
+  19              		.align	2
+  20              		.global	quickBar
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	quickBar, %function
+  24              	quickBar:
+  25              	.LFB56:
+  26              		.file 1 ".\\LCD_Bar.c"
+   1:.\LCD_Bar.c   **** /* ========================================
+   2:.\LCD_Bar.c   ****  *
+   3:.\LCD_Bar.c   ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\LCD_Bar.c   ****  * All Rights Reserved
+   5:.\LCD_Bar.c   ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\LCD_Bar.c   ****  *
+   7:.\LCD_Bar.c   ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\LCD_Bar.c   ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\LCD_Bar.c   ****  *
+  10:.\LCD_Bar.c   ****  * ========================================
+  11:.\LCD_Bar.c   **** */
+  12:.\LCD_Bar.c   **** #include "LCD_Bar.h"
+  13:.\LCD_Bar.c   **** 
+  14:.\LCD_Bar.c   **** void quickBar(uint8_t row, uint8_t colume, direction dir, uint8_t len){
+  27              		.loc 1 14 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 16
+  30              		@ frame_needed = 1, uses_anonymous_args = 0
+  31 0000 80B5     		push	{r7, lr}
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 7, -8
+  34              		.cfi_offset 14, -4
+  35 0002 84B0     		sub	sp, sp, #16
+  36              		.cfi_def_cfa_offset 24
+  37 0004 00AF     		add	r7, sp, #0
+  38              		.cfi_def_cfa_register 7
+  39 0006 F871     		strb	r0, [r7, #7]
+  40 0008 B971     		strb	r1, [r7, #6]
+  41 000a 7A71     		strb	r2, [r7, #5]
+  42 000c 3B71     		strb	r3, [r7, #4]
+  15:.\LCD_Bar.c   ****     uint8_t norLen=(uint8_t)(len*LCD_WIDTH/256/2);
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccV8ay3x.s 			page 2
+
+
+  43              		.loc 1 15 0
+  44 000e 3A79     		ldrb	r2, [r7, #4]	@ zero_extendqisi2
+  45 0010 1346     		mov	r3, r2
+  46 0012 9B00     		lsls	r3, r3, #2
+  47 0014 1344     		add	r3, r3, r2
+  48 0016 1B01     		lsls	r3, r3, #4
+  49 0018 5B0A     		lsrs	r3, r3, #9
+  50 001a FB73     		strb	r3, [r7, #15]
+  16:.\LCD_Bar.c   ****     if (dir == RIGHT){
+  51              		.loc 1 16 0
+  52 001c 7B79     		ldrb	r3, [r7, #5]	@ zero_extendqisi2
+  53 001e 012B     		cmp	r3, #1
+  54 0020 08D1     		bne	.L2
+  17:.\LCD_Bar.c   ****         LCD_DrawHorizontalBG(row, colume, (LCD_COLUMNS - LCD_ROWS), norLen);
+  55              		.loc 1 17 0
+  56 0022 F979     		ldrb	r1, [r7, #7]	@ zero_extendqisi2
+  57 0024 BA79     		ldrb	r2, [r7, #6]	@ zero_extendqisi2
+  58 0026 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+  59 0028 0846     		mov	r0, r1
+  60 002a 1146     		mov	r1, r2
+  61 002c 0E22     		movs	r2, #14
+  62 002e FFF7FEFF 		bl	LCD_DrawHorizontalBG
+  63 0032 0FE0     		b	.L3
+  64              	.L2:
+  18:.\LCD_Bar.c   ****     }
+  19:.\LCD_Bar.c   ****     else{
+  20:.\LCD_Bar.c   ****         LCD_DrawHorizontalBG(row, colume-norLen/5, (LCD_COLUMNS - LCD_ROWS), norLen);
+  65              		.loc 1 20 0
+  66 0034 FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
+  67 0036 094B     		ldr	r3, .L5
+  68 0038 A3FB0213 		umull	r1, r3, r3, r2
+  69 003c 9B08     		lsrs	r3, r3, #2
+  70 003e DBB2     		uxtb	r3, r3
+  71 0040 BA79     		ldrb	r2, [r7, #6]
+  72 0042 D31A     		subs	r3, r2, r3
+  73 0044 DAB2     		uxtb	r2, r3
+  74 0046 F979     		ldrb	r1, [r7, #7]	@ zero_extendqisi2
+  75 0048 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+  76 004a 0846     		mov	r0, r1
+  77 004c 1146     		mov	r1, r2
+  78 004e 0E22     		movs	r2, #14
+  79 0050 FFF7FEFF 		bl	LCD_DrawHorizontalBG
+  80              	.L3:
+  21:.\LCD_Bar.c   ****     }
+  22:.\LCD_Bar.c   ****     return;
+  81              		.loc 1 22 0
+  82 0054 00BF     		nop
+  23:.\LCD_Bar.c   **** }
+  83              		.loc 1 23 0
+  84 0056 1037     		adds	r7, r7, #16
+  85 0058 BD46     		mov	sp, r7
+  86              		@ sp needed
+  87 005a 80BD     		pop	{r7, pc}
+  88              	.L6:
+  89              		.align	2
+  90              	.L5:
+  91 005c CDCCCCCC 		.word	-858993459
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccV8ay3x.s 			page 3
+
+
+  92              		.cfi_endproc
+  93              	.LFE56:
+  94              		.size	quickBar, .-quickBar
+  95              		.text
+  96              	.Letext0:
+  97              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4
+  98              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4
+  99              		.file 4 ".\\LCD_Bar.h"
+ 100              		.file 5 ".\\Generated_Source\\PSoC5/core_cm3.h"
+ 101              		.section	.debug_info,"",%progbits
+ 102              	.Ldebug_info0:
+ 103 0000 3D010000 		.4byte	0x13d
+ 104 0004 0400     		.2byte	0x4
+ 105 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 106 000a 04       		.byte	0x4
+ 107 000b 01       		.uleb128 0x1
+ 108 000c D1000000 		.4byte	.LASF21
+ 109 0010 01       		.byte	0x1
+ 110 0011 6F000000 		.4byte	.LASF22
+ 111 0015 84010000 		.4byte	.LASF23
+ 112 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 113 001d 00000000 		.4byte	0
+ 114 0021 00000000 		.4byte	.Ldebug_line0
+ 115 0025 02       		.uleb128 0x2
+ 116 0026 01       		.byte	0x1
+ 117 0027 06       		.byte	0x6
+ 118 0028 29000000 		.4byte	.LASF0
+ 119 002c 03       		.uleb128 0x3
+ 120 002d 00000000 		.4byte	.LASF4
+ 121 0031 02       		.byte	0x2
+ 122 0032 1C       		.byte	0x1c
+ 123 0033 37000000 		.4byte	0x37
+ 124 0037 02       		.uleb128 0x2
+ 125 0038 01       		.byte	0x1
+ 126 0039 08       		.byte	0x8
+ 127 003a 3C000000 		.4byte	.LASF1
+ 128 003e 02       		.uleb128 0x2
+ 129 003f 02       		.byte	0x2
+ 130 0040 05       		.byte	0x5
+ 131 0041 71010000 		.4byte	.LASF2
+ 132 0045 02       		.uleb128 0x2
+ 133 0046 02       		.byte	0x2
+ 134 0047 07       		.byte	0x7
+ 135 0048 5C000000 		.4byte	.LASF3
+ 136 004c 03       		.uleb128 0x3
+ 137 004d 0F000000 		.4byte	.LASF5
+ 138 0051 02       		.byte	0x2
+ 139 0052 37       		.byte	0x37
+ 140 0053 57000000 		.4byte	0x57
+ 141 0057 02       		.uleb128 0x2
+ 142 0058 04       		.byte	0x4
+ 143 0059 05       		.byte	0x5
+ 144 005a 7B010000 		.4byte	.LASF6
+ 145 005e 02       		.uleb128 0x2
+ 146 005f 04       		.byte	0x4
+ 147 0060 07       		.byte	0x7
+ 148 0061 4A000000 		.4byte	.LASF7
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccV8ay3x.s 			page 4
+
+
+ 149 0065 02       		.uleb128 0x2
+ 150 0066 08       		.byte	0x8
+ 151 0067 05       		.byte	0x5
+ 152 0068 5E010000 		.4byte	.LASF8
+ 153 006c 02       		.uleb128 0x2
+ 154 006d 08       		.byte	0x8
+ 155 006e 07       		.byte	0x7
+ 156 006f A5000000 		.4byte	.LASF9
+ 157 0073 04       		.uleb128 0x4
+ 158 0074 04       		.byte	0x4
+ 159 0075 05       		.byte	0x5
+ 160 0076 696E7400 		.ascii	"int\000"
+ 161 007a 02       		.uleb128 0x2
+ 162 007b 04       		.byte	0x4
+ 163 007c 07       		.byte	0x7
+ 164 007d 98000000 		.4byte	.LASF10
+ 165 0081 03       		.uleb128 0x3
+ 166 0082 BC000000 		.4byte	.LASF11
+ 167 0086 03       		.byte	0x3
+ 168 0087 2A       		.byte	0x2a
+ 169 0088 2C000000 		.4byte	0x2c
+ 170 008c 03       		.uleb128 0x3
+ 171 008d 4D010000 		.4byte	.LASF12
+ 172 0091 03       		.byte	0x3
+ 173 0092 41       		.byte	0x41
+ 174 0093 4C000000 		.4byte	0x4c
+ 175 0097 02       		.uleb128 0x2
+ 176 0098 04       		.byte	0x4
+ 177 0099 04       		.byte	0x4
+ 178 009a 23000000 		.4byte	.LASF13
+ 179 009e 02       		.uleb128 0x2
+ 180 009f 08       		.byte	0x8
+ 181 00a0 04       		.byte	0x4
+ 182 00a1 7B000000 		.4byte	.LASF14
+ 183 00a5 02       		.uleb128 0x2
+ 184 00a6 01       		.byte	0x1
+ 185 00a7 08       		.byte	0x8
+ 186 00a8 6C010000 		.4byte	.LASF15
+ 187 00ac 02       		.uleb128 0x2
+ 188 00ad 04       		.byte	0x4
+ 189 00ae 07       		.byte	0x7
+ 190 00af 55010000 		.4byte	.LASF16
+ 191 00b3 05       		.uleb128 0x5
+ 192 00b4 01       		.byte	0x1
+ 193 00b5 04       		.byte	0x4
+ 194 00b6 17       		.byte	0x17
+ 195 00b7 C8000000 		.4byte	0xc8
+ 196 00bb 06       		.uleb128 0x6
+ 197 00bc 0A000000 		.4byte	.LASF17
+ 198 00c0 00       		.sleb128 0
+ 199 00c1 06       		.uleb128 0x6
+ 200 00c2 CB000000 		.4byte	.LASF18
+ 201 00c6 01       		.sleb128 1
+ 202 00c7 00       		.byte	0
+ 203 00c8 03       		.uleb128 0x3
+ 204 00c9 19000000 		.4byte	.LASF19
+ 205 00cd 04       		.byte	0x4
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccV8ay3x.s 			page 5
+
+
+ 206 00ce 1A       		.byte	0x1a
+ 207 00cf B3000000 		.4byte	0xb3
+ 208 00d3 07       		.uleb128 0x7
+ 209 00d4 82000000 		.4byte	.LASF24
+ 210 00d8 01       		.byte	0x1
+ 211 00d9 0E       		.byte	0xe
+ 212 00da 00000000 		.4byte	.LFB56
+ 213 00de 60000000 		.4byte	.LFE56-.LFB56
+ 214 00e2 01       		.uleb128 0x1
+ 215 00e3 9C       		.byte	0x9c
+ 216 00e4 2F010000 		.4byte	0x12f
+ 217 00e8 08       		.uleb128 0x8
+ 218 00e9 726F7700 		.ascii	"row\000"
+ 219 00ed 01       		.byte	0x1
+ 220 00ee 0E       		.byte	0xe
+ 221 00ef 81000000 		.4byte	0x81
+ 222 00f3 02       		.uleb128 0x2
+ 223 00f4 91       		.byte	0x91
+ 224 00f5 6F       		.sleb128 -17
+ 225 00f6 09       		.uleb128 0x9
+ 226 00f7 35000000 		.4byte	.LASF20
+ 227 00fb 01       		.byte	0x1
+ 228 00fc 0E       		.byte	0xe
+ 229 00fd 81000000 		.4byte	0x81
+ 230 0101 02       		.uleb128 0x2
+ 231 0102 91       		.byte	0x91
+ 232 0103 6E       		.sleb128 -18
+ 233 0104 08       		.uleb128 0x8
+ 234 0105 64697200 		.ascii	"dir\000"
+ 235 0109 01       		.byte	0x1
+ 236 010a 0E       		.byte	0xe
+ 237 010b C8000000 		.4byte	0xc8
+ 238 010f 02       		.uleb128 0x2
+ 239 0110 91       		.byte	0x91
+ 240 0111 6D       		.sleb128 -19
+ 241 0112 08       		.uleb128 0x8
+ 242 0113 6C656E00 		.ascii	"len\000"
+ 243 0117 01       		.byte	0x1
+ 244 0118 0E       		.byte	0xe
+ 245 0119 81000000 		.4byte	0x81
+ 246 011d 02       		.uleb128 0x2
+ 247 011e 91       		.byte	0x91
+ 248 011f 6C       		.sleb128 -20
+ 249 0120 0A       		.uleb128 0xa
+ 250 0121 C4000000 		.4byte	.LASF25
+ 251 0125 01       		.byte	0x1
+ 252 0126 0F       		.byte	0xf
+ 253 0127 81000000 		.4byte	0x81
+ 254 012b 02       		.uleb128 0x2
+ 255 012c 91       		.byte	0x91
+ 256 012d 77       		.sleb128 -9
+ 257 012e 00       		.byte	0
+ 258 012f 0B       		.uleb128 0xb
+ 259 0130 8B000000 		.4byte	.LASF26
+ 260 0134 05       		.byte	0x5
+ 261 0135 1606     		.2byte	0x616
+ 262 0137 3B010000 		.4byte	0x13b
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccV8ay3x.s 			page 6
+
+
+ 263 013b 0C       		.uleb128 0xc
+ 264 013c 8C000000 		.4byte	0x8c
+ 265 0140 00       		.byte	0
+ 266              		.section	.debug_abbrev,"",%progbits
+ 267              	.Ldebug_abbrev0:
+ 268 0000 01       		.uleb128 0x1
+ 269 0001 11       		.uleb128 0x11
+ 270 0002 01       		.byte	0x1
+ 271 0003 25       		.uleb128 0x25
+ 272 0004 0E       		.uleb128 0xe
+ 273 0005 13       		.uleb128 0x13
+ 274 0006 0B       		.uleb128 0xb
+ 275 0007 03       		.uleb128 0x3
+ 276 0008 0E       		.uleb128 0xe
+ 277 0009 1B       		.uleb128 0x1b
+ 278 000a 0E       		.uleb128 0xe
+ 279 000b 55       		.uleb128 0x55
+ 280 000c 17       		.uleb128 0x17
+ 281 000d 11       		.uleb128 0x11
+ 282 000e 01       		.uleb128 0x1
+ 283 000f 10       		.uleb128 0x10
+ 284 0010 17       		.uleb128 0x17
+ 285 0011 00       		.byte	0
+ 286 0012 00       		.byte	0
+ 287 0013 02       		.uleb128 0x2
+ 288 0014 24       		.uleb128 0x24
+ 289 0015 00       		.byte	0
+ 290 0016 0B       		.uleb128 0xb
+ 291 0017 0B       		.uleb128 0xb
+ 292 0018 3E       		.uleb128 0x3e
+ 293 0019 0B       		.uleb128 0xb
+ 294 001a 03       		.uleb128 0x3
+ 295 001b 0E       		.uleb128 0xe
+ 296 001c 00       		.byte	0
+ 297 001d 00       		.byte	0
+ 298 001e 03       		.uleb128 0x3
+ 299 001f 16       		.uleb128 0x16
+ 300 0020 00       		.byte	0
+ 301 0021 03       		.uleb128 0x3
+ 302 0022 0E       		.uleb128 0xe
+ 303 0023 3A       		.uleb128 0x3a
+ 304 0024 0B       		.uleb128 0xb
+ 305 0025 3B       		.uleb128 0x3b
+ 306 0026 0B       		.uleb128 0xb
+ 307 0027 49       		.uleb128 0x49
+ 308 0028 13       		.uleb128 0x13
+ 309 0029 00       		.byte	0
+ 310 002a 00       		.byte	0
+ 311 002b 04       		.uleb128 0x4
+ 312 002c 24       		.uleb128 0x24
+ 313 002d 00       		.byte	0
+ 314 002e 0B       		.uleb128 0xb
+ 315 002f 0B       		.uleb128 0xb
+ 316 0030 3E       		.uleb128 0x3e
+ 317 0031 0B       		.uleb128 0xb
+ 318 0032 03       		.uleb128 0x3
+ 319 0033 08       		.uleb128 0x8
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccV8ay3x.s 			page 7
+
+
+ 320 0034 00       		.byte	0
+ 321 0035 00       		.byte	0
+ 322 0036 05       		.uleb128 0x5
+ 323 0037 04       		.uleb128 0x4
+ 324 0038 01       		.byte	0x1
+ 325 0039 0B       		.uleb128 0xb
+ 326 003a 0B       		.uleb128 0xb
+ 327 003b 3A       		.uleb128 0x3a
+ 328 003c 0B       		.uleb128 0xb
+ 329 003d 3B       		.uleb128 0x3b
+ 330 003e 0B       		.uleb128 0xb
+ 331 003f 01       		.uleb128 0x1
+ 332 0040 13       		.uleb128 0x13
+ 333 0041 00       		.byte	0
+ 334 0042 00       		.byte	0
+ 335 0043 06       		.uleb128 0x6
+ 336 0044 28       		.uleb128 0x28
+ 337 0045 00       		.byte	0
+ 338 0046 03       		.uleb128 0x3
+ 339 0047 0E       		.uleb128 0xe
+ 340 0048 1C       		.uleb128 0x1c
+ 341 0049 0D       		.uleb128 0xd
+ 342 004a 00       		.byte	0
+ 343 004b 00       		.byte	0
+ 344 004c 07       		.uleb128 0x7
+ 345 004d 2E       		.uleb128 0x2e
+ 346 004e 01       		.byte	0x1
+ 347 004f 3F       		.uleb128 0x3f
+ 348 0050 19       		.uleb128 0x19
+ 349 0051 03       		.uleb128 0x3
+ 350 0052 0E       		.uleb128 0xe
+ 351 0053 3A       		.uleb128 0x3a
+ 352 0054 0B       		.uleb128 0xb
+ 353 0055 3B       		.uleb128 0x3b
+ 354 0056 0B       		.uleb128 0xb
+ 355 0057 27       		.uleb128 0x27
+ 356 0058 19       		.uleb128 0x19
+ 357 0059 11       		.uleb128 0x11
+ 358 005a 01       		.uleb128 0x1
+ 359 005b 12       		.uleb128 0x12
+ 360 005c 06       		.uleb128 0x6
+ 361 005d 40       		.uleb128 0x40
+ 362 005e 18       		.uleb128 0x18
+ 363 005f 9642     		.uleb128 0x2116
+ 364 0061 19       		.uleb128 0x19
+ 365 0062 01       		.uleb128 0x1
+ 366 0063 13       		.uleb128 0x13
+ 367 0064 00       		.byte	0
+ 368 0065 00       		.byte	0
+ 369 0066 08       		.uleb128 0x8
+ 370 0067 05       		.uleb128 0x5
+ 371 0068 00       		.byte	0
+ 372 0069 03       		.uleb128 0x3
+ 373 006a 08       		.uleb128 0x8
+ 374 006b 3A       		.uleb128 0x3a
+ 375 006c 0B       		.uleb128 0xb
+ 376 006d 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccV8ay3x.s 			page 8
+
+
+ 377 006e 0B       		.uleb128 0xb
+ 378 006f 49       		.uleb128 0x49
+ 379 0070 13       		.uleb128 0x13
+ 380 0071 02       		.uleb128 0x2
+ 381 0072 18       		.uleb128 0x18
+ 382 0073 00       		.byte	0
+ 383 0074 00       		.byte	0
+ 384 0075 09       		.uleb128 0x9
+ 385 0076 05       		.uleb128 0x5
+ 386 0077 00       		.byte	0
+ 387 0078 03       		.uleb128 0x3
+ 388 0079 0E       		.uleb128 0xe
+ 389 007a 3A       		.uleb128 0x3a
+ 390 007b 0B       		.uleb128 0xb
+ 391 007c 3B       		.uleb128 0x3b
+ 392 007d 0B       		.uleb128 0xb
+ 393 007e 49       		.uleb128 0x49
+ 394 007f 13       		.uleb128 0x13
+ 395 0080 02       		.uleb128 0x2
+ 396 0081 18       		.uleb128 0x18
+ 397 0082 00       		.byte	0
+ 398 0083 00       		.byte	0
+ 399 0084 0A       		.uleb128 0xa
+ 400 0085 34       		.uleb128 0x34
+ 401 0086 00       		.byte	0
+ 402 0087 03       		.uleb128 0x3
+ 403 0088 0E       		.uleb128 0xe
+ 404 0089 3A       		.uleb128 0x3a
+ 405 008a 0B       		.uleb128 0xb
+ 406 008b 3B       		.uleb128 0x3b
+ 407 008c 0B       		.uleb128 0xb
+ 408 008d 49       		.uleb128 0x49
+ 409 008e 13       		.uleb128 0x13
+ 410 008f 02       		.uleb128 0x2
+ 411 0090 18       		.uleb128 0x18
+ 412 0091 00       		.byte	0
+ 413 0092 00       		.byte	0
+ 414 0093 0B       		.uleb128 0xb
+ 415 0094 34       		.uleb128 0x34
+ 416 0095 00       		.byte	0
+ 417 0096 03       		.uleb128 0x3
+ 418 0097 0E       		.uleb128 0xe
+ 419 0098 3A       		.uleb128 0x3a
+ 420 0099 0B       		.uleb128 0xb
+ 421 009a 3B       		.uleb128 0x3b
+ 422 009b 05       		.uleb128 0x5
+ 423 009c 49       		.uleb128 0x49
+ 424 009d 13       		.uleb128 0x13
+ 425 009e 3F       		.uleb128 0x3f
+ 426 009f 19       		.uleb128 0x19
+ 427 00a0 3C       		.uleb128 0x3c
+ 428 00a1 19       		.uleb128 0x19
+ 429 00a2 00       		.byte	0
+ 430 00a3 00       		.byte	0
+ 431 00a4 0C       		.uleb128 0xc
+ 432 00a5 35       		.uleb128 0x35
+ 433 00a6 00       		.byte	0
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccV8ay3x.s 			page 9
+
+
+ 434 00a7 49       		.uleb128 0x49
+ 435 00a8 13       		.uleb128 0x13
+ 436 00a9 00       		.byte	0
+ 437 00aa 00       		.byte	0
+ 438 00ab 00       		.byte	0
+ 439              		.section	.debug_aranges,"",%progbits
+ 440 0000 1C000000 		.4byte	0x1c
+ 441 0004 0200     		.2byte	0x2
+ 442 0006 00000000 		.4byte	.Ldebug_info0
+ 443 000a 04       		.byte	0x4
+ 444 000b 00       		.byte	0
+ 445 000c 0000     		.2byte	0
+ 446 000e 0000     		.2byte	0
+ 447 0010 00000000 		.4byte	.LFB56
+ 448 0014 60000000 		.4byte	.LFE56-.LFB56
+ 449 0018 00000000 		.4byte	0
+ 450 001c 00000000 		.4byte	0
+ 451              		.section	.debug_ranges,"",%progbits
+ 452              	.Ldebug_ranges0:
+ 453 0000 00000000 		.4byte	.LFB56
+ 454 0004 60000000 		.4byte	.LFE56
+ 455 0008 00000000 		.4byte	0
+ 456 000c 00000000 		.4byte	0
+ 457              		.section	.debug_line,"",%progbits
+ 458              	.Ldebug_line0:
+ 459 0000 71010000 		.section	.debug_str,"MS",%progbits,1
+ 459      02005601 
+ 459      00000201 
+ 459      FB0E0D00 
+ 459      01010101 
+ 460              	.LASF4:
+ 461 0000 5F5F7569 		.ascii	"__uint8_t\000"
+ 461      6E74385F 
+ 461      7400
+ 462              	.LASF17:
+ 463 000a 4C454654 		.ascii	"LEFT\000"
+ 463      00
+ 464              	.LASF5:
+ 465 000f 5F5F696E 		.ascii	"__int32_t\000"
+ 465      7433325F 
+ 465      7400
+ 466              	.LASF19:
+ 467 0019 64697265 		.ascii	"direction\000"
+ 467      6374696F 
+ 467      6E00
+ 468              	.LASF13:
+ 469 0023 666C6F61 		.ascii	"float\000"
+ 469      7400
+ 470              	.LASF0:
+ 471 0029 7369676E 		.ascii	"signed char\000"
+ 471      65642063 
+ 471      68617200 
+ 472              	.LASF20:
+ 473 0035 636F6C75 		.ascii	"colume\000"
+ 473      6D6500
+ 474              	.LASF1:
+ 475 003c 756E7369 		.ascii	"unsigned char\000"
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccV8ay3x.s 			page 10
+
+
+ 475      676E6564 
+ 475      20636861 
+ 475      7200
+ 476              	.LASF7:
+ 477 004a 6C6F6E67 		.ascii	"long unsigned int\000"
+ 477      20756E73 
+ 477      69676E65 
+ 477      6420696E 
+ 477      7400
+ 478              	.LASF3:
+ 479 005c 73686F72 		.ascii	"short unsigned int\000"
+ 479      7420756E 
+ 479      7369676E 
+ 479      65642069 
+ 479      6E7400
+ 480              	.LASF22:
+ 481 006f 2E5C4C43 		.ascii	".\\LCD_Bar.c\000"
+ 481      445F4261 
+ 481      722E6300 
+ 482              	.LASF14:
+ 483 007b 646F7562 		.ascii	"double\000"
+ 483      6C6500
+ 484              	.LASF24:
+ 485 0082 71756963 		.ascii	"quickBar\000"
+ 485      6B426172 
+ 485      00
+ 486              	.LASF26:
+ 487 008b 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 487      52784275 
+ 487      66666572 
+ 487      00
+ 488              	.LASF10:
+ 489 0098 756E7369 		.ascii	"unsigned int\000"
+ 489      676E6564 
+ 489      20696E74 
+ 489      00
+ 490              	.LASF9:
+ 491 00a5 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 491      206C6F6E 
+ 491      6720756E 
+ 491      7369676E 
+ 491      65642069 
+ 492              	.LASF11:
+ 493 00bc 75696E74 		.ascii	"uint8_t\000"
+ 493      385F7400 
+ 494              	.LASF25:
+ 495 00c4 6E6F724C 		.ascii	"norLen\000"
+ 495      656E00
+ 496              	.LASF18:
+ 497 00cb 52494748 		.ascii	"RIGHT\000"
+ 497      5400
+ 498              	.LASF21:
+ 499 00d1 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 499      4320342E 
+ 499      382E3420 
+ 499      32303134 
+ 499      30353236 
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccV8ay3x.s 			page 11
+
+
+ 500 0104 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
+ 500      20726576 
+ 500      6973696F 
+ 500      6E203231 
+ 500      31333538 
+ 501 0137 30202D66 		.ascii	"0 -ffunction-sections\000"
+ 501      66756E63 
+ 501      74696F6E 
+ 501      2D736563 
+ 501      74696F6E 
+ 502              	.LASF12:
+ 503 014d 696E7433 		.ascii	"int32_t\000"
+ 503      325F7400 
+ 504              	.LASF16:
+ 505 0155 73697A65 		.ascii	"sizetype\000"
+ 505      74797065 
+ 505      00
+ 506              	.LASF8:
+ 507 015e 6C6F6E67 		.ascii	"long long int\000"
+ 507      206C6F6E 
+ 507      6720696E 
+ 507      7400
+ 508              	.LASF15:
+ 509 016c 63686172 		.ascii	"char\000"
+ 509      00
+ 510              	.LASF2:
+ 511 0171 73686F72 		.ascii	"short int\000"
+ 511      7420696E 
+ 511      7400
+ 512              	.LASF6:
+ 513 017b 6C6F6E67 		.ascii	"long int\000"
+ 513      20696E74 
+ 513      00
+ 514              	.LASF23:
+ 515 0184 443A5C77 		.ascii	"D:\\workspace\\super-eagle\\Super-Eagle\\Super-Eagl"
+ 515      6F726B73 
+ 515      70616365 
+ 515      5C737570 
+ 515      65722D65 
+ 516 01b3 652E6379 		.ascii	"e.cydsn\000"
+ 516      64736E00 
+ 517              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

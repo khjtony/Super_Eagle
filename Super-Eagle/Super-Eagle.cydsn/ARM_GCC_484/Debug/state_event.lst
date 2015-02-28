@@ -1,0 +1,1092 @@
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"state_event.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.action_startup,"ax",%progbits
+  19              		.align	2
+  20              		.global	action_startup
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	action_startup, %function
+  24              	action_startup:
+  25              	.LFB56:
+  26              		.file 1 ".\\state_event.c"
+   1:.\state_event.c **** /* ========================================
+   2:.\state_event.c ****  *
+   3:.\state_event.c ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\state_event.c ****  * All Rights Reserved
+   5:.\state_event.c ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\state_event.c ****  *
+   7:.\state_event.c ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\state_event.c ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\state_event.c ****  *
+  10:.\state_event.c ****  * ========================================
+  11:.\state_event.c **** */
+  12:.\state_event.c **** 
+  13:.\state_event.c **** #include "state_event.h"
+  14:.\state_event.c **** #include "dash_board.h"
+  15:.\state_event.c **** 
+  16:.\state_event.c **** 
+  17:.\state_event.c **** void action_startup(){
+  27              		.loc 1 17 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 1, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  32 0000 80B4     		push	{r7}
+  33              		.cfi_def_cfa_offset 4
+  34              		.cfi_offset 7, -4
+  35 0002 00AF     		add	r7, sp, #0
+  36              		.cfi_def_cfa_register 7
+  18:.\state_event.c ****     return;
+  37              		.loc 1 18 0
+  38 0004 00BF     		nop
+  19:.\state_event.c **** }
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 2
+
+
+  39              		.loc 1 19 0
+  40 0006 BD46     		mov	sp, r7
+  41              		@ sp needed
+  42 0008 5DF8047B 		ldr	r7, [sp], #4
+  43 000c 7047     		bx	lr
+  44              		.cfi_endproc
+  45              	.LFE56:
+  46              		.size	action_startup, .-action_startup
+  47 000e 00BF     		.section	.text.action_neutral,"ax",%progbits
+  48              		.align	2
+  49              		.global	action_neutral
+  50              		.thumb
+  51              		.thumb_func
+  52              		.type	action_neutral, %function
+  53              	action_neutral:
+  54              	.LFB57:
+  20:.\state_event.c **** 
+  21:.\state_event.c **** void action_neutral(){
+  55              		.loc 1 21 0
+  56              		.cfi_startproc
+  57              		@ args = 0, pretend = 0, frame = 0
+  58              		@ frame_needed = 1, uses_anonymous_args = 0
+  59              		@ link register save eliminated.
+  60 0000 80B4     		push	{r7}
+  61              		.cfi_def_cfa_offset 4
+  62              		.cfi_offset 7, -4
+  63 0002 00AF     		add	r7, sp, #0
+  64              		.cfi_def_cfa_register 7
+  22:.\state_event.c ****     return;
+  65              		.loc 1 22 0
+  66 0004 00BF     		nop
+  23:.\state_event.c **** }
+  67              		.loc 1 23 0
+  68 0006 BD46     		mov	sp, r7
+  69              		@ sp needed
+  70 0008 5DF8047B 		ldr	r7, [sp], #4
+  71 000c 7047     		bx	lr
+  72              		.cfi_endproc
+  73              	.LFE57:
+  74              		.size	action_neutral, .-action_neutral
+  75 000e 00BF     		.section	.text.action_drive,"ax",%progbits
+  76              		.align	2
+  77              		.global	action_drive
+  78              		.thumb
+  79              		.thumb_func
+  80              		.type	action_drive, %function
+  81              	action_drive:
+  82              	.LFB58:
+  24:.\state_event.c **** 
+  25:.\state_event.c **** void action_drive(){
+  83              		.loc 1 25 0
+  84              		.cfi_startproc
+  85              		@ args = 0, pretend = 0, frame = 0
+  86              		@ frame_needed = 1, uses_anonymous_args = 0
+  87              		@ link register save eliminated.
+  88 0000 80B4     		push	{r7}
+  89              		.cfi_def_cfa_offset 4
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 3
+
+
+  90              		.cfi_offset 7, -4
+  91 0002 00AF     		add	r7, sp, #0
+  92              		.cfi_def_cfa_register 7
+  26:.\state_event.c ****     return;
+  93              		.loc 1 26 0
+  94 0004 00BF     		nop
+  27:.\state_event.c **** }   //display, and put 
+  95              		.loc 1 27 0
+  96 0006 BD46     		mov	sp, r7
+  97              		@ sp needed
+  98 0008 5DF8047B 		ldr	r7, [sp], #4
+  99 000c 7047     		bx	lr
+ 100              		.cfi_endproc
+ 101              	.LFE58:
+ 102              		.size	action_drive, .-action_drive
+ 103 000e 00BF     		.section	.text.action_precharge,"ax",%progbits
+ 104              		.align	2
+ 105              		.global	action_precharge
+ 106              		.thumb
+ 107              		.thumb_func
+ 108              		.type	action_precharge, %function
+ 109              	action_precharge:
+ 110              	.LFB59:
+  28:.\state_event.c **** 
+  29:.\state_event.c **** 
+  30:.\state_event.c **** void action_precharge(){
+ 111              		.loc 1 30 0
+ 112              		.cfi_startproc
+ 113              		@ args = 0, pretend = 0, frame = 0
+ 114              		@ frame_needed = 1, uses_anonymous_args = 0
+ 115              		@ link register save eliminated.
+ 116 0000 80B4     		push	{r7}
+ 117              		.cfi_def_cfa_offset 4
+ 118              		.cfi_offset 7, -4
+ 119 0002 00AF     		add	r7, sp, #0
+ 120              		.cfi_def_cfa_register 7
+  31:.\state_event.c ****     return;
+ 121              		.loc 1 31 0
+ 122 0004 00BF     		nop
+  32:.\state_event.c **** }
+ 123              		.loc 1 32 0
+ 124 0006 BD46     		mov	sp, r7
+ 125              		@ sp needed
+ 126 0008 5DF8047B 		ldr	r7, [sp], #4
+ 127 000c 7047     		bx	lr
+ 128              		.cfi_endproc
+ 129              	.LFE59:
+ 130              		.size	action_precharge, .-action_precharge
+ 131 000e 00BF     		.section	.text.action_charging,"ax",%progbits
+ 132              		.align	2
+ 133              		.global	action_charging
+ 134              		.thumb
+ 135              		.thumb_func
+ 136              		.type	action_charging, %function
+ 137              	action_charging:
+ 138              	.LFB60:
+  33:.\state_event.c **** 
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 4
+
+
+  34:.\state_event.c **** void action_charging(){
+ 139              		.loc 1 34 0
+ 140              		.cfi_startproc
+ 141              		@ args = 0, pretend = 0, frame = 0
+ 142              		@ frame_needed = 1, uses_anonymous_args = 0
+ 143              		@ link register save eliminated.
+ 144 0000 80B4     		push	{r7}
+ 145              		.cfi_def_cfa_offset 4
+ 146              		.cfi_offset 7, -4
+ 147 0002 00AF     		add	r7, sp, #0
+ 148              		.cfi_def_cfa_register 7
+  35:.\state_event.c ****     return;
+ 149              		.loc 1 35 0
+ 150 0004 00BF     		nop
+  36:.\state_event.c **** }
+ 151              		.loc 1 36 0
+ 152 0006 BD46     		mov	sp, r7
+ 153              		@ sp needed
+ 154 0008 5DF8047B 		ldr	r7, [sp], #4
+ 155 000c 7047     		bx	lr
+ 156              		.cfi_endproc
+ 157              	.LFE60:
+ 158              		.size	action_charging, .-action_charging
+ 159 000e 00BF     		.section	.text.action_soft_fault,"ax",%progbits
+ 160              		.align	2
+ 161              		.global	action_soft_fault
+ 162              		.thumb
+ 163              		.thumb_func
+ 164              		.type	action_soft_fault, %function
+ 165              	action_soft_fault:
+ 166              	.LFB61:
+  37:.\state_event.c **** 
+  38:.\state_event.c **** void action_soft_fault(){
+ 167              		.loc 1 38 0
+ 168              		.cfi_startproc
+ 169              		@ args = 0, pretend = 0, frame = 0
+ 170              		@ frame_needed = 1, uses_anonymous_args = 0
+ 171              		@ link register save eliminated.
+ 172 0000 80B4     		push	{r7}
+ 173              		.cfi_def_cfa_offset 4
+ 174              		.cfi_offset 7, -4
+ 175 0002 00AF     		add	r7, sp, #0
+ 176              		.cfi_def_cfa_register 7
+  39:.\state_event.c ****     return;
+ 177              		.loc 1 39 0
+ 178 0004 00BF     		nop
+  40:.\state_event.c **** }
+ 179              		.loc 1 40 0
+ 180 0006 BD46     		mov	sp, r7
+ 181              		@ sp needed
+ 182 0008 5DF8047B 		ldr	r7, [sp], #4
+ 183 000c 7047     		bx	lr
+ 184              		.cfi_endproc
+ 185              	.LFE61:
+ 186              		.size	action_soft_fault, .-action_soft_fault
+ 187 000e 00BF     		.section	.text.action_hard_fault,"ax",%progbits
+ 188              		.align	2
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 5
+
+
+ 189              		.global	action_hard_fault
+ 190              		.thumb
+ 191              		.thumb_func
+ 192              		.type	action_hard_fault, %function
+ 193              	action_hard_fault:
+ 194              	.LFB62:
+  41:.\state_event.c **** 
+  42:.\state_event.c **** void action_hard_fault(){
+ 195              		.loc 1 42 0
+ 196              		.cfi_startproc
+ 197              		@ args = 0, pretend = 0, frame = 0
+ 198              		@ frame_needed = 1, uses_anonymous_args = 0
+ 199              		@ link register save eliminated.
+ 200 0000 80B4     		push	{r7}
+ 201              		.cfi_def_cfa_offset 4
+ 202              		.cfi_offset 7, -4
+ 203 0002 00AF     		add	r7, sp, #0
+ 204              		.cfi_def_cfa_register 7
+  43:.\state_event.c ****     return;
+ 205              		.loc 1 43 0
+ 206 0004 00BF     		nop
+  44:.\state_event.c **** }
+ 207              		.loc 1 44 0
+ 208 0006 BD46     		mov	sp, r7
+ 209              		@ sp needed
+ 210 0008 5DF8047B 		ldr	r7, [sp], #4
+ 211 000c 7047     		bx	lr
+ 212              		.cfi_endproc
+ 213              	.LFE62:
+ 214              		.size	action_hard_fault, .-action_hard_fault
+ 215 000e 00BF     		.section	.text.reset_drive_sound,"ax",%progbits
+ 216              		.align	2
+ 217              		.global	reset_drive_sound
+ 218              		.thumb
+ 219              		.thumb_func
+ 220              		.type	reset_drive_sound, %function
+ 221              	reset_drive_sound:
+ 222              	.LFB63:
+  45:.\state_event.c **** 
+  46:.\state_event.c **** 
+  47:.\state_event.c **** 
+  48:.\state_event.c **** 
+  49:.\state_event.c **** void reset_drive_sound(){
+ 223              		.loc 1 49 0
+ 224              		.cfi_startproc
+ 225              		@ args = 0, pretend = 0, frame = 0
+ 226              		@ frame_needed = 1, uses_anonymous_args = 0
+ 227              		@ link register save eliminated.
+ 228 0000 80B4     		push	{r7}
+ 229              		.cfi_def_cfa_offset 4
+ 230              		.cfi_offset 7, -4
+ 231 0002 00AF     		add	r7, sp, #0
+ 232              		.cfi_def_cfa_register 7
+  50:.\state_event.c ****     return;
+ 233              		.loc 1 50 0
+ 234 0004 00BF     		nop
+  51:.\state_event.c **** }
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 6
+
+
+ 235              		.loc 1 51 0
+ 236 0006 BD46     		mov	sp, r7
+ 237              		@ sp needed
+ 238 0008 5DF8047B 		ldr	r7, [sp], #4
+ 239 000c 7047     		bx	lr
+ 240              		.cfi_endproc
+ 241              	.LFE63:
+ 242              		.size	reset_drive_sound, .-reset_drive_sound
+ 243 000e 00BF     		.section	.text.reset_precharge_timer,"ax",%progbits
+ 244              		.align	2
+ 245              		.global	reset_precharge_timer
+ 246              		.thumb
+ 247              		.thumb_func
+ 248              		.type	reset_precharge_timer, %function
+ 249              	reset_precharge_timer:
+ 250              	.LFB64:
+  52:.\state_event.c **** 
+  53:.\state_event.c **** 
+  54:.\state_event.c **** void reset_precharge_timer(){
+ 251              		.loc 1 54 0
+ 252              		.cfi_startproc
+ 253              		@ args = 0, pretend = 0, frame = 0
+ 254              		@ frame_needed = 1, uses_anonymous_args = 0
+ 255              		@ link register save eliminated.
+ 256 0000 80B4     		push	{r7}
+ 257              		.cfi_def_cfa_offset 4
+ 258              		.cfi_offset 7, -4
+ 259 0002 00AF     		add	r7, sp, #0
+ 260              		.cfi_def_cfa_register 7
+  55:.\state_event.c ****     return;   
+ 261              		.loc 1 55 0
+ 262 0004 00BF     		nop
+  56:.\state_event.c **** }
+ 263              		.loc 1 56 0
+ 264 0006 BD46     		mov	sp, r7
+ 265              		@ sp needed
+ 266 0008 5DF8047B 		ldr	r7, [sp], #4
+ 267 000c 7047     		bx	lr
+ 268              		.cfi_endproc
+ 269              	.LFE64:
+ 270              		.size	reset_precharge_timer, .-reset_precharge_timer
+ 271 000e 00BF     		.section	.text.reset_fault_sound,"ax",%progbits
+ 272              		.align	2
+ 273              		.global	reset_fault_sound
+ 274              		.thumb
+ 275              		.thumb_func
+ 276              		.type	reset_fault_sound, %function
+ 277              	reset_fault_sound:
+ 278              	.LFB65:
+  57:.\state_event.c **** 
+  58:.\state_event.c **** void reset_fault_sound(){
+ 279              		.loc 1 58 0
+ 280              		.cfi_startproc
+ 281              		@ args = 0, pretend = 0, frame = 0
+ 282              		@ frame_needed = 1, uses_anonymous_args = 0
+ 283              		@ link register save eliminated.
+ 284 0000 80B4     		push	{r7}
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 7
+
+
+ 285              		.cfi_def_cfa_offset 4
+ 286              		.cfi_offset 7, -4
+ 287 0002 00AF     		add	r7, sp, #0
+ 288              		.cfi_def_cfa_register 7
+  59:.\state_event.c ****     return;
+ 289              		.loc 1 59 0
+ 290 0004 00BF     		nop
+  60:.\state_event.c **** }
+ 291              		.loc 1 60 0
+ 292 0006 BD46     		mov	sp, r7
+ 293              		@ sp needed
+ 294 0008 5DF8047B 		ldr	r7, [sp], #4
+ 295 000c 7047     		bx	lr
+ 296              		.cfi_endproc
+ 297              	.LFE65:
+ 298              		.size	reset_fault_sound, .-reset_fault_sound
+ 299 000e 00BF     		.section	.text.get_CAN_error,"ax",%progbits
+ 300              		.align	2
+ 301              		.global	get_CAN_error
+ 302              		.thumb
+ 303              		.thumb_func
+ 304              		.type	get_CAN_error, %function
+ 305              	get_CAN_error:
+ 306              	.LFB66:
+  61:.\state_event.c **** 
+  62:.\state_event.c **** Events get_CAN_error(){
+ 307              		.loc 1 62 0
+ 308              		.cfi_startproc
+ 309              		@ args = 0, pretend = 0, frame = 0
+ 310              		@ frame_needed = 1, uses_anonymous_args = 0
+ 311              		@ link register save eliminated.
+ 312 0000 80B4     		push	{r7}
+ 313              		.cfi_def_cfa_offset 4
+ 314              		.cfi_offset 7, -4
+ 315 0002 00AF     		add	r7, sp, #0
+ 316              		.cfi_def_cfa_register 7
+  63:.\state_event.c **** 
+  64:.\state_event.c ****     return NONE;
+ 317              		.loc 1 64 0
+ 318 0004 0923     		movs	r3, #9
+  65:.\state_event.c **** }
+ 319              		.loc 1 65 0
+ 320 0006 1846     		mov	r0, r3
+ 321 0008 BD46     		mov	sp, r7
+ 322              		@ sp needed
+ 323 000a 5DF8047B 		ldr	r7, [sp], #4
+ 324 000e 7047     		bx	lr
+ 325              		.cfi_endproc
+ 326              	.LFE66:
+ 327              		.size	get_CAN_error, .-get_CAN_error
+ 328              		.text
+ 329              	.Letext0:
+ 330              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4
+ 331              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4
+ 332              		.file 4 ".\\state_event.h"
+ 333              		.file 5 ".\\Generated_Source\\PSoC5/core_cm3.h"
+ 334              		.section	.debug_info,"",%progbits
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 8
+
+
+ 335              	.Ldebug_info0:
+ 336 0000 BA010000 		.4byte	0x1ba
+ 337 0004 0400     		.2byte	0x4
+ 338 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 339 000a 04       		.byte	0x4
+ 340 000b 01       		.uleb128 0x1
+ 341 000c C9000000 		.4byte	.LASF36
+ 342 0010 01       		.byte	0x1
+ 343 0011 09000000 		.4byte	.LASF37
+ 344 0015 01020000 		.4byte	.LASF38
+ 345 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 346 001d 00000000 		.4byte	0
+ 347 0021 00000000 		.4byte	.Ldebug_line0
+ 348 0025 02       		.uleb128 0x2
+ 349 0026 01       		.byte	0x1
+ 350 0027 06       		.byte	0x6
+ 351 0028 8C000000 		.4byte	.LASF0
+ 352 002c 02       		.uleb128 0x2
+ 353 002d 01       		.byte	0x1
+ 354 002e 08       		.byte	0x8
+ 355 002f AA000000 		.4byte	.LASF1
+ 356 0033 02       		.uleb128 0x2
+ 357 0034 02       		.byte	0x2
+ 358 0035 05       		.byte	0x5
+ 359 0036 92020000 		.4byte	.LASF2
+ 360 003a 02       		.uleb128 0x2
+ 361 003b 02       		.byte	0x2
+ 362 003c 07       		.byte	0x7
+ 363 003d 57010000 		.4byte	.LASF3
+ 364 0041 03       		.uleb128 0x3
+ 365 0042 3D000000 		.4byte	.LASF9
+ 366 0046 02       		.byte	0x2
+ 367 0047 37       		.byte	0x37
+ 368 0048 4C000000 		.4byte	0x4c
+ 369 004c 02       		.uleb128 0x2
+ 370 004d 04       		.byte	0x4
+ 371 004e 05       		.byte	0x5
+ 372 004f 9C020000 		.4byte	.LASF4
+ 373 0053 02       		.uleb128 0x2
+ 374 0054 04       		.byte	0x4
+ 375 0055 07       		.byte	0x7
+ 376 0056 45010000 		.4byte	.LASF5
+ 377 005a 02       		.uleb128 0x2
+ 378 005b 08       		.byte	0x8
+ 379 005c 05       		.byte	0x5
+ 380 005d 58020000 		.4byte	.LASF6
+ 381 0061 02       		.uleb128 0x2
+ 382 0062 08       		.byte	0x8
+ 383 0063 07       		.byte	0x7
+ 384 0064 DB010000 		.4byte	.LASF7
+ 385 0068 04       		.uleb128 0x4
+ 386 0069 04       		.byte	0x4
+ 387 006a 05       		.byte	0x5
+ 388 006b 696E7400 		.ascii	"int\000"
+ 389 006f 02       		.uleb128 0x2
+ 390 0070 04       		.byte	0x4
+ 391 0071 07       		.byte	0x7
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 9
+
+
+ 392 0072 CE010000 		.4byte	.LASF8
+ 393 0076 03       		.uleb128 0x3
+ 394 0077 38020000 		.4byte	.LASF10
+ 395 007b 03       		.byte	0x3
+ 396 007c 41       		.byte	0x41
+ 397 007d 41000000 		.4byte	0x41
+ 398 0081 02       		.uleb128 0x2
+ 399 0082 04       		.byte	0x4
+ 400 0083 04       		.byte	0x4
+ 401 0084 86000000 		.4byte	.LASF11
+ 402 0088 02       		.uleb128 0x2
+ 403 0089 08       		.byte	0x8
+ 404 008a 04       		.byte	0x4
+ 405 008b 90010000 		.4byte	.LASF12
+ 406 008f 02       		.uleb128 0x2
+ 407 0090 01       		.byte	0x1
+ 408 0091 08       		.byte	0x8
+ 409 0092 A5020000 		.4byte	.LASF13
+ 410 0096 02       		.uleb128 0x2
+ 411 0097 04       		.byte	0x4
+ 412 0098 07       		.byte	0x7
+ 413 0099 4F020000 		.4byte	.LASF14
+ 414 009d 05       		.uleb128 0x5
+ 415 009e 01       		.byte	0x1
+ 416 009f 04       		.byte	0x4
+ 417 00a0 14       		.byte	0x14
+ 418 00a1 E2000000 		.4byte	0xe2
+ 419 00a5 06       		.uleb128 0x6
+ 420 00a6 97010000 		.4byte	.LASF15
+ 421 00aa 00       		.sleb128 0
+ 422 00ab 06       		.uleb128 0x6
+ 423 00ac 00000000 		.4byte	.LASF16
+ 424 00b0 01       		.sleb128 1
+ 425 00b1 06       		.uleb128 0x6
+ 426 00b2 47000000 		.4byte	.LASF17
+ 427 00b6 02       		.sleb128 2
+ 428 00b7 06       		.uleb128 0x6
+ 429 00b8 66000000 		.4byte	.LASF18
+ 430 00bc 03       		.sleb128 3
+ 431 00bd 06       		.uleb128 0x6
+ 432 00be AF010000 		.4byte	.LASF19
+ 433 00c2 04       		.sleb128 4
+ 434 00c3 06       		.uleb128 0x6
+ 435 00c4 AA020000 		.4byte	.LASF20
+ 436 00c8 05       		.sleb128 5
+ 437 00c9 06       		.uleb128 0x6
+ 438 00ca 83020000 		.4byte	.LASF21
+ 439 00ce 06       		.sleb128 6
+ 440 00cf 06       		.uleb128 0x6
+ 441 00d0 52000000 		.4byte	.LASF22
+ 442 00d4 07       		.sleb128 7
+ 443 00d5 06       		.uleb128 0x6
+ 444 00d6 40020000 		.4byte	.LASF23
+ 445 00da 08       		.sleb128 8
+ 446 00db 06       		.uleb128 0x6
+ 447 00dc 38000000 		.4byte	.LASF24
+ 448 00e0 09       		.sleb128 9
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 10
+
+
+ 449 00e1 00       		.byte	0
+ 450 00e2 03       		.uleb128 0x3
+ 451 00e3 7C010000 		.4byte	.LASF25
+ 452 00e7 04       		.byte	0x4
+ 453 00e8 1F       		.byte	0x1f
+ 454 00e9 9D000000 		.4byte	0x9d
+ 455 00ed 07       		.uleb128 0x7
+ 456 00ee 74020000 		.4byte	.LASF26
+ 457 00f2 01       		.byte	0x1
+ 458 00f3 11       		.byte	0x11
+ 459 00f4 00000000 		.4byte	.LFB56
+ 460 00f8 0E000000 		.4byte	.LFE56-.LFB56
+ 461 00fc 01       		.uleb128 0x1
+ 462 00fd 9C       		.byte	0x9c
+ 463 00fe 07       		.uleb128 0x7
+ 464 00ff F2010000 		.4byte	.LASF27
+ 465 0103 01       		.byte	0x1
+ 466 0104 15       		.byte	0x15
+ 467 0105 00000000 		.4byte	.LFB57
+ 468 0109 0E000000 		.4byte	.LFE57-.LFB57
+ 469 010d 01       		.uleb128 0x1
+ 470 010e 9C       		.byte	0x9c
+ 471 010f 07       		.uleb128 0x7
+ 472 0110 19000000 		.4byte	.LASF28
+ 473 0114 01       		.byte	0x1
+ 474 0115 19       		.byte	0x19
+ 475 0116 00000000 		.4byte	.LFB58
+ 476 011a 0E000000 		.4byte	.LFE58-.LFB58
+ 477 011e 01       		.uleb128 0x1
+ 478 011f 9C       		.byte	0x9c
+ 479 0120 07       		.uleb128 0x7
+ 480 0121 B8000000 		.4byte	.LASF29
+ 481 0125 01       		.byte	0x1
+ 482 0126 1E       		.byte	0x1e
+ 483 0127 00000000 		.4byte	.LFB59
+ 484 012b 0E000000 		.4byte	.LFE59-.LFB59
+ 485 012f 01       		.uleb128 0x1
+ 486 0130 9C       		.byte	0x9c
+ 487 0131 07       		.uleb128 0x7
+ 488 0132 BE010000 		.4byte	.LASF30
+ 489 0136 01       		.byte	0x1
+ 490 0137 22       		.byte	0x22
+ 491 0138 00000000 		.4byte	.LFB60
+ 492 013c 0E000000 		.4byte	.LFE60-.LFB60
+ 493 0140 01       		.uleb128 0x1
+ 494 0141 9C       		.byte	0x9c
+ 495 0142 07       		.uleb128 0x7
+ 496 0143 98000000 		.4byte	.LASF31
+ 497 0147 01       		.byte	0x1
+ 498 0148 26       		.byte	0x26
+ 499 0149 00000000 		.4byte	.LFB61
+ 500 014d 0E000000 		.4byte	.LFE61-.LFB61
+ 501 0151 01       		.uleb128 0x1
+ 502 0152 9C       		.byte	0x9c
+ 503 0153 07       		.uleb128 0x7
+ 504 0154 9D010000 		.4byte	.LASF32
+ 505 0158 01       		.byte	0x1
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 11
+
+
+ 506 0159 2A       		.byte	0x2a
+ 507 015a 00000000 		.4byte	.LFB62
+ 508 015e 0E000000 		.4byte	.LFE62-.LFB62
+ 509 0162 01       		.uleb128 0x1
+ 510 0163 9C       		.byte	0x9c
+ 511 0164 07       		.uleb128 0x7
+ 512 0165 6A010000 		.4byte	.LASF33
+ 513 0169 01       		.byte	0x1
+ 514 016a 31       		.byte	0x31
+ 515 016b 00000000 		.4byte	.LFB63
+ 516 016f 0E000000 		.4byte	.LFE63-.LFB63
+ 517 0173 01       		.uleb128 0x1
+ 518 0174 9C       		.byte	0x9c
+ 519 0175 07       		.uleb128 0x7
+ 520 0176 70000000 		.4byte	.LASF34
+ 521 017a 01       		.byte	0x1
+ 522 017b 36       		.byte	0x36
+ 523 017c 00000000 		.4byte	.LFB64
+ 524 0180 0E000000 		.4byte	.LFE64-.LFB64
+ 525 0184 01       		.uleb128 0x1
+ 526 0185 9C       		.byte	0x9c
+ 527 0186 07       		.uleb128 0x7
+ 528 0187 26000000 		.4byte	.LASF35
+ 529 018b 01       		.byte	0x1
+ 530 018c 3A       		.byte	0x3a
+ 531 018d 00000000 		.4byte	.LFB65
+ 532 0191 0E000000 		.4byte	.LFE65-.LFB65
+ 533 0195 01       		.uleb128 0x1
+ 534 0196 9C       		.byte	0x9c
+ 535 0197 08       		.uleb128 0x8
+ 536 0198 66020000 		.4byte	.LASF39
+ 537 019c 01       		.byte	0x1
+ 538 019d 3E       		.byte	0x3e
+ 539 019e E2000000 		.4byte	0xe2
+ 540 01a2 00000000 		.4byte	.LFB66
+ 541 01a6 10000000 		.4byte	.LFE66-.LFB66
+ 542 01aa 01       		.uleb128 0x1
+ 543 01ab 9C       		.byte	0x9c
+ 544 01ac 09       		.uleb128 0x9
+ 545 01ad 83010000 		.4byte	.LASF40
+ 546 01b1 05       		.byte	0x5
+ 547 01b2 1606     		.2byte	0x616
+ 548 01b4 B8010000 		.4byte	0x1b8
+ 549 01b8 0A       		.uleb128 0xa
+ 550 01b9 76000000 		.4byte	0x76
+ 551 01bd 00       		.byte	0
+ 552              		.section	.debug_abbrev,"",%progbits
+ 553              	.Ldebug_abbrev0:
+ 554 0000 01       		.uleb128 0x1
+ 555 0001 11       		.uleb128 0x11
+ 556 0002 01       		.byte	0x1
+ 557 0003 25       		.uleb128 0x25
+ 558 0004 0E       		.uleb128 0xe
+ 559 0005 13       		.uleb128 0x13
+ 560 0006 0B       		.uleb128 0xb
+ 561 0007 03       		.uleb128 0x3
+ 562 0008 0E       		.uleb128 0xe
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 12
+
+
+ 563 0009 1B       		.uleb128 0x1b
+ 564 000a 0E       		.uleb128 0xe
+ 565 000b 55       		.uleb128 0x55
+ 566 000c 17       		.uleb128 0x17
+ 567 000d 11       		.uleb128 0x11
+ 568 000e 01       		.uleb128 0x1
+ 569 000f 10       		.uleb128 0x10
+ 570 0010 17       		.uleb128 0x17
+ 571 0011 00       		.byte	0
+ 572 0012 00       		.byte	0
+ 573 0013 02       		.uleb128 0x2
+ 574 0014 24       		.uleb128 0x24
+ 575 0015 00       		.byte	0
+ 576 0016 0B       		.uleb128 0xb
+ 577 0017 0B       		.uleb128 0xb
+ 578 0018 3E       		.uleb128 0x3e
+ 579 0019 0B       		.uleb128 0xb
+ 580 001a 03       		.uleb128 0x3
+ 581 001b 0E       		.uleb128 0xe
+ 582 001c 00       		.byte	0
+ 583 001d 00       		.byte	0
+ 584 001e 03       		.uleb128 0x3
+ 585 001f 16       		.uleb128 0x16
+ 586 0020 00       		.byte	0
+ 587 0021 03       		.uleb128 0x3
+ 588 0022 0E       		.uleb128 0xe
+ 589 0023 3A       		.uleb128 0x3a
+ 590 0024 0B       		.uleb128 0xb
+ 591 0025 3B       		.uleb128 0x3b
+ 592 0026 0B       		.uleb128 0xb
+ 593 0027 49       		.uleb128 0x49
+ 594 0028 13       		.uleb128 0x13
+ 595 0029 00       		.byte	0
+ 596 002a 00       		.byte	0
+ 597 002b 04       		.uleb128 0x4
+ 598 002c 24       		.uleb128 0x24
+ 599 002d 00       		.byte	0
+ 600 002e 0B       		.uleb128 0xb
+ 601 002f 0B       		.uleb128 0xb
+ 602 0030 3E       		.uleb128 0x3e
+ 603 0031 0B       		.uleb128 0xb
+ 604 0032 03       		.uleb128 0x3
+ 605 0033 08       		.uleb128 0x8
+ 606 0034 00       		.byte	0
+ 607 0035 00       		.byte	0
+ 608 0036 05       		.uleb128 0x5
+ 609 0037 04       		.uleb128 0x4
+ 610 0038 01       		.byte	0x1
+ 611 0039 0B       		.uleb128 0xb
+ 612 003a 0B       		.uleb128 0xb
+ 613 003b 3A       		.uleb128 0x3a
+ 614 003c 0B       		.uleb128 0xb
+ 615 003d 3B       		.uleb128 0x3b
+ 616 003e 0B       		.uleb128 0xb
+ 617 003f 01       		.uleb128 0x1
+ 618 0040 13       		.uleb128 0x13
+ 619 0041 00       		.byte	0
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 13
+
+
+ 620 0042 00       		.byte	0
+ 621 0043 06       		.uleb128 0x6
+ 622 0044 28       		.uleb128 0x28
+ 623 0045 00       		.byte	0
+ 624 0046 03       		.uleb128 0x3
+ 625 0047 0E       		.uleb128 0xe
+ 626 0048 1C       		.uleb128 0x1c
+ 627 0049 0D       		.uleb128 0xd
+ 628 004a 00       		.byte	0
+ 629 004b 00       		.byte	0
+ 630 004c 07       		.uleb128 0x7
+ 631 004d 2E       		.uleb128 0x2e
+ 632 004e 00       		.byte	0
+ 633 004f 3F       		.uleb128 0x3f
+ 634 0050 19       		.uleb128 0x19
+ 635 0051 03       		.uleb128 0x3
+ 636 0052 0E       		.uleb128 0xe
+ 637 0053 3A       		.uleb128 0x3a
+ 638 0054 0B       		.uleb128 0xb
+ 639 0055 3B       		.uleb128 0x3b
+ 640 0056 0B       		.uleb128 0xb
+ 641 0057 11       		.uleb128 0x11
+ 642 0058 01       		.uleb128 0x1
+ 643 0059 12       		.uleb128 0x12
+ 644 005a 06       		.uleb128 0x6
+ 645 005b 40       		.uleb128 0x40
+ 646 005c 18       		.uleb128 0x18
+ 647 005d 9742     		.uleb128 0x2117
+ 648 005f 19       		.uleb128 0x19
+ 649 0060 00       		.byte	0
+ 650 0061 00       		.byte	0
+ 651 0062 08       		.uleb128 0x8
+ 652 0063 2E       		.uleb128 0x2e
+ 653 0064 00       		.byte	0
+ 654 0065 3F       		.uleb128 0x3f
+ 655 0066 19       		.uleb128 0x19
+ 656 0067 03       		.uleb128 0x3
+ 657 0068 0E       		.uleb128 0xe
+ 658 0069 3A       		.uleb128 0x3a
+ 659 006a 0B       		.uleb128 0xb
+ 660 006b 3B       		.uleb128 0x3b
+ 661 006c 0B       		.uleb128 0xb
+ 662 006d 49       		.uleb128 0x49
+ 663 006e 13       		.uleb128 0x13
+ 664 006f 11       		.uleb128 0x11
+ 665 0070 01       		.uleb128 0x1
+ 666 0071 12       		.uleb128 0x12
+ 667 0072 06       		.uleb128 0x6
+ 668 0073 40       		.uleb128 0x40
+ 669 0074 18       		.uleb128 0x18
+ 670 0075 9742     		.uleb128 0x2117
+ 671 0077 19       		.uleb128 0x19
+ 672 0078 00       		.byte	0
+ 673 0079 00       		.byte	0
+ 674 007a 09       		.uleb128 0x9
+ 675 007b 34       		.uleb128 0x34
+ 676 007c 00       		.byte	0
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 14
+
+
+ 677 007d 03       		.uleb128 0x3
+ 678 007e 0E       		.uleb128 0xe
+ 679 007f 3A       		.uleb128 0x3a
+ 680 0080 0B       		.uleb128 0xb
+ 681 0081 3B       		.uleb128 0x3b
+ 682 0082 05       		.uleb128 0x5
+ 683 0083 49       		.uleb128 0x49
+ 684 0084 13       		.uleb128 0x13
+ 685 0085 3F       		.uleb128 0x3f
+ 686 0086 19       		.uleb128 0x19
+ 687 0087 3C       		.uleb128 0x3c
+ 688 0088 19       		.uleb128 0x19
+ 689 0089 00       		.byte	0
+ 690 008a 00       		.byte	0
+ 691 008b 0A       		.uleb128 0xa
+ 692 008c 35       		.uleb128 0x35
+ 693 008d 00       		.byte	0
+ 694 008e 49       		.uleb128 0x49
+ 695 008f 13       		.uleb128 0x13
+ 696 0090 00       		.byte	0
+ 697 0091 00       		.byte	0
+ 698 0092 00       		.byte	0
+ 699              		.section	.debug_aranges,"",%progbits
+ 700 0000 6C000000 		.4byte	0x6c
+ 701 0004 0200     		.2byte	0x2
+ 702 0006 00000000 		.4byte	.Ldebug_info0
+ 703 000a 04       		.byte	0x4
+ 704 000b 00       		.byte	0
+ 705 000c 0000     		.2byte	0
+ 706 000e 0000     		.2byte	0
+ 707 0010 00000000 		.4byte	.LFB56
+ 708 0014 0E000000 		.4byte	.LFE56-.LFB56
+ 709 0018 00000000 		.4byte	.LFB57
+ 710 001c 0E000000 		.4byte	.LFE57-.LFB57
+ 711 0020 00000000 		.4byte	.LFB58
+ 712 0024 0E000000 		.4byte	.LFE58-.LFB58
+ 713 0028 00000000 		.4byte	.LFB59
+ 714 002c 0E000000 		.4byte	.LFE59-.LFB59
+ 715 0030 00000000 		.4byte	.LFB60
+ 716 0034 0E000000 		.4byte	.LFE60-.LFB60
+ 717 0038 00000000 		.4byte	.LFB61
+ 718 003c 0E000000 		.4byte	.LFE61-.LFB61
+ 719 0040 00000000 		.4byte	.LFB62
+ 720 0044 0E000000 		.4byte	.LFE62-.LFB62
+ 721 0048 00000000 		.4byte	.LFB63
+ 722 004c 0E000000 		.4byte	.LFE63-.LFB63
+ 723 0050 00000000 		.4byte	.LFB64
+ 724 0054 0E000000 		.4byte	.LFE64-.LFB64
+ 725 0058 00000000 		.4byte	.LFB65
+ 726 005c 0E000000 		.4byte	.LFE65-.LFB65
+ 727 0060 00000000 		.4byte	.LFB66
+ 728 0064 10000000 		.4byte	.LFE66-.LFB66
+ 729 0068 00000000 		.4byte	0
+ 730 006c 00000000 		.4byte	0
+ 731              		.section	.debug_ranges,"",%progbits
+ 732              	.Ldebug_ranges0:
+ 733 0000 00000000 		.4byte	.LFB56
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 15
+
+
+ 734 0004 0E000000 		.4byte	.LFE56
+ 735 0008 00000000 		.4byte	.LFB57
+ 736 000c 0E000000 		.4byte	.LFE57
+ 737 0010 00000000 		.4byte	.LFB58
+ 738 0014 0E000000 		.4byte	.LFE58
+ 739 0018 00000000 		.4byte	.LFB59
+ 740 001c 0E000000 		.4byte	.LFE59
+ 741 0020 00000000 		.4byte	.LFB60
+ 742 0024 0E000000 		.4byte	.LFE60
+ 743 0028 00000000 		.4byte	.LFB61
+ 744 002c 0E000000 		.4byte	.LFE61
+ 745 0030 00000000 		.4byte	.LFB62
+ 746 0034 0E000000 		.4byte	.LFE62
+ 747 0038 00000000 		.4byte	.LFB63
+ 748 003c 0E000000 		.4byte	.LFE63
+ 749 0040 00000000 		.4byte	.LFB64
+ 750 0044 0E000000 		.4byte	.LFE64
+ 751 0048 00000000 		.4byte	.LFB65
+ 752 004c 0E000000 		.4byte	.LFE65
+ 753 0050 00000000 		.4byte	.LFB66
+ 754 0054 10000000 		.4byte	.LFE66
+ 755 0058 00000000 		.4byte	0
+ 756 005c 00000000 		.4byte	0
+ 757              		.section	.debug_line,"",%progbits
+ 758              	.Ldebug_line0:
+ 759 0000 1F020000 		.section	.debug_str,"MS",%progbits,1
+ 759      02005E01 
+ 759      00000201 
+ 759      FB0E0D00 
+ 759      01010101 
+ 760              	.LASF16:
+ 761 0000 44524956 		.ascii	"DRIVE_UP\000"
+ 761      455F5550 
+ 761      00
+ 762              	.LASF37:
+ 763 0009 2E5C7374 		.ascii	".\\state_event.c\000"
+ 763      6174655F 
+ 763      6576656E 
+ 763      742E6300 
+ 764              	.LASF28:
+ 765 0019 61637469 		.ascii	"action_drive\000"
+ 765      6F6E5F64 
+ 765      72697665 
+ 765      00
+ 766              	.LASF35:
+ 767 0026 72657365 		.ascii	"reset_fault_sound\000"
+ 767      745F6661 
+ 767      756C745F 
+ 767      736F756E 
+ 767      6400
+ 768              	.LASF24:
+ 769 0038 4E4F4E45 		.ascii	"NONE\000"
+ 769      00
+ 770              	.LASF9:
+ 771 003d 5F5F696E 		.ascii	"__int32_t\000"
+ 771      7433325F 
+ 771      7400
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 16
+
+
+ 772              	.LASF17:
+ 773 0047 4E455554 		.ascii	"NEUTRAL_UP\000"
+ 773      52414C5F 
+ 773      555000
+ 774              	.LASF22:
+ 775 0052 534F4654 		.ascii	"SOFT_FAULT_REMEDIED\000"
+ 775      5F464155 
+ 775      4C545F52 
+ 775      454D4544 
+ 775      49454400 
+ 776              	.LASF18:
+ 777 0066 43484152 		.ascii	"CHARGE_UP\000"
+ 777      47455F55 
+ 777      5000
+ 778              	.LASF34:
+ 779 0070 72657365 		.ascii	"reset_precharge_timer\000"
+ 779      745F7072 
+ 779      65636861 
+ 779      7267655F 
+ 779      74696D65 
+ 780              	.LASF11:
+ 781 0086 666C6F61 		.ascii	"float\000"
+ 781      7400
+ 782              	.LASF0:
+ 783 008c 7369676E 		.ascii	"signed char\000"
+ 783      65642063 
+ 783      68617200 
+ 784              	.LASF31:
+ 785 0098 61637469 		.ascii	"action_soft_fault\000"
+ 785      6F6E5F73 
+ 785      6F66745F 
+ 785      6661756C 
+ 785      7400
+ 786              	.LASF1:
+ 787 00aa 756E7369 		.ascii	"unsigned char\000"
+ 787      676E6564 
+ 787      20636861 
+ 787      7200
+ 788              	.LASF29:
+ 789 00b8 61637469 		.ascii	"action_precharge\000"
+ 789      6F6E5F70 
+ 789      72656368 
+ 789      61726765 
+ 789      00
+ 790              	.LASF36:
+ 791 00c9 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 791      4320342E 
+ 791      382E3420 
+ 791      32303134 
+ 791      30353236 
+ 792 00fc 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
+ 792      20726576 
+ 792      6973696F 
+ 792      6E203231 
+ 792      31333538 
+ 793 012f 30202D66 		.ascii	"0 -ffunction-sections\000"
+ 793      66756E63 
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 17
+
+
+ 793      74696F6E 
+ 793      2D736563 
+ 793      74696F6E 
+ 794              	.LASF5:
+ 795 0145 6C6F6E67 		.ascii	"long unsigned int\000"
+ 795      20756E73 
+ 795      69676E65 
+ 795      6420696E 
+ 795      7400
+ 796              	.LASF3:
+ 797 0157 73686F72 		.ascii	"short unsigned int\000"
+ 797      7420756E 
+ 797      7369676E 
+ 797      65642069 
+ 797      6E7400
+ 798              	.LASF33:
+ 799 016a 72657365 		.ascii	"reset_drive_sound\000"
+ 799      745F6472 
+ 799      6976655F 
+ 799      736F756E 
+ 799      6400
+ 800              	.LASF25:
+ 801 017c 4576656E 		.ascii	"Events\000"
+ 801      747300
+ 802              	.LASF40:
+ 803 0183 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 803      52784275 
+ 803      66666572 
+ 803      00
+ 804              	.LASF12:
+ 805 0190 646F7562 		.ascii	"double\000"
+ 805      6C6500
+ 806              	.LASF15:
+ 807 0197 48565F55 		.ascii	"HV_UP\000"
+ 807      5000
+ 808              	.LASF32:
+ 809 019d 61637469 		.ascii	"action_hard_fault\000"
+ 809      6F6E5F68 
+ 809      6172645F 
+ 809      6661756C 
+ 809      7400
+ 810              	.LASF19:
+ 811 01af 50524543 		.ascii	"PRECHARGE_DONE\000"
+ 811      48415247 
+ 811      455F444F 
+ 811      4E4500
+ 812              	.LASF30:
+ 813 01be 61637469 		.ascii	"action_charging\000"
+ 813      6F6E5F63 
+ 813      68617267 
+ 813      696E6700 
+ 814              	.LASF8:
+ 815 01ce 756E7369 		.ascii	"unsigned int\000"
+ 815      676E6564 
+ 815      20696E74 
+ 815      00
+ 816              	.LASF7:
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 18
+
+
+ 817 01db 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 817      206C6F6E 
+ 817      6720756E 
+ 817      7369676E 
+ 817      65642069 
+ 818              	.LASF27:
+ 819 01f2 61637469 		.ascii	"action_neutral\000"
+ 819      6F6E5F6E 
+ 819      65757472 
+ 819      616C00
+ 820              	.LASF38:
+ 821 0201 443A5C77 		.ascii	"D:\\workspace\\super-eagle\\Super-Eagle\\Super-Eagl"
+ 821      6F726B73 
+ 821      70616365 
+ 821      5C737570 
+ 821      65722D65 
+ 822 0230 652E6379 		.ascii	"e.cydsn\000"
+ 822      64736E00 
+ 823              	.LASF10:
+ 824 0238 696E7433 		.ascii	"int32_t\000"
+ 824      325F7400 
+ 825              	.LASF23:
+ 826 0240 48415244 		.ascii	"HARD_FAULT_SIG\000"
+ 826      5F464155 
+ 826      4C545F53 
+ 826      494700
+ 827              	.LASF14:
+ 828 024f 73697A65 		.ascii	"sizetype\000"
+ 828      74797065 
+ 828      00
+ 829              	.LASF6:
+ 830 0258 6C6F6E67 		.ascii	"long long int\000"
+ 830      206C6F6E 
+ 830      6720696E 
+ 830      7400
+ 831              	.LASF39:
+ 832 0266 6765745F 		.ascii	"get_CAN_error\000"
+ 832      43414E5F 
+ 832      6572726F 
+ 832      7200
+ 833              	.LASF26:
+ 834 0274 61637469 		.ascii	"action_startup\000"
+ 834      6F6E5F73 
+ 834      74617274 
+ 834      757000
+ 835              	.LASF21:
+ 836 0283 534F4654 		.ascii	"SOFT_FAULT_SIG\000"
+ 836      5F464155 
+ 836      4C545F53 
+ 836      494700
+ 837              	.LASF2:
+ 838 0292 73686F72 		.ascii	"short int\000"
+ 838      7420696E 
+ 838      7400
+ 839              	.LASF4:
+ 840 029c 6C6F6E67 		.ascii	"long int\000"
+ 840      20696E74 
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 19
+
+
+ 840      00
+ 841              	.LASF13:
+ 842 02a5 63686172 		.ascii	"char\000"
+ 842      00
+ 843              	.LASF20:
+ 844 02aa 43484152 		.ascii	"CHARGE_DOWN\000"
+ 844      47455F44 
+ 844      4F574E00 
+ 845              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

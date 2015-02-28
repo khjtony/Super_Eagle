@@ -1,0 +1,2381 @@
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"FSM_Timer.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	FSM_Timer_initVar
+  19              		.bss
+  20              		.type	FSM_Timer_initVar, %object
+  21              		.size	FSM_Timer_initVar, 1
+  22              	FSM_Timer_initVar:
+  23 0000 00       		.space	1
+  24              		.section	.text.FSM_Timer_Init,"ax",%progbits
+  25              		.align	2
+  26              		.global	FSM_Timer_Init
+  27              		.thumb
+  28              		.thumb_func
+  29              		.type	FSM_Timer_Init, %function
+  30              	FSM_Timer_Init:
+  31              	.LFB0:
+  32              		.file 1 ".\\Generated_Source\\PSoC5\\FSM_Timer.c"
+   1:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/FSM_Timer.c **** * File Name: FSM_Timer.c
+   3:.\Generated_Source\PSoC5/FSM_Timer.c **** * Version 2.70
+   4:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+   5:.\Generated_Source\PSoC5/FSM_Timer.c **** * Description:
+   6:.\Generated_Source\PSoC5/FSM_Timer.c **** *  The Timer component consists of a 8, 16, 24 or 32-bit timer with
+   7:.\Generated_Source\PSoC5/FSM_Timer.c **** *  a selectable period between 2 and 2^Width - 1.  The timer may free run
+   8:.\Generated_Source\PSoC5/FSM_Timer.c **** *  or be used as a capture timer as well.  The capture can be initiated
+   9:.\Generated_Source\PSoC5/FSM_Timer.c **** *  by a positive or negative edge signal as well as via software.
+  10:.\Generated_Source\PSoC5/FSM_Timer.c **** *  A trigger input can be programmed to enable the timer on rising edge
+  11:.\Generated_Source\PSoC5/FSM_Timer.c **** *  falling edge, either edge or continous run.
+  12:.\Generated_Source\PSoC5/FSM_Timer.c **** *  Interrupts may be generated due to a terminal count condition
+  13:.\Generated_Source\PSoC5/FSM_Timer.c **** *  or a capture event.
+  14:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+  15:.\Generated_Source\PSoC5/FSM_Timer.c **** * Note:
+  16:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+  17:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************
+  18:.\Generated_Source\PSoC5/FSM_Timer.c **** * Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  19:.\Generated_Source\PSoC5/FSM_Timer.c **** * You may use this file only in accordance with the license, terms, conditions,
+  20:.\Generated_Source\PSoC5/FSM_Timer.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  21:.\Generated_Source\PSoC5/FSM_Timer.c **** * the software package with which this file was provided.
+  22:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************/
+  23:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+  24:.\Generated_Source\PSoC5/FSM_Timer.c **** #include "FSM_Timer.h"
+  25:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 2
+
+
+  26:.\Generated_Source\PSoC5/FSM_Timer.c **** uint8 FSM_Timer_initVar = 0u;
+  27:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+  28:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+  29:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
+  30:.\Generated_Source\PSoC5/FSM_Timer.c **** * Function Name: FSM_Timer_Init
+  31:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************
+  32:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+  33:.\Generated_Source\PSoC5/FSM_Timer.c **** * Summary:
+  34:.\Generated_Source\PSoC5/FSM_Timer.c **** *  Initialize to the schematic state
+  35:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+  36:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
+  37:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+  38:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+  39:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
+  40:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+  41:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+  42:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
+  43:.\Generated_Source\PSoC5/FSM_Timer.c **** void FSM_Timer_Init(void) 
+  44:.\Generated_Source\PSoC5/FSM_Timer.c **** {
+  33              		.loc 1 44 0
+  34              		.cfi_startproc
+  35              		@ args = 0, pretend = 0, frame = 8
+  36              		@ frame_needed = 1, uses_anonymous_args = 0
+  37 0000 80B5     		push	{r7, lr}
+  38              		.cfi_def_cfa_offset 8
+  39              		.cfi_offset 7, -8
+  40              		.cfi_offset 14, -4
+  41 0002 82B0     		sub	sp, sp, #8
+  42              		.cfi_def_cfa_offset 16
+  43 0004 00AF     		add	r7, sp, #0
+  44              		.cfi_def_cfa_register 7
+  45:.\Generated_Source\PSoC5/FSM_Timer.c ****     #if(!FSM_Timer_UsingFixedFunction)
+  46:.\Generated_Source\PSoC5/FSM_Timer.c ****             /* Interrupt State Backup for Critical Region*/
+  47:.\Generated_Source\PSoC5/FSM_Timer.c ****             uint8 FSM_Timer_interruptState;
+  48:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif /* Interrupt state back up for Fixed Function only */
+  49:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+  50:.\Generated_Source\PSoC5/FSM_Timer.c ****     #if (FSM_Timer_UsingFixedFunction)
+  51:.\Generated_Source\PSoC5/FSM_Timer.c ****         /* Clear all bits but the enable bit (if it's already set) for Timer operation */
+  52:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_CONTROL &= FSM_Timer_CTRL_ENABLE;
+  53:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+  54:.\Generated_Source\PSoC5/FSM_Timer.c ****         /* Clear the mode bits for continuous run mode */
+  55:.\Generated_Source\PSoC5/FSM_Timer.c ****         #if (CY_PSOC5A)
+  56:.\Generated_Source\PSoC5/FSM_Timer.c ****             FSM_Timer_CONTROL2 &= ((uint8)(~FSM_Timer_CTRL_MODE_MASK));
+  57:.\Generated_Source\PSoC5/FSM_Timer.c ****         #endif /* Clear bits in CONTROL2 only in PSOC5A */
+  58:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+  59:.\Generated_Source\PSoC5/FSM_Timer.c ****         #if (CY_PSOC3 || CY_PSOC5LP)
+  60:.\Generated_Source\PSoC5/FSM_Timer.c ****             FSM_Timer_CONTROL3 &= ((uint8)(~FSM_Timer_CTRL_MODE_MASK));
+  61:.\Generated_Source\PSoC5/FSM_Timer.c ****         #endif /* CONTROL3 register exists only in PSoC3 OR PSoC5LP */
+  62:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+  63:.\Generated_Source\PSoC5/FSM_Timer.c ****         /* Check if One Shot mode is enabled i.e. RunMode !=0*/
+  64:.\Generated_Source\PSoC5/FSM_Timer.c ****         #if (FSM_Timer_RunModeUsed != 0x0u)
+  65:.\Generated_Source\PSoC5/FSM_Timer.c ****             /* Set 3rd bit of Control register to enable one shot mode */
+  66:.\Generated_Source\PSoC5/FSM_Timer.c ****             FSM_Timer_CONTROL |= 0x04u;
+  67:.\Generated_Source\PSoC5/FSM_Timer.c ****         #endif /* One Shot enabled only when RunModeUsed is not Continuous*/
+  68:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+  69:.\Generated_Source\PSoC5/FSM_Timer.c ****         #if (FSM_Timer_RunModeUsed == 2)
+  70:.\Generated_Source\PSoC5/FSM_Timer.c ****             #if (CY_PSOC5A)
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 3
+
+
+  71:.\Generated_Source\PSoC5/FSM_Timer.c ****                 /* Set last 2 bits of control2 register if one shot(halt on
+  72:.\Generated_Source\PSoC5/FSM_Timer.c ****                 interrupt) is enabled*/
+  73:.\Generated_Source\PSoC5/FSM_Timer.c ****                 FSM_Timer_CONTROL2 |= 0x03u;
+  74:.\Generated_Source\PSoC5/FSM_Timer.c ****             #endif /* Set One-Shot Halt on Interrupt bit in CONTROL2 for PSoC5A */
+  75:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+  76:.\Generated_Source\PSoC5/FSM_Timer.c ****             #if (CY_PSOC3 || CY_PSOC5LP)
+  77:.\Generated_Source\PSoC5/FSM_Timer.c ****                 /* Set last 2 bits of control3 register if one shot(halt on
+  78:.\Generated_Source\PSoC5/FSM_Timer.c ****                 interrupt) is enabled*/
+  79:.\Generated_Source\PSoC5/FSM_Timer.c ****                 FSM_Timer_CONTROL3 |= 0x03u;
+  80:.\Generated_Source\PSoC5/FSM_Timer.c ****             #endif /* Set One-Shot Halt on Interrupt bit in CONTROL3 for PSoC3 or PSoC5LP */
+  81:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+  82:.\Generated_Source\PSoC5/FSM_Timer.c ****         #endif /* Remove section if One Shot Halt on Interrupt is not enabled */
+  83:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+  84:.\Generated_Source\PSoC5/FSM_Timer.c ****         #if (FSM_Timer_UsingHWEnable != 0)
+  85:.\Generated_Source\PSoC5/FSM_Timer.c ****             #if (CY_PSOC5A)
+  86:.\Generated_Source\PSoC5/FSM_Timer.c ****                 /* Set the default Run Mode of the Timer to Continuous */
+  87:.\Generated_Source\PSoC5/FSM_Timer.c ****                 FSM_Timer_CONTROL2 |= FSM_Timer_CTRL_MODE_PULSEWIDTH;
+  88:.\Generated_Source\PSoC5/FSM_Timer.c ****             #endif /* Set Continuous Run Mode in CONTROL2 for PSoC5A */
+  89:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+  90:.\Generated_Source\PSoC5/FSM_Timer.c ****             #if (CY_PSOC3 || CY_PSOC5LP)
+  91:.\Generated_Source\PSoC5/FSM_Timer.c ****                 /* Clear and Set ROD and COD bits of CFG2 register */
+  92:.\Generated_Source\PSoC5/FSM_Timer.c ****                 FSM_Timer_CONTROL3 &= ((uint8)(~FSM_Timer_CTRL_RCOD_MASK));
+  93:.\Generated_Source\PSoC5/FSM_Timer.c ****                 FSM_Timer_CONTROL3 |= FSM_Timer_CTRL_RCOD;
+  94:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+  95:.\Generated_Source\PSoC5/FSM_Timer.c ****                 /* Clear and Enable the HW enable bit in CFG2 register */
+  96:.\Generated_Source\PSoC5/FSM_Timer.c ****                 FSM_Timer_CONTROL3 &= ((uint8)(~FSM_Timer_CTRL_ENBL_MASK));
+  97:.\Generated_Source\PSoC5/FSM_Timer.c ****                 FSM_Timer_CONTROL3 |= FSM_Timer_CTRL_ENBL;
+  98:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+  99:.\Generated_Source\PSoC5/FSM_Timer.c ****                 /* Set the default Run Mode of the Timer to Continuous */
+ 100:.\Generated_Source\PSoC5/FSM_Timer.c ****                 FSM_Timer_CONTROL3 |= FSM_Timer_CTRL_MODE_CONTINUOUS;
+ 101:.\Generated_Source\PSoC5/FSM_Timer.c ****             #endif /* Set Continuous Run Mode in CONTROL3 for PSoC3ES3 or PSoC5A */
+ 102:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 103:.\Generated_Source\PSoC5/FSM_Timer.c ****         #endif /* Configure Run Mode with hardware enable */
+ 104:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 105:.\Generated_Source\PSoC5/FSM_Timer.c ****         /* Clear and Set SYNCTC and SYNCCMP bits of RT1 register */
+ 106:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_RT1 &= ((uint8)(~FSM_Timer_RT1_MASK));
+ 107:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_RT1 |= FSM_Timer_SYNC;
+ 108:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 109:.\Generated_Source\PSoC5/FSM_Timer.c ****         /*Enable DSI Sync all all inputs of the Timer*/
+ 110:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_RT1 &= ((uint8)(~FSM_Timer_SYNCDSI_MASK));
+ 111:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_RT1 |= FSM_Timer_SYNCDSI_EN;
+ 112:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 113:.\Generated_Source\PSoC5/FSM_Timer.c ****         /* Set the IRQ to use the status register interrupts */
+ 114:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_CONTROL2 |= FSM_Timer_CTRL2_IRQ_SEL;
+ 115:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif /* Configuring registers of fixed function implementation */
+ 116:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 117:.\Generated_Source\PSoC5/FSM_Timer.c ****     /* Set Initial values from Configuration */
+ 118:.\Generated_Source\PSoC5/FSM_Timer.c ****     FSM_Timer_WritePeriod(FSM_Timer_INIT_PERIOD);
+  45              		.loc 1 118 0
+  46 0006 46F67B40 		movw	r0, #27771
+  47 000a FFF7FEFF 		bl	FSM_Timer_WritePeriod
+ 119:.\Generated_Source\PSoC5/FSM_Timer.c ****     FSM_Timer_WriteCounter(FSM_Timer_INIT_PERIOD);
+  48              		.loc 1 119 0
+  49 000e 46F67B40 		movw	r0, #27771
+  50 0012 FFF7FEFF 		bl	FSM_Timer_WriteCounter
+ 120:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 121:.\Generated_Source\PSoC5/FSM_Timer.c ****     #if (FSM_Timer_UsingHWCaptureCounter)/* Capture counter is enabled */
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 4
+
+
+ 122:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_CAPTURE_COUNT_CTRL |= FSM_Timer_CNTR_ENABLE;
+ 123:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_SetCaptureCount(FSM_Timer_INIT_CAPTURE_COUNT);
+ 124:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif /* Configure capture counter value */
+ 125:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 126:.\Generated_Source\PSoC5/FSM_Timer.c ****     #if (!FSM_Timer_UsingFixedFunction)
+ 127:.\Generated_Source\PSoC5/FSM_Timer.c ****         #if (FSM_Timer_SoftwareCaptureMode)
+ 128:.\Generated_Source\PSoC5/FSM_Timer.c ****             FSM_Timer_SetCaptureMode(FSM_Timer_INIT_CAPTURE_MODE);
+ 129:.\Generated_Source\PSoC5/FSM_Timer.c ****         #endif /* Set Capture Mode for UDB implementation if capture mode is software controlled */
+ 130:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 131:.\Generated_Source\PSoC5/FSM_Timer.c ****         #if (FSM_Timer_SoftwareTriggerMode)
+ 132:.\Generated_Source\PSoC5/FSM_Timer.c ****             #if (!FSM_Timer_UDB_CONTROL_REG_REMOVED)
+ 133:.\Generated_Source\PSoC5/FSM_Timer.c ****                 if (0u == (FSM_Timer_CONTROL & FSM_Timer__B_TIMER__TM_SOFTWARE))
+ 134:.\Generated_Source\PSoC5/FSM_Timer.c ****                 {
+ 135:.\Generated_Source\PSoC5/FSM_Timer.c ****                     FSM_Timer_SetTriggerMode(FSM_Timer_INIT_TRIGGER_MODE);
+ 136:.\Generated_Source\PSoC5/FSM_Timer.c ****                 }
+ 137:.\Generated_Source\PSoC5/FSM_Timer.c ****             #endif /* (!FSM_Timer_UDB_CONTROL_REG_REMOVED) */
+ 138:.\Generated_Source\PSoC5/FSM_Timer.c ****         #endif /* Set trigger mode for UDB Implementation if trigger mode is software controlled */
+ 139:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 140:.\Generated_Source\PSoC5/FSM_Timer.c ****         /* CyEnterCriticalRegion and CyExitCriticalRegion are used to mark following region critica
+ 141:.\Generated_Source\PSoC5/FSM_Timer.c ****         /* Enter Critical Region*/
+ 142:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_interruptState = CyEnterCriticalSection();
+  51              		.loc 1 142 0
+  52 0016 FFF7FEFF 		bl	CyEnterCriticalSection
+  53 001a 0346     		mov	r3, r0
+  54 001c FB71     		strb	r3, [r7, #7]
+ 143:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 144:.\Generated_Source\PSoC5/FSM_Timer.c ****         /* Use the interrupt output of the status register for IRQ output */
+ 145:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_STATUS_AUX_CTRL |= FSM_Timer_STATUS_ACTL_INT_EN_MASK;
+  55              		.loc 1 145 0
+  56 001e 0A4B     		ldr	r3, .L2
+  57 0020 094A     		ldr	r2, .L2
+  58 0022 1278     		ldrb	r2, [r2]
+  59 0024 D2B2     		uxtb	r2, r2
+  60 0026 42F01002 		orr	r2, r2, #16
+  61 002a D2B2     		uxtb	r2, r2
+  62 002c 1A70     		strb	r2, [r3]
+ 146:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 147:.\Generated_Source\PSoC5/FSM_Timer.c ****         /* Exit Critical Region*/
+ 148:.\Generated_Source\PSoC5/FSM_Timer.c ****         CyExitCriticalSection(FSM_Timer_interruptState);
+  63              		.loc 1 148 0
+  64 002e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+  65 0030 1846     		mov	r0, r3
+  66 0032 FFF7FEFF 		bl	CyExitCriticalSection
+ 149:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 150:.\Generated_Source\PSoC5/FSM_Timer.c ****         #if (FSM_Timer_EnableTriggerMode)
+ 151:.\Generated_Source\PSoC5/FSM_Timer.c ****             FSM_Timer_EnableTrigger();
+ 152:.\Generated_Source\PSoC5/FSM_Timer.c ****         #endif /* Set Trigger enable bit for UDB implementation in the control register*/
+ 153:.\Generated_Source\PSoC5/FSM_Timer.c **** 		
+ 154:.\Generated_Source\PSoC5/FSM_Timer.c **** 		
+ 155:.\Generated_Source\PSoC5/FSM_Timer.c ****         #if (FSM_Timer_InterruptOnCaptureCount && !FSM_Timer_UDB_CONTROL_REG_REMOVED)
+ 156:.\Generated_Source\PSoC5/FSM_Timer.c ****             FSM_Timer_SetInterruptCount(FSM_Timer_INIT_INT_CAPTURE_COUNT);
+ 157:.\Generated_Source\PSoC5/FSM_Timer.c ****         #endif /* Set interrupt count in UDB implementation if interrupt count feature is checked.*
+ 158:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 159:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_ClearFIFO();
+  67              		.loc 1 159 0
+  68 0036 FFF7FEFF 		bl	FSM_Timer_ClearFIFO
+ 160:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif /* Configure additional features of UDB implementation */
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 5
+
+
+ 161:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 162:.\Generated_Source\PSoC5/FSM_Timer.c ****     FSM_Timer_SetInterruptMode(FSM_Timer_INIT_INTERRUPT_MODE);
+  69              		.loc 1 162 0
+  70 003a 0120     		movs	r0, #1
+  71 003c FFF7FEFF 		bl	FSM_Timer_SetInterruptMode
+ 163:.\Generated_Source\PSoC5/FSM_Timer.c **** }
+  72              		.loc 1 163 0
+  73 0040 0837     		adds	r7, r7, #8
+  74 0042 BD46     		mov	sp, r7
+  75              		@ sp needed
+  76 0044 80BD     		pop	{r7, pc}
+  77              	.L3:
+  78 0046 00BF     		.align	2
+  79              	.L2:
+  80 0048 96650040 		.word	1073767830
+  81              		.cfi_endproc
+  82              	.LFE0:
+  83              		.size	FSM_Timer_Init, .-FSM_Timer_Init
+  84              		.section	.text.FSM_Timer_Enable,"ax",%progbits
+  85              		.align	2
+  86              		.global	FSM_Timer_Enable
+  87              		.thumb
+  88              		.thumb_func
+  89              		.type	FSM_Timer_Enable, %function
+  90              	FSM_Timer_Enable:
+  91              	.LFB1:
+ 164:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 165:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 166:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
+ 167:.\Generated_Source\PSoC5/FSM_Timer.c **** * Function Name: FSM_Timer_Enable
+ 168:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************
+ 169:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 170:.\Generated_Source\PSoC5/FSM_Timer.c **** * Summary:
+ 171:.\Generated_Source\PSoC5/FSM_Timer.c **** *  Enable the Timer
+ 172:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 173:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
+ 174:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 175:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 176:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
+ 177:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 178:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 179:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
+ 180:.\Generated_Source\PSoC5/FSM_Timer.c **** void FSM_Timer_Enable(void) 
+ 181:.\Generated_Source\PSoC5/FSM_Timer.c **** {
+  92              		.loc 1 181 0
+  93              		.cfi_startproc
+  94              		@ args = 0, pretend = 0, frame = 0
+  95              		@ frame_needed = 1, uses_anonymous_args = 0
+  96              		@ link register save eliminated.
+  97 0000 80B4     		push	{r7}
+  98              		.cfi_def_cfa_offset 4
+  99              		.cfi_offset 7, -4
+ 100 0002 00AF     		add	r7, sp, #0
+ 101              		.cfi_def_cfa_register 7
+ 182:.\Generated_Source\PSoC5/FSM_Timer.c ****     /* Globally Enable the Fixed Function Block chosen */
+ 183:.\Generated_Source\PSoC5/FSM_Timer.c ****     #if (FSM_Timer_UsingFixedFunction)
+ 184:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_GLOBAL_ENABLE |= FSM_Timer_BLOCK_EN_MASK;
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 6
+
+
+ 185:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_GLOBAL_STBY_ENABLE |= FSM_Timer_BLOCK_STBY_EN_MASK;
+ 186:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif /* Set Enable bit for enabling Fixed function timer*/
+ 187:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 188:.\Generated_Source\PSoC5/FSM_Timer.c ****     /* Remove assignment if control register is removed */
+ 189:.\Generated_Source\PSoC5/FSM_Timer.c ****     #if (!FSM_Timer_UDB_CONTROL_REG_REMOVED || FSM_Timer_UsingFixedFunction)
+ 190:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_CONTROL |= FSM_Timer_CTRL_ENABLE;
+ 102              		.loc 1 190 0
+ 103 0004 054B     		ldr	r3, .L5
+ 104 0006 054A     		ldr	r2, .L5
+ 105 0008 1278     		ldrb	r2, [r2]
+ 106 000a D2B2     		uxtb	r2, r2
+ 107 000c 62F07F02 		orn	r2, r2, #127
+ 108 0010 D2B2     		uxtb	r2, r2
+ 109 0012 1A70     		strb	r2, [r3]
+ 191:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif /* Remove assignment if control register is removed */
+ 192:.\Generated_Source\PSoC5/FSM_Timer.c **** }
+ 110              		.loc 1 192 0
+ 111 0014 BD46     		mov	sp, r7
+ 112              		@ sp needed
+ 113 0016 5DF8047B 		ldr	r7, [sp], #4
+ 114 001a 7047     		bx	lr
+ 115              	.L6:
+ 116              		.align	2
+ 117              	.L5:
+ 118 001c 75650040 		.word	1073767797
+ 119              		.cfi_endproc
+ 120              	.LFE1:
+ 121              		.size	FSM_Timer_Enable, .-FSM_Timer_Enable
+ 122              		.section	.text.FSM_Timer_Start,"ax",%progbits
+ 123              		.align	2
+ 124              		.global	FSM_Timer_Start
+ 125              		.thumb
+ 126              		.thumb_func
+ 127              		.type	FSM_Timer_Start, %function
+ 128              	FSM_Timer_Start:
+ 129              	.LFB2:
+ 193:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 194:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 195:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
+ 196:.\Generated_Source\PSoC5/FSM_Timer.c **** * Function Name: FSM_Timer_Start
+ 197:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************
+ 198:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 199:.\Generated_Source\PSoC5/FSM_Timer.c **** * Summary:
+ 200:.\Generated_Source\PSoC5/FSM_Timer.c **** *  The start function initializes the timer with the default values, the
+ 201:.\Generated_Source\PSoC5/FSM_Timer.c **** *  enables the timerto begin counting.  It does not enable interrupts,
+ 202:.\Generated_Source\PSoC5/FSM_Timer.c **** *  the EnableInt command should be called if interrupt generation is required.
+ 203:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 204:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
+ 205:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 206:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 207:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
+ 208:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 209:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 210:.\Generated_Source\PSoC5/FSM_Timer.c **** * Global variables:
+ 211:.\Generated_Source\PSoC5/FSM_Timer.c **** *  FSM_Timer_initVar: Is modified when this function is called for the
+ 212:.\Generated_Source\PSoC5/FSM_Timer.c **** *   first time. Is used to ensure that initialization happens only once.
+ 213:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 7
+
+
+ 214:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
+ 215:.\Generated_Source\PSoC5/FSM_Timer.c **** void FSM_Timer_Start(void) 
+ 216:.\Generated_Source\PSoC5/FSM_Timer.c **** {
+ 130              		.loc 1 216 0
+ 131              		.cfi_startproc
+ 132              		@ args = 0, pretend = 0, frame = 0
+ 133              		@ frame_needed = 1, uses_anonymous_args = 0
+ 134 0000 80B5     		push	{r7, lr}
+ 135              		.cfi_def_cfa_offset 8
+ 136              		.cfi_offset 7, -8
+ 137              		.cfi_offset 14, -4
+ 138 0002 00AF     		add	r7, sp, #0
+ 139              		.cfi_def_cfa_register 7
+ 217:.\Generated_Source\PSoC5/FSM_Timer.c ****     if(FSM_Timer_initVar == 0u)
+ 140              		.loc 1 217 0
+ 141 0004 054B     		ldr	r3, .L9
+ 142 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 143 0008 002B     		cmp	r3, #0
+ 144 000a 04D1     		bne	.L8
+ 218:.\Generated_Source\PSoC5/FSM_Timer.c ****     {
+ 219:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_Init();
+ 145              		.loc 1 219 0
+ 146 000c FFF7FEFF 		bl	FSM_Timer_Init
+ 220:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 221:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_initVar = 1u;   /* Clear this bit for Initialization */
+ 147              		.loc 1 221 0
+ 148 0010 024B     		ldr	r3, .L9
+ 149 0012 0122     		movs	r2, #1
+ 150 0014 1A70     		strb	r2, [r3]
+ 151              	.L8:
+ 222:.\Generated_Source\PSoC5/FSM_Timer.c ****     }
+ 223:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 224:.\Generated_Source\PSoC5/FSM_Timer.c ****     /* Enable the Timer */
+ 225:.\Generated_Source\PSoC5/FSM_Timer.c ****     FSM_Timer_Enable();
+ 152              		.loc 1 225 0
+ 153 0016 FFF7FEFF 		bl	FSM_Timer_Enable
+ 226:.\Generated_Source\PSoC5/FSM_Timer.c **** }
+ 154              		.loc 1 226 0
+ 155 001a 80BD     		pop	{r7, pc}
+ 156              	.L10:
+ 157              		.align	2
+ 158              	.L9:
+ 159 001c 00000000 		.word	FSM_Timer_initVar
+ 160              		.cfi_endproc
+ 161              	.LFE2:
+ 162              		.size	FSM_Timer_Start, .-FSM_Timer_Start
+ 163              		.section	.text.FSM_Timer_Stop,"ax",%progbits
+ 164              		.align	2
+ 165              		.global	FSM_Timer_Stop
+ 166              		.thumb
+ 167              		.thumb_func
+ 168              		.type	FSM_Timer_Stop, %function
+ 169              	FSM_Timer_Stop:
+ 170              	.LFB3:
+ 227:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 228:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 229:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 8
+
+
+ 230:.\Generated_Source\PSoC5/FSM_Timer.c **** * Function Name: FSM_Timer_Stop
+ 231:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************
+ 232:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 233:.\Generated_Source\PSoC5/FSM_Timer.c **** * Summary:
+ 234:.\Generated_Source\PSoC5/FSM_Timer.c **** *  The stop function halts the timer, but does not change any modes or disable
+ 235:.\Generated_Source\PSoC5/FSM_Timer.c **** *  interrupts.
+ 236:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 237:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
+ 238:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 239:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 240:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
+ 241:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 242:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 243:.\Generated_Source\PSoC5/FSM_Timer.c **** * Side Effects: If the Enable mode is set to Hardware only then this function
+ 244:.\Generated_Source\PSoC5/FSM_Timer.c **** *               has no effect on the operation of the timer.
+ 245:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 246:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
+ 247:.\Generated_Source\PSoC5/FSM_Timer.c **** void FSM_Timer_Stop(void) 
+ 248:.\Generated_Source\PSoC5/FSM_Timer.c **** {
+ 171              		.loc 1 248 0
+ 172              		.cfi_startproc
+ 173              		@ args = 0, pretend = 0, frame = 0
+ 174              		@ frame_needed = 1, uses_anonymous_args = 0
+ 175              		@ link register save eliminated.
+ 176 0000 80B4     		push	{r7}
+ 177              		.cfi_def_cfa_offset 4
+ 178              		.cfi_offset 7, -4
+ 179 0002 00AF     		add	r7, sp, #0
+ 180              		.cfi_def_cfa_register 7
+ 249:.\Generated_Source\PSoC5/FSM_Timer.c ****     /* Disable Timer */
+ 250:.\Generated_Source\PSoC5/FSM_Timer.c ****     #if(!FSM_Timer_UDB_CONTROL_REG_REMOVED || FSM_Timer_UsingFixedFunction)
+ 251:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_CONTROL &= ((uint8)(~FSM_Timer_CTRL_ENABLE));
+ 181              		.loc 1 251 0
+ 182 0004 054B     		ldr	r3, .L12
+ 183 0006 054A     		ldr	r2, .L12
+ 184 0008 1278     		ldrb	r2, [r2]
+ 185 000a D2B2     		uxtb	r2, r2
+ 186 000c 02F07F02 		and	r2, r2, #127
+ 187 0010 D2B2     		uxtb	r2, r2
+ 188 0012 1A70     		strb	r2, [r3]
+ 252:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif /* Remove assignment if control register is removed */
+ 253:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 254:.\Generated_Source\PSoC5/FSM_Timer.c ****     /* Globally disable the Fixed Function Block chosen */
+ 255:.\Generated_Source\PSoC5/FSM_Timer.c ****     #if (FSM_Timer_UsingFixedFunction)
+ 256:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_GLOBAL_ENABLE &= ((uint8)(~FSM_Timer_BLOCK_EN_MASK));
+ 257:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_GLOBAL_STBY_ENABLE &= ((uint8)(~FSM_Timer_BLOCK_STBY_EN_MASK));
+ 258:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif /* Disable global enable for the Timer Fixed function block to stop the Timer*/
+ 259:.\Generated_Source\PSoC5/FSM_Timer.c **** }
+ 189              		.loc 1 259 0
+ 190 0014 BD46     		mov	sp, r7
+ 191              		@ sp needed
+ 192 0016 5DF8047B 		ldr	r7, [sp], #4
+ 193 001a 7047     		bx	lr
+ 194              	.L13:
+ 195              		.align	2
+ 196              	.L12:
+ 197 001c 75650040 		.word	1073767797
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 9
+
+
+ 198              		.cfi_endproc
+ 199              	.LFE3:
+ 200              		.size	FSM_Timer_Stop, .-FSM_Timer_Stop
+ 201              		.section	.text.FSM_Timer_SetInterruptMode,"ax",%progbits
+ 202              		.align	2
+ 203              		.global	FSM_Timer_SetInterruptMode
+ 204              		.thumb
+ 205              		.thumb_func
+ 206              		.type	FSM_Timer_SetInterruptMode, %function
+ 207              	FSM_Timer_SetInterruptMode:
+ 208              	.LFB4:
+ 260:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 261:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 262:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
+ 263:.\Generated_Source\PSoC5/FSM_Timer.c **** * Function Name: FSM_Timer_SetInterruptMode
+ 264:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************
+ 265:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 266:.\Generated_Source\PSoC5/FSM_Timer.c **** * Summary:
+ 267:.\Generated_Source\PSoC5/FSM_Timer.c **** *  This function selects which of the interrupt inputs may cause an interrupt.
+ 268:.\Generated_Source\PSoC5/FSM_Timer.c **** *  The twosources are caputure and terminal.  One, both or neither may
+ 269:.\Generated_Source\PSoC5/FSM_Timer.c **** *  be selected.
+ 270:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 271:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
+ 272:.\Generated_Source\PSoC5/FSM_Timer.c **** *  interruptMode:   This parameter is used to enable interrups on either/or
+ 273:.\Generated_Source\PSoC5/FSM_Timer.c **** *                   terminal count or capture.
+ 274:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 275:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
+ 276:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 277:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 278:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
+ 279:.\Generated_Source\PSoC5/FSM_Timer.c **** void FSM_Timer_SetInterruptMode(uint8 interruptMode) 
+ 280:.\Generated_Source\PSoC5/FSM_Timer.c **** {
+ 209              		.loc 1 280 0
+ 210              		.cfi_startproc
+ 211              		@ args = 0, pretend = 0, frame = 8
+ 212              		@ frame_needed = 1, uses_anonymous_args = 0
+ 213              		@ link register save eliminated.
+ 214 0000 80B4     		push	{r7}
+ 215              		.cfi_def_cfa_offset 4
+ 216              		.cfi_offset 7, -4
+ 217 0002 83B0     		sub	sp, sp, #12
+ 218              		.cfi_def_cfa_offset 16
+ 219 0004 00AF     		add	r7, sp, #0
+ 220              		.cfi_def_cfa_register 7
+ 221 0006 0346     		mov	r3, r0
+ 222 0008 FB71     		strb	r3, [r7, #7]
+ 281:.\Generated_Source\PSoC5/FSM_Timer.c ****     FSM_Timer_STATUS_MASK = interruptMode;
+ 223              		.loc 1 281 0
+ 224 000a 044B     		ldr	r3, .L15
+ 225 000c FA79     		ldrb	r2, [r7, #7]
+ 226 000e 1A70     		strb	r2, [r3]
+ 282:.\Generated_Source\PSoC5/FSM_Timer.c **** }
+ 227              		.loc 1 282 0
+ 228 0010 0C37     		adds	r7, r7, #12
+ 229 0012 BD46     		mov	sp, r7
+ 230              		@ sp needed
+ 231 0014 5DF8047B 		ldr	r7, [sp], #4
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 10
+
+
+ 232 0018 7047     		bx	lr
+ 233              	.L16:
+ 234 001a 00BF     		.align	2
+ 235              	.L15:
+ 236 001c 86650040 		.word	1073767814
+ 237              		.cfi_endproc
+ 238              	.LFE4:
+ 239              		.size	FSM_Timer_SetInterruptMode, .-FSM_Timer_SetInterruptMode
+ 240              		.section	.text.FSM_Timer_SoftwareCapture,"ax",%progbits
+ 241              		.align	2
+ 242              		.global	FSM_Timer_SoftwareCapture
+ 243              		.thumb
+ 244              		.thumb_func
+ 245              		.type	FSM_Timer_SoftwareCapture, %function
+ 246              	FSM_Timer_SoftwareCapture:
+ 247              	.LFB5:
+ 283:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 284:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 285:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
+ 286:.\Generated_Source\PSoC5/FSM_Timer.c **** * Function Name: FSM_Timer_SoftwareCapture
+ 287:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************
+ 288:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 289:.\Generated_Source\PSoC5/FSM_Timer.c **** * Summary:
+ 290:.\Generated_Source\PSoC5/FSM_Timer.c **** *  This function forces a capture independent of the capture signal.
+ 291:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 292:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
+ 293:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 294:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 295:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
+ 296:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 297:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 298:.\Generated_Source\PSoC5/FSM_Timer.c **** * Side Effects:
+ 299:.\Generated_Source\PSoC5/FSM_Timer.c **** *  An existing hardware capture could be overwritten.
+ 300:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 301:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
+ 302:.\Generated_Source\PSoC5/FSM_Timer.c **** void FSM_Timer_SoftwareCapture(void) 
+ 303:.\Generated_Source\PSoC5/FSM_Timer.c **** {
+ 248              		.loc 1 303 0
+ 249              		.cfi_startproc
+ 250              		@ args = 0, pretend = 0, frame = 0
+ 251              		@ frame_needed = 1, uses_anonymous_args = 0
+ 252              		@ link register save eliminated.
+ 253 0000 80B4     		push	{r7}
+ 254              		.cfi_def_cfa_offset 4
+ 255              		.cfi_offset 7, -4
+ 256 0002 00AF     		add	r7, sp, #0
+ 257              		.cfi_def_cfa_register 7
+ 304:.\Generated_Source\PSoC5/FSM_Timer.c ****     /* Generate a software capture by reading the counter register */
+ 305:.\Generated_Source\PSoC5/FSM_Timer.c ****     #if(FSM_Timer_UsingFixedFunction)
+ 306:.\Generated_Source\PSoC5/FSM_Timer.c ****         (void)CY_GET_REG16(FSM_Timer_COUNTER_LSB_PTR);
+ 307:.\Generated_Source\PSoC5/FSM_Timer.c ****     #else
+ 308:.\Generated_Source\PSoC5/FSM_Timer.c ****         (void)CY_GET_REG8(FSM_Timer_COUNTER_LSB_PTR_8BIT);
+ 258              		.loc 1 308 0
+ 259 0004 024B     		ldr	r3, .L18
+ 260 0006 1B78     		ldrb	r3, [r3]
+ 309:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif/* (FSM_Timer_UsingFixedFunction) */
+ 310:.\Generated_Source\PSoC5/FSM_Timer.c ****     /* Capture Data is now in the FIFO */
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 11
+
+
+ 311:.\Generated_Source\PSoC5/FSM_Timer.c **** }
+ 261              		.loc 1 311 0
+ 262 0008 BD46     		mov	sp, r7
+ 263              		@ sp needed
+ 264 000a 5DF8047B 		ldr	r7, [sp], #4
+ 265 000e 7047     		bx	lr
+ 266              	.L19:
+ 267              		.align	2
+ 268              	.L18:
+ 269 0010 04650040 		.word	1073767684
+ 270              		.cfi_endproc
+ 271              	.LFE5:
+ 272              		.size	FSM_Timer_SoftwareCapture, .-FSM_Timer_SoftwareCapture
+ 273              		.section	.text.FSM_Timer_ReadStatusRegister,"ax",%progbits
+ 274              		.align	2
+ 275              		.global	FSM_Timer_ReadStatusRegister
+ 276              		.thumb
+ 277              		.thumb_func
+ 278              		.type	FSM_Timer_ReadStatusRegister, %function
+ 279              	FSM_Timer_ReadStatusRegister:
+ 280              	.LFB6:
+ 312:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 313:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 314:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
+ 315:.\Generated_Source\PSoC5/FSM_Timer.c **** * Function Name: FSM_Timer_ReadStatusRegister
+ 316:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************
+ 317:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 318:.\Generated_Source\PSoC5/FSM_Timer.c **** * Summary:
+ 319:.\Generated_Source\PSoC5/FSM_Timer.c **** *  Reads the status register and returns it's state. This function should use
+ 320:.\Generated_Source\PSoC5/FSM_Timer.c **** *  defined types for the bit-field information as the bits in this register may
+ 321:.\Generated_Source\PSoC5/FSM_Timer.c **** *  be permuteable.
+ 322:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 323:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
+ 324:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 325:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 326:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
+ 327:.\Generated_Source\PSoC5/FSM_Timer.c **** *  The contents of the status register
+ 328:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 329:.\Generated_Source\PSoC5/FSM_Timer.c **** * Side Effects:
+ 330:.\Generated_Source\PSoC5/FSM_Timer.c **** *  Status register bits may be clear on read.
+ 331:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 332:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
+ 333:.\Generated_Source\PSoC5/FSM_Timer.c **** uint8   FSM_Timer_ReadStatusRegister(void) 
+ 334:.\Generated_Source\PSoC5/FSM_Timer.c **** {
+ 281              		.loc 1 334 0
+ 282              		.cfi_startproc
+ 283              		@ args = 0, pretend = 0, frame = 0
+ 284              		@ frame_needed = 1, uses_anonymous_args = 0
+ 285              		@ link register save eliminated.
+ 286 0000 80B4     		push	{r7}
+ 287              		.cfi_def_cfa_offset 4
+ 288              		.cfi_offset 7, -4
+ 289 0002 00AF     		add	r7, sp, #0
+ 290              		.cfi_def_cfa_register 7
+ 335:.\Generated_Source\PSoC5/FSM_Timer.c ****     return (FSM_Timer_STATUS);
+ 291              		.loc 1 335 0
+ 292 0004 034B     		ldr	r3, .L22
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 12
+
+
+ 293 0006 1B78     		ldrb	r3, [r3]
+ 294 0008 DBB2     		uxtb	r3, r3
+ 336:.\Generated_Source\PSoC5/FSM_Timer.c **** }
+ 295              		.loc 1 336 0
+ 296 000a 1846     		mov	r0, r3
+ 297 000c BD46     		mov	sp, r7
+ 298              		@ sp needed
+ 299 000e 5DF8047B 		ldr	r7, [sp], #4
+ 300 0012 7047     		bx	lr
+ 301              	.L23:
+ 302              		.align	2
+ 303              	.L22:
+ 304 0014 66650040 		.word	1073767782
+ 305              		.cfi_endproc
+ 306              	.LFE6:
+ 307              		.size	FSM_Timer_ReadStatusRegister, .-FSM_Timer_ReadStatusRegister
+ 308              		.section	.text.FSM_Timer_ReadControlRegister,"ax",%progbits
+ 309              		.align	2
+ 310              		.global	FSM_Timer_ReadControlRegister
+ 311              		.thumb
+ 312              		.thumb_func
+ 313              		.type	FSM_Timer_ReadControlRegister, %function
+ 314              	FSM_Timer_ReadControlRegister:
+ 315              	.LFB7:
+ 337:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 338:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 339:.\Generated_Source\PSoC5/FSM_Timer.c **** #if (!FSM_Timer_UDB_CONTROL_REG_REMOVED) /* Remove API if control register is unused */
+ 340:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 341:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 342:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
+ 343:.\Generated_Source\PSoC5/FSM_Timer.c **** * Function Name: FSM_Timer_ReadControlRegister
+ 344:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************
+ 345:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 346:.\Generated_Source\PSoC5/FSM_Timer.c **** * Summary:
+ 347:.\Generated_Source\PSoC5/FSM_Timer.c **** *  Reads the control register and returns it's value.
+ 348:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 349:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
+ 350:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 351:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 352:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
+ 353:.\Generated_Source\PSoC5/FSM_Timer.c **** *  The contents of the control register
+ 354:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 355:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
+ 356:.\Generated_Source\PSoC5/FSM_Timer.c **** uint8 FSM_Timer_ReadControlRegister(void) 
+ 357:.\Generated_Source\PSoC5/FSM_Timer.c **** {
+ 316              		.loc 1 357 0
+ 317              		.cfi_startproc
+ 318              		@ args = 0, pretend = 0, frame = 0
+ 319              		@ frame_needed = 1, uses_anonymous_args = 0
+ 320              		@ link register save eliminated.
+ 321 0000 80B4     		push	{r7}
+ 322              		.cfi_def_cfa_offset 4
+ 323              		.cfi_offset 7, -4
+ 324 0002 00AF     		add	r7, sp, #0
+ 325              		.cfi_def_cfa_register 7
+ 358:.\Generated_Source\PSoC5/FSM_Timer.c ****     #if (!FSM_Timer_UDB_CONTROL_REG_REMOVED) 
+ 359:.\Generated_Source\PSoC5/FSM_Timer.c ****         return ((uint8)FSM_Timer_CONTROL);
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 13
+
+
+ 326              		.loc 1 359 0
+ 327 0004 034B     		ldr	r3, .L26
+ 328 0006 1B78     		ldrb	r3, [r3]
+ 329 0008 DBB2     		uxtb	r3, r3
+ 360:.\Generated_Source\PSoC5/FSM_Timer.c ****     #else
+ 361:.\Generated_Source\PSoC5/FSM_Timer.c ****         return (0);
+ 362:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif /* (!FSM_Timer_UDB_CONTROL_REG_REMOVED) */
+ 363:.\Generated_Source\PSoC5/FSM_Timer.c **** }
+ 330              		.loc 1 363 0
+ 331 000a 1846     		mov	r0, r3
+ 332 000c BD46     		mov	sp, r7
+ 333              		@ sp needed
+ 334 000e 5DF8047B 		ldr	r7, [sp], #4
+ 335 0012 7047     		bx	lr
+ 336              	.L27:
+ 337              		.align	2
+ 338              	.L26:
+ 339 0014 75650040 		.word	1073767797
+ 340              		.cfi_endproc
+ 341              	.LFE7:
+ 342              		.size	FSM_Timer_ReadControlRegister, .-FSM_Timer_ReadControlRegister
+ 343              		.section	.text.FSM_Timer_WriteControlRegister,"ax",%progbits
+ 344              		.align	2
+ 345              		.global	FSM_Timer_WriteControlRegister
+ 346              		.thumb
+ 347              		.thumb_func
+ 348              		.type	FSM_Timer_WriteControlRegister, %function
+ 349              	FSM_Timer_WriteControlRegister:
+ 350              	.LFB8:
+ 364:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 365:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 366:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
+ 367:.\Generated_Source\PSoC5/FSM_Timer.c **** * Function Name: FSM_Timer_WriteControlRegister
+ 368:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************
+ 369:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 370:.\Generated_Source\PSoC5/FSM_Timer.c **** * Summary:
+ 371:.\Generated_Source\PSoC5/FSM_Timer.c **** *  Sets the bit-field of the control register.
+ 372:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 373:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
+ 374:.\Generated_Source\PSoC5/FSM_Timer.c **** *  control: The contents of the control register
+ 375:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 376:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
+ 377:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 378:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
+ 379:.\Generated_Source\PSoC5/FSM_Timer.c **** void FSM_Timer_WriteControlRegister(uint8 control) 
+ 380:.\Generated_Source\PSoC5/FSM_Timer.c **** {
+ 351              		.loc 1 380 0
+ 352              		.cfi_startproc
+ 353              		@ args = 0, pretend = 0, frame = 8
+ 354              		@ frame_needed = 1, uses_anonymous_args = 0
+ 355              		@ link register save eliminated.
+ 356 0000 80B4     		push	{r7}
+ 357              		.cfi_def_cfa_offset 4
+ 358              		.cfi_offset 7, -4
+ 359 0002 83B0     		sub	sp, sp, #12
+ 360              		.cfi_def_cfa_offset 16
+ 361 0004 00AF     		add	r7, sp, #0
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 14
+
+
+ 362              		.cfi_def_cfa_register 7
+ 363 0006 0346     		mov	r3, r0
+ 364 0008 FB71     		strb	r3, [r7, #7]
+ 381:.\Generated_Source\PSoC5/FSM_Timer.c ****     #if (!FSM_Timer_UDB_CONTROL_REG_REMOVED) 
+ 382:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_CONTROL = control;
+ 365              		.loc 1 382 0
+ 366 000a 044B     		ldr	r3, .L29
+ 367 000c FA79     		ldrb	r2, [r7, #7]
+ 368 000e 1A70     		strb	r2, [r3]
+ 383:.\Generated_Source\PSoC5/FSM_Timer.c ****     #else
+ 384:.\Generated_Source\PSoC5/FSM_Timer.c ****         control = 0u;
+ 385:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif /* (!FSM_Timer_UDB_CONTROL_REG_REMOVED) */
+ 386:.\Generated_Source\PSoC5/FSM_Timer.c **** }
+ 369              		.loc 1 386 0
+ 370 0010 0C37     		adds	r7, r7, #12
+ 371 0012 BD46     		mov	sp, r7
+ 372              		@ sp needed
+ 373 0014 5DF8047B 		ldr	r7, [sp], #4
+ 374 0018 7047     		bx	lr
+ 375              	.L30:
+ 376 001a 00BF     		.align	2
+ 377              	.L29:
+ 378 001c 75650040 		.word	1073767797
+ 379              		.cfi_endproc
+ 380              	.LFE8:
+ 381              		.size	FSM_Timer_WriteControlRegister, .-FSM_Timer_WriteControlRegister
+ 382              		.section	.text.FSM_Timer_ReadPeriod,"ax",%progbits
+ 383              		.align	2
+ 384              		.global	FSM_Timer_ReadPeriod
+ 385              		.thumb
+ 386              		.thumb_func
+ 387              		.type	FSM_Timer_ReadPeriod, %function
+ 388              	FSM_Timer_ReadPeriod:
+ 389              	.LFB9:
+ 387:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 388:.\Generated_Source\PSoC5/FSM_Timer.c **** #endif /* Remove API if control register is unused */
+ 389:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 390:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 391:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
+ 392:.\Generated_Source\PSoC5/FSM_Timer.c **** * Function Name: FSM_Timer_ReadPeriod
+ 393:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************
+ 394:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 395:.\Generated_Source\PSoC5/FSM_Timer.c **** * Summary:
+ 396:.\Generated_Source\PSoC5/FSM_Timer.c **** *  This function returns the current value of the Period.
+ 397:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 398:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
+ 399:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 400:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 401:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
+ 402:.\Generated_Source\PSoC5/FSM_Timer.c **** *  The present value of the counter.
+ 403:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 404:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
+ 405:.\Generated_Source\PSoC5/FSM_Timer.c **** uint32 FSM_Timer_ReadPeriod(void) 
+ 406:.\Generated_Source\PSoC5/FSM_Timer.c **** {
+ 390              		.loc 1 406 0
+ 391              		.cfi_startproc
+ 392              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 15
+
+
+ 393              		@ frame_needed = 1, uses_anonymous_args = 0
+ 394              		@ link register save eliminated.
+ 395 0000 80B4     		push	{r7}
+ 396              		.cfi_def_cfa_offset 4
+ 397              		.cfi_offset 7, -4
+ 398 0002 00AF     		add	r7, sp, #0
+ 399              		.cfi_def_cfa_register 7
+ 407:.\Generated_Source\PSoC5/FSM_Timer.c ****    #if(FSM_Timer_UsingFixedFunction)
+ 408:.\Generated_Source\PSoC5/FSM_Timer.c ****        return ((uint32)CY_GET_REG16(FSM_Timer_PERIOD_LSB_PTR));
+ 409:.\Generated_Source\PSoC5/FSM_Timer.c ****    #else
+ 410:.\Generated_Source\PSoC5/FSM_Timer.c ****        return (CY_GET_REG24(FSM_Timer_PERIOD_LSB_PTR));
+ 400              		.loc 1 410 0
+ 401 0004 044B     		ldr	r3, .L33
+ 402 0006 1B68     		ldr	r3, [r3]
+ 403 0008 23F07F43 		bic	r3, r3, #-16777216
+ 411:.\Generated_Source\PSoC5/FSM_Timer.c ****    #endif /* (FSM_Timer_UsingFixedFunction) */
+ 412:.\Generated_Source\PSoC5/FSM_Timer.c **** }
+ 404              		.loc 1 412 0
+ 405 000c 1846     		mov	r0, r3
+ 406 000e BD46     		mov	sp, r7
+ 407              		@ sp needed
+ 408 0010 5DF8047B 		ldr	r7, [sp], #4
+ 409 0014 7047     		bx	lr
+ 410              	.L34:
+ 411 0016 00BF     		.align	2
+ 412              	.L33:
+ 413 0018 24650040 		.word	1073767716
+ 414              		.cfi_endproc
+ 415              	.LFE9:
+ 416              		.size	FSM_Timer_ReadPeriod, .-FSM_Timer_ReadPeriod
+ 417              		.section	.text.FSM_Timer_WritePeriod,"ax",%progbits
+ 418              		.align	2
+ 419              		.global	FSM_Timer_WritePeriod
+ 420              		.thumb
+ 421              		.thumb_func
+ 422              		.type	FSM_Timer_WritePeriod, %function
+ 423              	FSM_Timer_WritePeriod:
+ 424              	.LFB10:
+ 413:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 414:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 415:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
+ 416:.\Generated_Source\PSoC5/FSM_Timer.c **** * Function Name: FSM_Timer_WritePeriod
+ 417:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************
+ 418:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 419:.\Generated_Source\PSoC5/FSM_Timer.c **** * Summary:
+ 420:.\Generated_Source\PSoC5/FSM_Timer.c **** *  This function is used to change the period of the counter.  The new period
+ 421:.\Generated_Source\PSoC5/FSM_Timer.c **** *  will be loaded the next time terminal count is detected.
+ 422:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 423:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
+ 424:.\Generated_Source\PSoC5/FSM_Timer.c **** *  period: This value may be between 1 and (2^Resolution)-1.  A value of 0 will
+ 425:.\Generated_Source\PSoC5/FSM_Timer.c **** *          result in the counter remaining at zero.
+ 426:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 427:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
+ 428:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 429:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 430:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
+ 431:.\Generated_Source\PSoC5/FSM_Timer.c **** void FSM_Timer_WritePeriod(uint32 period) 
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 16
+
+
+ 432:.\Generated_Source\PSoC5/FSM_Timer.c **** {
+ 425              		.loc 1 432 0
+ 426              		.cfi_startproc
+ 427              		@ args = 0, pretend = 0, frame = 8
+ 428              		@ frame_needed = 1, uses_anonymous_args = 0
+ 429 0000 80B5     		push	{r7, lr}
+ 430              		.cfi_def_cfa_offset 8
+ 431              		.cfi_offset 7, -8
+ 432              		.cfi_offset 14, -4
+ 433 0002 82B0     		sub	sp, sp, #8
+ 434              		.cfi_def_cfa_offset 16
+ 435 0004 00AF     		add	r7, sp, #0
+ 436              		.cfi_def_cfa_register 7
+ 437 0006 7860     		str	r0, [r7, #4]
+ 433:.\Generated_Source\PSoC5/FSM_Timer.c ****     #if(FSM_Timer_UsingFixedFunction)
+ 434:.\Generated_Source\PSoC5/FSM_Timer.c ****         uint16 period_temp = (uint16)period;
+ 435:.\Generated_Source\PSoC5/FSM_Timer.c ****         CY_SET_REG16(FSM_Timer_PERIOD_LSB_PTR, period_temp);
+ 436:.\Generated_Source\PSoC5/FSM_Timer.c ****     #else
+ 437:.\Generated_Source\PSoC5/FSM_Timer.c ****         CY_SET_REG24(FSM_Timer_PERIOD_LSB_PTR, period);
+ 438              		.loc 1 437 0
+ 439 0008 0348     		ldr	r0, .L36
+ 440 000a 7968     		ldr	r1, [r7, #4]
+ 441 000c FFF7FEFF 		bl	CySetReg24
+ 438:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif /*Write Period value with appropriate resolution suffix depending on UDB or fixed functi
+ 439:.\Generated_Source\PSoC5/FSM_Timer.c **** }
+ 442              		.loc 1 439 0
+ 443 0010 0837     		adds	r7, r7, #8
+ 444 0012 BD46     		mov	sp, r7
+ 445              		@ sp needed
+ 446 0014 80BD     		pop	{r7, pc}
+ 447              	.L37:
+ 448 0016 00BF     		.align	2
+ 449              	.L36:
+ 450 0018 24650040 		.word	1073767716
+ 451              		.cfi_endproc
+ 452              	.LFE10:
+ 453              		.size	FSM_Timer_WritePeriod, .-FSM_Timer_WritePeriod
+ 454              		.section	.text.FSM_Timer_ReadCapture,"ax",%progbits
+ 455              		.align	2
+ 456              		.global	FSM_Timer_ReadCapture
+ 457              		.thumb
+ 458              		.thumb_func
+ 459              		.type	FSM_Timer_ReadCapture, %function
+ 460              	FSM_Timer_ReadCapture:
+ 461              	.LFB11:
+ 440:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 441:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 442:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
+ 443:.\Generated_Source\PSoC5/FSM_Timer.c **** * Function Name: FSM_Timer_ReadCapture
+ 444:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************
+ 445:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 446:.\Generated_Source\PSoC5/FSM_Timer.c **** * Summary:
+ 447:.\Generated_Source\PSoC5/FSM_Timer.c **** *  This function returns the last value captured.
+ 448:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 449:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
+ 450:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 451:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 17
+
+
+ 452:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
+ 453:.\Generated_Source\PSoC5/FSM_Timer.c **** *  Present Capture value.
+ 454:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 455:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
+ 456:.\Generated_Source\PSoC5/FSM_Timer.c **** uint32 FSM_Timer_ReadCapture(void) 
+ 457:.\Generated_Source\PSoC5/FSM_Timer.c **** {
+ 462              		.loc 1 457 0
+ 463              		.cfi_startproc
+ 464              		@ args = 0, pretend = 0, frame = 0
+ 465              		@ frame_needed = 1, uses_anonymous_args = 0
+ 466              		@ link register save eliminated.
+ 467 0000 80B4     		push	{r7}
+ 468              		.cfi_def_cfa_offset 4
+ 469              		.cfi_offset 7, -4
+ 470 0002 00AF     		add	r7, sp, #0
+ 471              		.cfi_def_cfa_register 7
+ 458:.\Generated_Source\PSoC5/FSM_Timer.c ****    #if(FSM_Timer_UsingFixedFunction)
+ 459:.\Generated_Source\PSoC5/FSM_Timer.c ****        return ((uint32)CY_GET_REG16(FSM_Timer_CAPTURE_LSB_PTR));
+ 460:.\Generated_Source\PSoC5/FSM_Timer.c ****    #else
+ 461:.\Generated_Source\PSoC5/FSM_Timer.c ****        return (CY_GET_REG24(FSM_Timer_CAPTURE_LSB_PTR));
+ 472              		.loc 1 461 0
+ 473 0004 044B     		ldr	r3, .L40
+ 474 0006 1B68     		ldr	r3, [r3]
+ 475 0008 23F07F43 		bic	r3, r3, #-16777216
+ 462:.\Generated_Source\PSoC5/FSM_Timer.c ****    #endif /* (FSM_Timer_UsingFixedFunction) */
+ 463:.\Generated_Source\PSoC5/FSM_Timer.c **** }
+ 476              		.loc 1 463 0
+ 477 000c 1846     		mov	r0, r3
+ 478 000e BD46     		mov	sp, r7
+ 479              		@ sp needed
+ 480 0010 5DF8047B 		ldr	r7, [sp], #4
+ 481 0014 7047     		bx	lr
+ 482              	.L41:
+ 483 0016 00BF     		.align	2
+ 484              	.L40:
+ 485 0018 44650040 		.word	1073767748
+ 486              		.cfi_endproc
+ 487              	.LFE11:
+ 488              		.size	FSM_Timer_ReadCapture, .-FSM_Timer_ReadCapture
+ 489              		.section	.text.FSM_Timer_WriteCounter,"ax",%progbits
+ 490              		.align	2
+ 491              		.global	FSM_Timer_WriteCounter
+ 492              		.thumb
+ 493              		.thumb_func
+ 494              		.type	FSM_Timer_WriteCounter, %function
+ 495              	FSM_Timer_WriteCounter:
+ 496              	.LFB12:
+ 464:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 465:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 466:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
+ 467:.\Generated_Source\PSoC5/FSM_Timer.c **** * Function Name: FSM_Timer_WriteCounter
+ 468:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************
+ 469:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 470:.\Generated_Source\PSoC5/FSM_Timer.c **** * Summary:
+ 471:.\Generated_Source\PSoC5/FSM_Timer.c **** *  This funtion is used to set the counter to a specific value
+ 472:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 473:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 18
+
+
+ 474:.\Generated_Source\PSoC5/FSM_Timer.c **** *  counter:  New counter value.
+ 475:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 476:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
+ 477:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 478:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 479:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
+ 480:.\Generated_Source\PSoC5/FSM_Timer.c **** void FSM_Timer_WriteCounter(uint32 counter) 
+ 481:.\Generated_Source\PSoC5/FSM_Timer.c **** {
+ 497              		.loc 1 481 0
+ 498              		.cfi_startproc
+ 499              		@ args = 0, pretend = 0, frame = 8
+ 500              		@ frame_needed = 1, uses_anonymous_args = 0
+ 501 0000 80B5     		push	{r7, lr}
+ 502              		.cfi_def_cfa_offset 8
+ 503              		.cfi_offset 7, -8
+ 504              		.cfi_offset 14, -4
+ 505 0002 82B0     		sub	sp, sp, #8
+ 506              		.cfi_def_cfa_offset 16
+ 507 0004 00AF     		add	r7, sp, #0
+ 508              		.cfi_def_cfa_register 7
+ 509 0006 7860     		str	r0, [r7, #4]
+ 482:.\Generated_Source\PSoC5/FSM_Timer.c ****    #if(FSM_Timer_UsingFixedFunction)
+ 483:.\Generated_Source\PSoC5/FSM_Timer.c ****         /* This functionality is removed until a FixedFunction HW update to
+ 484:.\Generated_Source\PSoC5/FSM_Timer.c ****          * allow this register to be written
+ 485:.\Generated_Source\PSoC5/FSM_Timer.c ****          */
+ 486:.\Generated_Source\PSoC5/FSM_Timer.c ****         CY_SET_REG16(FSM_Timer_COUNTER_LSB_PTR, (uint16)counter);
+ 487:.\Generated_Source\PSoC5/FSM_Timer.c ****         
+ 488:.\Generated_Source\PSoC5/FSM_Timer.c ****     #else
+ 489:.\Generated_Source\PSoC5/FSM_Timer.c ****         CY_SET_REG24(FSM_Timer_COUNTER_LSB_PTR, counter);
+ 510              		.loc 1 489 0
+ 511 0008 0348     		ldr	r0, .L43
+ 512 000a 7968     		ldr	r1, [r7, #4]
+ 513 000c FFF7FEFF 		bl	CySetReg24
+ 490:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif /* Set Write Counter only for the UDB implementation (Write Counter not available in fix
+ 491:.\Generated_Source\PSoC5/FSM_Timer.c **** }
+ 514              		.loc 1 491 0
+ 515 0010 0837     		adds	r7, r7, #8
+ 516 0012 BD46     		mov	sp, r7
+ 517              		@ sp needed
+ 518 0014 80BD     		pop	{r7, pc}
+ 519              	.L44:
+ 520 0016 00BF     		.align	2
+ 521              	.L43:
+ 522 0018 04650040 		.word	1073767684
+ 523              		.cfi_endproc
+ 524              	.LFE12:
+ 525              		.size	FSM_Timer_WriteCounter, .-FSM_Timer_WriteCounter
+ 526              		.section	.text.FSM_Timer_ReadCounter,"ax",%progbits
+ 527              		.align	2
+ 528              		.global	FSM_Timer_ReadCounter
+ 529              		.thumb
+ 530              		.thumb_func
+ 531              		.type	FSM_Timer_ReadCounter, %function
+ 532              	FSM_Timer_ReadCounter:
+ 533              	.LFB13:
+ 492:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 493:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 19
+
+
+ 494:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
+ 495:.\Generated_Source\PSoC5/FSM_Timer.c **** * Function Name: FSM_Timer_ReadCounter
+ 496:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************
+ 497:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 498:.\Generated_Source\PSoC5/FSM_Timer.c **** * Summary:
+ 499:.\Generated_Source\PSoC5/FSM_Timer.c **** *  This function returns the current counter value.
+ 500:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 501:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
+ 502:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 503:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 504:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
+ 505:.\Generated_Source\PSoC5/FSM_Timer.c **** *  Present compare value.
+ 506:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 507:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
+ 508:.\Generated_Source\PSoC5/FSM_Timer.c **** uint32 FSM_Timer_ReadCounter(void) 
+ 509:.\Generated_Source\PSoC5/FSM_Timer.c **** {
+ 534              		.loc 1 509 0
+ 535              		.cfi_startproc
+ 536              		@ args = 0, pretend = 0, frame = 0
+ 537              		@ frame_needed = 1, uses_anonymous_args = 0
+ 538              		@ link register save eliminated.
+ 539 0000 80B4     		push	{r7}
+ 540              		.cfi_def_cfa_offset 4
+ 541              		.cfi_offset 7, -4
+ 542 0002 00AF     		add	r7, sp, #0
+ 543              		.cfi_def_cfa_register 7
+ 510:.\Generated_Source\PSoC5/FSM_Timer.c ****     /* Force capture by reading Accumulator */
+ 511:.\Generated_Source\PSoC5/FSM_Timer.c ****     /* Must first do a software capture to be able to read the counter */
+ 512:.\Generated_Source\PSoC5/FSM_Timer.c ****     /* It is up to the user code to make sure there isn't already captured data in the FIFO */
+ 513:.\Generated_Source\PSoC5/FSM_Timer.c ****     #if(FSM_Timer_UsingFixedFunction)
+ 514:.\Generated_Source\PSoC5/FSM_Timer.c ****         (void)CY_GET_REG16(FSM_Timer_COUNTER_LSB_PTR);
+ 515:.\Generated_Source\PSoC5/FSM_Timer.c ****     #else
+ 516:.\Generated_Source\PSoC5/FSM_Timer.c ****         (void)CY_GET_REG8(FSM_Timer_COUNTER_LSB_PTR_8BIT);
+ 544              		.loc 1 516 0
+ 545 0004 054B     		ldr	r3, .L47
+ 546 0006 1B78     		ldrb	r3, [r3]
+ 517:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif/* (FSM_Timer_UsingFixedFunction) */
+ 518:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 519:.\Generated_Source\PSoC5/FSM_Timer.c ****     /* Read the data from the FIFO (or capture register for Fixed Function)*/
+ 520:.\Generated_Source\PSoC5/FSM_Timer.c ****     #if(FSM_Timer_UsingFixedFunction)
+ 521:.\Generated_Source\PSoC5/FSM_Timer.c ****         return ((uint32)CY_GET_REG16(FSM_Timer_CAPTURE_LSB_PTR));
+ 522:.\Generated_Source\PSoC5/FSM_Timer.c ****     #else
+ 523:.\Generated_Source\PSoC5/FSM_Timer.c ****         return (CY_GET_REG24(FSM_Timer_CAPTURE_LSB_PTR));
+ 547              		.loc 1 523 0
+ 548 0008 054B     		ldr	r3, .L47+4
+ 549 000a 1B68     		ldr	r3, [r3]
+ 550 000c 23F07F43 		bic	r3, r3, #-16777216
+ 524:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif /* (FSM_Timer_UsingFixedFunction) */
+ 525:.\Generated_Source\PSoC5/FSM_Timer.c **** }
+ 551              		.loc 1 525 0
+ 552 0010 1846     		mov	r0, r3
+ 553 0012 BD46     		mov	sp, r7
+ 554              		@ sp needed
+ 555 0014 5DF8047B 		ldr	r7, [sp], #4
+ 556 0018 7047     		bx	lr
+ 557              	.L48:
+ 558 001a 00BF     		.align	2
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 20
+
+
+ 559              	.L47:
+ 560 001c 04650040 		.word	1073767684
+ 561 0020 44650040 		.word	1073767748
+ 562              		.cfi_endproc
+ 563              	.LFE13:
+ 564              		.size	FSM_Timer_ReadCounter, .-FSM_Timer_ReadCounter
+ 565              		.section	.text.FSM_Timer_ClearFIFO,"ax",%progbits
+ 566              		.align	2
+ 567              		.global	FSM_Timer_ClearFIFO
+ 568              		.thumb
+ 569              		.thumb_func
+ 570              		.type	FSM_Timer_ClearFIFO, %function
+ 571              	FSM_Timer_ClearFIFO:
+ 572              	.LFB14:
+ 526:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 527:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 528:.\Generated_Source\PSoC5/FSM_Timer.c **** #if(!FSM_Timer_UsingFixedFunction) /* UDB Specific Functions */
+ 529:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 530:.\Generated_Source\PSoC5/FSM_Timer.c ****     
+ 531:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
+ 532:.\Generated_Source\PSoC5/FSM_Timer.c ****  * The functions below this point are only available using the UDB
+ 533:.\Generated_Source\PSoC5/FSM_Timer.c ****  * implementation.  If a feature is selected, then the API is enabled.
+ 534:.\Generated_Source\PSoC5/FSM_Timer.c ****  ******************************************************************************/
+ 535:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 536:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 537:.\Generated_Source\PSoC5/FSM_Timer.c **** #if (FSM_Timer_SoftwareCaptureMode)
+ 538:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 539:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 540:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
+ 541:.\Generated_Source\PSoC5/FSM_Timer.c **** * Function Name: FSM_Timer_SetCaptureMode
+ 542:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************
+ 543:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 544:.\Generated_Source\PSoC5/FSM_Timer.c **** * Summary:
+ 545:.\Generated_Source\PSoC5/FSM_Timer.c **** *  This function sets the capture mode to either rising or falling edge.
+ 546:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 547:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
+ 548:.\Generated_Source\PSoC5/FSM_Timer.c **** *  captureMode: This parameter sets the capture mode of the UDB capture feature
+ 549:.\Generated_Source\PSoC5/FSM_Timer.c **** *  The parameter values are defined using the
+ 550:.\Generated_Source\PSoC5/FSM_Timer.c **** *  #define FSM_Timer__B_TIMER__CM_NONE 0
+ 551:.\Generated_Source\PSoC5/FSM_Timer.c **** #define FSM_Timer__B_TIMER__CM_RISINGEDGE 1
+ 552:.\Generated_Source\PSoC5/FSM_Timer.c **** #define FSM_Timer__B_TIMER__CM_FALLINGEDGE 2
+ 553:.\Generated_Source\PSoC5/FSM_Timer.c **** #define FSM_Timer__B_TIMER__CM_EITHEREDGE 3
+ 554:.\Generated_Source\PSoC5/FSM_Timer.c **** #define FSM_Timer__B_TIMER__CM_SOFTWARE 4
+ 555:.\Generated_Source\PSoC5/FSM_Timer.c ****  identifiers
+ 556:.\Generated_Source\PSoC5/FSM_Timer.c **** *  The following are the possible values of the parameter
+ 557:.\Generated_Source\PSoC5/FSM_Timer.c **** *  FSM_Timer__B_TIMER__CM_NONE        - Set Capture mode to None
+ 558:.\Generated_Source\PSoC5/FSM_Timer.c **** *  FSM_Timer__B_TIMER__CM_RISINGEDGE  - Rising edge of Capture input
+ 559:.\Generated_Source\PSoC5/FSM_Timer.c **** *  FSM_Timer__B_TIMER__CM_FALLINGEDGE - Falling edge of Capture input
+ 560:.\Generated_Source\PSoC5/FSM_Timer.c **** *  FSM_Timer__B_TIMER__CM_EITHEREDGE  - Either edge of Capture input
+ 561:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 562:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
+ 563:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 564:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 565:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
+ 566:.\Generated_Source\PSoC5/FSM_Timer.c **** void FSM_Timer_SetCaptureMode(uint8 captureMode) 
+ 567:.\Generated_Source\PSoC5/FSM_Timer.c **** {
+ 568:.\Generated_Source\PSoC5/FSM_Timer.c ****     /* This must only set to two bits of the control register associated */
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 21
+
+
+ 569:.\Generated_Source\PSoC5/FSM_Timer.c ****     captureMode = ((uint8)((uint8)captureMode << FSM_Timer_CTRL_CAP_MODE_SHIFT));
+ 570:.\Generated_Source\PSoC5/FSM_Timer.c ****     captureMode &= (FSM_Timer_CTRL_CAP_MODE_MASK);
+ 571:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 572:.\Generated_Source\PSoC5/FSM_Timer.c ****     #if (!FSM_Timer_UDB_CONTROL_REG_REMOVED)
+ 573:.\Generated_Source\PSoC5/FSM_Timer.c ****         /* Clear the Current Setting */
+ 574:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_CONTROL &= ((uint8)(~FSM_Timer_CTRL_CAP_MODE_MASK));
+ 575:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 576:.\Generated_Source\PSoC5/FSM_Timer.c ****         /* Write The New Setting */
+ 577:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_CONTROL |= captureMode;
+ 578:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif /* (!FSM_Timer_UDB_CONTROL_REG_REMOVED) */
+ 579:.\Generated_Source\PSoC5/FSM_Timer.c **** }
+ 580:.\Generated_Source\PSoC5/FSM_Timer.c **** #endif /* Remove API if Capture Mode is not Software Controlled */
+ 581:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 582:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 583:.\Generated_Source\PSoC5/FSM_Timer.c **** #if (FSM_Timer_SoftwareTriggerMode)
+ 584:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 585:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 586:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
+ 587:.\Generated_Source\PSoC5/FSM_Timer.c **** * Function Name: FSM_Timer_SetTriggerMode
+ 588:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************
+ 589:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 590:.\Generated_Source\PSoC5/FSM_Timer.c **** * Summary:
+ 591:.\Generated_Source\PSoC5/FSM_Timer.c **** *  This function sets the trigger input mode
+ 592:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 593:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
+ 594:.\Generated_Source\PSoC5/FSM_Timer.c **** *  triggerMode: Pass one of the pre-defined Trigger Modes (except Software)
+ 595:.\Generated_Source\PSoC5/FSM_Timer.c ****     #define FSM_Timer__B_TIMER__TM_NONE 0x00u
+ 596:.\Generated_Source\PSoC5/FSM_Timer.c ****     #define FSM_Timer__B_TIMER__TM_RISINGEDGE 0x04u
+ 597:.\Generated_Source\PSoC5/FSM_Timer.c ****     #define FSM_Timer__B_TIMER__TM_FALLINGEDGE 0x08u
+ 598:.\Generated_Source\PSoC5/FSM_Timer.c ****     #define FSM_Timer__B_TIMER__TM_EITHEREDGE 0x0Cu
+ 599:.\Generated_Source\PSoC5/FSM_Timer.c ****     #define FSM_Timer__B_TIMER__TM_SOFTWARE 0x10u
+ 600:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 601:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
+ 602:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 603:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 604:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
+ 605:.\Generated_Source\PSoC5/FSM_Timer.c **** void FSM_Timer_SetTriggerMode(uint8 triggerMode) 
+ 606:.\Generated_Source\PSoC5/FSM_Timer.c **** {
+ 607:.\Generated_Source\PSoC5/FSM_Timer.c ****     /* This must only set to two bits of the control register associated */
+ 608:.\Generated_Source\PSoC5/FSM_Timer.c ****     triggerMode &= FSM_Timer_CTRL_TRIG_MODE_MASK;
+ 609:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 610:.\Generated_Source\PSoC5/FSM_Timer.c ****     #if (!FSM_Timer_UDB_CONTROL_REG_REMOVED)   /* Remove assignment if control register is removed 
+ 611:.\Generated_Source\PSoC5/FSM_Timer.c ****     
+ 612:.\Generated_Source\PSoC5/FSM_Timer.c ****         /* Clear the Current Setting */
+ 613:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_CONTROL &= ((uint8)(~FSM_Timer_CTRL_TRIG_MODE_MASK));
+ 614:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 615:.\Generated_Source\PSoC5/FSM_Timer.c ****         /* Write The New Setting */
+ 616:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_CONTROL |= (triggerMode | FSM_Timer__B_TIMER__TM_SOFTWARE);
+ 617:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif /* Remove code section if control register is not used */
+ 618:.\Generated_Source\PSoC5/FSM_Timer.c **** }
+ 619:.\Generated_Source\PSoC5/FSM_Timer.c **** #endif /* Remove API if Trigger Mode is not Software Controlled */
+ 620:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 621:.\Generated_Source\PSoC5/FSM_Timer.c **** #if (FSM_Timer_EnableTriggerMode)
+ 622:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 623:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 624:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
+ 625:.\Generated_Source\PSoC5/FSM_Timer.c **** * Function Name: FSM_Timer_EnableTrigger
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 22
+
+
+ 626:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************
+ 627:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 628:.\Generated_Source\PSoC5/FSM_Timer.c **** * Summary:
+ 629:.\Generated_Source\PSoC5/FSM_Timer.c **** *  Sets the control bit enabling Hardware Trigger mode
+ 630:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 631:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
+ 632:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 633:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 634:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
+ 635:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 636:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 637:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
+ 638:.\Generated_Source\PSoC5/FSM_Timer.c **** void FSM_Timer_EnableTrigger(void) 
+ 639:.\Generated_Source\PSoC5/FSM_Timer.c **** {
+ 640:.\Generated_Source\PSoC5/FSM_Timer.c ****     #if (!FSM_Timer_UDB_CONTROL_REG_REMOVED)   /* Remove assignment if control register is removed 
+ 641:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_CONTROL |= FSM_Timer_CTRL_TRIG_EN;
+ 642:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif /* Remove code section if control register is not used */
+ 643:.\Generated_Source\PSoC5/FSM_Timer.c **** }
+ 644:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 645:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 646:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
+ 647:.\Generated_Source\PSoC5/FSM_Timer.c **** * Function Name: FSM_Timer_DisableTrigger
+ 648:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************
+ 649:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 650:.\Generated_Source\PSoC5/FSM_Timer.c **** * Summary:
+ 651:.\Generated_Source\PSoC5/FSM_Timer.c **** *  Clears the control bit enabling Hardware Trigger mode
+ 652:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 653:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
+ 654:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 655:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 656:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
+ 657:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 658:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 659:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
+ 660:.\Generated_Source\PSoC5/FSM_Timer.c **** void FSM_Timer_DisableTrigger(void) 
+ 661:.\Generated_Source\PSoC5/FSM_Timer.c **** {
+ 662:.\Generated_Source\PSoC5/FSM_Timer.c ****     #if (!FSM_Timer_UDB_CONTROL_REG_REMOVED )   /* Remove assignment if control register is removed
+ 663:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_CONTROL &= ((uint8)(~FSM_Timer_CTRL_TRIG_EN));
+ 664:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif /* Remove code section if control register is not used */
+ 665:.\Generated_Source\PSoC5/FSM_Timer.c **** }
+ 666:.\Generated_Source\PSoC5/FSM_Timer.c **** #endif /* Remove API is Trigger Mode is set to None */
+ 667:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 668:.\Generated_Source\PSoC5/FSM_Timer.c **** #if(FSM_Timer_InterruptOnCaptureCount)
+ 669:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 670:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 671:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
+ 672:.\Generated_Source\PSoC5/FSM_Timer.c **** * Function Name: FSM_Timer_SetInterruptCount
+ 673:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************
+ 674:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 675:.\Generated_Source\PSoC5/FSM_Timer.c **** * Summary:
+ 676:.\Generated_Source\PSoC5/FSM_Timer.c **** *  This function sets the capture count before an interrupt is triggered.
+ 677:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 678:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
+ 679:.\Generated_Source\PSoC5/FSM_Timer.c **** *  interruptCount:  A value between 0 and 3 is valid.  If the value is 0, then
+ 680:.\Generated_Source\PSoC5/FSM_Timer.c **** *                   an interrupt will occur each time a capture occurs.
+ 681:.\Generated_Source\PSoC5/FSM_Timer.c **** *                   A value of 1 to 3 will cause the interrupt
+ 682:.\Generated_Source\PSoC5/FSM_Timer.c **** *                   to delay by the same number of captures.
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 23
+
+
+ 683:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 684:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
+ 685:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 686:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 687:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
+ 688:.\Generated_Source\PSoC5/FSM_Timer.c **** void FSM_Timer_SetInterruptCount(uint8 interruptCount) 
+ 689:.\Generated_Source\PSoC5/FSM_Timer.c **** {
+ 690:.\Generated_Source\PSoC5/FSM_Timer.c ****     /* This must only set to two bits of the control register associated */
+ 691:.\Generated_Source\PSoC5/FSM_Timer.c ****     interruptCount &= FSM_Timer_CTRL_INTCNT_MASK;
+ 692:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 693:.\Generated_Source\PSoC5/FSM_Timer.c ****     #if (!FSM_Timer_UDB_CONTROL_REG_REMOVED)
+ 694:.\Generated_Source\PSoC5/FSM_Timer.c ****         /* Clear the Current Setting */
+ 695:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_CONTROL &= ((uint8)(~FSM_Timer_CTRL_INTCNT_MASK));
+ 696:.\Generated_Source\PSoC5/FSM_Timer.c ****         /* Write The New Setting */
+ 697:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_CONTROL |= interruptCount;
+ 698:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif /* (!FSM_Timer_UDB_CONTROL_REG_REMOVED) */
+ 699:.\Generated_Source\PSoC5/FSM_Timer.c **** }
+ 700:.\Generated_Source\PSoC5/FSM_Timer.c **** #endif /* FSM_Timer_InterruptOnCaptureCount */
+ 701:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 702:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 703:.\Generated_Source\PSoC5/FSM_Timer.c **** #if (FSM_Timer_UsingHWCaptureCounter)
+ 704:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 705:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 706:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
+ 707:.\Generated_Source\PSoC5/FSM_Timer.c **** * Function Name: FSM_Timer_SetCaptureCount
+ 708:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************
+ 709:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 710:.\Generated_Source\PSoC5/FSM_Timer.c **** * Summary:
+ 711:.\Generated_Source\PSoC5/FSM_Timer.c **** *  This function sets the capture count
+ 712:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 713:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
+ 714:.\Generated_Source\PSoC5/FSM_Timer.c **** *  captureCount: A value between 2 and 127 inclusive is valid.  A value of 1
+ 715:.\Generated_Source\PSoC5/FSM_Timer.c **** *                to 127 will cause the interrupt to delay by the same number of
+ 716:.\Generated_Source\PSoC5/FSM_Timer.c **** *                captures.
+ 717:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 718:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
+ 719:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 720:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 721:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
+ 722:.\Generated_Source\PSoC5/FSM_Timer.c **** void FSM_Timer_SetCaptureCount(uint8 captureCount) 
+ 723:.\Generated_Source\PSoC5/FSM_Timer.c **** {
+ 724:.\Generated_Source\PSoC5/FSM_Timer.c ****     FSM_Timer_CAP_COUNT = captureCount;
+ 725:.\Generated_Source\PSoC5/FSM_Timer.c **** }
+ 726:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 727:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 728:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
+ 729:.\Generated_Source\PSoC5/FSM_Timer.c **** * Function Name: FSM_Timer_ReadCaptureCount
+ 730:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************
+ 731:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 732:.\Generated_Source\PSoC5/FSM_Timer.c **** * Summary:
+ 733:.\Generated_Source\PSoC5/FSM_Timer.c **** *  This function reads the capture count setting
+ 734:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 735:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
+ 736:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 737:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 738:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
+ 739:.\Generated_Source\PSoC5/FSM_Timer.c **** *  Returns the Capture Count Setting
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 24
+
+
+ 740:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 741:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
+ 742:.\Generated_Source\PSoC5/FSM_Timer.c **** uint8 FSM_Timer_ReadCaptureCount(void) 
+ 743:.\Generated_Source\PSoC5/FSM_Timer.c **** {
+ 744:.\Generated_Source\PSoC5/FSM_Timer.c ****     return ((uint8)FSM_Timer_CAP_COUNT);
+ 745:.\Generated_Source\PSoC5/FSM_Timer.c **** }
+ 746:.\Generated_Source\PSoC5/FSM_Timer.c **** #endif /* FSM_Timer_UsingHWCaptureCounter */
+ 747:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 748:.\Generated_Source\PSoC5/FSM_Timer.c **** 
+ 749:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
+ 750:.\Generated_Source\PSoC5/FSM_Timer.c **** * Function Name: FSM_Timer_ClearFIFO
+ 751:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************
+ 752:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 753:.\Generated_Source\PSoC5/FSM_Timer.c **** * Summary:
+ 754:.\Generated_Source\PSoC5/FSM_Timer.c **** *  This function clears all capture data from the capture FIFO
+ 755:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 756:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
+ 757:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 758:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 759:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
+ 760:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
+ 761:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ 762:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
+ 763:.\Generated_Source\PSoC5/FSM_Timer.c **** void FSM_Timer_ClearFIFO(void) 
+ 764:.\Generated_Source\PSoC5/FSM_Timer.c **** {
+ 573              		.loc 1 764 0
+ 574              		.cfi_startproc
+ 575              		@ args = 0, pretend = 0, frame = 0
+ 576              		@ frame_needed = 1, uses_anonymous_args = 0
+ 577 0000 80B5     		push	{r7, lr}
+ 578              		.cfi_def_cfa_offset 8
+ 579              		.cfi_offset 7, -8
+ 580              		.cfi_offset 14, -4
+ 581 0002 00AF     		add	r7, sp, #0
+ 582              		.cfi_def_cfa_register 7
+ 765:.\Generated_Source\PSoC5/FSM_Timer.c ****     while(0u != (FSM_Timer_ReadStatusRegister() & FSM_Timer_STATUS_FIFONEMP))
+ 583              		.loc 1 765 0
+ 584 0004 01E0     		b	.L50
+ 585              	.L51:
+ 766:.\Generated_Source\PSoC5/FSM_Timer.c ****     {
+ 767:.\Generated_Source\PSoC5/FSM_Timer.c ****         (void)FSM_Timer_ReadCapture();
+ 586              		.loc 1 767 0
+ 587 0006 FFF7FEFF 		bl	FSM_Timer_ReadCapture
+ 588              	.L50:
+ 765:.\Generated_Source\PSoC5/FSM_Timer.c ****     while(0u != (FSM_Timer_ReadStatusRegister() & FSM_Timer_STATUS_FIFONEMP))
+ 589              		.loc 1 765 0 discriminator 1
+ 590 000a FFF7FEFF 		bl	FSM_Timer_ReadStatusRegister
+ 591 000e 0346     		mov	r3, r0
+ 592 0010 03F00803 		and	r3, r3, #8
+ 593 0014 002B     		cmp	r3, #0
+ 594 0016 F6D1     		bne	.L51
+ 768:.\Generated_Source\PSoC5/FSM_Timer.c ****     }
+ 769:.\Generated_Source\PSoC5/FSM_Timer.c **** }
+ 595              		.loc 1 769 0
+ 596 0018 80BD     		pop	{r7, pc}
+ 597              		.cfi_endproc
+ 598              	.LFE14:
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 25
+
+
+ 599              		.size	FSM_Timer_ClearFIFO, .-FSM_Timer_ClearFIFO
+ 600 001a 00BF     		.text
+ 601              	.Letext0:
+ 602              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 603              		.section	.debug_info,"",%progbits
+ 604              	.Ldebug_info0:
+ 605 0000 4E020000 		.4byte	0x24e
+ 606 0004 0400     		.2byte	0x4
+ 607 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 608 000a 04       		.byte	0x4
+ 609 000b 01       		.uleb128 0x1
+ 610 000c 77010000 		.4byte	.LASF36
+ 611 0010 01       		.byte	0x1
+ 612 0011 2A020000 		.4byte	.LASF37
+ 613 0015 F3010000 		.4byte	.LASF38
+ 614 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 615 001d 00000000 		.4byte	0
+ 616 0021 00000000 		.4byte	.Ldebug_line0
+ 617 0025 02       		.uleb128 0x2
+ 618 0026 01       		.byte	0x1
+ 619 0027 06       		.byte	0x6
+ 620 0028 C7020000 		.4byte	.LASF0
+ 621 002c 02       		.uleb128 0x2
+ 622 002d 01       		.byte	0x1
+ 623 002e 08       		.byte	0x8
+ 624 002f 93000000 		.4byte	.LASF1
+ 625 0033 02       		.uleb128 0x2
+ 626 0034 02       		.byte	0x2
+ 627 0035 05       		.byte	0x5
+ 628 0036 74020000 		.4byte	.LASF2
+ 629 003a 02       		.uleb128 0x2
+ 630 003b 02       		.byte	0x2
+ 631 003c 07       		.byte	0x7
+ 632 003d 2C000000 		.4byte	.LASF3
+ 633 0041 02       		.uleb128 0x2
+ 634 0042 04       		.byte	0x4
+ 635 0043 05       		.byte	0x5
+ 636 0044 98020000 		.4byte	.LASF4
+ 637 0048 02       		.uleb128 0x2
+ 638 0049 04       		.byte	0x4
+ 639 004a 07       		.byte	0x7
+ 640 004b A6000000 		.4byte	.LASF5
+ 641 004f 02       		.uleb128 0x2
+ 642 0050 08       		.byte	0x8
+ 643 0051 05       		.byte	0x5
+ 644 0052 58020000 		.4byte	.LASF6
+ 645 0056 02       		.uleb128 0x2
+ 646 0057 08       		.byte	0x8
+ 647 0058 07       		.byte	0x7
+ 648 0059 49010000 		.4byte	.LASF7
+ 649 005d 03       		.uleb128 0x3
+ 650 005e 04       		.byte	0x4
+ 651 005f 05       		.byte	0x5
+ 652 0060 696E7400 		.ascii	"int\000"
+ 653 0064 02       		.uleb128 0x2
+ 654 0065 04       		.byte	0x4
+ 655 0066 07       		.byte	0x7
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 26
+
+
+ 656 0067 28010000 		.4byte	.LASF8
+ 657 006b 04       		.uleb128 0x4
+ 658 006c B8000000 		.4byte	.LASF9
+ 659 0070 02       		.byte	0x2
+ 660 0071 A1       		.byte	0xa1
+ 661 0072 2C000000 		.4byte	0x2c
+ 662 0076 04       		.uleb128 0x4
+ 663 0077 21010000 		.4byte	.LASF10
+ 664 007b 02       		.byte	0x2
+ 665 007c A3       		.byte	0xa3
+ 666 007d 48000000 		.4byte	0x48
+ 667 0081 02       		.uleb128 0x2
+ 668 0082 04       		.byte	0x4
+ 669 0083 04       		.byte	0x4
+ 670 0084 76000000 		.4byte	.LASF11
+ 671 0088 02       		.uleb128 0x2
+ 672 0089 08       		.byte	0x8
+ 673 008a 04       		.byte	0x4
+ 674 008b EE000000 		.4byte	.LASF12
+ 675 008f 02       		.uleb128 0x2
+ 676 0090 01       		.byte	0x1
+ 677 0091 08       		.byte	0x8
+ 678 0092 3F000000 		.4byte	.LASF13
+ 679 0096 05       		.uleb128 0x5
+ 680 0097 A1000000 		.4byte	.LASF14
+ 681 009b 02       		.byte	0x2
+ 682 009c 4B01     		.2byte	0x14b
+ 683 009e A2000000 		.4byte	0xa2
+ 684 00a2 06       		.uleb128 0x6
+ 685 00a3 6B000000 		.4byte	0x6b
+ 686 00a7 05       		.uleb128 0x5
+ 687 00a8 00000000 		.4byte	.LASF15
+ 688 00ac 02       		.byte	0x2
+ 689 00ad 4D01     		.2byte	0x14d
+ 690 00af B3000000 		.4byte	0xb3
+ 691 00b3 06       		.uleb128 0x6
+ 692 00b4 76000000 		.4byte	0x76
+ 693 00b8 02       		.uleb128 0x2
+ 694 00b9 04       		.byte	0x4
+ 695 00ba 07       		.byte	0x7
+ 696 00bb 4F020000 		.4byte	.LASF16
+ 697 00bf 07       		.uleb128 0x7
+ 698 00c0 EC020000 		.4byte	.LASF20
+ 699 00c4 01       		.byte	0x1
+ 700 00c5 2B       		.byte	0x2b
+ 701 00c6 00000000 		.4byte	.LFB0
+ 702 00ca 4C000000 		.4byte	.LFE0-.LFB0
+ 703 00ce 01       		.uleb128 0x1
+ 704 00cf 9C       		.byte	0x9c
+ 705 00d0 E3000000 		.4byte	0xe3
+ 706 00d4 08       		.uleb128 0x8
+ 707 00d5 D3020000 		.4byte	.LASF39
+ 708 00d9 01       		.byte	0x1
+ 709 00da 2F       		.byte	0x2f
+ 710 00db 6B000000 		.4byte	0x6b
+ 711 00df 02       		.uleb128 0x2
+ 712 00e0 91       		.byte	0x91
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 27
+
+
+ 713 00e1 77       		.sleb128 -9
+ 714 00e2 00       		.byte	0
+ 715 00e3 09       		.uleb128 0x9
+ 716 00e4 10010000 		.4byte	.LASF17
+ 717 00e8 01       		.byte	0x1
+ 718 00e9 B4       		.byte	0xb4
+ 719 00ea 00000000 		.4byte	.LFB1
+ 720 00ee 20000000 		.4byte	.LFE1-.LFB1
+ 721 00f2 01       		.uleb128 0x1
+ 722 00f3 9C       		.byte	0x9c
+ 723 00f4 0A       		.uleb128 0xa
+ 724 00f5 A1020000 		.4byte	.LASF18
+ 725 00f9 01       		.byte	0x1
+ 726 00fa D7       		.byte	0xd7
+ 727 00fb 00000000 		.4byte	.LFB2
+ 728 00ff 20000000 		.4byte	.LFE2-.LFB2
+ 729 0103 01       		.uleb128 0x1
+ 730 0104 9C       		.byte	0x9c
+ 731 0105 09       		.uleb128 0x9
+ 732 0106 84000000 		.4byte	.LASF19
+ 733 010a 01       		.byte	0x1
+ 734 010b F7       		.byte	0xf7
+ 735 010c 00000000 		.4byte	.LFB3
+ 736 0110 20000000 		.4byte	.LFE3-.LFB3
+ 737 0114 01       		.uleb128 0x1
+ 738 0115 9C       		.byte	0x9c
+ 739 0116 0B       		.uleb128 0xb
+ 740 0117 F5000000 		.4byte	.LASF21
+ 741 011b 01       		.byte	0x1
+ 742 011c 1701     		.2byte	0x117
+ 743 011e 00000000 		.4byte	.LFB4
+ 744 0122 20000000 		.4byte	.LFE4-.LFB4
+ 745 0126 01       		.uleb128 0x1
+ 746 0127 9C       		.byte	0x9c
+ 747 0128 3C010000 		.4byte	0x13c
+ 748 012c 0C       		.uleb128 0xc
+ 749 012d 66020000 		.4byte	.LASF26
+ 750 0131 01       		.byte	0x1
+ 751 0132 1701     		.2byte	0x117
+ 752 0134 6B000000 		.4byte	0x6b
+ 753 0138 02       		.uleb128 0x2
+ 754 0139 91       		.byte	0x91
+ 755 013a 77       		.sleb128 -9
+ 756 013b 00       		.byte	0
+ 757 013c 0D       		.uleb128 0xd
+ 758 013d 7E020000 		.4byte	.LASF22
+ 759 0141 01       		.byte	0x1
+ 760 0142 2E01     		.2byte	0x12e
+ 761 0144 00000000 		.4byte	.LFB5
+ 762 0148 14000000 		.4byte	.LFE5-.LFB5
+ 763 014c 01       		.uleb128 0x1
+ 764 014d 9C       		.byte	0x9c
+ 765 014e 0E       		.uleb128 0xe
+ 766 014f 59000000 		.4byte	.LASF23
+ 767 0153 01       		.byte	0x1
+ 768 0154 4D01     		.2byte	0x14d
+ 769 0156 6B000000 		.4byte	0x6b
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 28
+
+
+ 770 015a 00000000 		.4byte	.LFB6
+ 771 015e 18000000 		.4byte	.LFE6-.LFB6
+ 772 0162 01       		.uleb128 0x1
+ 773 0163 9C       		.byte	0x9c
+ 774 0164 0E       		.uleb128 0xe
+ 775 0165 FB020000 		.4byte	.LASF24
+ 776 0169 01       		.byte	0x1
+ 777 016a 6401     		.2byte	0x164
+ 778 016c 6B000000 		.4byte	0x6b
+ 779 0170 00000000 		.4byte	.LFB7
+ 780 0174 18000000 		.4byte	.LFE7-.LFB7
+ 781 0178 01       		.uleb128 0x1
+ 782 0179 9C       		.byte	0x9c
+ 783 017a 0B       		.uleb128 0xb
+ 784 017b 0D000000 		.4byte	.LASF25
+ 785 017f 01       		.byte	0x1
+ 786 0180 7B01     		.2byte	0x17b
+ 787 0182 00000000 		.4byte	.LFB8
+ 788 0186 20000000 		.4byte	.LFE8-.LFB8
+ 789 018a 01       		.uleb128 0x1
+ 790 018b 9C       		.byte	0x9c
+ 791 018c A0010000 		.4byte	0x1a0
+ 792 0190 0C       		.uleb128 0xc
+ 793 0191 BE000000 		.4byte	.LASF27
+ 794 0195 01       		.byte	0x1
+ 795 0196 7B01     		.2byte	0x17b
+ 796 0198 6B000000 		.4byte	0x6b
+ 797 019c 02       		.uleb128 0x2
+ 798 019d 91       		.byte	0x91
+ 799 019e 77       		.sleb128 -9
+ 800 019f 00       		.byte	0
+ 801 01a0 0E       		.uleb128 0xe
+ 802 01a1 44000000 		.4byte	.LASF28
+ 803 01a5 01       		.byte	0x1
+ 804 01a6 9501     		.2byte	0x195
+ 805 01a8 76000000 		.4byte	0x76
+ 806 01ac 00000000 		.4byte	.LFB9
+ 807 01b0 1C000000 		.4byte	.LFE9-.LFB9
+ 808 01b4 01       		.uleb128 0x1
+ 809 01b5 9C       		.byte	0x9c
+ 810 01b6 0F       		.uleb128 0xf
+ 811 01b7 C6000000 		.4byte	.LASF29
+ 812 01bb 01       		.byte	0x1
+ 813 01bc AF01     		.2byte	0x1af
+ 814 01be 00000000 		.4byte	.LFB10
+ 815 01c2 1C000000 		.4byte	.LFE10-.LFB10
+ 816 01c6 01       		.uleb128 0x1
+ 817 01c7 9C       		.byte	0x9c
+ 818 01c8 DC010000 		.4byte	0x1dc
+ 819 01cc 0C       		.uleb128 0xc
+ 820 01cd 06000000 		.4byte	.LASF30
+ 821 01d1 01       		.byte	0x1
+ 822 01d2 AF01     		.2byte	0x1af
+ 823 01d4 76000000 		.4byte	0x76
+ 824 01d8 02       		.uleb128 0x2
+ 825 01d9 91       		.byte	0x91
+ 826 01da 74       		.sleb128 -12
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 29
+
+
+ 827 01db 00       		.byte	0
+ 828 01dc 0E       		.uleb128 0xe
+ 829 01dd B1020000 		.4byte	.LASF31
+ 830 01e1 01       		.byte	0x1
+ 831 01e2 C801     		.2byte	0x1c8
+ 832 01e4 76000000 		.4byte	0x76
+ 833 01e8 00000000 		.4byte	.LFB11
+ 834 01ec 1C000000 		.4byte	.LFE11-.LFB11
+ 835 01f0 01       		.uleb128 0x1
+ 836 01f1 9C       		.byte	0x9c
+ 837 01f2 0F       		.uleb128 0xf
+ 838 01f3 60010000 		.4byte	.LASF32
+ 839 01f7 01       		.byte	0x1
+ 840 01f8 E001     		.2byte	0x1e0
+ 841 01fa 00000000 		.4byte	.LFB12
+ 842 01fe 1C000000 		.4byte	.LFE12-.LFB12
+ 843 0202 01       		.uleb128 0x1
+ 844 0203 9C       		.byte	0x9c
+ 845 0204 18020000 		.4byte	0x218
+ 846 0208 0C       		.uleb128 0xc
+ 847 0209 7C000000 		.4byte	.LASF33
+ 848 020d 01       		.byte	0x1
+ 849 020e E001     		.2byte	0x1e0
+ 850 0210 76000000 		.4byte	0x76
+ 851 0214 02       		.uleb128 0x2
+ 852 0215 91       		.byte	0x91
+ 853 0216 74       		.sleb128 -12
+ 854 0217 00       		.byte	0
+ 855 0218 0E       		.uleb128 0xe
+ 856 0219 19030000 		.4byte	.LASF34
+ 857 021d 01       		.byte	0x1
+ 858 021e FC01     		.2byte	0x1fc
+ 859 0220 76000000 		.4byte	0x76
+ 860 0224 00000000 		.4byte	.LFB13
+ 861 0228 24000000 		.4byte	.LFE13-.LFB13
+ 862 022c 01       		.uleb128 0x1
+ 863 022d 9C       		.byte	0x9c
+ 864 022e 10       		.uleb128 0x10
+ 865 022f 35010000 		.4byte	.LASF35
+ 866 0233 01       		.byte	0x1
+ 867 0234 FB02     		.2byte	0x2fb
+ 868 0236 00000000 		.4byte	.LFB14
+ 869 023a 1A000000 		.4byte	.LFE14-.LFB14
+ 870 023e 01       		.uleb128 0x1
+ 871 023f 9C       		.byte	0x9c
+ 872 0240 11       		.uleb128 0x11
+ 873 0241 DC000000 		.4byte	.LASF40
+ 874 0245 01       		.byte	0x1
+ 875 0246 1A       		.byte	0x1a
+ 876 0247 6B000000 		.4byte	0x6b
+ 877 024b 05       		.uleb128 0x5
+ 878 024c 03       		.byte	0x3
+ 879 024d 00000000 		.4byte	FSM_Timer_initVar
+ 880 0251 00       		.byte	0
+ 881              		.section	.debug_abbrev,"",%progbits
+ 882              	.Ldebug_abbrev0:
+ 883 0000 01       		.uleb128 0x1
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 30
+
+
+ 884 0001 11       		.uleb128 0x11
+ 885 0002 01       		.byte	0x1
+ 886 0003 25       		.uleb128 0x25
+ 887 0004 0E       		.uleb128 0xe
+ 888 0005 13       		.uleb128 0x13
+ 889 0006 0B       		.uleb128 0xb
+ 890 0007 03       		.uleb128 0x3
+ 891 0008 0E       		.uleb128 0xe
+ 892 0009 1B       		.uleb128 0x1b
+ 893 000a 0E       		.uleb128 0xe
+ 894 000b 55       		.uleb128 0x55
+ 895 000c 17       		.uleb128 0x17
+ 896 000d 11       		.uleb128 0x11
+ 897 000e 01       		.uleb128 0x1
+ 898 000f 10       		.uleb128 0x10
+ 899 0010 17       		.uleb128 0x17
+ 900 0011 00       		.byte	0
+ 901 0012 00       		.byte	0
+ 902 0013 02       		.uleb128 0x2
+ 903 0014 24       		.uleb128 0x24
+ 904 0015 00       		.byte	0
+ 905 0016 0B       		.uleb128 0xb
+ 906 0017 0B       		.uleb128 0xb
+ 907 0018 3E       		.uleb128 0x3e
+ 908 0019 0B       		.uleb128 0xb
+ 909 001a 03       		.uleb128 0x3
+ 910 001b 0E       		.uleb128 0xe
+ 911 001c 00       		.byte	0
+ 912 001d 00       		.byte	0
+ 913 001e 03       		.uleb128 0x3
+ 914 001f 24       		.uleb128 0x24
+ 915 0020 00       		.byte	0
+ 916 0021 0B       		.uleb128 0xb
+ 917 0022 0B       		.uleb128 0xb
+ 918 0023 3E       		.uleb128 0x3e
+ 919 0024 0B       		.uleb128 0xb
+ 920 0025 03       		.uleb128 0x3
+ 921 0026 08       		.uleb128 0x8
+ 922 0027 00       		.byte	0
+ 923 0028 00       		.byte	0
+ 924 0029 04       		.uleb128 0x4
+ 925 002a 16       		.uleb128 0x16
+ 926 002b 00       		.byte	0
+ 927 002c 03       		.uleb128 0x3
+ 928 002d 0E       		.uleb128 0xe
+ 929 002e 3A       		.uleb128 0x3a
+ 930 002f 0B       		.uleb128 0xb
+ 931 0030 3B       		.uleb128 0x3b
+ 932 0031 0B       		.uleb128 0xb
+ 933 0032 49       		.uleb128 0x49
+ 934 0033 13       		.uleb128 0x13
+ 935 0034 00       		.byte	0
+ 936 0035 00       		.byte	0
+ 937 0036 05       		.uleb128 0x5
+ 938 0037 16       		.uleb128 0x16
+ 939 0038 00       		.byte	0
+ 940 0039 03       		.uleb128 0x3
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 31
+
+
+ 941 003a 0E       		.uleb128 0xe
+ 942 003b 3A       		.uleb128 0x3a
+ 943 003c 0B       		.uleb128 0xb
+ 944 003d 3B       		.uleb128 0x3b
+ 945 003e 05       		.uleb128 0x5
+ 946 003f 49       		.uleb128 0x49
+ 947 0040 13       		.uleb128 0x13
+ 948 0041 00       		.byte	0
+ 949 0042 00       		.byte	0
+ 950 0043 06       		.uleb128 0x6
+ 951 0044 35       		.uleb128 0x35
+ 952 0045 00       		.byte	0
+ 953 0046 49       		.uleb128 0x49
+ 954 0047 13       		.uleb128 0x13
+ 955 0048 00       		.byte	0
+ 956 0049 00       		.byte	0
+ 957 004a 07       		.uleb128 0x7
+ 958 004b 2E       		.uleb128 0x2e
+ 959 004c 01       		.byte	0x1
+ 960 004d 3F       		.uleb128 0x3f
+ 961 004e 19       		.uleb128 0x19
+ 962 004f 03       		.uleb128 0x3
+ 963 0050 0E       		.uleb128 0xe
+ 964 0051 3A       		.uleb128 0x3a
+ 965 0052 0B       		.uleb128 0xb
+ 966 0053 3B       		.uleb128 0x3b
+ 967 0054 0B       		.uleb128 0xb
+ 968 0055 27       		.uleb128 0x27
+ 969 0056 19       		.uleb128 0x19
+ 970 0057 11       		.uleb128 0x11
+ 971 0058 01       		.uleb128 0x1
+ 972 0059 12       		.uleb128 0x12
+ 973 005a 06       		.uleb128 0x6
+ 974 005b 40       		.uleb128 0x40
+ 975 005c 18       		.uleb128 0x18
+ 976 005d 9642     		.uleb128 0x2116
+ 977 005f 19       		.uleb128 0x19
+ 978 0060 01       		.uleb128 0x1
+ 979 0061 13       		.uleb128 0x13
+ 980 0062 00       		.byte	0
+ 981 0063 00       		.byte	0
+ 982 0064 08       		.uleb128 0x8
+ 983 0065 34       		.uleb128 0x34
+ 984 0066 00       		.byte	0
+ 985 0067 03       		.uleb128 0x3
+ 986 0068 0E       		.uleb128 0xe
+ 987 0069 3A       		.uleb128 0x3a
+ 988 006a 0B       		.uleb128 0xb
+ 989 006b 3B       		.uleb128 0x3b
+ 990 006c 0B       		.uleb128 0xb
+ 991 006d 49       		.uleb128 0x49
+ 992 006e 13       		.uleb128 0x13
+ 993 006f 02       		.uleb128 0x2
+ 994 0070 18       		.uleb128 0x18
+ 995 0071 00       		.byte	0
+ 996 0072 00       		.byte	0
+ 997 0073 09       		.uleb128 0x9
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 32
+
+
+ 998 0074 2E       		.uleb128 0x2e
+ 999 0075 00       		.byte	0
+ 1000 0076 3F       		.uleb128 0x3f
+ 1001 0077 19       		.uleb128 0x19
+ 1002 0078 03       		.uleb128 0x3
+ 1003 0079 0E       		.uleb128 0xe
+ 1004 007a 3A       		.uleb128 0x3a
+ 1005 007b 0B       		.uleb128 0xb
+ 1006 007c 3B       		.uleb128 0x3b
+ 1007 007d 0B       		.uleb128 0xb
+ 1008 007e 27       		.uleb128 0x27
+ 1009 007f 19       		.uleb128 0x19
+ 1010 0080 11       		.uleb128 0x11
+ 1011 0081 01       		.uleb128 0x1
+ 1012 0082 12       		.uleb128 0x12
+ 1013 0083 06       		.uleb128 0x6
+ 1014 0084 40       		.uleb128 0x40
+ 1015 0085 18       		.uleb128 0x18
+ 1016 0086 9742     		.uleb128 0x2117
+ 1017 0088 19       		.uleb128 0x19
+ 1018 0089 00       		.byte	0
+ 1019 008a 00       		.byte	0
+ 1020 008b 0A       		.uleb128 0xa
+ 1021 008c 2E       		.uleb128 0x2e
+ 1022 008d 00       		.byte	0
+ 1023 008e 3F       		.uleb128 0x3f
+ 1024 008f 19       		.uleb128 0x19
+ 1025 0090 03       		.uleb128 0x3
+ 1026 0091 0E       		.uleb128 0xe
+ 1027 0092 3A       		.uleb128 0x3a
+ 1028 0093 0B       		.uleb128 0xb
+ 1029 0094 3B       		.uleb128 0x3b
+ 1030 0095 0B       		.uleb128 0xb
+ 1031 0096 27       		.uleb128 0x27
+ 1032 0097 19       		.uleb128 0x19
+ 1033 0098 11       		.uleb128 0x11
+ 1034 0099 01       		.uleb128 0x1
+ 1035 009a 12       		.uleb128 0x12
+ 1036 009b 06       		.uleb128 0x6
+ 1037 009c 40       		.uleb128 0x40
+ 1038 009d 18       		.uleb128 0x18
+ 1039 009e 9642     		.uleb128 0x2116
+ 1040 00a0 19       		.uleb128 0x19
+ 1041 00a1 00       		.byte	0
+ 1042 00a2 00       		.byte	0
+ 1043 00a3 0B       		.uleb128 0xb
+ 1044 00a4 2E       		.uleb128 0x2e
+ 1045 00a5 01       		.byte	0x1
+ 1046 00a6 3F       		.uleb128 0x3f
+ 1047 00a7 19       		.uleb128 0x19
+ 1048 00a8 03       		.uleb128 0x3
+ 1049 00a9 0E       		.uleb128 0xe
+ 1050 00aa 3A       		.uleb128 0x3a
+ 1051 00ab 0B       		.uleb128 0xb
+ 1052 00ac 3B       		.uleb128 0x3b
+ 1053 00ad 05       		.uleb128 0x5
+ 1054 00ae 27       		.uleb128 0x27
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 33
+
+
+ 1055 00af 19       		.uleb128 0x19
+ 1056 00b0 11       		.uleb128 0x11
+ 1057 00b1 01       		.uleb128 0x1
+ 1058 00b2 12       		.uleb128 0x12
+ 1059 00b3 06       		.uleb128 0x6
+ 1060 00b4 40       		.uleb128 0x40
+ 1061 00b5 18       		.uleb128 0x18
+ 1062 00b6 9742     		.uleb128 0x2117
+ 1063 00b8 19       		.uleb128 0x19
+ 1064 00b9 01       		.uleb128 0x1
+ 1065 00ba 13       		.uleb128 0x13
+ 1066 00bb 00       		.byte	0
+ 1067 00bc 00       		.byte	0
+ 1068 00bd 0C       		.uleb128 0xc
+ 1069 00be 05       		.uleb128 0x5
+ 1070 00bf 00       		.byte	0
+ 1071 00c0 03       		.uleb128 0x3
+ 1072 00c1 0E       		.uleb128 0xe
+ 1073 00c2 3A       		.uleb128 0x3a
+ 1074 00c3 0B       		.uleb128 0xb
+ 1075 00c4 3B       		.uleb128 0x3b
+ 1076 00c5 05       		.uleb128 0x5
+ 1077 00c6 49       		.uleb128 0x49
+ 1078 00c7 13       		.uleb128 0x13
+ 1079 00c8 02       		.uleb128 0x2
+ 1080 00c9 18       		.uleb128 0x18
+ 1081 00ca 00       		.byte	0
+ 1082 00cb 00       		.byte	0
+ 1083 00cc 0D       		.uleb128 0xd
+ 1084 00cd 2E       		.uleb128 0x2e
+ 1085 00ce 00       		.byte	0
+ 1086 00cf 3F       		.uleb128 0x3f
+ 1087 00d0 19       		.uleb128 0x19
+ 1088 00d1 03       		.uleb128 0x3
+ 1089 00d2 0E       		.uleb128 0xe
+ 1090 00d3 3A       		.uleb128 0x3a
+ 1091 00d4 0B       		.uleb128 0xb
+ 1092 00d5 3B       		.uleb128 0x3b
+ 1093 00d6 05       		.uleb128 0x5
+ 1094 00d7 27       		.uleb128 0x27
+ 1095 00d8 19       		.uleb128 0x19
+ 1096 00d9 11       		.uleb128 0x11
+ 1097 00da 01       		.uleb128 0x1
+ 1098 00db 12       		.uleb128 0x12
+ 1099 00dc 06       		.uleb128 0x6
+ 1100 00dd 40       		.uleb128 0x40
+ 1101 00de 18       		.uleb128 0x18
+ 1102 00df 9742     		.uleb128 0x2117
+ 1103 00e1 19       		.uleb128 0x19
+ 1104 00e2 00       		.byte	0
+ 1105 00e3 00       		.byte	0
+ 1106 00e4 0E       		.uleb128 0xe
+ 1107 00e5 2E       		.uleb128 0x2e
+ 1108 00e6 00       		.byte	0
+ 1109 00e7 3F       		.uleb128 0x3f
+ 1110 00e8 19       		.uleb128 0x19
+ 1111 00e9 03       		.uleb128 0x3
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 34
+
+
+ 1112 00ea 0E       		.uleb128 0xe
+ 1113 00eb 3A       		.uleb128 0x3a
+ 1114 00ec 0B       		.uleb128 0xb
+ 1115 00ed 3B       		.uleb128 0x3b
+ 1116 00ee 05       		.uleb128 0x5
+ 1117 00ef 27       		.uleb128 0x27
+ 1118 00f0 19       		.uleb128 0x19
+ 1119 00f1 49       		.uleb128 0x49
+ 1120 00f2 13       		.uleb128 0x13
+ 1121 00f3 11       		.uleb128 0x11
+ 1122 00f4 01       		.uleb128 0x1
+ 1123 00f5 12       		.uleb128 0x12
+ 1124 00f6 06       		.uleb128 0x6
+ 1125 00f7 40       		.uleb128 0x40
+ 1126 00f8 18       		.uleb128 0x18
+ 1127 00f9 9742     		.uleb128 0x2117
+ 1128 00fb 19       		.uleb128 0x19
+ 1129 00fc 00       		.byte	0
+ 1130 00fd 00       		.byte	0
+ 1131 00fe 0F       		.uleb128 0xf
+ 1132 00ff 2E       		.uleb128 0x2e
+ 1133 0100 01       		.byte	0x1
+ 1134 0101 3F       		.uleb128 0x3f
+ 1135 0102 19       		.uleb128 0x19
+ 1136 0103 03       		.uleb128 0x3
+ 1137 0104 0E       		.uleb128 0xe
+ 1138 0105 3A       		.uleb128 0x3a
+ 1139 0106 0B       		.uleb128 0xb
+ 1140 0107 3B       		.uleb128 0x3b
+ 1141 0108 05       		.uleb128 0x5
+ 1142 0109 27       		.uleb128 0x27
+ 1143 010a 19       		.uleb128 0x19
+ 1144 010b 11       		.uleb128 0x11
+ 1145 010c 01       		.uleb128 0x1
+ 1146 010d 12       		.uleb128 0x12
+ 1147 010e 06       		.uleb128 0x6
+ 1148 010f 40       		.uleb128 0x40
+ 1149 0110 18       		.uleb128 0x18
+ 1150 0111 9642     		.uleb128 0x2116
+ 1151 0113 19       		.uleb128 0x19
+ 1152 0114 01       		.uleb128 0x1
+ 1153 0115 13       		.uleb128 0x13
+ 1154 0116 00       		.byte	0
+ 1155 0117 00       		.byte	0
+ 1156 0118 10       		.uleb128 0x10
+ 1157 0119 2E       		.uleb128 0x2e
+ 1158 011a 00       		.byte	0
+ 1159 011b 3F       		.uleb128 0x3f
+ 1160 011c 19       		.uleb128 0x19
+ 1161 011d 03       		.uleb128 0x3
+ 1162 011e 0E       		.uleb128 0xe
+ 1163 011f 3A       		.uleb128 0x3a
+ 1164 0120 0B       		.uleb128 0xb
+ 1165 0121 3B       		.uleb128 0x3b
+ 1166 0122 05       		.uleb128 0x5
+ 1167 0123 27       		.uleb128 0x27
+ 1168 0124 19       		.uleb128 0x19
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 35
+
+
+ 1169 0125 11       		.uleb128 0x11
+ 1170 0126 01       		.uleb128 0x1
+ 1171 0127 12       		.uleb128 0x12
+ 1172 0128 06       		.uleb128 0x6
+ 1173 0129 40       		.uleb128 0x40
+ 1174 012a 18       		.uleb128 0x18
+ 1175 012b 9642     		.uleb128 0x2116
+ 1176 012d 19       		.uleb128 0x19
+ 1177 012e 00       		.byte	0
+ 1178 012f 00       		.byte	0
+ 1179 0130 11       		.uleb128 0x11
+ 1180 0131 34       		.uleb128 0x34
+ 1181 0132 00       		.byte	0
+ 1182 0133 03       		.uleb128 0x3
+ 1183 0134 0E       		.uleb128 0xe
+ 1184 0135 3A       		.uleb128 0x3a
+ 1185 0136 0B       		.uleb128 0xb
+ 1186 0137 3B       		.uleb128 0x3b
+ 1187 0138 0B       		.uleb128 0xb
+ 1188 0139 49       		.uleb128 0x49
+ 1189 013a 13       		.uleb128 0x13
+ 1190 013b 3F       		.uleb128 0x3f
+ 1191 013c 19       		.uleb128 0x19
+ 1192 013d 02       		.uleb128 0x2
+ 1193 013e 18       		.uleb128 0x18
+ 1194 013f 00       		.byte	0
+ 1195 0140 00       		.byte	0
+ 1196 0141 00       		.byte	0
+ 1197              		.section	.debug_aranges,"",%progbits
+ 1198 0000 8C000000 		.4byte	0x8c
+ 1199 0004 0200     		.2byte	0x2
+ 1200 0006 00000000 		.4byte	.Ldebug_info0
+ 1201 000a 04       		.byte	0x4
+ 1202 000b 00       		.byte	0
+ 1203 000c 0000     		.2byte	0
+ 1204 000e 0000     		.2byte	0
+ 1205 0010 00000000 		.4byte	.LFB0
+ 1206 0014 4C000000 		.4byte	.LFE0-.LFB0
+ 1207 0018 00000000 		.4byte	.LFB1
+ 1208 001c 20000000 		.4byte	.LFE1-.LFB1
+ 1209 0020 00000000 		.4byte	.LFB2
+ 1210 0024 20000000 		.4byte	.LFE2-.LFB2
+ 1211 0028 00000000 		.4byte	.LFB3
+ 1212 002c 20000000 		.4byte	.LFE3-.LFB3
+ 1213 0030 00000000 		.4byte	.LFB4
+ 1214 0034 20000000 		.4byte	.LFE4-.LFB4
+ 1215 0038 00000000 		.4byte	.LFB5
+ 1216 003c 14000000 		.4byte	.LFE5-.LFB5
+ 1217 0040 00000000 		.4byte	.LFB6
+ 1218 0044 18000000 		.4byte	.LFE6-.LFB6
+ 1219 0048 00000000 		.4byte	.LFB7
+ 1220 004c 18000000 		.4byte	.LFE7-.LFB7
+ 1221 0050 00000000 		.4byte	.LFB8
+ 1222 0054 20000000 		.4byte	.LFE8-.LFB8
+ 1223 0058 00000000 		.4byte	.LFB9
+ 1224 005c 1C000000 		.4byte	.LFE9-.LFB9
+ 1225 0060 00000000 		.4byte	.LFB10
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 36
+
+
+ 1226 0064 1C000000 		.4byte	.LFE10-.LFB10
+ 1227 0068 00000000 		.4byte	.LFB11
+ 1228 006c 1C000000 		.4byte	.LFE11-.LFB11
+ 1229 0070 00000000 		.4byte	.LFB12
+ 1230 0074 1C000000 		.4byte	.LFE12-.LFB12
+ 1231 0078 00000000 		.4byte	.LFB13
+ 1232 007c 24000000 		.4byte	.LFE13-.LFB13
+ 1233 0080 00000000 		.4byte	.LFB14
+ 1234 0084 1A000000 		.4byte	.LFE14-.LFB14
+ 1235 0088 00000000 		.4byte	0
+ 1236 008c 00000000 		.4byte	0
+ 1237              		.section	.debug_ranges,"",%progbits
+ 1238              	.Ldebug_ranges0:
+ 1239 0000 00000000 		.4byte	.LFB0
+ 1240 0004 4C000000 		.4byte	.LFE0
+ 1241 0008 00000000 		.4byte	.LFB1
+ 1242 000c 20000000 		.4byte	.LFE1
+ 1243 0010 00000000 		.4byte	.LFB2
+ 1244 0014 20000000 		.4byte	.LFE2
+ 1245 0018 00000000 		.4byte	.LFB3
+ 1246 001c 20000000 		.4byte	.LFE3
+ 1247 0020 00000000 		.4byte	.LFB4
+ 1248 0024 20000000 		.4byte	.LFE4
+ 1249 0028 00000000 		.4byte	.LFB5
+ 1250 002c 14000000 		.4byte	.LFE5
+ 1251 0030 00000000 		.4byte	.LFB6
+ 1252 0034 18000000 		.4byte	.LFE6
+ 1253 0038 00000000 		.4byte	.LFB7
+ 1254 003c 18000000 		.4byte	.LFE7
+ 1255 0040 00000000 		.4byte	.LFB8
+ 1256 0044 20000000 		.4byte	.LFE8
+ 1257 0048 00000000 		.4byte	.LFB9
+ 1258 004c 1C000000 		.4byte	.LFE9
+ 1259 0050 00000000 		.4byte	.LFB10
+ 1260 0054 1C000000 		.4byte	.LFE10
+ 1261 0058 00000000 		.4byte	.LFB11
+ 1262 005c 1C000000 		.4byte	.LFE11
+ 1263 0060 00000000 		.4byte	.LFB12
+ 1264 0064 1C000000 		.4byte	.LFE12
+ 1265 0068 00000000 		.4byte	.LFB13
+ 1266 006c 24000000 		.4byte	.LFE13
+ 1267 0070 00000000 		.4byte	.LFB14
+ 1268 0074 1A000000 		.4byte	.LFE14
+ 1269 0078 00000000 		.4byte	0
+ 1270 007c 00000000 		.4byte	0
+ 1271              		.section	.debug_line,"",%progbits
+ 1272              	.Ldebug_line0:
+ 1273 0000 74010000 		.section	.debug_str,"MS",%progbits,1
+ 1273      02004800 
+ 1273      00000201 
+ 1273      FB0E0D00 
+ 1273      01010101 
+ 1274              	.LASF15:
+ 1275 0000 72656733 		.ascii	"reg32\000"
+ 1275      3200
+ 1276              	.LASF30:
+ 1277 0006 70657269 		.ascii	"period\000"
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 37
+
+
+ 1277      6F6400
+ 1278              	.LASF25:
+ 1279 000d 46534D5F 		.ascii	"FSM_Timer_WriteControlRegister\000"
+ 1279      54696D65 
+ 1279      725F5772 
+ 1279      69746543 
+ 1279      6F6E7472 
+ 1280              	.LASF3:
+ 1281 002c 73686F72 		.ascii	"short unsigned int\000"
+ 1281      7420756E 
+ 1281      7369676E 
+ 1281      65642069 
+ 1281      6E7400
+ 1282              	.LASF13:
+ 1283 003f 63686172 		.ascii	"char\000"
+ 1283      00
+ 1284              	.LASF28:
+ 1285 0044 46534D5F 		.ascii	"FSM_Timer_ReadPeriod\000"
+ 1285      54696D65 
+ 1285      725F5265 
+ 1285      61645065 
+ 1285      72696F64 
+ 1286              	.LASF23:
+ 1287 0059 46534D5F 		.ascii	"FSM_Timer_ReadStatusRegister\000"
+ 1287      54696D65 
+ 1287      725F5265 
+ 1287      61645374 
+ 1287      61747573 
+ 1288              	.LASF11:
+ 1289 0076 666C6F61 		.ascii	"float\000"
+ 1289      7400
+ 1290              	.LASF33:
+ 1291 007c 636F756E 		.ascii	"counter\000"
+ 1291      74657200 
+ 1292              	.LASF19:
+ 1293 0084 46534D5F 		.ascii	"FSM_Timer_Stop\000"
+ 1293      54696D65 
+ 1293      725F5374 
+ 1293      6F7000
+ 1294              	.LASF1:
+ 1295 0093 756E7369 		.ascii	"unsigned char\000"
+ 1295      676E6564 
+ 1295      20636861 
+ 1295      7200
+ 1296              	.LASF14:
+ 1297 00a1 72656738 		.ascii	"reg8\000"
+ 1297      00
+ 1298              	.LASF5:
+ 1299 00a6 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1299      20756E73 
+ 1299      69676E65 
+ 1299      6420696E 
+ 1299      7400
+ 1300              	.LASF9:
+ 1301 00b8 75696E74 		.ascii	"uint8\000"
+ 1301      3800
+ 1302              	.LASF27:
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 38
+
+
+ 1303 00be 636F6E74 		.ascii	"control\000"
+ 1303      726F6C00 
+ 1304              	.LASF29:
+ 1305 00c6 46534D5F 		.ascii	"FSM_Timer_WritePeriod\000"
+ 1305      54696D65 
+ 1305      725F5772 
+ 1305      69746550 
+ 1305      6572696F 
+ 1306              	.LASF40:
+ 1307 00dc 46534D5F 		.ascii	"FSM_Timer_initVar\000"
+ 1307      54696D65 
+ 1307      725F696E 
+ 1307      69745661 
+ 1307      7200
+ 1308              	.LASF12:
+ 1309 00ee 646F7562 		.ascii	"double\000"
+ 1309      6C6500
+ 1310              	.LASF21:
+ 1311 00f5 46534D5F 		.ascii	"FSM_Timer_SetInterruptMode\000"
+ 1311      54696D65 
+ 1311      725F5365 
+ 1311      74496E74 
+ 1311      65727275 
+ 1312              	.LASF17:
+ 1313 0110 46534D5F 		.ascii	"FSM_Timer_Enable\000"
+ 1313      54696D65 
+ 1313      725F456E 
+ 1313      61626C65 
+ 1313      00
+ 1314              	.LASF10:
+ 1315 0121 75696E74 		.ascii	"uint32\000"
+ 1315      333200
+ 1316              	.LASF8:
+ 1317 0128 756E7369 		.ascii	"unsigned int\000"
+ 1317      676E6564 
+ 1317      20696E74 
+ 1317      00
+ 1318              	.LASF35:
+ 1319 0135 46534D5F 		.ascii	"FSM_Timer_ClearFIFO\000"
+ 1319      54696D65 
+ 1319      725F436C 
+ 1319      65617246 
+ 1319      49464F00 
+ 1320              	.LASF7:
+ 1321 0149 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1321      206C6F6E 
+ 1321      6720756E 
+ 1321      7369676E 
+ 1321      65642069 
+ 1322              	.LASF32:
+ 1323 0160 46534D5F 		.ascii	"FSM_Timer_WriteCounter\000"
+ 1323      54696D65 
+ 1323      725F5772 
+ 1323      69746543 
+ 1323      6F756E74 
+ 1324              	.LASF36:
+ 1325 0177 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 39
+
+
+ 1325      4320342E 
+ 1325      382E3420 
+ 1325      32303134 
+ 1325      30353236 
+ 1326 01aa 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
+ 1326      20726576 
+ 1326      6973696F 
+ 1326      6E203231 
+ 1326      31333538 
+ 1327 01dd 30202D66 		.ascii	"0 -ffunction-sections\000"
+ 1327      66756E63 
+ 1327      74696F6E 
+ 1327      2D736563 
+ 1327      74696F6E 
+ 1328              	.LASF38:
+ 1329 01f3 443A5C77 		.ascii	"D:\\workspace\\super-eagle\\Super-Eagle\\Super-Eagl"
+ 1329      6F726B73 
+ 1329      70616365 
+ 1329      5C737570 
+ 1329      65722D65 
+ 1330 0222 652E6379 		.ascii	"e.cydsn\000"
+ 1330      64736E00 
+ 1331              	.LASF37:
+ 1332 022a 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\FSM_Timer.c\000"
+ 1332      6E657261 
+ 1332      7465645F 
+ 1332      536F7572 
+ 1332      63655C50 
+ 1333              	.LASF16:
+ 1334 024f 73697A65 		.ascii	"sizetype\000"
+ 1334      74797065 
+ 1334      00
+ 1335              	.LASF6:
+ 1336 0258 6C6F6E67 		.ascii	"long long int\000"
+ 1336      206C6F6E 
+ 1336      6720696E 
+ 1336      7400
+ 1337              	.LASF26:
+ 1338 0266 696E7465 		.ascii	"interruptMode\000"
+ 1338      72727570 
+ 1338      744D6F64 
+ 1338      6500
+ 1339              	.LASF2:
+ 1340 0274 73686F72 		.ascii	"short int\000"
+ 1340      7420696E 
+ 1340      7400
+ 1341              	.LASF22:
+ 1342 027e 46534D5F 		.ascii	"FSM_Timer_SoftwareCapture\000"
+ 1342      54696D65 
+ 1342      725F536F 
+ 1342      66747761 
+ 1342      72654361 
+ 1343              	.LASF4:
+ 1344 0298 6C6F6E67 		.ascii	"long int\000"
+ 1344      20696E74 
+ 1344      00
+ 1345              	.LASF18:
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc7drbmj.s 			page 40
+
+
+ 1346 02a1 46534D5F 		.ascii	"FSM_Timer_Start\000"
+ 1346      54696D65 
+ 1346      725F5374 
+ 1346      61727400 
+ 1347              	.LASF31:
+ 1348 02b1 46534D5F 		.ascii	"FSM_Timer_ReadCapture\000"
+ 1348      54696D65 
+ 1348      725F5265 
+ 1348      61644361 
+ 1348      70747572 
+ 1349              	.LASF0:
+ 1350 02c7 7369676E 		.ascii	"signed char\000"
+ 1350      65642063 
+ 1350      68617200 
+ 1351              	.LASF39:
+ 1352 02d3 46534D5F 		.ascii	"FSM_Timer_interruptState\000"
+ 1352      54696D65 
+ 1352      725F696E 
+ 1352      74657272 
+ 1352      75707453 
+ 1353              	.LASF20:
+ 1354 02ec 46534D5F 		.ascii	"FSM_Timer_Init\000"
+ 1354      54696D65 
+ 1354      725F496E 
+ 1354      697400
+ 1355              	.LASF24:
+ 1356 02fb 46534D5F 		.ascii	"FSM_Timer_ReadControlRegister\000"
+ 1356      54696D65 
+ 1356      725F5265 
+ 1356      6164436F 
+ 1356      6E74726F 
+ 1357              	.LASF34:
+ 1358 0319 46534D5F 		.ascii	"FSM_Timer_ReadCounter\000"
+ 1358      54696D65 
+ 1358      725F5265 
+ 1358      6164436F 
+ 1358      756E7465 
+ 1359              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br
