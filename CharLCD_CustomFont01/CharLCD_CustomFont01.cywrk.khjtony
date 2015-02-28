@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CyXmlSerializer>
+<!--This file is machine generated and read. It is not intended to be edited by hand.-->
+<!--Due to this, there is no schema for this file.-->
+<CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWrkspcCustomData" version="4">
+<CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997 type_name="CyDesigner.Common.Base.CyCustomData" version="2">
+<userData>
+<dataGuid v="1b906a0f-a7b6-4e4d-a428-82f98b53cb35">
+<CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35 type_name="CyDesigner.Common.ProjMgmt.GUI.CyExplorerWindow+CyExplorerWindowState" version="3" SelectedTab="Source">
+<TreeKeys>
+<v>Source</v>
+<v>Components</v>
+<v>Output</v>
+</TreeKeys>
+<TreeStates>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="CharLCD_CustomFont01\CharLCD_HBar01">
+<ExpandedNodeIds>
+<v>CharLCD_CustomFont01</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\TopDesign</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\CharLCD_CustomFont01.cydwr</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\Header Files</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\Header Files\device.h</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\Source Files</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\Source Files\main.c</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\CharLCD_CustomFont.pdf</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\TopDesign</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CharLCD_HBar01.cydwr</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Header Files</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Header Files\device.h</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Source Files</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Source Files\main.c</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CharLCD_HBar.pdf</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cy_boot\cm3gcc.ld</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cy_boot\Cm3Iar.icf</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cy_boot\Cm3RealView.scat</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cy_boot\Cm3Start.c</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cy_boot\core_cm3.h</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cy_boot\core_cm3_psoc5.h</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cy_boot\core_cmFunc.h</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cy_boot\core_cmInstr.h</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cy_boot\CyBootAsmGnu.s</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cy_boot\CyBootAsmIar.s</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cy_boot\CyBootAsmRv.s</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cy_boot\CyDmac.c</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cy_boot\CyDmac.h</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cy_boot\CyFlash.c</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cy_boot\CyFlash.h</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cy_boot\CyLib.c</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cy_boot\CyLib.h</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cy_boot\cypins.h</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cy_boot\cyPm.c</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cy_boot\cyPm.h</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cy_boot\CySpc.c</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cy_boot\CySpc.h</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cy_boot\cytypes.h</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cy_boot\cyutils.c</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\LCD</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\LCD\LCD.c</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\LCD\LCD.h</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\LCD\LCD_BarGraph.c</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\LCD\LCD_PM.c</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\LCD_LCDPort</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\LCD_LCDPort\LCD_LCDPort.c</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\LCD_LCDPort\LCD_LCDPort.h</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\LCD_LCDPort\LCD_LCDPort_aliases.h</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cydevice.h</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cydevice_trm.h</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cydevicegnu.inc</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cydevicegnu_trm.inc</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cydeviceiar.inc</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cydeviceiar_trm.inc</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cydevicerv.inc</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cydevicerv_trm.inc</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cydisabledsheets.h</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cyfitter.h</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cyfitter_cfg.c</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cyfitter_cfg.h</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cyfittergnu.inc</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cyfitteriar.inc</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cyfitterrv.inc</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\cymetadata.c</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\Generated_Source\PSoC5\project.h</v>
+<v>CharLCD_CustomFont01\Super-Eagle</v>
+<v>CharLCD_CustomFont01\Super-Eagle\TopDesign</v>
+<v>CharLCD_CustomFont01\Super-Eagle\Super-Eagle.cydwr</v>
+<v>CharLCD_CustomFont01\Super-Eagle\Header Files</v>
+<v>CharLCD_CustomFont01\Super-Eagle\Source Files</v>
+<v>CharLCD_CustomFont01\Super-Eagle\Source Files\main.c</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>CharLCD_CustomFont01</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\TopDesign</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\CharLCD_CustomFont01.cydwr</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\Header Files</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\Header Files\device.h</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\Source Files</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\Source Files\main.c</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\CharLCD_CustomFont.pdf</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01</v>
+<v>CharLCD_CustomFont01\Super-Eagle</v>
+<v>CharLCD_CustomFont01\Super-Eagle\TopDesign</v>
+<v>CharLCD_CustomFont01\Super-Eagle\Super-Eagle.cydwr</v>
+<v>CharLCD_CustomFont01\Super-Eagle\Header Files</v>
+<v>CharLCD_CustomFont01\Super-Eagle\Source Files</v>
+<v>CharLCD_CustomFont01\Super-Eagle\Source Files\main.c</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>CharLCD_CustomFont01</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\TopDesign</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\TopDesign\TopDesign.cysch</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\TopDesign</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\TopDesign\TopDesign.cysch</v>
+<v>CharLCD_CustomFont01\Super-Eagle</v>
+<v>CharLCD_CustomFont01\Super-Eagle\TopDesign</v>
+<v>CharLCD_CustomFont01\Super-Eagle\TopDesign\TopDesign.cysch</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>CharLCD_CustomFont01</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\TopDesign</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\TopDesign\TopDesign.cysch</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\TopDesign</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\TopDesign\TopDesign.cysch</v>
+<v>CharLCD_CustomFont01\Super-Eagle</v>
+<v>CharLCD_CustomFont01\Super-Eagle\TopDesign</v>
+<v>CharLCD_CustomFont01\Super-Eagle\TopDesign\TopDesign.cysch</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>CharLCD_CustomFont01</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\CharLCD_CustomFont01.rpt</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\CharLCD_CustomFont01_timing.html</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\Cm3Start.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\CyDmac.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\CyFlash.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\CyLib.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\cymetadata.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\cyPm.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\CySpc.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\cyutils.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\LCD.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\LCD_BarGraph.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\LCD_LCDPort.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\LCD_PM.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\main.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\CharLCD_HBar01.elf</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\CharLCD_HBar01.hex</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\CharLCD_HBar01.map</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CharLCD_HBar01.rpt</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CharLCD_HBar01_timing.html</v>
+<v>CharLCD_CustomFont01\Super-Eagle</v>
+<v>CharLCD_CustomFont01\Super-Eagle\Super-Eagle.rpt</v>
+<v>CharLCD_CustomFont01\Super-Eagle\Super-Eagle_timing.html</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>CharLCD_CustomFont01</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\CharLCD_CustomFont01.rpt</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\CharLCD_CustomFont01_timing.html</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\Cm3Start.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\CyDmac.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\CyFlash.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\CyLib.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\cymetadata.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\cyPm.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\CySpc.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\cyutils.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\LCD.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\LCD_BarGraph.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\LCD_LCDPort.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\LCD_PM.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\Listing Files\main.lst</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\CharLCD_HBar01.elf</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\CharLCD_HBar01.hex</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CortexM3\ARM_GCC_484\Debug\CharLCD_HBar01.map</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CharLCD_HBar01.rpt</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CharLCD_HBar01_timing.html</v>
+<v>CharLCD_CustomFont01\Super-Eagle</v>
+<v>CharLCD_CustomFont01\Super-Eagle\Super-Eagle.rpt</v>
+<v>CharLCD_CustomFont01\Super-Eagle\Super-Eagle_timing.html</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStates>
+<TreeKeysV2>
+<v>Datasheet</v>
+</TreeKeysV2>
+<TreeStatesV2>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>CharLCD_CustomFont01</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\PSoC 5 Architecture TRM</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\CY8C58LP Family Datasheet</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\System Reference Guide v4_20</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\CharLCD_v2_10</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\PSoC 5 Architecture TRM</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CY8C58LP Family Datasheet</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\System Reference Guide v4_20</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CharLCD_v2_10</v>
+<v>CharLCD_CustomFont01\Super-Eagle</v>
+<v>CharLCD_CustomFont01\Super-Eagle\PSoC 5 Architecture TRM</v>
+<v>CharLCD_CustomFont01\Super-Eagle\CY8C58LP Family Datasheet</v>
+<v>CharLCD_CustomFont01\Super-Eagle\System Reference Guide v4_20</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>CharLCD_CustomFont01</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\PSoC 5 Architecture TRM</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\CY8C58LP Family Datasheet</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\System Reference Guide v4_20</v>
+<v>CharLCD_CustomFont01\CharLCD_CustomFont01\CharLCD_v2_10</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\PSoC 5 Architecture TRM</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CY8C58LP Family Datasheet</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\System Reference Guide v4_20</v>
+<v>CharLCD_CustomFont01\CharLCD_HBar01\CharLCD_v2_10</v>
+<v>CharLCD_CustomFont01\Super-Eagle</v>
+<v>CharLCD_CustomFont01\Super-Eagle\PSoC 5 Architecture TRM</v>
+<v>CharLCD_CustomFont01\Super-Eagle\CY8C58LP Family Datasheet</v>
+<v>CharLCD_CustomFont01\Super-Eagle\System Reference Guide v4_20</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStatesV2>
+</CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35>
+</dataGuid>
+<dataGuid v="5f2be1a5-0687-4501-bb8c-cf21cb8211bf">
+<CyGuid_5f2be1a5-0687-4501-bb8c-cf21cb8211bf type_name="CyDesigner.Common.ProjMgmt.GUI.CyBookmarkData" version="1">
+<indicators />
+</CyGuid_5f2be1a5-0687-4501-bb8c-cf21cb8211bf>
+</dataGuid>
+</userData>
+</CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
+<Unloaded />
+<OpenDocs>
+<name v=".\CharLCD_CustomFont01.cydsn\TopDesign\TopDesign.cysch" />
+<name v=".\CharLCD_CustomFont01.cydsn\main.c" />
+<name v=".\CharLCD_HBar01.cydsn\TopDesign\TopDesign.cysch" />
+<name v=".\CharLCD_HBar01.cydsn\main.c" />
+<name v=".\CharLCD_HBar01.cydsn\Generated_Source\PSoC5\LCD_BarGraph.c" />
+<name v="..\Super-Eagle\Super-Eagle.cydsn\TopDesign\TopDesign.cysch" />
+</OpenDocs>
+<config v="" />
+<AutoUpdate v="true" />
+</CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
+</CyXmlSerializer>

@@ -1,0 +1,3795 @@
+   1               		.file	"usb_serial.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__RAMPZ__ = 0x3b
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.text
+   9               	.Ltext0:
+  10               		.cfi_sections	.debug_frame
+  11               		.section	.text.usb_wait_in_ready,"ax",@progbits
+  13               	usb_wait_in_ready:
+  14               	.LFB17:
+  15               		.file 1 "usb_serial.c"
+   1:usb_serial.c  **** /* USB Serial Example for Teensy USB Development Board
+   2:usb_serial.c  ****  * http://www.pjrc.com/teensy/usb_serial.html
+   3:usb_serial.c  ****  * Copyright (c) 2008,2010,2011 PJRC.COM, LLC
+   4:usb_serial.c  ****  * 
+   5:usb_serial.c  ****  * Permission is hereby granted, free of charge, to any person obtaining a copy
+   6:usb_serial.c  ****  * of this software and associated documentation files (the "Software"), to deal
+   7:usb_serial.c  ****  * in the Software without restriction, including without limitation the rights
+   8:usb_serial.c  ****  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+   9:usb_serial.c  ****  * copies of the Software, and to permit persons to whom the Software is
+  10:usb_serial.c  ****  * furnished to do so, subject to the following conditions:
+  11:usb_serial.c  ****  * 
+  12:usb_serial.c  ****  * The above copyright notice and this permission notice shall be included in
+  13:usb_serial.c  ****  * all copies or substantial portions of the Software.
+  14:usb_serial.c  ****  * 
+  15:usb_serial.c  ****  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  16:usb_serial.c  ****  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  17:usb_serial.c  ****  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  18:usb_serial.c  ****  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  19:usb_serial.c  ****  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  20:usb_serial.c  ****  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  21:usb_serial.c  ****  * THE SOFTWARE.
+  22:usb_serial.c  ****  */
+  23:usb_serial.c  **** 
+  24:usb_serial.c  **** // Version 1.0: Initial Release
+  25:usb_serial.c  **** // Version 1.1: support Teensy++
+  26:usb_serial.c  **** // Version 1.2: fixed usb_serial_available
+  27:usb_serial.c  **** // Version 1.3: added transmit bandwidth test
+  28:usb_serial.c  **** // Version 1.4: added usb_serial_write
+  29:usb_serial.c  **** // Version 1.5: add support for Teensy 2.0
+  30:usb_serial.c  **** // Version 1.6: fix zero length packet bug
+  31:usb_serial.c  **** // Version 1.7: fix usb_serial_set_control
+  32:usb_serial.c  **** 
+  33:usb_serial.c  **** #define USB_SERIAL_PRIVATE_INCLUDE
+  34:usb_serial.c  **** #include "usb_serial.h"
+  35:usb_serial.c  **** 
+  36:usb_serial.c  **** 
+  37:usb_serial.c  **** /**************************************************************************
+  38:usb_serial.c  ****  *
+  39:usb_serial.c  ****  *  Configurable Options
+  40:usb_serial.c  ****  *
+  41:usb_serial.c  ****  **************************************************************************/
+  42:usb_serial.c  **** 
+  43:usb_serial.c  **** // You can change these to give your code its own name.  On Windows,
+  44:usb_serial.c  **** // these are only used before an INF file (driver install) is loaded.
+  45:usb_serial.c  **** #define STR_MANUFACTURER	L"Your Name"
+  46:usb_serial.c  **** #define STR_PRODUCT		L"USB Serial"
+  47:usb_serial.c  **** 
+  48:usb_serial.c  **** // All USB serial devices are supposed to have a serial number
+  49:usb_serial.c  **** // (according to Microsoft).  On windows, a new COM port is created
+  50:usb_serial.c  **** // for every unique serial/vendor/product number combination.  If
+  51:usb_serial.c  **** // you program 2 identical boards with 2 different serial numbers
+  52:usb_serial.c  **** // and they are assigned COM7 and COM8, each will always get the
+  53:usb_serial.c  **** // same COM port number because Windows remembers serial numbers.
+  54:usb_serial.c  **** //
+  55:usb_serial.c  **** // On Mac OS-X, a device file is created automatically which
+  56:usb_serial.c  **** // incorperates the serial number, eg, /dev/cu-usbmodem12341
+  57:usb_serial.c  **** //
+  58:usb_serial.c  **** // Linux by default ignores the serial number, and creates device
+  59:usb_serial.c  **** // files named /dev/ttyACM0, /dev/ttyACM1... in the order connected.
+  60:usb_serial.c  **** // Udev rules (in /etc/udev/rules.d) can define persistent device
+  61:usb_serial.c  **** // names linked to this serial number, as well as permissions, owner
+  62:usb_serial.c  **** // and group settings.
+  63:usb_serial.c  **** #define STR_SERIAL_NUMBER	L"12345"
+  64:usb_serial.c  **** 
+  65:usb_serial.c  **** // Mac OS-X and Linux automatically load the correct drivers.  On
+  66:usb_serial.c  **** // Windows, even though the driver is supplied by Microsoft, an
+  67:usb_serial.c  **** // INF file is needed to load the driver.  These numbers need to
+  68:usb_serial.c  **** // match the INF file.
+  69:usb_serial.c  **** #define VENDOR_ID		0x16C0
+  70:usb_serial.c  **** #define PRODUCT_ID		0x047A
+  71:usb_serial.c  **** 
+  72:usb_serial.c  **** // When you write data, it goes into a USB endpoint buffer, which
+  73:usb_serial.c  **** // is transmitted to the PC when it becomes full, or after a timeout
+  74:usb_serial.c  **** // with no more writes.  Even if you write in exactly packet-size
+  75:usb_serial.c  **** // increments, this timeout is used to send a "zero length packet"
+  76:usb_serial.c  **** // that tells the PC no more data is expected and it should pass
+  77:usb_serial.c  **** // any buffered data to the application that may be waiting.  If
+  78:usb_serial.c  **** // you want data sent immediately, call usb_serial_flush_output().
+  79:usb_serial.c  **** #define TRANSMIT_FLUSH_TIMEOUT	5   /* in milliseconds */
+  80:usb_serial.c  **** 
+  81:usb_serial.c  **** // If the PC is connected but not "listening", this is the length
+  82:usb_serial.c  **** // of time before usb_serial_getchar() returns with an error.  This
+  83:usb_serial.c  **** // is roughly equivilant to a real UART simply transmitting the
+  84:usb_serial.c  **** // bits on a wire where nobody is listening, except you get an error
+  85:usb_serial.c  **** // code which you can ignore for serial-like discard of data, or
+  86:usb_serial.c  **** // use to know your data wasn't sent.
+  87:usb_serial.c  **** #define TRANSMIT_TIMEOUT	25   /* in milliseconds */
+  88:usb_serial.c  **** 
+  89:usb_serial.c  **** // USB devices are supposed to implment a halt feature, which is
+  90:usb_serial.c  **** // rarely (if ever) used.  If you comment this line out, the halt
+  91:usb_serial.c  **** // code will be removed, saving 116 bytes of space (gcc 4.3.0).
+  92:usb_serial.c  **** // This is not strictly USB compliant, but works with all major
+  93:usb_serial.c  **** // operating systems.
+  94:usb_serial.c  **** #define SUPPORT_ENDPOINT_HALT
+  95:usb_serial.c  **** 
+  96:usb_serial.c  **** 
+  97:usb_serial.c  **** 
+  98:usb_serial.c  **** /**************************************************************************
+  99:usb_serial.c  ****  *
+ 100:usb_serial.c  ****  *  Endpoint Buffer Configuration
+ 101:usb_serial.c  ****  *
+ 102:usb_serial.c  ****  **************************************************************************/
+ 103:usb_serial.c  **** 
+ 104:usb_serial.c  **** // These buffer sizes are best for most applications, but perhaps if you
+ 105:usb_serial.c  **** // want more buffering on some endpoint at the expense of others, this
+ 106:usb_serial.c  **** // is where you can make such changes.  The AT90USB162 has only 176 bytes
+ 107:usb_serial.c  **** // of DPRAM (USB buffers) and only endpoints 3 & 4 can double buffer.
+ 108:usb_serial.c  **** 
+ 109:usb_serial.c  **** #define ENDPOINT0_SIZE		16
+ 110:usb_serial.c  **** #define CDC_ACM_ENDPOINT	2
+ 111:usb_serial.c  **** #define CDC_RX_ENDPOINT		3
+ 112:usb_serial.c  **** #define CDC_TX_ENDPOINT		4
+ 113:usb_serial.c  **** #if defined(__AVR_AT90USB162__)
+ 114:usb_serial.c  **** #define CDC_ACM_SIZE		16
+ 115:usb_serial.c  **** #define CDC_ACM_BUFFER		EP_SINGLE_BUFFER
+ 116:usb_serial.c  **** #define CDC_RX_SIZE		32
+ 117:usb_serial.c  **** #define CDC_RX_BUFFER 		EP_DOUBLE_BUFFER
+ 118:usb_serial.c  **** #define CDC_TX_SIZE		32
+ 119:usb_serial.c  **** #define CDC_TX_BUFFER		EP_DOUBLE_BUFFER
+ 120:usb_serial.c  **** #else
+ 121:usb_serial.c  **** #define CDC_ACM_SIZE		16
+ 122:usb_serial.c  **** #define CDC_ACM_BUFFER		EP_SINGLE_BUFFER
+ 123:usb_serial.c  **** #define CDC_RX_SIZE		64
+ 124:usb_serial.c  **** #define CDC_RX_BUFFER 		EP_DOUBLE_BUFFER
+ 125:usb_serial.c  **** #define CDC_TX_SIZE		64
+ 126:usb_serial.c  **** #define CDC_TX_BUFFER		EP_DOUBLE_BUFFER
+ 127:usb_serial.c  **** #endif
+ 128:usb_serial.c  **** 
+ 129:usb_serial.c  **** static const uint8_t PROGMEM endpoint_config_table[] = {
+ 130:usb_serial.c  **** 	0,
+ 131:usb_serial.c  **** 	1, EP_TYPE_INTERRUPT_IN,  EP_SIZE(CDC_ACM_SIZE) | CDC_ACM_BUFFER,
+ 132:usb_serial.c  **** 	1, EP_TYPE_BULK_OUT,      EP_SIZE(CDC_RX_SIZE) | CDC_RX_BUFFER,
+ 133:usb_serial.c  **** 	1, EP_TYPE_BULK_IN,       EP_SIZE(CDC_TX_SIZE) | CDC_TX_BUFFER
+ 134:usb_serial.c  **** };
+ 135:usb_serial.c  **** 
+ 136:usb_serial.c  **** 
+ 137:usb_serial.c  **** /**************************************************************************
+ 138:usb_serial.c  ****  *
+ 139:usb_serial.c  ****  *  Descriptor Data
+ 140:usb_serial.c  ****  *
+ 141:usb_serial.c  ****  **************************************************************************/
+ 142:usb_serial.c  **** 
+ 143:usb_serial.c  **** // Descriptors are the data that your computer reads when it auto-detects
+ 144:usb_serial.c  **** // this USB device (called "enumeration" in USB lingo).  The most commonly
+ 145:usb_serial.c  **** // changed items are editable at the top of this file.  Changing things
+ 146:usb_serial.c  **** // in here should only be done by those who've read chapter 9 of the USB
+ 147:usb_serial.c  **** // spec and relevant portions of any USB class specifications!
+ 148:usb_serial.c  **** 
+ 149:usb_serial.c  **** const static uint8_t PROGMEM device_descriptor[] = {
+ 150:usb_serial.c  **** 	18,					// bLength
+ 151:usb_serial.c  **** 	1,					// bDescriptorType
+ 152:usb_serial.c  **** 	0x00, 0x02,				// bcdUSB
+ 153:usb_serial.c  **** 	2,					// bDeviceClass
+ 154:usb_serial.c  **** 	0,					// bDeviceSubClass
+ 155:usb_serial.c  **** 	0,					// bDeviceProtocol
+ 156:usb_serial.c  **** 	ENDPOINT0_SIZE,				// bMaxPacketSize0
+ 157:usb_serial.c  **** 	LSB(VENDOR_ID), MSB(VENDOR_ID),		// idVendor
+ 158:usb_serial.c  **** 	LSB(PRODUCT_ID), MSB(PRODUCT_ID),	// idProduct
+ 159:usb_serial.c  **** 	0x00, 0x01,				// bcdDevice
+ 160:usb_serial.c  **** 	1,					// iManufacturer
+ 161:usb_serial.c  **** 	2,					// iProduct
+ 162:usb_serial.c  **** 	3,					// iSerialNumber
+ 163:usb_serial.c  **** 	1					// bNumConfigurations
+ 164:usb_serial.c  **** };
+ 165:usb_serial.c  **** 
+ 166:usb_serial.c  **** #define CONFIG1_DESC_SIZE (9+9+5+5+4+5+7+9+7+7)
+ 167:usb_serial.c  **** const static uint8_t PROGMEM config1_descriptor[CONFIG1_DESC_SIZE] = {
+ 168:usb_serial.c  **** 	// configuration descriptor, USB spec 9.6.3, page 264-266, Table 9-10
+ 169:usb_serial.c  **** 	9, 					// bLength;
+ 170:usb_serial.c  **** 	2,					// bDescriptorType;
+ 171:usb_serial.c  **** 	LSB(CONFIG1_DESC_SIZE),			// wTotalLength
+ 172:usb_serial.c  **** 	MSB(CONFIG1_DESC_SIZE),
+ 173:usb_serial.c  **** 	2,					// bNumInterfaces
+ 174:usb_serial.c  **** 	1,					// bConfigurationValue
+ 175:usb_serial.c  **** 	0,					// iConfiguration
+ 176:usb_serial.c  **** 	0xC0,					// bmAttributes
+ 177:usb_serial.c  **** 	50,					// bMaxPower
+ 178:usb_serial.c  **** 	// interface descriptor, USB spec 9.6.5, page 267-269, Table 9-12
+ 179:usb_serial.c  **** 	9,					// bLength
+ 180:usb_serial.c  **** 	4,					// bDescriptorType
+ 181:usb_serial.c  **** 	0,					// bInterfaceNumber
+ 182:usb_serial.c  **** 	0,					// bAlternateSetting
+ 183:usb_serial.c  **** 	1,					// bNumEndpoints
+ 184:usb_serial.c  **** 	0x02,					// bInterfaceClass
+ 185:usb_serial.c  **** 	0x02,					// bInterfaceSubClass
+ 186:usb_serial.c  **** 	0x01,					// bInterfaceProtocol
+ 187:usb_serial.c  **** 	0,					// iInterface
+ 188:usb_serial.c  **** 	// CDC Header Functional Descriptor, CDC Spec 5.2.3.1, Table 26
+ 189:usb_serial.c  **** 	5,					// bFunctionLength
+ 190:usb_serial.c  **** 	0x24,					// bDescriptorType
+ 191:usb_serial.c  **** 	0x00,					// bDescriptorSubtype
+ 192:usb_serial.c  **** 	0x10, 0x01,				// bcdCDC
+ 193:usb_serial.c  **** 	// Call Management Functional Descriptor, CDC Spec 5.2.3.2, Table 27
+ 194:usb_serial.c  **** 	5,					// bFunctionLength
+ 195:usb_serial.c  **** 	0x24,					// bDescriptorType
+ 196:usb_serial.c  **** 	0x01,					// bDescriptorSubtype
+ 197:usb_serial.c  **** 	0x01,					// bmCapabilities
+ 198:usb_serial.c  **** 	1,					// bDataInterface
+ 199:usb_serial.c  **** 	// Abstract Control Management Functional Descriptor, CDC Spec 5.2.3.3, Table 28
+ 200:usb_serial.c  **** 	4,					// bFunctionLength
+ 201:usb_serial.c  **** 	0x24,					// bDescriptorType
+ 202:usb_serial.c  **** 	0x02,					// bDescriptorSubtype
+ 203:usb_serial.c  **** 	0x06,					// bmCapabilities
+ 204:usb_serial.c  **** 	// Union Functional Descriptor, CDC Spec 5.2.3.8, Table 33
+ 205:usb_serial.c  **** 	5,					// bFunctionLength
+ 206:usb_serial.c  **** 	0x24,					// bDescriptorType
+ 207:usb_serial.c  **** 	0x06,					// bDescriptorSubtype
+ 208:usb_serial.c  **** 	0,					// bMasterInterface
+ 209:usb_serial.c  **** 	1,					// bSlaveInterface0
+ 210:usb_serial.c  **** 	// endpoint descriptor, USB spec 9.6.6, page 269-271, Table 9-13
+ 211:usb_serial.c  **** 	7,					// bLength
+ 212:usb_serial.c  **** 	5,					// bDescriptorType
+ 213:usb_serial.c  **** 	CDC_ACM_ENDPOINT | 0x80,		// bEndpointAddress
+ 214:usb_serial.c  **** 	0x03,					// bmAttributes (0x03=intr)
+ 215:usb_serial.c  **** 	CDC_ACM_SIZE, 0,			// wMaxPacketSize
+ 216:usb_serial.c  **** 	64,					// bInterval
+ 217:usb_serial.c  **** 	// interface descriptor, USB spec 9.6.5, page 267-269, Table 9-12
+ 218:usb_serial.c  **** 	9,					// bLength
+ 219:usb_serial.c  **** 	4,					// bDescriptorType
+ 220:usb_serial.c  **** 	1,					// bInterfaceNumber
+ 221:usb_serial.c  **** 	0,					// bAlternateSetting
+ 222:usb_serial.c  **** 	2,					// bNumEndpoints
+ 223:usb_serial.c  **** 	0x0A,					// bInterfaceClass
+ 224:usb_serial.c  **** 	0x00,					// bInterfaceSubClass
+ 225:usb_serial.c  **** 	0x00,					// bInterfaceProtocol
+ 226:usb_serial.c  **** 	0,					// iInterface
+ 227:usb_serial.c  **** 	// endpoint descriptor, USB spec 9.6.6, page 269-271, Table 9-13
+ 228:usb_serial.c  **** 	7,					// bLength
+ 229:usb_serial.c  **** 	5,					// bDescriptorType
+ 230:usb_serial.c  **** 	CDC_RX_ENDPOINT,			// bEndpointAddress
+ 231:usb_serial.c  **** 	0x02,					// bmAttributes (0x02=bulk)
+ 232:usb_serial.c  **** 	CDC_RX_SIZE, 0,				// wMaxPacketSize
+ 233:usb_serial.c  **** 	0,					// bInterval
+ 234:usb_serial.c  **** 	// endpoint descriptor, USB spec 9.6.6, page 269-271, Table 9-13
+ 235:usb_serial.c  **** 	7,					// bLength
+ 236:usb_serial.c  **** 	5,					// bDescriptorType
+ 237:usb_serial.c  **** 	CDC_TX_ENDPOINT | 0x80,			// bEndpointAddress
+ 238:usb_serial.c  **** 	0x02,					// bmAttributes (0x02=bulk)
+ 239:usb_serial.c  **** 	CDC_TX_SIZE, 0,				// wMaxPacketSize
+ 240:usb_serial.c  **** 	0					// bInterval
+ 241:usb_serial.c  **** };
+ 242:usb_serial.c  **** 
+ 243:usb_serial.c  **** // If you're desperate for a little extra code memory, these strings
+ 244:usb_serial.c  **** // can be completely removed if iManufacturer, iProduct, iSerialNumber
+ 245:usb_serial.c  **** // in the device desciptor are changed to zeros.
+ 246:usb_serial.c  **** struct usb_string_descriptor_struct {
+ 247:usb_serial.c  **** 	uint8_t bLength;
+ 248:usb_serial.c  **** 	uint8_t bDescriptorType;
+ 249:usb_serial.c  **** 	int16_t wString[];
+ 250:usb_serial.c  **** };
+ 251:usb_serial.c  **** const static struct usb_string_descriptor_struct PROGMEM string0 = {
+ 252:usb_serial.c  **** 	4,
+ 253:usb_serial.c  **** 	3,
+ 254:usb_serial.c  **** 	{0x0409}
+ 255:usb_serial.c  **** };
+ 256:usb_serial.c  **** const static struct usb_string_descriptor_struct PROGMEM string1 = {
+ 257:usb_serial.c  **** 	sizeof(STR_MANUFACTURER),
+ 258:usb_serial.c  **** 	3,
+ 259:usb_serial.c  **** 	STR_MANUFACTURER
+ 260:usb_serial.c  **** };
+ 261:usb_serial.c  **** const static struct usb_string_descriptor_struct PROGMEM string2 = {
+ 262:usb_serial.c  **** 	sizeof(STR_PRODUCT),
+ 263:usb_serial.c  **** 	3,
+ 264:usb_serial.c  **** 	STR_PRODUCT
+ 265:usb_serial.c  **** };
+ 266:usb_serial.c  **** const static struct usb_string_descriptor_struct PROGMEM string3 = {
+ 267:usb_serial.c  **** 	sizeof(STR_SERIAL_NUMBER),
+ 268:usb_serial.c  **** 	3,
+ 269:usb_serial.c  **** 	STR_SERIAL_NUMBER
+ 270:usb_serial.c  **** };
+ 271:usb_serial.c  **** 
+ 272:usb_serial.c  **** // This table defines which descriptor data is sent for each specific
+ 273:usb_serial.c  **** // request from the host (in wValue and wIndex).
+ 274:usb_serial.c  **** const static struct descriptor_list_struct {
+ 275:usb_serial.c  **** 	uint16_t	wValue;
+ 276:usb_serial.c  **** 	uint16_t	wIndex;
+ 277:usb_serial.c  **** 	const uint8_t	*addr;
+ 278:usb_serial.c  **** 	uint8_t		length;
+ 279:usb_serial.c  **** } PROGMEM descriptor_list[] = {
+ 280:usb_serial.c  **** 	{0x0100, 0x0000, device_descriptor, sizeof(device_descriptor)},
+ 281:usb_serial.c  **** 	{0x0200, 0x0000, config1_descriptor, sizeof(config1_descriptor)},
+ 282:usb_serial.c  **** 	{0x0300, 0x0000, (const uint8_t *)&string0, 4},
+ 283:usb_serial.c  **** 	{0x0301, 0x0409, (const uint8_t *)&string1, sizeof(STR_MANUFACTURER)},
+ 284:usb_serial.c  **** 	{0x0302, 0x0409, (const uint8_t *)&string2, sizeof(STR_PRODUCT)},
+ 285:usb_serial.c  **** 	{0x0303, 0x0409, (const uint8_t *)&string3, sizeof(STR_SERIAL_NUMBER)}
+ 286:usb_serial.c  **** };
+ 287:usb_serial.c  **** #define NUM_DESC_LIST (sizeof(descriptor_list)/sizeof(struct descriptor_list_struct))
+ 288:usb_serial.c  **** 
+ 289:usb_serial.c  **** 
+ 290:usb_serial.c  **** /**************************************************************************
+ 291:usb_serial.c  ****  *
+ 292:usb_serial.c  ****  *  Variables - these are the only non-stack RAM usage
+ 293:usb_serial.c  ****  *
+ 294:usb_serial.c  ****  **************************************************************************/
+ 295:usb_serial.c  **** 
+ 296:usb_serial.c  **** // zero when we are not configured, non-zero when enumerated
+ 297:usb_serial.c  **** static volatile uint8_t usb_configuration=0;
+ 298:usb_serial.c  **** 
+ 299:usb_serial.c  **** // the time remaining before we transmit any partially full
+ 300:usb_serial.c  **** // packet, or send a zero length packet.
+ 301:usb_serial.c  **** static volatile uint8_t transmit_flush_timer=0;
+ 302:usb_serial.c  **** static uint8_t transmit_previous_timeout=0;
+ 303:usb_serial.c  **** 
+ 304:usb_serial.c  **** // serial port settings (baud rate, control signals, etc) set
+ 305:usb_serial.c  **** // by the PC.  These are ignored, but kept in RAM.
+ 306:usb_serial.c  **** static uint8_t cdc_line_coding[7]={0x00, 0xE1, 0x00, 0x00, 0x00, 0x00, 0x08};
+ 307:usb_serial.c  **** static uint8_t cdc_line_rtsdtr=0;
+ 308:usb_serial.c  **** 
+ 309:usb_serial.c  **** 
+ 310:usb_serial.c  **** /**************************************************************************
+ 311:usb_serial.c  ****  *
+ 312:usb_serial.c  ****  *  Public Functions - these are the API intended for the user
+ 313:usb_serial.c  ****  *
+ 314:usb_serial.c  ****  **************************************************************************/
+ 315:usb_serial.c  **** 
+ 316:usb_serial.c  **** // initialize USB serial
+ 317:usb_serial.c  **** void usb_init(void)
+ 318:usb_serial.c  **** {
+ 319:usb_serial.c  **** 	HW_CONFIG();
+ 320:usb_serial.c  ****         USB_FREEZE();				// enable USB
+ 321:usb_serial.c  ****         PLL_CONFIG();				// config PLL, 16 MHz xtal
+ 322:usb_serial.c  ****         while (!(PLLCSR & (1<<PLOCK))) ;	// wait for PLL lock
+ 323:usb_serial.c  ****         USB_CONFIG();				// start USB clock
+ 324:usb_serial.c  ****         UDCON = 0;				// enable attach resistor
+ 325:usb_serial.c  **** 	usb_configuration = 0;
+ 326:usb_serial.c  **** 	cdc_line_rtsdtr = 0;
+ 327:usb_serial.c  ****         UDIEN = (1<<EORSTE)|(1<<SOFE);
+ 328:usb_serial.c  **** 	sei();
+ 329:usb_serial.c  **** }
+ 330:usb_serial.c  **** 
+ 331:usb_serial.c  **** // return 0 if the USB is not configured, or the configuration
+ 332:usb_serial.c  **** // number selected by the HOST
+ 333:usb_serial.c  **** uint8_t usb_configured(void)
+ 334:usb_serial.c  **** {
+ 335:usb_serial.c  **** 	return usb_configuration;
+ 336:usb_serial.c  **** }
+ 337:usb_serial.c  **** 
+ 338:usb_serial.c  **** // get the next character, or -1 if nothing received
+ 339:usb_serial.c  **** int16_t usb_serial_getchar(void)
+ 340:usb_serial.c  **** {
+ 341:usb_serial.c  **** 	uint8_t c, intr_state;
+ 342:usb_serial.c  **** 
+ 343:usb_serial.c  **** 	// interrupts are disabled so these functions can be
+ 344:usb_serial.c  **** 	// used from the main program or interrupt context,
+ 345:usb_serial.c  **** 	// even both in the same program!
+ 346:usb_serial.c  **** 	intr_state = SREG;
+ 347:usb_serial.c  **** 	cli();
+ 348:usb_serial.c  **** 	if (!usb_configuration) {
+ 349:usb_serial.c  **** 		SREG = intr_state;
+ 350:usb_serial.c  **** 		return -1;
+ 351:usb_serial.c  **** 	}
+ 352:usb_serial.c  **** 	UENUM = CDC_RX_ENDPOINT;
+ 353:usb_serial.c  **** 	retry:
+ 354:usb_serial.c  **** 	c = UEINTX;
+ 355:usb_serial.c  **** 	if (!(c & (1<<RWAL))) {
+ 356:usb_serial.c  **** 		// no data in buffer
+ 357:usb_serial.c  **** 		if (c & (1<<RXOUTI)) {
+ 358:usb_serial.c  **** 			UEINTX = 0x6B;
+ 359:usb_serial.c  **** 			goto retry;
+ 360:usb_serial.c  **** 		}	
+ 361:usb_serial.c  **** 		SREG = intr_state;
+ 362:usb_serial.c  **** 		return -1;
+ 363:usb_serial.c  **** 	}
+ 364:usb_serial.c  **** 	// take one byte out of the buffer
+ 365:usb_serial.c  **** 	c = UEDATX;
+ 366:usb_serial.c  **** 	// if buffer completely used, release it
+ 367:usb_serial.c  **** 	if (!(UEINTX & (1<<RWAL))) UEINTX = 0x6B;
+ 368:usb_serial.c  **** 	SREG = intr_state;
+ 369:usb_serial.c  **** 	return c;
+ 370:usb_serial.c  **** }
+ 371:usb_serial.c  **** 
+ 372:usb_serial.c  **** // number of bytes available in the receive buffer
+ 373:usb_serial.c  **** uint8_t usb_serial_available(void)
+ 374:usb_serial.c  **** {
+ 375:usb_serial.c  **** 	uint8_t n=0, i, intr_state;
+ 376:usb_serial.c  **** 
+ 377:usb_serial.c  **** 	intr_state = SREG;
+ 378:usb_serial.c  **** 	cli();
+ 379:usb_serial.c  **** 	if (usb_configuration) {
+ 380:usb_serial.c  **** 		UENUM = CDC_RX_ENDPOINT;
+ 381:usb_serial.c  **** 		n = UEBCLX;
+ 382:usb_serial.c  **** 		if (!n) {
+ 383:usb_serial.c  **** 			i = UEINTX;
+ 384:usb_serial.c  **** 			if (i & (1<<RXOUTI) && !(i & (1<<RWAL))) UEINTX = 0x6B;
+ 385:usb_serial.c  **** 		}
+ 386:usb_serial.c  **** 	}
+ 387:usb_serial.c  **** 	SREG = intr_state;
+ 388:usb_serial.c  **** 	return n;
+ 389:usb_serial.c  **** }
+ 390:usb_serial.c  **** 
+ 391:usb_serial.c  **** // discard any buffered input
+ 392:usb_serial.c  **** void usb_serial_flush_input(void)
+ 393:usb_serial.c  **** {
+ 394:usb_serial.c  **** 	uint8_t intr_state;
+ 395:usb_serial.c  **** 
+ 396:usb_serial.c  **** 	if (usb_configuration) {
+ 397:usb_serial.c  **** 		intr_state = SREG;
+ 398:usb_serial.c  **** 		cli();
+ 399:usb_serial.c  **** 		UENUM = CDC_RX_ENDPOINT;
+ 400:usb_serial.c  **** 		while ((UEINTX & (1<<RWAL))) {
+ 401:usb_serial.c  **** 			UEINTX = 0x6B; 
+ 402:usb_serial.c  **** 		}
+ 403:usb_serial.c  **** 		SREG = intr_state;
+ 404:usb_serial.c  **** 	}
+ 405:usb_serial.c  **** }
+ 406:usb_serial.c  **** 
+ 407:usb_serial.c  **** // transmit a character.  0 returned on success, -1 on error
+ 408:usb_serial.c  **** int8_t usb_serial_putchar(uint8_t c)
+ 409:usb_serial.c  **** {
+ 410:usb_serial.c  **** 	uint8_t timeout, intr_state;
+ 411:usb_serial.c  **** 
+ 412:usb_serial.c  **** 	// if we're not online (enumerated and configured), error
+ 413:usb_serial.c  **** 	if (!usb_configuration) return -1;
+ 414:usb_serial.c  **** 	// interrupts are disabled so these functions can be
+ 415:usb_serial.c  **** 	// used from the main program or interrupt context,
+ 416:usb_serial.c  **** 	// even both in the same program!
+ 417:usb_serial.c  **** 	intr_state = SREG;
+ 418:usb_serial.c  **** 	cli();
+ 419:usb_serial.c  **** 	UENUM = CDC_TX_ENDPOINT;
+ 420:usb_serial.c  **** 	// if we gave up due to timeout before, don't wait again
+ 421:usb_serial.c  **** 	if (transmit_previous_timeout) {
+ 422:usb_serial.c  **** 		if (!(UEINTX & (1<<RWAL))) {
+ 423:usb_serial.c  **** 			SREG = intr_state;
+ 424:usb_serial.c  **** 			return -1;
+ 425:usb_serial.c  **** 		}
+ 426:usb_serial.c  **** 		transmit_previous_timeout = 0;
+ 427:usb_serial.c  **** 	}
+ 428:usb_serial.c  **** 	// wait for the FIFO to be ready to accept data
+ 429:usb_serial.c  **** 	timeout = UDFNUML + TRANSMIT_TIMEOUT;
+ 430:usb_serial.c  **** 	while (1) {
+ 431:usb_serial.c  **** 		// are we ready to transmit?
+ 432:usb_serial.c  **** 		if (UEINTX & (1<<RWAL)) break;
+ 433:usb_serial.c  **** 		SREG = intr_state;
+ 434:usb_serial.c  **** 		// have we waited too long?  This happens if the user
+ 435:usb_serial.c  **** 		// is not running an application that is listening
+ 436:usb_serial.c  **** 		if (UDFNUML == timeout) {
+ 437:usb_serial.c  **** 			transmit_previous_timeout = 1;
+ 438:usb_serial.c  **** 			return -1;
+ 439:usb_serial.c  **** 		}
+ 440:usb_serial.c  **** 		// has the USB gone offline?
+ 441:usb_serial.c  **** 		if (!usb_configuration) return -1;
+ 442:usb_serial.c  **** 		// get ready to try checking again
+ 443:usb_serial.c  **** 		intr_state = SREG;
+ 444:usb_serial.c  **** 		cli();
+ 445:usb_serial.c  **** 		UENUM = CDC_TX_ENDPOINT;
+ 446:usb_serial.c  **** 	}
+ 447:usb_serial.c  **** 	// actually write the byte into the FIFO
+ 448:usb_serial.c  **** 	UEDATX = c;
+ 449:usb_serial.c  **** 	// if this completed a packet, transmit it now!
+ 450:usb_serial.c  **** 	if (!(UEINTX & (1<<RWAL))) UEINTX = 0x3A;
+ 451:usb_serial.c  **** 	transmit_flush_timer = TRANSMIT_FLUSH_TIMEOUT;
+ 452:usb_serial.c  **** 	SREG = intr_state;
+ 453:usb_serial.c  **** 	return 0;
+ 454:usb_serial.c  **** }
+ 455:usb_serial.c  **** 
+ 456:usb_serial.c  **** 
+ 457:usb_serial.c  **** // transmit a character, but do not wait if the buffer is full,
+ 458:usb_serial.c  **** //   0 returned on success, -1 on buffer full or error 
+ 459:usb_serial.c  **** int8_t usb_serial_putchar_nowait(uint8_t c)
+ 460:usb_serial.c  **** {
+ 461:usb_serial.c  **** 	uint8_t intr_state;
+ 462:usb_serial.c  **** 
+ 463:usb_serial.c  **** 	if (!usb_configuration) return -1;
+ 464:usb_serial.c  **** 	intr_state = SREG;
+ 465:usb_serial.c  **** 	cli();
+ 466:usb_serial.c  **** 	UENUM = CDC_TX_ENDPOINT;
+ 467:usb_serial.c  **** 	if (!(UEINTX & (1<<RWAL))) {
+ 468:usb_serial.c  **** 		// buffer is full
+ 469:usb_serial.c  **** 		SREG = intr_state;
+ 470:usb_serial.c  **** 		return -1;
+ 471:usb_serial.c  **** 	}
+ 472:usb_serial.c  **** 	// actually write the byte into the FIFO
+ 473:usb_serial.c  **** 	UEDATX = c;
+ 474:usb_serial.c  **** 		// if this completed a packet, transmit it now!
+ 475:usb_serial.c  **** 	if (!(UEINTX & (1<<RWAL))) UEINTX = 0x3A;
+ 476:usb_serial.c  **** 	transmit_flush_timer = TRANSMIT_FLUSH_TIMEOUT;
+ 477:usb_serial.c  **** 	SREG = intr_state;
+ 478:usb_serial.c  **** 	return 0;
+ 479:usb_serial.c  **** }
+ 480:usb_serial.c  **** 
+ 481:usb_serial.c  **** // transmit a buffer.
+ 482:usb_serial.c  **** //  0 returned on success, -1 on error
+ 483:usb_serial.c  **** // This function is optimized for speed!  Each call takes approx 6.1 us overhead
+ 484:usb_serial.c  **** // plus 0.25 us per byte.  12 Mbit/sec USB has 8.67 us per-packet overhead and
+ 485:usb_serial.c  **** // takes 0.67 us per byte.  If called with 64 byte packet-size blocks, this function
+ 486:usb_serial.c  **** // can transmit at full USB speed using 43% CPU time.  The maximum theoretical speed
+ 487:usb_serial.c  **** // is 19 packets per USB frame, or 1216 kbytes/sec.  However, bulk endpoints have the
+ 488:usb_serial.c  **** // lowest priority, so any other USB devices will likely reduce the speed.  Speed
+ 489:usb_serial.c  **** // can also be limited by how quickly the PC-based software reads data, as the host
+ 490:usb_serial.c  **** // controller in the PC will not allocate bandwitdh without a pending read request.
+ 491:usb_serial.c  **** // (thanks to Victor Suarez for testing and feedback and initial code)
+ 492:usb_serial.c  **** 
+ 493:usb_serial.c  **** int8_t usb_serial_write(const uint8_t *buffer, uint16_t size)
+ 494:usb_serial.c  **** {
+ 495:usb_serial.c  **** 	uint8_t timeout, intr_state, write_size;
+ 496:usb_serial.c  **** 
+ 497:usb_serial.c  **** 	// if we're not online (enumerated and configured), error
+ 498:usb_serial.c  **** 	if (!usb_configuration) return -1;
+ 499:usb_serial.c  **** 	// interrupts are disabled so these functions can be
+ 500:usb_serial.c  **** 	// used from the main program or interrupt context,
+ 501:usb_serial.c  **** 	// even both in the same program!
+ 502:usb_serial.c  **** 	intr_state = SREG;
+ 503:usb_serial.c  **** 	cli();
+ 504:usb_serial.c  **** 	UENUM = CDC_TX_ENDPOINT;
+ 505:usb_serial.c  **** 	// if we gave up due to timeout before, don't wait again
+ 506:usb_serial.c  **** 	if (transmit_previous_timeout) {
+ 507:usb_serial.c  **** 		if (!(UEINTX & (1<<RWAL))) {
+ 508:usb_serial.c  **** 			SREG = intr_state;
+ 509:usb_serial.c  **** 			return -1;
+ 510:usb_serial.c  **** 		}
+ 511:usb_serial.c  **** 		transmit_previous_timeout = 0;
+ 512:usb_serial.c  **** 	}
+ 513:usb_serial.c  **** 	// each iteration of this loop transmits a packet
+ 514:usb_serial.c  **** 	while (size) {
+ 515:usb_serial.c  **** 		// wait for the FIFO to be ready to accept data
+ 516:usb_serial.c  **** 		timeout = UDFNUML + TRANSMIT_TIMEOUT;
+ 517:usb_serial.c  **** 		while (1) {
+ 518:usb_serial.c  **** 			// are we ready to transmit?
+ 519:usb_serial.c  **** 			if (UEINTX & (1<<RWAL)) break;
+ 520:usb_serial.c  **** 			SREG = intr_state;
+ 521:usb_serial.c  **** 			// have we waited too long?  This happens if the user
+ 522:usb_serial.c  **** 			// is not running an application that is listening
+ 523:usb_serial.c  **** 			if (UDFNUML == timeout) {
+ 524:usb_serial.c  **** 				transmit_previous_timeout = 1;
+ 525:usb_serial.c  **** 				return -1;
+ 526:usb_serial.c  **** 			}
+ 527:usb_serial.c  **** 			// has the USB gone offline?
+ 528:usb_serial.c  **** 			if (!usb_configuration) return -1;
+ 529:usb_serial.c  **** 			// get ready to try checking again
+ 530:usb_serial.c  **** 			intr_state = SREG;
+ 531:usb_serial.c  **** 			cli();
+ 532:usb_serial.c  **** 			UENUM = CDC_TX_ENDPOINT;
+ 533:usb_serial.c  **** 		}
+ 534:usb_serial.c  **** 
+ 535:usb_serial.c  **** 		// compute how many bytes will fit into the next packet
+ 536:usb_serial.c  **** 		write_size = CDC_TX_SIZE - UEBCLX;
+ 537:usb_serial.c  **** 		if (write_size > size) write_size = size;
+ 538:usb_serial.c  **** 		size -= write_size;
+ 539:usb_serial.c  **** 
+ 540:usb_serial.c  **** 		// write the packet
+ 541:usb_serial.c  **** 		switch (write_size) {
+ 542:usb_serial.c  **** 			#if (CDC_TX_SIZE == 64)
+ 543:usb_serial.c  **** 			case 64: UEDATX = *buffer++;
+ 544:usb_serial.c  **** 			case 63: UEDATX = *buffer++;
+ 545:usb_serial.c  **** 			case 62: UEDATX = *buffer++;
+ 546:usb_serial.c  **** 			case 61: UEDATX = *buffer++;
+ 547:usb_serial.c  **** 			case 60: UEDATX = *buffer++;
+ 548:usb_serial.c  **** 			case 59: UEDATX = *buffer++;
+ 549:usb_serial.c  **** 			case 58: UEDATX = *buffer++;
+ 550:usb_serial.c  **** 			case 57: UEDATX = *buffer++;
+ 551:usb_serial.c  **** 			case 56: UEDATX = *buffer++;
+ 552:usb_serial.c  **** 			case 55: UEDATX = *buffer++;
+ 553:usb_serial.c  **** 			case 54: UEDATX = *buffer++;
+ 554:usb_serial.c  **** 			case 53: UEDATX = *buffer++;
+ 555:usb_serial.c  **** 			case 52: UEDATX = *buffer++;
+ 556:usb_serial.c  **** 			case 51: UEDATX = *buffer++;
+ 557:usb_serial.c  **** 			case 50: UEDATX = *buffer++;
+ 558:usb_serial.c  **** 			case 49: UEDATX = *buffer++;
+ 559:usb_serial.c  **** 			case 48: UEDATX = *buffer++;
+ 560:usb_serial.c  **** 			case 47: UEDATX = *buffer++;
+ 561:usb_serial.c  **** 			case 46: UEDATX = *buffer++;
+ 562:usb_serial.c  **** 			case 45: UEDATX = *buffer++;
+ 563:usb_serial.c  **** 			case 44: UEDATX = *buffer++;
+ 564:usb_serial.c  **** 			case 43: UEDATX = *buffer++;
+ 565:usb_serial.c  **** 			case 42: UEDATX = *buffer++;
+ 566:usb_serial.c  **** 			case 41: UEDATX = *buffer++;
+ 567:usb_serial.c  **** 			case 40: UEDATX = *buffer++;
+ 568:usb_serial.c  **** 			case 39: UEDATX = *buffer++;
+ 569:usb_serial.c  **** 			case 38: UEDATX = *buffer++;
+ 570:usb_serial.c  **** 			case 37: UEDATX = *buffer++;
+ 571:usb_serial.c  **** 			case 36: UEDATX = *buffer++;
+ 572:usb_serial.c  **** 			case 35: UEDATX = *buffer++;
+ 573:usb_serial.c  **** 			case 34: UEDATX = *buffer++;
+ 574:usb_serial.c  **** 			case 33: UEDATX = *buffer++;
+ 575:usb_serial.c  **** 			#endif
+ 576:usb_serial.c  **** 			#if (CDC_TX_SIZE >= 32)
+ 577:usb_serial.c  **** 			case 32: UEDATX = *buffer++;
+ 578:usb_serial.c  **** 			case 31: UEDATX = *buffer++;
+ 579:usb_serial.c  **** 			case 30: UEDATX = *buffer++;
+ 580:usb_serial.c  **** 			case 29: UEDATX = *buffer++;
+ 581:usb_serial.c  **** 			case 28: UEDATX = *buffer++;
+ 582:usb_serial.c  **** 			case 27: UEDATX = *buffer++;
+ 583:usb_serial.c  **** 			case 26: UEDATX = *buffer++;
+ 584:usb_serial.c  **** 			case 25: UEDATX = *buffer++;
+ 585:usb_serial.c  **** 			case 24: UEDATX = *buffer++;
+ 586:usb_serial.c  **** 			case 23: UEDATX = *buffer++;
+ 587:usb_serial.c  **** 			case 22: UEDATX = *buffer++;
+ 588:usb_serial.c  **** 			case 21: UEDATX = *buffer++;
+ 589:usb_serial.c  **** 			case 20: UEDATX = *buffer++;
+ 590:usb_serial.c  **** 			case 19: UEDATX = *buffer++;
+ 591:usb_serial.c  **** 			case 18: UEDATX = *buffer++;
+ 592:usb_serial.c  **** 			case 17: UEDATX = *buffer++;
+ 593:usb_serial.c  **** 			#endif
+ 594:usb_serial.c  **** 			#if (CDC_TX_SIZE >= 16)
+ 595:usb_serial.c  **** 			case 16: UEDATX = *buffer++;
+ 596:usb_serial.c  **** 			case 15: UEDATX = *buffer++;
+ 597:usb_serial.c  **** 			case 14: UEDATX = *buffer++;
+ 598:usb_serial.c  **** 			case 13: UEDATX = *buffer++;
+ 599:usb_serial.c  **** 			case 12: UEDATX = *buffer++;
+ 600:usb_serial.c  **** 			case 11: UEDATX = *buffer++;
+ 601:usb_serial.c  **** 			case 10: UEDATX = *buffer++;
+ 602:usb_serial.c  **** 			case  9: UEDATX = *buffer++;
+ 603:usb_serial.c  **** 			#endif
+ 604:usb_serial.c  **** 			case  8: UEDATX = *buffer++;
+ 605:usb_serial.c  **** 			case  7: UEDATX = *buffer++;
+ 606:usb_serial.c  **** 			case  6: UEDATX = *buffer++;
+ 607:usb_serial.c  **** 			case  5: UEDATX = *buffer++;
+ 608:usb_serial.c  **** 			case  4: UEDATX = *buffer++;
+ 609:usb_serial.c  **** 			case  3: UEDATX = *buffer++;
+ 610:usb_serial.c  **** 			case  2: UEDATX = *buffer++;
+ 611:usb_serial.c  **** 			default:
+ 612:usb_serial.c  **** 			case  1: UEDATX = *buffer++;
+ 613:usb_serial.c  **** 			case  0: break;
+ 614:usb_serial.c  **** 		}
+ 615:usb_serial.c  **** 		// if this completed a packet, transmit it now!
+ 616:usb_serial.c  **** 		if (!(UEINTX & (1<<RWAL))) UEINTX = 0x3A;
+ 617:usb_serial.c  **** 		transmit_flush_timer = TRANSMIT_FLUSH_TIMEOUT;
+ 618:usb_serial.c  **** 		SREG = intr_state;
+ 619:usb_serial.c  **** 	}
+ 620:usb_serial.c  **** 	return 0;
+ 621:usb_serial.c  **** }
+ 622:usb_serial.c  **** 
+ 623:usb_serial.c  **** 
+ 624:usb_serial.c  **** // immediately transmit any buffered output.
+ 625:usb_serial.c  **** // This doesn't actually transmit the data - that is impossible!
+ 626:usb_serial.c  **** // USB devices only transmit when the host allows, so the best
+ 627:usb_serial.c  **** // we can do is release the FIFO buffer for when the host wants it
+ 628:usb_serial.c  **** void usb_serial_flush_output(void)
+ 629:usb_serial.c  **** {
+ 630:usb_serial.c  **** 	uint8_t intr_state;
+ 631:usb_serial.c  **** 
+ 632:usb_serial.c  **** 	intr_state = SREG;
+ 633:usb_serial.c  **** 	cli();
+ 634:usb_serial.c  **** 	if (transmit_flush_timer) {
+ 635:usb_serial.c  **** 		UENUM = CDC_TX_ENDPOINT;
+ 636:usb_serial.c  **** 		UEINTX = 0x3A;
+ 637:usb_serial.c  **** 		transmit_flush_timer = 0;
+ 638:usb_serial.c  **** 	}
+ 639:usb_serial.c  **** 	SREG = intr_state;
+ 640:usb_serial.c  **** }
+ 641:usb_serial.c  **** 
+ 642:usb_serial.c  **** // functions to read the various async serial settings.  These
+ 643:usb_serial.c  **** // aren't actually used by USB at all (communication is always
+ 644:usb_serial.c  **** // at full USB speed), but they are set by the host so we can
+ 645:usb_serial.c  **** // set them properly if we're converting the USB to a real serial
+ 646:usb_serial.c  **** // communication
+ 647:usb_serial.c  **** uint32_t usb_serial_get_baud(void)
+ 648:usb_serial.c  **** {
+ 649:usb_serial.c  **** 	return *(uint32_t *)cdc_line_coding;
+ 650:usb_serial.c  **** }
+ 651:usb_serial.c  **** uint8_t usb_serial_get_stopbits(void)
+ 652:usb_serial.c  **** {
+ 653:usb_serial.c  **** 	return cdc_line_coding[4];
+ 654:usb_serial.c  **** }
+ 655:usb_serial.c  **** uint8_t usb_serial_get_paritytype(void)
+ 656:usb_serial.c  **** {
+ 657:usb_serial.c  **** 	return cdc_line_coding[5];
+ 658:usb_serial.c  **** }
+ 659:usb_serial.c  **** uint8_t usb_serial_get_numbits(void)
+ 660:usb_serial.c  **** {
+ 661:usb_serial.c  **** 	return cdc_line_coding[6];
+ 662:usb_serial.c  **** }
+ 663:usb_serial.c  **** uint8_t usb_serial_get_control(void)
+ 664:usb_serial.c  **** {
+ 665:usb_serial.c  **** 	return cdc_line_rtsdtr;
+ 666:usb_serial.c  **** }
+ 667:usb_serial.c  **** // write the control signals, DCD, DSR, RI, etc
+ 668:usb_serial.c  **** // There is no CTS signal.  If software on the host has transmitted
+ 669:usb_serial.c  **** // data to you but you haven't been calling the getchar function,
+ 670:usb_serial.c  **** // it remains buffered (either here or on the host) and can not be
+ 671:usb_serial.c  **** // lost because you weren't listening at the right time, like it
+ 672:usb_serial.c  **** // would in real serial communication.
+ 673:usb_serial.c  **** int8_t usb_serial_set_control(uint8_t signals)
+ 674:usb_serial.c  **** {
+ 675:usb_serial.c  **** 	uint8_t intr_state;
+ 676:usb_serial.c  **** 
+ 677:usb_serial.c  **** 	intr_state = SREG;
+ 678:usb_serial.c  **** 	cli();
+ 679:usb_serial.c  **** 	if (!usb_configuration) {
+ 680:usb_serial.c  **** 		// we're not enumerated/configured
+ 681:usb_serial.c  **** 		SREG = intr_state;
+ 682:usb_serial.c  **** 		return -1;
+ 683:usb_serial.c  **** 	}
+ 684:usb_serial.c  **** 
+ 685:usb_serial.c  **** 	UENUM = CDC_ACM_ENDPOINT;
+ 686:usb_serial.c  **** 	if (!(UEINTX & (1<<RWAL))) {
+ 687:usb_serial.c  **** 		// unable to write
+ 688:usb_serial.c  **** 		// TODO; should this try to abort the previously
+ 689:usb_serial.c  **** 		// buffered message??
+ 690:usb_serial.c  **** 		SREG = intr_state;
+ 691:usb_serial.c  **** 		return -1;
+ 692:usb_serial.c  **** 	}
+ 693:usb_serial.c  **** 	UEDATX = 0xA1;
+ 694:usb_serial.c  **** 	UEDATX = 0x20;
+ 695:usb_serial.c  **** 	UEDATX = 0;
+ 696:usb_serial.c  **** 	UEDATX = 0;
+ 697:usb_serial.c  **** 	UEDATX = 0; // 0 seems to work nicely.  what if this is 1??
+ 698:usb_serial.c  **** 	UEDATX = 0;
+ 699:usb_serial.c  **** 	UEDATX = 1;
+ 700:usb_serial.c  **** 	UEDATX = 0;
+ 701:usb_serial.c  **** 	UEDATX = signals;
+ 702:usb_serial.c  **** 	UEINTX = 0x3A;
+ 703:usb_serial.c  **** 	SREG = intr_state;
+ 704:usb_serial.c  **** 	return 0;
+ 705:usb_serial.c  **** }
+ 706:usb_serial.c  **** 
+ 707:usb_serial.c  **** 
+ 708:usb_serial.c  **** 
+ 709:usb_serial.c  **** /**************************************************************************
+ 710:usb_serial.c  ****  *
+ 711:usb_serial.c  ****  *  Private Functions - not intended for general user consumption....
+ 712:usb_serial.c  ****  *
+ 713:usb_serial.c  ****  **************************************************************************/
+ 714:usb_serial.c  **** 
+ 715:usb_serial.c  **** 
+ 716:usb_serial.c  **** // USB Device Interrupt - handle all device-level events
+ 717:usb_serial.c  **** // the transmit buffer flushing is triggered by the start of frame
+ 718:usb_serial.c  **** //
+ 719:usb_serial.c  **** ISR(USB_GEN_vect)
+ 720:usb_serial.c  **** {
+ 721:usb_serial.c  **** 	uint8_t intbits, t;
+ 722:usb_serial.c  **** 
+ 723:usb_serial.c  ****         intbits = UDINT;
+ 724:usb_serial.c  ****         UDINT = 0;
+ 725:usb_serial.c  ****         if (intbits & (1<<EORSTI)) {
+ 726:usb_serial.c  **** 		UENUM = 0;
+ 727:usb_serial.c  **** 		UECONX = 1;
+ 728:usb_serial.c  **** 		UECFG0X = EP_TYPE_CONTROL;
+ 729:usb_serial.c  **** 		UECFG1X = EP_SIZE(ENDPOINT0_SIZE) | EP_SINGLE_BUFFER;
+ 730:usb_serial.c  **** 		UEIENX = (1<<RXSTPE);
+ 731:usb_serial.c  **** 		usb_configuration = 0;
+ 732:usb_serial.c  **** 		cdc_line_rtsdtr = 0;
+ 733:usb_serial.c  ****         }
+ 734:usb_serial.c  **** 	if (intbits & (1<<SOFI)) {
+ 735:usb_serial.c  **** 		if (usb_configuration) {
+ 736:usb_serial.c  **** 			t = transmit_flush_timer;
+ 737:usb_serial.c  **** 			if (t) {
+ 738:usb_serial.c  **** 				transmit_flush_timer = --t;
+ 739:usb_serial.c  **** 				if (!t) {
+ 740:usb_serial.c  **** 					UENUM = CDC_TX_ENDPOINT;
+ 741:usb_serial.c  **** 					UEINTX = 0x3A;
+ 742:usb_serial.c  **** 				}
+ 743:usb_serial.c  **** 			}
+ 744:usb_serial.c  **** 		}
+ 745:usb_serial.c  **** 	}
+ 746:usb_serial.c  **** }
+ 747:usb_serial.c  **** 
+ 748:usb_serial.c  **** 
+ 749:usb_serial.c  **** // Misc functions to wait for ready and send/receive packets
+ 750:usb_serial.c  **** static inline void usb_wait_in_ready(void)
+ 751:usb_serial.c  **** {
+  16               		.loc 1 751 0
+  17               		.cfi_startproc
+  18               	/* prologue: function */
+  19               	/* frame size = 0 */
+  20               	/* stack size = 0 */
+  21               	.L__stack_usage = 0
+  22               	.L3:
+ 752:usb_serial.c  **** 	while (!(UEINTX & (1<<TXINI))) ;
+  23               		.loc 1 752 0 discriminator 1
+  24 0000 8091 E800 		lds r24,232
+  25 0004 80FF      		sbrs r24,0
+  26 0006 00C0      		rjmp .L3
+  27               	/* epilogue start */
+ 753:usb_serial.c  **** }
+  28               		.loc 1 753 0
+  29 0008 0895      		ret
+  30               		.cfi_endproc
+  31               	.LFE17:
+  33               		.section	.text.usb_init,"ax",@progbits
+  34               	.global	usb_init
+  36               	usb_init:
+  37               	.LFB1:
+ 318:usb_serial.c  **** {
+  38               		.loc 1 318 0
+  39               		.cfi_startproc
+  40               	/* prologue: function */
+  41               	/* frame size = 0 */
+  42               	/* stack size = 0 */
+  43               	.L__stack_usage = 0
+ 319:usb_serial.c  **** 	HW_CONFIG();
+  44               		.loc 1 319 0
+  45 0000 81E8      		ldi r24,lo8(-127)
+  46 0002 8093 D700 		sts 215,r24
+ 320:usb_serial.c  ****         USB_FREEZE();				// enable USB
+  47               		.loc 1 320 0
+  48 0006 80EA      		ldi r24,lo8(-96)
+  49 0008 8093 D800 		sts 216,r24
+ 321:usb_serial.c  ****         PLL_CONFIG();				// config PLL, 16 MHz xtal
+  50               		.loc 1 321 0
+  51 000c 86E1      		ldi r24,lo8(22)
+  52 000e 89BD      		out 0x29,r24
+  53               	.L7:
+ 322:usb_serial.c  ****         while (!(PLLCSR & (1<<PLOCK))) ;	// wait for PLL lock
+  54               		.loc 1 322 0 discriminator 1
+  55 0010 09B4      		in __tmp_reg__,0x29
+  56 0012 00FE      		sbrs __tmp_reg__,0
+  57 0014 00C0      		rjmp .L7
+ 323:usb_serial.c  ****         USB_CONFIG();				// start USB clock
+  58               		.loc 1 323 0
+  59 0016 80E9      		ldi r24,lo8(-112)
+  60 0018 8093 D800 		sts 216,r24
+ 324:usb_serial.c  ****         UDCON = 0;				// enable attach resistor
+  61               		.loc 1 324 0
+  62 001c 1092 E000 		sts 224,__zero_reg__
+ 325:usb_serial.c  **** 	usb_configuration = 0;
+  63               		.loc 1 325 0
+  64 0020 1092 0000 		sts usb_configuration,__zero_reg__
+ 326:usb_serial.c  **** 	cdc_line_rtsdtr = 0;
+  65               		.loc 1 326 0
+  66 0024 1092 0000 		sts cdc_line_rtsdtr,__zero_reg__
+ 327:usb_serial.c  ****         UDIEN = (1<<EORSTE)|(1<<SOFE);
+  67               		.loc 1 327 0
+  68 0028 8CE0      		ldi r24,lo8(12)
+  69 002a 8093 E200 		sts 226,r24
+ 328:usb_serial.c  **** 	sei();
+  70               		.loc 1 328 0
+  71               	/* #APP */
+  72               	 ;  328 "usb_serial.c" 1
+  73 002e 7894      		sei
+  74               	 ;  0 "" 2
+  75               	/* #NOAPP */
+  76 0030 0895      		ret
+  77               		.cfi_endproc
+  78               	.LFE1:
+  80               		.section	.text.usb_configured,"ax",@progbits
+  81               	.global	usb_configured
+  83               	usb_configured:
+  84               	.LFB2:
+ 334:usb_serial.c  **** {
+  85               		.loc 1 334 0
+  86               		.cfi_startproc
+  87               	/* prologue: function */
+  88               	/* frame size = 0 */
+  89               	/* stack size = 0 */
+  90               	.L__stack_usage = 0
+ 335:usb_serial.c  **** 	return usb_configuration;
+  91               		.loc 1 335 0
+  92 0000 8091 0000 		lds r24,usb_configuration
+ 336:usb_serial.c  **** }
+  93               		.loc 1 336 0
+  94 0004 0895      		ret
+  95               		.cfi_endproc
+  96               	.LFE2:
+  98               		.section	.text.usb_serial_getchar,"ax",@progbits
+  99               	.global	usb_serial_getchar
+ 101               	usb_serial_getchar:
+ 102               	.LFB3:
+ 340:usb_serial.c  **** {
+ 103               		.loc 1 340 0
+ 104               		.cfi_startproc
+ 105               	/* prologue: function */
+ 106               	/* frame size = 0 */
+ 107               	/* stack size = 0 */
+ 108               	.L__stack_usage = 0
+ 346:usb_serial.c  **** 	intr_state = SREG;
+ 109               		.loc 1 346 0
+ 110 0000 9FB7      		in r25,__SREG__
+ 111               	.LVL0:
+ 347:usb_serial.c  **** 	cli();
+ 112               		.loc 1 347 0
+ 113               	/* #APP */
+ 114               	 ;  347 "usb_serial.c" 1
+ 115 0002 F894      		cli
+ 116               	 ;  0 "" 2
+ 348:usb_serial.c  **** 	if (!usb_configuration) {
+ 117               		.loc 1 348 0
+ 118               	/* #NOAPP */
+ 119 0004 8091 0000 		lds r24,usb_configuration
+ 120 0008 8823      		tst r24
+ 121 000a 01F0      		breq .L14
+ 352:usb_serial.c  **** 	UENUM = CDC_RX_ENDPOINT;
+ 122               		.loc 1 352 0
+ 123 000c 83E0      		ldi r24,lo8(3)
+ 124 000e 8093 E900 		sts 233,r24
+ 358:usb_serial.c  **** 			UEINTX = 0x6B;
+ 125               		.loc 1 358 0
+ 126 0012 2BE6      		ldi r18,lo8(107)
+ 127               	.L12:
+ 354:usb_serial.c  **** 	c = UEINTX;
+ 128               		.loc 1 354 0
+ 129 0014 8091 E800 		lds r24,232
+ 130               	.LVL1:
+ 355:usb_serial.c  **** 	if (!(c & (1<<RWAL))) {
+ 131               		.loc 1 355 0
+ 132 0018 85FD      		sbrc r24,5
+ 133 001a 00C0      		rjmp .L13
+ 357:usb_serial.c  **** 		if (c & (1<<RXOUTI)) {
+ 134               		.loc 1 357 0
+ 135 001c 82FF      		sbrs r24,2
+ 136 001e 00C0      		rjmp .L14
+ 358:usb_serial.c  **** 			UEINTX = 0x6B;
+ 137               		.loc 1 358 0
+ 138 0020 2093 E800 		sts 232,r18
+ 359:usb_serial.c  **** 			goto retry;
+ 139               		.loc 1 359 0
+ 140 0024 00C0      		rjmp .L12
+ 141               	.LVL2:
+ 142               	.L14:
+ 361:usb_serial.c  **** 		SREG = intr_state;
+ 143               		.loc 1 361 0
+ 144 0026 9FBF      		out __SREG__,r25
+ 362:usb_serial.c  **** 		return -1;
+ 145               		.loc 1 362 0
+ 146 0028 8FEF      		ldi r24,lo8(-1)
+ 147 002a 9FEF      		ldi r25,lo8(-1)
+ 148 002c 0895      		ret
+ 149               	.LVL3:
+ 150               	.L13:
+ 365:usb_serial.c  **** 	c = UEDATX;
+ 151               		.loc 1 365 0
+ 152 002e 8091 F100 		lds r24,241
+ 153               	.LVL4:
+ 367:usb_serial.c  **** 	if (!(UEINTX & (1<<RWAL))) UEINTX = 0x6B;
+ 154               		.loc 1 367 0
+ 155 0032 2091 E800 		lds r18,232
+ 156 0036 25FD      		sbrc r18,5
+ 157 0038 00C0      		rjmp .L15
+ 367:usb_serial.c  **** 	if (!(UEINTX & (1<<RWAL))) UEINTX = 0x6B;
+ 158               		.loc 1 367 0 is_stmt 0 discriminator 1
+ 159 003a 2BE6      		ldi r18,lo8(107)
+ 160 003c 2093 E800 		sts 232,r18
+ 161               	.L15:
+ 368:usb_serial.c  **** 	SREG = intr_state;
+ 162               		.loc 1 368 0 is_stmt 1
+ 163 0040 9FBF      		out __SREG__,r25
+ 369:usb_serial.c  **** 	return c;
+ 164               		.loc 1 369 0
+ 165 0042 90E0      		ldi r25,0
+ 166               	.LVL5:
+ 370:usb_serial.c  **** }
+ 167               		.loc 1 370 0
+ 168 0044 0895      		ret
+ 169               		.cfi_endproc
+ 170               	.LFE3:
+ 172               		.section	.text.usb_serial_available,"ax",@progbits
+ 173               	.global	usb_serial_available
+ 175               	usb_serial_available:
+ 176               	.LFB4:
+ 374:usb_serial.c  **** {
+ 177               		.loc 1 374 0
+ 178               		.cfi_startproc
+ 179               	/* prologue: function */
+ 180               	/* frame size = 0 */
+ 181               	/* stack size = 0 */
+ 182               	.L__stack_usage = 0
+ 183               	.LVL6:
+ 377:usb_serial.c  **** 	intr_state = SREG;
+ 184               		.loc 1 377 0
+ 185 0000 2FB7      		in r18,__SREG__
+ 186               	.LVL7:
+ 378:usb_serial.c  **** 	cli();
+ 187               		.loc 1 378 0
+ 188               	/* #APP */
+ 189               	 ;  378 "usb_serial.c" 1
+ 190 0002 F894      		cli
+ 191               	 ;  0 "" 2
+ 379:usb_serial.c  **** 	if (usb_configuration) {
+ 192               		.loc 1 379 0
+ 193               	/* #NOAPP */
+ 194 0004 8091 0000 		lds r24,usb_configuration
+ 195 0008 8111      		cpse r24,__zero_reg__
+ 196 000a 00C0      		rjmp .L17
+ 197               	.LVL8:
+ 198               	.L19:
+ 375:usb_serial.c  **** 	uint8_t n=0, i, intr_state;
+ 199               		.loc 1 375 0
+ 200 000c 80E0      		ldi r24,0
+ 201 000e 00C0      		rjmp .L18
+ 202               	.LVL9:
+ 203               	.L17:
+ 380:usb_serial.c  **** 		UENUM = CDC_RX_ENDPOINT;
+ 204               		.loc 1 380 0
+ 205 0010 83E0      		ldi r24,lo8(3)
+ 206 0012 8093 E900 		sts 233,r24
+ 381:usb_serial.c  **** 		n = UEBCLX;
+ 207               		.loc 1 381 0
+ 208 0016 8091 F200 		lds r24,242
+ 209               	.LVL10:
+ 382:usb_serial.c  **** 		if (!n) {
+ 210               		.loc 1 382 0
+ 211 001a 8111      		cpse r24,__zero_reg__
+ 212 001c 00C0      		rjmp .L18
+ 383:usb_serial.c  **** 			i = UEINTX;
+ 213               		.loc 1 383 0
+ 214 001e 9091 E800 		lds r25,232
+ 215               	.LVL11:
+ 384:usb_serial.c  **** 			if (i & (1<<RXOUTI) && !(i & (1<<RWAL))) UEINTX = 0x6B;
+ 216               		.loc 1 384 0
+ 217 0022 92FF      		sbrs r25,2
+ 218 0024 00C0      		rjmp .L19
+ 384:usb_serial.c  **** 			if (i & (1<<RXOUTI) && !(i & (1<<RWAL))) UEINTX = 0x6B;
+ 219               		.loc 1 384 0 is_stmt 0 discriminator 1
+ 220 0026 95FD      		sbrc r25,5
+ 221 0028 00C0      		rjmp .L19
+ 222 002a 9BE6      		ldi r25,lo8(107)
+ 223               	.LVL12:
+ 224 002c 9093 E800 		sts 232,r25
+ 225               	.LVL13:
+ 226               	.L18:
+ 387:usb_serial.c  **** 	SREG = intr_state;
+ 227               		.loc 1 387 0 is_stmt 1
+ 228 0030 2FBF      		out __SREG__,r18
+ 389:usb_serial.c  **** }
+ 229               		.loc 1 389 0
+ 230 0032 0895      		ret
+ 231               		.cfi_endproc
+ 232               	.LFE4:
+ 234               		.section	.text.usb_serial_flush_input,"ax",@progbits
+ 235               	.global	usb_serial_flush_input
+ 237               	usb_serial_flush_input:
+ 238               	.LFB5:
+ 393:usb_serial.c  **** {
+ 239               		.loc 1 393 0
+ 240               		.cfi_startproc
+ 241               	/* prologue: function */
+ 242               	/* frame size = 0 */
+ 243               	/* stack size = 0 */
+ 244               	.L__stack_usage = 0
+ 396:usb_serial.c  **** 	if (usb_configuration) {
+ 245               		.loc 1 396 0
+ 246 0000 8091 0000 		lds r24,usb_configuration
+ 247 0004 8823      		tst r24
+ 248 0006 01F0      		breq .L23
+ 397:usb_serial.c  **** 		intr_state = SREG;
+ 249               		.loc 1 397 0
+ 250 0008 8FB7      		in r24,__SREG__
+ 251               	.LVL14:
+ 398:usb_serial.c  **** 		cli();
+ 252               		.loc 1 398 0
+ 253               	/* #APP */
+ 254               	 ;  398 "usb_serial.c" 1
+ 255 000a F894      		cli
+ 256               	 ;  0 "" 2
+ 399:usb_serial.c  **** 		UENUM = CDC_RX_ENDPOINT;
+ 257               		.loc 1 399 0
+ 258               	/* #NOAPP */
+ 259 000c 93E0      		ldi r25,lo8(3)
+ 260 000e 9093 E900 		sts 233,r25
+ 401:usb_serial.c  **** 			UEINTX = 0x6B; 
+ 261               		.loc 1 401 0
+ 262 0012 2BE6      		ldi r18,lo8(107)
+ 263               	.L25:
+ 400:usb_serial.c  **** 		while ((UEINTX & (1<<RWAL))) {
+ 264               		.loc 1 400 0 discriminator 1
+ 265 0014 9091 E800 		lds r25,232
+ 266 0018 95FF      		sbrs r25,5
+ 267 001a 00C0      		rjmp .L30
+ 401:usb_serial.c  **** 			UEINTX = 0x6B; 
+ 268               		.loc 1 401 0
+ 269 001c 2093 E800 		sts 232,r18
+ 270 0020 00C0      		rjmp .L25
+ 271               	.L30:
+ 403:usb_serial.c  **** 		SREG = intr_state;
+ 272               		.loc 1 403 0
+ 273 0022 8FBF      		out __SREG__,r24
+ 274               	.LVL15:
+ 275               	.L23:
+ 276 0024 0895      		ret
+ 277               		.cfi_endproc
+ 278               	.LFE5:
+ 280               		.section	.text.usb_serial_putchar,"ax",@progbits
+ 281               	.global	usb_serial_putchar
+ 283               	usb_serial_putchar:
+ 284               	.LFB6:
+ 409:usb_serial.c  **** {
+ 285               		.loc 1 409 0
+ 286               		.cfi_startproc
+ 287               	.LVL16:
+ 288               	/* prologue: function */
+ 289               	/* frame size = 0 */
+ 290               	/* stack size = 0 */
+ 291               	.L__stack_usage = 0
+ 413:usb_serial.c  **** 	if (!usb_configuration) return -1;
+ 292               		.loc 1 413 0
+ 293 0000 9091 0000 		lds r25,usb_configuration
+ 294 0004 9923      		tst r25
+ 295 0006 01F0      		breq .L47
+ 417:usb_serial.c  **** 	intr_state = SREG;
+ 296               		.loc 1 417 0
+ 297 0008 9FB7      		in r25,__SREG__
+ 298               	.LVL17:
+ 418:usb_serial.c  **** 	cli();
+ 299               		.loc 1 418 0
+ 300               	/* #APP */
+ 301               	 ;  418 "usb_serial.c" 1
+ 302 000a F894      		cli
+ 303               	 ;  0 "" 2
+ 419:usb_serial.c  **** 	UENUM = CDC_TX_ENDPOINT;
+ 304               		.loc 1 419 0
+ 305               	/* #NOAPP */
+ 306 000c 24E0      		ldi r18,lo8(4)
+ 307 000e 2093 E900 		sts 233,r18
+ 421:usb_serial.c  **** 	if (transmit_previous_timeout) {
+ 308               		.loc 1 421 0
+ 309 0012 2091 0000 		lds r18,transmit_previous_timeout
+ 310 0016 2223      		tst r18
+ 311 0018 01F0      		breq .L34
+ 422:usb_serial.c  **** 		if (!(UEINTX & (1<<RWAL))) {
+ 312               		.loc 1 422 0
+ 313 001a 2091 E800 		lds r18,232
+ 314 001e 25FD      		sbrc r18,5
+ 315 0020 00C0      		rjmp .L35
+ 423:usb_serial.c  **** 			SREG = intr_state;
+ 316               		.loc 1 423 0
+ 317 0022 9FBF      		out __SREG__,r25
+ 318               	.LVL18:
+ 319               	.L47:
+ 424:usb_serial.c  **** 			return -1;
+ 320               		.loc 1 424 0
+ 321 0024 8FEF      		ldi r24,lo8(-1)
+ 322 0026 0895      		ret
+ 323               	.LVL19:
+ 324               	.L35:
+ 426:usb_serial.c  **** 		transmit_previous_timeout = 0;
+ 325               		.loc 1 426 0
+ 326 0028 1092 0000 		sts transmit_previous_timeout,__zero_reg__
+ 327               	.L34:
+ 429:usb_serial.c  **** 	timeout = UDFNUML + TRANSMIT_TIMEOUT;
+ 328               		.loc 1 429 0
+ 329 002c 2091 E400 		lds r18,228
+ 330 0030 275E      		subi r18,lo8(-(25))
+ 331               	.LVL20:
+ 445:usb_serial.c  **** 		UENUM = CDC_TX_ENDPOINT;
+ 332               		.loc 1 445 0
+ 333 0032 34E0      		ldi r19,lo8(4)
+ 334               	.L39:
+ 432:usb_serial.c  **** 		if (UEINTX & (1<<RWAL)) break;
+ 335               		.loc 1 432 0
+ 336 0034 4091 E800 		lds r20,232
+ 337 0038 45FD      		sbrc r20,5
+ 338 003a 00C0      		rjmp .L36
+ 433:usb_serial.c  **** 		SREG = intr_state;
+ 339               		.loc 1 433 0
+ 340 003c 9FBF      		out __SREG__,r25
+ 436:usb_serial.c  **** 		if (UDFNUML == timeout) {
+ 341               		.loc 1 436 0
+ 342 003e 9091 E400 		lds r25,228
+ 343               	.LVL21:
+ 344 0042 9213      		cpse r25,r18
+ 345 0044 00C0      		rjmp .L37
+ 437:usb_serial.c  **** 			transmit_previous_timeout = 1;
+ 346               		.loc 1 437 0
+ 347 0046 81E0      		ldi r24,lo8(1)
+ 348               	.LVL22:
+ 349 0048 8093 0000 		sts transmit_previous_timeout,r24
+ 350               	.LVL23:
+ 351 004c 00C0      		rjmp .L47
+ 352               	.LVL24:
+ 353               	.L37:
+ 441:usb_serial.c  **** 		if (!usb_configuration) return -1;
+ 354               		.loc 1 441 0
+ 355 004e 9091 0000 		lds r25,usb_configuration
+ 356 0052 9923      		tst r25
+ 357 0054 01F0      		breq .L47
+ 443:usb_serial.c  **** 		intr_state = SREG;
+ 358               		.loc 1 443 0
+ 359 0056 9FB7      		in r25,__SREG__
+ 360               	.LVL25:
+ 444:usb_serial.c  **** 		cli();
+ 361               		.loc 1 444 0
+ 362               	/* #APP */
+ 363               	 ;  444 "usb_serial.c" 1
+ 364 0058 F894      		cli
+ 365               	 ;  0 "" 2
+ 445:usb_serial.c  **** 		UENUM = CDC_TX_ENDPOINT;
+ 366               		.loc 1 445 0
+ 367               	/* #NOAPP */
+ 368 005a 3093 E900 		sts 233,r19
+ 446:usb_serial.c  **** 	}
+ 369               		.loc 1 446 0
+ 370 005e 00C0      		rjmp .L39
+ 371               	.L36:
+ 448:usb_serial.c  **** 	UEDATX = c;
+ 372               		.loc 1 448 0
+ 373 0060 8093 F100 		sts 241,r24
+ 450:usb_serial.c  **** 	if (!(UEINTX & (1<<RWAL))) UEINTX = 0x3A;
+ 374               		.loc 1 450 0
+ 375 0064 8091 E800 		lds r24,232
+ 376               	.LVL26:
+ 377 0068 85FD      		sbrc r24,5
+ 378 006a 00C0      		rjmp .L40
+ 450:usb_serial.c  **** 	if (!(UEINTX & (1<<RWAL))) UEINTX = 0x3A;
+ 379               		.loc 1 450 0 is_stmt 0 discriminator 1
+ 380 006c 8AE3      		ldi r24,lo8(58)
+ 381 006e 8093 E800 		sts 232,r24
+ 382               	.LVL27:
+ 383               	.L40:
+ 451:usb_serial.c  **** 	transmit_flush_timer = TRANSMIT_FLUSH_TIMEOUT;
+ 384               		.loc 1 451 0 is_stmt 1
+ 385 0072 85E0      		ldi r24,lo8(5)
+ 386 0074 8093 0000 		sts transmit_flush_timer,r24
+ 452:usb_serial.c  **** 	SREG = intr_state;
+ 387               		.loc 1 452 0
+ 388 0078 9FBF      		out __SREG__,r25
+ 453:usb_serial.c  **** 	return 0;
+ 389               		.loc 1 453 0
+ 390 007a 80E0      		ldi r24,0
+ 454:usb_serial.c  **** }
+ 391               		.loc 1 454 0
+ 392 007c 0895      		ret
+ 393               		.cfi_endproc
+ 394               	.LFE6:
+ 396               		.section	.text.usb_serial_putchar_nowait,"ax",@progbits
+ 397               	.global	usb_serial_putchar_nowait
+ 399               	usb_serial_putchar_nowait:
+ 400               	.LFB7:
+ 460:usb_serial.c  **** {
+ 401               		.loc 1 460 0
+ 402               		.cfi_startproc
+ 403               	.LVL28:
+ 404               	/* prologue: function */
+ 405               	/* frame size = 0 */
+ 406               	/* stack size = 0 */
+ 407               	.L__stack_usage = 0
+ 463:usb_serial.c  **** 	if (!usb_configuration) return -1;
+ 408               		.loc 1 463 0
+ 409 0000 9091 0000 		lds r25,usb_configuration
+ 410 0004 9923      		tst r25
+ 411 0006 01F0      		breq .L52
+ 464:usb_serial.c  **** 	intr_state = SREG;
+ 412               		.loc 1 464 0
+ 413 0008 9FB7      		in r25,__SREG__
+ 414               	.LVL29:
+ 465:usb_serial.c  **** 	cli();
+ 415               		.loc 1 465 0
+ 416               	/* #APP */
+ 417               	 ;  465 "usb_serial.c" 1
+ 418 000a F894      		cli
+ 419               	 ;  0 "" 2
+ 466:usb_serial.c  **** 	UENUM = CDC_TX_ENDPOINT;
+ 420               		.loc 1 466 0
+ 421               	/* #NOAPP */
+ 422 000c 24E0      		ldi r18,lo8(4)
+ 423 000e 2093 E900 		sts 233,r18
+ 467:usb_serial.c  **** 	if (!(UEINTX & (1<<RWAL))) {
+ 424               		.loc 1 467 0
+ 425 0012 2091 E800 		lds r18,232
+ 426 0016 25FD      		sbrc r18,5
+ 427 0018 00C0      		rjmp .L50
+ 469:usb_serial.c  **** 		SREG = intr_state;
+ 428               		.loc 1 469 0
+ 429 001a 9FBF      		out __SREG__,r25
+ 430 001c 00C0      		rjmp .L52
+ 431               	.L50:
+ 473:usb_serial.c  **** 	UEDATX = c;
+ 432               		.loc 1 473 0
+ 433 001e 8093 F100 		sts 241,r24
+ 475:usb_serial.c  **** 	if (!(UEINTX & (1<<RWAL))) UEINTX = 0x3A;
+ 434               		.loc 1 475 0
+ 435 0022 8091 E800 		lds r24,232
+ 436               	.LVL30:
+ 437 0026 85FD      		sbrc r24,5
+ 438 0028 00C0      		rjmp .L51
+ 475:usb_serial.c  **** 	if (!(UEINTX & (1<<RWAL))) UEINTX = 0x3A;
+ 439               		.loc 1 475 0 is_stmt 0 discriminator 1
+ 440 002a 8AE3      		ldi r24,lo8(58)
+ 441 002c 8093 E800 		sts 232,r24
+ 442               	.LVL31:
+ 443               	.L51:
+ 476:usb_serial.c  **** 	transmit_flush_timer = TRANSMIT_FLUSH_TIMEOUT;
+ 444               		.loc 1 476 0 is_stmt 1
+ 445 0030 85E0      		ldi r24,lo8(5)
+ 446 0032 8093 0000 		sts transmit_flush_timer,r24
+ 477:usb_serial.c  **** 	SREG = intr_state;
+ 447               		.loc 1 477 0
+ 448 0036 9FBF      		out __SREG__,r25
+ 478:usb_serial.c  **** 	return 0;
+ 449               		.loc 1 478 0
+ 450 0038 80E0      		ldi r24,0
+ 451 003a 0895      		ret
+ 452               	.LVL32:
+ 453               	.L52:
+ 463:usb_serial.c  **** 	if (!usb_configuration) return -1;
+ 454               		.loc 1 463 0
+ 455 003c 8FEF      		ldi r24,lo8(-1)
+ 456               	.LVL33:
+ 479:usb_serial.c  **** }
+ 457               		.loc 1 479 0
+ 458 003e 0895      		ret
+ 459               		.cfi_endproc
+ 460               	.LFE7:
+ 462               		.section	.text.usb_serial_write,"ax",@progbits
+ 463               	.global	usb_serial_write
+ 465               	usb_serial_write:
+ 466               	.LFB8:
+ 494:usb_serial.c  **** {
+ 467               		.loc 1 494 0
+ 468               		.cfi_startproc
+ 469               	.LVL34:
+ 470 0000 EF92      		push r14
+ 471               	.LCFI0:
+ 472               		.cfi_def_cfa_offset 3
+ 473               		.cfi_offset 14, -2
+ 474 0002 FF92      		push r15
+ 475               	.LCFI1:
+ 476               		.cfi_def_cfa_offset 4
+ 477               		.cfi_offset 15, -3
+ 478 0004 1F93      		push r17
+ 479               	.LCFI2:
+ 480               		.cfi_def_cfa_offset 5
+ 481               		.cfi_offset 17, -4
+ 482 0006 CF93      		push r28
+ 483               	.LCFI3:
+ 484               		.cfi_def_cfa_offset 6
+ 485               		.cfi_offset 28, -5
+ 486 0008 DF93      		push r29
+ 487               	.LCFI4:
+ 488               		.cfi_def_cfa_offset 7
+ 489               		.cfi_offset 29, -6
+ 490               	/* prologue: function */
+ 491               	/* frame size = 0 */
+ 492               	/* stack size = 5 */
+ 493               	.L__stack_usage = 5
+ 494 000a 7C01      		movw r14,r24
+ 495 000c CB01      		movw r24,r22
+ 496               	.LVL35:
+ 498:usb_serial.c  **** 	if (!usb_configuration) return -1;
+ 497               		.loc 1 498 0
+ 498 000e 2091 0000 		lds r18,usb_configuration
+ 499 0012 2223      		tst r18
+ 500 0014 01F0      		breq .L138
+ 502:usb_serial.c  **** 	intr_state = SREG;
+ 501               		.loc 1 502 0
+ 502 0016 AFB7      		in r26,__SREG__
+ 503               	.LVL36:
+ 503:usb_serial.c  **** 	cli();
+ 504               		.loc 1 503 0
+ 505               	/* #APP */
+ 506               	 ;  503 "usb_serial.c" 1
+ 507 0018 F894      		cli
+ 508               	 ;  0 "" 2
+ 504:usb_serial.c  **** 	UENUM = CDC_TX_ENDPOINT;
+ 509               		.loc 1 504 0
+ 510               	/* #NOAPP */
+ 511 001a 24E0      		ldi r18,lo8(4)
+ 512 001c 2093 E900 		sts 233,r18
+ 506:usb_serial.c  **** 	if (transmit_previous_timeout) {
+ 513               		.loc 1 506 0
+ 514 0020 2091 0000 		lds r18,transmit_previous_timeout
+ 515 0024 2223      		tst r18
+ 516 0026 01F0      		breq .L56
+ 507:usb_serial.c  **** 		if (!(UEINTX & (1<<RWAL))) {
+ 517               		.loc 1 507 0
+ 518 0028 2091 E800 		lds r18,232
+ 519 002c 25FD      		sbrc r18,5
+ 520 002e 00C0      		rjmp .L57
+ 508:usb_serial.c  **** 			SREG = intr_state;
+ 521               		.loc 1 508 0
+ 522 0030 AFBF      		out __SREG__,r26
+ 523               	.LVL37:
+ 524               	.L138:
+ 509:usb_serial.c  **** 			return -1;
+ 525               		.loc 1 509 0
+ 526 0032 8FEF      		ldi r24,lo8(-1)
+ 527 0034 00C0      		rjmp .L55
+ 528               	.LVL38:
+ 529               	.L57:
+ 511:usb_serial.c  **** 		transmit_previous_timeout = 0;
+ 530               		.loc 1 511 0
+ 531 0036 1092 0000 		sts transmit_previous_timeout,__zero_reg__
+ 532               	.L56:
+ 532:usb_serial.c  **** 			UENUM = CDC_TX_ENDPOINT;
+ 533               		.loc 1 532 0 discriminator 1
+ 534 003a B4E0      		ldi r27,lo8(4)
+ 536:usb_serial.c  **** 		write_size = CDC_TX_SIZE - UEBCLX;
+ 535               		.loc 1 536 0 discriminator 1
+ 536 003c C0E4      		ldi r28,lo8(64)
+ 616:usb_serial.c  **** 		if (!(UEINTX & (1<<RWAL))) UEINTX = 0x3A;
+ 537               		.loc 1 616 0 discriminator 1
+ 538 003e DAE3      		ldi r29,lo8(58)
+ 617:usb_serial.c  **** 		transmit_flush_timer = TRANSMIT_FLUSH_TIMEOUT;
+ 539               		.loc 1 617 0 discriminator 1
+ 540 0040 15E0      		ldi r17,lo8(5)
+ 541               	.LVL39:
+ 542               	.L58:
+ 514:usb_serial.c  **** 	while (size) {
+ 543               		.loc 1 514 0 discriminator 1
+ 544 0042 0097      		sbiw r24,0
+ 545 0044 01F4      		brne .+2
+ 546 0046 00C0      		rjmp .L139
+ 516:usb_serial.c  **** 		timeout = UDFNUML + TRANSMIT_TIMEOUT;
+ 547               		.loc 1 516 0
+ 548 0048 2091 E400 		lds r18,228
+ 549 004c 275E      		subi r18,lo8(-(25))
+ 550               	.LVL40:
+ 551               	.L62:
+ 519:usb_serial.c  **** 			if (UEINTX & (1<<RWAL)) break;
+ 552               		.loc 1 519 0
+ 553 004e 3091 E800 		lds r19,232
+ 554 0052 35FD      		sbrc r19,5
+ 555 0054 00C0      		rjmp .L59
+ 520:usb_serial.c  **** 			SREG = intr_state;
+ 556               		.loc 1 520 0
+ 557 0056 AFBF      		out __SREG__,r26
+ 523:usb_serial.c  **** 			if (UDFNUML == timeout) {
+ 558               		.loc 1 523 0
+ 559 0058 3091 E400 		lds r19,228
+ 560 005c 3213      		cpse r19,r18
+ 561 005e 00C0      		rjmp .L60
+ 524:usb_serial.c  **** 				transmit_previous_timeout = 1;
+ 562               		.loc 1 524 0
+ 563 0060 81E0      		ldi r24,lo8(1)
+ 564               	.LVL41:
+ 565 0062 8093 0000 		sts transmit_previous_timeout,r24
+ 566 0066 00C0      		rjmp .L138
+ 567               	.LVL42:
+ 568               	.L60:
+ 528:usb_serial.c  **** 			if (!usb_configuration) return -1;
+ 569               		.loc 1 528 0
+ 570 0068 3091 0000 		lds r19,usb_configuration
+ 571 006c 3323      		tst r19
+ 572 006e 01F0      		breq .L138
+ 530:usb_serial.c  **** 			intr_state = SREG;
+ 573               		.loc 1 530 0
+ 574 0070 AFB7      		in r26,__SREG__
+ 575               	.LVL43:
+ 531:usb_serial.c  **** 			cli();
+ 576               		.loc 1 531 0
+ 577               	/* #APP */
+ 578               	 ;  531 "usb_serial.c" 1
+ 579 0072 F894      		cli
+ 580               	 ;  0 "" 2
+ 532:usb_serial.c  **** 			UENUM = CDC_TX_ENDPOINT;
+ 581               		.loc 1 532 0
+ 582               	/* #NOAPP */
+ 583 0074 B093 E900 		sts 233,r27
+ 533:usb_serial.c  **** 		}
+ 584               		.loc 1 533 0
+ 585 0078 00C0      		rjmp .L62
+ 586               	.L59:
+ 536:usb_serial.c  **** 		write_size = CDC_TX_SIZE - UEBCLX;
+ 587               		.loc 1 536 0
+ 588 007a 2091 F200 		lds r18,242
+ 589               	.LVL44:
+ 590 007e 4C2F      		mov r20,r28
+ 591 0080 421B      		sub r20,r18
+ 592               	.LVL45:
+ 537:usb_serial.c  **** 		if (write_size > size) write_size = size;
+ 593               		.loc 1 537 0
+ 594 0082 242F      		mov r18,r20
+ 595 0084 30E0      		ldi r19,0
+ 596 0086 8217      		cp r24,r18
+ 597 0088 9307      		cpc r25,r19
+ 598 008a 00F4      		brsh .L63
+ 537:usb_serial.c  **** 		if (write_size > size) write_size = size;
+ 599               		.loc 1 537 0 is_stmt 0 discriminator 1
+ 600 008c 482F      		mov r20,r24
+ 601               	.LVL46:
+ 602               	.L63:
+ 538:usb_serial.c  **** 		size -= write_size;
+ 603               		.loc 1 538 0 is_stmt 1
+ 604 008e 841B      		sub r24,r20
+ 605 0090 9109      		sbc r25,__zero_reg__
+ 606               	.LVL47:
+ 541:usb_serial.c  **** 		switch (write_size) {
+ 607               		.loc 1 541 0
+ 608 0092 50E0      		ldi r21,0
+ 609 0094 4134      		cpi r20,65
+ 610 0096 5105      		cpc r21,__zero_reg__
+ 611 0098 00F0      		brlo .+2
+ 612 009a 00C0      		rjmp .L64
+ 613 009c 4050      		subi r20,lo8(-(gs(.L66)))
+ 614 009e 5040      		sbci r21,hi8(-(gs(.L66)))
+ 615               	.LVL48:
+ 616 00a0 FA01      		movw r30,r20
+ 617 00a2 0C94 0000 		jmp __tablejump2__
+ 618               		.section	.progmem.gcc_sw_table.usb_serial_write,"a",@progbits
+ 619               		.p2align	1
+ 620               	.L66:
+ 621 0000 0000      		.word gs(.L65)
+ 622 0002 0000      		.word gs(.L64)
+ 623 0004 0000      		.word gs(.L67)
+ 624 0006 0000      		.word gs(.L68)
+ 625 0008 0000      		.word gs(.L69)
+ 626 000a 0000      		.word gs(.L70)
+ 627 000c 0000      		.word gs(.L71)
+ 628 000e 0000      		.word gs(.L72)
+ 629 0010 0000      		.word gs(.L73)
+ 630 0012 0000      		.word gs(.L74)
+ 631 0014 0000      		.word gs(.L75)
+ 632 0016 0000      		.word gs(.L76)
+ 633 0018 0000      		.word gs(.L77)
+ 634 001a 0000      		.word gs(.L78)
+ 635 001c 0000      		.word gs(.L79)
+ 636 001e 0000      		.word gs(.L80)
+ 637 0020 0000      		.word gs(.L81)
+ 638 0022 0000      		.word gs(.L82)
+ 639 0024 0000      		.word gs(.L83)
+ 640 0026 0000      		.word gs(.L84)
+ 641 0028 0000      		.word gs(.L85)
+ 642 002a 0000      		.word gs(.L86)
+ 643 002c 0000      		.word gs(.L87)
+ 644 002e 0000      		.word gs(.L88)
+ 645 0030 0000      		.word gs(.L89)
+ 646 0032 0000      		.word gs(.L90)
+ 647 0034 0000      		.word gs(.L91)
+ 648 0036 0000      		.word gs(.L92)
+ 649 0038 0000      		.word gs(.L93)
+ 650 003a 0000      		.word gs(.L94)
+ 651 003c 0000      		.word gs(.L95)
+ 652 003e 0000      		.word gs(.L96)
+ 653 0040 0000      		.word gs(.L97)
+ 654 0042 0000      		.word gs(.L98)
+ 655 0044 0000      		.word gs(.L99)
+ 656 0046 0000      		.word gs(.L100)
+ 657 0048 0000      		.word gs(.L101)
+ 658 004a 0000      		.word gs(.L102)
+ 659 004c 0000      		.word gs(.L103)
+ 660 004e 0000      		.word gs(.L104)
+ 661 0050 0000      		.word gs(.L105)
+ 662 0052 0000      		.word gs(.L106)
+ 663 0054 0000      		.word gs(.L107)
+ 664 0056 0000      		.word gs(.L108)
+ 665 0058 0000      		.word gs(.L109)
+ 666 005a 0000      		.word gs(.L110)
+ 667 005c 0000      		.word gs(.L111)
+ 668 005e 0000      		.word gs(.L112)
+ 669 0060 0000      		.word gs(.L113)
+ 670 0062 0000      		.word gs(.L114)
+ 671 0064 0000      		.word gs(.L115)
+ 672 0066 0000      		.word gs(.L116)
+ 673 0068 0000      		.word gs(.L117)
+ 674 006a 0000      		.word gs(.L118)
+ 675 006c 0000      		.word gs(.L119)
+ 676 006e 0000      		.word gs(.L120)
+ 677 0070 0000      		.word gs(.L121)
+ 678 0072 0000      		.word gs(.L122)
+ 679 0074 0000      		.word gs(.L123)
+ 680 0076 0000      		.word gs(.L124)
+ 681 0078 0000      		.word gs(.L125)
+ 682 007a 0000      		.word gs(.L126)
+ 683 007c 0000      		.word gs(.L127)
+ 684 007e 0000      		.word gs(.L128)
+ 685 0080 0000      		.word gs(.L129)
+ 686               		.section	.text.usb_serial_write
+ 687               	.L129:
+ 688               	.LVL49:
+ 543:usb_serial.c  **** 			case 64: UEDATX = *buffer++;
+ 689               		.loc 1 543 0
+ 690 00a6 F701      		movw r30,r14
+ 691 00a8 2081      		ld r18,Z
+ 692 00aa 2093 F100 		sts 241,r18
+ 693 00ae 9701      		movw r18,r14
+ 694 00b0 2F5F      		subi r18,-1
+ 695 00b2 3F4F      		sbci r19,-1
+ 696               	.LVL50:
+ 697 00b4 7901      		movw r14,r18
+ 698               	.LVL51:
+ 699               	.L128:
+ 544:usb_serial.c  **** 			case 63: UEDATX = *buffer++;
+ 700               		.loc 1 544 0
+ 701 00b6 F701      		movw r30,r14
+ 702 00b8 2081      		ld r18,Z
+ 703 00ba 2093 F100 		sts 241,r18
+ 704 00be 9701      		movw r18,r14
+ 705 00c0 2F5F      		subi r18,-1
+ 706 00c2 3F4F      		sbci r19,-1
+ 707               	.LVL52:
+ 708 00c4 7901      		movw r14,r18
+ 709               	.LVL53:
+ 710               	.L127:
+ 545:usb_serial.c  **** 			case 62: UEDATX = *buffer++;
+ 711               		.loc 1 545 0
+ 712 00c6 F701      		movw r30,r14
+ 713 00c8 2081      		ld r18,Z
+ 714 00ca 2093 F100 		sts 241,r18
+ 715 00ce 9701      		movw r18,r14
+ 716 00d0 2F5F      		subi r18,-1
+ 717 00d2 3F4F      		sbci r19,-1
+ 718               	.LVL54:
+ 719 00d4 7901      		movw r14,r18
+ 720               	.LVL55:
+ 721               	.L126:
+ 546:usb_serial.c  **** 			case 61: UEDATX = *buffer++;
+ 722               		.loc 1 546 0
+ 723 00d6 F701      		movw r30,r14
+ 724 00d8 2081      		ld r18,Z
+ 725 00da 2093 F100 		sts 241,r18
+ 726 00de 9701      		movw r18,r14
+ 727 00e0 2F5F      		subi r18,-1
+ 728 00e2 3F4F      		sbci r19,-1
+ 729               	.LVL56:
+ 730 00e4 7901      		movw r14,r18
+ 731               	.LVL57:
+ 732               	.L125:
+ 547:usb_serial.c  **** 			case 60: UEDATX = *buffer++;
+ 733               		.loc 1 547 0
+ 734 00e6 F701      		movw r30,r14
+ 735 00e8 2081      		ld r18,Z
+ 736 00ea 2093 F100 		sts 241,r18
+ 737 00ee 9701      		movw r18,r14
+ 738 00f0 2F5F      		subi r18,-1
+ 739 00f2 3F4F      		sbci r19,-1
+ 740               	.LVL58:
+ 741 00f4 7901      		movw r14,r18
+ 742               	.LVL59:
+ 743               	.L124:
+ 548:usb_serial.c  **** 			case 59: UEDATX = *buffer++;
+ 744               		.loc 1 548 0
+ 745 00f6 F701      		movw r30,r14
+ 746 00f8 2081      		ld r18,Z
+ 747 00fa 2093 F100 		sts 241,r18
+ 748 00fe 9701      		movw r18,r14
+ 749 0100 2F5F      		subi r18,-1
+ 750 0102 3F4F      		sbci r19,-1
+ 751               	.LVL60:
+ 752 0104 7901      		movw r14,r18
+ 753               	.LVL61:
+ 754               	.L123:
+ 549:usb_serial.c  **** 			case 58: UEDATX = *buffer++;
+ 755               		.loc 1 549 0
+ 756 0106 F701      		movw r30,r14
+ 757 0108 2081      		ld r18,Z
+ 758 010a 2093 F100 		sts 241,r18
+ 759 010e 9701      		movw r18,r14
+ 760 0110 2F5F      		subi r18,-1
+ 761 0112 3F4F      		sbci r19,-1
+ 762               	.LVL62:
+ 763 0114 7901      		movw r14,r18
+ 764               	.LVL63:
+ 765               	.L122:
+ 550:usb_serial.c  **** 			case 57: UEDATX = *buffer++;
+ 766               		.loc 1 550 0
+ 767 0116 F701      		movw r30,r14
+ 768 0118 2081      		ld r18,Z
+ 769 011a 2093 F100 		sts 241,r18
+ 770 011e 9701      		movw r18,r14
+ 771 0120 2F5F      		subi r18,-1
+ 772 0122 3F4F      		sbci r19,-1
+ 773               	.LVL64:
+ 774 0124 7901      		movw r14,r18
+ 775               	.LVL65:
+ 776               	.L121:
+ 551:usb_serial.c  **** 			case 56: UEDATX = *buffer++;
+ 777               		.loc 1 551 0
+ 778 0126 F701      		movw r30,r14
+ 779 0128 2081      		ld r18,Z
+ 780 012a 2093 F100 		sts 241,r18
+ 781 012e 9701      		movw r18,r14
+ 782 0130 2F5F      		subi r18,-1
+ 783 0132 3F4F      		sbci r19,-1
+ 784               	.LVL66:
+ 785 0134 7901      		movw r14,r18
+ 786               	.LVL67:
+ 787               	.L120:
+ 552:usb_serial.c  **** 			case 55: UEDATX = *buffer++;
+ 788               		.loc 1 552 0
+ 789 0136 F701      		movw r30,r14
+ 790 0138 2081      		ld r18,Z
+ 791 013a 2093 F100 		sts 241,r18
+ 792 013e 9701      		movw r18,r14
+ 793 0140 2F5F      		subi r18,-1
+ 794 0142 3F4F      		sbci r19,-1
+ 795               	.LVL68:
+ 796 0144 7901      		movw r14,r18
+ 797               	.LVL69:
+ 798               	.L119:
+ 553:usb_serial.c  **** 			case 54: UEDATX = *buffer++;
+ 799               		.loc 1 553 0
+ 800 0146 F701      		movw r30,r14
+ 801 0148 2081      		ld r18,Z
+ 802 014a 2093 F100 		sts 241,r18
+ 803 014e 9701      		movw r18,r14
+ 804 0150 2F5F      		subi r18,-1
+ 805 0152 3F4F      		sbci r19,-1
+ 806               	.LVL70:
+ 807 0154 7901      		movw r14,r18
+ 808               	.LVL71:
+ 809               	.L118:
+ 554:usb_serial.c  **** 			case 53: UEDATX = *buffer++;
+ 810               		.loc 1 554 0
+ 811 0156 F701      		movw r30,r14
+ 812 0158 2081      		ld r18,Z
+ 813 015a 2093 F100 		sts 241,r18
+ 814 015e 9701      		movw r18,r14
+ 815 0160 2F5F      		subi r18,-1
+ 816 0162 3F4F      		sbci r19,-1
+ 817               	.LVL72:
+ 818 0164 7901      		movw r14,r18
+ 819               	.LVL73:
+ 820               	.L117:
+ 555:usb_serial.c  **** 			case 52: UEDATX = *buffer++;
+ 821               		.loc 1 555 0
+ 822 0166 F701      		movw r30,r14
+ 823 0168 2081      		ld r18,Z
+ 824 016a 2093 F100 		sts 241,r18
+ 825 016e 9701      		movw r18,r14
+ 826 0170 2F5F      		subi r18,-1
+ 827 0172 3F4F      		sbci r19,-1
+ 828               	.LVL74:
+ 829 0174 7901      		movw r14,r18
+ 830               	.LVL75:
+ 831               	.L116:
+ 556:usb_serial.c  **** 			case 51: UEDATX = *buffer++;
+ 832               		.loc 1 556 0
+ 833 0176 F701      		movw r30,r14
+ 834 0178 2081      		ld r18,Z
+ 835 017a 2093 F100 		sts 241,r18
+ 836 017e 9701      		movw r18,r14
+ 837 0180 2F5F      		subi r18,-1
+ 838 0182 3F4F      		sbci r19,-1
+ 839               	.LVL76:
+ 840 0184 7901      		movw r14,r18
+ 841               	.LVL77:
+ 842               	.L115:
+ 557:usb_serial.c  **** 			case 50: UEDATX = *buffer++;
+ 843               		.loc 1 557 0
+ 844 0186 F701      		movw r30,r14
+ 845 0188 2081      		ld r18,Z
+ 846 018a 2093 F100 		sts 241,r18
+ 847 018e 9701      		movw r18,r14
+ 848 0190 2F5F      		subi r18,-1
+ 849 0192 3F4F      		sbci r19,-1
+ 850               	.LVL78:
+ 851 0194 7901      		movw r14,r18
+ 852               	.LVL79:
+ 853               	.L114:
+ 558:usb_serial.c  **** 			case 49: UEDATX = *buffer++;
+ 854               		.loc 1 558 0
+ 855 0196 F701      		movw r30,r14
+ 856 0198 2081      		ld r18,Z
+ 857 019a 2093 F100 		sts 241,r18
+ 858 019e 9701      		movw r18,r14
+ 859 01a0 2F5F      		subi r18,-1
+ 860 01a2 3F4F      		sbci r19,-1
+ 861               	.LVL80:
+ 862 01a4 7901      		movw r14,r18
+ 863               	.LVL81:
+ 864               	.L113:
+ 559:usb_serial.c  **** 			case 48: UEDATX = *buffer++;
+ 865               		.loc 1 559 0
+ 866 01a6 F701      		movw r30,r14
+ 867 01a8 2081      		ld r18,Z
+ 868 01aa 2093 F100 		sts 241,r18
+ 869 01ae 9701      		movw r18,r14
+ 870 01b0 2F5F      		subi r18,-1
+ 871 01b2 3F4F      		sbci r19,-1
+ 872               	.LVL82:
+ 873 01b4 7901      		movw r14,r18
+ 874               	.LVL83:
+ 875               	.L112:
+ 560:usb_serial.c  **** 			case 47: UEDATX = *buffer++;
+ 876               		.loc 1 560 0
+ 877 01b6 F701      		movw r30,r14
+ 878 01b8 2081      		ld r18,Z
+ 879 01ba 2093 F100 		sts 241,r18
+ 880 01be 9701      		movw r18,r14
+ 881 01c0 2F5F      		subi r18,-1
+ 882 01c2 3F4F      		sbci r19,-1
+ 883               	.LVL84:
+ 884 01c4 7901      		movw r14,r18
+ 885               	.LVL85:
+ 886               	.L111:
+ 561:usb_serial.c  **** 			case 46: UEDATX = *buffer++;
+ 887               		.loc 1 561 0
+ 888 01c6 F701      		movw r30,r14
+ 889 01c8 2081      		ld r18,Z
+ 890 01ca 2093 F100 		sts 241,r18
+ 891 01ce 9701      		movw r18,r14
+ 892 01d0 2F5F      		subi r18,-1
+ 893 01d2 3F4F      		sbci r19,-1
+ 894               	.LVL86:
+ 895 01d4 7901      		movw r14,r18
+ 896               	.LVL87:
+ 897               	.L110:
+ 562:usb_serial.c  **** 			case 45: UEDATX = *buffer++;
+ 898               		.loc 1 562 0
+ 899 01d6 F701      		movw r30,r14
+ 900 01d8 2081      		ld r18,Z
+ 901 01da 2093 F100 		sts 241,r18
+ 902 01de 9701      		movw r18,r14
+ 903 01e0 2F5F      		subi r18,-1
+ 904 01e2 3F4F      		sbci r19,-1
+ 905               	.LVL88:
+ 906 01e4 7901      		movw r14,r18
+ 907               	.LVL89:
+ 908               	.L109:
+ 563:usb_serial.c  **** 			case 44: UEDATX = *buffer++;
+ 909               		.loc 1 563 0
+ 910 01e6 F701      		movw r30,r14
+ 911 01e8 2081      		ld r18,Z
+ 912 01ea 2093 F100 		sts 241,r18
+ 913 01ee 9701      		movw r18,r14
+ 914 01f0 2F5F      		subi r18,-1
+ 915 01f2 3F4F      		sbci r19,-1
+ 916               	.LVL90:
+ 917 01f4 7901      		movw r14,r18
+ 918               	.LVL91:
+ 919               	.L108:
+ 564:usb_serial.c  **** 			case 43: UEDATX = *buffer++;
+ 920               		.loc 1 564 0
+ 921 01f6 F701      		movw r30,r14
+ 922 01f8 2081      		ld r18,Z
+ 923 01fa 2093 F100 		sts 241,r18
+ 924 01fe 9701      		movw r18,r14
+ 925 0200 2F5F      		subi r18,-1
+ 926 0202 3F4F      		sbci r19,-1
+ 927               	.LVL92:
+ 928 0204 7901      		movw r14,r18
+ 929               	.LVL93:
+ 930               	.L107:
+ 565:usb_serial.c  **** 			case 42: UEDATX = *buffer++;
+ 931               		.loc 1 565 0
+ 932 0206 F701      		movw r30,r14
+ 933 0208 2081      		ld r18,Z
+ 934 020a 2093 F100 		sts 241,r18
+ 935 020e 9701      		movw r18,r14
+ 936 0210 2F5F      		subi r18,-1
+ 937 0212 3F4F      		sbci r19,-1
+ 938               	.LVL94:
+ 939 0214 7901      		movw r14,r18
+ 940               	.LVL95:
+ 941               	.L106:
+ 566:usb_serial.c  **** 			case 41: UEDATX = *buffer++;
+ 942               		.loc 1 566 0
+ 943 0216 F701      		movw r30,r14
+ 944 0218 2081      		ld r18,Z
+ 945 021a 2093 F100 		sts 241,r18
+ 946 021e 9701      		movw r18,r14
+ 947 0220 2F5F      		subi r18,-1
+ 948 0222 3F4F      		sbci r19,-1
+ 949               	.LVL96:
+ 950 0224 7901      		movw r14,r18
+ 951               	.LVL97:
+ 952               	.L105:
+ 567:usb_serial.c  **** 			case 40: UEDATX = *buffer++;
+ 953               		.loc 1 567 0
+ 954 0226 F701      		movw r30,r14
+ 955 0228 2081      		ld r18,Z
+ 956 022a 2093 F100 		sts 241,r18
+ 957 022e 9701      		movw r18,r14
+ 958 0230 2F5F      		subi r18,-1
+ 959 0232 3F4F      		sbci r19,-1
+ 960               	.LVL98:
+ 961 0234 7901      		movw r14,r18
+ 962               	.LVL99:
+ 963               	.L104:
+ 568:usb_serial.c  **** 			case 39: UEDATX = *buffer++;
+ 964               		.loc 1 568 0
+ 965 0236 F701      		movw r30,r14
+ 966 0238 2081      		ld r18,Z
+ 967 023a 2093 F100 		sts 241,r18
+ 968 023e 9701      		movw r18,r14
+ 969 0240 2F5F      		subi r18,-1
+ 970 0242 3F4F      		sbci r19,-1
+ 971               	.LVL100:
+ 972 0244 7901      		movw r14,r18
+ 973               	.LVL101:
+ 974               	.L103:
+ 569:usb_serial.c  **** 			case 38: UEDATX = *buffer++;
+ 975               		.loc 1 569 0
+ 976 0246 F701      		movw r30,r14
+ 977 0248 2081      		ld r18,Z
+ 978 024a 2093 F100 		sts 241,r18
+ 979 024e 9701      		movw r18,r14
+ 980 0250 2F5F      		subi r18,-1
+ 981 0252 3F4F      		sbci r19,-1
+ 982               	.LVL102:
+ 983 0254 7901      		movw r14,r18
+ 984               	.LVL103:
+ 985               	.L102:
+ 570:usb_serial.c  **** 			case 37: UEDATX = *buffer++;
+ 986               		.loc 1 570 0
+ 987 0256 F701      		movw r30,r14
+ 988 0258 2081      		ld r18,Z
+ 989 025a 2093 F100 		sts 241,r18
+ 990 025e 9701      		movw r18,r14
+ 991 0260 2F5F      		subi r18,-1
+ 992 0262 3F4F      		sbci r19,-1
+ 993               	.LVL104:
+ 994 0264 7901      		movw r14,r18
+ 995               	.LVL105:
+ 996               	.L101:
+ 571:usb_serial.c  **** 			case 36: UEDATX = *buffer++;
+ 997               		.loc 1 571 0
+ 998 0266 F701      		movw r30,r14
+ 999 0268 2081      		ld r18,Z
+ 1000 026a 2093 F100 		sts 241,r18
+ 1001 026e 9701      		movw r18,r14
+ 1002 0270 2F5F      		subi r18,-1
+ 1003 0272 3F4F      		sbci r19,-1
+ 1004               	.LVL106:
+ 1005 0274 7901      		movw r14,r18
+ 1006               	.LVL107:
+ 1007               	.L100:
+ 572:usb_serial.c  **** 			case 35: UEDATX = *buffer++;
+ 1008               		.loc 1 572 0
+ 1009 0276 F701      		movw r30,r14
+ 1010 0278 2081      		ld r18,Z
+ 1011 027a 2093 F100 		sts 241,r18
+ 1012 027e 9701      		movw r18,r14
+ 1013 0280 2F5F      		subi r18,-1
+ 1014 0282 3F4F      		sbci r19,-1
+ 1015               	.LVL108:
+ 1016 0284 7901      		movw r14,r18
+ 1017               	.LVL109:
+ 1018               	.L99:
+ 573:usb_serial.c  **** 			case 34: UEDATX = *buffer++;
+ 1019               		.loc 1 573 0
+ 1020 0286 F701      		movw r30,r14
+ 1021 0288 2081      		ld r18,Z
+ 1022 028a 2093 F100 		sts 241,r18
+ 1023 028e 9701      		movw r18,r14
+ 1024 0290 2F5F      		subi r18,-1
+ 1025 0292 3F4F      		sbci r19,-1
+ 1026               	.LVL110:
+ 1027 0294 7901      		movw r14,r18
+ 1028               	.LVL111:
+ 1029               	.L98:
+ 574:usb_serial.c  **** 			case 33: UEDATX = *buffer++;
+ 1030               		.loc 1 574 0
+ 1031 0296 F701      		movw r30,r14
+ 1032 0298 2081      		ld r18,Z
+ 1033 029a 2093 F100 		sts 241,r18
+ 1034 029e 9701      		movw r18,r14
+ 1035 02a0 2F5F      		subi r18,-1
+ 1036 02a2 3F4F      		sbci r19,-1
+ 1037               	.LVL112:
+ 1038 02a4 7901      		movw r14,r18
+ 1039               	.LVL113:
+ 1040               	.L97:
+ 577:usb_serial.c  **** 			case 32: UEDATX = *buffer++;
+ 1041               		.loc 1 577 0
+ 1042 02a6 F701      		movw r30,r14
+ 1043 02a8 2081      		ld r18,Z
+ 1044 02aa 2093 F100 		sts 241,r18
+ 1045 02ae 9701      		movw r18,r14
+ 1046 02b0 2F5F      		subi r18,-1
+ 1047 02b2 3F4F      		sbci r19,-1
+ 1048               	.LVL114:
+ 1049 02b4 7901      		movw r14,r18
+ 1050               	.LVL115:
+ 1051               	.L96:
+ 578:usb_serial.c  **** 			case 31: UEDATX = *buffer++;
+ 1052               		.loc 1 578 0
+ 1053 02b6 F701      		movw r30,r14
+ 1054 02b8 2081      		ld r18,Z
+ 1055 02ba 2093 F100 		sts 241,r18
+ 1056 02be 9701      		movw r18,r14
+ 1057 02c0 2F5F      		subi r18,-1
+ 1058 02c2 3F4F      		sbci r19,-1
+ 1059               	.LVL116:
+ 1060 02c4 7901      		movw r14,r18
+ 1061               	.LVL117:
+ 1062               	.L95:
+ 579:usb_serial.c  **** 			case 30: UEDATX = *buffer++;
+ 1063               		.loc 1 579 0
+ 1064 02c6 F701      		movw r30,r14
+ 1065 02c8 2081      		ld r18,Z
+ 1066 02ca 2093 F100 		sts 241,r18
+ 1067 02ce 9701      		movw r18,r14
+ 1068 02d0 2F5F      		subi r18,-1
+ 1069 02d2 3F4F      		sbci r19,-1
+ 1070               	.LVL118:
+ 1071 02d4 7901      		movw r14,r18
+ 1072               	.LVL119:
+ 1073               	.L94:
+ 580:usb_serial.c  **** 			case 29: UEDATX = *buffer++;
+ 1074               		.loc 1 580 0
+ 1075 02d6 F701      		movw r30,r14
+ 1076 02d8 2081      		ld r18,Z
+ 1077 02da 2093 F100 		sts 241,r18
+ 1078 02de 9701      		movw r18,r14
+ 1079 02e0 2F5F      		subi r18,-1
+ 1080 02e2 3F4F      		sbci r19,-1
+ 1081               	.LVL120:
+ 1082 02e4 7901      		movw r14,r18
+ 1083               	.LVL121:
+ 1084               	.L93:
+ 581:usb_serial.c  **** 			case 28: UEDATX = *buffer++;
+ 1085               		.loc 1 581 0
+ 1086 02e6 F701      		movw r30,r14
+ 1087 02e8 2081      		ld r18,Z
+ 1088 02ea 2093 F100 		sts 241,r18
+ 1089 02ee 9701      		movw r18,r14
+ 1090 02f0 2F5F      		subi r18,-1
+ 1091 02f2 3F4F      		sbci r19,-1
+ 1092               	.LVL122:
+ 1093 02f4 7901      		movw r14,r18
+ 1094               	.LVL123:
+ 1095               	.L92:
+ 582:usb_serial.c  **** 			case 27: UEDATX = *buffer++;
+ 1096               		.loc 1 582 0
+ 1097 02f6 F701      		movw r30,r14
+ 1098 02f8 2081      		ld r18,Z
+ 1099 02fa 2093 F100 		sts 241,r18
+ 1100 02fe 9701      		movw r18,r14
+ 1101 0300 2F5F      		subi r18,-1
+ 1102 0302 3F4F      		sbci r19,-1
+ 1103               	.LVL124:
+ 1104 0304 7901      		movw r14,r18
+ 1105               	.LVL125:
+ 1106               	.L91:
+ 583:usb_serial.c  **** 			case 26: UEDATX = *buffer++;
+ 1107               		.loc 1 583 0
+ 1108 0306 F701      		movw r30,r14
+ 1109 0308 2081      		ld r18,Z
+ 1110 030a 2093 F100 		sts 241,r18
+ 1111 030e 9701      		movw r18,r14
+ 1112 0310 2F5F      		subi r18,-1
+ 1113 0312 3F4F      		sbci r19,-1
+ 1114               	.LVL126:
+ 1115 0314 7901      		movw r14,r18
+ 1116               	.LVL127:
+ 1117               	.L90:
+ 584:usb_serial.c  **** 			case 25: UEDATX = *buffer++;
+ 1118               		.loc 1 584 0
+ 1119 0316 F701      		movw r30,r14
+ 1120 0318 2081      		ld r18,Z
+ 1121 031a 2093 F100 		sts 241,r18
+ 1122 031e 9701      		movw r18,r14
+ 1123 0320 2F5F      		subi r18,-1
+ 1124 0322 3F4F      		sbci r19,-1
+ 1125               	.LVL128:
+ 1126 0324 7901      		movw r14,r18
+ 1127               	.LVL129:
+ 1128               	.L89:
+ 585:usb_serial.c  **** 			case 24: UEDATX = *buffer++;
+ 1129               		.loc 1 585 0
+ 1130 0326 F701      		movw r30,r14
+ 1131 0328 2081      		ld r18,Z
+ 1132 032a 2093 F100 		sts 241,r18
+ 1133 032e 9701      		movw r18,r14
+ 1134 0330 2F5F      		subi r18,-1
+ 1135 0332 3F4F      		sbci r19,-1
+ 1136               	.LVL130:
+ 1137 0334 7901      		movw r14,r18
+ 1138               	.LVL131:
+ 1139               	.L88:
+ 586:usb_serial.c  **** 			case 23: UEDATX = *buffer++;
+ 1140               		.loc 1 586 0
+ 1141 0336 F701      		movw r30,r14
+ 1142 0338 2081      		ld r18,Z
+ 1143 033a 2093 F100 		sts 241,r18
+ 1144 033e 9701      		movw r18,r14
+ 1145 0340 2F5F      		subi r18,-1
+ 1146 0342 3F4F      		sbci r19,-1
+ 1147               	.LVL132:
+ 1148 0344 7901      		movw r14,r18
+ 1149               	.LVL133:
+ 1150               	.L87:
+ 587:usb_serial.c  **** 			case 22: UEDATX = *buffer++;
+ 1151               		.loc 1 587 0
+ 1152 0346 F701      		movw r30,r14
+ 1153 0348 2081      		ld r18,Z
+ 1154 034a 2093 F100 		sts 241,r18
+ 1155 034e 9701      		movw r18,r14
+ 1156 0350 2F5F      		subi r18,-1
+ 1157 0352 3F4F      		sbci r19,-1
+ 1158               	.LVL134:
+ 1159 0354 7901      		movw r14,r18
+ 1160               	.LVL135:
+ 1161               	.L86:
+ 588:usb_serial.c  **** 			case 21: UEDATX = *buffer++;
+ 1162               		.loc 1 588 0
+ 1163 0356 F701      		movw r30,r14
+ 1164 0358 2081      		ld r18,Z
+ 1165 035a 2093 F100 		sts 241,r18
+ 1166 035e 9701      		movw r18,r14
+ 1167 0360 2F5F      		subi r18,-1
+ 1168 0362 3F4F      		sbci r19,-1
+ 1169               	.LVL136:
+ 1170 0364 7901      		movw r14,r18
+ 1171               	.LVL137:
+ 1172               	.L85:
+ 589:usb_serial.c  **** 			case 20: UEDATX = *buffer++;
+ 1173               		.loc 1 589 0
+ 1174 0366 F701      		movw r30,r14
+ 1175 0368 2081      		ld r18,Z
+ 1176 036a 2093 F100 		sts 241,r18
+ 1177 036e 9701      		movw r18,r14
+ 1178 0370 2F5F      		subi r18,-1
+ 1179 0372 3F4F      		sbci r19,-1
+ 1180               	.LVL138:
+ 1181 0374 7901      		movw r14,r18
+ 1182               	.LVL139:
+ 1183               	.L84:
+ 590:usb_serial.c  **** 			case 19: UEDATX = *buffer++;
+ 1184               		.loc 1 590 0
+ 1185 0376 F701      		movw r30,r14
+ 1186 0378 2081      		ld r18,Z
+ 1187 037a 2093 F100 		sts 241,r18
+ 1188 037e 9701      		movw r18,r14
+ 1189 0380 2F5F      		subi r18,-1
+ 1190 0382 3F4F      		sbci r19,-1
+ 1191               	.LVL140:
+ 1192 0384 7901      		movw r14,r18
+ 1193               	.LVL141:
+ 1194               	.L83:
+ 591:usb_serial.c  **** 			case 18: UEDATX = *buffer++;
+ 1195               		.loc 1 591 0
+ 1196 0386 F701      		movw r30,r14
+ 1197 0388 2081      		ld r18,Z
+ 1198 038a 2093 F100 		sts 241,r18
+ 1199 038e 9701      		movw r18,r14
+ 1200 0390 2F5F      		subi r18,-1
+ 1201 0392 3F4F      		sbci r19,-1
+ 1202               	.LVL142:
+ 1203 0394 7901      		movw r14,r18
+ 1204               	.LVL143:
+ 1205               	.L82:
+ 592:usb_serial.c  **** 			case 17: UEDATX = *buffer++;
+ 1206               		.loc 1 592 0
+ 1207 0396 F701      		movw r30,r14
+ 1208 0398 2081      		ld r18,Z
+ 1209 039a 2093 F100 		sts 241,r18
+ 1210 039e 9701      		movw r18,r14
+ 1211 03a0 2F5F      		subi r18,-1
+ 1212 03a2 3F4F      		sbci r19,-1
+ 1213               	.LVL144:
+ 1214 03a4 7901      		movw r14,r18
+ 1215               	.LVL145:
+ 1216               	.L81:
+ 595:usb_serial.c  **** 			case 16: UEDATX = *buffer++;
+ 1217               		.loc 1 595 0
+ 1218 03a6 F701      		movw r30,r14
+ 1219 03a8 2081      		ld r18,Z
+ 1220 03aa 2093 F100 		sts 241,r18
+ 1221 03ae 9701      		movw r18,r14
+ 1222 03b0 2F5F      		subi r18,-1
+ 1223 03b2 3F4F      		sbci r19,-1
+ 1224               	.LVL146:
+ 1225 03b4 7901      		movw r14,r18
+ 1226               	.LVL147:
+ 1227               	.L80:
+ 596:usb_serial.c  **** 			case 15: UEDATX = *buffer++;
+ 1228               		.loc 1 596 0
+ 1229 03b6 F701      		movw r30,r14
+ 1230 03b8 2081      		ld r18,Z
+ 1231 03ba 2093 F100 		sts 241,r18
+ 1232 03be 9701      		movw r18,r14
+ 1233 03c0 2F5F      		subi r18,-1
+ 1234 03c2 3F4F      		sbci r19,-1
+ 1235               	.LVL148:
+ 1236 03c4 7901      		movw r14,r18
+ 1237               	.LVL149:
+ 1238               	.L79:
+ 597:usb_serial.c  **** 			case 14: UEDATX = *buffer++;
+ 1239               		.loc 1 597 0
+ 1240 03c6 F701      		movw r30,r14
+ 1241 03c8 2081      		ld r18,Z
+ 1242 03ca 2093 F100 		sts 241,r18
+ 1243 03ce 9701      		movw r18,r14
+ 1244 03d0 2F5F      		subi r18,-1
+ 1245 03d2 3F4F      		sbci r19,-1
+ 1246               	.LVL150:
+ 1247 03d4 7901      		movw r14,r18
+ 1248               	.LVL151:
+ 1249               	.L78:
+ 598:usb_serial.c  **** 			case 13: UEDATX = *buffer++;
+ 1250               		.loc 1 598 0
+ 1251 03d6 F701      		movw r30,r14
+ 1252 03d8 2081      		ld r18,Z
+ 1253 03da 2093 F100 		sts 241,r18
+ 1254 03de 9701      		movw r18,r14
+ 1255 03e0 2F5F      		subi r18,-1
+ 1256 03e2 3F4F      		sbci r19,-1
+ 1257               	.LVL152:
+ 1258 03e4 7901      		movw r14,r18
+ 1259               	.LVL153:
+ 1260               	.L77:
+ 599:usb_serial.c  **** 			case 12: UEDATX = *buffer++;
+ 1261               		.loc 1 599 0
+ 1262 03e6 F701      		movw r30,r14
+ 1263 03e8 2081      		ld r18,Z
+ 1264 03ea 2093 F100 		sts 241,r18
+ 1265 03ee 9701      		movw r18,r14
+ 1266 03f0 2F5F      		subi r18,-1
+ 1267 03f2 3F4F      		sbci r19,-1
+ 1268               	.LVL154:
+ 1269 03f4 7901      		movw r14,r18
+ 1270               	.LVL155:
+ 1271               	.L76:
+ 600:usb_serial.c  **** 			case 11: UEDATX = *buffer++;
+ 1272               		.loc 1 600 0
+ 1273 03f6 F701      		movw r30,r14
+ 1274 03f8 2081      		ld r18,Z
+ 1275 03fa 2093 F100 		sts 241,r18
+ 1276 03fe 9701      		movw r18,r14
+ 1277 0400 2F5F      		subi r18,-1
+ 1278 0402 3F4F      		sbci r19,-1
+ 1279               	.LVL156:
+ 1280 0404 7901      		movw r14,r18
+ 1281               	.LVL157:
+ 1282               	.L75:
+ 601:usb_serial.c  **** 			case 10: UEDATX = *buffer++;
+ 1283               		.loc 1 601 0
+ 1284 0406 F701      		movw r30,r14
+ 1285 0408 2081      		ld r18,Z
+ 1286 040a 2093 F100 		sts 241,r18
+ 1287 040e 9701      		movw r18,r14
+ 1288 0410 2F5F      		subi r18,-1
+ 1289 0412 3F4F      		sbci r19,-1
+ 1290               	.LVL158:
+ 1291 0414 7901      		movw r14,r18
+ 1292               	.LVL159:
+ 1293               	.L74:
+ 602:usb_serial.c  **** 			case  9: UEDATX = *buffer++;
+ 1294               		.loc 1 602 0
+ 1295 0416 F701      		movw r30,r14
+ 1296 0418 2081      		ld r18,Z
+ 1297 041a 2093 F100 		sts 241,r18
+ 1298 041e 9701      		movw r18,r14
+ 1299 0420 2F5F      		subi r18,-1
+ 1300 0422 3F4F      		sbci r19,-1
+ 1301               	.LVL160:
+ 1302 0424 7901      		movw r14,r18
+ 1303               	.LVL161:
+ 1304               	.L73:
+ 604:usb_serial.c  **** 			case  8: UEDATX = *buffer++;
+ 1305               		.loc 1 604 0
+ 1306 0426 F701      		movw r30,r14
+ 1307 0428 2081      		ld r18,Z
+ 1308 042a 2093 F100 		sts 241,r18
+ 1309 042e 9701      		movw r18,r14
+ 1310 0430 2F5F      		subi r18,-1
+ 1311 0432 3F4F      		sbci r19,-1
+ 1312               	.LVL162:
+ 1313 0434 7901      		movw r14,r18
+ 1314               	.LVL163:
+ 1315               	.L72:
+ 605:usb_serial.c  **** 			case  7: UEDATX = *buffer++;
+ 1316               		.loc 1 605 0
+ 1317 0436 F701      		movw r30,r14
+ 1318 0438 2081      		ld r18,Z
+ 1319 043a 2093 F100 		sts 241,r18
+ 1320 043e 9701      		movw r18,r14
+ 1321 0440 2F5F      		subi r18,-1
+ 1322 0442 3F4F      		sbci r19,-1
+ 1323               	.LVL164:
+ 1324 0444 7901      		movw r14,r18
+ 1325               	.LVL165:
+ 1326               	.L71:
+ 606:usb_serial.c  **** 			case  6: UEDATX = *buffer++;
+ 1327               		.loc 1 606 0
+ 1328 0446 F701      		movw r30,r14
+ 1329 0448 2081      		ld r18,Z
+ 1330 044a 2093 F100 		sts 241,r18
+ 1331 044e 9701      		movw r18,r14
+ 1332 0450 2F5F      		subi r18,-1
+ 1333 0452 3F4F      		sbci r19,-1
+ 1334               	.LVL166:
+ 1335 0454 7901      		movw r14,r18
+ 1336               	.LVL167:
+ 1337               	.L70:
+ 607:usb_serial.c  **** 			case  5: UEDATX = *buffer++;
+ 1338               		.loc 1 607 0
+ 1339 0456 F701      		movw r30,r14
+ 1340 0458 2081      		ld r18,Z
+ 1341 045a 2093 F100 		sts 241,r18
+ 1342 045e 9701      		movw r18,r14
+ 1343 0460 2F5F      		subi r18,-1
+ 1344 0462 3F4F      		sbci r19,-1
+ 1345               	.LVL168:
+ 1346 0464 7901      		movw r14,r18
+ 1347               	.LVL169:
+ 1348               	.L69:
+ 608:usb_serial.c  **** 			case  4: UEDATX = *buffer++;
+ 1349               		.loc 1 608 0
+ 1350 0466 F701      		movw r30,r14
+ 1351 0468 2081      		ld r18,Z
+ 1352 046a 2093 F100 		sts 241,r18
+ 1353 046e 9701      		movw r18,r14
+ 1354 0470 2F5F      		subi r18,-1
+ 1355 0472 3F4F      		sbci r19,-1
+ 1356               	.LVL170:
+ 1357 0474 7901      		movw r14,r18
+ 1358               	.LVL171:
+ 1359               	.L68:
+ 609:usb_serial.c  **** 			case  3: UEDATX = *buffer++;
+ 1360               		.loc 1 609 0
+ 1361 0476 F701      		movw r30,r14
+ 1362 0478 2081      		ld r18,Z
+ 1363 047a 2093 F100 		sts 241,r18
+ 1364 047e 9701      		movw r18,r14
+ 1365 0480 2F5F      		subi r18,-1
+ 1366 0482 3F4F      		sbci r19,-1
+ 1367               	.LVL172:
+ 1368 0484 7901      		movw r14,r18
+ 1369               	.LVL173:
+ 1370               	.L67:
+ 610:usb_serial.c  **** 			case  2: UEDATX = *buffer++;
+ 1371               		.loc 1 610 0
+ 1372 0486 F701      		movw r30,r14
+ 1373 0488 2081      		ld r18,Z
+ 1374 048a 2093 F100 		sts 241,r18
+ 1375 048e 9701      		movw r18,r14
+ 1376 0490 2F5F      		subi r18,-1
+ 1377 0492 3F4F      		sbci r19,-1
+ 1378               	.LVL174:
+ 1379 0494 7901      		movw r14,r18
+ 1380               	.LVL175:
+ 1381               	.L64:
+ 612:usb_serial.c  **** 			case  1: UEDATX = *buffer++;
+ 1382               		.loc 1 612 0
+ 1383 0496 F701      		movw r30,r14
+ 1384 0498 2081      		ld r18,Z
+ 1385 049a 2093 F100 		sts 241,r18
+ 1386 049e 9701      		movw r18,r14
+ 1387 04a0 2F5F      		subi r18,-1
+ 1388 04a2 3F4F      		sbci r19,-1
+ 1389               	.LVL176:
+ 1390 04a4 7901      		movw r14,r18
+ 1391               	.LVL177:
+ 1392               	.L65:
+ 616:usb_serial.c  **** 		if (!(UEINTX & (1<<RWAL))) UEINTX = 0x3A;
+ 1393               		.loc 1 616 0
+ 1394 04a6 2091 E800 		lds r18,232
+ 1395 04aa 25FF      		sbrs r18,5
+ 616:usb_serial.c  **** 		if (!(UEINTX & (1<<RWAL))) UEINTX = 0x3A;
+ 1396               		.loc 1 616 0 is_stmt 0 discriminator 1
+ 1397 04ac D093 E800 		sts 232,r29
+ 1398               	.L130:
+ 617:usb_serial.c  **** 		transmit_flush_timer = TRANSMIT_FLUSH_TIMEOUT;
+ 1399               		.loc 1 617 0 is_stmt 1
+ 1400 04b0 1093 0000 		sts transmit_flush_timer,r17
+ 618:usb_serial.c  **** 		SREG = intr_state;
+ 1401               		.loc 1 618 0
+ 1402 04b4 AFBF      		out __SREG__,r26
+ 1403 04b6 00C0      		rjmp .L58
+ 1404               	.L139:
+ 620:usb_serial.c  **** 	return 0;
+ 1405               		.loc 1 620 0
+ 1406 04b8 80E0      		ldi r24,0
+ 1407               	.LVL178:
+ 1408               	.L55:
+ 1409               	/* epilogue start */
+ 621:usb_serial.c  **** }
+ 1410               		.loc 1 621 0
+ 1411 04ba DF91      		pop r29
+ 1412 04bc CF91      		pop r28
+ 1413 04be 1F91      		pop r17
+ 1414 04c0 FF90      		pop r15
+ 1415 04c2 EF90      		pop r14
+ 1416               	.LVL179:
+ 1417 04c4 0895      		ret
+ 1418               		.cfi_endproc
+ 1419               	.LFE8:
+ 1421               		.section	.text.usb_serial_flush_output,"ax",@progbits
+ 1422               	.global	usb_serial_flush_output
+ 1424               	usb_serial_flush_output:
+ 1425               	.LFB9:
+ 629:usb_serial.c  **** {
+ 1426               		.loc 1 629 0
+ 1427               		.cfi_startproc
+ 1428               	/* prologue: function */
+ 1429               	/* frame size = 0 */
+ 1430               	/* stack size = 0 */
+ 1431               	.L__stack_usage = 0
+ 632:usb_serial.c  **** 	intr_state = SREG;
+ 1432               		.loc 1 632 0
+ 1433 0000 8FB7      		in r24,__SREG__
+ 1434               	.LVL180:
+ 633:usb_serial.c  **** 	cli();
+ 1435               		.loc 1 633 0
+ 1436               	/* #APP */
+ 1437               	 ;  633 "usb_serial.c" 1
+ 1438 0002 F894      		cli
+ 1439               	 ;  0 "" 2
+ 634:usb_serial.c  **** 	if (transmit_flush_timer) {
+ 1440               		.loc 1 634 0
+ 1441               	/* #NOAPP */
+ 1442 0004 9091 0000 		lds r25,transmit_flush_timer
+ 1443 0008 9923      		tst r25
+ 1444 000a 01F0      		breq .L141
+ 635:usb_serial.c  **** 		UENUM = CDC_TX_ENDPOINT;
+ 1445               		.loc 1 635 0
+ 1446 000c 94E0      		ldi r25,lo8(4)
+ 1447 000e 9093 E900 		sts 233,r25
+ 636:usb_serial.c  **** 		UEINTX = 0x3A;
+ 1448               		.loc 1 636 0
+ 1449 0012 9AE3      		ldi r25,lo8(58)
+ 1450 0014 9093 E800 		sts 232,r25
+ 637:usb_serial.c  **** 		transmit_flush_timer = 0;
+ 1451               		.loc 1 637 0
+ 1452 0018 1092 0000 		sts transmit_flush_timer,__zero_reg__
+ 1453               	.L141:
+ 639:usb_serial.c  **** 	SREG = intr_state;
+ 1454               		.loc 1 639 0
+ 1455 001c 8FBF      		out __SREG__,r24
+ 1456 001e 0895      		ret
+ 1457               		.cfi_endproc
+ 1458               	.LFE9:
+ 1460               		.section	.text.usb_serial_get_baud,"ax",@progbits
+ 1461               	.global	usb_serial_get_baud
+ 1463               	usb_serial_get_baud:
+ 1464               	.LFB10:
+ 648:usb_serial.c  **** {
+ 1465               		.loc 1 648 0
+ 1466               		.cfi_startproc
+ 1467               	/* prologue: function */
+ 1468               	/* frame size = 0 */
+ 1469               	/* stack size = 0 */
+ 1470               	.L__stack_usage = 0
+ 649:usb_serial.c  **** 	return *(uint32_t *)cdc_line_coding;
+ 1471               		.loc 1 649 0
+ 1472 0000 6091 0000 		lds r22,cdc_line_coding
+ 1473 0004 7091 0000 		lds r23,cdc_line_coding+1
+ 1474 0008 8091 0000 		lds r24,cdc_line_coding+2
+ 1475 000c 9091 0000 		lds r25,cdc_line_coding+3
+ 650:usb_serial.c  **** }
+ 1476               		.loc 1 650 0
+ 1477 0010 0895      		ret
+ 1478               		.cfi_endproc
+ 1479               	.LFE10:
+ 1481               		.section	.text.usb_serial_get_stopbits,"ax",@progbits
+ 1482               	.global	usb_serial_get_stopbits
+ 1484               	usb_serial_get_stopbits:
+ 1485               	.LFB11:
+ 652:usb_serial.c  **** {
+ 1486               		.loc 1 652 0
+ 1487               		.cfi_startproc
+ 1488               	/* prologue: function */
+ 1489               	/* frame size = 0 */
+ 1490               	/* stack size = 0 */
+ 1491               	.L__stack_usage = 0
+ 654:usb_serial.c  **** }
+ 1492               		.loc 1 654 0
+ 1493 0000 8091 0000 		lds r24,cdc_line_coding+4
+ 1494 0004 0895      		ret
+ 1495               		.cfi_endproc
+ 1496               	.LFE11:
+ 1498               		.section	.text.usb_serial_get_paritytype,"ax",@progbits
+ 1499               	.global	usb_serial_get_paritytype
+ 1501               	usb_serial_get_paritytype:
+ 1502               	.LFB12:
+ 656:usb_serial.c  **** {
+ 1503               		.loc 1 656 0
+ 1504               		.cfi_startproc
+ 1505               	/* prologue: function */
+ 1506               	/* frame size = 0 */
+ 1507               	/* stack size = 0 */
+ 1508               	.L__stack_usage = 0
+ 658:usb_serial.c  **** }
+ 1509               		.loc 1 658 0
+ 1510 0000 8091 0000 		lds r24,cdc_line_coding+5
+ 1511 0004 0895      		ret
+ 1512               		.cfi_endproc
+ 1513               	.LFE12:
+ 1515               		.section	.text.usb_serial_get_numbits,"ax",@progbits
+ 1516               	.global	usb_serial_get_numbits
+ 1518               	usb_serial_get_numbits:
+ 1519               	.LFB13:
+ 660:usb_serial.c  **** {
+ 1520               		.loc 1 660 0
+ 1521               		.cfi_startproc
+ 1522               	/* prologue: function */
+ 1523               	/* frame size = 0 */
+ 1524               	/* stack size = 0 */
+ 1525               	.L__stack_usage = 0
+ 662:usb_serial.c  **** }
+ 1526               		.loc 1 662 0
+ 1527 0000 8091 0000 		lds r24,cdc_line_coding+6
+ 1528 0004 0895      		ret
+ 1529               		.cfi_endproc
+ 1530               	.LFE13:
+ 1532               		.section	.text.usb_serial_get_control,"ax",@progbits
+ 1533               	.global	usb_serial_get_control
+ 1535               	usb_serial_get_control:
+ 1536               	.LFB14:
+ 664:usb_serial.c  **** {
+ 1537               		.loc 1 664 0
+ 1538               		.cfi_startproc
+ 1539               	/* prologue: function */
+ 1540               	/* frame size = 0 */
+ 1541               	/* stack size = 0 */
+ 1542               	.L__stack_usage = 0
+ 666:usb_serial.c  **** }
+ 1543               		.loc 1 666 0
+ 1544 0000 8091 0000 		lds r24,cdc_line_rtsdtr
+ 1545 0004 0895      		ret
+ 1546               		.cfi_endproc
+ 1547               	.LFE14:
+ 1549               		.section	.text.usb_serial_set_control,"ax",@progbits
+ 1550               	.global	usb_serial_set_control
+ 1552               	usb_serial_set_control:
+ 1553               	.LFB15:
+ 674:usb_serial.c  **** {
+ 1554               		.loc 1 674 0
+ 1555               		.cfi_startproc
+ 1556               	.LVL181:
+ 1557               	/* prologue: function */
+ 1558               	/* frame size = 0 */
+ 1559               	/* stack size = 0 */
+ 1560               	.L__stack_usage = 0
+ 677:usb_serial.c  **** 	intr_state = SREG;
+ 1561               		.loc 1 677 0
+ 1562 0000 9FB7      		in r25,__SREG__
+ 1563               	.LVL182:
+ 678:usb_serial.c  **** 	cli();
+ 1564               		.loc 1 678 0
+ 1565               	/* #APP */
+ 1566               	 ;  678 "usb_serial.c" 1
+ 1567 0002 F894      		cli
+ 1568               	 ;  0 "" 2
+ 679:usb_serial.c  **** 	if (!usb_configuration) {
+ 1569               		.loc 1 679 0
+ 1570               	/* #NOAPP */
+ 1571 0004 2091 0000 		lds r18,usb_configuration
+ 1572 0008 2223      		tst r18
+ 1573 000a 01F0      		breq .L154
+ 685:usb_serial.c  **** 	UENUM = CDC_ACM_ENDPOINT;
+ 1574               		.loc 1 685 0
+ 1575 000c 22E0      		ldi r18,lo8(2)
+ 1576 000e 2093 E900 		sts 233,r18
+ 686:usb_serial.c  **** 	if (!(UEINTX & (1<<RWAL))) {
+ 1577               		.loc 1 686 0
+ 1578 0012 2091 E800 		lds r18,232
+ 1579 0016 25FD      		sbrc r18,5
+ 1580 0018 00C0      		rjmp .L153
+ 1581               	.L154:
+ 690:usb_serial.c  **** 		SREG = intr_state;
+ 1582               		.loc 1 690 0
+ 1583 001a 9FBF      		out __SREG__,r25
+ 691:usb_serial.c  **** 		return -1;
+ 1584               		.loc 1 691 0
+ 1585 001c 8FEF      		ldi r24,lo8(-1)
+ 1586               	.LVL183:
+ 1587 001e 0895      		ret
+ 1588               	.LVL184:
+ 1589               	.L153:
+ 693:usb_serial.c  **** 	UEDATX = 0xA1;
+ 1590               		.loc 1 693 0
+ 1591 0020 21EA      		ldi r18,lo8(-95)
+ 1592 0022 2093 F100 		sts 241,r18
+ 694:usb_serial.c  **** 	UEDATX = 0x20;
+ 1593               		.loc 1 694 0
+ 1594 0026 20E2      		ldi r18,lo8(32)
+ 1595 0028 2093 F100 		sts 241,r18
+ 695:usb_serial.c  **** 	UEDATX = 0;
+ 1596               		.loc 1 695 0
+ 1597 002c 1092 F100 		sts 241,__zero_reg__
+ 696:usb_serial.c  **** 	UEDATX = 0;
+ 1598               		.loc 1 696 0
+ 1599 0030 1092 F100 		sts 241,__zero_reg__
+ 697:usb_serial.c  **** 	UEDATX = 0; // 0 seems to work nicely.  what if this is 1??
+ 1600               		.loc 1 697 0
+ 1601 0034 1092 F100 		sts 241,__zero_reg__
+ 698:usb_serial.c  **** 	UEDATX = 0;
+ 1602               		.loc 1 698 0
+ 1603 0038 1092 F100 		sts 241,__zero_reg__
+ 699:usb_serial.c  **** 	UEDATX = 1;
+ 1604               		.loc 1 699 0
+ 1605 003c 21E0      		ldi r18,lo8(1)
+ 1606 003e 2093 F100 		sts 241,r18
+ 700:usb_serial.c  **** 	UEDATX = 0;
+ 1607               		.loc 1 700 0
+ 1608 0042 1092 F100 		sts 241,__zero_reg__
+ 701:usb_serial.c  **** 	UEDATX = signals;
+ 1609               		.loc 1 701 0
+ 1610 0046 8093 F100 		sts 241,r24
+ 702:usb_serial.c  **** 	UEINTX = 0x3A;
+ 1611               		.loc 1 702 0
+ 1612 004a 8AE3      		ldi r24,lo8(58)
+ 1613               	.LVL185:
+ 1614 004c 8093 E800 		sts 232,r24
+ 1615               	.LVL186:
+ 703:usb_serial.c  **** 	SREG = intr_state;
+ 1616               		.loc 1 703 0
+ 1617 0050 9FBF      		out __SREG__,r25
+ 704:usb_serial.c  **** 	return 0;
+ 1618               		.loc 1 704 0
+ 1619 0052 80E0      		ldi r24,0
+ 705:usb_serial.c  **** }
+ 1620               		.loc 1 705 0
+ 1621 0054 0895      		ret
+ 1622               		.cfi_endproc
+ 1623               	.LFE15:
+ 1625               		.section	.text.__vector_10,"ax",@progbits
+ 1626               	.global	__vector_10
+ 1628               	__vector_10:
+ 1629               	.LFB16:
+ 720:usb_serial.c  **** {
+ 1630               		.loc 1 720 0
+ 1631               		.cfi_startproc
+ 1632 0000 1F92      		push r1
+ 1633               	.LCFI5:
+ 1634               		.cfi_def_cfa_offset 3
+ 1635               		.cfi_offset 1, -2
+ 1636 0002 0F92      		push r0
+ 1637               	.LCFI6:
+ 1638               		.cfi_def_cfa_offset 4
+ 1639               		.cfi_offset 0, -3
+ 1640 0004 0FB6      		in r0,__SREG__
+ 1641 0006 0F92      		push r0
+ 1642 0008 1124      		clr __zero_reg__
+ 1643 000a 8F93      		push r24
+ 1644               	.LCFI7:
+ 1645               		.cfi_def_cfa_offset 5
+ 1646               		.cfi_offset 24, -4
+ 1647 000c 9F93      		push r25
+ 1648               	.LCFI8:
+ 1649               		.cfi_def_cfa_offset 6
+ 1650               		.cfi_offset 25, -5
+ 1651               	/* prologue: Signal */
+ 1652               	/* frame size = 0 */
+ 1653               	/* stack size = 5 */
+ 1654               	.L__stack_usage = 5
+ 723:usb_serial.c  ****         intbits = UDINT;
+ 1655               		.loc 1 723 0
+ 1656 000e 8091 E100 		lds r24,225
+ 1657               	.LVL187:
+ 724:usb_serial.c  ****         UDINT = 0;
+ 1658               		.loc 1 724 0
+ 1659 0012 1092 E100 		sts 225,__zero_reg__
+ 725:usb_serial.c  ****         if (intbits & (1<<EORSTI)) {
+ 1660               		.loc 1 725 0
+ 1661 0016 83FF      		sbrs r24,3
+ 1662 0018 00C0      		rjmp .L156
+ 726:usb_serial.c  **** 		UENUM = 0;
+ 1663               		.loc 1 726 0
+ 1664 001a 1092 E900 		sts 233,__zero_reg__
+ 727:usb_serial.c  **** 		UECONX = 1;
+ 1665               		.loc 1 727 0
+ 1666 001e 91E0      		ldi r25,lo8(1)
+ 1667 0020 9093 EB00 		sts 235,r25
+ 728:usb_serial.c  **** 		UECFG0X = EP_TYPE_CONTROL;
+ 1668               		.loc 1 728 0
+ 1669 0024 1092 EC00 		sts 236,__zero_reg__
+ 729:usb_serial.c  **** 		UECFG1X = EP_SIZE(ENDPOINT0_SIZE) | EP_SINGLE_BUFFER;
+ 1670               		.loc 1 729 0
+ 1671 0028 92E1      		ldi r25,lo8(18)
+ 1672 002a 9093 ED00 		sts 237,r25
+ 730:usb_serial.c  **** 		UEIENX = (1<<RXSTPE);
+ 1673               		.loc 1 730 0
+ 1674 002e 98E0      		ldi r25,lo8(8)
+ 1675 0030 9093 F000 		sts 240,r25
+ 731:usb_serial.c  **** 		usb_configuration = 0;
+ 1676               		.loc 1 731 0
+ 1677 0034 1092 0000 		sts usb_configuration,__zero_reg__
+ 732:usb_serial.c  **** 		cdc_line_rtsdtr = 0;
+ 1678               		.loc 1 732 0
+ 1679 0038 1092 0000 		sts cdc_line_rtsdtr,__zero_reg__
+ 1680               	.L156:
+ 734:usb_serial.c  **** 	if (intbits & (1<<SOFI)) {
+ 1681               		.loc 1 734 0
+ 1682 003c 82FF      		sbrs r24,2
+ 1683 003e 00C0      		rjmp .L155
+ 735:usb_serial.c  **** 		if (usb_configuration) {
+ 1684               		.loc 1 735 0
+ 1685 0040 8091 0000 		lds r24,usb_configuration
+ 1686               	.LVL188:
+ 1687 0044 8823      		tst r24
+ 1688 0046 01F0      		breq .L155
+ 736:usb_serial.c  **** 			t = transmit_flush_timer;
+ 1689               		.loc 1 736 0
+ 1690 0048 8091 0000 		lds r24,transmit_flush_timer
+ 1691               	.LVL189:
+ 737:usb_serial.c  **** 			if (t) {
+ 1692               		.loc 1 737 0
+ 1693 004c 8823      		tst r24
+ 1694 004e 01F0      		breq .L155
+ 738:usb_serial.c  **** 				transmit_flush_timer = --t;
+ 1695               		.loc 1 738 0
+ 1696 0050 8150      		subi r24,lo8(-(-1))
+ 1697               	.LVL190:
+ 1698 0052 8093 0000 		sts transmit_flush_timer,r24
+ 739:usb_serial.c  **** 				if (!t) {
+ 1699               		.loc 1 739 0
+ 1700 0056 8111      		cpse r24,__zero_reg__
+ 1701 0058 00C0      		rjmp .L155
+ 740:usb_serial.c  **** 					UENUM = CDC_TX_ENDPOINT;
+ 1702               		.loc 1 740 0
+ 1703 005a 84E0      		ldi r24,lo8(4)
+ 1704               	.LVL191:
+ 1705 005c 8093 E900 		sts 233,r24
+ 1706               	.LVL192:
+ 741:usb_serial.c  **** 					UEINTX = 0x3A;
+ 1707               		.loc 1 741 0
+ 1708 0060 8AE3      		ldi r24,lo8(58)
+ 1709 0062 8093 E800 		sts 232,r24
+ 1710               	.L155:
+ 1711               	/* epilogue start */
+ 746:usb_serial.c  **** }
+ 1712               		.loc 1 746 0
+ 1713 0066 9F91      		pop r25
+ 1714 0068 8F91      		pop r24
+ 1715 006a 0F90      		pop r0
+ 1716 006c 0FBE      		out __SREG__,r0
+ 1717 006e 0F90      		pop r0
+ 1718 0070 1F90      		pop r1
+ 1719 0072 1895      		reti
+ 1720               		.cfi_endproc
+ 1721               	.LFE16:
+ 1723               		.section	.text.__vector_11,"ax",@progbits
+ 1724               	.global	__vector_11
+ 1726               	__vector_11:
+ 1727               	.LFB21:
+ 754:usb_serial.c  **** static inline void usb_send_in(void)
+ 755:usb_serial.c  **** {
+ 756:usb_serial.c  **** 	UEINTX = ~(1<<TXINI);
+ 757:usb_serial.c  **** }
+ 758:usb_serial.c  **** static inline void usb_wait_receive_out(void)
+ 759:usb_serial.c  **** {
+ 760:usb_serial.c  **** 	while (!(UEINTX & (1<<RXOUTI))) ;
+ 761:usb_serial.c  **** }
+ 762:usb_serial.c  **** static inline void usb_ack_out(void)
+ 763:usb_serial.c  **** {
+ 764:usb_serial.c  **** 	UEINTX = ~(1<<RXOUTI);
+ 765:usb_serial.c  **** }
+ 766:usb_serial.c  **** 
+ 767:usb_serial.c  **** 
+ 768:usb_serial.c  **** 
+ 769:usb_serial.c  **** // USB Endpoint Interrupt - endpoint 0 is handled here.  The
+ 770:usb_serial.c  **** // other endpoints are manipulated by the user-callable
+ 771:usb_serial.c  **** // functions, and the start-of-frame interrupt.
+ 772:usb_serial.c  **** //
+ 773:usb_serial.c  **** ISR(USB_COM_vect)
+ 774:usb_serial.c  **** {
+ 1728               		.loc 1 774 0
+ 1729               		.cfi_startproc
+ 1730 0000 1F92      		push r1
+ 1731               	.LCFI9:
+ 1732               		.cfi_def_cfa_offset 3
+ 1733               		.cfi_offset 1, -2
+ 1734 0002 0F92      		push r0
+ 1735               	.LCFI10:
+ 1736               		.cfi_def_cfa_offset 4
+ 1737               		.cfi_offset 0, -3
+ 1738 0004 0FB6      		in r0,__SREG__
+ 1739 0006 0F92      		push r0
+ 1740 0008 1124      		clr __zero_reg__
+ 1741 000a 0BB6      		in r0,__RAMPZ__
+ 1742 000c 0F92      		push r0
+ 1743 000e EF92      		push r14
+ 1744               	.LCFI11:
+ 1745               		.cfi_def_cfa_offset 5
+ 1746               		.cfi_offset 14, -4
+ 1747 0010 FF92      		push r15
+ 1748               	.LCFI12:
+ 1749               		.cfi_def_cfa_offset 6
+ 1750               		.cfi_offset 15, -5
+ 1751 0012 0F93      		push r16
+ 1752               	.LCFI13:
+ 1753               		.cfi_def_cfa_offset 7
+ 1754               		.cfi_offset 16, -6
+ 1755 0014 1F93      		push r17
+ 1756               	.LCFI14:
+ 1757               		.cfi_def_cfa_offset 8
+ 1758               		.cfi_offset 17, -7
+ 1759 0016 2F93      		push r18
+ 1760               	.LCFI15:
+ 1761               		.cfi_def_cfa_offset 9
+ 1762               		.cfi_offset 18, -8
+ 1763 0018 3F93      		push r19
+ 1764               	.LCFI16:
+ 1765               		.cfi_def_cfa_offset 10
+ 1766               		.cfi_offset 19, -9
+ 1767 001a 4F93      		push r20
+ 1768               	.LCFI17:
+ 1769               		.cfi_def_cfa_offset 11
+ 1770               		.cfi_offset 20, -10
+ 1771 001c 5F93      		push r21
+ 1772               	.LCFI18:
+ 1773               		.cfi_def_cfa_offset 12
+ 1774               		.cfi_offset 21, -11
+ 1775 001e 6F93      		push r22
+ 1776               	.LCFI19:
+ 1777               		.cfi_def_cfa_offset 13
+ 1778               		.cfi_offset 22, -12
+ 1779 0020 7F93      		push r23
+ 1780               	.LCFI20:
+ 1781               		.cfi_def_cfa_offset 14
+ 1782               		.cfi_offset 23, -13
+ 1783 0022 8F93      		push r24
+ 1784               	.LCFI21:
+ 1785               		.cfi_def_cfa_offset 15
+ 1786               		.cfi_offset 24, -14
+ 1787 0024 9F93      		push r25
+ 1788               	.LCFI22:
+ 1789               		.cfi_def_cfa_offset 16
+ 1790               		.cfi_offset 25, -15
+ 1791 0026 AF93      		push r26
+ 1792               	.LCFI23:
+ 1793               		.cfi_def_cfa_offset 17
+ 1794               		.cfi_offset 26, -16
+ 1795 0028 BF93      		push r27
+ 1796               	.LCFI24:
+ 1797               		.cfi_def_cfa_offset 18
+ 1798               		.cfi_offset 27, -17
+ 1799 002a EF93      		push r30
+ 1800               	.LCFI25:
+ 1801               		.cfi_def_cfa_offset 19
+ 1802               		.cfi_offset 30, -18
+ 1803 002c FF93      		push r31
+ 1804               	.LCFI26:
+ 1805               		.cfi_def_cfa_offset 20
+ 1806               		.cfi_offset 31, -19
+ 1807 002e CF93      		push r28
+ 1808               	.LCFI27:
+ 1809               		.cfi_def_cfa_offset 21
+ 1810               		.cfi_offset 28, -20
+ 1811 0030 DF93      		push r29
+ 1812               	.LCFI28:
+ 1813               		.cfi_def_cfa_offset 22
+ 1814               		.cfi_offset 29, -21
+ 1815 0032 1F92      		push __zero_reg__
+ 1816               	.LCFI29:
+ 1817               		.cfi_def_cfa_offset 23
+ 1818 0034 CDB7      		in r28,__SP_L__
+ 1819 0036 DEB7      		in r29,__SP_H__
+ 1820               	.LCFI30:
+ 1821               		.cfi_def_cfa_register 28
+ 1822               	/* prologue: Signal */
+ 1823               	/* frame size = 1 */
+ 1824               	/* stack size = 23 */
+ 1825               	.L__stack_usage = 23
+ 775:usb_serial.c  ****         uint8_t intbits;
+ 776:usb_serial.c  **** 	const uint8_t *list;
+ 777:usb_serial.c  ****         const uint8_t *cfg;
+ 778:usb_serial.c  **** 	uint8_t i, n, len, en;
+ 779:usb_serial.c  **** 	uint8_t *p;
+ 780:usb_serial.c  **** 	uint8_t bmRequestType;
+ 781:usb_serial.c  **** 	uint8_t bRequest;
+ 782:usb_serial.c  **** 	uint16_t wValue;
+ 783:usb_serial.c  **** 	uint16_t wIndex;
+ 784:usb_serial.c  **** 	uint16_t wLength;
+ 785:usb_serial.c  **** 	uint16_t desc_val;
+ 786:usb_serial.c  **** 	const uint8_t *desc_addr;
+ 787:usb_serial.c  **** 	uint8_t	desc_length;
+ 788:usb_serial.c  **** 
+ 789:usb_serial.c  ****         UENUM = 0;
+ 1826               		.loc 1 789 0
+ 1827 0038 1092 E900 		sts 233,__zero_reg__
+ 790:usb_serial.c  ****         intbits = UEINTX;
+ 1828               		.loc 1 790 0
+ 1829 003c 8091 E800 		lds r24,232
+ 1830               	.LVL193:
+ 791:usb_serial.c  ****         if (intbits & (1<<RXSTPI)) {
+ 1831               		.loc 1 791 0
+ 1832 0040 83FF      		sbrs r24,3
+ 1833 0042 00C0      		rjmp .L170
+ 792:usb_serial.c  ****                 bmRequestType = UEDATX;
+ 1834               		.loc 1 792 0
+ 1835 0044 9091 F100 		lds r25,241
+ 1836               	.LVL194:
+ 793:usb_serial.c  ****                 bRequest = UEDATX;
+ 1837               		.loc 1 793 0
+ 1838 0048 8091 F100 		lds r24,241
+ 1839               	.LVL195:
+ 794:usb_serial.c  ****                 wValue = UEDATX;
+ 1840               		.loc 1 794 0
+ 1841 004c 3091 F100 		lds r19,241
+ 1842               	.LVL196:
+ 795:usb_serial.c  ****                 wValue |= (UEDATX << 8);
+ 1843               		.loc 1 795 0
+ 1844 0050 2091 F100 		lds r18,241
+ 1845 0054 E32E      		mov r14,r19
+ 1846 0056 F12C      		mov r15,__zero_reg__
+ 1847 0058 F22A      		or r15,r18
+ 1848               	.LVL197:
+ 796:usb_serial.c  ****                 wIndex = UEDATX;
+ 1849               		.loc 1 796 0
+ 1850 005a 0091 F100 		lds r16,241
+ 1851               	.LVL198:
+ 797:usb_serial.c  ****                 wIndex |= (UEDATX << 8);
+ 1852               		.loc 1 797 0
+ 1853 005e 2091 F100 		lds r18,241
+ 1854 0062 10E0      		ldi r17,0
+ 1855 0064 122B      		or r17,r18
+ 1856               	.LVL199:
+ 798:usb_serial.c  ****                 wLength = UEDATX;
+ 1857               		.loc 1 798 0
+ 1858 0066 2091 F100 		lds r18,241
+ 1859               	.LVL200:
+ 799:usb_serial.c  ****                 wLength |= (UEDATX << 8);
+ 1860               		.loc 1 799 0
+ 1861 006a 6091 F100 		lds r22,241
+ 1862               	.LVL201:
+ 800:usb_serial.c  ****                 UEINTX = ~((1<<RXSTPI) | (1<<RXOUTI) | (1<<TXINI));
+ 1863               		.loc 1 800 0
+ 1864 006e 32EF      		ldi r19,lo8(-14)
+ 1865 0070 3093 E800 		sts 232,r19
+ 801:usb_serial.c  ****                 if (bRequest == GET_DESCRIPTOR) {
+ 1866               		.loc 1 801 0
+ 1867 0074 8630      		cpi r24,lo8(6)
+ 1868 0076 01F0      		breq .+2
+ 1869 0078 00C0      		rjmp .L218
+ 1870 007a 36E0      		ldi r19,lo8(6)
+ 1871 007c 80E0      		ldi r24,lo8(descriptor_list)
+ 1872 007e 90E0      		ldi r25,hi8(descriptor_list)
+ 1873               	.LVL202:
+ 1874               	.L181:
+ 1875               	.LBB60:
+ 802:usb_serial.c  **** 			list = (const uint8_t *)descriptor_list;
+ 803:usb_serial.c  **** 			for (i=0; ; i++) {
+ 804:usb_serial.c  **** 				if (i >= NUM_DESC_LIST) {
+ 805:usb_serial.c  **** 					UECONX = (1<<STALLRQ)|(1<<EPEN);  //stall
+ 806:usb_serial.c  **** 					return;
+ 807:usb_serial.c  **** 				}
+ 808:usb_serial.c  **** 				desc_val = pgm_read_word(list);
+ 1876               		.loc 1 808 0
+ 1877 0080 FC01      		movw r30,r24
+ 1878               	/* #APP */
+ 1879               	 ;  808 "usb_serial.c" 1
+ 1880 0082 4591      		lpm r20, Z+
+ 1881 0084 5491      		lpm r21, Z
+ 1882               		
+ 1883               	 ;  0 "" 2
+ 1884               	.LVL203:
+ 1885               	/* #NOAPP */
+ 1886               	.LBE60:
+ 809:usb_serial.c  **** 				if (desc_val != wValue) {
+ 1887               		.loc 1 809 0
+ 1888 0086 4E15      		cp r20,r14
+ 1889 0088 5F05      		cpc r21,r15
+ 1890 008a 01F4      		brne .L219
+ 1891               	.LVL204:
+ 810:usb_serial.c  **** 					list += sizeof(struct descriptor_list_struct);
+ 811:usb_serial.c  **** 					continue;
+ 812:usb_serial.c  **** 				}
+ 813:usb_serial.c  **** 				list += 2;
+ 1892               		.loc 1 813 0
+ 1893 008c FC01      		movw r30,r24
+ 1894 008e 3296      		adiw r30,2
+ 1895               	.LVL205:
+ 1896               	.LBB61:
+ 814:usb_serial.c  **** 				desc_val = pgm_read_word(list);
+ 1897               		.loc 1 814 0
+ 1898               	/* #APP */
+ 1899               	 ;  814 "usb_serial.c" 1
+ 1900 0090 4591      		lpm r20, Z+
+ 1901 0092 5491      		lpm r21, Z
+ 1902               		
+ 1903               	 ;  0 "" 2
+ 1904               	.LVL206:
+ 1905               	/* #NOAPP */
+ 1906               	.LBE61:
+ 815:usb_serial.c  **** 				if (desc_val != wIndex) {
+ 1907               		.loc 1 815 0
+ 1908 0094 4017      		cp r20,r16
+ 1909 0096 5107      		cpc r21,r17
+ 1910 0098 01F0      		breq .L176
+ 1911               	.LVL207:
+ 1912               	.L219:
+ 816:usb_serial.c  **** 					list += sizeof(struct descriptor_list_struct)-2;
+ 1913               		.loc 1 816 0
+ 1914 009a 0796      		adiw r24,7
+ 1915               	.LVL208:
+ 1916 009c 3150      		subi r19,lo8(-(-1))
+ 1917               	.LVL209:
+ 804:usb_serial.c  **** 				if (i >= NUM_DESC_LIST) {
+ 1918               		.loc 1 804 0
+ 1919 009e 01F4      		brne .L181
+ 1920 00a0 00C0      		rjmp .L170
+ 1921               	.LVL210:
+ 1922               	.L176:
+ 817:usb_serial.c  **** 					continue;
+ 818:usb_serial.c  **** 				}
+ 819:usb_serial.c  **** 				list += 2;
+ 1923               		.loc 1 819 0
+ 1924 00a2 FC01      		movw r30,r24
+ 1925 00a4 3496      		adiw r30,4
+ 1926               	.LVL211:
+ 820:usb_serial.c  **** 				desc_addr = (const uint8_t *)pgm_read_word(list);
+ 1927               		.loc 1 820 0
+ 1928               	/* #APP */
+ 1929               	 ;  820 "usb_serial.c" 1
+ 1930 00a6 4591      		lpm r20, Z+
+ 1931 00a8 5491      		lpm r21, Z
+ 1932               		
+ 1933               	 ;  0 "" 2
+ 1934               	.LVL212:
+ 821:usb_serial.c  **** 				list += 2;
+ 1935               		.loc 1 821 0
+ 1936               	/* #NOAPP */
+ 1937 00aa FC01      		movw r30,r24
+ 1938 00ac 3696      		adiw r30,6
+ 1939               	.LVL213:
+ 1940               	.LBB62:
+ 822:usb_serial.c  **** 				desc_length = pgm_read_byte(list);
+ 1941               		.loc 1 822 0
+ 1942               	/* #APP */
+ 1943               	 ;  822 "usb_serial.c" 1
+ 1944 00ae 8491      		lpm r24, Z
+ 1945               		
+ 1946               	 ;  0 "" 2
+ 1947               	.LVL214:
+ 1948               	/* #NOAPP */
+ 1949               	.LBE62:
+ 799:usb_serial.c  ****                 wLength |= (UEDATX << 8);
+ 1950               		.loc 1 799 0
+ 1951 00b0 30E0      		ldi r19,0
+ 1952               	.LVL215:
+ 1953 00b2 362B      		or r19,r22
+ 823:usb_serial.c  **** 				break;
+ 824:usb_serial.c  **** 			}
+ 825:usb_serial.c  **** 			len = (wLength < 256) ? wLength : 255;
+ 1954               		.loc 1 825 0
+ 1955 00b4 2F3F      		cpi r18,-1
+ 1956 00b6 3105      		cpc r19,__zero_reg__
+ 1957 00b8 01F0      		breq .L177
+ 1958 00ba 00F0      		brlo .L177
+ 1959 00bc 2FEF      		ldi r18,lo8(-1)
+ 1960 00be 30E0      		ldi r19,0
+ 1961               	.LVL216:
+ 1962               	.L177:
+ 1963 00c0 2817      		cp r18,r24
+ 1964 00c2 00F4      		brsh .L178
+ 1965 00c4 822F      		mov r24,r18
+ 1966               	.LVL217:
+ 1967               	.L178:
+ 1968               	.LBB63:
+ 1969               	.LBB64:
+ 756:usb_serial.c  **** 	UEINTX = ~(1<<TXINI);
+ 1970               		.loc 1 756 0
+ 1971 00c6 3EEF      		ldi r19,lo8(-2)
+ 1972               	.LVL218:
+ 1973               	.L183:
+ 1974               	.LBE64:
+ 1975               	.LBE63:
+ 826:usb_serial.c  **** 			if (len > desc_length) len = desc_length;
+ 827:usb_serial.c  **** 			do {
+ 828:usb_serial.c  **** 				// wait for host ready for IN packet
+ 829:usb_serial.c  **** 				do {
+ 830:usb_serial.c  **** 					i = UEINTX;
+ 1976               		.loc 1 830 0 discriminator 1
+ 1977 00c8 9091 E800 		lds r25,232
+ 1978               	.LVL219:
+ 831:usb_serial.c  **** 				} while (!(i & ((1<<TXINI)|(1<<RXOUTI))));
+ 1979               		.loc 1 831 0 discriminator 1
+ 1980 00cc 292F      		mov r18,r25
+ 1981 00ce 2570      		andi r18,lo8(5)
+ 1982 00d0 01F0      		breq .L183
+ 832:usb_serial.c  **** 				if (i & (1<<RXOUTI)) return;	// abort
+ 1983               		.loc 1 832 0
+ 1984 00d2 92FD      		sbrc r25,2
+ 1985 00d4 00C0      		rjmp .L169
+ 833:usb_serial.c  **** 				// send IN packet
+ 834:usb_serial.c  **** 				n = len < ENDPOINT0_SIZE ? len : ENDPOINT0_SIZE;
+ 1986               		.loc 1 834 0
+ 1987 00d6 982F      		mov r25,r24
+ 1988               	.LVL220:
+ 1989 00d8 8131      		cpi r24,lo8(17)
+ 1990 00da 00F0      		brlo .L185
+ 1991 00dc 90E1      		ldi r25,lo8(16)
+ 1992               	.L185:
+ 1993               	.LVL221:
+ 835:usb_serial.c  **** 				for (i = n; i; i--) {
+ 1994               		.loc 1 835 0
+ 1995 00de FA01      		movw r30,r20
+ 1996 00e0 292F      		mov r18,r25
+ 1997               	.LVL222:
+ 1998               	.L186:
+ 1999               		.loc 1 835 0 is_stmt 0 discriminator 1
+ 2000 00e2 2223      		tst r18
+ 2001 00e4 01F0      		breq .L222
+ 2002               	.LVL223:
+ 2003               	.LBB66:
+ 836:usb_serial.c  **** 					UEDATX = pgm_read_byte(desc_addr++);
+ 2004               		.loc 1 836 0 is_stmt 1 discriminator 2
+ 2005               	/* #APP */
+ 2006               	 ;  836 "usb_serial.c" 1
+ 2007 00e6 6491      		lpm r22, Z
+ 2008               		
+ 2009               	 ;  0 "" 2
+ 2010               	.LVL224:
+ 2011               	/* #NOAPP */
+ 2012               	.LBE66:
+ 2013 00e8 6093 F100 		sts 241,r22
+ 835:usb_serial.c  **** 				for (i = n; i; i--) {
+ 2014               		.loc 1 835 0 discriminator 2
+ 2015 00ec 2150      		subi r18,lo8(-(-1))
+ 2016               	.LVL225:
+ 2017 00ee 3196      		adiw r30,1
+ 2018               	.LVL226:
+ 2019 00f0 00C0      		rjmp .L186
+ 2020               	.LVL227:
+ 2021               	.L222:
+ 2022 00f2 490F      		add r20,r25
+ 2023 00f4 511D      		adc r21,__zero_reg__
+ 837:usb_serial.c  **** 				}
+ 838:usb_serial.c  **** 				len -= n;
+ 2024               		.loc 1 838 0
+ 2025 00f6 891B      		sub r24,r25
+ 2026               	.LVL228:
+ 2027               	.LBB67:
+ 2028               	.LBB65:
+ 756:usb_serial.c  **** 	UEINTX = ~(1<<TXINI);
+ 2029               		.loc 1 756 0
+ 2030 00f8 3093 E800 		sts 232,r19
+ 2031               	.LBE65:
+ 2032               	.LBE67:
+ 839:usb_serial.c  **** 				usb_send_in();
+ 840:usb_serial.c  **** 			} while (len || n == ENDPOINT0_SIZE);
+ 2033               		.loc 1 840 0
+ 2034 00fc 8111      		cpse r24,__zero_reg__
+ 2035 00fe 00C0      		rjmp .L183
+ 2036               		.loc 1 840 0 is_stmt 0 discriminator 1
+ 2037 0100 9031      		cpi r25,lo8(16)
+ 2038 0102 01F0      		breq .L183
+ 2039 0104 00C0      		rjmp .L169
+ 2040               	.LVL229:
+ 2041               	.L218:
+ 841:usb_serial.c  **** 			return;
+ 842:usb_serial.c  ****                 }
+ 843:usb_serial.c  **** 		if (bRequest == SET_ADDRESS) {
+ 2042               		.loc 1 843 0 is_stmt 1
+ 2043 0106 8530      		cpi r24,lo8(5)
+ 2044 0108 01F4      		brne .L190
+ 2045               	.LBB68:
+ 2046               	.LBB69:
+ 756:usb_serial.c  **** 	UEINTX = ~(1<<TXINI);
+ 2047               		.loc 1 756 0
+ 2048 010a 8EEF      		ldi r24,lo8(-2)
+ 2049               	.LVL230:
+ 2050 010c 8093 E800 		sts 232,r24
+ 2051               	.LBE69:
+ 2052               	.LBE68:
+ 844:usb_serial.c  **** 			usb_send_in();
+ 845:usb_serial.c  **** 			usb_wait_in_ready();
+ 2053               		.loc 1 845 0
+ 2054 0110 0E94 0000 		call usb_wait_in_ready
+ 2055               	.LVL231:
+ 846:usb_serial.c  **** 			UDADDR = wValue | (1<<ADDEN);
+ 2056               		.loc 1 846 0
+ 2057 0114 8E2D      		mov r24,r14
+ 2058 0116 8068      		ori r24,lo8(-128)
+ 2059 0118 8093 E300 		sts 227,r24
+ 847:usb_serial.c  **** 			return;
+ 2060               		.loc 1 847 0
+ 2061 011c 00C0      		rjmp .L169
+ 2062               	.LVL232:
+ 2063               	.L190:
+ 848:usb_serial.c  **** 		}
+ 849:usb_serial.c  **** 		if (bRequest == SET_CONFIGURATION && bmRequestType == 0) {
+ 2064               		.loc 1 849 0
+ 2065 011e 8930      		cpi r24,lo8(9)
+ 2066 0120 01F4      		brne .L191
+ 2067               		.loc 1 849 0 is_stmt 0 discriminator 1
+ 2068 0122 9111      		cpse r25,__zero_reg__
+ 2069 0124 00C0      		rjmp .L198
+ 850:usb_serial.c  **** 			usb_configuration = wValue;
+ 2070               		.loc 1 850 0 is_stmt 1
+ 2071 0126 E092 0000 		sts usb_configuration,r14
+ 851:usb_serial.c  **** 			cdc_line_rtsdtr = 0;
+ 2072               		.loc 1 851 0
+ 2073 012a 1092 0000 		sts cdc_line_rtsdtr,__zero_reg__
+ 852:usb_serial.c  **** 			transmit_flush_timer = 0;
+ 2074               		.loc 1 852 0
+ 2075 012e 1092 0000 		sts transmit_flush_timer,__zero_reg__
+ 2076               	.LBB70:
+ 2077               	.LBB71:
+ 756:usb_serial.c  **** 	UEINTX = ~(1<<TXINI);
+ 2078               		.loc 1 756 0
+ 2079 0132 8EEF      		ldi r24,lo8(-2)
+ 2080               	.LVL233:
+ 2081 0134 8093 E800 		sts 232,r24
+ 2082               	.LVL234:
+ 2083               	.LBE71:
+ 2084               	.LBE70:
+ 853:usb_serial.c  **** 			usb_send_in();
+ 854:usb_serial.c  **** 			cfg = endpoint_config_table;
+ 855:usb_serial.c  **** 			for (i=1; i<5; i++) {
+ 2085               		.loc 1 855 0
+ 2086 0138 41E0      		ldi r20,lo8(1)
+ 854:usb_serial.c  **** 			cfg = endpoint_config_table;
+ 2087               		.loc 1 854 0
+ 2088 013a 80E0      		ldi r24,lo8(endpoint_config_table)
+ 2089 013c 90E0      		ldi r25,hi8(endpoint_config_table)
+ 2090               	.LVL235:
+ 2091               	.L195:
+ 856:usb_serial.c  **** 				UENUM = i;
+ 2092               		.loc 1 856 0
+ 2093 013e 4093 E900 		sts 233,r20
+ 2094               	.LBB72:
+ 857:usb_serial.c  **** 				en = pgm_read_byte(cfg++);
+ 2095               		.loc 1 857 0
+ 2096 0142 9C01      		movw r18,r24
+ 2097 0144 2F5F      		subi r18,-1
+ 2098 0146 3F4F      		sbci r19,-1
+ 2099               	.LVL236:
+ 2100 0148 FC01      		movw r30,r24
+ 2101               	/* #APP */
+ 2102               	 ;  857 "usb_serial.c" 1
+ 2103 014a 5491      		lpm r21, Z
+ 2104               		
+ 2105               	 ;  0 "" 2
+ 2106               	.LVL237:
+ 2107               	/* #NOAPP */
+ 2108               	.LBE72:
+ 858:usb_serial.c  **** 				UECONX = en;
+ 2109               		.loc 1 858 0
+ 2110 014c 5093 EB00 		sts 235,r21
+ 859:usb_serial.c  **** 				if (en) {
+ 2111               		.loc 1 859 0
+ 2112 0150 5523      		tst r21
+ 2113 0152 01F0      		breq .L193
+ 2114               	.LVL238:
+ 2115               	.LBB73:
+ 860:usb_serial.c  **** 					UECFG0X = pgm_read_byte(cfg++);
+ 2116               		.loc 1 860 0
+ 2117 0154 F901      		movw r30,r18
+ 2118               	/* #APP */
+ 2119               	 ;  860 "usb_serial.c" 1
+ 2120 0156 2491      		lpm r18, Z
+ 2121               		
+ 2122               	 ;  0 "" 2
+ 2123               	.LVL239:
+ 2124               	/* #NOAPP */
+ 2125               	.LBE73:
+ 2126 0158 2093 EC00 		sts 236,r18
+ 2127               	.LBB74:
+ 861:usb_serial.c  **** 					UECFG1X = pgm_read_byte(cfg++);
+ 2128               		.loc 1 861 0
+ 2129 015c 9C01      		movw r18,r24
+ 2130               	.LVL240:
+ 2131 015e 2D5F      		subi r18,-3
+ 2132 0160 3F4F      		sbci r19,-1
+ 2133               	.LVL241:
+ 2134 0162 FC01      		movw r30,r24
+ 2135               	.LVL242:
+ 2136 0164 3296      		adiw r30,2
+ 2137               	.LVL243:
+ 2138               	/* #APP */
+ 2139               	 ;  861 "usb_serial.c" 1
+ 2140 0166 8491      		lpm r24, Z
+ 2141               		
+ 2142               	 ;  0 "" 2
+ 2143               	.LVL244:
+ 2144               	/* #NOAPP */
+ 2145               	.LBE74:
+ 2146 0168 8093 ED00 		sts 237,r24
+ 2147               	.LVL245:
+ 2148               	.L193:
+ 855:usb_serial.c  **** 			for (i=1; i<5; i++) {
+ 2149               		.loc 1 855 0
+ 2150 016c 4F5F      		subi r20,lo8(-(1))
+ 2151               	.LVL246:
+ 2152 016e 4530      		cpi r20,lo8(5)
+ 2153 0170 01F0      		breq .L194
+ 2154 0172 C901      		movw r24,r18
+ 2155 0174 00C0      		rjmp .L195
+ 2156               	.L194:
+ 862:usb_serial.c  **** 				}
+ 863:usb_serial.c  **** 			}
+ 864:usb_serial.c  ****         		UERST = 0x1E;
+ 2157               		.loc 1 864 0
+ 2158 0176 8EE1      		ldi r24,lo8(30)
+ 2159 0178 00C0      		rjmp .L220
+ 2160               	.LVL247:
+ 2161               	.L191:
+ 865:usb_serial.c  ****         		UERST = 0;
+ 866:usb_serial.c  **** 			return;
+ 867:usb_serial.c  **** 		}
+ 868:usb_serial.c  **** 		if (bRequest == GET_CONFIGURATION && bmRequestType == 0x80) {
+ 2162               		.loc 1 868 0
+ 2163 017a 8830      		cpi r24,lo8(8)
+ 2164 017c 01F4      		brne .L196
+ 2165               		.loc 1 868 0 is_stmt 0 discriminator 1
+ 2166 017e 9038      		cpi r25,lo8(-128)
+ 2167 0180 01F0      		breq .+2
+ 2168 0182 00C0      		rjmp .L198
+ 869:usb_serial.c  **** 			usb_wait_in_ready();
+ 2169               		.loc 1 869 0 is_stmt 1
+ 2170 0184 0E94 0000 		call usb_wait_in_ready
+ 2171               	.LVL248:
+ 870:usb_serial.c  **** 			UEDATX = usb_configuration;
+ 2172               		.loc 1 870 0
+ 2173 0188 8091 0000 		lds r24,usb_configuration
+ 2174 018c 8093 F100 		sts 241,r24
+ 2175 0190 00C0      		rjmp .L221
+ 2176               	.LVL249:
+ 2177               	.L196:
+ 871:usb_serial.c  **** 			usb_send_in();
+ 872:usb_serial.c  **** 			return;
+ 873:usb_serial.c  **** 		}
+ 874:usb_serial.c  **** 		if (bRequest == CDC_GET_LINE_CODING && bmRequestType == 0xA1) {
+ 2178               		.loc 1 874 0
+ 2179 0192 8132      		cpi r24,lo8(33)
+ 2180 0194 01F4      		brne .L197
+ 2181               		.loc 1 874 0 is_stmt 0 discriminator 1
+ 2182 0196 913A      		cpi r25,lo8(-95)
+ 2183 0198 01F0      		breq .+2
+ 2184 019a 00C0      		rjmp .L198
+ 875:usb_serial.c  **** 			usb_wait_in_ready();
+ 2185               		.loc 1 875 0 is_stmt 1
+ 2186 019c 0E94 0000 		call usb_wait_in_ready
+ 2187               	.LVL250:
+ 2188 01a0 E0E0      		ldi r30,lo8(cdc_line_coding)
+ 2189 01a2 F0E0      		ldi r31,hi8(cdc_line_coding)
+ 2190               	.LVL251:
+ 2191               	.L200:
+ 876:usb_serial.c  **** 			p = cdc_line_coding;
+ 877:usb_serial.c  **** 			for (i=0; i<7; i++) {
+ 878:usb_serial.c  **** 				UEDATX = *p++;
+ 2192               		.loc 1 878 0 discriminator 2
+ 2193 01a4 8191      		ld r24,Z+
+ 2194               	.LVL252:
+ 2195 01a6 8093 F100 		sts 241,r24
+ 2196               	.LVL253:
+ 877:usb_serial.c  **** 			for (i=0; i<7; i++) {
+ 2197               		.loc 1 877 0 discriminator 2
+ 2198 01aa 80E0      		ldi r24,hi8(cdc_line_coding+7)
+ 2199 01ac E030      		cpi r30,lo8(cdc_line_coding+7)
+ 2200 01ae F807      		cpc r31,r24
+ 2201 01b0 01F4      		brne .L200
+ 2202 01b2 00C0      		rjmp .L221
+ 2203               	.LVL254:
+ 2204               	.L197:
+ 879:usb_serial.c  **** 			}
+ 880:usb_serial.c  **** 			usb_send_in();
+ 881:usb_serial.c  **** 			return;
+ 882:usb_serial.c  **** 		}
+ 883:usb_serial.c  **** 		if (bRequest == CDC_SET_LINE_CODING && bmRequestType == 0x21) {
+ 2205               		.loc 1 883 0
+ 2206 01b4 8032      		cpi r24,lo8(32)
+ 2207 01b6 01F4      		brne .L201
+ 2208               		.loc 1 883 0 is_stmt 0 discriminator 1
+ 2209 01b8 9132      		cpi r25,lo8(33)
+ 2210 01ba 01F4      		brne .L198
+ 2211               	.LVL255:
+ 2212               	.L203:
+ 2213               	.LBB75:
+ 2214               	.LBB76:
+ 760:usb_serial.c  **** 	while (!(UEINTX & (1<<RXOUTI))) ;
+ 2215               		.loc 1 760 0 is_stmt 1
+ 2216 01bc 8091 E800 		lds r24,232
+ 2217 01c0 82FF      		sbrs r24,2
+ 2218 01c2 00C0      		rjmp .L203
+ 2219 01c4 E0E0      		ldi r30,lo8(cdc_line_coding)
+ 2220 01c6 F0E0      		ldi r31,hi8(cdc_line_coding)
+ 2221               	.L205:
+ 2222               	.LVL256:
+ 2223               	.LBE76:
+ 2224               	.LBE75:
+ 884:usb_serial.c  **** 			usb_wait_receive_out();
+ 885:usb_serial.c  **** 			p = cdc_line_coding;
+ 886:usb_serial.c  **** 			for (i=0; i<7; i++) {
+ 887:usb_serial.c  **** 				*p++ = UEDATX;
+ 2225               		.loc 1 887 0 discriminator 2
+ 2226 01c8 8091 F100 		lds r24,241
+ 2227 01cc 8193      		st Z+,r24
+ 2228               	.LVL257:
+ 886:usb_serial.c  **** 			for (i=0; i<7; i++) {
+ 2229               		.loc 1 886 0 discriminator 2
+ 2230 01ce 80E0      		ldi r24,hi8(cdc_line_coding+7)
+ 2231 01d0 E030      		cpi r30,lo8(cdc_line_coding+7)
+ 2232 01d2 F807      		cpc r31,r24
+ 2233 01d4 01F4      		brne .L205
+ 2234               	.LBB77:
+ 2235               	.LBB78:
+ 764:usb_serial.c  **** 	UEINTX = ~(1<<RXOUTI);
+ 2236               		.loc 1 764 0
+ 2237 01d6 8BEF      		ldi r24,lo8(-5)
+ 2238 01d8 8093 E800 		sts 232,r24
+ 2239 01dc 00C0      		rjmp .L221
+ 2240               	.LVL258:
+ 2241               	.L201:
+ 2242               	.LBE78:
+ 2243               	.LBE77:
+ 888:usb_serial.c  **** 			}
+ 889:usb_serial.c  **** 			usb_ack_out();
+ 890:usb_serial.c  **** 			usb_send_in();
+ 891:usb_serial.c  **** 			return;
+ 892:usb_serial.c  **** 		}
+ 893:usb_serial.c  **** 		if (bRequest == CDC_SET_CONTROL_LINE_STATE && bmRequestType == 0x21) {
+ 2244               		.loc 1 893 0
+ 2245 01de 8232      		cpi r24,lo8(34)
+ 2246 01e0 01F4      		brne .L192
+ 2247               		.loc 1 893 0 is_stmt 0 discriminator 1
+ 2248 01e2 9132      		cpi r25,lo8(33)
+ 2249 01e4 01F0      		breq .+2
+ 2250 01e6 00C0      		rjmp .L170
+ 894:usb_serial.c  **** 			cdc_line_rtsdtr = wValue;
+ 2251               		.loc 1 894 0 is_stmt 1
+ 2252 01e8 E092 0000 		sts cdc_line_rtsdtr,r14
+ 895:usb_serial.c  **** 			usb_wait_in_ready();
+ 2253               		.loc 1 895 0
+ 2254 01ec 0E94 0000 		call usb_wait_in_ready
+ 2255               	.LVL259:
+ 2256 01f0 00C0      		rjmp .L221
+ 2257               	.LVL260:
+ 2258               	.L192:
+ 896:usb_serial.c  **** 			usb_send_in();
+ 897:usb_serial.c  **** 			return;
+ 898:usb_serial.c  **** 		}
+ 899:usb_serial.c  **** 		if (bRequest == GET_STATUS) {
+ 2259               		.loc 1 899 0
+ 2260 01f2 8111      		cpse r24,__zero_reg__
+ 2261 01f4 00C0      		rjmp .L198
+ 900:usb_serial.c  **** 			usb_wait_in_ready();
+ 2262               		.loc 1 900 0
+ 2263 01f6 9983      		std Y+1,r25
+ 2264 01f8 0E94 0000 		call usb_wait_in_ready
+ 2265               	.LVL261:
+ 901:usb_serial.c  **** 			i = 0;
+ 902:usb_serial.c  **** 			#ifdef SUPPORT_ENDPOINT_HALT
+ 903:usb_serial.c  **** 			if (bmRequestType == 0x82) {
+ 2266               		.loc 1 903 0
+ 2267 01fc 9981      		ldd r25,Y+1
+ 2268 01fe 9238      		cpi r25,lo8(-126)
+ 2269 0200 01F4      		brne .L208
+ 904:usb_serial.c  **** 				UENUM = wIndex;
+ 2270               		.loc 1 904 0
+ 2271 0202 0093 E900 		sts 233,r16
+ 905:usb_serial.c  **** 				if (UECONX & (1<<STALLRQ)) i = 1;
+ 2272               		.loc 1 905 0
+ 2273 0206 8091 EB00 		lds r24,235
+ 2274 020a 85FB      		bst r24,5
+ 2275 020c 8827      		clr r24
+ 2276 020e 80F9      		bld r24,0
+ 2277               	.LVL262:
+ 906:usb_serial.c  **** 				UENUM = 0;
+ 2278               		.loc 1 906 0
+ 2279 0210 1092 E900 		sts 233,__zero_reg__
+ 2280 0214 00C0      		rjmp .L206
+ 2281               	.LVL263:
+ 2282               	.L208:
+ 901:usb_serial.c  **** 			i = 0;
+ 2283               		.loc 1 901 0
+ 2284 0216 80E0      		ldi r24,0
+ 2285               	.LVL264:
+ 2286               	.L206:
+ 907:usb_serial.c  **** 			}
+ 908:usb_serial.c  **** 			#endif
+ 909:usb_serial.c  **** 			UEDATX = i;
+ 2287               		.loc 1 909 0
+ 2288 0218 8093 F100 		sts 241,r24
+ 910:usb_serial.c  **** 			UEDATX = 0;
+ 2289               		.loc 1 910 0
+ 2290 021c 1092 F100 		sts 241,__zero_reg__
+ 2291               	.LVL265:
+ 2292               	.L221:
+ 2293               	.LBB79:
+ 2294               	.LBB80:
+ 756:usb_serial.c  **** 	UEINTX = ~(1<<TXINI);
+ 2295               		.loc 1 756 0
+ 2296 0220 8EEF      		ldi r24,lo8(-2)
+ 2297 0222 8093 E800 		sts 232,r24
+ 2298 0226 00C0      		rjmp .L169
+ 2299               	.LVL266:
+ 2300               	.L198:
+ 2301               	.LBE80:
+ 2302               	.LBE79:
+ 911:usb_serial.c  **** 			usb_send_in();
+ 912:usb_serial.c  **** 			return;
+ 913:usb_serial.c  **** 		}
+ 914:usb_serial.c  **** 		#ifdef SUPPORT_ENDPOINT_HALT
+ 915:usb_serial.c  **** 		if ((bRequest == CLEAR_FEATURE || bRequest == SET_FEATURE)
+ 2303               		.loc 1 915 0
+ 2304 0228 282F      		mov r18,r24
+ 2305               	.LVL267:
+ 2306 022a 2D7F      		andi r18,lo8(-3)
+ 2307 022c 2130      		cpi r18,lo8(1)
+ 2308 022e 01F4      		brne .L170
+ 916:usb_serial.c  **** 		  && bmRequestType == 0x02 && wValue == 0) {
+ 2309               		.loc 1 916 0
+ 2310 0230 9230      		cpi r25,lo8(2)
+ 2311 0232 01F4      		brne .L170
+ 2312               		.loc 1 916 0 is_stmt 0 discriminator 1
+ 2313 0234 EF28      		or r14,r15
+ 2314 0236 01F4      		brne .L170
+ 917:usb_serial.c  **** 			i = wIndex & 0x7F;
+ 2315               		.loc 1 917 0 is_stmt 1
+ 2316 0238 0F77      		andi r16,lo8(127)
+ 2317               	.LVL268:
+ 918:usb_serial.c  **** 			if (i >= 1 && i <= MAX_ENDPOINT) {
+ 2318               		.loc 1 918 0
+ 2319 023a 9FEF      		ldi r25,lo8(-1)
+ 2320               	.LVL269:
+ 2321 023c 900F      		add r25,r16
+ 2322 023e 9430      		cpi r25,lo8(4)
+ 2323 0240 00F4      		brsh .L170
+ 2324               	.LBB81:
+ 2325               	.LBB82:
+ 756:usb_serial.c  **** 	UEINTX = ~(1<<TXINI);
+ 2326               		.loc 1 756 0
+ 2327 0242 9EEF      		ldi r25,lo8(-2)
+ 2328 0244 9093 E800 		sts 232,r25
+ 2329               	.LBE82:
+ 2330               	.LBE81:
+ 919:usb_serial.c  **** 				usb_send_in();
+ 920:usb_serial.c  **** 				UENUM = i;
+ 2331               		.loc 1 920 0
+ 2332 0248 0093 E900 		sts 233,r16
+ 921:usb_serial.c  **** 				if (bRequest == SET_FEATURE) {
+ 2333               		.loc 1 921 0
+ 2334 024c 8330      		cpi r24,lo8(3)
+ 2335 024e 01F0      		breq .L170
+ 922:usb_serial.c  **** 					UECONX = (1<<STALLRQ)|(1<<EPEN);
+ 923:usb_serial.c  **** 				} else {
+ 924:usb_serial.c  **** 					UECONX = (1<<STALLRQC)|(1<<RSTDT)|(1<<EPEN);
+ 2336               		.loc 1 924 0
+ 2337 0250 89E1      		ldi r24,lo8(25)
+ 2338               	.LVL270:
+ 2339 0252 8093 EB00 		sts 235,r24
+ 925:usb_serial.c  **** 					UERST = (1 << i);
+ 2340               		.loc 1 925 0
+ 2341 0256 81E0      		ldi r24,lo8(1)
+ 2342 0258 90E0      		ldi r25,0
+ 2343 025a 002E      		mov r0,r16
+ 2344 025c 00C0      		rjmp 2f
+ 2345               		1:
+ 2346 025e 880F      		lsl r24
+ 2347               		2:
+ 2348 0260 0A94      		dec r0
+ 2349 0262 02F4      		brpl 1b
+ 2350               	.LVL271:
+ 2351               	.L220:
+ 2352 0264 8093 EA00 		sts 234,r24
+ 926:usb_serial.c  **** 					UERST = 0;
+ 2353               		.loc 1 926 0
+ 2354 0268 1092 EA00 		sts 234,__zero_reg__
+ 2355 026c 00C0      		rjmp .L169
+ 2356               	.LVL272:
+ 2357               	.L170:
+ 927:usb_serial.c  **** 				}
+ 928:usb_serial.c  **** 				return;
+ 929:usb_serial.c  **** 			}
+ 930:usb_serial.c  **** 		}
+ 931:usb_serial.c  **** 		#endif
+ 932:usb_serial.c  ****         }
+ 933:usb_serial.c  **** 	UECONX = (1<<STALLRQ) | (1<<EPEN);	// stall
+ 2358               		.loc 1 933 0
+ 2359 026e 81E2      		ldi r24,lo8(33)
+ 2360 0270 8093 EB00 		sts 235,r24
+ 2361               	.L169:
+ 2362               	/* epilogue start */
+ 934:usb_serial.c  **** }
+ 2363               		.loc 1 934 0
+ 2364 0274 0F90      		pop __tmp_reg__
+ 2365 0276 DF91      		pop r29
+ 2366 0278 CF91      		pop r28
+ 2367 027a FF91      		pop r31
+ 2368 027c EF91      		pop r30
+ 2369 027e BF91      		pop r27
+ 2370 0280 AF91      		pop r26
+ 2371 0282 9F91      		pop r25
+ 2372 0284 8F91      		pop r24
+ 2373 0286 7F91      		pop r23
+ 2374 0288 6F91      		pop r22
+ 2375 028a 5F91      		pop r21
+ 2376 028c 4F91      		pop r20
+ 2377 028e 3F91      		pop r19
+ 2378 0290 2F91      		pop r18
+ 2379 0292 1F91      		pop r17
+ 2380 0294 0F91      		pop r16
+ 2381 0296 FF90      		pop r15
+ 2382 0298 EF90      		pop r14
+ 2383 029a 0F90      		pop r0
+ 2384 029c 0BBE      		out __RAMPZ__,r0
+ 2385 029e 0F90      		pop r0
+ 2386 02a0 0FBE      		out __SREG__,r0
+ 2387 02a2 0F90      		pop r0
+ 2388 02a4 1F90      		pop r1
+ 2389 02a6 1895      		reti
+ 2390               		.cfi_endproc
+ 2391               	.LFE21:
+ 2393               		.local	cdc_line_rtsdtr
+ 2394               		.comm	cdc_line_rtsdtr,1,1
+ 2395               		.data
+ 2398               	cdc_line_coding:
+ 2399 0000 00        		.byte	0
+ 2400 0001 E1        		.byte	-31
+ 2401 0002 00        		.byte	0
+ 2402 0003 00        		.byte	0
+ 2403 0004 00        		.byte	0
+ 2404 0005 00        		.byte	0
+ 2405 0006 08        		.byte	8
+ 2406               		.local	transmit_previous_timeout
+ 2407               		.comm	transmit_previous_timeout,1,1
+ 2408               		.local	transmit_flush_timer
+ 2409               		.comm	transmit_flush_timer,1,1
+ 2410               		.local	usb_configuration
+ 2411               		.comm	usb_configuration,1,1
+ 2412               		.section	.progmem.data,"a",@progbits
+ 2415               	descriptor_list:
+ 2416 0000 0001      		.word	256
+ 2417 0002 0000      		.word	0
+ 2418 0004 0000      		.word	device_descriptor
+ 2419 0006 12        		.byte	18
+ 2420 0007 0002      		.word	512
+ 2421 0009 0000      		.word	0
+ 2422 000b 0000      		.word	config1_descriptor
+ 2423 000d 43        		.byte	67
+ 2424 000e 0003      		.word	768
+ 2425 0010 0000      		.word	0
+ 2426 0012 0000      		.word	string0
+ 2427 0014 04        		.byte	4
+ 2428 0015 0103      		.word	769
+ 2429 0017 0904      		.word	1033
+ 2430 0019 0000      		.word	string1
+ 2431 001b 14        		.byte	20
+ 2432 001c 0203      		.word	770
+ 2433 001e 0904      		.word	1033
+ 2434 0020 0000      		.word	string2
+ 2435 0022 16        		.byte	22
+ 2436 0023 0303      		.word	771
+ 2437 0025 0904      		.word	1033
+ 2438 0027 0000      		.word	string3
+ 2439 0029 0C        		.byte	12
+ 2442               	string3:
+ 2443 002a 0C        		.byte	12
+ 2444 002b 03        		.byte	3
+ 2445 002c 3100      		.string	"1"
+ 2446 002e 3200      		.string	"2"
+ 2447 0030 3300      		.string	"3"
+ 2448 0032 3400      		.string	"4"
+ 2449 0034 3500      		.string	"5"
+ 2450 0036 00        		.string	""
+ 2451 0037 00        		.string	""
+ 2454               	string2:
+ 2455 0038 16        		.byte	22
+ 2456 0039 03        		.byte	3
+ 2457 003a 5500      		.string	"U"
+ 2458 003c 5300      		.string	"S"
+ 2459 003e 4200      		.string	"B"
+ 2460 0040 2000      		.string	" "
+ 2461 0042 5300      		.string	"S"
+ 2462 0044 6500      		.string	"e"
+ 2463 0046 7200      		.string	"r"
+ 2464 0048 6900      		.string	"i"
+ 2465 004a 6100      		.string	"a"
+ 2466 004c 6C00      		.string	"l"
+ 2467 004e 00        		.string	""
+ 2468 004f 00        		.string	""
+ 2471               	string1:
+ 2472 0050 14        		.byte	20
+ 2473 0051 03        		.byte	3
+ 2474 0052 5900      		.string	"Y"
+ 2475 0054 6F00      		.string	"o"
+ 2476 0056 7500      		.string	"u"
+ 2477 0058 7200      		.string	"r"
+ 2478 005a 2000      		.string	" "
+ 2479 005c 4E00      		.string	"N"
+ 2480 005e 6100      		.string	"a"
+ 2481 0060 6D00      		.string	"m"
+ 2482 0062 6500      		.string	"e"
+ 2483 0064 00        		.string	""
+ 2484 0065 00        		.string	""
+ 2487               	string0:
+ 2488 0066 04        		.byte	4
+ 2489 0067 03        		.byte	3
+ 2490 0068 0904      		.word	1033
+ 2493               	config1_descriptor:
+ 2494 006a 09        		.byte	9
+ 2495 006b 02        		.byte	2
+ 2496 006c 43        		.byte	67
+ 2497 006d 00        		.byte	0
+ 2498 006e 02        		.byte	2
+ 2499 006f 01        		.byte	1
+ 2500 0070 00        		.byte	0
+ 2501 0071 C0        		.byte	-64
+ 2502 0072 32        		.byte	50
+ 2503 0073 09        		.byte	9
+ 2504 0074 04        		.byte	4
+ 2505 0075 00        		.byte	0
+ 2506 0076 00        		.byte	0
+ 2507 0077 01        		.byte	1
+ 2508 0078 02        		.byte	2
+ 2509 0079 02        		.byte	2
+ 2510 007a 01        		.byte	1
+ 2511 007b 00        		.byte	0
+ 2512 007c 05        		.byte	5
+ 2513 007d 24        		.byte	36
+ 2514 007e 00        		.byte	0
+ 2515 007f 10        		.byte	16
+ 2516 0080 01        		.byte	1
+ 2517 0081 05        		.byte	5
+ 2518 0082 24        		.byte	36
+ 2519 0083 01        		.byte	1
+ 2520 0084 01        		.byte	1
+ 2521 0085 01        		.byte	1
+ 2522 0086 04        		.byte	4
+ 2523 0087 24        		.byte	36
+ 2524 0088 02        		.byte	2
+ 2525 0089 06        		.byte	6
+ 2526 008a 05        		.byte	5
+ 2527 008b 24        		.byte	36
+ 2528 008c 06        		.byte	6
+ 2529 008d 00        		.byte	0
+ 2530 008e 01        		.byte	1
+ 2531 008f 07        		.byte	7
+ 2532 0090 05        		.byte	5
+ 2533 0091 82        		.byte	-126
+ 2534 0092 03        		.byte	3
+ 2535 0093 10        		.byte	16
+ 2536 0094 00        		.byte	0
+ 2537 0095 40        		.byte	64
+ 2538 0096 09        		.byte	9
+ 2539 0097 04        		.byte	4
+ 2540 0098 01        		.byte	1
+ 2541 0099 00        		.byte	0
+ 2542 009a 02        		.byte	2
+ 2543 009b 0A        		.byte	10
+ 2544 009c 00        		.byte	0
+ 2545 009d 00        		.byte	0
+ 2546 009e 00        		.byte	0
+ 2547 009f 07        		.byte	7
+ 2548 00a0 05        		.byte	5
+ 2549 00a1 03        		.byte	3
+ 2550 00a2 02        		.byte	2
+ 2551 00a3 40        		.byte	64
+ 2552 00a4 00        		.byte	0
+ 2553 00a5 00        		.byte	0
+ 2554 00a6 07        		.byte	7
+ 2555 00a7 05        		.byte	5
+ 2556 00a8 84        		.byte	-124
+ 2557 00a9 02        		.byte	2
+ 2558 00aa 40        		.byte	64
+ 2559 00ab 00        		.byte	0
+ 2560 00ac 00        		.byte	0
+ 2563               	device_descriptor:
+ 2564 00ad 12        		.byte	18
+ 2565 00ae 01        		.byte	1
+ 2566 00af 00        		.byte	0
+ 2567 00b0 02        		.byte	2
+ 2568 00b1 02        		.byte	2
+ 2569 00b2 00        		.byte	0
+ 2570 00b3 00        		.byte	0
+ 2571 00b4 10        		.byte	16
+ 2572 00b5 C0        		.byte	-64
+ 2573 00b6 16        		.byte	22
+ 2574 00b7 7A        		.byte	122
+ 2575 00b8 04        		.byte	4
+ 2576 00b9 00        		.byte	0
+ 2577 00ba 01        		.byte	1
+ 2578 00bb 01        		.byte	1
+ 2579 00bc 02        		.byte	2
+ 2580 00bd 03        		.byte	3
+ 2581 00be 01        		.byte	1
+ 2584               	endpoint_config_table:
+ 2585 00bf 00        		.byte	0
+ 2586 00c0 01        		.byte	1
+ 2587 00c1 C1        		.byte	-63
+ 2588 00c2 12        		.byte	18
+ 2589 00c3 01        		.byte	1
+ 2590 00c4 80        		.byte	-128
+ 2591 00c5 36        		.byte	54
+ 2592 00c6 01        		.byte	1
+ 2593 00c7 81        		.byte	-127
+ 2594 00c8 36        		.byte	54
+ 2595               		.text
+ 2596               	.Letext0:
+ 2597               		.file 2 "/usr/lib/avr/include/stdint.h"
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 usb_serial.c
+     /tmp/ccdvDbru.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccdvDbru.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccdvDbru.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccdvDbru.s:5      *ABS*:000000000000003b __RAMPZ__
+     /tmp/ccdvDbru.s:6      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccdvDbru.s:7      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccdvDbru.s:13     .text.usb_wait_in_ready:0000000000000000 usb_wait_in_ready
+     /tmp/ccdvDbru.s:36     .text.usb_init:0000000000000000 usb_init
+     /tmp/ccdvDbru.s:2409   .bss:0000000000000003 usb_configuration
+                             .bss:0000000000000000 cdc_line_rtsdtr
+     /tmp/ccdvDbru.s:83     .text.usb_configured:0000000000000000 usb_configured
+     /tmp/ccdvDbru.s:101    .text.usb_serial_getchar:0000000000000000 usb_serial_getchar
+     /tmp/ccdvDbru.s:175    .text.usb_serial_available:0000000000000000 usb_serial_available
+     /tmp/ccdvDbru.s:237    .text.usb_serial_flush_input:0000000000000000 usb_serial_flush_input
+     /tmp/ccdvDbru.s:283    .text.usb_serial_putchar:0000000000000000 usb_serial_putchar
+     /tmp/ccdvDbru.s:2394   .bss:0000000000000001 transmit_previous_timeout
+     /tmp/ccdvDbru.s:2407   .bss:0000000000000002 transmit_flush_timer
+     /tmp/ccdvDbru.s:399    .text.usb_serial_putchar_nowait:0000000000000000 usb_serial_putchar_nowait
+     /tmp/ccdvDbru.s:465    .text.usb_serial_write:0000000000000000 usb_serial_write
+     /tmp/ccdvDbru.s:1424   .text.usb_serial_flush_output:0000000000000000 usb_serial_flush_output
+     /tmp/ccdvDbru.s:1463   .text.usb_serial_get_baud:0000000000000000 usb_serial_get_baud
+     /tmp/ccdvDbru.s:2398   .data:0000000000000000 cdc_line_coding
+     /tmp/ccdvDbru.s:1484   .text.usb_serial_get_stopbits:0000000000000000 usb_serial_get_stopbits
+     /tmp/ccdvDbru.s:1501   .text.usb_serial_get_paritytype:0000000000000000 usb_serial_get_paritytype
+     /tmp/ccdvDbru.s:1518   .text.usb_serial_get_numbits:0000000000000000 usb_serial_get_numbits
+     /tmp/ccdvDbru.s:1535   .text.usb_serial_get_control:0000000000000000 usb_serial_get_control
+     /tmp/ccdvDbru.s:1552   .text.usb_serial_set_control:0000000000000000 usb_serial_set_control
+     /tmp/ccdvDbru.s:1628   .text.__vector_10:0000000000000000 __vector_10
+     /tmp/ccdvDbru.s:1726   .text.__vector_11:0000000000000000 __vector_11
+     /tmp/ccdvDbru.s:2415   .progmem.data:0000000000000000 descriptor_list
+     /tmp/ccdvDbru.s:2584   .progmem.data:00000000000000bf endpoint_config_table
+     /tmp/ccdvDbru.s:2563   .progmem.data:00000000000000ad device_descriptor
+     /tmp/ccdvDbru.s:2493   .progmem.data:000000000000006a config1_descriptor
+     /tmp/ccdvDbru.s:2487   .progmem.data:0000000000000066 string0
+     /tmp/ccdvDbru.s:2471   .progmem.data:0000000000000050 string1
+     /tmp/ccdvDbru.s:2454   .progmem.data:0000000000000038 string2
+     /tmp/ccdvDbru.s:2442   .progmem.data:000000000000002a string3
+
+UNDEFINED SYMBOLS
+__tablejump2__
+__do_copy_data
+__do_clear_bss

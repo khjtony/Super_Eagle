@@ -1,0 +1,1 @@
+'D:\workspace\Super-Eagle\CharLCD_CustomFont01\CharLCD_HBar01.cydsn\main.c' -o .o -T C_FILE -I 'D:\workspace\Super-Eagle\CharLCD_CustomFont01\CharLCD_HBar01.cydsn' -I 'D:\workspace\Super-Eagle\CharLCD_CustomFont01\CharLCD_HBar01.cydsn\Generated_Source\PSoC5' -f 'D:\workspace\Super-Eagle\CharLCD_CustomFont01\CharLCD_HBar01.cydsn\ARM_GCC_484\Debug\.deps\C_FILE.d'

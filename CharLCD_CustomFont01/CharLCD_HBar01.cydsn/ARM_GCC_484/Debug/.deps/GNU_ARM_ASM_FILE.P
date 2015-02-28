@@ -1,0 +1,10 @@
+D:/workspace/Super-Eagle/CharLCD_CustomFont01/CharLCD_HBar01.cydsn/ARM_GCC_484/Debug/CyBootAsmGnu.o : D:/workspace/Super-Eagle/CharLCD_CustomFont01/CharLCD_HBar01.cydsn/Generated_Source/PSoC5/cydevicegnu.inc D:/workspace/Super-Eagle/CharLCD_CustomFont01/CharLCD_HBar01.cydsn/Generated_Source/PSoC5/cydevicegnu_trm.inc D:/workspace/Super-Eagle/CharLCD_CustomFont01/CharLCD_HBar01.cydsn/Generated_Source/PSoC5/cyfittergnu.inc D:/workspace/Super-Eagle/CharLCD_CustomFont01/CharLCD_HBar01.cydsn/Generated_Source/PSoC5/CyBootAsmGnu.s 
+
+D:/workspace/Super-Eagle/CharLCD_CustomFont01/CharLCD_HBar01.cydsn/Generated_Source/PSoC5/cydevicegnu.inc : 
+
+D:/workspace/Super-Eagle/CharLCD_CustomFont01/CharLCD_HBar01.cydsn/Generated_Source/PSoC5/cydevicegnu_trm.inc : 
+
+D:/workspace/Super-Eagle/CharLCD_CustomFont01/CharLCD_HBar01.cydsn/Generated_Source/PSoC5/cyfittergnu.inc : 
+
+D:/workspace/Super-Eagle/CharLCD_CustomFont01/CharLCD_HBar01.cydsn/Generated_Source/PSoC5/CyBootAsmGnu.s : 
+

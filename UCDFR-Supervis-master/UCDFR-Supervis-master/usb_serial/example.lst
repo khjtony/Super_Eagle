@@ -1,0 +1,1033 @@
+   1               		.file	"example.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.text
+   8               	.Ltext0:
+   9               		.cfi_sections	.debug_frame
+  10               		.section	.text.send_str,"ax",@progbits
+  11               	.global	send_str
+  13               	send_str:
+  14               	.LFB8:
+  15               		.file 1 "example.c"
+   1:example.c     **** /* Simple example for Teensy USB Development Board
+   2:example.c     ****  * http://www.pjrc.com/teensy/
+   3:example.c     ****  * Copyright (c) 2008 PJRC.COM, LLC
+   4:example.c     ****  * 
+   5:example.c     ****  * Permission is hereby granted, free of charge, to any person obtaining a copy
+   6:example.c     ****  * of this software and associated documentation files (the "Software"), to deal
+   7:example.c     ****  * in the Software without restriction, including without limitation the rights
+   8:example.c     ****  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+   9:example.c     ****  * copies of the Software, and to permit persons to whom the Software is
+  10:example.c     ****  * furnished to do so, subject to the following conditions:
+  11:example.c     ****  * 
+  12:example.c     ****  * The above copyright notice and this permission notice shall be included in
+  13:example.c     ****  * all copies or substantial portions of the Software.
+  14:example.c     ****  * 
+  15:example.c     ****  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  16:example.c     ****  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  17:example.c     ****  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  18:example.c     ****  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  19:example.c     ****  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  20:example.c     ****  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  21:example.c     ****  * THE SOFTWARE.
+  22:example.c     ****  */
+  23:example.c     **** 
+  24:example.c     **** #include <avr/io.h>
+  25:example.c     **** #include <avr/pgmspace.h>
+  26:example.c     **** #include <stdint.h>
+  27:example.c     **** #include <util/delay.h>
+  28:example.c     **** #include "usb_serial.h"
+  29:example.c     **** 
+  30:example.c     **** #define LED_CONFIG	(DDRD |= (1<<6))
+  31:example.c     **** #define LED_ON		(PORTD |= (1<<6))
+  32:example.c     **** #define LED_OFF		(PORTD &= ~(1<<6))
+  33:example.c     **** #define CPU_PRESCALE(n) (CLKPR = 0x80, CLKPR = (n))
+  34:example.c     **** 
+  35:example.c     **** void send_str(const char *s);
+  36:example.c     **** uint8_t recv_str(char *buf, uint8_t size);
+  37:example.c     **** void parse_and_execute_command(const char *buf, uint8_t num);
+  38:example.c     **** 
+  39:example.c     **** #if 0
+  40:example.c     **** // Very simple character echo test
+  41:example.c     **** int main(void)
+  42:example.c     **** {
+  43:example.c     **** 	CPU_PRESCALE(0);
+  44:example.c     **** 	usb_init();
+  45:example.c     **** 	while (1) {
+  46:example.c     **** 		int n = usb_serial_getchar();
+  47:example.c     **** 		if (n >= 0) usb_serial_putchar(n);
+  48:example.c     **** 	}
+  49:example.c     **** }
+  50:example.c     **** 
+  51:example.c     **** #else
+  52:example.c     **** 
+  53:example.c     **** // Basic command interpreter for controlling port pins
+  54:example.c     **** int main(void)
+  55:example.c     **** {
+  56:example.c     **** 	char buf[32];
+  57:example.c     **** 	uint8_t n;
+  58:example.c     **** 
+  59:example.c     **** 	// set for 16 MHz clock, and turn on the LED
+  60:example.c     **** 	CPU_PRESCALE(0);
+  61:example.c     **** 	LED_CONFIG;
+  62:example.c     **** 	LED_ON;
+  63:example.c     **** 
+  64:example.c     **** 	// initialize the USB, and then wait for the host
+  65:example.c     **** 	// to set configuration.  If the Teensy is powered
+  66:example.c     **** 	// without a PC connected to the USB port, this 
+  67:example.c     **** 	// will wait forever.
+  68:example.c     **** 	usb_init();
+  69:example.c     **** 	while (!usb_configured()) /* wait */ ;
+  70:example.c     **** 	_delay_ms(1000);
+  71:example.c     **** 
+  72:example.c     **** 	while (1) {
+  73:example.c     **** 		// wait for the user to run their terminal emulator program
+  74:example.c     **** 		// which sets DTR to indicate it is ready to receive.
+  75:example.c     **** 		while (!(usb_serial_get_control() & USB_SERIAL_DTR)) /* wait */ ;
+  76:example.c     **** 
+  77:example.c     **** 		// discard anything that was received prior.  Sometimes the
+  78:example.c     **** 		// operating system or other software will send a modem
+  79:example.c     **** 		// "AT command", which can still be buffered.
+  80:example.c     **** 		usb_serial_flush_input();
+  81:example.c     **** 
+  82:example.c     **** 		// print a nice welcome message
+  83:example.c     **** 		send_str(PSTR("\r\nTeensy USB Serial Example, "
+  84:example.c     **** 			"Simple Pin Control Shell\r\n\r\n"
+  85:example.c     **** 			"Example Commands\r\n"
+  86:example.c     **** 			"  B0?   Read Port B, pin 0\r\n"
+  87:example.c     **** 			"  C2=0  Write Port C, pin 1 LOW\r\n"
+  88:example.c     **** 			"  D6=1  Write Port D, pin 6 HIGH  (D6 is LED pin)\r\n\r\n"));
+  89:example.c     **** 
+  90:example.c     **** 		// and then listen for commands and process them
+  91:example.c     **** 		while (1) {
+  92:example.c     **** 			send_str(PSTR("> "));
+  93:example.c     **** 			n = recv_str(buf, sizeof(buf));
+  94:example.c     **** 			if (n == 255) break;
+  95:example.c     **** 			send_str(PSTR("\r\n"));
+  96:example.c     **** 			parse_and_execute_command(buf, n);
+  97:example.c     **** 		}
+  98:example.c     **** 	}
+  99:example.c     **** }
+ 100:example.c     **** #endif
+ 101:example.c     **** 
+ 102:example.c     **** // Send a string to the USB serial port.  The string must be in
+ 103:example.c     **** // flash memory, using PSTR
+ 104:example.c     **** //
+ 105:example.c     **** void send_str(const char *s)
+ 106:example.c     **** {
+  16               		.loc 1 106 0
+  17               		.cfi_startproc
+  18               	.LVL0:
+  19 0000 CF93      		push r28
+  20               	.LCFI0:
+  21               		.cfi_def_cfa_offset 3
+  22               		.cfi_offset 28, -2
+  23 0002 DF93      		push r29
+  24               	.LCFI1:
+  25               		.cfi_def_cfa_offset 4
+  26               		.cfi_offset 29, -3
+  27               	/* prologue: function */
+  28               	/* frame size = 0 */
+  29               	/* stack size = 2 */
+  30               	.L__stack_usage = 2
+  31 0004 FC01      		movw r30,r24
+  32               	.LVL1:
+  33               	.L3:
+  34               	.LBB7:
+ 107:example.c     **** 	char c;
+ 108:example.c     **** 	while (1) {
+ 109:example.c     **** 		c = pgm_read_byte(s++);
+  35               		.loc 1 109 0
+  36               	/* #APP */
+  37               	 ;  109 "example.c" 1
+  38 0006 8491      		lpm r24, Z
+  39               		
+  40               	 ;  0 "" 2
+  41               	.LVL2:
+  42               	/* #NOAPP */
+  43 0008 EF01      		movw r28,r30
+  44 000a 2196      		adiw r28,1
+  45               	.LVL3:
+  46               	.LBE7:
+ 110:example.c     **** 		if (!c) break;
+  47               		.loc 1 110 0
+  48 000c 8823      		tst r24
+  49 000e 01F0      		breq .L1
+ 111:example.c     **** 		usb_serial_putchar(c);
+  50               		.loc 1 111 0
+  51 0010 0E94 0000 		call usb_serial_putchar
+  52               	.LVL4:
+  53 0014 FE01      		movw r30,r28
+ 112:example.c     **** 	}
+  54               		.loc 1 112 0
+  55 0016 00C0      		rjmp .L3
+  56               	.LVL5:
+  57               	.L1:
+  58               	/* epilogue start */
+ 113:example.c     **** }
+  59               		.loc 1 113 0
+  60 0018 DF91      		pop r29
+  61 001a CF91      		pop r28
+  62               	.LVL6:
+  63 001c 0895      		ret
+  64               		.cfi_endproc
+  65               	.LFE8:
+  67               		.section	.text.recv_str,"ax",@progbits
+  68               	.global	recv_str
+  70               	recv_str:
+  71               	.LFB9:
+ 114:example.c     **** 
+ 115:example.c     **** // Receive a string from the USB serial port.  The string is stored
+ 116:example.c     **** // in the buffer and this function will not exceed the buffer size.
+ 117:example.c     **** // A carriage return or newline completes the string, and is not
+ 118:example.c     **** // stored into the buffer.
+ 119:example.c     **** // The return value is the number of characters received, or 255 if
+ 120:example.c     **** // the virtual serial connection was closed while waiting.
+ 121:example.c     **** //
+ 122:example.c     **** uint8_t recv_str(char *buf, uint8_t size)
+ 123:example.c     **** {
+  72               		.loc 1 123 0
+  73               		.cfi_startproc
+  74               	.LVL7:
+  75 0000 EF92      		push r14
+  76               	.LCFI2:
+  77               		.cfi_def_cfa_offset 3
+  78               		.cfi_offset 14, -2
+  79 0002 FF92      		push r15
+  80               	.LCFI3:
+  81               		.cfi_def_cfa_offset 4
+  82               		.cfi_offset 15, -3
+  83 0004 0F93      		push r16
+  84               	.LCFI4:
+  85               		.cfi_def_cfa_offset 5
+  86               		.cfi_offset 16, -4
+  87 0006 1F93      		push r17
+  88               	.LCFI5:
+  89               		.cfi_def_cfa_offset 6
+  90               		.cfi_offset 17, -5
+  91 0008 CF93      		push r28
+  92               	.LCFI6:
+  93               		.cfi_def_cfa_offset 7
+  94               		.cfi_offset 28, -6
+  95 000a DF93      		push r29
+  96               	.LCFI7:
+  97               		.cfi_def_cfa_offset 8
+  98               		.cfi_offset 29, -7
+  99               	/* prologue: function */
+ 100               	/* frame size = 0 */
+ 101               	/* stack size = 6 */
+ 102               	.L__stack_usage = 6
+ 103 000c EC01      		movw r28,r24
+ 104 000e E62E      		mov r14,r22
+ 105               	.LVL8:
+ 124:example.c     **** 	int16_t r;
+ 125:example.c     **** 	uint8_t count=0;
+ 106               		.loc 1 125 0
+ 107 0010 F12C      		mov r15,__zero_reg__
+ 108               	.LVL9:
+ 109               	.L6:
+ 126:example.c     **** 
+ 127:example.c     **** 	while (count < size) {
+ 110               		.loc 1 127 0 discriminator 1
+ 111 0012 FE14      		cp r15,r14
+ 112 0014 00F4      		brsh .L14
+ 128:example.c     **** 		r = usb_serial_getchar();
+ 113               		.loc 1 128 0
+ 114 0016 0E94 0000 		call usb_serial_getchar
+ 115               	.LVL10:
+ 129:example.c     **** 		if (r != -1) {
+ 116               		.loc 1 129 0
+ 117 001a 8F3F      		cpi r24,-1
+ 118 001c 2FEF      		ldi r18,-1
+ 119 001e 9207      		cpc r25,r18
+ 120 0020 01F0      		breq .L7
+ 130:example.c     **** 			if (r == '\r' || r == '\n') return count;
+ 121               		.loc 1 130 0
+ 122 0022 8D30      		cpi r24,13
+ 123 0024 9105      		cpc r25,__zero_reg__
+ 124 0026 01F0      		breq .L14
+ 125               		.loc 1 130 0 is_stmt 0 discriminator 2
+ 126 0028 8A30      		cpi r24,10
+ 127 002a 9105      		cpc r25,__zero_reg__
+ 128 002c 01F0      		breq .L14
+ 131:example.c     **** 			if (r >= ' ' && r <= '~') {
+ 129               		.loc 1 131 0 is_stmt 1
+ 130 002e 9C01      		movw r18,r24
+ 131 0030 2052      		subi r18,32
+ 132 0032 3109      		sbc r19,__zero_reg__
+ 133 0034 2F35      		cpi r18,95
+ 134 0036 3105      		cpc r19,__zero_reg__
+ 135 0038 00F4      		brsh .L6
+ 132:example.c     **** 				*buf++ = r;
+ 136               		.loc 1 132 0
+ 137 003a 8E01      		movw r16,r28
+ 138 003c 0F5F      		subi r16,-1
+ 139 003e 1F4F      		sbci r17,-1
+ 140               	.LVL11:
+ 141 0040 8883      		st Y,r24
+ 133:example.c     **** 				usb_serial_putchar(r);
+ 142               		.loc 1 133 0
+ 143 0042 0E94 0000 		call usb_serial_putchar
+ 144               	.LVL12:
+ 134:example.c     **** 				count++;
+ 145               		.loc 1 134 0
+ 146 0046 F394      		inc r15
+ 147               	.LVL13:
+ 132:example.c     **** 				*buf++ = r;
+ 148               		.loc 1 132 0
+ 149 0048 E801      		movw r28,r16
+ 150 004a 00C0      		rjmp .L6
+ 151               	.LVL14:
+ 152               	.L7:
+ 135:example.c     **** 			}
+ 136:example.c     **** 		} else {
+ 137:example.c     **** 			if (!usb_configured() ||
+ 153               		.loc 1 137 0
+ 154 004c 0E94 0000 		call usb_configured
+ 155               	.LVL15:
+ 156 0050 8111      		cpse r24,__zero_reg__
+ 157 0052 00C0      		rjmp .L10
+ 158               	.L11:
+ 138:example.c     **** 			  !(usb_serial_get_control() & USB_SERIAL_DTR)) {
+ 139:example.c     **** 				// user no longer connected
+ 140:example.c     **** 				return 255;
+ 159               		.loc 1 140 0
+ 160 0054 8FEF      		ldi r24,lo8(-1)
+ 161 0056 00C0      		rjmp .L8
+ 162               	.L10:
+ 138:example.c     **** 			  !(usb_serial_get_control() & USB_SERIAL_DTR)) {
+ 163               		.loc 1 138 0 discriminator 1
+ 164 0058 0E94 0000 		call usb_serial_get_control
+ 165               	.LVL16:
+ 137:example.c     **** 			if (!usb_configured() ||
+ 166               		.loc 1 137 0 discriminator 1
+ 167 005c 80FD      		sbrc r24,0
+ 168 005e 00C0      		rjmp .L6
+ 169 0060 00C0      		rjmp .L11
+ 170               	.L14:
+ 171 0062 8F2D      		mov r24,r15
+ 172               	.L8:
+ 173               	/* epilogue start */
+ 141:example.c     **** 			}
+ 142:example.c     **** 			// just a normal timeout, keep waiting
+ 143:example.c     **** 		}
+ 144:example.c     **** 	}
+ 145:example.c     **** 	return count;
+ 146:example.c     **** }
+ 174               		.loc 1 146 0
+ 175 0064 DF91      		pop r29
+ 176 0066 CF91      		pop r28
+ 177               	.LVL17:
+ 178 0068 1F91      		pop r17
+ 179 006a 0F91      		pop r16
+ 180 006c FF90      		pop r15
+ 181               	.LVL18:
+ 182 006e EF90      		pop r14
+ 183               	.LVL19:
+ 184 0070 0895      		ret
+ 185               		.cfi_endproc
+ 186               	.LFE9:
+ 188               		.section	.text.parse_and_execute_command,"ax",@progbits
+ 189               	.global	parse_and_execute_command
+ 191               	parse_and_execute_command:
+ 192               	.LFB10:
+ 147:example.c     **** 
+ 148:example.c     **** // parse a user command and execute it, or print an error message
+ 149:example.c     **** //
+ 150:example.c     **** void parse_and_execute_command(const char *buf, uint8_t num)
+ 151:example.c     **** {
+ 193               		.loc 1 151 0
+ 194               		.cfi_startproc
+ 195               	.LVL20:
+ 196 0000 CF93      		push r28
+ 197               	.LCFI8:
+ 198               		.cfi_def_cfa_offset 3
+ 199               		.cfi_offset 28, -2
+ 200 0002 DF93      		push r29
+ 201               	.LCFI9:
+ 202               		.cfi_def_cfa_offset 4
+ 203               		.cfi_offset 29, -3
+ 204               	/* prologue: function */
+ 205               	/* frame size = 0 */
+ 206               	/* stack size = 2 */
+ 207               	.L__stack_usage = 2
+ 208 0004 EC01      		movw r28,r24
+ 152:example.c     **** 	uint8_t port, pin, val;
+ 153:example.c     **** 
+ 154:example.c     **** 	if (num < 3) {
+ 209               		.loc 1 154 0
+ 210 0006 6330      		cpi r22,lo8(3)
+ 211 0008 00F4      		brsh .L19
+ 155:example.c     **** 		send_str(PSTR("unrecognized format, 3 chars min req'd\r\n"));
+ 212               		.loc 1 155 0
+ 213 000a 80E0      		ldi r24,lo8(__c.1865)
+ 214 000c 90E0      		ldi r25,hi8(__c.1865)
+ 215               	.LVL21:
+ 216 000e 00C0      		rjmp .L35
+ 217               	.LVL22:
+ 218               	.L19:
+ 156:example.c     **** 		return;
+ 157:example.c     **** 	}
+ 158:example.c     **** 	// first character is the port letter
+ 159:example.c     **** 	if (buf[0] >= 'A' && buf[0] <= 'F') {
+ 219               		.loc 1 159 0
+ 220 0010 8881      		ld r24,Y
+ 221               	.LVL23:
+ 222 0012 EFEB      		ldi r30,lo8(-65)
+ 223 0014 E80F      		add r30,r24
+ 224 0016 E630      		cpi r30,lo8(6)
+ 225 0018 00F0      		brlo .L20
+ 160:example.c     **** 		port = buf[0] - 'A';
+ 161:example.c     **** 	} else if (buf[0] >= 'a' && buf[0] <= 'f') {
+ 226               		.loc 1 161 0
+ 227 001a EFE9      		ldi r30,lo8(-97)
+ 228 001c E80F      		add r30,r24
+ 229 001e E630      		cpi r30,lo8(6)
+ 230 0020 00F0      		brlo .L20
+ 162:example.c     **** 		port = buf[0] - 'a';
+ 163:example.c     **** 	} else {
+ 164:example.c     **** 		send_str(PSTR("Unknown port \""));
+ 231               		.loc 1 164 0
+ 232 0022 80E0      		ldi r24,lo8(__c.1867)
+ 233 0024 90E0      		ldi r25,hi8(__c.1867)
+ 234 0026 0E94 0000 		call send_str
+ 235               	.LVL24:
+ 165:example.c     **** 		usb_serial_putchar(buf[0]);
+ 236               		.loc 1 165 0
+ 237 002a 8881      		ld r24,Y
+ 238 002c 0E94 0000 		call usb_serial_putchar
+ 239               	.LVL25:
+ 166:example.c     **** 		send_str(PSTR("\", must be A - F\r\n"));
+ 240               		.loc 1 166 0
+ 241 0030 80E0      		ldi r24,lo8(__c.1869)
+ 242 0032 90E0      		ldi r25,hi8(__c.1869)
+ 243 0034 00C0      		rjmp .L35
+ 244               	.LVL26:
+ 245               	.L20:
+ 167:example.c     **** 		return;
+ 168:example.c     **** 	}
+ 169:example.c     **** 	// second character is the pin number
+ 170:example.c     **** 	if (buf[1] >= '0' && buf[1] <= '7') {
+ 246               		.loc 1 170 0
+ 247 0036 2981      		ldd r18,Y+1
+ 248 0038 2053      		subi r18,lo8(-(-48))
+ 249 003a 2830      		cpi r18,lo8(8)
+ 250 003c 00F4      		brsh .L21
+ 251               	.LVL27:
+ 171:example.c     **** 		pin = buf[1] - '0';
+ 172:example.c     **** 	} else {
+ 173:example.c     **** 		send_str(PSTR("Unknown pin \""));
+ 174:example.c     **** 		usb_serial_putchar(buf[0]);
+ 175:example.c     **** 		send_str(PSTR("\", must be 0 to 7\r\n"));
+ 176:example.c     **** 		return;
+ 177:example.c     **** 	}
+ 178:example.c     **** 	// if the third character is a question mark, read the pin
+ 179:example.c     **** 	if (buf[2] == '?') {
+ 252               		.loc 1 179 0
+ 253 003e 8A81      		ldd r24,Y+2
+ 254 0040 8F33      		cpi r24,lo8(63)
+ 255 0042 01F4      		brne .L33
+ 256 0044 00C0      		rjmp .L36
+ 257               	.LVL28:
+ 258               	.L21:
+ 173:example.c     **** 		send_str(PSTR("Unknown pin \""));
+ 259               		.loc 1 173 0
+ 260 0046 80E0      		ldi r24,lo8(__c.1871)
+ 261 0048 90E0      		ldi r25,hi8(__c.1871)
+ 262 004a 0E94 0000 		call send_str
+ 263               	.LVL29:
+ 174:example.c     **** 		usb_serial_putchar(buf[0]);
+ 264               		.loc 1 174 0
+ 265 004e 8881      		ld r24,Y
+ 266 0050 0E94 0000 		call usb_serial_putchar
+ 267               	.LVL30:
+ 175:example.c     **** 		send_str(PSTR("\", must be 0 to 7\r\n"));
+ 268               		.loc 1 175 0
+ 269 0054 80E0      		ldi r24,lo8(__c.1873)
+ 270 0056 90E0      		ldi r25,hi8(__c.1873)
+ 271 0058 00C0      		rjmp .L35
+ 272               	.LVL31:
+ 273               	.L36:
+ 180:example.c     **** 		// make the pin an input
+ 181:example.c     **** 		*(uint8_t *)(0x21 + port * 3) &= ~(1 << pin);
+ 274               		.loc 1 181 0
+ 275 005a 83E0      		ldi r24,lo8(3)
+ 276 005c E89F      		mul r30,r24
+ 277 005e F001      		movw r30,r0
+ 278 0060 1124      		clr __zero_reg__
+ 279               	.LVL32:
+ 280 0062 81E0      		ldi r24,lo8(1)
+ 281 0064 90E0      		ldi r25,0
+ 282 0066 00C0      		rjmp 2f
+ 283               		1:
+ 284 0068 880F      		lsl r24
+ 285               		2:
+ 286 006a 2A95      		dec r18
+ 287 006c 02F4      		brpl 1b
+ 288 006e 282F      		mov r18,r24
+ 289               	.LVL33:
+ 290 0070 2095      		com r18
+ 291 0072 91A1      		ldd r25,Z+33
+ 292 0074 9223      		and r25,r18
+ 293 0076 91A3      		std Z+33,r25
+ 294               	.LVL34:
+ 182:example.c     **** 		// read the pin
+ 183:example.c     **** 		val = *(uint8_t *)(0x20 + port * 3) & (1 << pin);
+ 295               		.loc 1 183 0
+ 296 0078 90A1      		ldd r25,Z+32
+ 297 007a 9823      		and r25,r24
+ 184:example.c     **** 		usb_serial_putchar(val ? '1' : '0');
+ 298               		.loc 1 184 0
+ 299 007c 01F0      		breq .L29
+ 300 007e 81E3      		ldi r24,lo8(49)
+ 301               	.LVL35:
+ 302 0080 00C0      		rjmp .L24
+ 303               	.LVL36:
+ 304               	.L29:
+ 305 0082 80E3      		ldi r24,lo8(48)
+ 306               	.LVL37:
+ 307               	.L24:
+ 308               		.loc 1 184 0 is_stmt 0 discriminator 3
+ 309 0084 0E94 0000 		call usb_serial_putchar
+ 310               	.LVL38:
+ 185:example.c     **** 		send_str(PSTR("\r\n"));
+ 311               		.loc 1 185 0 is_stmt 1 discriminator 3
+ 312 0088 80E0      		ldi r24,lo8(__c.1875)
+ 313 008a 90E0      		ldi r25,hi8(__c.1875)
+ 314 008c 00C0      		rjmp .L35
+ 315               	.LVL39:
+ 316               	.L33:
+ 186:example.c     **** 		return;
+ 187:example.c     **** 	}
+ 188:example.c     **** 	// if the third character is an equals sign, write the pin
+ 189:example.c     **** 	if (num >= 4 && buf[2] == '=') {
+ 317               		.loc 1 189 0
+ 318 008e 6330      		cpi r22,lo8(3)
+ 319 0090 01F0      		breq .L25
+ 320               		.loc 1 189 0 is_stmt 0 discriminator 1
+ 321 0092 8D33      		cpi r24,lo8(61)
+ 322 0094 01F4      		brne .L25
+ 190:example.c     **** 		if (buf[3] == '0') {
+ 323               		.loc 1 190 0 is_stmt 1
+ 324 0096 8B81      		ldd r24,Y+3
+ 325 0098 8033      		cpi r24,lo8(48)
+ 326 009a 01F4      		brne .L26
+ 191:example.c     **** 			// make the pin an output
+ 192:example.c     **** 			*(uint8_t *)(0x21 + port * 3) |= (1 << pin);
+ 327               		.loc 1 192 0
+ 328 009c 83E0      		ldi r24,lo8(3)
+ 329 009e E89F      		mul r30,r24
+ 330 00a0 F001      		movw r30,r0
+ 331 00a2 1124      		clr __zero_reg__
+ 332               	.LVL40:
+ 333 00a4 81E0      		ldi r24,lo8(1)
+ 334 00a6 90E0      		ldi r25,0
+ 335 00a8 022E      		mov r0,r18
+ 336 00aa 00C0      		rjmp 2f
+ 337               		1:
+ 338 00ac 880F      		lsl r24
+ 339               		2:
+ 340 00ae 0A94      		dec r0
+ 341 00b0 02F4      		brpl 1b
+ 342 00b2 91A1      		ldd r25,Z+33
+ 343 00b4 982B      		or r25,r24
+ 344 00b6 91A3      		std Z+33,r25
+ 193:example.c     **** 			// drive it low
+ 194:example.c     **** 			*(uint8_t *)(0x22 + port * 3) &= ~(1 << pin);
+ 345               		.loc 1 194 0
+ 346 00b8 8095      		com r24
+ 347 00ba 92A1      		ldd r25,Z+34
+ 348 00bc 9823      		and r25,r24
+ 349 00be 00C0      		rjmp .L34
+ 350               	.LVL41:
+ 351               	.L26:
+ 195:example.c     **** 			return;
+ 196:example.c     **** 		} else if (buf[3] == '1') {
+ 352               		.loc 1 196 0
+ 353 00c0 8133      		cpi r24,lo8(49)
+ 354 00c2 01F4      		brne .L28
+ 197:example.c     **** 			// make the pin an output
+ 198:example.c     **** 			*(uint8_t *)(0x21 + port * 3) |= (1 << pin);
+ 355               		.loc 1 198 0
+ 356 00c4 83E0      		ldi r24,lo8(3)
+ 357 00c6 E89F      		mul r30,r24
+ 358 00c8 F001      		movw r30,r0
+ 359 00ca 1124      		clr __zero_reg__
+ 360               	.LVL42:
+ 361 00cc 81E0      		ldi r24,lo8(1)
+ 362 00ce 90E0      		ldi r25,0
+ 363 00d0 022E      		mov r0,r18
+ 364 00d2 00C0      		rjmp 2f
+ 365               		1:
+ 366 00d4 880F      		lsl r24
+ 367               		2:
+ 368 00d6 0A94      		dec r0
+ 369 00d8 02F4      		brpl 1b
+ 370 00da 91A1      		ldd r25,Z+33
+ 371 00dc 982B      		or r25,r24
+ 372 00de 91A3      		std Z+33,r25
+ 199:example.c     **** 			// drive it high
+ 200:example.c     **** 			*(uint8_t *)(0x22 + port * 3) |= (1 << pin);
+ 373               		.loc 1 200 0
+ 374 00e0 92A1      		ldd r25,Z+34
+ 375 00e2 982B      		or r25,r24
+ 376               	.L34:
+ 377 00e4 92A3      		std Z+34,r25
+ 378               	/* epilogue start */
+ 201:example.c     **** 			return;
+ 202:example.c     **** 		} else {
+ 203:example.c     **** 			send_str(PSTR("Unknown value \""));
+ 204:example.c     **** 			usb_serial_putchar(buf[3]);
+ 205:example.c     **** 			send_str(PSTR("\", must be 0 or 1\r\n"));
+ 206:example.c     **** 			return;
+ 207:example.c     **** 		}
+ 208:example.c     **** 	}
+ 209:example.c     **** 	// otherwise, error message
+ 210:example.c     **** 	send_str(PSTR("Unknown command \""));
+ 211:example.c     **** 	usb_serial_putchar(buf[0]);
+ 212:example.c     **** 	send_str(PSTR("\", must be ? or =\r\n"));
+ 213:example.c     **** }
+ 379               		.loc 1 213 0
+ 380 00e6 DF91      		pop r29
+ 381 00e8 CF91      		pop r28
+ 382               	.LVL43:
+ 383 00ea 0895      		ret
+ 384               	.LVL44:
+ 385               	.L28:
+ 203:example.c     **** 			send_str(PSTR("Unknown value \""));
+ 386               		.loc 1 203 0
+ 387 00ec 80E0      		ldi r24,lo8(__c.1877)
+ 388 00ee 90E0      		ldi r25,hi8(__c.1877)
+ 389 00f0 0E94 0000 		call send_str
+ 390               	.LVL45:
+ 204:example.c     **** 			usb_serial_putchar(buf[3]);
+ 391               		.loc 1 204 0
+ 392 00f4 8B81      		ldd r24,Y+3
+ 393 00f6 0E94 0000 		call usb_serial_putchar
+ 394               	.LVL46:
+ 205:example.c     **** 			send_str(PSTR("\", must be 0 or 1\r\n"));
+ 395               		.loc 1 205 0
+ 396 00fa 80E0      		ldi r24,lo8(__c.1879)
+ 397 00fc 90E0      		ldi r25,hi8(__c.1879)
+ 398 00fe 00C0      		rjmp .L35
+ 399               	.LVL47:
+ 400               	.L25:
+ 210:example.c     **** 	send_str(PSTR("Unknown command \""));
+ 401               		.loc 1 210 0
+ 402 0100 80E0      		ldi r24,lo8(__c.1881)
+ 403 0102 90E0      		ldi r25,hi8(__c.1881)
+ 404 0104 0E94 0000 		call send_str
+ 405               	.LVL48:
+ 211:example.c     **** 	usb_serial_putchar(buf[0]);
+ 406               		.loc 1 211 0
+ 407 0108 8881      		ld r24,Y
+ 408 010a 0E94 0000 		call usb_serial_putchar
+ 409               	.LVL49:
+ 212:example.c     **** 	send_str(PSTR("\", must be ? or =\r\n"));
+ 410               		.loc 1 212 0
+ 411 010e 80E0      		ldi r24,lo8(__c.1883)
+ 412 0110 90E0      		ldi r25,hi8(__c.1883)
+ 413               	.L35:
+ 414               	/* epilogue start */
+ 415               		.loc 1 213 0
+ 416 0112 DF91      		pop r29
+ 417 0114 CF91      		pop r28
+ 418               	.LVL50:
+ 212:example.c     **** 	send_str(PSTR("\", must be ? or =\r\n"));
+ 419               		.loc 1 212 0
+ 420 0116 0C94 0000 		jmp send_str
+ 421               	.LVL51:
+ 422               		.cfi_endproc
+ 423               	.LFE10:
+ 425               		.section	.text.startup.main,"ax",@progbits
+ 426               	.global	main
+ 428               	main:
+ 429               	.LFB7:
+  55:example.c     **** {
+ 430               		.loc 1 55 0
+ 431               		.cfi_startproc
+ 432 0000 CF93      		push r28
+ 433               	.LCFI10:
+ 434               		.cfi_def_cfa_offset 3
+ 435               		.cfi_offset 28, -2
+ 436 0002 DF93      		push r29
+ 437               	.LCFI11:
+ 438               		.cfi_def_cfa_offset 4
+ 439               		.cfi_offset 29, -3
+ 440 0004 CDB7      		in r28,__SP_L__
+ 441 0006 DEB7      		in r29,__SP_H__
+ 442               	.LCFI12:
+ 443               		.cfi_def_cfa_register 28
+ 444 0008 A197      		sbiw r28,33
+ 445               	.LCFI13:
+ 446               		.cfi_def_cfa_offset 37
+ 447 000a 0FB6      		in __tmp_reg__,__SREG__
+ 448 000c F894      		cli
+ 449 000e DEBF      		out __SP_H__,r29
+ 450 0010 0FBE      		out __SREG__,__tmp_reg__
+ 451 0012 CDBF      		out __SP_L__,r28
+ 452               	/* prologue: function */
+ 453               	/* frame size = 33 */
+ 454               	/* stack size = 35 */
+ 455               	.L__stack_usage = 35
+  60:example.c     **** 	CPU_PRESCALE(0);
+ 456               		.loc 1 60 0
+ 457 0014 80E8      		ldi r24,lo8(-128)
+ 458 0016 8093 6100 		sts 97,r24
+ 459 001a 1092 6100 		sts 97,__zero_reg__
+  61:example.c     **** 	LED_CONFIG;
+ 460               		.loc 1 61 0
+ 461 001e 569A      		sbi 0xa,6
+  62:example.c     **** 	LED_ON;
+ 462               		.loc 1 62 0
+ 463 0020 5E9A      		sbi 0xb,6
+  68:example.c     **** 	usb_init();
+ 464               		.loc 1 68 0
+ 465 0022 0E94 0000 		call usb_init
+ 466               	.LVL52:
+ 467               	.L39:
+  69:example.c     **** 	while (!usb_configured()) /* wait */ ;
+ 468               		.loc 1 69 0 discriminator 1
+ 469 0026 0E94 0000 		call usb_configured
+ 470               	.LVL53:
+ 471 002a 8823      		tst r24
+ 472 002c 01F0      		breq .L39
+ 473               	.LVL54:
+ 474               	.LBB8:
+ 475               	.LBB9:
+ 476               		.file 2 "/usr/lib/avr/include/util/delay.h"
+   1:/usr/lib/avr/include/util/delay.h **** /* Copyright (c) 2002, Marek Michalkiewicz
+   2:/usr/lib/avr/include/util/delay.h ****    Copyright (c) 2004,2005,2007 Joerg Wunsch
+   3:/usr/lib/avr/include/util/delay.h ****    Copyright (c) 2007  Florin-Viorel Petrov
+   4:/usr/lib/avr/include/util/delay.h ****    All rights reserved.
+   5:/usr/lib/avr/include/util/delay.h **** 
+   6:/usr/lib/avr/include/util/delay.h ****    Redistribution and use in source and binary forms, with or without
+   7:/usr/lib/avr/include/util/delay.h ****    modification, are permitted provided that the following conditions are met:
+   8:/usr/lib/avr/include/util/delay.h **** 
+   9:/usr/lib/avr/include/util/delay.h ****    * Redistributions of source code must retain the above copyright
+  10:/usr/lib/avr/include/util/delay.h ****      notice, this list of conditions and the following disclaimer.
+  11:/usr/lib/avr/include/util/delay.h **** 
+  12:/usr/lib/avr/include/util/delay.h ****    * Redistributions in binary form must reproduce the above copyright
+  13:/usr/lib/avr/include/util/delay.h ****      notice, this list of conditions and the following disclaimer in
+  14:/usr/lib/avr/include/util/delay.h ****      the documentation and/or other materials provided with the
+  15:/usr/lib/avr/include/util/delay.h ****      distribution.
+  16:/usr/lib/avr/include/util/delay.h **** 
+  17:/usr/lib/avr/include/util/delay.h ****    * Neither the name of the copyright holders nor the names of
+  18:/usr/lib/avr/include/util/delay.h ****      contributors may be used to endorse or promote products derived
+  19:/usr/lib/avr/include/util/delay.h ****      from this software without specific prior written permission.
+  20:/usr/lib/avr/include/util/delay.h **** 
+  21:/usr/lib/avr/include/util/delay.h ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  22:/usr/lib/avr/include/util/delay.h ****   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  23:/usr/lib/avr/include/util/delay.h ****   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  24:/usr/lib/avr/include/util/delay.h ****   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+  25:/usr/lib/avr/include/util/delay.h ****   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+  26:/usr/lib/avr/include/util/delay.h ****   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+  27:/usr/lib/avr/include/util/delay.h ****   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  28:/usr/lib/avr/include/util/delay.h ****   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  29:/usr/lib/avr/include/util/delay.h ****   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  30:/usr/lib/avr/include/util/delay.h ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+  31:/usr/lib/avr/include/util/delay.h ****   POSSIBILITY OF SUCH DAMAGE. */
+  32:/usr/lib/avr/include/util/delay.h **** 
+  33:/usr/lib/avr/include/util/delay.h **** /* $Id: delay.h.in 2251 2011-09-14 08:20:33Z joerg_wunsch $ */
+  34:/usr/lib/avr/include/util/delay.h **** 
+  35:/usr/lib/avr/include/util/delay.h **** #ifndef _UTIL_DELAY_H_
+  36:/usr/lib/avr/include/util/delay.h **** #define _UTIL_DELAY_H_ 1
+  37:/usr/lib/avr/include/util/delay.h **** 
+  38:/usr/lib/avr/include/util/delay.h **** #ifndef __HAS_DELAY_CYCLES
+  39:/usr/lib/avr/include/util/delay.h **** #define __HAS_DELAY_CYCLES 1
+  40:/usr/lib/avr/include/util/delay.h **** #endif
+  41:/usr/lib/avr/include/util/delay.h **** 
+  42:/usr/lib/avr/include/util/delay.h **** #include <inttypes.h>
+  43:/usr/lib/avr/include/util/delay.h **** #include <util/delay_basic.h>
+  44:/usr/lib/avr/include/util/delay.h **** #include <math.h>
+  45:/usr/lib/avr/include/util/delay.h **** 
+  46:/usr/lib/avr/include/util/delay.h **** /** \file */
+  47:/usr/lib/avr/include/util/delay.h **** /** \defgroup util_delay <util/delay.h>: Convenience functions for busy-wait delay loops
+  48:/usr/lib/avr/include/util/delay.h ****     \code
+  49:/usr/lib/avr/include/util/delay.h ****     #define F_CPU 1000000UL  // 1 MHz
+  50:/usr/lib/avr/include/util/delay.h ****     //#define F_CPU 14.7456E6
+  51:/usr/lib/avr/include/util/delay.h ****     #include <util/delay.h>
+  52:/usr/lib/avr/include/util/delay.h ****     \endcode
+  53:/usr/lib/avr/include/util/delay.h **** 
+  54:/usr/lib/avr/include/util/delay.h ****     \note As an alternative method, it is possible to pass the
+  55:/usr/lib/avr/include/util/delay.h ****     F_CPU macro down to the compiler from the Makefile.
+  56:/usr/lib/avr/include/util/delay.h ****     Obviously, in that case, no \c \#define statement should be
+  57:/usr/lib/avr/include/util/delay.h ****     used.
+  58:/usr/lib/avr/include/util/delay.h **** 
+  59:/usr/lib/avr/include/util/delay.h ****     The functions in this header file are wrappers around the basic
+  60:/usr/lib/avr/include/util/delay.h ****     busy-wait functions from <util/delay_basic.h>.  They are meant as
+  61:/usr/lib/avr/include/util/delay.h ****     convenience functions where actual time values can be specified
+  62:/usr/lib/avr/include/util/delay.h ****     rather than a number of cycles to wait for.  The idea behind is
+  63:/usr/lib/avr/include/util/delay.h ****     that compile-time constant expressions will be eliminated by
+  64:/usr/lib/avr/include/util/delay.h ****     compiler optimization so floating-point expressions can be used
+  65:/usr/lib/avr/include/util/delay.h ****     to calculate the number of delay cycles needed based on the CPU
+  66:/usr/lib/avr/include/util/delay.h ****     frequency passed by the macro F_CPU.
+  67:/usr/lib/avr/include/util/delay.h **** 
+  68:/usr/lib/avr/include/util/delay.h ****     \note In order for these functions to work as intended, compiler
+  69:/usr/lib/avr/include/util/delay.h ****     optimizations <em>must</em> be enabled, and the delay time
+  70:/usr/lib/avr/include/util/delay.h ****     <em>must</em> be an expression that is a known constant at
+  71:/usr/lib/avr/include/util/delay.h ****     compile-time.  If these requirements are not met, the resulting
+  72:/usr/lib/avr/include/util/delay.h ****     delay will be much longer (and basically unpredictable), and
+  73:/usr/lib/avr/include/util/delay.h ****     applications that otherwise do not use floating-point calculations
+  74:/usr/lib/avr/include/util/delay.h ****     will experience severe code bloat by the floating-point library
+  75:/usr/lib/avr/include/util/delay.h ****     routines linked into the application.
+  76:/usr/lib/avr/include/util/delay.h **** 
+  77:/usr/lib/avr/include/util/delay.h ****     The functions available allow the specification of microsecond, and
+  78:/usr/lib/avr/include/util/delay.h ****     millisecond delays directly, using the application-supplied macro
+  79:/usr/lib/avr/include/util/delay.h ****     F_CPU as the CPU clock frequency (in Hertz).
+  80:/usr/lib/avr/include/util/delay.h **** 
+  81:/usr/lib/avr/include/util/delay.h **** */
+  82:/usr/lib/avr/include/util/delay.h **** 
+  83:/usr/lib/avr/include/util/delay.h **** #if !defined(__DOXYGEN__)
+  84:/usr/lib/avr/include/util/delay.h **** static inline void _delay_us(double __us) __attribute__((always_inline));
+  85:/usr/lib/avr/include/util/delay.h **** static inline void _delay_ms(double __ms) __attribute__((always_inline));
+  86:/usr/lib/avr/include/util/delay.h **** #endif
+  87:/usr/lib/avr/include/util/delay.h **** 
+  88:/usr/lib/avr/include/util/delay.h **** #ifndef F_CPU
+  89:/usr/lib/avr/include/util/delay.h **** /* prevent compiler error by supplying a default */
+  90:/usr/lib/avr/include/util/delay.h **** # warning "F_CPU not defined for <util/delay.h>"
+  91:/usr/lib/avr/include/util/delay.h **** # define F_CPU 1000000UL
+  92:/usr/lib/avr/include/util/delay.h **** #endif
+  93:/usr/lib/avr/include/util/delay.h **** 
+  94:/usr/lib/avr/include/util/delay.h **** #ifndef __OPTIMIZE__
+  95:/usr/lib/avr/include/util/delay.h **** # warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+  96:/usr/lib/avr/include/util/delay.h **** #endif
+  97:/usr/lib/avr/include/util/delay.h **** 
+  98:/usr/lib/avr/include/util/delay.h **** #if __HAS_DELAY_CYCLES && defined(__OPTIMIZE__) && \
+  99:/usr/lib/avr/include/util/delay.h ****   !defined(__DELAY_BACKWARD_COMPATIBLE__) &&	   \
+ 100:/usr/lib/avr/include/util/delay.h ****   __STDC_HOSTED__
+ 101:/usr/lib/avr/include/util/delay.h **** #  include <math.h>
+ 102:/usr/lib/avr/include/util/delay.h **** #endif
+ 103:/usr/lib/avr/include/util/delay.h **** 
+ 104:/usr/lib/avr/include/util/delay.h **** /**
+ 105:/usr/lib/avr/include/util/delay.h ****    \ingroup util_delay
+ 106:/usr/lib/avr/include/util/delay.h **** 
+ 107:/usr/lib/avr/include/util/delay.h ****    Perform a delay of \c __ms milliseconds, using _delay_loop_2().
+ 108:/usr/lib/avr/include/util/delay.h **** 
+ 109:/usr/lib/avr/include/util/delay.h ****    The macro F_CPU is supposed to be defined to a
+ 110:/usr/lib/avr/include/util/delay.h ****    constant defining the CPU clock frequency (in Hertz).
+ 111:/usr/lib/avr/include/util/delay.h **** 
+ 112:/usr/lib/avr/include/util/delay.h ****    The maximal possible delay is 262.14 ms / F_CPU in MHz.
+ 113:/usr/lib/avr/include/util/delay.h **** 
+ 114:/usr/lib/avr/include/util/delay.h ****    When the user request delay which exceed the maximum possible one,
+ 115:/usr/lib/avr/include/util/delay.h ****    _delay_ms() provides a decreased resolution functionality. In this
+ 116:/usr/lib/avr/include/util/delay.h ****    mode _delay_ms() will work with a resolution of 1/10 ms, providing
+ 117:/usr/lib/avr/include/util/delay.h ****    delays up to 6.5535 seconds (independent from CPU frequency).  The
+ 118:/usr/lib/avr/include/util/delay.h ****    user will not be informed about decreased resolution.
+ 119:/usr/lib/avr/include/util/delay.h **** 
+ 120:/usr/lib/avr/include/util/delay.h ****    If the avr-gcc toolchain has __builtin_avr_delay_cycles(unsigned long)
+ 121:/usr/lib/avr/include/util/delay.h ****    support, maximal possible delay is 4294967.295 ms/ F_CPU in MHz. For
+ 122:/usr/lib/avr/include/util/delay.h ****    values greater than the maximal possible delay, overflows results in
+ 123:/usr/lib/avr/include/util/delay.h ****    no delay i.e., 0ms.
+ 124:/usr/lib/avr/include/util/delay.h **** 
+ 125:/usr/lib/avr/include/util/delay.h ****    Conversion of __us into clock cycles may not always result in integer.
+ 126:/usr/lib/avr/include/util/delay.h ****    By default, the clock cycles rounded up to next integer. This ensures that
+ 127:/usr/lib/avr/include/util/delay.h ****    the user gets atleast __us microseconds of delay.
+ 128:/usr/lib/avr/include/util/delay.h **** 
+ 129:/usr/lib/avr/include/util/delay.h ****    Alternatively, user can define __DELAY_ROUND_DOWN__ and __DELAY_ROUND_CLOSEST__
+ 130:/usr/lib/avr/include/util/delay.h ****    to round down and round to closest integer.
+ 131:/usr/lib/avr/include/util/delay.h **** 
+ 132:/usr/lib/avr/include/util/delay.h ****    Note: The new implementation of _delay_ms(double __ms) with 
+ 133:/usr/lib/avr/include/util/delay.h ****     __builtin_avr_delay_cycles(unsigned long) support is not backward compatible. 
+ 134:/usr/lib/avr/include/util/delay.h ****    User can define __DELAY_BACKWARD_COMPATIBLE__ to get a backward compatible delay.
+ 135:/usr/lib/avr/include/util/delay.h ****    Also, the backward compatible
+ 136:/usr/lib/avr/include/util/delay.h ****    algorithm will be chosen if the code is compiled in a <em>freestanding
+ 137:/usr/lib/avr/include/util/delay.h ****    environment</em> (GCC option \c -ffreestanding), as the math functions
+ 138:/usr/lib/avr/include/util/delay.h ****    required for rounding are not available to the compiler then.
+ 139:/usr/lib/avr/include/util/delay.h **** 
+ 140:/usr/lib/avr/include/util/delay.h ****  */
+ 141:/usr/lib/avr/include/util/delay.h **** void
+ 142:/usr/lib/avr/include/util/delay.h **** _delay_ms(double __ms)
+ 143:/usr/lib/avr/include/util/delay.h **** {
+ 144:/usr/lib/avr/include/util/delay.h **** 	uint16_t __ticks;
+ 145:/usr/lib/avr/include/util/delay.h **** 	double __tmp ; 
+ 146:/usr/lib/avr/include/util/delay.h **** #if __HAS_DELAY_CYCLES && defined(__OPTIMIZE__) && \
+ 147:/usr/lib/avr/include/util/delay.h ****   !defined(__DELAY_BACKWARD_COMPATIBLE__) &&	   \
+ 148:/usr/lib/avr/include/util/delay.h ****   __STDC_HOSTED__
+ 149:/usr/lib/avr/include/util/delay.h **** 	uint32_t __ticks_dc;
+ 150:/usr/lib/avr/include/util/delay.h **** 	extern void __builtin_avr_delay_cycles(unsigned long);
+ 151:/usr/lib/avr/include/util/delay.h **** 	__tmp = ((F_CPU) / 1e3) * __ms;
+ 152:/usr/lib/avr/include/util/delay.h **** 
+ 153:/usr/lib/avr/include/util/delay.h **** 	#if defined(__DELAY_ROUND_DOWN__)
+ 154:/usr/lib/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)fabs(__tmp);
+ 155:/usr/lib/avr/include/util/delay.h **** 
+ 156:/usr/lib/avr/include/util/delay.h **** 	#elif defined(__DELAY_ROUND_CLOSEST__)
+ 157:/usr/lib/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)(fabs(__tmp)+0.5);
+ 158:/usr/lib/avr/include/util/delay.h **** 
+ 159:/usr/lib/avr/include/util/delay.h **** 	#else
+ 160:/usr/lib/avr/include/util/delay.h **** 		//round up by default
+ 161:/usr/lib/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+ 162:/usr/lib/avr/include/util/delay.h **** 	#endif
+ 163:/usr/lib/avr/include/util/delay.h **** 
+ 164:/usr/lib/avr/include/util/delay.h **** 	__builtin_avr_delay_cycles(__ticks_dc);
+ 477               		.loc 2 164 0
+ 478 002e 2FEF      		ldi r18,lo8(3199999)
+ 479 0030 83ED      		ldi r24,hi8(3199999)
+ 480 0032 90E3      		ldi r25,hlo8(3199999)
+ 481 0034 2150      		1: subi r18,1
+ 482 0036 8040      		sbci r24,0
+ 483 0038 9040      		sbci r25,0
+ 484 003a 01F4      		brne 1b
+ 485 003c 00C0      		rjmp .
+ 486 003e 0000      		nop
+ 487               	.L41:
+ 488               	.LBE9:
+ 489               	.LBE8:
+  75:example.c     **** 		while (!(usb_serial_get_control() & USB_SERIAL_DTR)) /* wait */ ;
+ 490               		.loc 1 75 0 discriminator 1
+ 491 0040 0E94 0000 		call usb_serial_get_control
+ 492               	.LVL55:
+ 493 0044 80FF      		sbrs r24,0
+ 494 0046 00C0      		rjmp .L41
+  80:example.c     **** 		usb_serial_flush_input();
+ 495               		.loc 1 80 0
+ 496 0048 0E94 0000 		call usb_serial_flush_input
+ 497               	.LVL56:
+  83:example.c     **** 		send_str(PSTR("\r\nTeensy USB Serial Example, "
+ 498               		.loc 1 83 0
+ 499 004c 80E0      		ldi r24,lo8(__c.1831)
+ 500 004e 90E0      		ldi r25,hi8(__c.1831)
+ 501 0050 0E94 0000 		call send_str
+ 502               	.LVL57:
+ 503               	.L44:
+  92:example.c     **** 			send_str(PSTR("> "));
+ 504               		.loc 1 92 0
+ 505 0054 80E0      		ldi r24,lo8(__c.1833)
+ 506 0056 90E0      		ldi r25,hi8(__c.1833)
+ 507 0058 0E94 0000 		call send_str
+ 508               	.LVL58:
+  93:example.c     **** 			n = recv_str(buf, sizeof(buf));
+ 509               		.loc 1 93 0
+ 510 005c 60E2      		ldi r22,lo8(32)
+ 511 005e CE01      		movw r24,r28
+ 512 0060 0196      		adiw r24,1
+ 513 0062 0E94 0000 		call recv_str
+ 514               	.LVL59:
+ 515 0066 682F      		mov r22,r24
+ 516               	.LVL60:
+  94:example.c     **** 			if (n == 255) break;
+ 517               		.loc 1 94 0
+ 518 0068 8F3F      		cpi r24,lo8(-1)
+ 519 006a 01F0      		breq .L41
+  95:example.c     **** 			send_str(PSTR("\r\n"));
+ 520               		.loc 1 95 0
+ 521 006c 80E0      		ldi r24,lo8(__c.1836)
+ 522 006e 90E0      		ldi r25,hi8(__c.1836)
+ 523 0070 69A3      		std Y+33,r22
+ 524 0072 0E94 0000 		call send_str
+ 525               	.LVL61:
+  96:example.c     **** 			parse_and_execute_command(buf, n);
+ 526               		.loc 1 96 0
+ 527 0076 69A1      		ldd r22,Y+33
+ 528 0078 CE01      		movw r24,r28
+ 529 007a 0196      		adiw r24,1
+ 530 007c 0E94 0000 		call parse_and_execute_command
+ 531               	.LVL62:
+  97:example.c     **** 		}
+ 532               		.loc 1 97 0
+ 533 0080 00C0      		rjmp .L44
+ 534               		.cfi_endproc
+ 535               	.LFE7:
+ 537               		.section	.progmem.data,"a",@progbits
+ 540               	__c.1883:
+ 541 0000 222C 206D 		.string	"\", must be ? or =\r\n"
+ 541      7573 7420 
+ 541      6265 203F 
+ 541      206F 7220 
+ 541      3D0D 0A00 
+ 544               	__c.1881:
+ 545 0014 556E 6B6E 		.string	"Unknown command \""
+ 545      6F77 6E20 
+ 545      636F 6D6D 
+ 545      616E 6420 
+ 545      2200 
+ 548               	__c.1879:
+ 549 0026 222C 206D 		.string	"\", must be 0 or 1\r\n"
+ 549      7573 7420 
+ 549      6265 2030 
+ 549      206F 7220 
+ 549      310D 0A00 
+ 552               	__c.1877:
+ 553 003a 556E 6B6E 		.string	"Unknown value \""
+ 553      6F77 6E20 
+ 553      7661 6C75 
+ 553      6520 2200 
+ 556               	__c.1875:
+ 557 004a 0D0A 00   		.string	"\r\n"
+ 560               	__c.1873:
+ 561 004d 222C 206D 		.string	"\", must be 0 to 7\r\n"
+ 561      7573 7420 
+ 561      6265 2030 
+ 561      2074 6F20 
+ 561      370D 0A00 
+ 564               	__c.1871:
+ 565 0061 556E 6B6E 		.string	"Unknown pin \""
+ 565      6F77 6E20 
+ 565      7069 6E20 
+ 565      2200 
+ 568               	__c.1869:
+ 569 006f 222C 206D 		.string	"\", must be A - F\r\n"
+ 569      7573 7420 
+ 569      6265 2041 
+ 569      202D 2046 
+ 569      0D0A 00
+ 572               	__c.1867:
+ 573 0082 556E 6B6E 		.string	"Unknown port \""
+ 573      6F77 6E20 
+ 573      706F 7274 
+ 573      2022 00
+ 576               	__c.1865:
+ 577 0091 756E 7265 		.string	"unrecognized format, 3 chars min req'd\r\n"
+ 577      636F 676E 
+ 577      697A 6564 
+ 577      2066 6F72 
+ 577      6D61 742C 
+ 580               	__c.1836:
+ 581 00ba 0D0A 00   		.string	"\r\n"
+ 584               	__c.1833:
+ 585 00bd 3E20 00   		.string	"> "
+ 588               	__c.1831:
+ 589 00c0 0D0A 5465 		.string	"\r\nTeensy USB Serial Example, Simple Pin Control Shell\r\n\r\nExample Commands\r\n  B0? 
+ 589      656E 7379 
+ 589      2055 5342 
+ 589      2053 6572 
+ 589      6961 6C20 
+ 590               		.text
+ 591               	.Letext0:
+ 592               		.file 3 "/usr/lib/avr/include/stdint.h"
+ 593               		.file 4 "usb_serial.h"
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 example.c
+     /tmp/cciQUfJr.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/cciQUfJr.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/cciQUfJr.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/cciQUfJr.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/cciQUfJr.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/cciQUfJr.s:13     .text.send_str:0000000000000000 send_str
+     /tmp/cciQUfJr.s:70     .text.recv_str:0000000000000000 recv_str
+     /tmp/cciQUfJr.s:191    .text.parse_and_execute_command:0000000000000000 parse_and_execute_command
+     /tmp/cciQUfJr.s:576    .progmem.data:0000000000000091 __c.1865
+     /tmp/cciQUfJr.s:572    .progmem.data:0000000000000082 __c.1867
+     /tmp/cciQUfJr.s:568    .progmem.data:000000000000006f __c.1869
+     /tmp/cciQUfJr.s:564    .progmem.data:0000000000000061 __c.1871
+     /tmp/cciQUfJr.s:560    .progmem.data:000000000000004d __c.1873
+     /tmp/cciQUfJr.s:556    .progmem.data:000000000000004a __c.1875
+     /tmp/cciQUfJr.s:552    .progmem.data:000000000000003a __c.1877
+     /tmp/cciQUfJr.s:548    .progmem.data:0000000000000026 __c.1879
+     /tmp/cciQUfJr.s:544    .progmem.data:0000000000000014 __c.1881
+     /tmp/cciQUfJr.s:540    .progmem.data:0000000000000000 __c.1883
+     /tmp/cciQUfJr.s:428    .text.startup.main:0000000000000000 main
+     /tmp/cciQUfJr.s:588    .progmem.data:00000000000000c0 __c.1831
+     /tmp/cciQUfJr.s:584    .progmem.data:00000000000000bd __c.1833
+     /tmp/cciQUfJr.s:580    .progmem.data:00000000000000ba __c.1836
+
+UNDEFINED SYMBOLS
+usb_serial_putchar
+usb_serial_getchar
+usb_configured
+usb_serial_get_control
+usb_init
+usb_serial_flush_input

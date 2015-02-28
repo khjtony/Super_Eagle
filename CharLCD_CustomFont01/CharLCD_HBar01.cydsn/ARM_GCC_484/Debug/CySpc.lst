@@ -1,0 +1,3328 @@
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"CySpc.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	SpcLockState
+  19              		.bss
+  20              		.type	SpcLockState, %object
+  21              		.size	SpcLockState, 1
+  22              	SpcLockState:
+  23 0000 00       		.space	1
+  24 0001 000000   		.align	2
+  25              	spcWaitPipeBypass:
+  26 0004 00000000 		.space	4
+  27              		.section	.text.CySpcStart,"ax",%progbits
+  28              		.align	2
+  29              		.global	CySpcStart
+  30              		.thumb
+  31              		.thumb_func
+  32              		.type	CySpcStart, %function
+  33              	CySpcStart:
+  34              	.LFB0:
+  35              		.file 1 ".\\Generated_Source\\PSoC5\\CySpc.c"
+   1:.\Generated_Source\PSoC5/CySpc.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/CySpc.c **** * File Name: CySpc.c
+   3:.\Generated_Source\PSoC5/CySpc.c **** * Version 4.20
+   4:.\Generated_Source\PSoC5/CySpc.c **** *
+   5:.\Generated_Source\PSoC5/CySpc.c **** *  Description:
+   6:.\Generated_Source\PSoC5/CySpc.c **** *   Provides an API for the System Performance Component.
+   7:.\Generated_Source\PSoC5/CySpc.c **** *   The SPC functions are not meant to be called directly by the user
+   8:.\Generated_Source\PSoC5/CySpc.c **** *   application.
+   9:.\Generated_Source\PSoC5/CySpc.c **** *
+  10:.\Generated_Source\PSoC5/CySpc.c **** ********************************************************************************
+  11:.\Generated_Source\PSoC5/CySpc.c **** * Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  12:.\Generated_Source\PSoC5/CySpc.c **** * You may use this file only in accordance with the license, terms, conditions,
+  13:.\Generated_Source\PSoC5/CySpc.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  14:.\Generated_Source\PSoC5/CySpc.c **** * the software package with which this file was provided.
+  15:.\Generated_Source\PSoC5/CySpc.c **** *******************************************************************************/
+  16:.\Generated_Source\PSoC5/CySpc.c **** 
+  17:.\Generated_Source\PSoC5/CySpc.c **** #include "CySpc.h"
+  18:.\Generated_Source\PSoC5/CySpc.c **** 
+  19:.\Generated_Source\PSoC5/CySpc.c **** #define CY_SPC_KEY_ONE                      (0xB6u)
+  20:.\Generated_Source\PSoC5/CySpc.c **** #define CY_SPC_KEY_TWO(x)                   ((uint8) (((uint16) 0xD3u) + ((uint16) (x))))
+  21:.\Generated_Source\PSoC5/CySpc.c **** 
+  22:.\Generated_Source\PSoC5/CySpc.c **** /* Command Codes */
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 2
+
+
+  23:.\Generated_Source\PSoC5/CySpc.c **** #define CY_SPC_CMD_LD_BYTE                  (0x00u)
+  24:.\Generated_Source\PSoC5/CySpc.c **** #define CY_SPC_CMD_LD_MULTI_BYTE            (0x01u)
+  25:.\Generated_Source\PSoC5/CySpc.c **** #define CY_SPC_CMD_LD_ROW                   (0x02u)
+  26:.\Generated_Source\PSoC5/CySpc.c **** #define CY_SPC_CMD_RD_BYTE                  (0x03u)
+  27:.\Generated_Source\PSoC5/CySpc.c **** #define CY_SPC_CMD_RD_MULTI_BYTE            (0x04u)
+  28:.\Generated_Source\PSoC5/CySpc.c **** #define CY_SPC_CMD_WR_ROW                   (0x05u)
+  29:.\Generated_Source\PSoC5/CySpc.c **** #define CY_SPC_CMD_WR_USER_NVL              (0x06u)
+  30:.\Generated_Source\PSoC5/CySpc.c **** #define CY_SPC_CMD_PRG_ROW                  (0x07u)
+  31:.\Generated_Source\PSoC5/CySpc.c **** #define CY_SPC_CMD_ER_SECTOR                (0x08u)
+  32:.\Generated_Source\PSoC5/CySpc.c **** #define CY_SPC_CMD_ER_ALL                   (0x09u)
+  33:.\Generated_Source\PSoC5/CySpc.c **** #define CY_SPC_CMD_RD_HIDDEN                (0x0Au)
+  34:.\Generated_Source\PSoC5/CySpc.c **** #define CY_SPC_CMD_PRG_PROTECT              (0x0Bu)
+  35:.\Generated_Source\PSoC5/CySpc.c **** #define CY_SPC_CMD_CHECKSUM                 (0x0Cu)
+  36:.\Generated_Source\PSoC5/CySpc.c **** #define CY_SPC_CMD_DWNLD_ALGORITHM          (0x0Du)
+  37:.\Generated_Source\PSoC5/CySpc.c **** #define CY_SPC_CMD_GET_TEMP                 (0x0Eu)
+  38:.\Generated_Source\PSoC5/CySpc.c **** #define CY_SPC_CMD_GET_ADC                  (0x0Fu)
+  39:.\Generated_Source\PSoC5/CySpc.c **** #define CY_SPC_CMD_RD_NVL_VOLATILE          (0x10u)
+  40:.\Generated_Source\PSoC5/CySpc.c **** #define CY_SPC_CMD_SETUP_TS                 (0x11u)
+  41:.\Generated_Source\PSoC5/CySpc.c **** #define CY_SPC_CMD_DISABLE_TS               (0x12u)
+  42:.\Generated_Source\PSoC5/CySpc.c **** #define CY_SPC_CMD_ER_ROW                   (0x13u)
+  43:.\Generated_Source\PSoC5/CySpc.c **** 
+  44:.\Generated_Source\PSoC5/CySpc.c **** /* Enable bit in Active and Alternate Active mode templates */
+  45:.\Generated_Source\PSoC5/CySpc.c **** #define PM_SPC_PM_EN                        (0x08u)
+  46:.\Generated_Source\PSoC5/CySpc.c **** 
+  47:.\Generated_Source\PSoC5/CySpc.c **** /* Gate calls to the SPC. */
+  48:.\Generated_Source\PSoC5/CySpc.c **** uint8 SpcLockState = CY_SPC_UNLOCKED;
+  49:.\Generated_Source\PSoC5/CySpc.c **** 
+  50:.\Generated_Source\PSoC5/CySpc.c **** 
+  51:.\Generated_Source\PSoC5/CySpc.c **** #if(CY_PSOC5)
+  52:.\Generated_Source\PSoC5/CySpc.c **** 
+  53:.\Generated_Source\PSoC5/CySpc.c ****     /***************************************************************************
+  54:.\Generated_Source\PSoC5/CySpc.c ****     * The wait-state pipeline must be enabled prior to accessing the SPC
+  55:.\Generated_Source\PSoC5/CySpc.c ****     * register interface regardless of CPU frequency. The CySpcLock() saves
+  56:.\Generated_Source\PSoC5/CySpc.c ****     * current wait-state pipeline state and enables it. The CySpcUnlock()
+  57:.\Generated_Source\PSoC5/CySpc.c ****     * function, which must be called after SPC transaction, restores original
+  58:.\Generated_Source\PSoC5/CySpc.c ****     * state.
+  59:.\Generated_Source\PSoC5/CySpc.c ****     ***************************************************************************/
+  60:.\Generated_Source\PSoC5/CySpc.c ****     static uint32 spcWaitPipeBypass = 0u;
+  61:.\Generated_Source\PSoC5/CySpc.c **** 
+  62:.\Generated_Source\PSoC5/CySpc.c **** #endif  /* (CY_PSOC5) */
+  63:.\Generated_Source\PSoC5/CySpc.c **** 
+  64:.\Generated_Source\PSoC5/CySpc.c **** 
+  65:.\Generated_Source\PSoC5/CySpc.c **** /*******************************************************************************
+  66:.\Generated_Source\PSoC5/CySpc.c **** * Function Name: CySpcStart
+  67:.\Generated_Source\PSoC5/CySpc.c **** ********************************************************************************
+  68:.\Generated_Source\PSoC5/CySpc.c **** * Summary:
+  69:.\Generated_Source\PSoC5/CySpc.c **** *  Starts the SPC.
+  70:.\Generated_Source\PSoC5/CySpc.c **** *
+  71:.\Generated_Source\PSoC5/CySpc.c **** * Parameters:
+  72:.\Generated_Source\PSoC5/CySpc.c **** *  None
+  73:.\Generated_Source\PSoC5/CySpc.c **** *
+  74:.\Generated_Source\PSoC5/CySpc.c **** * Return:
+  75:.\Generated_Source\PSoC5/CySpc.c **** *  None
+  76:.\Generated_Source\PSoC5/CySpc.c **** *
+  77:.\Generated_Source\PSoC5/CySpc.c **** *******************************************************************************/
+  78:.\Generated_Source\PSoC5/CySpc.c **** void CySpcStart(void) 
+  79:.\Generated_Source\PSoC5/CySpc.c **** {
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 3
+
+
+  36              		.loc 1 79 0
+  37              		.cfi_startproc
+  38              		@ args = 0, pretend = 0, frame = 8
+  39              		@ frame_needed = 1, uses_anonymous_args = 0
+  40 0000 80B5     		push	{r7, lr}
+  41              		.cfi_def_cfa_offset 8
+  42              		.cfi_offset 7, -8
+  43              		.cfi_offset 14, -4
+  44 0002 82B0     		sub	sp, sp, #8
+  45              		.cfi_def_cfa_offset 16
+  46 0004 00AF     		add	r7, sp, #0
+  47              		.cfi_def_cfa_register 7
+  80:.\Generated_Source\PSoC5/CySpc.c ****     /* Save current global interrupt enable and disable it */
+  81:.\Generated_Source\PSoC5/CySpc.c ****     uint8 interruptState = CyEnterCriticalSection();
+  48              		.loc 1 81 0
+  49 0006 FFF7FEFF 		bl	CyEnterCriticalSection
+  50 000a 0346     		mov	r3, r0
+  51 000c FB71     		strb	r3, [r7, #7]
+  82:.\Generated_Source\PSoC5/CySpc.c **** 
+  83:.\Generated_Source\PSoC5/CySpc.c ****     CY_SPC_PM_ACT_REG  |= PM_SPC_PM_EN;
+  52              		.loc 1 83 0
+  53 000e 0B4B     		ldr	r3, .L2
+  54 0010 0A4A     		ldr	r2, .L2
+  55 0012 1278     		ldrb	r2, [r2]
+  56 0014 D2B2     		uxtb	r2, r2
+  57 0016 42F00802 		orr	r2, r2, #8
+  58 001a D2B2     		uxtb	r2, r2
+  59 001c 1A70     		strb	r2, [r3]
+  84:.\Generated_Source\PSoC5/CySpc.c ****     CY_SPC_PM_STBY_REG |= PM_SPC_PM_EN;
+  60              		.loc 1 84 0
+  61 001e 084B     		ldr	r3, .L2+4
+  62 0020 074A     		ldr	r2, .L2+4
+  63 0022 1278     		ldrb	r2, [r2]
+  64 0024 D2B2     		uxtb	r2, r2
+  65 0026 42F00802 		orr	r2, r2, #8
+  66 002a D2B2     		uxtb	r2, r2
+  67 002c 1A70     		strb	r2, [r3]
+  85:.\Generated_Source\PSoC5/CySpc.c **** 
+  86:.\Generated_Source\PSoC5/CySpc.c ****     /* Restore global interrupt enable state */
+  87:.\Generated_Source\PSoC5/CySpc.c ****     CyExitCriticalSection(interruptState);
+  68              		.loc 1 87 0
+  69 002e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+  70 0030 1846     		mov	r0, r3
+  71 0032 FFF7FEFF 		bl	CyExitCriticalSection
+  88:.\Generated_Source\PSoC5/CySpc.c **** }
+  72              		.loc 1 88 0
+  73 0036 0837     		adds	r7, r7, #8
+  74 0038 BD46     		mov	sp, r7
+  75              		@ sp needed
+  76 003a 80BD     		pop	{r7, pc}
+  77              	.L3:
+  78              		.align	2
+  79              	.L2:
+  80 003c A0430040 		.word	1073759136
+  81 0040 B0430040 		.word	1073759152
+  82              		.cfi_endproc
+  83              	.LFE0:
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 4
+
+
+  84              		.size	CySpcStart, .-CySpcStart
+  85              		.section	.text.CySpcStop,"ax",%progbits
+  86              		.align	2
+  87              		.global	CySpcStop
+  88              		.thumb
+  89              		.thumb_func
+  90              		.type	CySpcStop, %function
+  91              	CySpcStop:
+  92              	.LFB1:
+  89:.\Generated_Source\PSoC5/CySpc.c **** 
+  90:.\Generated_Source\PSoC5/CySpc.c **** 
+  91:.\Generated_Source\PSoC5/CySpc.c **** /*******************************************************************************
+  92:.\Generated_Source\PSoC5/CySpc.c **** * Function Name: CySpcStop
+  93:.\Generated_Source\PSoC5/CySpc.c **** ********************************************************************************
+  94:.\Generated_Source\PSoC5/CySpc.c **** * Summary:
+  95:.\Generated_Source\PSoC5/CySpc.c **** *  Stops the SPC.
+  96:.\Generated_Source\PSoC5/CySpc.c **** *
+  97:.\Generated_Source\PSoC5/CySpc.c **** * Parameters:
+  98:.\Generated_Source\PSoC5/CySpc.c **** *  None
+  99:.\Generated_Source\PSoC5/CySpc.c **** *
+ 100:.\Generated_Source\PSoC5/CySpc.c **** * Return:
+ 101:.\Generated_Source\PSoC5/CySpc.c **** *  None
+ 102:.\Generated_Source\PSoC5/CySpc.c **** *
+ 103:.\Generated_Source\PSoC5/CySpc.c **** *******************************************************************************/
+ 104:.\Generated_Source\PSoC5/CySpc.c **** void CySpcStop(void) 
+ 105:.\Generated_Source\PSoC5/CySpc.c **** {
+  93              		.loc 1 105 0
+  94              		.cfi_startproc
+  95              		@ args = 0, pretend = 0, frame = 8
+  96              		@ frame_needed = 1, uses_anonymous_args = 0
+  97 0000 80B5     		push	{r7, lr}
+  98              		.cfi_def_cfa_offset 8
+  99              		.cfi_offset 7, -8
+ 100              		.cfi_offset 14, -4
+ 101 0002 82B0     		sub	sp, sp, #8
+ 102              		.cfi_def_cfa_offset 16
+ 103 0004 00AF     		add	r7, sp, #0
+ 104              		.cfi_def_cfa_register 7
+ 106:.\Generated_Source\PSoC5/CySpc.c ****     /* Save current global interrupt enable and disable it */
+ 107:.\Generated_Source\PSoC5/CySpc.c ****     uint8 interruptState = CyEnterCriticalSection();
+ 105              		.loc 1 107 0
+ 106 0006 FFF7FEFF 		bl	CyEnterCriticalSection
+ 107 000a 0346     		mov	r3, r0
+ 108 000c FB71     		strb	r3, [r7, #7]
+ 108:.\Generated_Source\PSoC5/CySpc.c **** 
+ 109:.\Generated_Source\PSoC5/CySpc.c ****     CY_SPC_PM_ACT_REG  &= ((uint8)(~PM_SPC_PM_EN));
+ 109              		.loc 1 109 0
+ 110 000e 0B4B     		ldr	r3, .L5
+ 111 0010 0A4A     		ldr	r2, .L5
+ 112 0012 1278     		ldrb	r2, [r2]
+ 113 0014 D2B2     		uxtb	r2, r2
+ 114 0016 22F00802 		bic	r2, r2, #8
+ 115 001a D2B2     		uxtb	r2, r2
+ 116 001c 1A70     		strb	r2, [r3]
+ 110:.\Generated_Source\PSoC5/CySpc.c ****     CY_SPC_PM_STBY_REG &= ((uint8)(~PM_SPC_PM_EN));
+ 117              		.loc 1 110 0
+ 118 001e 084B     		ldr	r3, .L5+4
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 5
+
+
+ 119 0020 074A     		ldr	r2, .L5+4
+ 120 0022 1278     		ldrb	r2, [r2]
+ 121 0024 D2B2     		uxtb	r2, r2
+ 122 0026 22F00802 		bic	r2, r2, #8
+ 123 002a D2B2     		uxtb	r2, r2
+ 124 002c 1A70     		strb	r2, [r3]
+ 111:.\Generated_Source\PSoC5/CySpc.c **** 
+ 112:.\Generated_Source\PSoC5/CySpc.c ****     /* Restore global interrupt enable state */
+ 113:.\Generated_Source\PSoC5/CySpc.c ****     CyExitCriticalSection(interruptState);
+ 125              		.loc 1 113 0
+ 126 002e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 127 0030 1846     		mov	r0, r3
+ 128 0032 FFF7FEFF 		bl	CyExitCriticalSection
+ 114:.\Generated_Source\PSoC5/CySpc.c **** }
+ 129              		.loc 1 114 0
+ 130 0036 0837     		adds	r7, r7, #8
+ 131 0038 BD46     		mov	sp, r7
+ 132              		@ sp needed
+ 133 003a 80BD     		pop	{r7, pc}
+ 134              	.L6:
+ 135              		.align	2
+ 136              	.L5:
+ 137 003c A0430040 		.word	1073759136
+ 138 0040 B0430040 		.word	1073759152
+ 139              		.cfi_endproc
+ 140              	.LFE1:
+ 141              		.size	CySpcStop, .-CySpcStop
+ 142              		.section	.text.CySpcReadData,"ax",%progbits
+ 143              		.align	2
+ 144              		.global	CySpcReadData
+ 145              		.thumb
+ 146              		.thumb_func
+ 147              		.type	CySpcReadData, %function
+ 148              	CySpcReadData:
+ 149              	.LFB2:
+ 115:.\Generated_Source\PSoC5/CySpc.c **** 
+ 116:.\Generated_Source\PSoC5/CySpc.c **** 
+ 117:.\Generated_Source\PSoC5/CySpc.c **** /*******************************************************************************
+ 118:.\Generated_Source\PSoC5/CySpc.c **** * Function Name: CySpcReadData
+ 119:.\Generated_Source\PSoC5/CySpc.c **** ********************************************************************************
+ 120:.\Generated_Source\PSoC5/CySpc.c **** * Summary:
+ 121:.\Generated_Source\PSoC5/CySpc.c **** *  Reads data from the SPC.
+ 122:.\Generated_Source\PSoC5/CySpc.c **** *
+ 123:.\Generated_Source\PSoC5/CySpc.c **** * Parameters:
+ 124:.\Generated_Source\PSoC5/CySpc.c **** *  uint8 buffer:
+ 125:.\Generated_Source\PSoC5/CySpc.c **** *   Address to store data read.
+ 126:.\Generated_Source\PSoC5/CySpc.c **** *
+ 127:.\Generated_Source\PSoC5/CySpc.c **** *  uint8 size:
+ 128:.\Generated_Source\PSoC5/CySpc.c **** *   Number of bytes to read from the SPC.
+ 129:.\Generated_Source\PSoC5/CySpc.c **** *
+ 130:.\Generated_Source\PSoC5/CySpc.c **** * Return:
+ 131:.\Generated_Source\PSoC5/CySpc.c **** *  uint8:
+ 132:.\Generated_Source\PSoC5/CySpc.c **** *   The number of bytes read from the SPC.
+ 133:.\Generated_Source\PSoC5/CySpc.c **** *
+ 134:.\Generated_Source\PSoC5/CySpc.c **** *******************************************************************************/
+ 135:.\Generated_Source\PSoC5/CySpc.c **** uint8 CySpcReadData(uint8 buffer[], uint8 size) 
+ 136:.\Generated_Source\PSoC5/CySpc.c **** {
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 6
+
+
+ 150              		.loc 1 136 0
+ 151              		.cfi_startproc
+ 152              		@ args = 0, pretend = 0, frame = 16
+ 153              		@ frame_needed = 1, uses_anonymous_args = 0
+ 154 0000 80B5     		push	{r7, lr}
+ 155              		.cfi_def_cfa_offset 8
+ 156              		.cfi_offset 7, -8
+ 157              		.cfi_offset 14, -4
+ 158 0002 84B0     		sub	sp, sp, #16
+ 159              		.cfi_def_cfa_offset 24
+ 160 0004 00AF     		add	r7, sp, #0
+ 161              		.cfi_def_cfa_register 7
+ 162 0006 7860     		str	r0, [r7, #4]
+ 163 0008 0B46     		mov	r3, r1
+ 164 000a FB70     		strb	r3, [r7, #3]
+ 137:.\Generated_Source\PSoC5/CySpc.c ****     uint8 i;
+ 138:.\Generated_Source\PSoC5/CySpc.c **** 
+ 139:.\Generated_Source\PSoC5/CySpc.c ****     for(i = 0u; i < size; i++)
+ 165              		.loc 1 139 0
+ 166 000c 0023     		movs	r3, #0
+ 167 000e FB73     		strb	r3, [r7, #15]
+ 168 0010 14E0     		b	.L8
+ 169              	.L11:
+ 140:.\Generated_Source\PSoC5/CySpc.c ****     {
+ 141:.\Generated_Source\PSoC5/CySpc.c ****         while(!CY_SPC_DATA_READY)
+ 170              		.loc 1 141 0
+ 171 0012 02E0     		b	.L9
+ 172              	.L10:
+ 142:.\Generated_Source\PSoC5/CySpc.c ****         {
+ 143:.\Generated_Source\PSoC5/CySpc.c ****             CyDelayUs(1u);
+ 173              		.loc 1 143 0
+ 174 0014 0120     		movs	r0, #1
+ 175 0016 FFF7FEFF 		bl	CyDelayUs
+ 176              	.L9:
+ 141:.\Generated_Source\PSoC5/CySpc.c ****         while(!CY_SPC_DATA_READY)
+ 177              		.loc 1 141 0 discriminator 1
+ 178 001a 0D4B     		ldr	r3, .L13
+ 179 001c 1B78     		ldrb	r3, [r3]
+ 180 001e DBB2     		uxtb	r3, r3
+ 181 0020 03F00103 		and	r3, r3, #1
+ 182 0024 002B     		cmp	r3, #0
+ 183 0026 F5D0     		beq	.L10
+ 144:.\Generated_Source\PSoC5/CySpc.c ****         }
+ 145:.\Generated_Source\PSoC5/CySpc.c ****         buffer[i] = CY_SPC_CPU_DATA_REG;
+ 184              		.loc 1 145 0
+ 185 0028 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 186 002a 7A68     		ldr	r2, [r7, #4]
+ 187 002c 1344     		add	r3, r3, r2
+ 188 002e 094A     		ldr	r2, .L13+4
+ 189 0030 1278     		ldrb	r2, [r2]
+ 190 0032 D2B2     		uxtb	r2, r2
+ 191 0034 1A70     		strb	r2, [r3]
+ 139:.\Generated_Source\PSoC5/CySpc.c ****     for(i = 0u; i < size; i++)
+ 192              		.loc 1 139 0
+ 193 0036 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 194 0038 0133     		adds	r3, r3, #1
+ 195 003a FB73     		strb	r3, [r7, #15]
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 7
+
+
+ 196              	.L8:
+ 139:.\Generated_Source\PSoC5/CySpc.c ****     for(i = 0u; i < size; i++)
+ 197              		.loc 1 139 0 is_stmt 0 discriminator 1
+ 198 003c FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
+ 199 003e FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 200 0040 9A42     		cmp	r2, r3
+ 201 0042 E6D3     		bcc	.L11
+ 146:.\Generated_Source\PSoC5/CySpc.c ****     }
+ 147:.\Generated_Source\PSoC5/CySpc.c **** 
+ 148:.\Generated_Source\PSoC5/CySpc.c ****     return(i);
+ 202              		.loc 1 148 0 is_stmt 1
+ 203 0044 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 149:.\Generated_Source\PSoC5/CySpc.c **** }
+ 204              		.loc 1 149 0
+ 205 0046 1846     		mov	r0, r3
+ 206 0048 1037     		adds	r7, r7, #16
+ 207 004a BD46     		mov	sp, r7
+ 208              		@ sp needed
+ 209 004c 80BD     		pop	{r7, pc}
+ 210              	.L14:
+ 211 004e 00BF     		.align	2
+ 212              	.L13:
+ 213 0050 22470040 		.word	1073760034
+ 214 0054 20470040 		.word	1073760032
+ 215              		.cfi_endproc
+ 216              	.LFE2:
+ 217              		.size	CySpcReadData, .-CySpcReadData
+ 218              		.section	.text.CySpcLoadMultiByte,"ax",%progbits
+ 219              		.align	2
+ 220              		.global	CySpcLoadMultiByte
+ 221              		.thumb
+ 222              		.thumb_func
+ 223              		.type	CySpcLoadMultiByte, %function
+ 224              	CySpcLoadMultiByte:
+ 225              	.LFB3:
+ 150:.\Generated_Source\PSoC5/CySpc.c **** 
+ 151:.\Generated_Source\PSoC5/CySpc.c **** 
+ 152:.\Generated_Source\PSoC5/CySpc.c **** /*******************************************************************************
+ 153:.\Generated_Source\PSoC5/CySpc.c **** * Function Name: CySpcLoadMultiByte
+ 154:.\Generated_Source\PSoC5/CySpc.c **** ********************************************************************************
+ 155:.\Generated_Source\PSoC5/CySpc.c **** * Summary:
+ 156:.\Generated_Source\PSoC5/CySpc.c **** *  Loads 1 to 32 bytes of data into the row latch of a Flash/EEPROM array.
+ 157:.\Generated_Source\PSoC5/CySpc.c **** *
+ 158:.\Generated_Source\PSoC5/CySpc.c **** * Parameters:
+ 159:.\Generated_Source\PSoC5/CySpc.c **** *  uint8 array:
+ 160:.\Generated_Source\PSoC5/CySpc.c **** *   Id of the array.
+ 161:.\Generated_Source\PSoC5/CySpc.c **** *
+ 162:.\Generated_Source\PSoC5/CySpc.c **** *  uint16 address:
+ 163:.\Generated_Source\PSoC5/CySpc.c **** *   Flash/eeprom addrress
+ 164:.\Generated_Source\PSoC5/CySpc.c **** *
+ 165:.\Generated_Source\PSoC5/CySpc.c **** *  uint8* buffer:
+ 166:.\Generated_Source\PSoC5/CySpc.c **** *   Data to load to the row latch
+ 167:.\Generated_Source\PSoC5/CySpc.c **** *
+ 168:.\Generated_Source\PSoC5/CySpc.c **** *  uint16 number:
+ 169:.\Generated_Source\PSoC5/CySpc.c **** *   Number bytes to load.
+ 170:.\Generated_Source\PSoC5/CySpc.c **** *
+ 171:.\Generated_Source\PSoC5/CySpc.c **** * Return:
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 8
+
+
+ 172:.\Generated_Source\PSoC5/CySpc.c **** *  CYRET_STARTED
+ 173:.\Generated_Source\PSoC5/CySpc.c **** *  CYRET_CANCELED
+ 174:.\Generated_Source\PSoC5/CySpc.c **** *  CYRET_LOCKED
+ 175:.\Generated_Source\PSoC5/CySpc.c **** *  CYRET_BAD_PARAM
+ 176:.\Generated_Source\PSoC5/CySpc.c **** *
+ 177:.\Generated_Source\PSoC5/CySpc.c **** *******************************************************************************/
+ 178:.\Generated_Source\PSoC5/CySpc.c **** cystatus CySpcLoadMultiByte(uint8 array, uint16 address, const uint8 buffer[], uint8 size)\
+ 179:.\Generated_Source\PSoC5/CySpc.c **** 
+ 180:.\Generated_Source\PSoC5/CySpc.c **** {
+ 226              		.loc 1 180 0
+ 227              		.cfi_startproc
+ 228              		@ args = 0, pretend = 0, frame = 16
+ 229              		@ frame_needed = 1, uses_anonymous_args = 0
+ 230              		@ link register save eliminated.
+ 231 0000 80B4     		push	{r7}
+ 232              		.cfi_def_cfa_offset 4
+ 233              		.cfi_offset 7, -4
+ 234 0002 85B0     		sub	sp, sp, #20
+ 235              		.cfi_def_cfa_offset 24
+ 236 0004 00AF     		add	r7, sp, #0
+ 237              		.cfi_def_cfa_register 7
+ 238 0006 3A60     		str	r2, [r7]
+ 239 0008 0246     		mov	r2, r0
+ 240 000a FA71     		strb	r2, [r7, #7]
+ 241 000c 0A46     		mov	r2, r1	@ movhi
+ 242 000e BA80     		strh	r2, [r7, #4]	@ movhi
+ 243 0010 BB71     		strb	r3, [r7, #6]
+ 181:.\Generated_Source\PSoC5/CySpc.c ****     cystatus status = CYRET_STARTED;
+ 244              		.loc 1 181 0
+ 245 0012 0723     		movs	r3, #7
+ 246 0014 FB60     		str	r3, [r7, #12]
+ 182:.\Generated_Source\PSoC5/CySpc.c ****     uint8 i;
+ 183:.\Generated_Source\PSoC5/CySpc.c **** 
+ 184:.\Generated_Source\PSoC5/CySpc.c ****     /***************************************************************************
+ 185:.\Generated_Source\PSoC5/CySpc.c ****     * Check if number is correct for array. Number must be less than
+ 186:.\Generated_Source\PSoC5/CySpc.c ****     * 32 for Flash or less than 16 for EEPROM.
+ 187:.\Generated_Source\PSoC5/CySpc.c ****     ***************************************************************************/
+ 188:.\Generated_Source\PSoC5/CySpc.c ****     if(((array < CY_SPC_LAST_FLASH_ARRAYID) && (size < 32u)) ||
+ 247              		.loc 1 188 0
+ 248 0016 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 249 0018 3E2B     		cmp	r3, #62
+ 250 001a 02D8     		bhi	.L16
+ 251              		.loc 1 188 0 is_stmt 0 discriminator 1
+ 252 001c BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+ 253 001e 1F2B     		cmp	r3, #31
+ 254 0020 05D9     		bls	.L17
+ 255              	.L16:
+ 256              		.loc 1 188 0 discriminator 2
+ 257 0022 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 258 0024 3F2B     		cmp	r3, #63
+ 259 0026 46D9     		bls	.L18
+ 189:.\Generated_Source\PSoC5/CySpc.c ****        ((array > CY_SPC_LAST_FLASH_ARRAYID) && (size < 16u)))
+ 260              		.loc 1 189 0 is_stmt 1
+ 261 0028 BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+ 262 002a 0F2B     		cmp	r3, #15
+ 263 002c 43D8     		bhi	.L18
+ 264              	.L17:
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 9
+
+
+ 190:.\Generated_Source\PSoC5/CySpc.c ****     {
+ 191:.\Generated_Source\PSoC5/CySpc.c ****         if(CY_SPC_IDLE)
+ 265              		.loc 1 191 0
+ 266 002e 264B     		ldr	r3, .L28
+ 267 0030 1B78     		ldrb	r3, [r3]
+ 268 0032 DBB2     		uxtb	r3, r3
+ 269 0034 03F00203 		and	r3, r3, #2
+ 270 0038 002B     		cmp	r3, #0
+ 271 003a 38D0     		beq	.L19
+ 192:.\Generated_Source\PSoC5/CySpc.c ****         {
+ 193:.\Generated_Source\PSoC5/CySpc.c ****             CY_SPC_CPU_DATA_REG = CY_SPC_KEY_ONE;
+ 272              		.loc 1 193 0
+ 273 003c 234B     		ldr	r3, .L28+4
+ 274 003e B622     		movs	r2, #182
+ 275 0040 1A70     		strb	r2, [r3]
+ 194:.\Generated_Source\PSoC5/CySpc.c ****             CY_SPC_CPU_DATA_REG = CY_SPC_KEY_TWO(CY_SPC_CMD_LD_MULTI_BYTE);
+ 276              		.loc 1 194 0
+ 277 0042 224B     		ldr	r3, .L28+4
+ 278 0044 D422     		movs	r2, #212
+ 279 0046 1A70     		strb	r2, [r3]
+ 195:.\Generated_Source\PSoC5/CySpc.c ****             CY_SPC_CPU_DATA_REG = CY_SPC_CMD_LD_MULTI_BYTE;
+ 280              		.loc 1 195 0
+ 281 0048 204B     		ldr	r3, .L28+4
+ 282 004a 0122     		movs	r2, #1
+ 283 004c 1A70     		strb	r2, [r3]
+ 196:.\Generated_Source\PSoC5/CySpc.c **** 
+ 197:.\Generated_Source\PSoC5/CySpc.c ****             if(CY_SPC_BUSY)
+ 284              		.loc 1 197 0
+ 285 004e 1E4B     		ldr	r3, .L28
+ 286 0050 1B78     		ldrb	r3, [r3]
+ 287 0052 DBB2     		uxtb	r3, r3
+ 288 0054 03F00203 		and	r3, r3, #2
+ 289 0058 002B     		cmp	r3, #0
+ 290 005a 25D1     		bne	.L20
+ 198:.\Generated_Source\PSoC5/CySpc.c ****             {
+ 199:.\Generated_Source\PSoC5/CySpc.c ****                 CY_SPC_CPU_DATA_REG = array;
+ 291              		.loc 1 199 0
+ 292 005c 1B4B     		ldr	r3, .L28+4
+ 293 005e FA79     		ldrb	r2, [r7, #7]
+ 294 0060 1A70     		strb	r2, [r3]
+ 200:.\Generated_Source\PSoC5/CySpc.c ****                 CY_SPC_CPU_DATA_REG = 1u & HI8(address);
+ 295              		.loc 1 200 0
+ 296 0062 1A4B     		ldr	r3, .L28+4
+ 297 0064 BA88     		ldrh	r2, [r7, #4]
+ 298 0066 120A     		lsrs	r2, r2, #8
+ 299 0068 92B2     		uxth	r2, r2
+ 300 006a D2B2     		uxtb	r2, r2
+ 301 006c 02F00102 		and	r2, r2, #1
+ 302 0070 D2B2     		uxtb	r2, r2
+ 303 0072 1A70     		strb	r2, [r3]
+ 201:.\Generated_Source\PSoC5/CySpc.c ****                 CY_SPC_CPU_DATA_REG = LO8(address);
+ 304              		.loc 1 201 0
+ 305 0074 154B     		ldr	r3, .L28+4
+ 306 0076 BA88     		ldrh	r2, [r7, #4]	@ movhi
+ 307 0078 D2B2     		uxtb	r2, r2
+ 308 007a 1A70     		strb	r2, [r3]
+ 202:.\Generated_Source\PSoC5/CySpc.c ****                 CY_SPC_CPU_DATA_REG = ((uint8)(size - 1u));
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 10
+
+
+ 309              		.loc 1 202 0
+ 310 007c 134B     		ldr	r3, .L28+4
+ 311 007e BA79     		ldrb	r2, [r7, #6]
+ 312 0080 013A     		subs	r2, r2, #1
+ 313 0082 D2B2     		uxtb	r2, r2
+ 314 0084 1A70     		strb	r2, [r3]
+ 203:.\Generated_Source\PSoC5/CySpc.c **** 
+ 204:.\Generated_Source\PSoC5/CySpc.c ****                 for(i = 0u; i < size; i++)
+ 315              		.loc 1 204 0
+ 316 0086 0023     		movs	r3, #0
+ 317 0088 FB72     		strb	r3, [r7, #11]
+ 318 008a 08E0     		b	.L21
+ 319              	.L22:
+ 205:.\Generated_Source\PSoC5/CySpc.c ****                 {
+ 206:.\Generated_Source\PSoC5/CySpc.c ****                     CY_SPC_CPU_DATA_REG = buffer[i];
+ 320              		.loc 1 206 0 discriminator 2
+ 321 008c 0F4B     		ldr	r3, .L28+4
+ 322 008e FA7A     		ldrb	r2, [r7, #11]	@ zero_extendqisi2
+ 323 0090 3968     		ldr	r1, [r7]
+ 324 0092 0A44     		add	r2, r2, r1
+ 325 0094 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 326 0096 1A70     		strb	r2, [r3]
+ 204:.\Generated_Source\PSoC5/CySpc.c ****                 for(i = 0u; i < size; i++)
+ 327              		.loc 1 204 0 discriminator 2
+ 328 0098 FB7A     		ldrb	r3, [r7, #11]	@ zero_extendqisi2
+ 329 009a 0133     		adds	r3, r3, #1
+ 330 009c FB72     		strb	r3, [r7, #11]
+ 331              	.L21:
+ 204:.\Generated_Source\PSoC5/CySpc.c ****                 for(i = 0u; i < size; i++)
+ 332              		.loc 1 204 0 is_stmt 0 discriminator 1
+ 333 009e FA7A     		ldrb	r2, [r7, #11]	@ zero_extendqisi2
+ 334 00a0 BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+ 335 00a2 9A42     		cmp	r2, r3
+ 336 00a4 F2D3     		bcc	.L22
+ 337 00a6 05E0     		b	.L27
+ 338              	.L20:
+ 207:.\Generated_Source\PSoC5/CySpc.c ****                 }
+ 208:.\Generated_Source\PSoC5/CySpc.c ****             }
+ 209:.\Generated_Source\PSoC5/CySpc.c ****             else
+ 210:.\Generated_Source\PSoC5/CySpc.c ****             {
+ 211:.\Generated_Source\PSoC5/CySpc.c ****                 status = CYRET_CANCELED;
+ 339              		.loc 1 211 0 is_stmt 1
+ 340 00a8 0923     		movs	r3, #9
+ 341 00aa FB60     		str	r3, [r7, #12]
+ 191:.\Generated_Source\PSoC5/CySpc.c ****         if(CY_SPC_IDLE)
+ 342              		.loc 1 191 0
+ 343 00ac 05E0     		b	.L25
+ 344              	.L19:
+ 212:.\Generated_Source\PSoC5/CySpc.c ****             }
+ 213:.\Generated_Source\PSoC5/CySpc.c ****         }
+ 214:.\Generated_Source\PSoC5/CySpc.c ****         else
+ 215:.\Generated_Source\PSoC5/CySpc.c ****         {
+ 216:.\Generated_Source\PSoC5/CySpc.c ****             status = CYRET_LOCKED;
+ 345              		.loc 1 216 0
+ 346 00ae 0423     		movs	r3, #4
+ 347 00b0 FB60     		str	r3, [r7, #12]
+ 191:.\Generated_Source\PSoC5/CySpc.c ****         if(CY_SPC_IDLE)
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 11
+
+
+ 348              		.loc 1 191 0
+ 349 00b2 02E0     		b	.L25
+ 350              	.L27:
+ 351 00b4 01E0     		b	.L25
+ 352              	.L18:
+ 217:.\Generated_Source\PSoC5/CySpc.c ****         }
+ 218:.\Generated_Source\PSoC5/CySpc.c ****     }
+ 219:.\Generated_Source\PSoC5/CySpc.c ****     else
+ 220:.\Generated_Source\PSoC5/CySpc.c ****     {
+ 221:.\Generated_Source\PSoC5/CySpc.c ****         status = CYRET_BAD_PARAM;
+ 353              		.loc 1 221 0
+ 354 00b6 0123     		movs	r3, #1
+ 355 00b8 FB60     		str	r3, [r7, #12]
+ 356              	.L25:
+ 222:.\Generated_Source\PSoC5/CySpc.c ****     }
+ 223:.\Generated_Source\PSoC5/CySpc.c **** 
+ 224:.\Generated_Source\PSoC5/CySpc.c ****     return(status);
+ 357              		.loc 1 224 0
+ 358 00ba FB68     		ldr	r3, [r7, #12]
+ 225:.\Generated_Source\PSoC5/CySpc.c **** }
+ 359              		.loc 1 225 0
+ 360 00bc 1846     		mov	r0, r3
+ 361 00be 1437     		adds	r7, r7, #20
+ 362 00c0 BD46     		mov	sp, r7
+ 363              		@ sp needed
+ 364 00c2 5DF8047B 		ldr	r7, [sp], #4
+ 365 00c6 7047     		bx	lr
+ 366              	.L29:
+ 367              		.align	2
+ 368              	.L28:
+ 369 00c8 22470040 		.word	1073760034
+ 370 00cc 20470040 		.word	1073760032
+ 371              		.cfi_endproc
+ 372              	.LFE3:
+ 373              		.size	CySpcLoadMultiByte, .-CySpcLoadMultiByte
+ 374              		.section	.text.CySpcLoadRow,"ax",%progbits
+ 375              		.align	2
+ 376              		.global	CySpcLoadRow
+ 377              		.thumb
+ 378              		.thumb_func
+ 379              		.type	CySpcLoadRow, %function
+ 380              	CySpcLoadRow:
+ 381              	.LFB4:
+ 226:.\Generated_Source\PSoC5/CySpc.c **** 
+ 227:.\Generated_Source\PSoC5/CySpc.c **** 
+ 228:.\Generated_Source\PSoC5/CySpc.c **** /*******************************************************************************
+ 229:.\Generated_Source\PSoC5/CySpc.c **** * Function Name: CySpcLoadRow
+ 230:.\Generated_Source\PSoC5/CySpc.c **** ********************************************************************************
+ 231:.\Generated_Source\PSoC5/CySpc.c **** * Summary:
+ 232:.\Generated_Source\PSoC5/CySpc.c **** *  Loads a row of data into the row latch of a Flash/EEPROM array.
+ 233:.\Generated_Source\PSoC5/CySpc.c **** *
+ 234:.\Generated_Source\PSoC5/CySpc.c **** *  The buffer pointer should point to the data that should be written to the
+ 235:.\Generated_Source\PSoC5/CySpc.c **** *  flash row directly (no data in ECC/flash will be preserved). It is Flash API
+ 236:.\Generated_Source\PSoC5/CySpc.c **** *  responsibility to prepare data: the preserved data are copied from flash into
+ 237:.\Generated_Source\PSoC5/CySpc.c **** *  array with the modified data.
+ 238:.\Generated_Source\PSoC5/CySpc.c **** *
+ 239:.\Generated_Source\PSoC5/CySpc.c **** * Parameters:
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 12
+
+
+ 240:.\Generated_Source\PSoC5/CySpc.c **** *  uint8 array:
+ 241:.\Generated_Source\PSoC5/CySpc.c **** *   Id of the array.
+ 242:.\Generated_Source\PSoC5/CySpc.c **** *
+ 243:.\Generated_Source\PSoC5/CySpc.c **** *  uint8* buffer:
+ 244:.\Generated_Source\PSoC5/CySpc.c **** *   Data to be loaded to the row latch
+ 245:.\Generated_Source\PSoC5/CySpc.c **** *
+ 246:.\Generated_Source\PSoC5/CySpc.c **** *  uint8 size:
+ 247:.\Generated_Source\PSoC5/CySpc.c **** *   The number of data bytes that the SPC expects to be written. Depends on the
+ 248:.\Generated_Source\PSoC5/CySpc.c **** *   type of the array and, if the array is Flash, whether ECC is being enabled
+ 249:.\Generated_Source\PSoC5/CySpc.c **** *   or not. There are following values: flash row latch size with ECC enabled,
+ 250:.\Generated_Source\PSoC5/CySpc.c **** *   flash row latch size with ECC disabled and EEPROM row latch size.
+ 251:.\Generated_Source\PSoC5/CySpc.c **** *
+ 252:.\Generated_Source\PSoC5/CySpc.c **** * Return:
+ 253:.\Generated_Source\PSoC5/CySpc.c **** *  CYRET_STARTED
+ 254:.\Generated_Source\PSoC5/CySpc.c **** *  CYRET_CANCELED
+ 255:.\Generated_Source\PSoC5/CySpc.c **** *  CYRET_LOCKED
+ 256:.\Generated_Source\PSoC5/CySpc.c **** *
+ 257:.\Generated_Source\PSoC5/CySpc.c **** *******************************************************************************/
+ 258:.\Generated_Source\PSoC5/CySpc.c **** cystatus CySpcLoadRow(uint8 array, const uint8 buffer[], uint16 size)
+ 259:.\Generated_Source\PSoC5/CySpc.c **** {
+ 382              		.loc 1 259 0
+ 383              		.cfi_startproc
+ 384              		@ args = 0, pretend = 0, frame = 16
+ 385              		@ frame_needed = 1, uses_anonymous_args = 0
+ 386              		@ link register save eliminated.
+ 387 0000 80B4     		push	{r7}
+ 388              		.cfi_def_cfa_offset 4
+ 389              		.cfi_offset 7, -4
+ 390 0002 85B0     		sub	sp, sp, #20
+ 391              		.cfi_def_cfa_offset 24
+ 392 0004 00AF     		add	r7, sp, #0
+ 393              		.cfi_def_cfa_register 7
+ 394 0006 3960     		str	r1, [r7]
+ 395 0008 1346     		mov	r3, r2
+ 396 000a 0246     		mov	r2, r0
+ 397 000c FA71     		strb	r2, [r7, #7]
+ 398 000e BB80     		strh	r3, [r7, #4]	@ movhi
+ 260:.\Generated_Source\PSoC5/CySpc.c ****     cystatus status = CYRET_STARTED;
+ 399              		.loc 1 260 0
+ 400 0010 0723     		movs	r3, #7
+ 401 0012 FB60     		str	r3, [r7, #12]
+ 261:.\Generated_Source\PSoC5/CySpc.c ****     uint16 i;
+ 262:.\Generated_Source\PSoC5/CySpc.c **** 
+ 263:.\Generated_Source\PSoC5/CySpc.c ****     /* Make sure the SPC is ready to accept command */
+ 264:.\Generated_Source\PSoC5/CySpc.c ****     if(CY_SPC_IDLE)
+ 402              		.loc 1 264 0
+ 403 0014 1B4B     		ldr	r3, .L38
+ 404 0016 1B78     		ldrb	r3, [r3]
+ 405 0018 DBB2     		uxtb	r3, r3
+ 406 001a 03F00203 		and	r3, r3, #2
+ 407 001e 002B     		cmp	r3, #0
+ 408 0020 26D0     		beq	.L31
+ 265:.\Generated_Source\PSoC5/CySpc.c ****     {
+ 266:.\Generated_Source\PSoC5/CySpc.c ****         CY_SPC_CPU_DATA_REG = CY_SPC_KEY_ONE;
+ 409              		.loc 1 266 0
+ 410 0022 194B     		ldr	r3, .L38+4
+ 411 0024 B622     		movs	r2, #182
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 13
+
+
+ 412 0026 1A70     		strb	r2, [r3]
+ 267:.\Generated_Source\PSoC5/CySpc.c ****         CY_SPC_CPU_DATA_REG = CY_SPC_KEY_TWO(CY_SPC_CMD_LD_ROW);
+ 413              		.loc 1 267 0
+ 414 0028 174B     		ldr	r3, .L38+4
+ 415 002a D522     		movs	r2, #213
+ 416 002c 1A70     		strb	r2, [r3]
+ 268:.\Generated_Source\PSoC5/CySpc.c ****         CY_SPC_CPU_DATA_REG = CY_SPC_CMD_LD_ROW;
+ 417              		.loc 1 268 0
+ 418 002e 164B     		ldr	r3, .L38+4
+ 419 0030 0222     		movs	r2, #2
+ 420 0032 1A70     		strb	r2, [r3]
+ 269:.\Generated_Source\PSoC5/CySpc.c **** 
+ 270:.\Generated_Source\PSoC5/CySpc.c ****         /* Make sure the command was accepted */
+ 271:.\Generated_Source\PSoC5/CySpc.c ****         if(CY_SPC_BUSY)
+ 421              		.loc 1 271 0
+ 422 0034 134B     		ldr	r3, .L38
+ 423 0036 1B78     		ldrb	r3, [r3]
+ 424 0038 DBB2     		uxtb	r3, r3
+ 425 003a 03F00203 		and	r3, r3, #2
+ 426 003e 002B     		cmp	r3, #0
+ 427 0040 13D1     		bne	.L32
+ 272:.\Generated_Source\PSoC5/CySpc.c ****         {
+ 273:.\Generated_Source\PSoC5/CySpc.c ****             CY_SPC_CPU_DATA_REG = array;
+ 428              		.loc 1 273 0
+ 429 0042 114B     		ldr	r3, .L38+4
+ 430 0044 FA79     		ldrb	r2, [r7, #7]
+ 431 0046 1A70     		strb	r2, [r3]
+ 274:.\Generated_Source\PSoC5/CySpc.c **** 
+ 275:.\Generated_Source\PSoC5/CySpc.c ****             for(i = 0u; i < size; i++)
+ 432              		.loc 1 275 0
+ 433 0048 0023     		movs	r3, #0
+ 434 004a 7B81     		strh	r3, [r7, #10]	@ movhi
+ 435 004c 08E0     		b	.L33
+ 436              	.L34:
+ 276:.\Generated_Source\PSoC5/CySpc.c ****             {
+ 277:.\Generated_Source\PSoC5/CySpc.c ****                 CY_SPC_CPU_DATA_REG = buffer[i];
+ 437              		.loc 1 277 0 discriminator 2
+ 438 004e 0E4B     		ldr	r3, .L38+4
+ 439 0050 7A89     		ldrh	r2, [r7, #10]
+ 440 0052 3968     		ldr	r1, [r7]
+ 441 0054 0A44     		add	r2, r2, r1
+ 442 0056 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 443 0058 1A70     		strb	r2, [r3]
+ 275:.\Generated_Source\PSoC5/CySpc.c ****             for(i = 0u; i < size; i++)
+ 444              		.loc 1 275 0 discriminator 2
+ 445 005a 7B89     		ldrh	r3, [r7, #10]
+ 446 005c 0133     		adds	r3, r3, #1
+ 447 005e 7B81     		strh	r3, [r7, #10]	@ movhi
+ 448              	.L33:
+ 275:.\Generated_Source\PSoC5/CySpc.c ****             for(i = 0u; i < size; i++)
+ 449              		.loc 1 275 0 is_stmt 0 discriminator 1
+ 450 0060 7A89     		ldrh	r2, [r7, #10]
+ 451 0062 BB88     		ldrh	r3, [r7, #4]
+ 452 0064 9A42     		cmp	r2, r3
+ 453 0066 F2D3     		bcc	.L34
+ 454 0068 04E0     		b	.L36
+ 455              	.L32:
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 14
+
+
+ 278:.\Generated_Source\PSoC5/CySpc.c ****             }
+ 279:.\Generated_Source\PSoC5/CySpc.c ****         }
+ 280:.\Generated_Source\PSoC5/CySpc.c ****         else
+ 281:.\Generated_Source\PSoC5/CySpc.c ****         {
+ 282:.\Generated_Source\PSoC5/CySpc.c ****             status = CYRET_CANCELED;
+ 456              		.loc 1 282 0 is_stmt 1
+ 457 006a 0923     		movs	r3, #9
+ 458 006c FB60     		str	r3, [r7, #12]
+ 459 006e 01E0     		b	.L36
+ 460              	.L31:
+ 283:.\Generated_Source\PSoC5/CySpc.c ****         }
+ 284:.\Generated_Source\PSoC5/CySpc.c ****     }
+ 285:.\Generated_Source\PSoC5/CySpc.c ****     else
+ 286:.\Generated_Source\PSoC5/CySpc.c ****     {
+ 287:.\Generated_Source\PSoC5/CySpc.c ****         status = CYRET_LOCKED;
+ 461              		.loc 1 287 0
+ 462 0070 0423     		movs	r3, #4
+ 463 0072 FB60     		str	r3, [r7, #12]
+ 464              	.L36:
+ 288:.\Generated_Source\PSoC5/CySpc.c ****     }
+ 289:.\Generated_Source\PSoC5/CySpc.c **** 
+ 290:.\Generated_Source\PSoC5/CySpc.c ****     return(status);
+ 465              		.loc 1 290 0
+ 466 0074 FB68     		ldr	r3, [r7, #12]
+ 291:.\Generated_Source\PSoC5/CySpc.c **** }
+ 467              		.loc 1 291 0
+ 468 0076 1846     		mov	r0, r3
+ 469 0078 1437     		adds	r7, r7, #20
+ 470 007a BD46     		mov	sp, r7
+ 471              		@ sp needed
+ 472 007c 5DF8047B 		ldr	r7, [sp], #4
+ 473 0080 7047     		bx	lr
+ 474              	.L39:
+ 475 0082 00BF     		.align	2
+ 476              	.L38:
+ 477 0084 22470040 		.word	1073760034
+ 478 0088 20470040 		.word	1073760032
+ 479              		.cfi_endproc
+ 480              	.LFE4:
+ 481              		.size	CySpcLoadRow, .-CySpcLoadRow
+ 482              		.section	.text.CySpcLoadRowFull,"ax",%progbits
+ 483              		.align	2
+ 484              		.global	CySpcLoadRowFull
+ 485              		.thumb
+ 486              		.thumb_func
+ 487              		.type	CySpcLoadRowFull, %function
+ 488              	CySpcLoadRowFull:
+ 489              	.LFB5:
+ 292:.\Generated_Source\PSoC5/CySpc.c **** 
+ 293:.\Generated_Source\PSoC5/CySpc.c **** 
+ 294:.\Generated_Source\PSoC5/CySpc.c **** /*******************************************************************************
+ 295:.\Generated_Source\PSoC5/CySpc.c **** * Function Name: CySpcLoadRowFull
+ 296:.\Generated_Source\PSoC5/CySpc.c **** ********************************************************************************
+ 297:.\Generated_Source\PSoC5/CySpc.c **** * Summary:
+ 298:.\Generated_Source\PSoC5/CySpc.c **** *  Loads a row of data into the row latch of a Flash/EEPROM array.
+ 299:.\Generated_Source\PSoC5/CySpc.c **** *
+ 300:.\Generated_Source\PSoC5/CySpc.c **** *  The only data that are going to be changed should be passed. The function
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 15
+
+
+ 301:.\Generated_Source\PSoC5/CySpc.c **** *  will handle unmodified data preservation based on DWR settings and input
+ 302:.\Generated_Source\PSoC5/CySpc.c **** *  parameters.
+ 303:.\Generated_Source\PSoC5/CySpc.c **** *
+ 304:.\Generated_Source\PSoC5/CySpc.c **** * Parameters:
+ 305:.\Generated_Source\PSoC5/CySpc.c **** *  uint8 array:
+ 306:.\Generated_Source\PSoC5/CySpc.c **** *   Id of the array.
+ 307:.\Generated_Source\PSoC5/CySpc.c **** *
+ 308:.\Generated_Source\PSoC5/CySpc.c **** *  uint16 row:
+ 309:.\Generated_Source\PSoC5/CySpc.c **** *   Flash row number to be loaded.
+ 310:.\Generated_Source\PSoC5/CySpc.c **** *
+ 311:.\Generated_Source\PSoC5/CySpc.c **** *  uint8* buffer:
+ 312:.\Generated_Source\PSoC5/CySpc.c **** *   Data to be loaded to the row latch
+ 313:.\Generated_Source\PSoC5/CySpc.c **** *
+ 314:.\Generated_Source\PSoC5/CySpc.c **** *  uint8 size:
+ 315:.\Generated_Source\PSoC5/CySpc.c **** *   The number of data bytes that the SPC expects to be written. Depends on the
+ 316:.\Generated_Source\PSoC5/CySpc.c **** *   type of the array and, if the array is Flash, whether ECC is being enabled
+ 317:.\Generated_Source\PSoC5/CySpc.c **** *   or not. There are following values: flash row latch size with ECC enabled,
+ 318:.\Generated_Source\PSoC5/CySpc.c **** *   flash row latch size with ECC disabled and EEPROM row latch size.
+ 319:.\Generated_Source\PSoC5/CySpc.c **** *
+ 320:.\Generated_Source\PSoC5/CySpc.c **** * Return:
+ 321:.\Generated_Source\PSoC5/CySpc.c **** *  CYRET_STARTED
+ 322:.\Generated_Source\PSoC5/CySpc.c **** *  CYRET_CANCELED
+ 323:.\Generated_Source\PSoC5/CySpc.c **** *  CYRET_LOCKED
+ 324:.\Generated_Source\PSoC5/CySpc.c **** *
+ 325:.\Generated_Source\PSoC5/CySpc.c **** *******************************************************************************/
+ 326:.\Generated_Source\PSoC5/CySpc.c **** cystatus CySpcLoadRowFull(uint8 array, uint16 row, const uint8 buffer[], uint16 size)\
+ 327:.\Generated_Source\PSoC5/CySpc.c **** 
+ 328:.\Generated_Source\PSoC5/CySpc.c **** {
+ 490              		.loc 1 328 0
+ 491              		.cfi_startproc
+ 492              		@ args = 0, pretend = 0, frame = 32
+ 493              		@ frame_needed = 1, uses_anonymous_args = 0
+ 494              		@ link register save eliminated.
+ 495 0000 80B4     		push	{r7}
+ 496              		.cfi_def_cfa_offset 4
+ 497              		.cfi_offset 7, -4
+ 498 0002 89B0     		sub	sp, sp, #36
+ 499              		.cfi_def_cfa_offset 40
+ 500 0004 00AF     		add	r7, sp, #0
+ 501              		.cfi_def_cfa_register 7
+ 502 0006 BA60     		str	r2, [r7, #8]
+ 503 0008 0246     		mov	r2, r0
+ 504 000a FA73     		strb	r2, [r7, #15]
+ 505 000c 0A46     		mov	r2, r1	@ movhi
+ 506 000e BA81     		strh	r2, [r7, #12]	@ movhi
+ 507 0010 FB80     		strh	r3, [r7, #6]	@ movhi
+ 329:.\Generated_Source\PSoC5/CySpc.c ****     cystatus status = CYRET_STARTED;
+ 508              		.loc 1 329 0
+ 509 0012 0723     		movs	r3, #7
+ 510 0014 FB61     		str	r3, [r7, #28]
+ 330:.\Generated_Source\PSoC5/CySpc.c ****     uint16 i;
+ 331:.\Generated_Source\PSoC5/CySpc.c **** 
+ 332:.\Generated_Source\PSoC5/CySpc.c ****     #if (CYDEV_ECC_ENABLE == 0)
+ 333:.\Generated_Source\PSoC5/CySpc.c ****         uint32 offset;
+ 334:.\Generated_Source\PSoC5/CySpc.c ****     #endif /* (CYDEV_ECC_ENABLE == 0) */
+ 335:.\Generated_Source\PSoC5/CySpc.c **** 
+ 336:.\Generated_Source\PSoC5/CySpc.c ****     /* Make sure the SPC is ready to accept command */
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 16
+
+
+ 337:.\Generated_Source\PSoC5/CySpc.c ****     if(CY_SPC_IDLE)
+ 511              		.loc 1 337 0
+ 512 0016 394B     		ldr	r3, .L53
+ 513 0018 1B78     		ldrb	r3, [r3]
+ 514 001a DBB2     		uxtb	r3, r3
+ 515 001c 03F00203 		and	r3, r3, #2
+ 516 0020 002B     		cmp	r3, #0
+ 517 0022 61D0     		beq	.L41
+ 338:.\Generated_Source\PSoC5/CySpc.c ****     {
+ 339:.\Generated_Source\PSoC5/CySpc.c ****         CY_SPC_CPU_DATA_REG = CY_SPC_KEY_ONE;
+ 518              		.loc 1 339 0
+ 519 0024 364B     		ldr	r3, .L53+4
+ 520 0026 B622     		movs	r2, #182
+ 521 0028 1A70     		strb	r2, [r3]
+ 340:.\Generated_Source\PSoC5/CySpc.c ****         CY_SPC_CPU_DATA_REG = CY_SPC_KEY_TWO(CY_SPC_CMD_LD_ROW);
+ 522              		.loc 1 340 0
+ 523 002a 354B     		ldr	r3, .L53+4
+ 524 002c D522     		movs	r2, #213
+ 525 002e 1A70     		strb	r2, [r3]
+ 341:.\Generated_Source\PSoC5/CySpc.c ****         CY_SPC_CPU_DATA_REG = CY_SPC_CMD_LD_ROW;
+ 526              		.loc 1 341 0
+ 527 0030 334B     		ldr	r3, .L53+4
+ 528 0032 0222     		movs	r2, #2
+ 529 0034 1A70     		strb	r2, [r3]
+ 342:.\Generated_Source\PSoC5/CySpc.c **** 
+ 343:.\Generated_Source\PSoC5/CySpc.c ****         /* Make sure the command was accepted */
+ 344:.\Generated_Source\PSoC5/CySpc.c ****         if(CY_SPC_BUSY)
+ 530              		.loc 1 344 0
+ 531 0036 314B     		ldr	r3, .L53
+ 532 0038 1B78     		ldrb	r3, [r3]
+ 533 003a DBB2     		uxtb	r3, r3
+ 534 003c 03F00203 		and	r3, r3, #2
+ 535 0040 002B     		cmp	r3, #0
+ 536 0042 4ED1     		bne	.L42
+ 345:.\Generated_Source\PSoC5/CySpc.c ****         {
+ 346:.\Generated_Source\PSoC5/CySpc.c ****             CY_SPC_CPU_DATA_REG = array;
+ 537              		.loc 1 346 0
+ 538 0044 2E4B     		ldr	r3, .L53+4
+ 539 0046 FA7B     		ldrb	r2, [r7, #15]
+ 540 0048 1A70     		strb	r2, [r3]
+ 347:.\Generated_Source\PSoC5/CySpc.c **** 
+ 348:.\Generated_Source\PSoC5/CySpc.c ****             /*******************************************************************
+ 349:.\Generated_Source\PSoC5/CySpc.c ****             * If "Enable Error Correcting Code (ECC)" and "Store Configuration
+ 350:.\Generated_Source\PSoC5/CySpc.c ****             * Data in ECC" DWR options are disabled, ECC section is available
+ 351:.\Generated_Source\PSoC5/CySpc.c ****             * for user data.
+ 352:.\Generated_Source\PSoC5/CySpc.c ****             *******************************************************************/
+ 353:.\Generated_Source\PSoC5/CySpc.c ****             #if ((CYDEV_ECC_ENABLE == 0u) && (CYDEV_CONFIGURATION_ECC == 0u))
+ 354:.\Generated_Source\PSoC5/CySpc.c **** 
+ 355:.\Generated_Source\PSoC5/CySpc.c ****                 /*******************************************************************
+ 356:.\Generated_Source\PSoC5/CySpc.c ****                 * If size parameter equals size of the ECC row and selected array
+ 357:.\Generated_Source\PSoC5/CySpc.c ****                 * identification corresponds to the flash array (but not to EEPROM
+ 358:.\Generated_Source\PSoC5/CySpc.c ****                 * array) then data are going to be written to the ECC section.
+ 359:.\Generated_Source\PSoC5/CySpc.c ****                 * In this case flash data must be preserved. The flash data copied
+ 360:.\Generated_Source\PSoC5/CySpc.c ****                 * from flash data section to the SPC data register.
+ 361:.\Generated_Source\PSoC5/CySpc.c ****                 *******************************************************************/
+ 362:.\Generated_Source\PSoC5/CySpc.c ****                 if ((size == CYDEV_ECC_ROW_SIZE) && (array <= CY_SPC_LAST_FLASH_ARRAYID))
+ 541              		.loc 1 362 0
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 17
+
+
+ 542 004a FB88     		ldrh	r3, [r7, #6]
+ 543 004c 202B     		cmp	r3, #32
+ 544 004e 18D1     		bne	.L43
+ 545              		.loc 1 362 0 is_stmt 0 discriminator 1
+ 546 0050 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 547 0052 3F2B     		cmp	r3, #63
+ 548 0054 15D8     		bhi	.L43
+ 363:.\Generated_Source\PSoC5/CySpc.c ****                 {
+ 364:.\Generated_Source\PSoC5/CySpc.c ****                     offset = CYDEV_FLS_BASE +
+ 365:.\Generated_Source\PSoC5/CySpc.c ****                              ((uint32) array * CYDEV_FLS_SECTOR_SIZE) +
+ 549              		.loc 1 365 0 is_stmt 1
+ 550 0056 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 551 0058 1A02     		lsls	r2, r3, #8
+ 366:.\Generated_Source\PSoC5/CySpc.c ****                              ((uint32)   row * CYDEV_FLS_ROW_SIZE   );
+ 552              		.loc 1 366 0
+ 553 005a BB89     		ldrh	r3, [r7, #12]
+ 365:.\Generated_Source\PSoC5/CySpc.c ****                              ((uint32) array * CYDEV_FLS_SECTOR_SIZE) +
+ 554              		.loc 1 365 0
+ 555 005c 1344     		add	r3, r3, r2
+ 364:.\Generated_Source\PSoC5/CySpc.c ****                     offset = CYDEV_FLS_BASE +
+ 556              		.loc 1 364 0
+ 557 005e 1B02     		lsls	r3, r3, #8
+ 558 0060 7B61     		str	r3, [r7, #20]
+ 367:.\Generated_Source\PSoC5/CySpc.c **** 
+ 368:.\Generated_Source\PSoC5/CySpc.c ****                     for (i = 0u; i < CYDEV_FLS_ROW_SIZE; i++)
+ 559              		.loc 1 368 0
+ 560 0062 0023     		movs	r3, #0
+ 561 0064 7B83     		strh	r3, [r7, #26]	@ movhi
+ 562 0066 09E0     		b	.L44
+ 563              	.L45:
+ 369:.\Generated_Source\PSoC5/CySpc.c ****                     {
+ 370:.\Generated_Source\PSoC5/CySpc.c ****                         CY_SPC_CPU_DATA_REG = CY_GET_XTND_REG8((void CYFAR *)(offset + i));
+ 564              		.loc 1 370 0 discriminator 2
+ 565 0068 254B     		ldr	r3, .L53+4
+ 566 006a 798B     		ldrh	r1, [r7, #26]
+ 567 006c 7A69     		ldr	r2, [r7, #20]
+ 568 006e 0A44     		add	r2, r2, r1
+ 569 0070 1278     		ldrb	r2, [r2]
+ 570 0072 D2B2     		uxtb	r2, r2
+ 571 0074 1A70     		strb	r2, [r3]
+ 368:.\Generated_Source\PSoC5/CySpc.c ****                     for (i = 0u; i < CYDEV_FLS_ROW_SIZE; i++)
+ 572              		.loc 1 368 0 discriminator 2
+ 573 0076 7B8B     		ldrh	r3, [r7, #26]
+ 574 0078 0133     		adds	r3, r3, #1
+ 575 007a 7B83     		strh	r3, [r7, #26]	@ movhi
+ 576              	.L44:
+ 368:.\Generated_Source\PSoC5/CySpc.c ****                     for (i = 0u; i < CYDEV_FLS_ROW_SIZE; i++)
+ 577              		.loc 1 368 0 is_stmt 0 discriminator 1
+ 578 007c 7B8B     		ldrh	r3, [r7, #26]
+ 579 007e FF2B     		cmp	r3, #255
+ 580 0080 F2D9     		bls	.L45
+ 581              	.L43:
+ 371:.\Generated_Source\PSoC5/CySpc.c ****                     }
+ 372:.\Generated_Source\PSoC5/CySpc.c ****                 }
+ 373:.\Generated_Source\PSoC5/CySpc.c **** 
+ 374:.\Generated_Source\PSoC5/CySpc.c ****             #endif /* ((CYDEV_ECC_ENABLE == 0u) && (CYDEV_CONFIGURATION_ECC == 0u)) */
+ 375:.\Generated_Source\PSoC5/CySpc.c **** 
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 18
+
+
+ 376:.\Generated_Source\PSoC5/CySpc.c **** 
+ 377:.\Generated_Source\PSoC5/CySpc.c ****             for(i = 0u; i < size; i++)
+ 582              		.loc 1 377 0 is_stmt 1
+ 583 0082 0023     		movs	r3, #0
+ 584 0084 7B83     		strh	r3, [r7, #26]	@ movhi
+ 585 0086 08E0     		b	.L46
+ 586              	.L47:
+ 378:.\Generated_Source\PSoC5/CySpc.c ****             {
+ 379:.\Generated_Source\PSoC5/CySpc.c ****                 CY_SPC_CPU_DATA_REG = buffer[i];
+ 587              		.loc 1 379 0 discriminator 2
+ 588 0088 1D4B     		ldr	r3, .L53+4
+ 589 008a 7A8B     		ldrh	r2, [r7, #26]
+ 590 008c B968     		ldr	r1, [r7, #8]
+ 591 008e 0A44     		add	r2, r2, r1
+ 592 0090 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 593 0092 1A70     		strb	r2, [r3]
+ 377:.\Generated_Source\PSoC5/CySpc.c ****             for(i = 0u; i < size; i++)
+ 594              		.loc 1 377 0 discriminator 2
+ 595 0094 7B8B     		ldrh	r3, [r7, #26]
+ 596 0096 0133     		adds	r3, r3, #1
+ 597 0098 7B83     		strh	r3, [r7, #26]	@ movhi
+ 598              	.L46:
+ 377:.\Generated_Source\PSoC5/CySpc.c ****             for(i = 0u; i < size; i++)
+ 599              		.loc 1 377 0 is_stmt 0 discriminator 1
+ 600 009a 7A8B     		ldrh	r2, [r7, #26]
+ 601 009c FB88     		ldrh	r3, [r7, #6]
+ 602 009e 9A42     		cmp	r2, r3
+ 603 00a0 F2D3     		bcc	.L47
+ 380:.\Generated_Source\PSoC5/CySpc.c ****             }
+ 381:.\Generated_Source\PSoC5/CySpc.c **** 
+ 382:.\Generated_Source\PSoC5/CySpc.c **** 
+ 383:.\Generated_Source\PSoC5/CySpc.c ****             /*******************************************************************
+ 384:.\Generated_Source\PSoC5/CySpc.c ****             * If "Enable Error Correcting Code (ECC)" DWR option is disabled,
+ 385:.\Generated_Source\PSoC5/CySpc.c ****             * ECC section can be used for storing device configuration data
+ 386:.\Generated_Source\PSoC5/CySpc.c ****             * ("Store Configuration Data in ECC" DWR option is enabled) or for
+ 387:.\Generated_Source\PSoC5/CySpc.c ****             * storing user data in the ECC section ("Store Configuration Data in
+ 388:.\Generated_Source\PSoC5/CySpc.c ****             * ECC" DWR option is enabled). In both cases, the data in the ECC
+ 389:.\Generated_Source\PSoC5/CySpc.c ****             * section must be preserved if flash data is written.
+ 390:.\Generated_Source\PSoC5/CySpc.c ****             *******************************************************************/
+ 391:.\Generated_Source\PSoC5/CySpc.c ****             #if (CYDEV_ECC_ENABLE == 0)
+ 392:.\Generated_Source\PSoC5/CySpc.c **** 
+ 393:.\Generated_Source\PSoC5/CySpc.c **** 
+ 394:.\Generated_Source\PSoC5/CySpc.c ****                 /*******************************************************************
+ 395:.\Generated_Source\PSoC5/CySpc.c ****                 * If size parameter equals size of the flash row and selected array
+ 396:.\Generated_Source\PSoC5/CySpc.c ****                 * identification corresponds to the flash array (but not to EEPROM
+ 397:.\Generated_Source\PSoC5/CySpc.c ****                 * array) then data are going to be written to the flash data
+ 398:.\Generated_Source\PSoC5/CySpc.c ****                 * section. In this case, ECC section data must be preserved.
+ 399:.\Generated_Source\PSoC5/CySpc.c ****                 * The ECC section data copied from ECC section to the SPC data
+ 400:.\Generated_Source\PSoC5/CySpc.c ****                 * register.
+ 401:.\Generated_Source\PSoC5/CySpc.c ****                 *******************************************************************/
+ 402:.\Generated_Source\PSoC5/CySpc.c ****                 if ((size == CYDEV_FLS_ROW_SIZE) && (array <= CY_SPC_LAST_FLASH_ARRAYID))
+ 604              		.loc 1 402 0 is_stmt 1
+ 605 00a2 FB88     		ldrh	r3, [r7, #6]
+ 606 00a4 B3F5807F 		cmp	r3, #256
+ 607 00a8 20D1     		bne	.L51
+ 608              		.loc 1 402 0 is_stmt 0 discriminator 1
+ 609 00aa FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 19
+
+
+ 610 00ac 3F2B     		cmp	r3, #63
+ 611 00ae 1DD8     		bhi	.L51
+ 403:.\Generated_Source\PSoC5/CySpc.c ****                 {
+ 404:.\Generated_Source\PSoC5/CySpc.c ****                     offset = CYDEV_ECC_BASE +
+ 405:.\Generated_Source\PSoC5/CySpc.c ****                             ((uint32) array * CYDEV_ECC_SECTOR_SIZE) +
+ 612              		.loc 1 405 0 is_stmt 1
+ 613 00b0 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 614 00b2 03F51033 		add	r3, r3, #147456
+ 615 00b6 1A02     		lsls	r2, r3, #8
+ 406:.\Generated_Source\PSoC5/CySpc.c ****                             ((uint32) row   * CYDEV_ECC_ROW_SIZE   );
+ 616              		.loc 1 406 0
+ 617 00b8 BB89     		ldrh	r3, [r7, #12]
+ 405:.\Generated_Source\PSoC5/CySpc.c ****                             ((uint32) array * CYDEV_ECC_SECTOR_SIZE) +
+ 618              		.loc 1 405 0
+ 619 00ba 1344     		add	r3, r3, r2
+ 404:.\Generated_Source\PSoC5/CySpc.c ****                     offset = CYDEV_ECC_BASE +
+ 620              		.loc 1 404 0
+ 621 00bc 5B01     		lsls	r3, r3, #5
+ 622 00be 7B61     		str	r3, [r7, #20]
+ 407:.\Generated_Source\PSoC5/CySpc.c **** 
+ 408:.\Generated_Source\PSoC5/CySpc.c ****                     for (i = 0u; i < CYDEV_ECC_ROW_SIZE; i++)
+ 623              		.loc 1 408 0
+ 624 00c0 0023     		movs	r3, #0
+ 625 00c2 7B83     		strh	r3, [r7, #26]	@ movhi
+ 626 00c4 09E0     		b	.L49
+ 627              	.L50:
+ 409:.\Generated_Source\PSoC5/CySpc.c ****                     {
+ 410:.\Generated_Source\PSoC5/CySpc.c ****                         CY_SPC_CPU_DATA_REG = CY_GET_XTND_REG8((void CYFAR *)(offset + i));
+ 628              		.loc 1 410 0 discriminator 2
+ 629 00c6 0E4B     		ldr	r3, .L53+4
+ 630 00c8 798B     		ldrh	r1, [r7, #26]
+ 631 00ca 7A69     		ldr	r2, [r7, #20]
+ 632 00cc 0A44     		add	r2, r2, r1
+ 633 00ce 1278     		ldrb	r2, [r2]
+ 634 00d0 D2B2     		uxtb	r2, r2
+ 635 00d2 1A70     		strb	r2, [r3]
+ 408:.\Generated_Source\PSoC5/CySpc.c ****                     for (i = 0u; i < CYDEV_ECC_ROW_SIZE; i++)
+ 636              		.loc 1 408 0 discriminator 2
+ 637 00d4 7B8B     		ldrh	r3, [r7, #26]
+ 638 00d6 0133     		adds	r3, r3, #1
+ 639 00d8 7B83     		strh	r3, [r7, #26]	@ movhi
+ 640              	.L49:
+ 408:.\Generated_Source\PSoC5/CySpc.c ****                     for (i = 0u; i < CYDEV_ECC_ROW_SIZE; i++)
+ 641              		.loc 1 408 0 is_stmt 0 discriminator 1
+ 642 00da 7B8B     		ldrh	r3, [r7, #26]
+ 643 00dc 1F2B     		cmp	r3, #31
+ 644 00de F2D9     		bls	.L50
+ 645 00e0 04E0     		b	.L51
+ 646              	.L42:
+ 411:.\Generated_Source\PSoC5/CySpc.c ****                     }
+ 412:.\Generated_Source\PSoC5/CySpc.c ****                 }
+ 413:.\Generated_Source\PSoC5/CySpc.c **** 
+ 414:.\Generated_Source\PSoC5/CySpc.c ****             #else
+ 415:.\Generated_Source\PSoC5/CySpc.c **** 
+ 416:.\Generated_Source\PSoC5/CySpc.c ****                 if(0u != row)
+ 417:.\Generated_Source\PSoC5/CySpc.c ****                 {
+ 418:.\Generated_Source\PSoC5/CySpc.c ****                     /* To remove unreferenced local variable warning */
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 20
+
+
+ 419:.\Generated_Source\PSoC5/CySpc.c ****                 }
+ 420:.\Generated_Source\PSoC5/CySpc.c **** 
+ 421:.\Generated_Source\PSoC5/CySpc.c ****             #endif /* (CYDEV_ECC_ENABLE == 0) */
+ 422:.\Generated_Source\PSoC5/CySpc.c ****         }
+ 423:.\Generated_Source\PSoC5/CySpc.c ****         else
+ 424:.\Generated_Source\PSoC5/CySpc.c ****         {
+ 425:.\Generated_Source\PSoC5/CySpc.c ****             status = CYRET_CANCELED;
+ 647              		.loc 1 425 0 is_stmt 1
+ 648 00e2 0923     		movs	r3, #9
+ 649 00e4 FB61     		str	r3, [r7, #28]
+ 650 00e6 01E0     		b	.L51
+ 651              	.L41:
+ 426:.\Generated_Source\PSoC5/CySpc.c ****         }
+ 427:.\Generated_Source\PSoC5/CySpc.c ****     }
+ 428:.\Generated_Source\PSoC5/CySpc.c ****     else
+ 429:.\Generated_Source\PSoC5/CySpc.c ****     {
+ 430:.\Generated_Source\PSoC5/CySpc.c ****         status = CYRET_LOCKED;
+ 652              		.loc 1 430 0
+ 653 00e8 0423     		movs	r3, #4
+ 654 00ea FB61     		str	r3, [r7, #28]
+ 655              	.L51:
+ 431:.\Generated_Source\PSoC5/CySpc.c ****     }
+ 432:.\Generated_Source\PSoC5/CySpc.c **** 
+ 433:.\Generated_Source\PSoC5/CySpc.c ****     return(status);
+ 656              		.loc 1 433 0
+ 657 00ec FB69     		ldr	r3, [r7, #28]
+ 434:.\Generated_Source\PSoC5/CySpc.c **** }
+ 658              		.loc 1 434 0
+ 659 00ee 1846     		mov	r0, r3
+ 660 00f0 2437     		adds	r7, r7, #36
+ 661 00f2 BD46     		mov	sp, r7
+ 662              		@ sp needed
+ 663 00f4 5DF8047B 		ldr	r7, [sp], #4
+ 664 00f8 7047     		bx	lr
+ 665              	.L54:
+ 666 00fa 00BF     		.align	2
+ 667              	.L53:
+ 668 00fc 22470040 		.word	1073760034
+ 669 0100 20470040 		.word	1073760032
+ 670              		.cfi_endproc
+ 671              	.LFE5:
+ 672              		.size	CySpcLoadRowFull, .-CySpcLoadRowFull
+ 673              		.section	.text.CySpcWriteRow,"ax",%progbits
+ 674              		.align	2
+ 675              		.global	CySpcWriteRow
+ 676              		.thumb
+ 677              		.thumb_func
+ 678              		.type	CySpcWriteRow, %function
+ 679              	CySpcWriteRow:
+ 680              	.LFB6:
+ 435:.\Generated_Source\PSoC5/CySpc.c **** 
+ 436:.\Generated_Source\PSoC5/CySpc.c **** 
+ 437:.\Generated_Source\PSoC5/CySpc.c **** /*******************************************************************************
+ 438:.\Generated_Source\PSoC5/CySpc.c **** * Function Name: CySpcWriteRow
+ 439:.\Generated_Source\PSoC5/CySpc.c **** ********************************************************************************
+ 440:.\Generated_Source\PSoC5/CySpc.c **** * Summary:
+ 441:.\Generated_Source\PSoC5/CySpc.c **** *  Erases then programs a row in Flash/EEPROM with data in row latch.
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 21
+
+
+ 442:.\Generated_Source\PSoC5/CySpc.c **** *
+ 443:.\Generated_Source\PSoC5/CySpc.c **** * Parameters:
+ 444:.\Generated_Source\PSoC5/CySpc.c **** *  uint8 array:
+ 445:.\Generated_Source\PSoC5/CySpc.c **** *   Id of the array.
+ 446:.\Generated_Source\PSoC5/CySpc.c **** *
+ 447:.\Generated_Source\PSoC5/CySpc.c **** *  uint16 address:
+ 448:.\Generated_Source\PSoC5/CySpc.c **** *   flash/eeprom addrress
+ 449:.\Generated_Source\PSoC5/CySpc.c **** *
+ 450:.\Generated_Source\PSoC5/CySpc.c **** *  uint8 tempPolarity:
+ 451:.\Generated_Source\PSoC5/CySpc.c **** *   temperature polarity.
+ 452:.\Generated_Source\PSoC5/CySpc.c **** *   1: the Temp Magnitude is interpreted as a positive value
+ 453:.\Generated_Source\PSoC5/CySpc.c **** *   0: the Temp Magnitude is interpreted as a negative value
+ 454:.\Generated_Source\PSoC5/CySpc.c **** *
+ 455:.\Generated_Source\PSoC5/CySpc.c **** *  uint8 tempMagnitude:
+ 456:.\Generated_Source\PSoC5/CySpc.c **** *   temperature magnitude.
+ 457:.\Generated_Source\PSoC5/CySpc.c **** *
+ 458:.\Generated_Source\PSoC5/CySpc.c **** * Return:
+ 459:.\Generated_Source\PSoC5/CySpc.c **** *  CYRET_STARTED
+ 460:.\Generated_Source\PSoC5/CySpc.c **** *  CYRET_CANCELED
+ 461:.\Generated_Source\PSoC5/CySpc.c **** *  CYRET_LOCKED
+ 462:.\Generated_Source\PSoC5/CySpc.c **** *
+ 463:.\Generated_Source\PSoC5/CySpc.c **** *******************************************************************************/
+ 464:.\Generated_Source\PSoC5/CySpc.c **** cystatus CySpcWriteRow(uint8 array, uint16 address, uint8 tempPolarity, uint8 tempMagnitude)\
+ 465:.\Generated_Source\PSoC5/CySpc.c **** 
+ 466:.\Generated_Source\PSoC5/CySpc.c **** {
+ 681              		.loc 1 466 0
+ 682              		.cfi_startproc
+ 683              		@ args = 0, pretend = 0, frame = 16
+ 684              		@ frame_needed = 1, uses_anonymous_args = 0
+ 685              		@ link register save eliminated.
+ 686 0000 80B4     		push	{r7}
+ 687              		.cfi_def_cfa_offset 4
+ 688              		.cfi_offset 7, -4
+ 689 0002 85B0     		sub	sp, sp, #20
+ 690              		.cfi_def_cfa_offset 24
+ 691 0004 00AF     		add	r7, sp, #0
+ 692              		.cfi_def_cfa_register 7
+ 693 0006 F871     		strb	r0, [r7, #7]
+ 694 0008 B980     		strh	r1, [r7, #4]	@ movhi
+ 695 000a BA71     		strb	r2, [r7, #6]
+ 696 000c FB70     		strb	r3, [r7, #3]
+ 467:.\Generated_Source\PSoC5/CySpc.c ****     cystatus status = CYRET_STARTED;
+ 697              		.loc 1 467 0
+ 698 000e 0723     		movs	r3, #7
+ 699 0010 FB60     		str	r3, [r7, #12]
+ 468:.\Generated_Source\PSoC5/CySpc.c **** 
+ 469:.\Generated_Source\PSoC5/CySpc.c ****     /* Make sure the SPC is ready to accept command */
+ 470:.\Generated_Source\PSoC5/CySpc.c ****     if(CY_SPC_IDLE)
+ 700              		.loc 1 470 0
+ 701 0012 1B4B     		ldr	r3, .L61
+ 702 0014 1B78     		ldrb	r3, [r3]
+ 703 0016 DBB2     		uxtb	r3, r3
+ 704 0018 03F00203 		and	r3, r3, #2
+ 705 001c 002B     		cmp	r3, #0
+ 706 001e 26D0     		beq	.L56
+ 471:.\Generated_Source\PSoC5/CySpc.c ****     {
+ 472:.\Generated_Source\PSoC5/CySpc.c ****         CY_SPC_CPU_DATA_REG = CY_SPC_KEY_ONE;
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 22
+
+
+ 707              		.loc 1 472 0
+ 708 0020 184B     		ldr	r3, .L61+4
+ 709 0022 B622     		movs	r2, #182
+ 710 0024 1A70     		strb	r2, [r3]
+ 473:.\Generated_Source\PSoC5/CySpc.c ****         CY_SPC_CPU_DATA_REG = CY_SPC_KEY_TWO(CY_SPC_CMD_WR_ROW);
+ 711              		.loc 1 473 0
+ 712 0026 174B     		ldr	r3, .L61+4
+ 713 0028 D822     		movs	r2, #216
+ 714 002a 1A70     		strb	r2, [r3]
+ 474:.\Generated_Source\PSoC5/CySpc.c ****         CY_SPC_CPU_DATA_REG = CY_SPC_CMD_WR_ROW;
+ 715              		.loc 1 474 0
+ 716 002c 154B     		ldr	r3, .L61+4
+ 717 002e 0522     		movs	r2, #5
+ 718 0030 1A70     		strb	r2, [r3]
+ 475:.\Generated_Source\PSoC5/CySpc.c **** 
+ 476:.\Generated_Source\PSoC5/CySpc.c ****         /* Make sure the command was accepted */
+ 477:.\Generated_Source\PSoC5/CySpc.c ****         if(CY_SPC_BUSY)
+ 719              		.loc 1 477 0
+ 720 0032 134B     		ldr	r3, .L61
+ 721 0034 1B78     		ldrb	r3, [r3]
+ 722 0036 DBB2     		uxtb	r3, r3
+ 723 0038 03F00203 		and	r3, r3, #2
+ 724 003c 002B     		cmp	r3, #0
+ 725 003e 13D1     		bne	.L57
+ 478:.\Generated_Source\PSoC5/CySpc.c ****         {
+ 479:.\Generated_Source\PSoC5/CySpc.c ****             CY_SPC_CPU_DATA_REG = array;
+ 726              		.loc 1 479 0
+ 727 0040 104B     		ldr	r3, .L61+4
+ 728 0042 FA79     		ldrb	r2, [r7, #7]
+ 729 0044 1A70     		strb	r2, [r3]
+ 480:.\Generated_Source\PSoC5/CySpc.c ****             CY_SPC_CPU_DATA_REG = HI8(address);
+ 730              		.loc 1 480 0
+ 731 0046 0F4B     		ldr	r3, .L61+4
+ 732 0048 BA88     		ldrh	r2, [r7, #4]
+ 733 004a 120A     		lsrs	r2, r2, #8
+ 734 004c 92B2     		uxth	r2, r2
+ 735 004e D2B2     		uxtb	r2, r2
+ 736 0050 1A70     		strb	r2, [r3]
+ 481:.\Generated_Source\PSoC5/CySpc.c ****             CY_SPC_CPU_DATA_REG = LO8(address);
+ 737              		.loc 1 481 0
+ 738 0052 0C4B     		ldr	r3, .L61+4
+ 739 0054 BA88     		ldrh	r2, [r7, #4]	@ movhi
+ 740 0056 D2B2     		uxtb	r2, r2
+ 741 0058 1A70     		strb	r2, [r3]
+ 482:.\Generated_Source\PSoC5/CySpc.c ****             CY_SPC_CPU_DATA_REG = tempPolarity;
+ 742              		.loc 1 482 0
+ 743 005a 0A4B     		ldr	r3, .L61+4
+ 744 005c BA79     		ldrb	r2, [r7, #6]
+ 745 005e 1A70     		strb	r2, [r3]
+ 483:.\Generated_Source\PSoC5/CySpc.c ****             CY_SPC_CPU_DATA_REG = tempMagnitude;
+ 746              		.loc 1 483 0
+ 747 0060 084B     		ldr	r3, .L61+4
+ 748 0062 FA78     		ldrb	r2, [r7, #3]
+ 749 0064 1A70     		strb	r2, [r3]
+ 750 0066 04E0     		b	.L59
+ 751              	.L57:
+ 484:.\Generated_Source\PSoC5/CySpc.c ****         }
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 23
+
+
+ 485:.\Generated_Source\PSoC5/CySpc.c ****         else
+ 486:.\Generated_Source\PSoC5/CySpc.c ****         {
+ 487:.\Generated_Source\PSoC5/CySpc.c ****             status = CYRET_CANCELED;
+ 752              		.loc 1 487 0
+ 753 0068 0923     		movs	r3, #9
+ 754 006a FB60     		str	r3, [r7, #12]
+ 755 006c 01E0     		b	.L59
+ 756              	.L56:
+ 488:.\Generated_Source\PSoC5/CySpc.c ****         }
+ 489:.\Generated_Source\PSoC5/CySpc.c ****     }
+ 490:.\Generated_Source\PSoC5/CySpc.c ****     else
+ 491:.\Generated_Source\PSoC5/CySpc.c ****     {
+ 492:.\Generated_Source\PSoC5/CySpc.c ****         status = CYRET_LOCKED;
+ 757              		.loc 1 492 0
+ 758 006e 0423     		movs	r3, #4
+ 759 0070 FB60     		str	r3, [r7, #12]
+ 760              	.L59:
+ 493:.\Generated_Source\PSoC5/CySpc.c ****     }
+ 494:.\Generated_Source\PSoC5/CySpc.c **** 
+ 495:.\Generated_Source\PSoC5/CySpc.c ****     return(status);
+ 761              		.loc 1 495 0
+ 762 0072 FB68     		ldr	r3, [r7, #12]
+ 496:.\Generated_Source\PSoC5/CySpc.c **** }
+ 763              		.loc 1 496 0
+ 764 0074 1846     		mov	r0, r3
+ 765 0076 1437     		adds	r7, r7, #20
+ 766 0078 BD46     		mov	sp, r7
+ 767              		@ sp needed
+ 768 007a 5DF8047B 		ldr	r7, [sp], #4
+ 769 007e 7047     		bx	lr
+ 770              	.L62:
+ 771              		.align	2
+ 772              	.L61:
+ 773 0080 22470040 		.word	1073760034
+ 774 0084 20470040 		.word	1073760032
+ 775              		.cfi_endproc
+ 776              	.LFE6:
+ 777              		.size	CySpcWriteRow, .-CySpcWriteRow
+ 778              		.section	.text.CySpcEraseSector,"ax",%progbits
+ 779              		.align	2
+ 780              		.global	CySpcEraseSector
+ 781              		.thumb
+ 782              		.thumb_func
+ 783              		.type	CySpcEraseSector, %function
+ 784              	CySpcEraseSector:
+ 785              	.LFB7:
+ 497:.\Generated_Source\PSoC5/CySpc.c **** 
+ 498:.\Generated_Source\PSoC5/CySpc.c **** 
+ 499:.\Generated_Source\PSoC5/CySpc.c **** /*******************************************************************************
+ 500:.\Generated_Source\PSoC5/CySpc.c **** * Function Name: CySpcEraseSector
+ 501:.\Generated_Source\PSoC5/CySpc.c **** ********************************************************************************
+ 502:.\Generated_Source\PSoC5/CySpc.c **** * Summary:
+ 503:.\Generated_Source\PSoC5/CySpc.c **** *  Erases all data in the addressed sector (block of 64 rows).
+ 504:.\Generated_Source\PSoC5/CySpc.c **** *
+ 505:.\Generated_Source\PSoC5/CySpc.c **** * Parameters:
+ 506:.\Generated_Source\PSoC5/CySpc.c **** *  uint8 array:
+ 507:.\Generated_Source\PSoC5/CySpc.c **** *   Id of the array.
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 24
+
+
+ 508:.\Generated_Source\PSoC5/CySpc.c **** *
+ 509:.\Generated_Source\PSoC5/CySpc.c **** *  uint8 sectorNumber:
+ 510:.\Generated_Source\PSoC5/CySpc.c **** *   Zero based sector number within Flash/EEPROM array
+ 511:.\Generated_Source\PSoC5/CySpc.c **** *
+ 512:.\Generated_Source\PSoC5/CySpc.c **** * Return:
+ 513:.\Generated_Source\PSoC5/CySpc.c **** *  CYRET_STARTED
+ 514:.\Generated_Source\PSoC5/CySpc.c **** *  CYRET_CANCELED
+ 515:.\Generated_Source\PSoC5/CySpc.c **** *  CYRET_LOCKED
+ 516:.\Generated_Source\PSoC5/CySpc.c **** *
+ 517:.\Generated_Source\PSoC5/CySpc.c **** *******************************************************************************/
+ 518:.\Generated_Source\PSoC5/CySpc.c **** cystatus CySpcEraseSector(uint8 array, uint8 sectorNumber)
+ 519:.\Generated_Source\PSoC5/CySpc.c **** {
+ 786              		.loc 1 519 0
+ 787              		.cfi_startproc
+ 788              		@ args = 0, pretend = 0, frame = 16
+ 789              		@ frame_needed = 1, uses_anonymous_args = 0
+ 790              		@ link register save eliminated.
+ 791 0000 80B4     		push	{r7}
+ 792              		.cfi_def_cfa_offset 4
+ 793              		.cfi_offset 7, -4
+ 794 0002 85B0     		sub	sp, sp, #20
+ 795              		.cfi_def_cfa_offset 24
+ 796 0004 00AF     		add	r7, sp, #0
+ 797              		.cfi_def_cfa_register 7
+ 798 0006 0246     		mov	r2, r0
+ 799 0008 0B46     		mov	r3, r1
+ 800 000a FA71     		strb	r2, [r7, #7]
+ 801 000c BB71     		strb	r3, [r7, #6]
+ 520:.\Generated_Source\PSoC5/CySpc.c ****     cystatus status = CYRET_STARTED;
+ 802              		.loc 1 520 0
+ 803 000e 0723     		movs	r3, #7
+ 804 0010 FB60     		str	r3, [r7, #12]
+ 521:.\Generated_Source\PSoC5/CySpc.c **** 
+ 522:.\Generated_Source\PSoC5/CySpc.c ****     /* Make sure the SPC is ready to accept command */
+ 523:.\Generated_Source\PSoC5/CySpc.c ****     if(CY_SPC_IDLE)
+ 805              		.loc 1 523 0
+ 806 0012 154B     		ldr	r3, .L69
+ 807 0014 1B78     		ldrb	r3, [r3]
+ 808 0016 DBB2     		uxtb	r3, r3
+ 809 0018 03F00203 		and	r3, r3, #2
+ 810 001c 002B     		cmp	r3, #0
+ 811 001e 19D0     		beq	.L64
+ 524:.\Generated_Source\PSoC5/CySpc.c ****     {
+ 525:.\Generated_Source\PSoC5/CySpc.c ****         CY_SPC_CPU_DATA_REG = CY_SPC_KEY_ONE;
+ 812              		.loc 1 525 0
+ 813 0020 124B     		ldr	r3, .L69+4
+ 814 0022 B622     		movs	r2, #182
+ 815 0024 1A70     		strb	r2, [r3]
+ 526:.\Generated_Source\PSoC5/CySpc.c ****         CY_SPC_CPU_DATA_REG = CY_SPC_KEY_TWO(CY_SPC_CMD_ER_SECTOR);
+ 816              		.loc 1 526 0
+ 817 0026 114B     		ldr	r3, .L69+4
+ 818 0028 DB22     		movs	r2, #219
+ 819 002a 1A70     		strb	r2, [r3]
+ 527:.\Generated_Source\PSoC5/CySpc.c ****         CY_SPC_CPU_DATA_REG = CY_SPC_CMD_ER_SECTOR;
+ 820              		.loc 1 527 0
+ 821 002c 0F4B     		ldr	r3, .L69+4
+ 822 002e 0822     		movs	r2, #8
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 25
+
+
+ 823 0030 1A70     		strb	r2, [r3]
+ 528:.\Generated_Source\PSoC5/CySpc.c **** 
+ 529:.\Generated_Source\PSoC5/CySpc.c ****         /* Make sure the command was accepted */
+ 530:.\Generated_Source\PSoC5/CySpc.c ****         if(CY_SPC_BUSY)
+ 824              		.loc 1 530 0
+ 825 0032 0D4B     		ldr	r3, .L69
+ 826 0034 1B78     		ldrb	r3, [r3]
+ 827 0036 DBB2     		uxtb	r3, r3
+ 828 0038 03F00203 		and	r3, r3, #2
+ 829 003c 002B     		cmp	r3, #0
+ 830 003e 06D1     		bne	.L65
+ 531:.\Generated_Source\PSoC5/CySpc.c ****         {
+ 532:.\Generated_Source\PSoC5/CySpc.c ****             CY_SPC_CPU_DATA_REG = array;
+ 831              		.loc 1 532 0
+ 832 0040 0A4B     		ldr	r3, .L69+4
+ 833 0042 FA79     		ldrb	r2, [r7, #7]
+ 834 0044 1A70     		strb	r2, [r3]
+ 533:.\Generated_Source\PSoC5/CySpc.c ****             CY_SPC_CPU_DATA_REG = sectorNumber;
+ 835              		.loc 1 533 0
+ 836 0046 094B     		ldr	r3, .L69+4
+ 837 0048 BA79     		ldrb	r2, [r7, #6]
+ 838 004a 1A70     		strb	r2, [r3]
+ 839 004c 04E0     		b	.L67
+ 840              	.L65:
+ 534:.\Generated_Source\PSoC5/CySpc.c ****         }
+ 535:.\Generated_Source\PSoC5/CySpc.c ****         else
+ 536:.\Generated_Source\PSoC5/CySpc.c ****         {
+ 537:.\Generated_Source\PSoC5/CySpc.c ****             status = CYRET_CANCELED;
+ 841              		.loc 1 537 0
+ 842 004e 0923     		movs	r3, #9
+ 843 0050 FB60     		str	r3, [r7, #12]
+ 844 0052 01E0     		b	.L67
+ 845              	.L64:
+ 538:.\Generated_Source\PSoC5/CySpc.c ****         }
+ 539:.\Generated_Source\PSoC5/CySpc.c ****     }
+ 540:.\Generated_Source\PSoC5/CySpc.c ****     else
+ 541:.\Generated_Source\PSoC5/CySpc.c ****     {
+ 542:.\Generated_Source\PSoC5/CySpc.c ****         status = CYRET_LOCKED;
+ 846              		.loc 1 542 0
+ 847 0054 0423     		movs	r3, #4
+ 848 0056 FB60     		str	r3, [r7, #12]
+ 849              	.L67:
+ 543:.\Generated_Source\PSoC5/CySpc.c ****     }
+ 544:.\Generated_Source\PSoC5/CySpc.c **** 
+ 545:.\Generated_Source\PSoC5/CySpc.c ****     return(status);
+ 850              		.loc 1 545 0
+ 851 0058 FB68     		ldr	r3, [r7, #12]
+ 546:.\Generated_Source\PSoC5/CySpc.c **** }
+ 852              		.loc 1 546 0
+ 853 005a 1846     		mov	r0, r3
+ 854 005c 1437     		adds	r7, r7, #20
+ 855 005e BD46     		mov	sp, r7
+ 856              		@ sp needed
+ 857 0060 5DF8047B 		ldr	r7, [sp], #4
+ 858 0064 7047     		bx	lr
+ 859              	.L70:
+ 860 0066 00BF     		.align	2
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 26
+
+
+ 861              	.L69:
+ 862 0068 22470040 		.word	1073760034
+ 863 006c 20470040 		.word	1073760032
+ 864              		.cfi_endproc
+ 865              	.LFE7:
+ 866              		.size	CySpcEraseSector, .-CySpcEraseSector
+ 867              		.section	.text.CySpcGetTemp,"ax",%progbits
+ 868              		.align	2
+ 869              		.global	CySpcGetTemp
+ 870              		.thumb
+ 871              		.thumb_func
+ 872              		.type	CySpcGetTemp, %function
+ 873              	CySpcGetTemp:
+ 874              	.LFB8:
+ 547:.\Generated_Source\PSoC5/CySpc.c **** 
+ 548:.\Generated_Source\PSoC5/CySpc.c **** 
+ 549:.\Generated_Source\PSoC5/CySpc.c **** /*******************************************************************************
+ 550:.\Generated_Source\PSoC5/CySpc.c **** * Function Name: CySpcGetTemp
+ 551:.\Generated_Source\PSoC5/CySpc.c **** ********************************************************************************
+ 552:.\Generated_Source\PSoC5/CySpc.c **** * Summary:
+ 553:.\Generated_Source\PSoC5/CySpc.c **** *  Returns the internal die temperature
+ 554:.\Generated_Source\PSoC5/CySpc.c **** *
+ 555:.\Generated_Source\PSoC5/CySpc.c **** * Parameters:
+ 556:.\Generated_Source\PSoC5/CySpc.c **** *  uint8 numSamples:
+ 557:.\Generated_Source\PSoC5/CySpc.c **** *   Number of samples. Valid values are 1-5, resulting in 2 - 32 samples
+ 558:.\Generated_Source\PSoC5/CySpc.c **** *   respectively.
+ 559:.\Generated_Source\PSoC5/CySpc.c **** *
+ 560:.\Generated_Source\PSoC5/CySpc.c **** * uint16 timerPeriod:
+ 561:.\Generated_Source\PSoC5/CySpc.c **** *   Number of ADC ACLK cycles. A valid 14 bit value is accepted, higher 2 bits
+ 562:.\Generated_Source\PSoC5/CySpc.c **** *   of 16 bit values are ignored.
+ 563:.\Generated_Source\PSoC5/CySpc.c **** *
+ 564:.\Generated_Source\PSoC5/CySpc.c **** * uint8 clkDivSelect:
+ 565:.\Generated_Source\PSoC5/CySpc.c **** *   ADC ACLK clock divide value. Valid values are 2 - 225.
+ 566:.\Generated_Source\PSoC5/CySpc.c **** *
+ 567:.\Generated_Source\PSoC5/CySpc.c **** * Return:
+ 568:.\Generated_Source\PSoC5/CySpc.c **** *  CYRET_STARTED
+ 569:.\Generated_Source\PSoC5/CySpc.c **** *  CYRET_CANCELED
+ 570:.\Generated_Source\PSoC5/CySpc.c **** *  CYRET_LOCKED
+ 571:.\Generated_Source\PSoC5/CySpc.c **** *
+ 572:.\Generated_Source\PSoC5/CySpc.c **** *******************************************************************************/
+ 573:.\Generated_Source\PSoC5/CySpc.c **** cystatus CySpcGetTemp(uint8 numSamples)
+ 574:.\Generated_Source\PSoC5/CySpc.c **** {
+ 875              		.loc 1 574 0
+ 876              		.cfi_startproc
+ 877              		@ args = 0, pretend = 0, frame = 16
+ 878              		@ frame_needed = 1, uses_anonymous_args = 0
+ 879              		@ link register save eliminated.
+ 880 0000 80B4     		push	{r7}
+ 881              		.cfi_def_cfa_offset 4
+ 882              		.cfi_offset 7, -4
+ 883 0002 85B0     		sub	sp, sp, #20
+ 884              		.cfi_def_cfa_offset 24
+ 885 0004 00AF     		add	r7, sp, #0
+ 886              		.cfi_def_cfa_register 7
+ 887 0006 0346     		mov	r3, r0
+ 888 0008 FB71     		strb	r3, [r7, #7]
+ 575:.\Generated_Source\PSoC5/CySpc.c ****     cystatus status = CYRET_STARTED;
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 27
+
+
+ 889              		.loc 1 575 0
+ 890 000a 0723     		movs	r3, #7
+ 891 000c FB60     		str	r3, [r7, #12]
+ 576:.\Generated_Source\PSoC5/CySpc.c **** 
+ 577:.\Generated_Source\PSoC5/CySpc.c ****     /* Make sure the SPC is ready to accept command */
+ 578:.\Generated_Source\PSoC5/CySpc.c ****     if(CY_SPC_IDLE)
+ 892              		.loc 1 578 0
+ 893 000e 134B     		ldr	r3, .L77
+ 894 0010 1B78     		ldrb	r3, [r3]
+ 895 0012 DBB2     		uxtb	r3, r3
+ 896 0014 03F00203 		and	r3, r3, #2
+ 897 0018 002B     		cmp	r3, #0
+ 898 001a 16D0     		beq	.L72
+ 579:.\Generated_Source\PSoC5/CySpc.c ****     {
+ 580:.\Generated_Source\PSoC5/CySpc.c ****         CY_SPC_CPU_DATA_REG = CY_SPC_KEY_ONE;
+ 899              		.loc 1 580 0
+ 900 001c 104B     		ldr	r3, .L77+4
+ 901 001e B622     		movs	r2, #182
+ 902 0020 1A70     		strb	r2, [r3]
+ 581:.\Generated_Source\PSoC5/CySpc.c ****         CY_SPC_CPU_DATA_REG = CY_SPC_KEY_TWO(CY_SPC_CMD_GET_TEMP);
+ 903              		.loc 1 581 0
+ 904 0022 0F4B     		ldr	r3, .L77+4
+ 905 0024 E122     		movs	r2, #225
+ 906 0026 1A70     		strb	r2, [r3]
+ 582:.\Generated_Source\PSoC5/CySpc.c ****         CY_SPC_CPU_DATA_REG = CY_SPC_CMD_GET_TEMP;
+ 907              		.loc 1 582 0
+ 908 0028 0D4B     		ldr	r3, .L77+4
+ 909 002a 0E22     		movs	r2, #14
+ 910 002c 1A70     		strb	r2, [r3]
+ 583:.\Generated_Source\PSoC5/CySpc.c **** 
+ 584:.\Generated_Source\PSoC5/CySpc.c ****         /* Make sure the command was accepted */
+ 585:.\Generated_Source\PSoC5/CySpc.c ****         if(CY_SPC_BUSY)
+ 911              		.loc 1 585 0
+ 912 002e 0B4B     		ldr	r3, .L77
+ 913 0030 1B78     		ldrb	r3, [r3]
+ 914 0032 DBB2     		uxtb	r3, r3
+ 915 0034 03F00203 		and	r3, r3, #2
+ 916 0038 002B     		cmp	r3, #0
+ 917 003a 03D1     		bne	.L73
+ 586:.\Generated_Source\PSoC5/CySpc.c ****         {
+ 587:.\Generated_Source\PSoC5/CySpc.c ****             CY_SPC_CPU_DATA_REG = numSamples;
+ 918              		.loc 1 587 0
+ 919 003c 084B     		ldr	r3, .L77+4
+ 920 003e FA79     		ldrb	r2, [r7, #7]
+ 921 0040 1A70     		strb	r2, [r3]
+ 922 0042 04E0     		b	.L75
+ 923              	.L73:
+ 588:.\Generated_Source\PSoC5/CySpc.c ****         }
+ 589:.\Generated_Source\PSoC5/CySpc.c ****         else
+ 590:.\Generated_Source\PSoC5/CySpc.c ****         {
+ 591:.\Generated_Source\PSoC5/CySpc.c ****             status = CYRET_CANCELED;
+ 924              		.loc 1 591 0
+ 925 0044 0923     		movs	r3, #9
+ 926 0046 FB60     		str	r3, [r7, #12]
+ 927 0048 01E0     		b	.L75
+ 928              	.L72:
+ 592:.\Generated_Source\PSoC5/CySpc.c ****         }
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 28
+
+
+ 593:.\Generated_Source\PSoC5/CySpc.c ****     }
+ 594:.\Generated_Source\PSoC5/CySpc.c ****     else
+ 595:.\Generated_Source\PSoC5/CySpc.c ****     {
+ 596:.\Generated_Source\PSoC5/CySpc.c ****         status = CYRET_LOCKED;
+ 929              		.loc 1 596 0
+ 930 004a 0423     		movs	r3, #4
+ 931 004c FB60     		str	r3, [r7, #12]
+ 932              	.L75:
+ 597:.\Generated_Source\PSoC5/CySpc.c ****     }
+ 598:.\Generated_Source\PSoC5/CySpc.c **** 
+ 599:.\Generated_Source\PSoC5/CySpc.c ****     return(status);
+ 933              		.loc 1 599 0
+ 934 004e FB68     		ldr	r3, [r7, #12]
+ 600:.\Generated_Source\PSoC5/CySpc.c **** }
+ 935              		.loc 1 600 0
+ 936 0050 1846     		mov	r0, r3
+ 937 0052 1437     		adds	r7, r7, #20
+ 938 0054 BD46     		mov	sp, r7
+ 939              		@ sp needed
+ 940 0056 5DF8047B 		ldr	r7, [sp], #4
+ 941 005a 7047     		bx	lr
+ 942              	.L78:
+ 943              		.align	2
+ 944              	.L77:
+ 945 005c 22470040 		.word	1073760034
+ 946 0060 20470040 		.word	1073760032
+ 947              		.cfi_endproc
+ 948              	.LFE8:
+ 949              		.size	CySpcGetTemp, .-CySpcGetTemp
+ 950              		.section	.text.CySpcLock,"ax",%progbits
+ 951              		.align	2
+ 952              		.global	CySpcLock
+ 953              		.thumb
+ 954              		.thumb_func
+ 955              		.type	CySpcLock, %function
+ 956              	CySpcLock:
+ 957              	.LFB9:
+ 601:.\Generated_Source\PSoC5/CySpc.c **** 
+ 602:.\Generated_Source\PSoC5/CySpc.c **** 
+ 603:.\Generated_Source\PSoC5/CySpc.c **** /*******************************************************************************
+ 604:.\Generated_Source\PSoC5/CySpc.c **** * Function Name: CySpcLock
+ 605:.\Generated_Source\PSoC5/CySpc.c **** ********************************************************************************
+ 606:.\Generated_Source\PSoC5/CySpc.c **** * Summary:
+ 607:.\Generated_Source\PSoC5/CySpc.c **** *  Locks the SPC so it can not be used by someone else:
+ 608:.\Generated_Source\PSoC5/CySpc.c **** *   - Saves wait-pipeline enable state and enable pipeline (PSoC5)
+ 609:.\Generated_Source\PSoC5/CySpc.c **** *
+ 610:.\Generated_Source\PSoC5/CySpc.c **** * Parameters:
+ 611:.\Generated_Source\PSoC5/CySpc.c **** *  Note
+ 612:.\Generated_Source\PSoC5/CySpc.c **** *
+ 613:.\Generated_Source\PSoC5/CySpc.c **** * Return:
+ 614:.\Generated_Source\PSoC5/CySpc.c **** *  CYRET_SUCCESS - if the resource was free.
+ 615:.\Generated_Source\PSoC5/CySpc.c **** *  CYRET_LOCKED  - if the SPC is in use.
+ 616:.\Generated_Source\PSoC5/CySpc.c **** *
+ 617:.\Generated_Source\PSoC5/CySpc.c **** *******************************************************************************/
+ 618:.\Generated_Source\PSoC5/CySpc.c **** cystatus CySpcLock(void)
+ 619:.\Generated_Source\PSoC5/CySpc.c **** {
+ 958              		.loc 1 619 0
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 29
+
+
+ 959              		.cfi_startproc
+ 960              		@ args = 0, pretend = 0, frame = 8
+ 961              		@ frame_needed = 1, uses_anonymous_args = 0
+ 962 0000 80B5     		push	{r7, lr}
+ 963              		.cfi_def_cfa_offset 8
+ 964              		.cfi_offset 7, -8
+ 965              		.cfi_offset 14, -4
+ 966 0002 82B0     		sub	sp, sp, #8
+ 967              		.cfi_def_cfa_offset 16
+ 968 0004 00AF     		add	r7, sp, #0
+ 969              		.cfi_def_cfa_register 7
+ 620:.\Generated_Source\PSoC5/CySpc.c ****     cystatus status = CYRET_LOCKED;
+ 970              		.loc 1 620 0
+ 971 0006 0423     		movs	r3, #4
+ 972 0008 7B60     		str	r3, [r7, #4]
+ 621:.\Generated_Source\PSoC5/CySpc.c ****     uint8 interruptState;
+ 622:.\Generated_Source\PSoC5/CySpc.c **** 
+ 623:.\Generated_Source\PSoC5/CySpc.c ****     /* Enter critical section */
+ 624:.\Generated_Source\PSoC5/CySpc.c ****     interruptState = CyEnterCriticalSection();
+ 973              		.loc 1 624 0
+ 974 000a FFF7FEFF 		bl	CyEnterCriticalSection
+ 975 000e 0346     		mov	r3, r0
+ 976 0010 FB70     		strb	r3, [r7, #3]
+ 625:.\Generated_Source\PSoC5/CySpc.c **** 
+ 626:.\Generated_Source\PSoC5/CySpc.c ****     if(CY_SPC_UNLOCKED == SpcLockState)
+ 977              		.loc 1 626 0
+ 978 0012 124B     		ldr	r3, .L82
+ 979 0014 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 980 0016 002B     		cmp	r3, #0
+ 981 0018 16D1     		bne	.L80
+ 627:.\Generated_Source\PSoC5/CySpc.c ****     {
+ 628:.\Generated_Source\PSoC5/CySpc.c ****         SpcLockState = CY_SPC_LOCKED;
+ 982              		.loc 1 628 0
+ 983 001a 104B     		ldr	r3, .L82
+ 984 001c 0122     		movs	r2, #1
+ 985 001e 1A70     		strb	r2, [r3]
+ 629:.\Generated_Source\PSoC5/CySpc.c ****         status = CYRET_SUCCESS;
+ 986              		.loc 1 629 0
+ 987 0020 0023     		movs	r3, #0
+ 988 0022 7B60     		str	r3, [r7, #4]
+ 630:.\Generated_Source\PSoC5/CySpc.c **** 
+ 631:.\Generated_Source\PSoC5/CySpc.c ****         #if(CY_PSOC5)
+ 632:.\Generated_Source\PSoC5/CySpc.c **** 
+ 633:.\Generated_Source\PSoC5/CySpc.c ****             if(0u != (CY_SPC_CPU_WAITPIPE_REG & CY_SPC_CPU_WAITPIPE_BYPASS))
+ 989              		.loc 1 633 0
+ 990 0024 0E4B     		ldr	r3, .L82+4
+ 991 0026 1B68     		ldr	r3, [r3]
+ 992 0028 03F00103 		and	r3, r3, #1
+ 993 002c 002B     		cmp	r3, #0
+ 994 002e 0BD0     		beq	.L80
+ 634:.\Generated_Source\PSoC5/CySpc.c ****             {
+ 635:.\Generated_Source\PSoC5/CySpc.c ****                 /* Enable pipeline registers */
+ 636:.\Generated_Source\PSoC5/CySpc.c ****                 CY_SPC_CPU_WAITPIPE_REG &= ((uint32)(~CY_SPC_CPU_WAITPIPE_BYPASS));
+ 995              		.loc 1 636 0
+ 996 0030 0B4B     		ldr	r3, .L82+4
+ 997 0032 0B4A     		ldr	r2, .L82+4
+ 998 0034 1268     		ldr	r2, [r2]
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 30
+
+
+ 999 0036 22F00102 		bic	r2, r2, #1
+ 1000 003a 1A60     		str	r2, [r3]
+ 637:.\Generated_Source\PSoC5/CySpc.c **** 
+ 638:.\Generated_Source\PSoC5/CySpc.c ****                 /* At least 2 NOP instructions are recommended */
+ 639:.\Generated_Source\PSoC5/CySpc.c ****                 CY_NOP;
+ 1001              		.loc 1 639 0
+ 1002              	@ 639 ".\Generated_Source\PSoC5\CySpc.c" 1
+ 1003 003c 00BF     		NOP
+ 1004              	
+ 1005              	@ 0 "" 2
+ 640:.\Generated_Source\PSoC5/CySpc.c ****                 CY_NOP;
+ 1006              		.loc 1 640 0
+ 1007              	@ 640 ".\Generated_Source\PSoC5\CySpc.c" 1
+ 1008 003e 00BF     		NOP
+ 1009              	
+ 1010              	@ 0 "" 2
+ 641:.\Generated_Source\PSoC5/CySpc.c ****                 CY_NOP;
+ 1011              		.loc 1 641 0
+ 1012              	@ 641 ".\Generated_Source\PSoC5\CySpc.c" 1
+ 1013 0040 00BF     		NOP
+ 1014              	
+ 1015              	@ 0 "" 2
+ 642:.\Generated_Source\PSoC5/CySpc.c **** 
+ 643:.\Generated_Source\PSoC5/CySpc.c ****                 spcWaitPipeBypass = CY_SPC_CPU_WAITPIPE_BYPASS;
+ 1016              		.loc 1 643 0
+ 1017              		.thumb
+ 1018 0042 084B     		ldr	r3, .L82+8
+ 1019 0044 0122     		movs	r2, #1
+ 1020 0046 1A60     		str	r2, [r3]
+ 1021              	.L80:
+ 644:.\Generated_Source\PSoC5/CySpc.c ****             }
+ 645:.\Generated_Source\PSoC5/CySpc.c **** 
+ 646:.\Generated_Source\PSoC5/CySpc.c ****         #endif  /* (CY_PSOC5) */
+ 647:.\Generated_Source\PSoC5/CySpc.c ****     }
+ 648:.\Generated_Source\PSoC5/CySpc.c **** 
+ 649:.\Generated_Source\PSoC5/CySpc.c ****     /* Exit critical section */
+ 650:.\Generated_Source\PSoC5/CySpc.c ****     CyExitCriticalSection(interruptState);
+ 1022              		.loc 1 650 0
+ 1023 0048 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 1024 004a 1846     		mov	r0, r3
+ 1025 004c FFF7FEFF 		bl	CyExitCriticalSection
+ 651:.\Generated_Source\PSoC5/CySpc.c **** 
+ 652:.\Generated_Source\PSoC5/CySpc.c ****     return(status);
+ 1026              		.loc 1 652 0
+ 1027 0050 7B68     		ldr	r3, [r7, #4]
+ 653:.\Generated_Source\PSoC5/CySpc.c **** }
+ 1028              		.loc 1 653 0
+ 1029 0052 1846     		mov	r0, r3
+ 1030 0054 0837     		adds	r7, r7, #8
+ 1031 0056 BD46     		mov	sp, r7
+ 1032              		@ sp needed
+ 1033 0058 80BD     		pop	{r7, pc}
+ 1034              	.L83:
+ 1035 005a 00BF     		.align	2
+ 1036              	.L82:
+ 1037 005c 00000000 		.word	SpcLockState
+ 1038 0060 04000840 		.word	1074266116
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 31
+
+
+ 1039 0064 04000000 		.word	spcWaitPipeBypass
+ 1040              		.cfi_endproc
+ 1041              	.LFE9:
+ 1042              		.size	CySpcLock, .-CySpcLock
+ 1043              		.section	.text.CySpcUnlock,"ax",%progbits
+ 1044              		.align	2
+ 1045              		.global	CySpcUnlock
+ 1046              		.thumb
+ 1047              		.thumb_func
+ 1048              		.type	CySpcUnlock, %function
+ 1049              	CySpcUnlock:
+ 1050              	.LFB10:
+ 654:.\Generated_Source\PSoC5/CySpc.c **** 
+ 655:.\Generated_Source\PSoC5/CySpc.c **** 
+ 656:.\Generated_Source\PSoC5/CySpc.c **** /*******************************************************************************
+ 657:.\Generated_Source\PSoC5/CySpc.c **** * Function Name: CySpcUnlock
+ 658:.\Generated_Source\PSoC5/CySpc.c **** ********************************************************************************
+ 659:.\Generated_Source\PSoC5/CySpc.c **** * Summary:
+ 660:.\Generated_Source\PSoC5/CySpc.c **** *  Unlocks the SPC so it can be used by someone else:
+ 661:.\Generated_Source\PSoC5/CySpc.c **** *   - Restores wait-pipeline enable state (PSoC5)
+ 662:.\Generated_Source\PSoC5/CySpc.c **** *
+ 663:.\Generated_Source\PSoC5/CySpc.c **** * Parameters:
+ 664:.\Generated_Source\PSoC5/CySpc.c **** *  None
+ 665:.\Generated_Source\PSoC5/CySpc.c **** *
+ 666:.\Generated_Source\PSoC5/CySpc.c **** * Return:
+ 667:.\Generated_Source\PSoC5/CySpc.c **** *  None
+ 668:.\Generated_Source\PSoC5/CySpc.c **** *
+ 669:.\Generated_Source\PSoC5/CySpc.c **** *******************************************************************************/
+ 670:.\Generated_Source\PSoC5/CySpc.c **** void CySpcUnlock(void)
+ 671:.\Generated_Source\PSoC5/CySpc.c **** {
+ 1051              		.loc 1 671 0
+ 1052              		.cfi_startproc
+ 1053              		@ args = 0, pretend = 0, frame = 8
+ 1054              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1055 0000 80B5     		push	{r7, lr}
+ 1056              		.cfi_def_cfa_offset 8
+ 1057              		.cfi_offset 7, -8
+ 1058              		.cfi_offset 14, -4
+ 1059 0002 82B0     		sub	sp, sp, #8
+ 1060              		.cfi_def_cfa_offset 16
+ 1061 0004 00AF     		add	r7, sp, #0
+ 1062              		.cfi_def_cfa_register 7
+ 672:.\Generated_Source\PSoC5/CySpc.c ****     uint8 interruptState;
+ 673:.\Generated_Source\PSoC5/CySpc.c **** 
+ 674:.\Generated_Source\PSoC5/CySpc.c ****     /* Enter critical section */
+ 675:.\Generated_Source\PSoC5/CySpc.c ****     interruptState = CyEnterCriticalSection();
+ 1063              		.loc 1 675 0
+ 1064 0006 FFF7FEFF 		bl	CyEnterCriticalSection
+ 1065 000a 0346     		mov	r3, r0
+ 1066 000c FB71     		strb	r3, [r7, #7]
+ 676:.\Generated_Source\PSoC5/CySpc.c **** 
+ 677:.\Generated_Source\PSoC5/CySpc.c ****     /* Release the SPC object */
+ 678:.\Generated_Source\PSoC5/CySpc.c ****     SpcLockState = CY_SPC_UNLOCKED;
+ 1067              		.loc 1 678 0
+ 1068 000e 0D4B     		ldr	r3, .L86
+ 1069 0010 0022     		movs	r2, #0
+ 1070 0012 1A70     		strb	r2, [r3]
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 32
+
+
+ 679:.\Generated_Source\PSoC5/CySpc.c **** 
+ 680:.\Generated_Source\PSoC5/CySpc.c ****     #if(CY_PSOC5)
+ 681:.\Generated_Source\PSoC5/CySpc.c **** 
+ 682:.\Generated_Source\PSoC5/CySpc.c ****         if(CY_SPC_CPU_WAITPIPE_BYPASS == spcWaitPipeBypass)
+ 1071              		.loc 1 682 0
+ 1072 0014 0C4B     		ldr	r3, .L86+4
+ 1073 0016 1B68     		ldr	r3, [r3]
+ 1074 0018 012B     		cmp	r3, #1
+ 1075 001a 0BD1     		bne	.L85
+ 683:.\Generated_Source\PSoC5/CySpc.c ****         {
+ 684:.\Generated_Source\PSoC5/CySpc.c ****             /* Force to bypass pipeline registers */
+ 685:.\Generated_Source\PSoC5/CySpc.c ****             CY_SPC_CPU_WAITPIPE_REG |= CY_SPC_CPU_WAITPIPE_BYPASS;
+ 1076              		.loc 1 685 0
+ 1077 001c 0B4B     		ldr	r3, .L86+8
+ 1078 001e 0B4A     		ldr	r2, .L86+8
+ 1079 0020 1268     		ldr	r2, [r2]
+ 1080 0022 42F00102 		orr	r2, r2, #1
+ 1081 0026 1A60     		str	r2, [r3]
+ 686:.\Generated_Source\PSoC5/CySpc.c **** 
+ 687:.\Generated_Source\PSoC5/CySpc.c ****             /* At least 2 NOP instructions are recommended */
+ 688:.\Generated_Source\PSoC5/CySpc.c ****             CY_NOP;
+ 1082              		.loc 1 688 0
+ 1083              	@ 688 ".\Generated_Source\PSoC5\CySpc.c" 1
+ 1084 0028 00BF     		NOP
+ 1085              	
+ 1086              	@ 0 "" 2
+ 689:.\Generated_Source\PSoC5/CySpc.c ****             CY_NOP;
+ 1087              		.loc 1 689 0
+ 1088              	@ 689 ".\Generated_Source\PSoC5\CySpc.c" 1
+ 1089 002a 00BF     		NOP
+ 1090              	
+ 1091              	@ 0 "" 2
+ 690:.\Generated_Source\PSoC5/CySpc.c ****             CY_NOP;
+ 1092              		.loc 1 690 0
+ 1093              	@ 690 ".\Generated_Source\PSoC5\CySpc.c" 1
+ 1094 002c 00BF     		NOP
+ 1095              	
+ 1096              	@ 0 "" 2
+ 691:.\Generated_Source\PSoC5/CySpc.c **** 
+ 692:.\Generated_Source\PSoC5/CySpc.c ****             spcWaitPipeBypass = 0u;
+ 1097              		.loc 1 692 0
+ 1098              		.thumb
+ 1099 002e 064B     		ldr	r3, .L86+4
+ 1100 0030 0022     		movs	r2, #0
+ 1101 0032 1A60     		str	r2, [r3]
+ 1102              	.L85:
+ 693:.\Generated_Source\PSoC5/CySpc.c ****         }
+ 694:.\Generated_Source\PSoC5/CySpc.c **** 
+ 695:.\Generated_Source\PSoC5/CySpc.c ****     #endif  /* (CY_PSOC5) */
+ 696:.\Generated_Source\PSoC5/CySpc.c **** 
+ 697:.\Generated_Source\PSoC5/CySpc.c ****     /* Exit critical section */
+ 698:.\Generated_Source\PSoC5/CySpc.c ****     CyExitCriticalSection(interruptState);
+ 1103              		.loc 1 698 0
+ 1104 0034 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 1105 0036 1846     		mov	r0, r3
+ 1106 0038 FFF7FEFF 		bl	CyExitCriticalSection
+ 699:.\Generated_Source\PSoC5/CySpc.c **** }
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 33
+
+
+ 1107              		.loc 1 699 0
+ 1108 003c 0837     		adds	r7, r7, #8
+ 1109 003e BD46     		mov	sp, r7
+ 1110              		@ sp needed
+ 1111 0040 80BD     		pop	{r7, pc}
+ 1112              	.L87:
+ 1113 0042 00BF     		.align	2
+ 1114              	.L86:
+ 1115 0044 00000000 		.word	SpcLockState
+ 1116 0048 04000000 		.word	spcWaitPipeBypass
+ 1117 004c 04000840 		.word	1074266116
+ 1118              		.cfi_endproc
+ 1119              	.LFE10:
+ 1120              		.size	CySpcUnlock, .-CySpcUnlock
+ 1121              		.section	.text.CySpcGetAlgorithm,"ax",%progbits
+ 1122              		.align	2
+ 1123              		.global	CySpcGetAlgorithm
+ 1124              		.thumb
+ 1125              		.thumb_func
+ 1126              		.type	CySpcGetAlgorithm, %function
+ 1127              	CySpcGetAlgorithm:
+ 1128              	.LFB11:
+ 700:.\Generated_Source\PSoC5/CySpc.c **** 
+ 701:.\Generated_Source\PSoC5/CySpc.c **** 
+ 702:.\Generated_Source\PSoC5/CySpc.c **** /*******************************************************************************
+ 703:.\Generated_Source\PSoC5/CySpc.c **** * Function Name: CySpcGetAlgorithm
+ 704:.\Generated_Source\PSoC5/CySpc.c **** ********************************************************************************
+ 705:.\Generated_Source\PSoC5/CySpc.c **** * Summary:
+ 706:.\Generated_Source\PSoC5/CySpc.c **** *  Downloads SPC algorithm from SPC SROM into SRAM.
+ 707:.\Generated_Source\PSoC5/CySpc.c **** *
+ 708:.\Generated_Source\PSoC5/CySpc.c **** * Parameters:
+ 709:.\Generated_Source\PSoC5/CySpc.c **** *  None
+ 710:.\Generated_Source\PSoC5/CySpc.c **** *
+ 711:.\Generated_Source\PSoC5/CySpc.c **** * Return:
+ 712:.\Generated_Source\PSoC5/CySpc.c **** *  CYRET_STARTED
+ 713:.\Generated_Source\PSoC5/CySpc.c **** *  CYRET_LOCKED
+ 714:.\Generated_Source\PSoC5/CySpc.c **** *
+ 715:.\Generated_Source\PSoC5/CySpc.c **** *******************************************************************************/
+ 716:.\Generated_Source\PSoC5/CySpc.c **** cystatus CySpcGetAlgorithm(void)
+ 717:.\Generated_Source\PSoC5/CySpc.c **** {
+ 1129              		.loc 1 717 0
+ 1130              		.cfi_startproc
+ 1131              		@ args = 0, pretend = 0, frame = 8
+ 1132              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1133              		@ link register save eliminated.
+ 1134 0000 80B4     		push	{r7}
+ 1135              		.cfi_def_cfa_offset 4
+ 1136              		.cfi_offset 7, -4
+ 1137 0002 83B0     		sub	sp, sp, #12
+ 1138              		.cfi_def_cfa_offset 16
+ 1139 0004 00AF     		add	r7, sp, #0
+ 1140              		.cfi_def_cfa_register 7
+ 718:.\Generated_Source\PSoC5/CySpc.c ****     cystatus status = CYRET_STARTED;
+ 1141              		.loc 1 718 0
+ 1142 0006 0723     		movs	r3, #7
+ 1143 0008 7B60     		str	r3, [r7, #4]
+ 719:.\Generated_Source\PSoC5/CySpc.c **** 
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 34
+
+
+ 720:.\Generated_Source\PSoC5/CySpc.c ****     /* Make sure the SPC is ready to accept command */
+ 721:.\Generated_Source\PSoC5/CySpc.c ****     if(CY_SPC_IDLE)
+ 1144              		.loc 1 721 0
+ 1145 000a 0D4B     		ldr	r3, .L92
+ 1146 000c 1B78     		ldrb	r3, [r3]
+ 1147 000e DBB2     		uxtb	r3, r3
+ 1148 0010 03F00203 		and	r3, r3, #2
+ 1149 0014 002B     		cmp	r3, #0
+ 1150 0016 09D0     		beq	.L89
+ 722:.\Generated_Source\PSoC5/CySpc.c ****     {
+ 723:.\Generated_Source\PSoC5/CySpc.c ****         CY_SPC_CPU_DATA_REG = CY_SPC_KEY_ONE;
+ 1151              		.loc 1 723 0
+ 1152 0018 0A4B     		ldr	r3, .L92+4
+ 1153 001a B622     		movs	r2, #182
+ 1154 001c 1A70     		strb	r2, [r3]
+ 724:.\Generated_Source\PSoC5/CySpc.c ****         CY_SPC_CPU_DATA_REG = CY_SPC_KEY_TWO(CY_SPC_CMD_DWNLD_ALGORITHM);
+ 1155              		.loc 1 724 0
+ 1156 001e 094B     		ldr	r3, .L92+4
+ 1157 0020 E022     		movs	r2, #224
+ 1158 0022 1A70     		strb	r2, [r3]
+ 725:.\Generated_Source\PSoC5/CySpc.c ****         CY_SPC_CPU_DATA_REG = CY_SPC_CMD_DWNLD_ALGORITHM;
+ 1159              		.loc 1 725 0
+ 1160 0024 074B     		ldr	r3, .L92+4
+ 1161 0026 0D22     		movs	r2, #13
+ 1162 0028 1A70     		strb	r2, [r3]
+ 1163 002a 01E0     		b	.L90
+ 1164              	.L89:
+ 726:.\Generated_Source\PSoC5/CySpc.c ****     }
+ 727:.\Generated_Source\PSoC5/CySpc.c ****     else
+ 728:.\Generated_Source\PSoC5/CySpc.c ****     {
+ 729:.\Generated_Source\PSoC5/CySpc.c ****         status = CYRET_LOCKED;
+ 1165              		.loc 1 729 0
+ 1166 002c 0423     		movs	r3, #4
+ 1167 002e 7B60     		str	r3, [r7, #4]
+ 1168              	.L90:
+ 730:.\Generated_Source\PSoC5/CySpc.c ****     }
+ 731:.\Generated_Source\PSoC5/CySpc.c **** 
+ 732:.\Generated_Source\PSoC5/CySpc.c ****     return(status);
+ 1169              		.loc 1 732 0
+ 1170 0030 7B68     		ldr	r3, [r7, #4]
+ 733:.\Generated_Source\PSoC5/CySpc.c **** }
+ 1171              		.loc 1 733 0
+ 1172 0032 1846     		mov	r0, r3
+ 1173 0034 0C37     		adds	r7, r7, #12
+ 1174 0036 BD46     		mov	sp, r7
+ 1175              		@ sp needed
+ 1176 0038 5DF8047B 		ldr	r7, [sp], #4
+ 1177 003c 7047     		bx	lr
+ 1178              	.L93:
+ 1179 003e 00BF     		.align	2
+ 1180              	.L92:
+ 1181 0040 22470040 		.word	1073760034
+ 1182 0044 20470040 		.word	1073760032
+ 1183              		.cfi_endproc
+ 1184              	.LFE11:
+ 1185              		.size	CySpcGetAlgorithm, .-CySpcGetAlgorithm
+ 1186              		.text
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 35
+
+
+ 1187              	.Letext0:
+ 1188              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 1189              		.section	.debug_info,"",%progbits
+ 1190              	.Ldebug_info0:
+ 1191 0000 52040000 		.4byte	0x452
+ 1192 0004 0400     		.2byte	0x4
+ 1193 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1194 000a 04       		.byte	0x4
+ 1195 000b 01       		.uleb128 0x1
+ 1196 000c 9C010000 		.4byte	.LASF43
+ 1197 0010 01       		.byte	0x1
+ 1198 0011 45000000 		.4byte	.LASF44
+ 1199 0015 FA000000 		.4byte	.LASF45
+ 1200 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 1201 001d 00000000 		.4byte	0
+ 1202 0021 00000000 		.4byte	.Ldebug_line0
+ 1203 0025 02       		.uleb128 0x2
+ 1204 0026 01       		.byte	0x1
+ 1205 0027 06       		.byte	0x6
+ 1206 0028 B0020000 		.4byte	.LASF0
+ 1207 002c 02       		.uleb128 0x2
+ 1208 002d 01       		.byte	0x1
+ 1209 002e 08       		.byte	0x8
+ 1210 002f E5000000 		.4byte	.LASF1
+ 1211 0033 02       		.uleb128 0x2
+ 1212 0034 02       		.byte	0x2
+ 1213 0035 05       		.byte	0x5
+ 1214 0036 77020000 		.4byte	.LASF2
+ 1215 003a 02       		.uleb128 0x2
+ 1216 003b 02       		.byte	0x2
+ 1217 003c 07       		.byte	0x7
+ 1218 003d 66000000 		.4byte	.LASF3
+ 1219 0041 02       		.uleb128 0x2
+ 1220 0042 04       		.byte	0x4
+ 1221 0043 05       		.byte	0x5
+ 1222 0044 95020000 		.4byte	.LASF4
+ 1223 0048 02       		.uleb128 0x2
+ 1224 0049 04       		.byte	0x4
+ 1225 004a 07       		.byte	0x7
+ 1226 004b AD000000 		.4byte	.LASF5
+ 1227 004f 02       		.uleb128 0x2
+ 1228 0050 08       		.byte	0x8
+ 1229 0051 05       		.byte	0x5
+ 1230 0052 4B020000 		.4byte	.LASF6
+ 1231 0056 02       		.uleb128 0x2
+ 1232 0057 08       		.byte	0x8
+ 1233 0058 07       		.byte	0x7
+ 1234 0059 77010000 		.4byte	.LASF7
+ 1235 005d 03       		.uleb128 0x3
+ 1236 005e 04       		.byte	0x4
+ 1237 005f 05       		.byte	0x5
+ 1238 0060 696E7400 		.ascii	"int\000"
+ 1239 0064 02       		.uleb128 0x2
+ 1240 0065 04       		.byte	0x4
+ 1241 0066 07       		.byte	0x7
+ 1242 0067 62010000 		.4byte	.LASF8
+ 1243 006b 04       		.uleb128 0x4
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 36
+
+
+ 1244 006c BF000000 		.4byte	.LASF9
+ 1245 0070 02       		.byte	0x2
+ 1246 0071 A1       		.byte	0xa1
+ 1247 0072 2C000000 		.4byte	0x2c
+ 1248 0076 04       		.uleb128 0x4
+ 1249 0077 4A010000 		.4byte	.LASF10
+ 1250 007b 02       		.byte	0x2
+ 1251 007c A2       		.byte	0xa2
+ 1252 007d 3A000000 		.4byte	0x3a
+ 1253 0081 04       		.uleb128 0x4
+ 1254 0082 5B010000 		.4byte	.LASF11
+ 1255 0086 02       		.byte	0x2
+ 1256 0087 A3       		.byte	0xa3
+ 1257 0088 48000000 		.4byte	0x48
+ 1258 008c 02       		.uleb128 0x2
+ 1259 008d 04       		.byte	0x4
+ 1260 008e 04       		.byte	0x4
+ 1261 008f 8E000000 		.4byte	.LASF12
+ 1262 0093 02       		.uleb128 0x2
+ 1263 0094 08       		.byte	0x8
+ 1264 0095 04       		.byte	0x4
+ 1265 0096 F3000000 		.4byte	.LASF13
+ 1266 009a 02       		.uleb128 0x2
+ 1267 009b 01       		.byte	0x1
+ 1268 009c 08       		.byte	0x8
+ 1269 009d 59020000 		.4byte	.LASF14
+ 1270 00a1 05       		.uleb128 0x5
+ 1271 00a2 13000000 		.4byte	.LASF15
+ 1272 00a6 02       		.byte	0x2
+ 1273 00a7 4301     		.2byte	0x143
+ 1274 00a9 48000000 		.4byte	0x48
+ 1275 00ad 05       		.uleb128 0x5
+ 1276 00ae 99000000 		.4byte	.LASF16
+ 1277 00b2 02       		.byte	0x2
+ 1278 00b3 4B01     		.2byte	0x14b
+ 1279 00b5 B9000000 		.4byte	0xb9
+ 1280 00b9 06       		.uleb128 0x6
+ 1281 00ba 6B000000 		.4byte	0x6b
+ 1282 00be 05       		.uleb128 0x5
+ 1283 00bf 1C000000 		.4byte	.LASF17
+ 1284 00c3 02       		.byte	0x2
+ 1285 00c4 4D01     		.2byte	0x14d
+ 1286 00c6 CA000000 		.4byte	0xca
+ 1287 00ca 06       		.uleb128 0x6
+ 1288 00cb 81000000 		.4byte	0x81
+ 1289 00cf 02       		.uleb128 0x2
+ 1290 00d0 04       		.byte	0x4
+ 1291 00d1 07       		.byte	0x7
+ 1292 00d2 25020000 		.4byte	.LASF18
+ 1293 00d6 07       		.uleb128 0x7
+ 1294 00d7 22000000 		.4byte	.LASF19
+ 1295 00db 01       		.byte	0x1
+ 1296 00dc 4E       		.byte	0x4e
+ 1297 00dd 00000000 		.4byte	.LFB0
+ 1298 00e1 44000000 		.4byte	.LFE0-.LFB0
+ 1299 00e5 01       		.uleb128 0x1
+ 1300 00e6 9C       		.byte	0x9c
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 37
+
+
+ 1301 00e7 FA000000 		.4byte	0xfa
+ 1302 00eb 08       		.uleb128 0x8
+ 1303 00ec 9E000000 		.4byte	.LASF21
+ 1304 00f0 01       		.byte	0x1
+ 1305 00f1 51       		.byte	0x51
+ 1306 00f2 6B000000 		.4byte	0x6b
+ 1307 00f6 02       		.uleb128 0x2
+ 1308 00f7 91       		.byte	0x91
+ 1309 00f8 77       		.sleb128 -9
+ 1310 00f9 00       		.byte	0
+ 1311 00fa 07       		.uleb128 0x7
+ 1312 00fb 3B000000 		.4byte	.LASF20
+ 1313 00ff 01       		.byte	0x1
+ 1314 0100 68       		.byte	0x68
+ 1315 0101 00000000 		.4byte	.LFB1
+ 1316 0105 44000000 		.4byte	.LFE1-.LFB1
+ 1317 0109 01       		.uleb128 0x1
+ 1318 010a 9C       		.byte	0x9c
+ 1319 010b 1E010000 		.4byte	0x11e
+ 1320 010f 08       		.uleb128 0x8
+ 1321 0110 9E000000 		.4byte	.LASF21
+ 1322 0114 01       		.byte	0x1
+ 1323 0115 6B       		.byte	0x6b
+ 1324 0116 6B000000 		.4byte	0x6b
+ 1325 011a 02       		.uleb128 0x2
+ 1326 011b 91       		.byte	0x91
+ 1327 011c 77       		.sleb128 -9
+ 1328 011d 00       		.byte	0
+ 1329 011e 09       		.uleb128 0x9
+ 1330 011f 79000000 		.4byte	.LASF24
+ 1331 0123 01       		.byte	0x1
+ 1332 0124 87       		.byte	0x87
+ 1333 0125 6B000000 		.4byte	0x6b
+ 1334 0129 00000000 		.4byte	.LFB2
+ 1335 012d 58000000 		.4byte	.LFE2-.LFB2
+ 1336 0131 01       		.uleb128 0x1
+ 1337 0132 9C       		.byte	0x9c
+ 1338 0133 60010000 		.4byte	0x160
+ 1339 0137 0A       		.uleb128 0xa
+ 1340 0138 81020000 		.4byte	.LASF22
+ 1341 013c 01       		.byte	0x1
+ 1342 013d 87       		.byte	0x87
+ 1343 013e 60010000 		.4byte	0x160
+ 1344 0142 02       		.uleb128 0x2
+ 1345 0143 91       		.byte	0x91
+ 1346 0144 6C       		.sleb128 -20
+ 1347 0145 0A       		.uleb128 0xa
+ 1348 0146 94000000 		.4byte	.LASF23
+ 1349 014a 01       		.byte	0x1
+ 1350 014b 87       		.byte	0x87
+ 1351 014c 6B000000 		.4byte	0x6b
+ 1352 0150 02       		.uleb128 0x2
+ 1353 0151 91       		.byte	0x91
+ 1354 0152 6B       		.sleb128 -21
+ 1355 0153 0B       		.uleb128 0xb
+ 1356 0154 6900     		.ascii	"i\000"
+ 1357 0156 01       		.byte	0x1
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 38
+
+
+ 1358 0157 89       		.byte	0x89
+ 1359 0158 6B000000 		.4byte	0x6b
+ 1360 015c 02       		.uleb128 0x2
+ 1361 015d 91       		.byte	0x91
+ 1362 015e 77       		.sleb128 -9
+ 1363 015f 00       		.byte	0
+ 1364 0160 0C       		.uleb128 0xc
+ 1365 0161 04       		.byte	0x4
+ 1366 0162 6B000000 		.4byte	0x6b
+ 1367 0166 0D       		.uleb128 0xd
+ 1368 0167 00000000 		.4byte	.LASF25
+ 1369 016b 01       		.byte	0x1
+ 1370 016c B2       		.byte	0xb2
+ 1371 016d A1000000 		.4byte	0xa1
+ 1372 0171 00000000 		.4byte	.LFB3
+ 1373 0175 D0000000 		.4byte	.LFE3-.LFB3
+ 1374 0179 01       		.uleb128 0x1
+ 1375 017a 9C       		.byte	0x9c
+ 1376 017b D2010000 		.4byte	0x1d2
+ 1377 017f 0A       		.uleb128 0xa
+ 1378 0180 DF000000 		.4byte	.LASF26
+ 1379 0184 01       		.byte	0x1
+ 1380 0185 B2       		.byte	0xb2
+ 1381 0186 6B000000 		.4byte	0x6b
+ 1382 018a 02       		.uleb128 0x2
+ 1383 018b 91       		.byte	0x91
+ 1384 018c 6F       		.sleb128 -17
+ 1385 018d 0A       		.uleb128 0xa
+ 1386 018e 6F010000 		.4byte	.LASF27
+ 1387 0192 01       		.byte	0x1
+ 1388 0193 B2       		.byte	0xb2
+ 1389 0194 76000000 		.4byte	0x76
+ 1390 0198 02       		.uleb128 0x2
+ 1391 0199 91       		.byte	0x91
+ 1392 019a 6C       		.sleb128 -20
+ 1393 019b 0A       		.uleb128 0xa
+ 1394 019c 81020000 		.4byte	.LASF22
+ 1395 01a0 01       		.byte	0x1
+ 1396 01a1 B2       		.byte	0xb2
+ 1397 01a2 D2010000 		.4byte	0x1d2
+ 1398 01a6 02       		.uleb128 0x2
+ 1399 01a7 91       		.byte	0x91
+ 1400 01a8 68       		.sleb128 -24
+ 1401 01a9 0A       		.uleb128 0xa
+ 1402 01aa 94000000 		.4byte	.LASF23
+ 1403 01ae 01       		.byte	0x1
+ 1404 01af B2       		.byte	0xb2
+ 1405 01b0 6B000000 		.4byte	0x6b
+ 1406 01b4 02       		.uleb128 0x2
+ 1407 01b5 91       		.byte	0x91
+ 1408 01b6 6E       		.sleb128 -18
+ 1409 01b7 08       		.uleb128 0x8
+ 1410 01b8 87000000 		.4byte	.LASF28
+ 1411 01bc 01       		.byte	0x1
+ 1412 01bd B5       		.byte	0xb5
+ 1413 01be A1000000 		.4byte	0xa1
+ 1414 01c2 02       		.uleb128 0x2
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 39
+
+
+ 1415 01c3 91       		.byte	0x91
+ 1416 01c4 74       		.sleb128 -12
+ 1417 01c5 0B       		.uleb128 0xb
+ 1418 01c6 6900     		.ascii	"i\000"
+ 1419 01c8 01       		.byte	0x1
+ 1420 01c9 B6       		.byte	0xb6
+ 1421 01ca 6B000000 		.4byte	0x6b
+ 1422 01ce 02       		.uleb128 0x2
+ 1423 01cf 91       		.byte	0x91
+ 1424 01d0 73       		.sleb128 -13
+ 1425 01d1 00       		.byte	0
+ 1426 01d2 0C       		.uleb128 0xc
+ 1427 01d3 04       		.byte	0x4
+ 1428 01d4 D8010000 		.4byte	0x1d8
+ 1429 01d8 0E       		.uleb128 0xe
+ 1430 01d9 6B000000 		.4byte	0x6b
+ 1431 01dd 0F       		.uleb128 0xf
+ 1432 01de 18020000 		.4byte	.LASF29
+ 1433 01e2 01       		.byte	0x1
+ 1434 01e3 0201     		.2byte	0x102
+ 1435 01e5 A1000000 		.4byte	0xa1
+ 1436 01e9 00000000 		.4byte	.LFB4
+ 1437 01ed 8C000000 		.4byte	.LFE4-.LFB4
+ 1438 01f1 01       		.uleb128 0x1
+ 1439 01f2 9C       		.byte	0x9c
+ 1440 01f3 41020000 		.4byte	0x241
+ 1441 01f7 10       		.uleb128 0x10
+ 1442 01f8 DF000000 		.4byte	.LASF26
+ 1443 01fc 01       		.byte	0x1
+ 1444 01fd 0201     		.2byte	0x102
+ 1445 01ff 6B000000 		.4byte	0x6b
+ 1446 0203 02       		.uleb128 0x2
+ 1447 0204 91       		.byte	0x91
+ 1448 0205 6F       		.sleb128 -17
+ 1449 0206 10       		.uleb128 0x10
+ 1450 0207 81020000 		.4byte	.LASF22
+ 1451 020b 01       		.byte	0x1
+ 1452 020c 0201     		.2byte	0x102
+ 1453 020e D2010000 		.4byte	0x1d2
+ 1454 0212 02       		.uleb128 0x2
+ 1455 0213 91       		.byte	0x91
+ 1456 0214 68       		.sleb128 -24
+ 1457 0215 10       		.uleb128 0x10
+ 1458 0216 94000000 		.4byte	.LASF23
+ 1459 021a 01       		.byte	0x1
+ 1460 021b 0201     		.2byte	0x102
+ 1461 021d 76000000 		.4byte	0x76
+ 1462 0221 02       		.uleb128 0x2
+ 1463 0222 91       		.byte	0x91
+ 1464 0223 6C       		.sleb128 -20
+ 1465 0224 11       		.uleb128 0x11
+ 1466 0225 87000000 		.4byte	.LASF28
+ 1467 0229 01       		.byte	0x1
+ 1468 022a 0401     		.2byte	0x104
+ 1469 022c A1000000 		.4byte	0xa1
+ 1470 0230 02       		.uleb128 0x2
+ 1471 0231 91       		.byte	0x91
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 40
+
+
+ 1472 0232 74       		.sleb128 -12
+ 1473 0233 12       		.uleb128 0x12
+ 1474 0234 6900     		.ascii	"i\000"
+ 1475 0236 01       		.byte	0x1
+ 1476 0237 0501     		.2byte	0x105
+ 1477 0239 76000000 		.4byte	0x76
+ 1478 023d 02       		.uleb128 0x2
+ 1479 023e 91       		.byte	0x91
+ 1480 023f 72       		.sleb128 -14
+ 1481 0240 00       		.byte	0
+ 1482 0241 0F       		.uleb128 0xf
+ 1483 0242 BC020000 		.4byte	.LASF30
+ 1484 0246 01       		.byte	0x1
+ 1485 0247 4601     		.2byte	0x146
+ 1486 0249 A1000000 		.4byte	0xa1
+ 1487 024d 00000000 		.4byte	.LFB5
+ 1488 0251 04010000 		.4byte	.LFE5-.LFB5
+ 1489 0255 01       		.uleb128 0x1
+ 1490 0256 9C       		.byte	0x9c
+ 1491 0257 C3020000 		.4byte	0x2c3
+ 1492 025b 10       		.uleb128 0x10
+ 1493 025c DF000000 		.4byte	.LASF26
+ 1494 0260 01       		.byte	0x1
+ 1495 0261 4601     		.2byte	0x146
+ 1496 0263 6B000000 		.4byte	0x6b
+ 1497 0267 02       		.uleb128 0x2
+ 1498 0268 91       		.byte	0x91
+ 1499 0269 67       		.sleb128 -25
+ 1500 026a 13       		.uleb128 0x13
+ 1501 026b 726F7700 		.ascii	"row\000"
+ 1502 026f 01       		.byte	0x1
+ 1503 0270 4601     		.2byte	0x146
+ 1504 0272 76000000 		.4byte	0x76
+ 1505 0276 02       		.uleb128 0x2
+ 1506 0277 91       		.byte	0x91
+ 1507 0278 64       		.sleb128 -28
+ 1508 0279 10       		.uleb128 0x10
+ 1509 027a 81020000 		.4byte	.LASF22
+ 1510 027e 01       		.byte	0x1
+ 1511 027f 4601     		.2byte	0x146
+ 1512 0281 D2010000 		.4byte	0x1d2
+ 1513 0285 02       		.uleb128 0x2
+ 1514 0286 91       		.byte	0x91
+ 1515 0287 60       		.sleb128 -32
+ 1516 0288 10       		.uleb128 0x10
+ 1517 0289 94000000 		.4byte	.LASF23
+ 1518 028d 01       		.byte	0x1
+ 1519 028e 4601     		.2byte	0x146
+ 1520 0290 76000000 		.4byte	0x76
+ 1521 0294 02       		.uleb128 0x2
+ 1522 0295 91       		.byte	0x91
+ 1523 0296 5E       		.sleb128 -34
+ 1524 0297 11       		.uleb128 0x11
+ 1525 0298 87000000 		.4byte	.LASF28
+ 1526 029c 01       		.byte	0x1
+ 1527 029d 4901     		.2byte	0x149
+ 1528 029f A1000000 		.4byte	0xa1
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 41
+
+
+ 1529 02a3 02       		.uleb128 0x2
+ 1530 02a4 91       		.byte	0x91
+ 1531 02a5 74       		.sleb128 -12
+ 1532 02a6 12       		.uleb128 0x12
+ 1533 02a7 6900     		.ascii	"i\000"
+ 1534 02a9 01       		.byte	0x1
+ 1535 02aa 4A01     		.2byte	0x14a
+ 1536 02ac 76000000 		.4byte	0x76
+ 1537 02b0 02       		.uleb128 0x2
+ 1538 02b1 91       		.byte	0x91
+ 1539 02b2 72       		.sleb128 -14
+ 1540 02b3 11       		.uleb128 0x11
+ 1541 02b4 70020000 		.4byte	.LASF31
+ 1542 02b8 01       		.byte	0x1
+ 1543 02b9 4D01     		.2byte	0x14d
+ 1544 02bb 81000000 		.4byte	0x81
+ 1545 02bf 02       		.uleb128 0x2
+ 1546 02c0 91       		.byte	0x91
+ 1547 02c1 6C       		.sleb128 -20
+ 1548 02c2 00       		.byte	0
+ 1549 02c3 0F       		.uleb128 0xf
+ 1550 02c4 2D000000 		.4byte	.LASF32
+ 1551 02c8 01       		.byte	0x1
+ 1552 02c9 D001     		.2byte	0x1d0
+ 1553 02cb A1000000 		.4byte	0xa1
+ 1554 02cf 00000000 		.4byte	.LFB6
+ 1555 02d3 88000000 		.4byte	.LFE6-.LFB6
+ 1556 02d7 01       		.uleb128 0x1
+ 1557 02d8 9C       		.byte	0x9c
+ 1558 02d9 29030000 		.4byte	0x329
+ 1559 02dd 10       		.uleb128 0x10
+ 1560 02de DF000000 		.4byte	.LASF26
+ 1561 02e2 01       		.byte	0x1
+ 1562 02e3 D001     		.2byte	0x1d0
+ 1563 02e5 6B000000 		.4byte	0x6b
+ 1564 02e9 02       		.uleb128 0x2
+ 1565 02ea 91       		.byte	0x91
+ 1566 02eb 6F       		.sleb128 -17
+ 1567 02ec 10       		.uleb128 0x10
+ 1568 02ed 6F010000 		.4byte	.LASF27
+ 1569 02f1 01       		.byte	0x1
+ 1570 02f2 D001     		.2byte	0x1d0
+ 1571 02f4 76000000 		.4byte	0x76
+ 1572 02f8 02       		.uleb128 0x2
+ 1573 02f9 91       		.byte	0x91
+ 1574 02fa 6C       		.sleb128 -20
+ 1575 02fb 10       		.uleb128 0x10
+ 1576 02fc D2000000 		.4byte	.LASF33
+ 1577 0300 01       		.byte	0x1
+ 1578 0301 D001     		.2byte	0x1d0
+ 1579 0303 6B000000 		.4byte	0x6b
+ 1580 0307 02       		.uleb128 0x2
+ 1581 0308 91       		.byte	0x91
+ 1582 0309 6E       		.sleb128 -18
+ 1583 030a 10       		.uleb128 0x10
+ 1584 030b 8E010000 		.4byte	.LASF34
+ 1585 030f 01       		.byte	0x1
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 42
+
+
+ 1586 0310 D001     		.2byte	0x1d0
+ 1587 0312 6B000000 		.4byte	0x6b
+ 1588 0316 02       		.uleb128 0x2
+ 1589 0317 91       		.byte	0x91
+ 1590 0318 6B       		.sleb128 -21
+ 1591 0319 11       		.uleb128 0x11
+ 1592 031a 87000000 		.4byte	.LASF28
+ 1593 031e 01       		.byte	0x1
+ 1594 031f D301     		.2byte	0x1d3
+ 1595 0321 A1000000 		.4byte	0xa1
+ 1596 0325 02       		.uleb128 0x2
+ 1597 0326 91       		.byte	0x91
+ 1598 0327 74       		.sleb128 -12
+ 1599 0328 00       		.byte	0
+ 1600 0329 0F       		.uleb128 0xf
+ 1601 032a 3A020000 		.4byte	.LASF35
+ 1602 032e 01       		.byte	0x1
+ 1603 032f 0602     		.2byte	0x206
+ 1604 0331 A1000000 		.4byte	0xa1
+ 1605 0335 00000000 		.4byte	.LFB7
+ 1606 0339 70000000 		.4byte	.LFE7-.LFB7
+ 1607 033d 01       		.uleb128 0x1
+ 1608 033e 9C       		.byte	0x9c
+ 1609 033f 71030000 		.4byte	0x371
+ 1610 0343 10       		.uleb128 0x10
+ 1611 0344 DF000000 		.4byte	.LASF26
+ 1612 0348 01       		.byte	0x1
+ 1613 0349 0602     		.2byte	0x206
+ 1614 034b 6B000000 		.4byte	0x6b
+ 1615 034f 02       		.uleb128 0x2
+ 1616 0350 91       		.byte	0x91
+ 1617 0351 6F       		.sleb128 -17
+ 1618 0352 10       		.uleb128 0x10
+ 1619 0353 88020000 		.4byte	.LASF36
+ 1620 0357 01       		.byte	0x1
+ 1621 0358 0602     		.2byte	0x206
+ 1622 035a 6B000000 		.4byte	0x6b
+ 1623 035e 02       		.uleb128 0x2
+ 1624 035f 91       		.byte	0x91
+ 1625 0360 6E       		.sleb128 -18
+ 1626 0361 11       		.uleb128 0x11
+ 1627 0362 87000000 		.4byte	.LASF28
+ 1628 0366 01       		.byte	0x1
+ 1629 0367 0802     		.2byte	0x208
+ 1630 0369 A1000000 		.4byte	0xa1
+ 1631 036d 02       		.uleb128 0x2
+ 1632 036e 91       		.byte	0x91
+ 1633 036f 74       		.sleb128 -12
+ 1634 0370 00       		.byte	0
+ 1635 0371 0F       		.uleb128 0xf
+ 1636 0372 3D010000 		.4byte	.LASF37
+ 1637 0376 01       		.byte	0x1
+ 1638 0377 3D02     		.2byte	0x23d
+ 1639 0379 A1000000 		.4byte	0xa1
+ 1640 037d 00000000 		.4byte	.LFB8
+ 1641 0381 64000000 		.4byte	.LFE8-.LFB8
+ 1642 0385 01       		.uleb128 0x1
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 43
+
+
+ 1643 0386 9C       		.byte	0x9c
+ 1644 0387 AA030000 		.4byte	0x3aa
+ 1645 038b 10       		.uleb128 0x10
+ 1646 038c CD020000 		.4byte	.LASF38
+ 1647 0390 01       		.byte	0x1
+ 1648 0391 3D02     		.2byte	0x23d
+ 1649 0393 6B000000 		.4byte	0x6b
+ 1650 0397 02       		.uleb128 0x2
+ 1651 0398 91       		.byte	0x91
+ 1652 0399 6F       		.sleb128 -17
+ 1653 039a 11       		.uleb128 0x11
+ 1654 039b 87000000 		.4byte	.LASF28
+ 1655 039f 01       		.byte	0x1
+ 1656 03a0 3F02     		.2byte	0x23f
+ 1657 03a2 A1000000 		.4byte	0xa1
+ 1658 03a6 02       		.uleb128 0x2
+ 1659 03a7 91       		.byte	0x91
+ 1660 03a8 74       		.sleb128 -12
+ 1661 03a9 00       		.byte	0
+ 1662 03aa 14       		.uleb128 0x14
+ 1663 03ab 51010000 		.4byte	.LASF39
+ 1664 03af 01       		.byte	0x1
+ 1665 03b0 6A02     		.2byte	0x26a
+ 1666 03b2 A1000000 		.4byte	0xa1
+ 1667 03b6 00000000 		.4byte	.LFB9
+ 1668 03ba 68000000 		.4byte	.LFE9-.LFB9
+ 1669 03be 01       		.uleb128 0x1
+ 1670 03bf 9C       		.byte	0x9c
+ 1671 03c0 E3030000 		.4byte	0x3e3
+ 1672 03c4 11       		.uleb128 0x11
+ 1673 03c5 87000000 		.4byte	.LASF28
+ 1674 03c9 01       		.byte	0x1
+ 1675 03ca 6C02     		.2byte	0x26c
+ 1676 03cc A1000000 		.4byte	0xa1
+ 1677 03d0 02       		.uleb128 0x2
+ 1678 03d1 91       		.byte	0x91
+ 1679 03d2 74       		.sleb128 -12
+ 1680 03d3 11       		.uleb128 0x11
+ 1681 03d4 9E000000 		.4byte	.LASF21
+ 1682 03d8 01       		.byte	0x1
+ 1683 03d9 6D02     		.2byte	0x26d
+ 1684 03db 6B000000 		.4byte	0x6b
+ 1685 03df 02       		.uleb128 0x2
+ 1686 03e0 91       		.byte	0x91
+ 1687 03e1 73       		.sleb128 -13
+ 1688 03e2 00       		.byte	0
+ 1689 03e3 15       		.uleb128 0x15
+ 1690 03e4 2E020000 		.4byte	.LASF40
+ 1691 03e8 01       		.byte	0x1
+ 1692 03e9 9E02     		.2byte	0x29e
+ 1693 03eb 00000000 		.4byte	.LFB10
+ 1694 03ef 50000000 		.4byte	.LFE10-.LFB10
+ 1695 03f3 01       		.uleb128 0x1
+ 1696 03f4 9C       		.byte	0x9c
+ 1697 03f5 09040000 		.4byte	0x409
+ 1698 03f9 11       		.uleb128 0x11
+ 1699 03fa 9E000000 		.4byte	.LASF21
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 44
+
+
+ 1700 03fe 01       		.byte	0x1
+ 1701 03ff A002     		.2byte	0x2a0
+ 1702 0401 6B000000 		.4byte	0x6b
+ 1703 0405 02       		.uleb128 0x2
+ 1704 0406 91       		.byte	0x91
+ 1705 0407 77       		.sleb128 -9
+ 1706 0408 00       		.byte	0
+ 1707 0409 0F       		.uleb128 0xf
+ 1708 040a 5E020000 		.4byte	.LASF41
+ 1709 040e 01       		.byte	0x1
+ 1710 040f CC02     		.2byte	0x2cc
+ 1711 0411 A1000000 		.4byte	0xa1
+ 1712 0415 00000000 		.4byte	.LFB11
+ 1713 0419 48000000 		.4byte	.LFE11-.LFB11
+ 1714 041d 01       		.uleb128 0x1
+ 1715 041e 9C       		.byte	0x9c
+ 1716 041f 33040000 		.4byte	0x433
+ 1717 0423 11       		.uleb128 0x11
+ 1718 0424 87000000 		.4byte	.LASF28
+ 1719 0428 01       		.byte	0x1
+ 1720 0429 CE02     		.2byte	0x2ce
+ 1721 042b A1000000 		.4byte	0xa1
+ 1722 042f 02       		.uleb128 0x2
+ 1723 0430 91       		.byte	0x91
+ 1724 0431 74       		.sleb128 -12
+ 1725 0432 00       		.byte	0
+ 1726 0433 08       		.uleb128 0x8
+ 1727 0434 9E020000 		.4byte	.LASF42
+ 1728 0438 01       		.byte	0x1
+ 1729 0439 3C       		.byte	0x3c
+ 1730 043a 81000000 		.4byte	0x81
+ 1731 043e 05       		.uleb128 0x5
+ 1732 043f 03       		.byte	0x3
+ 1733 0440 04000000 		.4byte	spcWaitPipeBypass
+ 1734 0444 16       		.uleb128 0x16
+ 1735 0445 C5000000 		.4byte	.LASF46
+ 1736 0449 01       		.byte	0x1
+ 1737 044a 30       		.byte	0x30
+ 1738 044b 6B000000 		.4byte	0x6b
+ 1739 044f 05       		.uleb128 0x5
+ 1740 0450 03       		.byte	0x3
+ 1741 0451 00000000 		.4byte	SpcLockState
+ 1742 0455 00       		.byte	0
+ 1743              		.section	.debug_abbrev,"",%progbits
+ 1744              	.Ldebug_abbrev0:
+ 1745 0000 01       		.uleb128 0x1
+ 1746 0001 11       		.uleb128 0x11
+ 1747 0002 01       		.byte	0x1
+ 1748 0003 25       		.uleb128 0x25
+ 1749 0004 0E       		.uleb128 0xe
+ 1750 0005 13       		.uleb128 0x13
+ 1751 0006 0B       		.uleb128 0xb
+ 1752 0007 03       		.uleb128 0x3
+ 1753 0008 0E       		.uleb128 0xe
+ 1754 0009 1B       		.uleb128 0x1b
+ 1755 000a 0E       		.uleb128 0xe
+ 1756 000b 55       		.uleb128 0x55
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 45
+
+
+ 1757 000c 17       		.uleb128 0x17
+ 1758 000d 11       		.uleb128 0x11
+ 1759 000e 01       		.uleb128 0x1
+ 1760 000f 10       		.uleb128 0x10
+ 1761 0010 17       		.uleb128 0x17
+ 1762 0011 00       		.byte	0
+ 1763 0012 00       		.byte	0
+ 1764 0013 02       		.uleb128 0x2
+ 1765 0014 24       		.uleb128 0x24
+ 1766 0015 00       		.byte	0
+ 1767 0016 0B       		.uleb128 0xb
+ 1768 0017 0B       		.uleb128 0xb
+ 1769 0018 3E       		.uleb128 0x3e
+ 1770 0019 0B       		.uleb128 0xb
+ 1771 001a 03       		.uleb128 0x3
+ 1772 001b 0E       		.uleb128 0xe
+ 1773 001c 00       		.byte	0
+ 1774 001d 00       		.byte	0
+ 1775 001e 03       		.uleb128 0x3
+ 1776 001f 24       		.uleb128 0x24
+ 1777 0020 00       		.byte	0
+ 1778 0021 0B       		.uleb128 0xb
+ 1779 0022 0B       		.uleb128 0xb
+ 1780 0023 3E       		.uleb128 0x3e
+ 1781 0024 0B       		.uleb128 0xb
+ 1782 0025 03       		.uleb128 0x3
+ 1783 0026 08       		.uleb128 0x8
+ 1784 0027 00       		.byte	0
+ 1785 0028 00       		.byte	0
+ 1786 0029 04       		.uleb128 0x4
+ 1787 002a 16       		.uleb128 0x16
+ 1788 002b 00       		.byte	0
+ 1789 002c 03       		.uleb128 0x3
+ 1790 002d 0E       		.uleb128 0xe
+ 1791 002e 3A       		.uleb128 0x3a
+ 1792 002f 0B       		.uleb128 0xb
+ 1793 0030 3B       		.uleb128 0x3b
+ 1794 0031 0B       		.uleb128 0xb
+ 1795 0032 49       		.uleb128 0x49
+ 1796 0033 13       		.uleb128 0x13
+ 1797 0034 00       		.byte	0
+ 1798 0035 00       		.byte	0
+ 1799 0036 05       		.uleb128 0x5
+ 1800 0037 16       		.uleb128 0x16
+ 1801 0038 00       		.byte	0
+ 1802 0039 03       		.uleb128 0x3
+ 1803 003a 0E       		.uleb128 0xe
+ 1804 003b 3A       		.uleb128 0x3a
+ 1805 003c 0B       		.uleb128 0xb
+ 1806 003d 3B       		.uleb128 0x3b
+ 1807 003e 05       		.uleb128 0x5
+ 1808 003f 49       		.uleb128 0x49
+ 1809 0040 13       		.uleb128 0x13
+ 1810 0041 00       		.byte	0
+ 1811 0042 00       		.byte	0
+ 1812 0043 06       		.uleb128 0x6
+ 1813 0044 35       		.uleb128 0x35
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 46
+
+
+ 1814 0045 00       		.byte	0
+ 1815 0046 49       		.uleb128 0x49
+ 1816 0047 13       		.uleb128 0x13
+ 1817 0048 00       		.byte	0
+ 1818 0049 00       		.byte	0
+ 1819 004a 07       		.uleb128 0x7
+ 1820 004b 2E       		.uleb128 0x2e
+ 1821 004c 01       		.byte	0x1
+ 1822 004d 3F       		.uleb128 0x3f
+ 1823 004e 19       		.uleb128 0x19
+ 1824 004f 03       		.uleb128 0x3
+ 1825 0050 0E       		.uleb128 0xe
+ 1826 0051 3A       		.uleb128 0x3a
+ 1827 0052 0B       		.uleb128 0xb
+ 1828 0053 3B       		.uleb128 0x3b
+ 1829 0054 0B       		.uleb128 0xb
+ 1830 0055 27       		.uleb128 0x27
+ 1831 0056 19       		.uleb128 0x19
+ 1832 0057 11       		.uleb128 0x11
+ 1833 0058 01       		.uleb128 0x1
+ 1834 0059 12       		.uleb128 0x12
+ 1835 005a 06       		.uleb128 0x6
+ 1836 005b 40       		.uleb128 0x40
+ 1837 005c 18       		.uleb128 0x18
+ 1838 005d 9642     		.uleb128 0x2116
+ 1839 005f 19       		.uleb128 0x19
+ 1840 0060 01       		.uleb128 0x1
+ 1841 0061 13       		.uleb128 0x13
+ 1842 0062 00       		.byte	0
+ 1843 0063 00       		.byte	0
+ 1844 0064 08       		.uleb128 0x8
+ 1845 0065 34       		.uleb128 0x34
+ 1846 0066 00       		.byte	0
+ 1847 0067 03       		.uleb128 0x3
+ 1848 0068 0E       		.uleb128 0xe
+ 1849 0069 3A       		.uleb128 0x3a
+ 1850 006a 0B       		.uleb128 0xb
+ 1851 006b 3B       		.uleb128 0x3b
+ 1852 006c 0B       		.uleb128 0xb
+ 1853 006d 49       		.uleb128 0x49
+ 1854 006e 13       		.uleb128 0x13
+ 1855 006f 02       		.uleb128 0x2
+ 1856 0070 18       		.uleb128 0x18
+ 1857 0071 00       		.byte	0
+ 1858 0072 00       		.byte	0
+ 1859 0073 09       		.uleb128 0x9
+ 1860 0074 2E       		.uleb128 0x2e
+ 1861 0075 01       		.byte	0x1
+ 1862 0076 3F       		.uleb128 0x3f
+ 1863 0077 19       		.uleb128 0x19
+ 1864 0078 03       		.uleb128 0x3
+ 1865 0079 0E       		.uleb128 0xe
+ 1866 007a 3A       		.uleb128 0x3a
+ 1867 007b 0B       		.uleb128 0xb
+ 1868 007c 3B       		.uleb128 0x3b
+ 1869 007d 0B       		.uleb128 0xb
+ 1870 007e 27       		.uleb128 0x27
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 47
+
+
+ 1871 007f 19       		.uleb128 0x19
+ 1872 0080 49       		.uleb128 0x49
+ 1873 0081 13       		.uleb128 0x13
+ 1874 0082 11       		.uleb128 0x11
+ 1875 0083 01       		.uleb128 0x1
+ 1876 0084 12       		.uleb128 0x12
+ 1877 0085 06       		.uleb128 0x6
+ 1878 0086 40       		.uleb128 0x40
+ 1879 0087 18       		.uleb128 0x18
+ 1880 0088 9642     		.uleb128 0x2116
+ 1881 008a 19       		.uleb128 0x19
+ 1882 008b 01       		.uleb128 0x1
+ 1883 008c 13       		.uleb128 0x13
+ 1884 008d 00       		.byte	0
+ 1885 008e 00       		.byte	0
+ 1886 008f 0A       		.uleb128 0xa
+ 1887 0090 05       		.uleb128 0x5
+ 1888 0091 00       		.byte	0
+ 1889 0092 03       		.uleb128 0x3
+ 1890 0093 0E       		.uleb128 0xe
+ 1891 0094 3A       		.uleb128 0x3a
+ 1892 0095 0B       		.uleb128 0xb
+ 1893 0096 3B       		.uleb128 0x3b
+ 1894 0097 0B       		.uleb128 0xb
+ 1895 0098 49       		.uleb128 0x49
+ 1896 0099 13       		.uleb128 0x13
+ 1897 009a 02       		.uleb128 0x2
+ 1898 009b 18       		.uleb128 0x18
+ 1899 009c 00       		.byte	0
+ 1900 009d 00       		.byte	0
+ 1901 009e 0B       		.uleb128 0xb
+ 1902 009f 34       		.uleb128 0x34
+ 1903 00a0 00       		.byte	0
+ 1904 00a1 03       		.uleb128 0x3
+ 1905 00a2 08       		.uleb128 0x8
+ 1906 00a3 3A       		.uleb128 0x3a
+ 1907 00a4 0B       		.uleb128 0xb
+ 1908 00a5 3B       		.uleb128 0x3b
+ 1909 00a6 0B       		.uleb128 0xb
+ 1910 00a7 49       		.uleb128 0x49
+ 1911 00a8 13       		.uleb128 0x13
+ 1912 00a9 02       		.uleb128 0x2
+ 1913 00aa 18       		.uleb128 0x18
+ 1914 00ab 00       		.byte	0
+ 1915 00ac 00       		.byte	0
+ 1916 00ad 0C       		.uleb128 0xc
+ 1917 00ae 0F       		.uleb128 0xf
+ 1918 00af 00       		.byte	0
+ 1919 00b0 0B       		.uleb128 0xb
+ 1920 00b1 0B       		.uleb128 0xb
+ 1921 00b2 49       		.uleb128 0x49
+ 1922 00b3 13       		.uleb128 0x13
+ 1923 00b4 00       		.byte	0
+ 1924 00b5 00       		.byte	0
+ 1925 00b6 0D       		.uleb128 0xd
+ 1926 00b7 2E       		.uleb128 0x2e
+ 1927 00b8 01       		.byte	0x1
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 48
+
+
+ 1928 00b9 3F       		.uleb128 0x3f
+ 1929 00ba 19       		.uleb128 0x19
+ 1930 00bb 03       		.uleb128 0x3
+ 1931 00bc 0E       		.uleb128 0xe
+ 1932 00bd 3A       		.uleb128 0x3a
+ 1933 00be 0B       		.uleb128 0xb
+ 1934 00bf 3B       		.uleb128 0x3b
+ 1935 00c0 0B       		.uleb128 0xb
+ 1936 00c1 27       		.uleb128 0x27
+ 1937 00c2 19       		.uleb128 0x19
+ 1938 00c3 49       		.uleb128 0x49
+ 1939 00c4 13       		.uleb128 0x13
+ 1940 00c5 11       		.uleb128 0x11
+ 1941 00c6 01       		.uleb128 0x1
+ 1942 00c7 12       		.uleb128 0x12
+ 1943 00c8 06       		.uleb128 0x6
+ 1944 00c9 40       		.uleb128 0x40
+ 1945 00ca 18       		.uleb128 0x18
+ 1946 00cb 9742     		.uleb128 0x2117
+ 1947 00cd 19       		.uleb128 0x19
+ 1948 00ce 01       		.uleb128 0x1
+ 1949 00cf 13       		.uleb128 0x13
+ 1950 00d0 00       		.byte	0
+ 1951 00d1 00       		.byte	0
+ 1952 00d2 0E       		.uleb128 0xe
+ 1953 00d3 26       		.uleb128 0x26
+ 1954 00d4 00       		.byte	0
+ 1955 00d5 49       		.uleb128 0x49
+ 1956 00d6 13       		.uleb128 0x13
+ 1957 00d7 00       		.byte	0
+ 1958 00d8 00       		.byte	0
+ 1959 00d9 0F       		.uleb128 0xf
+ 1960 00da 2E       		.uleb128 0x2e
+ 1961 00db 01       		.byte	0x1
+ 1962 00dc 3F       		.uleb128 0x3f
+ 1963 00dd 19       		.uleb128 0x19
+ 1964 00de 03       		.uleb128 0x3
+ 1965 00df 0E       		.uleb128 0xe
+ 1966 00e0 3A       		.uleb128 0x3a
+ 1967 00e1 0B       		.uleb128 0xb
+ 1968 00e2 3B       		.uleb128 0x3b
+ 1969 00e3 05       		.uleb128 0x5
+ 1970 00e4 27       		.uleb128 0x27
+ 1971 00e5 19       		.uleb128 0x19
+ 1972 00e6 49       		.uleb128 0x49
+ 1973 00e7 13       		.uleb128 0x13
+ 1974 00e8 11       		.uleb128 0x11
+ 1975 00e9 01       		.uleb128 0x1
+ 1976 00ea 12       		.uleb128 0x12
+ 1977 00eb 06       		.uleb128 0x6
+ 1978 00ec 40       		.uleb128 0x40
+ 1979 00ed 18       		.uleb128 0x18
+ 1980 00ee 9742     		.uleb128 0x2117
+ 1981 00f0 19       		.uleb128 0x19
+ 1982 00f1 01       		.uleb128 0x1
+ 1983 00f2 13       		.uleb128 0x13
+ 1984 00f3 00       		.byte	0
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 49
+
+
+ 1985 00f4 00       		.byte	0
+ 1986 00f5 10       		.uleb128 0x10
+ 1987 00f6 05       		.uleb128 0x5
+ 1988 00f7 00       		.byte	0
+ 1989 00f8 03       		.uleb128 0x3
+ 1990 00f9 0E       		.uleb128 0xe
+ 1991 00fa 3A       		.uleb128 0x3a
+ 1992 00fb 0B       		.uleb128 0xb
+ 1993 00fc 3B       		.uleb128 0x3b
+ 1994 00fd 05       		.uleb128 0x5
+ 1995 00fe 49       		.uleb128 0x49
+ 1996 00ff 13       		.uleb128 0x13
+ 1997 0100 02       		.uleb128 0x2
+ 1998 0101 18       		.uleb128 0x18
+ 1999 0102 00       		.byte	0
+ 2000 0103 00       		.byte	0
+ 2001 0104 11       		.uleb128 0x11
+ 2002 0105 34       		.uleb128 0x34
+ 2003 0106 00       		.byte	0
+ 2004 0107 03       		.uleb128 0x3
+ 2005 0108 0E       		.uleb128 0xe
+ 2006 0109 3A       		.uleb128 0x3a
+ 2007 010a 0B       		.uleb128 0xb
+ 2008 010b 3B       		.uleb128 0x3b
+ 2009 010c 05       		.uleb128 0x5
+ 2010 010d 49       		.uleb128 0x49
+ 2011 010e 13       		.uleb128 0x13
+ 2012 010f 02       		.uleb128 0x2
+ 2013 0110 18       		.uleb128 0x18
+ 2014 0111 00       		.byte	0
+ 2015 0112 00       		.byte	0
+ 2016 0113 12       		.uleb128 0x12
+ 2017 0114 34       		.uleb128 0x34
+ 2018 0115 00       		.byte	0
+ 2019 0116 03       		.uleb128 0x3
+ 2020 0117 08       		.uleb128 0x8
+ 2021 0118 3A       		.uleb128 0x3a
+ 2022 0119 0B       		.uleb128 0xb
+ 2023 011a 3B       		.uleb128 0x3b
+ 2024 011b 05       		.uleb128 0x5
+ 2025 011c 49       		.uleb128 0x49
+ 2026 011d 13       		.uleb128 0x13
+ 2027 011e 02       		.uleb128 0x2
+ 2028 011f 18       		.uleb128 0x18
+ 2029 0120 00       		.byte	0
+ 2030 0121 00       		.byte	0
+ 2031 0122 13       		.uleb128 0x13
+ 2032 0123 05       		.uleb128 0x5
+ 2033 0124 00       		.byte	0
+ 2034 0125 03       		.uleb128 0x3
+ 2035 0126 08       		.uleb128 0x8
+ 2036 0127 3A       		.uleb128 0x3a
+ 2037 0128 0B       		.uleb128 0xb
+ 2038 0129 3B       		.uleb128 0x3b
+ 2039 012a 05       		.uleb128 0x5
+ 2040 012b 49       		.uleb128 0x49
+ 2041 012c 13       		.uleb128 0x13
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 50
+
+
+ 2042 012d 02       		.uleb128 0x2
+ 2043 012e 18       		.uleb128 0x18
+ 2044 012f 00       		.byte	0
+ 2045 0130 00       		.byte	0
+ 2046 0131 14       		.uleb128 0x14
+ 2047 0132 2E       		.uleb128 0x2e
+ 2048 0133 01       		.byte	0x1
+ 2049 0134 3F       		.uleb128 0x3f
+ 2050 0135 19       		.uleb128 0x19
+ 2051 0136 03       		.uleb128 0x3
+ 2052 0137 0E       		.uleb128 0xe
+ 2053 0138 3A       		.uleb128 0x3a
+ 2054 0139 0B       		.uleb128 0xb
+ 2055 013a 3B       		.uleb128 0x3b
+ 2056 013b 05       		.uleb128 0x5
+ 2057 013c 27       		.uleb128 0x27
+ 2058 013d 19       		.uleb128 0x19
+ 2059 013e 49       		.uleb128 0x49
+ 2060 013f 13       		.uleb128 0x13
+ 2061 0140 11       		.uleb128 0x11
+ 2062 0141 01       		.uleb128 0x1
+ 2063 0142 12       		.uleb128 0x12
+ 2064 0143 06       		.uleb128 0x6
+ 2065 0144 40       		.uleb128 0x40
+ 2066 0145 18       		.uleb128 0x18
+ 2067 0146 9642     		.uleb128 0x2116
+ 2068 0148 19       		.uleb128 0x19
+ 2069 0149 01       		.uleb128 0x1
+ 2070 014a 13       		.uleb128 0x13
+ 2071 014b 00       		.byte	0
+ 2072 014c 00       		.byte	0
+ 2073 014d 15       		.uleb128 0x15
+ 2074 014e 2E       		.uleb128 0x2e
+ 2075 014f 01       		.byte	0x1
+ 2076 0150 3F       		.uleb128 0x3f
+ 2077 0151 19       		.uleb128 0x19
+ 2078 0152 03       		.uleb128 0x3
+ 2079 0153 0E       		.uleb128 0xe
+ 2080 0154 3A       		.uleb128 0x3a
+ 2081 0155 0B       		.uleb128 0xb
+ 2082 0156 3B       		.uleb128 0x3b
+ 2083 0157 05       		.uleb128 0x5
+ 2084 0158 27       		.uleb128 0x27
+ 2085 0159 19       		.uleb128 0x19
+ 2086 015a 11       		.uleb128 0x11
+ 2087 015b 01       		.uleb128 0x1
+ 2088 015c 12       		.uleb128 0x12
+ 2089 015d 06       		.uleb128 0x6
+ 2090 015e 40       		.uleb128 0x40
+ 2091 015f 18       		.uleb128 0x18
+ 2092 0160 9642     		.uleb128 0x2116
+ 2093 0162 19       		.uleb128 0x19
+ 2094 0163 01       		.uleb128 0x1
+ 2095 0164 13       		.uleb128 0x13
+ 2096 0165 00       		.byte	0
+ 2097 0166 00       		.byte	0
+ 2098 0167 16       		.uleb128 0x16
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 51
+
+
+ 2099 0168 34       		.uleb128 0x34
+ 2100 0169 00       		.byte	0
+ 2101 016a 03       		.uleb128 0x3
+ 2102 016b 0E       		.uleb128 0xe
+ 2103 016c 3A       		.uleb128 0x3a
+ 2104 016d 0B       		.uleb128 0xb
+ 2105 016e 3B       		.uleb128 0x3b
+ 2106 016f 0B       		.uleb128 0xb
+ 2107 0170 49       		.uleb128 0x49
+ 2108 0171 13       		.uleb128 0x13
+ 2109 0172 3F       		.uleb128 0x3f
+ 2110 0173 19       		.uleb128 0x19
+ 2111 0174 02       		.uleb128 0x2
+ 2112 0175 18       		.uleb128 0x18
+ 2113 0176 00       		.byte	0
+ 2114 0177 00       		.byte	0
+ 2115 0178 00       		.byte	0
+ 2116              		.section	.debug_aranges,"",%progbits
+ 2117 0000 74000000 		.4byte	0x74
+ 2118 0004 0200     		.2byte	0x2
+ 2119 0006 00000000 		.4byte	.Ldebug_info0
+ 2120 000a 04       		.byte	0x4
+ 2121 000b 00       		.byte	0
+ 2122 000c 0000     		.2byte	0
+ 2123 000e 0000     		.2byte	0
+ 2124 0010 00000000 		.4byte	.LFB0
+ 2125 0014 44000000 		.4byte	.LFE0-.LFB0
+ 2126 0018 00000000 		.4byte	.LFB1
+ 2127 001c 44000000 		.4byte	.LFE1-.LFB1
+ 2128 0020 00000000 		.4byte	.LFB2
+ 2129 0024 58000000 		.4byte	.LFE2-.LFB2
+ 2130 0028 00000000 		.4byte	.LFB3
+ 2131 002c D0000000 		.4byte	.LFE3-.LFB3
+ 2132 0030 00000000 		.4byte	.LFB4
+ 2133 0034 8C000000 		.4byte	.LFE4-.LFB4
+ 2134 0038 00000000 		.4byte	.LFB5
+ 2135 003c 04010000 		.4byte	.LFE5-.LFB5
+ 2136 0040 00000000 		.4byte	.LFB6
+ 2137 0044 88000000 		.4byte	.LFE6-.LFB6
+ 2138 0048 00000000 		.4byte	.LFB7
+ 2139 004c 70000000 		.4byte	.LFE7-.LFB7
+ 2140 0050 00000000 		.4byte	.LFB8
+ 2141 0054 64000000 		.4byte	.LFE8-.LFB8
+ 2142 0058 00000000 		.4byte	.LFB9
+ 2143 005c 68000000 		.4byte	.LFE9-.LFB9
+ 2144 0060 00000000 		.4byte	.LFB10
+ 2145 0064 50000000 		.4byte	.LFE10-.LFB10
+ 2146 0068 00000000 		.4byte	.LFB11
+ 2147 006c 48000000 		.4byte	.LFE11-.LFB11
+ 2148 0070 00000000 		.4byte	0
+ 2149 0074 00000000 		.4byte	0
+ 2150              		.section	.debug_ranges,"",%progbits
+ 2151              	.Ldebug_ranges0:
+ 2152 0000 00000000 		.4byte	.LFB0
+ 2153 0004 44000000 		.4byte	.LFE0
+ 2154 0008 00000000 		.4byte	.LFB1
+ 2155 000c 44000000 		.4byte	.LFE1
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 52
+
+
+ 2156 0010 00000000 		.4byte	.LFB2
+ 2157 0014 58000000 		.4byte	.LFE2
+ 2158 0018 00000000 		.4byte	.LFB3
+ 2159 001c D0000000 		.4byte	.LFE3
+ 2160 0020 00000000 		.4byte	.LFB4
+ 2161 0024 8C000000 		.4byte	.LFE4
+ 2162 0028 00000000 		.4byte	.LFB5
+ 2163 002c 04010000 		.4byte	.LFE5
+ 2164 0030 00000000 		.4byte	.LFB6
+ 2165 0034 88000000 		.4byte	.LFE6
+ 2166 0038 00000000 		.4byte	.LFB7
+ 2167 003c 70000000 		.4byte	.LFE7
+ 2168 0040 00000000 		.4byte	.LFB8
+ 2169 0044 64000000 		.4byte	.LFE8
+ 2170 0048 00000000 		.4byte	.LFB9
+ 2171 004c 68000000 		.4byte	.LFE9
+ 2172 0050 00000000 		.4byte	.LFB10
+ 2173 0054 50000000 		.4byte	.LFE10
+ 2174 0058 00000000 		.4byte	.LFB11
+ 2175 005c 48000000 		.4byte	.LFE11
+ 2176 0060 00000000 		.4byte	0
+ 2177 0064 00000000 		.4byte	0
+ 2178              		.section	.debug_line,"",%progbits
+ 2179              	.Ldebug_line0:
+ 2180 0000 28020000 		.section	.debug_str,"MS",%progbits,1
+ 2180      02004400 
+ 2180      00000201 
+ 2180      FB0E0D00 
+ 2180      01010101 
+ 2181              	.LASF25:
+ 2182 0000 43795370 		.ascii	"CySpcLoadMultiByte\000"
+ 2182      634C6F61 
+ 2182      644D756C 
+ 2182      74694279 
+ 2182      746500
+ 2183              	.LASF15:
+ 2184 0013 63797374 		.ascii	"cystatus\000"
+ 2184      61747573 
+ 2184      00
+ 2185              	.LASF17:
+ 2186 001c 72656733 		.ascii	"reg32\000"
+ 2186      3200
+ 2187              	.LASF19:
+ 2188 0022 43795370 		.ascii	"CySpcStart\000"
+ 2188      63537461 
+ 2188      727400
+ 2189              	.LASF32:
+ 2190 002d 43795370 		.ascii	"CySpcWriteRow\000"
+ 2190      63577269 
+ 2190      7465526F 
+ 2190      7700
+ 2191              	.LASF20:
+ 2192 003b 43795370 		.ascii	"CySpcStop\000"
+ 2192      6353746F 
+ 2192      7000
+ 2193              	.LASF44:
+ 2194 0045 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\CySpc.c\000"
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 53
+
+
+ 2194      6E657261 
+ 2194      7465645F 
+ 2194      536F7572 
+ 2194      63655C50 
+ 2195              	.LASF3:
+ 2196 0066 73686F72 		.ascii	"short unsigned int\000"
+ 2196      7420756E 
+ 2196      7369676E 
+ 2196      65642069 
+ 2196      6E7400
+ 2197              	.LASF24:
+ 2198 0079 43795370 		.ascii	"CySpcReadData\000"
+ 2198      63526561 
+ 2198      64446174 
+ 2198      6100
+ 2199              	.LASF28:
+ 2200 0087 73746174 		.ascii	"status\000"
+ 2200      757300
+ 2201              	.LASF12:
+ 2202 008e 666C6F61 		.ascii	"float\000"
+ 2202      7400
+ 2203              	.LASF23:
+ 2204 0094 73697A65 		.ascii	"size\000"
+ 2204      00
+ 2205              	.LASF16:
+ 2206 0099 72656738 		.ascii	"reg8\000"
+ 2206      00
+ 2207              	.LASF21:
+ 2208 009e 696E7465 		.ascii	"interruptState\000"
+ 2208      72727570 
+ 2208      74537461 
+ 2208      746500
+ 2209              	.LASF5:
+ 2210 00ad 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2210      20756E73 
+ 2210      69676E65 
+ 2210      6420696E 
+ 2210      7400
+ 2211              	.LASF9:
+ 2212 00bf 75696E74 		.ascii	"uint8\000"
+ 2212      3800
+ 2213              	.LASF46:
+ 2214 00c5 5370634C 		.ascii	"SpcLockState\000"
+ 2214      6F636B53 
+ 2214      74617465 
+ 2214      00
+ 2215              	.LASF33:
+ 2216 00d2 74656D70 		.ascii	"tempPolarity\000"
+ 2216      506F6C61 
+ 2216      72697479 
+ 2216      00
+ 2217              	.LASF26:
+ 2218 00df 61727261 		.ascii	"array\000"
+ 2218      7900
+ 2219              	.LASF1:
+ 2220 00e5 756E7369 		.ascii	"unsigned char\000"
+ 2220      676E6564 
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 54
+
+
+ 2220      20636861 
+ 2220      7200
+ 2221              	.LASF13:
+ 2222 00f3 646F7562 		.ascii	"double\000"
+ 2222      6C6500
+ 2223              	.LASF45:
+ 2224 00fa 443A5C77 		.ascii	"D:\\workspace\\Super-Eagle\\CharLCD_CustomFont01\\C"
+ 2224      6F726B73 
+ 2224      70616365 
+ 2224      5C537570 
+ 2224      65722D45 
+ 2225 0129 6861724C 		.ascii	"harLCD_HBar01.cydsn\000"
+ 2225      43445F48 
+ 2225      42617230 
+ 2225      312E6379 
+ 2225      64736E00 
+ 2226              	.LASF37:
+ 2227 013d 43795370 		.ascii	"CySpcGetTemp\000"
+ 2227      63476574 
+ 2227      54656D70 
+ 2227      00
+ 2228              	.LASF10:
+ 2229 014a 75696E74 		.ascii	"uint16\000"
+ 2229      313600
+ 2230              	.LASF39:
+ 2231 0151 43795370 		.ascii	"CySpcLock\000"
+ 2231      634C6F63 
+ 2231      6B00
+ 2232              	.LASF11:
+ 2233 015b 75696E74 		.ascii	"uint32\000"
+ 2233      333200
+ 2234              	.LASF8:
+ 2235 0162 756E7369 		.ascii	"unsigned int\000"
+ 2235      676E6564 
+ 2235      20696E74 
+ 2235      00
+ 2236              	.LASF27:
+ 2237 016f 61646472 		.ascii	"address\000"
+ 2237      65737300 
+ 2238              	.LASF7:
+ 2239 0177 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2239      206C6F6E 
+ 2239      6720756E 
+ 2239      7369676E 
+ 2239      65642069 
+ 2240              	.LASF34:
+ 2241 018e 74656D70 		.ascii	"tempMagnitude\000"
+ 2241      4D61676E 
+ 2241      69747564 
+ 2241      6500
+ 2242              	.LASF43:
+ 2243 019c 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 2243      4320342E 
+ 2243      382E3420 
+ 2243      32303134 
+ 2243      30353236 
+ 2244 01cf 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 55
+
+
+ 2244      20726576 
+ 2244      6973696F 
+ 2244      6E203231 
+ 2244      31333538 
+ 2245 0202 30202D66 		.ascii	"0 -ffunction-sections\000"
+ 2245      66756E63 
+ 2245      74696F6E 
+ 2245      2D736563 
+ 2245      74696F6E 
+ 2246              	.LASF29:
+ 2247 0218 43795370 		.ascii	"CySpcLoadRow\000"
+ 2247      634C6F61 
+ 2247      64526F77 
+ 2247      00
+ 2248              	.LASF18:
+ 2249 0225 73697A65 		.ascii	"sizetype\000"
+ 2249      74797065 
+ 2249      00
+ 2250              	.LASF40:
+ 2251 022e 43795370 		.ascii	"CySpcUnlock\000"
+ 2251      63556E6C 
+ 2251      6F636B00 
+ 2252              	.LASF35:
+ 2253 023a 43795370 		.ascii	"CySpcEraseSector\000"
+ 2253      63457261 
+ 2253      73655365 
+ 2253      63746F72 
+ 2253      00
+ 2254              	.LASF6:
+ 2255 024b 6C6F6E67 		.ascii	"long long int\000"
+ 2255      206C6F6E 
+ 2255      6720696E 
+ 2255      7400
+ 2256              	.LASF14:
+ 2257 0259 63686172 		.ascii	"char\000"
+ 2257      00
+ 2258              	.LASF41:
+ 2259 025e 43795370 		.ascii	"CySpcGetAlgorithm\000"
+ 2259      63476574 
+ 2259      416C676F 
+ 2259      72697468 
+ 2259      6D00
+ 2260              	.LASF31:
+ 2261 0270 6F666673 		.ascii	"offset\000"
+ 2261      657400
+ 2262              	.LASF2:
+ 2263 0277 73686F72 		.ascii	"short int\000"
+ 2263      7420696E 
+ 2263      7400
+ 2264              	.LASF22:
+ 2265 0281 62756666 		.ascii	"buffer\000"
+ 2265      657200
+ 2266              	.LASF36:
+ 2267 0288 73656374 		.ascii	"sectorNumber\000"
+ 2267      6F724E75 
+ 2267      6D626572 
+ 2267      00
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc17gfWd.s 			page 56
+
+
+ 2268              	.LASF4:
+ 2269 0295 6C6F6E67 		.ascii	"long int\000"
+ 2269      20696E74 
+ 2269      00
+ 2270              	.LASF42:
+ 2271 029e 73706357 		.ascii	"spcWaitPipeBypass\000"
+ 2271      61697450 
+ 2271      69706542 
+ 2271      79706173 
+ 2271      7300
+ 2272              	.LASF0:
+ 2273 02b0 7369676E 		.ascii	"signed char\000"
+ 2273      65642063 
+ 2273      68617200 
+ 2274              	.LASF30:
+ 2275 02bc 43795370 		.ascii	"CySpcLoadRowFull\000"
+ 2275      634C6F61 
+ 2275      64526F77 
+ 2275      46756C6C 
+ 2275      00
+ 2276              	.LASF38:
+ 2277 02cd 6E756D53 		.ascii	"numSamples\000"
+ 2277      616D706C 
+ 2277      657300
+ 2278              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

@@ -1,0 +1,616 @@
+Archive member included because of file (symbol)
+
+/usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_exit.o)
+                              /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o (exit)
+/usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_tablejump.o)
+                              usb_serial.o (__tablejump2__)
+/usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_copy_data.o)
+                              usb_serial.o (__do_copy_data)
+/usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_clear_bss.o)
+                              usb_serial.o (__do_clear_bss)
+
+Discarded input sections
+
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+ .text          0x0000000000000000        0x0 example.o
+ .bss           0x0000000000000000        0x0 example.o
+ .text          0x0000000000000000        0x0 usb_serial.o
+ .text.usb_serial_available
+                0x0000000000000000       0x34 usb_serial.o
+ .text.usb_serial_putchar_nowait
+                0x0000000000000000       0x40 usb_serial.o
+ .text.usb_serial_write
+                0x0000000000000000      0x4c6 usb_serial.o
+ .progmem.gcc_sw_table.usb_serial_write
+                0x0000000000000000       0x82 usb_serial.o
+ .text.usb_serial_flush_output
+                0x0000000000000000       0x20 usb_serial.o
+ .text.usb_serial_get_baud
+                0x0000000000000000       0x12 usb_serial.o
+ .text.usb_serial_get_stopbits
+                0x0000000000000000        0x6 usb_serial.o
+ .text.usb_serial_get_paritytype
+                0x0000000000000000        0x6 usb_serial.o
+ .text.usb_serial_get_numbits
+                0x0000000000000000        0x6 usb_serial.o
+ .text.usb_serial_set_control
+                0x0000000000000000       0x56 usb_serial.o
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_exit.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_exit.o)
+ .text.libgcc.mul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_exit.o)
+ .text.libgcc.div
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_exit.o)
+ .text.libgcc   0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_exit.o)
+ .text.libgcc.prologue
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_exit.o)
+ .text.libgcc.builtins
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_exit.o)
+ .text.libgcc.fmul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_exit.o)
+ .text.libgcc.fixed
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_exit.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_tablejump.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_tablejump.o)
+ .text.libgcc.mul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_tablejump.o)
+ .text.libgcc.div
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_tablejump.o)
+ .text.libgcc   0x0000000000000000        0xc /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_tablejump.o)
+ .text.libgcc.prologue
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_tablejump.o)
+ .text.libgcc.builtins
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_tablejump.o)
+ .text.libgcc.fmul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_tablejump.o)
+ .text.libgcc.fixed
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_tablejump.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_copy_data.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_copy_data.o)
+ .text.libgcc.mul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_copy_data.o)
+ .text.libgcc.div
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_copy_data.o)
+ .text.libgcc   0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_copy_data.o)
+ .text.libgcc.prologue
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_copy_data.o)
+ .text.libgcc.builtins
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_copy_data.o)
+ .text.libgcc.fmul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_copy_data.o)
+ .text.libgcc.fixed
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_copy_data.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_clear_bss.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_clear_bss.o)
+ .text.libgcc.mul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_clear_bss.o)
+ .text.libgcc.div
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_clear_bss.o)
+ .text.libgcc   0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_clear_bss.o)
+ .text.libgcc.prologue
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_clear_bss.o)
+ .text.libgcc.builtins
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_clear_bss.o)
+ .text.libgcc.fmul
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_clear_bss.o)
+ .text.libgcc.fixed
+                0x0000000000000000        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_clear_bss.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x0000000000000000 0x0000000000020000 xr
+data             0x0000000000800100 0x000000000000ff00 rw !x
+eeprom           0x0000000000810000 0x0000000000010000 rw !x
+fuse             0x0000000000820000 0x0000000000000400 rw !x
+lock             0x0000000000830000 0x0000000000000400 rw !x
+signature        0x0000000000840000 0x0000000000000400 rw !x
+user_signatures  0x0000000000850000 0x0000000000000400 rw !x
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+Address of section .data set to 0x800100
+LOAD /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+LOAD example.o
+LOAD usb_serial.o
+LOAD /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/libm.a
+START GROUP
+LOAD /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a
+LOAD /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/libm.a
+LOAD /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/libc.a
+END GROUP
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x0000000000000000      0x960
+ *(.vectors)
+ .vectors       0x0000000000000000       0x98 /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+                0x0000000000000000                __vectors
+                0x0000000000000000                __vector_default
+ *(.vectors)
+ *(.progmem.gcc*)
+ *(.progmem*)
+ .progmem.data  0x0000000000000098      0x17e example.o
+ .progmem.data  0x0000000000000216       0xc9 usb_serial.o
+                0x00000000000002e0                . = ALIGN (0x2)
+ *fill*         0x00000000000002df        0x1 
+                0x00000000000002e0                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x00000000000002e0        0x0 linker stubs
+ *(.trampolines*)
+                0x00000000000002e0                __trampolines_end = .
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x00000000000002e0                __ctors_start = .
+ *(.ctors)
+                0x00000000000002e0                __ctors_end = .
+                0x00000000000002e0                __dtors_start = .
+ *(.dtors)
+                0x00000000000002e0                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x00000000000002e0        0x0 /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+                0x00000000000002e0                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x00000000000002e0        0xc /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x00000000000002ec       0x1a /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_copy_data.o)
+                0x00000000000002ec                __do_copy_data
+ .init4         0x0000000000000306       0x10 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_clear_bss.o)
+                0x0000000000000306                __do_clear_bss
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x0000000000000316        0x4 /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+ *(.init9)
+ *(.text)
+ .text          0x000000000000031a        0x2 /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+                0x000000000000031a                __vector_22
+                0x000000000000031a                __vector_28
+                0x000000000000031a                __vector_1
+                0x000000000000031a                __vector_32
+                0x000000000000031a                __vector_34
+                0x000000000000031a                __vector_24
+                0x000000000000031a                __vector_12
+                0x000000000000031a                __bad_interrupt
+                0x000000000000031a                __vector_6
+                0x000000000000031a                __vector_31
+                0x000000000000031a                __vector_35
+                0x000000000000031a                __vector_3
+                0x000000000000031a                __vector_23
+                0x000000000000031a                __vector_30
+                0x000000000000031a                __vector_25
+                0x000000000000031a                __vector_13
+                0x000000000000031a                __vector_17
+                0x000000000000031a                __vector_19
+                0x000000000000031a                __vector_7
+                0x000000000000031a                __vector_27
+                0x000000000000031a                __vector_5
+                0x000000000000031a                __vector_33
+                0x000000000000031a                __vector_37
+                0x000000000000031a                __vector_4
+                0x000000000000031a                __vector_9
+                0x000000000000031a                __vector_2
+                0x000000000000031a                __vector_21
+                0x000000000000031a                __vector_15
+                0x000000000000031a                __vector_36
+                0x000000000000031a                __vector_29
+                0x000000000000031a                __vector_8
+                0x000000000000031a                __vector_26
+                0x000000000000031a                __vector_14
+                0x000000000000031a                __vector_16
+                0x000000000000031a                __vector_18
+                0x000000000000031a                __vector_20
+                0x000000000000031c                . = ALIGN (0x2)
+ *(.text.*)
+ .text.send_str
+                0x000000000000031c       0x1c example.o
+                0x000000000000031c                send_str
+ .text.recv_str
+                0x0000000000000338       0x6a example.o
+                0x0000000000000338                recv_str
+ .text.parse_and_execute_command
+                0x00000000000003a2      0x106 example.o
+                0x00000000000003a2                parse_and_execute_command
+ .text.startup.main
+                0x00000000000004a8       0x70 example.o
+                0x00000000000004a8                main
+ .text.usb_wait_in_ready
+                0x0000000000000518        0xa usb_serial.o
+ .text.usb_init
+                0x0000000000000522       0x32 usb_serial.o
+                0x0000000000000522                usb_init
+ .text.usb_configured
+                0x0000000000000554        0x6 usb_serial.o
+                0x0000000000000554                usb_configured
+ .text.usb_serial_getchar
+                0x000000000000055a       0x46 usb_serial.o
+                0x000000000000055a                usb_serial_getchar
+ .text.usb_serial_flush_input
+                0x00000000000005a0       0x26 usb_serial.o
+                0x00000000000005a0                usb_serial_flush_input
+ .text.usb_serial_putchar
+                0x00000000000005c6       0x7e usb_serial.o
+                0x00000000000005c6                usb_serial_putchar
+ .text.usb_serial_get_control
+                0x0000000000000644        0x6 usb_serial.o
+                0x0000000000000644                usb_serial_get_control
+ .text.__vector_10
+                0x000000000000064a       0x74 usb_serial.o
+                0x000000000000064a                __vector_10
+ .text.__vector_11
+                0x00000000000006be      0x29e usb_serial.o
+                0x00000000000006be                __vector_11
+                0x000000000000095c                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x000000000000095c        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_exit.o)
+                0x000000000000095c                exit
+                0x000000000000095c                _exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x000000000000095c        0x4 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_exit.o)
+ *(.fini0)
+                0x0000000000000960                _etext = .
+
+.data           0x0000000000800100        0x8 load address 0x0000000000000960
+                0x0000000000800100                PROVIDE (__data_start, .)
+ *(.data)
+ .data          0x0000000000800100        0x0 /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+ .data          0x0000000000800100        0x0 example.o
+ .data          0x0000000000800100        0x7 usb_serial.o
+ .data          0x0000000000800107        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_exit.o)
+ .data          0x0000000000800107        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_tablejump.o)
+ .data          0x0000000000800107        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_copy_data.o)
+ .data          0x0000000000800107        0x0 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_clear_bss.o)
+ *(.data*)
+ *(.rodata)
+ *(.rodata*)
+ *(.gnu.linkonce.d*)
+                0x0000000000800108                . = ALIGN (0x2)
+ *fill*         0x0000000000800107        0x1 
+                0x0000000000800108                _edata = .
+                0x0000000000800108                PROVIDE (__data_end, .)
+
+.bss            0x0000000000800108        0x4
+                0x0000000000800108                PROVIDE (__bss_start, .)
+ *(.bss)
+ .bss           0x0000000000800108        0x4 usb_serial.o
+ *(.bss*)
+ *(COMMON)
+                0x000000000080010c                PROVIDE (__bss_end, .)
+                0x0000000000000960                __data_load_start = LOADADDR (.data)
+                0x0000000000000968                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x000000000080010c        0x0
+                0x000000000080010c                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x000000000080010c                PROVIDE (__noinit_end, .)
+                0x000000000080010c                _end = .
+                0x000000000080010c                PROVIDE (__heap_start, .)
+
+.eeprom         0x0000000000810000        0x0
+ *(.eeprom*)
+                0x0000000000810000                __eeprom_end = .
+
+.fuse
+ *(.fuse)
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.user_signatures
+ *(.user_signatures*)
+
+.stab           0x0000000000000000      0x6cc
+ *(.stab)
+ .stab          0x0000000000000000      0x6cc /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+
+.stabstr        0x0000000000000000       0x54
+ *(.stabstr)
+ .stabstr       0x0000000000000000       0x54 /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x0000000000000000       0x11
+ *(.comment)
+ .comment       0x0000000000000000       0x11 example.o
+                                         0x12 (size before relaxing)
+ .comment       0x0000000000000000       0x12 usb_serial.o
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x0000000000000000       0xe0
+ *(.debug_aranges)
+ .debug_aranges
+                0x0000000000000000       0x38 example.o
+ .debug_aranges
+                0x0000000000000038       0xa8 usb_serial.o
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info     0x0000000000000000      0xd55
+ *(.debug_info)
+ .debug_info    0x0000000000000000      0x483 example.o
+ .debug_info    0x0000000000000483      0x8d2 usb_serial.o
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev   0x0000000000000000      0x3df
+ *(.debug_abbrev)
+ .debug_abbrev  0x0000000000000000      0x1dc example.o
+ .debug_abbrev  0x00000000000001dc      0x203 usb_serial.o
+
+.debug_line     0x0000000000000000      0x4ea
+ *(.debug_line)
+ .debug_line    0x0000000000000000      0x142 example.o
+ .debug_line    0x0000000000000142      0x3a8 usb_serial.o
+
+.debug_frame    0x0000000000000000      0x290
+ *(.debug_frame)
+ .debug_frame   0x0000000000000000       0xa4 example.o
+ .debug_frame   0x00000000000000a4      0x1ec usb_serial.o
+
+.debug_str      0x0000000000000000      0x566
+ *(.debug_str)
+ .debug_str     0x0000000000000000      0x20b example.o
+                                        0x258 (size before relaxing)
+ .debug_str     0x000000000000020b      0x35b usb_serial.o
+                                        0x4ac (size before relaxing)
+
+.debug_loc      0x0000000000000000     0x1650
+ *(.debug_loc)
+ .debug_loc     0x0000000000000000      0x420 example.o
+ .debug_loc     0x0000000000000420     0x1230 usb_serial.o
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges   0x0000000000000000       0xd8
+ *(.debug_ranges)
+ .debug_ranges  0x0000000000000000       0x28 example.o
+ .debug_ranges  0x0000000000000028       0xb0 usb_serial.o
+
+.debug_macro
+ *(.debug_macro)
+OUTPUT(example.elf elf32-avr)
+LOAD linker stubs
+
+Cross Reference Table
+
+Symbol                                            File
+__bad_interrupt                                   /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__bss_end                                         /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_clear_bss.o)
+__bss_start                                       /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_clear_bss.o)
+__data_end                                        /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_copy_data.o)
+__data_load_start                                 /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_copy_data.o)
+__data_start                                      /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_copy_data.o)
+__do_clear_bss                                    /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_clear_bss.o)
+                                                  usb_serial.o
+__do_copy_data                                    /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_copy_data.o)
+                                                  usb_serial.o
+__heap_end                                        /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__init                                            /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__stack                                           /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__tablejump2__                                    /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_tablejump.o)
+                                                  usb_serial.o
+__tablejump__                                     /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_tablejump.o)
+__vector_1                                        /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_10                                       usb_serial.o
+                                                  /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_11                                       usb_serial.o
+                                                  /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_12                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_13                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_14                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_15                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_16                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_17                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_18                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_19                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_2                                        /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_20                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_21                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_22                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_23                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_24                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_25                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_26                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_27                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_28                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_29                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_3                                        /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_30                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_31                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_32                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_33                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_34                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_35                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_36                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_37                                       /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_4                                        /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_5                                        /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_6                                        /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_7                                        /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_8                                        /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_9                                        /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vector_default                                  /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+__vectors                                         /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+_exit                                             /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_exit.o)
+exit                                              /usr/lib/gcc/avr/4.8.2/avr51/libgcc.a(_exit.o)
+                                                  /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+main                                              example.o
+                                                  /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr51/crtusb1286.o
+parse_and_execute_command                         example.o
+recv_str                                          example.o
+send_str                                          example.o
+usb_configured                                    usb_serial.o
+                                                  example.o
+usb_init                                          usb_serial.o
+                                                  example.o
+usb_serial_available                              usb_serial.o
+usb_serial_flush_input                            usb_serial.o
+                                                  example.o
+usb_serial_flush_output                           usb_serial.o
+usb_serial_get_baud                               usb_serial.o
+usb_serial_get_control                            usb_serial.o
+                                                  example.o
+usb_serial_get_numbits                            usb_serial.o
+usb_serial_get_paritytype                         usb_serial.o
+usb_serial_get_stopbits                           usb_serial.o
+usb_serial_getchar                                usb_serial.o
+                                                  example.o
+usb_serial_putchar                                usb_serial.o
+                                                  example.o
+usb_serial_putchar_nowait                         usb_serial.o
+usb_serial_set_control                            usb_serial.o
+usb_serial_write                                  usb_serial.o
