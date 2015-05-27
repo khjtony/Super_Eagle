@@ -24,6 +24,7 @@
 #include "LCD_Bar.h"
 #include "state_event.h"
 #include "dash_board.h"
+#include "can_manager.h"
 
 extern uint8 const CYCODE LCD_customFonts[];
 volatile uint16_t event = 0x00;
@@ -33,6 +34,8 @@ volatile uint8_t throttle;
 volatile uint8_t battery=100;
 volatile uint8_t brake;
 volatile uint8_t current_page;
+volatile Dash_Mode mode = COMMON;
+
 
 
 /*******************************************************************************
@@ -66,18 +69,33 @@ void fatal_fault(){
     return;
 }
 
-CY_ISR(ISR_SW1)
+CY_ISR(isr_rotary)
 {
-    button_sw1_ClearInterrupt();    
-    //throttle+=1;
-    event |= 1<<HV_UP;
+    Rotary_ClearInterrupt();
+    if (mode == INFO){
+        current_page += 1;
+        if (current_page > MAX_PAGE){
+            current_page = 1;
+        }
+    }
     return; 
 }
 
-CY_ISR(ISR_SW2)
+CY_ISR(isr_OK)
 {
-    button_sw2_ClearInterrupt();    
-    event |= 1 << DRIVE_UP;
+    BTN_OK_ClearInterrupt();    
+    if (mode == COMMON){
+        mode = INFO;
+    }else{
+        mode = COMMON;
+    }
+    return; 
+}
+
+CY_ISR(isr_back)
+{
+    BTN_Back_ClearInterrupt();    
+    mode = COMMON;
     return;
 }
 
@@ -85,28 +103,21 @@ CY_ISR(ISR_SW2)
 CY_ISR(LCD_Handler)
 {
     LCD_Timer_STATUS;
+    LCD_ClearDisplay();
+    Dash_display_Mode(mode);
     Dash_display_State(state);
+    Dash_display_Value();
     return;
 }
 
 CY_ISR(Fake_Handler)
 {
     Fake_Timer_STATUS;
-    throttle+=1;
-    if (throttle>=255){
-        throttle=0;
-    }
-    brake+=1;
-    if (brake>=255){
-        brake=0;
-    }
     return;
 }
 
 
 CY_ISR(FSM_Handler){
-    
-    
     FSM_Timer_STATUS;
     switch(state)// FSM, should be in the highest int priority
 		{
@@ -160,27 +171,30 @@ CY_ISR(FSM_Handler){
 
 
 
-void main()
+int main()
 {   
     /* Enable the global interrupt */
     CyGlobalIntEnable;
     
     //setup startup state
     state = STARTUP;
+    mode = COMMON;
     
     /* Enable the Interrupt component connected to Timer interrupt */
     FSM_ISR_StartEx(FSM_Handler);
     LCD_ISR_StartEx(LCD_Handler);
-    isr_sw1_StartEx(ISR_SW1);
-    isr_sw2_StartEx(ISR_SW2);
+    isr_OK_StartEx(isr_OK);
+    isr_back_StartEx(isr_back);
+    isr_rotary_StartEx(isr_rotary);
     Fake_ISR_StartEx(Fake_Handler);
 
-	/* Start the components */
+	
+    
+    /* Start the components */
     FSM_Timer_Start();
     LCD_Timer_Start();
     Fake_Timer_Start();
-    Throttle_ADC_Start();
-    Brake_ADC_Start();
+    can_init();
     
     
     
@@ -192,7 +206,7 @@ void main()
       
         CyDelay(10u);
 	} // main loop
-	return;
+	return 0;
     
 }
 

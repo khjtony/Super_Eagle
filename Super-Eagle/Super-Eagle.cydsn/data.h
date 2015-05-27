@@ -1,20 +1,12 @@
 #ifndef DATA_H
 #define DATA_H
 
-#include <project.h>
+#define NUM_CHIPS 12
 
-#define CAN_QUEUE_LENGTH 128
-#define DATA_QUEUE_LENGTH 256
-#define USB_QUEUE_LENGTH 256
+#define CELLS_PER_CHIP 7
+#define NUM_CELLS (NUM_CHIPS * CELLS_PER_CHIP)
 
- 
+#define TEMP_PER_CHIP 5
+#define NUM_TEMP (NUM_CHIPS * TEMP_PER_CHIP)
 
-typedef struct
-{
-	uint32_t millicounter;
-	uint16_t id; // id is for tracking CAN ID
-	uint8_t length;
-	uint8_t data[8];
-} DataPacket;
-
-#endif
+#endif // DATA_H

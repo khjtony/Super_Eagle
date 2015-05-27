@@ -2,6 +2,13 @@
 #define STATE_EVENT_H
 
 #include <device.h>
+    
+typedef enum
+    {  
+        COMMON,
+        INFO
+    }Dash_Mode;
+    
 
 typedef enum 
 {

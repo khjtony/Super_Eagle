@@ -9,18 +9,20 @@
  *
  * ========================================
 */
-#ifndef _DASH_BOARD_H_
-    #define _DASH_BOARD_H_
+#ifndef DASH_BOARD_H
+#define DASH_BOARD_H
+
+#define MAX_PAGE (5u)
     
-    #include "state_event.h"
+#include <project.h>
+#include "state_event.h"
     
-    void Dash_display_State(States);
-    void Dash_display_Event(Events);
     
-    extern volatile uint8_t throttle;
-    extern volatile uint8_t battery;
-    extern volatile uint8_t brake;
-    extern volatile uint8_t current_page;
     
+void Dash_display_Mode(Dash_Mode mode);
+void Dash_display_State(States newState);
+void Dash_display_Event(Events newEvent);
+void Dash_display_Value();
+
 #endif
 /* [] END OF FILE */
