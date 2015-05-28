@@ -2,120 +2,113 @@ Archive member included because of file (symbol)
 
 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
                               .\ARM_GCC_484\Debug\Cm3Start.o (cyfitter_cfg)
-.\ARM_GCC_484\Debug\Super-Eagle.a(LCD_BarGraph.o)
-                              .\ARM_GCC_484\Debug\LCD_Bar.o (LCD_DrawHorizontalBG)
 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
-                              .\ARM_GCC_484\Debug\dash_board.o (LCD_WriteControl)
+                              .\ARM_GCC_484\Debug\main.o (LCD_WriteControl)
 .\ARM_GCC_484\Debug\Super-Eagle.a(CyBootAsmGnu.o)
                               .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o) (CyDelayCycles)
 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
                               .\ARM_GCC_484\Debug\Cm3Start.o (CyResetStatus)
 .\ARM_GCC_484\Debug\Super-Eagle.a(cyPm.o)
                               .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o) (CyPmReadStatus)
+.\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+                              .\ARM_GCC_484\Debug\can_manager.o (CAN_1_Init)
+.\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_INT.o)
+                              .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o) (CAN_1_ISR)
+.\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_TX_RX_func.o)
+                              .\ARM_GCC_484\Debug\can_manager.o (CAN_1_SendMsg)
 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
                               .\ARM_GCC_484\Debug\main.o (FSM_Timer_Start)
 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
                               .\ARM_GCC_484\Debug\main.o (FSM_ISR_StartEx)
-.\ARM_GCC_484\Debug\Super-Eagle.a(button_sw2.o)
-                              .\ARM_GCC_484\Debug\main.o (button_sw2_ClearInterrupt)
-.\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
-                              .\ARM_GCC_484\Debug\main.o (isr_sw2_StartEx)
-.\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
-                              .\ARM_GCC_484\Debug\main.o (isr_sw1_StartEx)
-.\ARM_GCC_484\Debug\Super-Eagle.a(button_sw1.o)
-                              .\ARM_GCC_484\Debug\main.o (button_sw1_ClearInterrupt)
 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
                               .\ARM_GCC_484\Debug\main.o (LCD_ISR_StartEx)
 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
                               .\ARM_GCC_484\Debug\main.o (LCD_Timer_Start)
-.\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
-                              .\ARM_GCC_484\Debug\main.o (Throttle_ADC_Start)
-.\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_INT.o)
-                              .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o) (Throttle_ADC_ISR)
-.\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
-                              .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o) (Throttle_ADC_theACLK_SetModeRegister)
-.\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
-                              .\ARM_GCC_484\Debug\main.o (Brake_ADC_Start)
-.\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_INT.o)
-                              .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o) (Brake_ADC_ISR)
 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
                               .\ARM_GCC_484\Debug\main.o (Fake_Timer_Start)
 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
                               .\ARM_GCC_484\Debug\main.o (Fake_ISR_StartEx)
-.\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
-                              .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o) (Brake_ADC_theACLK_SetModeRegister)
+.\ARM_GCC_484\Debug\Super-Eagle.a(BTN_OK.o)
+                              .\ARM_GCC_484\Debug\main.o (BTN_OK_ClearInterrupt)
+.\ARM_GCC_484\Debug\Super-Eagle.a(BTN_Back.o)
+                              .\ARM_GCC_484\Debug\main.o (BTN_Back_ClearInterrupt)
+.\ARM_GCC_484\Debug\Super-Eagle.a(Rotary.o)
+                              .\ARM_GCC_484\Debug\main.o (Rotary_ClearInterrupt)
+.\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
+                              .\ARM_GCC_484\Debug\main.o (isr_back_StartEx)
+.\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
+                              .\ARM_GCC_484\Debug\main.o (isr_OK_StartEx)
+.\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
+                              .\ARM_GCC_484\Debug\main.o (isr_rotary_StartEx)
 .\ARM_GCC_484\Debug\Super-Eagle.a(CyFlash.o)
                               .\ARM_GCC_484\Debug\Super-Eagle.a(cyPm.o) (CyFlash_SetWaitCycles)
 .\ARM_GCC_484\Debug\Super-Eagle.a(CySpc.o)
                               .\ARM_GCC_484\Debug\Super-Eagle.a(CyFlash.o) (CySpcStart)
 .\ARM_GCC_484\Debug\Super-Eagle.a(cyutils.o)
                               .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o) (CySetReg24)
-c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_addsubsf3.o)
-                              .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o) (__aeabi_i2f)
-c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_muldivsf3.o)
-                              .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o) (__aeabi_fmul)
-c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_aeabi_ldivmod.o)
-                              .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o) (__aeabi_ldivmod)
-c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(bpabi.o)
-                              c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_aeabi_ldivmod.o) (__gnu_ldivmod_helper)
-c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_dvmd_tls.o)
-                              c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_aeabi_ldivmod.o) (__aeabi_ldiv0)
-c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_divdi3.o)
-                              c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(bpabi.o) (__divdi3)
-c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_udivdi3.o)
-                              c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(bpabi.o) (__udivdi3)
-c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-errno.o)
+d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-errno.o)
                               .\ARM_GCC_484\Debug\Cm3Start.o (__errno)
-c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-exit.o)
-                              c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m/crt0.o (exit)
-c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-impure.o)
-                              c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-exit.o) (_global_impure_ptr)
-c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-init.o)
-                              c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m/crt0.o (__libc_init_array)
-c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memcpy-stub.o)
+d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-exit.o)
+                              d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m/crt0.o (exit)
+d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-impure.o)
+                              d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-exit.o) (_global_impure_ptr)
+d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-init.o)
+                              d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m/crt0.o (__libc_init_array)
+d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memcpy-stub.o)
                               .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o) (memcpy)
-c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memset.o)
-                              c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m/crt0.o (memset)
+d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memset.o)
+                              d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m/crt0.o (memset)
 
 Allocating common symbols
 Common symbol       size              file
 
-Throttle_ADC_countsPerVolt
-                    0x2               .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
-Throttle_ADC_offset
-                    0x2               .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
-Brake_ADC_countsPer10Volt
-                    0x4               .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
 throttle            0x1               .\ARM_GCC_484\Debug\main.o
-Brake_ADC_countsPerVolt
-                    0x2               .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
-Throttle_ADC_countsPer10Volt
-                    0x4               .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
-Brake_ADC_offset    0x2               .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
-Throttle_ADC_shift  0x2               .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
-Brake_ADC_shift     0x2               .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
 dieTemperature      0x2               .\ARM_GCC_484\Debug\Super-Eagle.a(CyFlash.o)
 brake               0x1               .\ARM_GCC_484\Debug\main.o
+can_buffer          0x8               .\ARM_GCC_484\Debug\can_manager.o
 
 Discarded input sections
 
- .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crti.o
- .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crti.o
- .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crti.o
- .data          0x00000000        0x4 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
- .text          0x00000000       0x74 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m/crt0.o
- .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m/crt0.o
- .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m/crt0.o
- .ARM.extab     0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m/crt0.o
- .ARM.exidx     0x00000000        0x8 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m/crt0.o
+ .text          0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crti.o
+ .data          0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crti.o
+ .bss           0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crti.o
+ .data          0x00000000        0x4 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
+ .text          0x00000000       0x74 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m/crt0.o
+ .data          0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m/crt0.o
+ .bss           0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m/crt0.o
+ .ARM.extab     0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m/crt0.o
+ .ARM.exidx     0x00000000        0x8 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m/crt0.o
  .text          0x00000000        0x0 .\ARM_GCC_484\Debug\main.o
  .data          0x00000000        0x1 .\ARM_GCC_484\Debug\main.o
+ COMMON         0x00000000        0x2 .\ARM_GCC_484\Debug\main.o
  .text          0x00000000        0x0 .\ARM_GCC_484\Debug\LCD_Bar.o
  .data          0x00000000        0x0 .\ARM_GCC_484\Debug\LCD_Bar.o
  .bss           0x00000000        0x0 .\ARM_GCC_484\Debug\LCD_Bar.o
+ .text.quickBar
+                0x00000000       0x60 .\ARM_GCC_484\Debug\LCD_Bar.o
  .text          0x00000000        0x0 .\ARM_GCC_484\Debug\state_event.o
  .data          0x00000000        0x0 .\ARM_GCC_484\Debug\state_event.o
  .bss           0x00000000        0x0 .\ARM_GCC_484\Debug\state_event.o
+ .text.action_startup
+                0x00000000       0x10 .\ARM_GCC_484\Debug\state_event.o
+ .text.action_neutral
+                0x00000000       0x10 .\ARM_GCC_484\Debug\state_event.o
+ .text.action_drive
+                0x00000000       0x10 .\ARM_GCC_484\Debug\state_event.o
+ .text.action_precharge
+                0x00000000       0x10 .\ARM_GCC_484\Debug\state_event.o
+ .text.action_charging
+                0x00000000       0x10 .\ARM_GCC_484\Debug\state_event.o
+ .text.action_soft_fault
+                0x00000000       0x10 .\ARM_GCC_484\Debug\state_event.o
+ .text.action_hard_fault
+                0x00000000       0x10 .\ARM_GCC_484\Debug\state_event.o
+ .text.reset_drive_sound
+                0x00000000       0x10 .\ARM_GCC_484\Debug\state_event.o
+ .text.reset_precharge_timer
+                0x00000000       0x10 .\ARM_GCC_484\Debug\state_event.o
+ .text.reset_fault_sound
+                0x00000000       0x10 .\ARM_GCC_484\Debug\state_event.o
  .text.get_CAN_error
                 0x00000000       0x10 .\ARM_GCC_484\Debug\state_event.o
  .text          0x00000000        0x0 .\ARM_GCC_484\Debug\dash_board.o
@@ -123,6 +116,11 @@ Discarded input sections
  .bss           0x00000000        0x0 .\ARM_GCC_484\Debug\dash_board.o
  .text.Dash_display_Event
                 0x00000000       0x50 .\ARM_GCC_484\Debug\dash_board.o
+ .text          0x00000000        0x0 .\ARM_GCC_484\Debug\can_manager.o
+ .data          0x00000000        0x0 .\ARM_GCC_484\Debug\can_manager.o
+ .text.can_test_send
+                0x00000000       0x98 .\ARM_GCC_484\Debug\can_manager.o
+ COMMON         0x00000000        0x8 .\ARM_GCC_484\Debug\can_manager.o
  .text          0x00000000        0x0 .\ARM_GCC_484\Debug\cymetadata.o
  .data          0x00000000        0x0 .\ARM_GCC_484\Debug\cymetadata.o
  .bss           0x00000000        0x0 .\ARM_GCC_484\Debug\cymetadata.o
@@ -135,16 +133,20 @@ Discarded input sections
  .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
  .bss           0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
  .text.SetAnalogRoutingPumps
-                0x00000000       0x3c .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
- .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_BarGraph.o)
- .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_BarGraph.o)
- .bss           0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_BarGraph.o)
+                0x00000000       0x28 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
  .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
  .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
  .text.LCD_Stop
                 0x00000000       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
  .text.LCD_PutChar
                 0x00000000       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
+ .text.LCD_PrintInt8
+                0x00000000       0x34 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
+ .text.LCD_PrintInt16
+                0x00000000       0x28 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
+ .text.LCD_PrintInt32
+                0x00000000       0x30 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
+ .rodata        0x00000000       0x10 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
  .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(CyBootAsmGnu.o)
  .bss           0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(CyBootAsmGnu.o)
  .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
@@ -331,6 +333,36 @@ Discarded input sections
                 0x00000000       0xd4 .\ARM_GCC_484\Debug\Super-Eagle.a(cyPm.o)
  .text.CyPmHviLviRestore
                 0x00000000       0x54 .\ARM_GCC_484\Debug\Super-Eagle.a(cyPm.o)
+ .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+ .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+ .text.CAN_1_Stop
+                0x00000000       0x78 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+ .text.CAN_1_GlobalIntDisable
+                0x00000000       0x40 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+ .text.CAN_1_RXRegisterInit
+                0x00000000       0xa4 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+ .text.CAN_1_GetTXErrorFlag
+                0x00000000       0x28 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+ .text.CAN_1_GetRXErrorFlag
+                0x00000000       0x28 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+ .text.CAN_1_GetTXErrorCount
+                0x00000000       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+ .text.CAN_1_GetRXErrorCount
+                0x00000000       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+ .text.CAN_1_GetErrorState
+                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+ .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_INT.o)
+ .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_INT.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_INT.o)
+ .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_TX_RX_func.o)
+ .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_TX_RX_func.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_TX_RX_func.o)
+ .text.CAN_1_SendMsg
+                0x00000000      0x16c .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_TX_RX_func.o)
+ .text.CAN_1_TxCancel
+                0x00000000       0x3c .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_TX_RX_func.o)
+ .text.CAN_1_SendMsg0
+                0x00000000       0x38 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_TX_RX_func.o)
  .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
  .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
  .text.FSM_Timer_Stop
@@ -364,66 +396,6 @@ Discarded input sections
                 0x00000000       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
  .text.FSM_ISR_ClearPending
                 0x00000000       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
- .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw2.o)
- .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw2.o)
- .bss           0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw2.o)
- .text.button_sw2_Write
-                0x00000000       0x3c .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw2.o)
- .text.button_sw2_SetDriveMode
-                0x00000000       0x38 .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw2.o)
- .text.button_sw2_Read
-                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw2.o)
- .text.button_sw2_ReadDataReg
-                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw2.o)
- .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
- .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
- .bss           0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
- .text.isr_sw2_Start
-                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
- .text.isr_sw2_Stop
-                0x00000000       0x14 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
- .text.isr_sw2_Interrupt
-                0x00000000        0xc .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
- .text.isr_sw2_GetVector
-                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
- .text.isr_sw2_GetPriority
-                0x00000000       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
- .text.isr_sw2_GetState
-                0x00000000       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
- .text.isr_sw2_SetPending
-                0x00000000       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
- .text.isr_sw2_ClearPending
-                0x00000000       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
- .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
- .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
- .bss           0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
- .text.isr_sw1_Start
-                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
- .text.isr_sw1_Stop
-                0x00000000       0x14 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
- .text.isr_sw1_Interrupt
-                0x00000000        0xc .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
- .text.isr_sw1_GetVector
-                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
- .text.isr_sw1_GetPriority
-                0x00000000       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
- .text.isr_sw1_GetState
-                0x00000000       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
- .text.isr_sw1_SetPending
-                0x00000000       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
- .text.isr_sw1_ClearPending
-                0x00000000       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
- .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw1.o)
- .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw1.o)
- .bss           0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw1.o)
- .text.button_sw1_Write
-                0x00000000       0x3c .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw1.o)
- .text.button_sw1_SetDriveMode
-                0x00000000       0x38 .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw1.o)
- .text.button_sw1_Read
-                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw1.o)
- .text.button_sw1_ReadDataReg
-                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw1.o)
  .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
  .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
  .bss           0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
@@ -457,93 +429,6 @@ Discarded input sections
                 0x00000000       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
  .text.LCD_Timer_ReadCounter
                 0x00000000       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
- .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
- .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
- .text.Throttle_ADC_Stop
-                0x00000000       0x80 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
- .text.Throttle_ADC_SetPower
-                0x00000000       0x40 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
- .text.Throttle_ADC_StartConvert
-                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
- .text.Throttle_ADC_StopConvert
-                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
- .text.Throttle_ADC_IsEndConversion
-                0x00000000       0x40 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
- .text.Throttle_ADC_GetResult16
-                0x00000000       0x34 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
- .text.Throttle_ADC_SetOffset
-                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
- .text.Throttle_ADC_SetGain
-                0x00000000       0x2c .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
- .text.Throttle_ADC_SetScaledGain
-                0x00000000       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
- .text.Throttle_ADC_CountsTo_mVolts
-                0x00000000       0x8c .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
- .text.Throttle_ADC_CountsTo_uVolts
-                0x00000000       0x94 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
- .text.Throttle_ADC_CountsTo_Volts
-                0x00000000       0x84 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
- .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_INT.o)
- .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_INT.o)
- .bss           0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_INT.o)
- .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
- .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
- .bss           0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
- .text.Throttle_ADC_theACLK_Start
-                0x00000000       0x34 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
- .text.Throttle_ADC_theACLK_Stop
-                0x00000000       0x34 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
- .text.Throttle_ADC_theACLK_StopBlock
-                0x00000000       0xb0 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
- .text.Throttle_ADC_theACLK_StandbyPower
-                0x00000000       0x40 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
- .text.Throttle_ADC_theACLK_SetDividerRegister
-                0x00000000      0x15c .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
- .text.Throttle_ADC_theACLK_GetDividerRegister
-                0x00000000       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
- .text.Throttle_ADC_theACLK_ClearModeRegister
-                0x00000000       0x34 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
- .text.Throttle_ADC_theACLK_GetModeRegister
-                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
- .text.Throttle_ADC_theACLK_SetSourceRegister
-                0x00000000       0xbc .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
- .text.Throttle_ADC_theACLK_GetSourceRegister
-                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
- .text.Throttle_ADC_theACLK_SetPhaseRegister
-                0x00000000       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
- .text.Throttle_ADC_theACLK_GetPhaseRegister
-                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
- .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
- .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
- .text.Brake_ADC_Stop
-                0x00000000       0x80 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
- .text.Brake_ADC_SetPower
-                0x00000000       0x40 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
- .text.Brake_ADC_StartConvert
-                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
- .text.Brake_ADC_StopConvert
-                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
- .text.Brake_ADC_IsEndConversion
-                0x00000000       0x40 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
- .text.Brake_ADC_GetResult8
-                0x00000000       0x2c .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
- .text.Brake_ADC_GetResult16
-                0x00000000       0x34 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
- .text.Brake_ADC_SetOffset
-                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
- .text.Brake_ADC_SetGain
-                0x00000000       0x2c .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
- .text.Brake_ADC_SetScaledGain
-                0x00000000       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
- .text.Brake_ADC_CountsTo_mVolts
-                0x00000000       0x8c .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
- .text.Brake_ADC_CountsTo_uVolts
-                0x00000000       0x94 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
- .text.Brake_ADC_CountsTo_Volts
-                0x00000000       0x84 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
- .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_INT.o)
- .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_INT.o)
- .bss           0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_INT.o)
  .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
  .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
  .text.Fake_Timer_Stop
@@ -577,33 +462,96 @@ Discarded input sections
                 0x00000000       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
  .text.Fake_ISR_ClearPending
                 0x00000000       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
- .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
- .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
- .bss           0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
- .text.Brake_ADC_theACLK_Start
-                0x00000000       0x34 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
- .text.Brake_ADC_theACLK_Stop
-                0x00000000       0x34 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
- .text.Brake_ADC_theACLK_StopBlock
-                0x00000000       0xb0 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
- .text.Brake_ADC_theACLK_StandbyPower
-                0x00000000       0x40 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
- .text.Brake_ADC_theACLK_SetDividerRegister
-                0x00000000      0x15c .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
- .text.Brake_ADC_theACLK_GetDividerRegister
-                0x00000000       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
- .text.Brake_ADC_theACLK_ClearModeRegister
-                0x00000000       0x34 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
- .text.Brake_ADC_theACLK_GetModeRegister
-                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
- .text.Brake_ADC_theACLK_SetSourceRegister
-                0x00000000       0xbc .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
- .text.Brake_ADC_theACLK_GetSourceRegister
-                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
- .text.Brake_ADC_theACLK_SetPhaseRegister
-                0x00000000       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
- .text.Brake_ADC_theACLK_GetPhaseRegister
-                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
+ .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_OK.o)
+ .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_OK.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_OK.o)
+ .text.BTN_OK_Write
+                0x00000000       0x34 .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_OK.o)
+ .text.BTN_OK_SetDriveMode
+                0x00000000       0x38 .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_OK.o)
+ .text.BTN_OK_Read
+                0x00000000       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_OK.o)
+ .text.BTN_OK_ReadDataReg
+                0x00000000       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_OK.o)
+ .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_Back.o)
+ .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_Back.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_Back.o)
+ .text.BTN_Back_Write
+                0x00000000       0x34 .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_Back.o)
+ .text.BTN_Back_SetDriveMode
+                0x00000000       0x38 .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_Back.o)
+ .text.BTN_Back_Read
+                0x00000000       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_Back.o)
+ .text.BTN_Back_ReadDataReg
+                0x00000000       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_Back.o)
+ .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(Rotary.o)
+ .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(Rotary.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(Rotary.o)
+ .text.Rotary_Write
+                0x00000000       0x38 .\ARM_GCC_484\Debug\Super-Eagle.a(Rotary.o)
+ .text.Rotary_SetDriveMode
+                0x00000000       0x38 .\ARM_GCC_484\Debug\Super-Eagle.a(Rotary.o)
+ .text.Rotary_Read
+                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(Rotary.o)
+ .text.Rotary_ReadDataReg
+                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(Rotary.o)
+ .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
+ .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
+ .text.isr_back_Start
+                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
+ .text.isr_back_Stop
+                0x00000000       0x14 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
+ .text.isr_back_Interrupt
+                0x00000000        0xc .\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
+ .text.isr_back_GetVector
+                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
+ .text.isr_back_GetPriority
+                0x00000000       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
+ .text.isr_back_GetState
+                0x00000000       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
+ .text.isr_back_SetPending
+                0x00000000       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
+ .text.isr_back_ClearPending
+                0x00000000       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
+ .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
+ .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
+ .text.isr_OK_Start
+                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
+ .text.isr_OK_Stop
+                0x00000000       0x14 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
+ .text.isr_OK_Interrupt
+                0x00000000        0xc .\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
+ .text.isr_OK_GetVector
+                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
+ .text.isr_OK_GetPriority
+                0x00000000       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
+ .text.isr_OK_GetState
+                0x00000000       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
+ .text.isr_OK_SetPending
+                0x00000000       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
+ .text.isr_OK_ClearPending
+                0x00000000       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
+ .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
+ .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
+ .text.isr_rotary_Start
+                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
+ .text.isr_rotary_Stop
+                0x00000000       0x14 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
+ .text.isr_rotary_Interrupt
+                0x00000000        0xc .\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
+ .text.isr_rotary_GetVector
+                0x00000000       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
+ .text.isr_rotary_GetPriority
+                0x00000000       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
+ .text.isr_rotary_GetState
+                0x00000000       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
+ .text.isr_rotary_SetPending
+                0x00000000       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
+ .text.isr_rotary_ClearPending
+                0x00000000       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
  .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(CyFlash.o)
  .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(CyFlash.o)
  .bss           0x00000000        0x4 .\ARM_GCC_484\Debug\Super-Eagle.a(CyFlash.o)
@@ -666,65 +614,40 @@ Discarded input sections
  .text          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(cyutils.o)
  .data          0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(cyutils.o)
  .bss           0x00000000        0x0 .\ARM_GCC_484\Debug\Super-Eagle.a(cyutils.o)
- .text          0x00000000      0x21c c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_addsubsf3.o)
- .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_addsubsf3.o)
- .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_addsubsf3.o)
- .text          0x00000000      0x2a0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_muldivsf3.o)
- .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_muldivsf3.o)
- .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_muldivsf3.o)
- .text          0x00000000       0x38 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_aeabi_ldivmod.o)
- .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_aeabi_ldivmod.o)
- .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_aeabi_ldivmod.o)
- .text          0x00000000       0x60 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(bpabi.o)
- .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(bpabi.o)
- .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(bpabi.o)
- .text          0x00000000        0x4 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_dvmd_tls.o)
- .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_dvmd_tls.o)
- .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_dvmd_tls.o)
- .text          0x00000000      0x2a0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_divdi3.o)
- .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_divdi3.o)
- .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_divdi3.o)
- .ARM.extab     0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_divdi3.o)
- .ARM.exidx     0x00000000        0x8 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_divdi3.o)
- .text          0x00000000      0x290 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_udivdi3.o)
- .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_udivdi3.o)
- .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_udivdi3.o)
- .ARM.extab     0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_udivdi3.o)
- .ARM.exidx     0x00000000        0x8 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_udivdi3.o)
- .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-errno.o)
- .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-errno.o)
- .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-errno.o)
- .text.__errno  0x00000000        0xc c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-errno.o)
- .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-exit.o)
- .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-exit.o)
- .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-exit.o)
- .text.exit     0x00000000       0x28 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-exit.o)
- .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-impure.o)
- .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-impure.o)
- .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-impure.o)
+ .text          0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-errno.o)
+ .data          0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-errno.o)
+ .bss           0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-errno.o)
+ .text.__errno  0x00000000        0xc d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-errno.o)
+ .text          0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-exit.o)
+ .data          0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-exit.o)
+ .bss           0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-exit.o)
+ .text.exit     0x00000000       0x28 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-exit.o)
+ .text          0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-impure.o)
+ .data          0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-impure.o)
+ .bss           0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-impure.o)
  .data.impure_data
-                0x00000000       0x60 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-impure.o)
+                0x00000000       0x60 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-impure.o)
  .data._impure_ptr
-                0x00000000        0x4 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-impure.o)
+                0x00000000        0x4 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-impure.o)
  .rodata.str1.1
-                0x00000000        0x2 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-impure.o)
+                0x00000000        0x2 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-impure.o)
  .rodata._global_impure_ptr
-                0x00000000        0x4 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-impure.o)
- .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-init.o)
- .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-init.o)
- .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-init.o)
- .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memcpy-stub.o)
- .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memcpy-stub.o)
- .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memcpy-stub.o)
- .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memset.o)
- .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memset.o)
- .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memset.o)
- .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtend.o
- .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtend.o
- .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtend.o
- .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtn.o
- .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtn.o
- .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtn.o
+                0x00000000        0x4 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-impure.o)
+ .text          0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-init.o)
+ .data          0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-init.o)
+ .bss           0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-init.o)
+ .text          0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memcpy-stub.o)
+ .data          0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memcpy-stub.o)
+ .bss           0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memcpy-stub.o)
+ .text          0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memset.o)
+ .data          0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memset.o)
+ .bss           0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memset.o)
+ .text          0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtend.o
+ .data          0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtend.o
+ .bss           0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtend.o
+ .text          0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtn.o
+ .data          0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtn.o
+ .bss           0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtn.o
 
 Memory Configuration
 
@@ -735,34 +658,35 @@ ram              0x1fff8000         0x00010000         xrw
 
 Linker script and memory map
 
-LOAD c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crti.o
-LOAD c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
-LOAD c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m/crt0.o
+LOAD d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crti.o
+LOAD d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
+LOAD d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m/crt0.o
 START GROUP
 LOAD .\ARM_GCC_484\Debug\main.o
 LOAD .\ARM_GCC_484\Debug\LCD_Bar.o
 LOAD .\ARM_GCC_484\Debug\state_event.o
 LOAD .\ARM_GCC_484\Debug\dash_board.o
+LOAD .\ARM_GCC_484\Debug\can_manager.o
 LOAD .\ARM_GCC_484\Debug\cymetadata.o
 LOAD .\ARM_GCC_484\Debug\Cm3Start.o
 LOAD .\ARM_GCC_484\Debug\Super-Eagle.a
-LOAD C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_484\Debug\CyComponentLibrary.a
+LOAD D:\Software\PSoCCreator\PSoC Creator\3.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_484\Debug\CyComponentLibrary.a
 END GROUP
 START GROUP
-LOAD c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a
-LOAD c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a
-LOAD c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libc_s.a
+LOAD d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a
+LOAD d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a
+LOAD d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libc_s.a
 END GROUP
 START GROUP
-LOAD c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a
-LOAD c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libc_s.a
+LOAD d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a
+LOAD d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libc_s.a
 END GROUP
-LOAD c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtend.o
-LOAD c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtn.o
+LOAD d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtend.o
+LOAD d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtn.o
 START GROUP
-LOAD c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a
-LOAD c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libc.a
-LOAD c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libnosys.a
+LOAD d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a
+LOAD d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libc.a
+LOAD d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libnosys.a
 END GROUP
                 0x00000000                CY_APPL_ORIGIN = 0x0
                 0x00000100                CY_FLASH_ROW_SIZE = 0x100
@@ -773,7 +697,7 @@ END GROUP
                 0x00000001                CY_APPL_NUM = 0x1
                 0x00000001                CY_APPL_MAX = 0x1
                 0x00000040                CY_METADATA_SIZE = 0x40
-                0x1fff8168                PROVIDE (__cy_heap_start, _end)
+                0x1fff8158                PROVIDE (__cy_heap_start, _end)
                 0x00000001                PROVIDE (__cy_region_num, ((__cy_regions_end - __cy_regions) / 0x10))
                 0x20008000                PROVIDE (__cy_stack, (ORIGIN (ram) + 0x10000))
                 0x20007800                PROVIDE (__cy_heap_end, (__cy_stack - 0x800))
@@ -788,7 +712,7 @@ END GROUP
                 0x00000800                ee_size = (CY_APPL_LOADABLE && ! (CY_EE_IN_BTLDR))?(CY_EE_SIZE / CY_APPL_MAX):CY_EE_SIZE
                 0x00000000                PROVIDE (CY_ECC_OFFSET, ecc_offset)
 
-.text           0x00000000     0x1eae
+.text           0x00000000     0x1f0a
  CREATE_OBJECT_SYMBOLS
                 0x00000000                PROVIDE (__cy_interrupt_vector, RomVectors)
  *(.romvectors)
@@ -804,358 +728,365 @@ END GROUP
  *(.dma_init)
                 0x00000001                ASSERT ((((appl_start + .) <= 0x10000) || 0x1), DMA Init must be within the first 64k of flash)
  *(.text .text.* .gnu.linkonce.t.*)
- .text          0x00000028       0x54 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
+ .text          0x00000028       0x54 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
  .text.fatal_fault
                 0x0000007c        0x8 .\ARM_GCC_484\Debug\main.o
                 0x0000007c                fatal_fault
- .text.ISR_SW1  0x00000084       0x20 .\ARM_GCC_484\Debug\main.o
-                0x00000084                ISR_SW1
- .text.ISR_SW2  0x000000a4       0x20 .\ARM_GCC_484\Debug\main.o
-                0x000000a4                ISR_SW2
+ .text.isr_rotary
+                0x00000084       0x3c .\ARM_GCC_484\Debug\main.o
+                0x00000084                isr_rotary
+ .text.isr_OK   0x000000c0       0x28 .\ARM_GCC_484\Debug\main.o
+                0x000000c0                isr_OK
+ .text.isr_back
+                0x000000e8       0x18 .\ARM_GCC_484\Debug\main.o
+                0x000000e8                isr_back
  .text.LCD_Handler
-                0x000000c4       0x20 .\ARM_GCC_484\Debug\main.o
-                0x000000c4                LCD_Handler
+                0x00000100       0x3c .\ARM_GCC_484\Debug\main.o
+                0x00000100                LCD_Handler
  .text.Fake_Handler
-                0x000000e4       0x5c .\ARM_GCC_484\Debug\main.o
-                0x000000e4                Fake_Handler
+                0x0000013c       0x18 .\ARM_GCC_484\Debug\main.o
+                0x0000013c                Fake_Handler
  .text.FSM_Handler
-                0x00000140      0x1c4 .\ARM_GCC_484\Debug\main.o
-                0x00000140                FSM_Handler
- .text.main     0x00000304       0x64 .\ARM_GCC_484\Debug\main.o
-                0x00000304                main
- .text.quickBar
-                0x00000368       0x60 .\ARM_GCC_484\Debug\LCD_Bar.o
-                0x00000368                quickBar
- .text.action_startup
-                0x000003c8       0x10 .\ARM_GCC_484\Debug\state_event.o
-                0x000003c8                action_startup
- .text.action_neutral
-                0x000003d8       0x10 .\ARM_GCC_484\Debug\state_event.o
-                0x000003d8                action_neutral
- .text.action_drive
-                0x000003e8       0x10 .\ARM_GCC_484\Debug\state_event.o
-                0x000003e8                action_drive
- .text.action_precharge
-                0x000003f8       0x10 .\ARM_GCC_484\Debug\state_event.o
-                0x000003f8                action_precharge
- .text.action_charging
-                0x00000408       0x10 .\ARM_GCC_484\Debug\state_event.o
-                0x00000408                action_charging
- .text.action_soft_fault
-                0x00000418       0x10 .\ARM_GCC_484\Debug\state_event.o
-                0x00000418                action_soft_fault
- .text.action_hard_fault
-                0x00000428       0x10 .\ARM_GCC_484\Debug\state_event.o
-                0x00000428                action_hard_fault
- .text.reset_drive_sound
-                0x00000438       0x10 .\ARM_GCC_484\Debug\state_event.o
-                0x00000438                reset_drive_sound
- .text.reset_precharge_timer
-                0x00000448       0x10 .\ARM_GCC_484\Debug\state_event.o
-                0x00000448                reset_precharge_timer
- .text.reset_fault_sound
-                0x00000458       0x10 .\ARM_GCC_484\Debug\state_event.o
-                0x00000458                reset_fault_sound
+                0x00000154       0x54 .\ARM_GCC_484\Debug\main.o
+                0x00000154                FSM_Handler
+ .text.main     0x000001a8       0x74 .\ARM_GCC_484\Debug\main.o
+                0x000001a8                main
+ .text.Dash_display_Mode
+                0x0000021c       0x48 .\ARM_GCC_484\Debug\dash_board.o
+                0x0000021c                Dash_display_Mode
  .text.Dash_display_State
-                0x00000468       0xdc .\ARM_GCC_484\Debug\dash_board.o
-                0x00000468                Dash_display_State
- .text._dash_state_drive
-                0x00000544       0xa8 .\ARM_GCC_484\Debug\dash_board.o
-                0x00000544                _dash_state_drive
- .text._dash_state_charging
-                0x000005ec       0x18 .\ARM_GCC_484\Debug\dash_board.o
-                0x000005ec                _dash_state_charging
+                0x00000264       0x9c .\ARM_GCC_484\Debug\dash_board.o
+                0x00000264                Dash_display_State
+ .text.Dash_display_Value
+                0x00000300       0x40 .\ARM_GCC_484\Debug\dash_board.o
+                0x00000300                Dash_display_Value
+ .text.can_init
+                0x00000340       0x14 .\ARM_GCC_484\Debug\can_manager.o
+                0x00000340                can_init
  .text.IntDefaultHandler
-                0x00000604        0x8 .\ARM_GCC_484\Debug\Cm3Start.o
-                0x00000604                IntDefaultHandler
- .text.Start_c  0x0000060c       0x98 .\ARM_GCC_484\Debug\Cm3Start.o
-                0x0000060c                Start_c
+                0x00000354        0x8 .\ARM_GCC_484\Debug\Cm3Start.o
+                0x00000354                IntDefaultHandler
+ .text.Start_c  0x0000035c       0x98 .\ARM_GCC_484\Debug\Cm3Start.o
+                0x0000035c                Start_c
  .text.initialize_psoc
-                0x000006a4       0x8c .\ARM_GCC_484\Debug\Cm3Start.o
-                0x000006a4                initialize_psoc
+                0x000003f4       0x8c .\ARM_GCC_484\Debug\Cm3Start.o
+                0x000003f4                initialize_psoc
  .text.CYMEMZERO
-                0x00000730       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
+                0x00000480       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
  .text.CYCONFIGCPY
-                0x0000074c       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
+                0x0000049c       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
  .text.CYCONFIGCPYCODE
-                0x00000768       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
+                0x000004b8       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
  .text.CyClockStartupError
-                0x00000784        0xc .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
+                0x000004d4        0xc .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
  .text.cfg_write_bytes32
-                0x00000790       0x74 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
+                0x000004e0       0x74 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
  .text.ClockSetup
-                0x00000804      0x144 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
+                0x00000554      0x114 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
  .text.AnalogSetDefault
-                0x00000948       0xe0 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
+                0x00000668       0x44 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
  .text.cyfitter_cfg
-                0x00000a28      0x16c .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
-                0x00000a28                cyfitter_cfg
- .text.LCD_LoadCustomFonts
-                0x00000b94       0x44 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_BarGraph.o)
-                0x00000b94                LCD_LoadCustomFonts
- .text.LCD_DrawHorizontalBG
-                0x00000bd8       0xa4 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_BarGraph.o)
-                0x00000bd8                LCD_DrawHorizontalBG
+                0x000006ac      0x1a4 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
+                0x000006ac                cyfitter_cfg
  .text.LCD_Init
-                0x00000c7c       0x78 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
-                0x00000c7c                LCD_Init
+                0x00000850       0x6c .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
+                0x00000850                LCD_Init
  .text.LCD_Enable
-                0x00000cf4       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
-                0x00000cf4                LCD_Enable
+                0x000008bc       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
+                0x000008bc                LCD_Enable
  .text.LCD_Start
-                0x00000d0c       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
-                0x00000d0c                LCD_Start
+                0x000008d4       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
+                0x000008d4                LCD_Start
  .text.LCD_Position
-                0x00000d2c       0x6c .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
-                0x00000d2c                LCD_Position
+                0x000008f4       0x6c .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
+                0x000008f4                LCD_Position
  .text.LCD_PrintString
-                0x00000d98       0x38 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
-                0x00000d98                LCD_PrintString
+                0x00000960       0x38 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
+                0x00000960                LCD_PrintString
  .text.LCD_WriteData
-                0x00000dd0       0x34 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
-                0x00000dd0                LCD_WriteData
+                0x00000998       0x34 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
+                0x00000998                LCD_WriteData
  .text.LCD_WriteControl
-                0x00000e04       0x34 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
-                0x00000e04                LCD_WriteControl
+                0x000009cc       0x34 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
+                0x000009cc                LCD_WriteControl
  .text.LCD_IsReady
-                0x00000e38      0x178 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
-                0x00000e38                LCD_IsReady
+                0x00000a00      0x178 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
+                0x00000a00                LCD_IsReady
  .text.LCD_WrDatNib
-                0x00000fb0       0x78 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
+                0x00000b78       0x78 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
  .text.LCD_WrCntrlNib
-                0x00001028       0x60 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
- .text          0x00001088       0x60 .\ARM_GCC_484\Debug\Super-Eagle.a(CyBootAsmGnu.o)
-                0x00001088                CyDelayCycles
-                0x000010cc                CyEnterCriticalSection
-                0x000010d4                CyExitCriticalSection
- .text.CyHalt   0x000010e8       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
-                0x000010e8                CyHalt
- .text.CyDelay  0x00001100       0x44 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
-                0x00001100                CyDelay
+                0x00000bf0       0x60 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
+ .text.LCD_PrintU32Number
+                0x00000c50       0xa4 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
+                0x00000c50                LCD_PrintU32Number
+ *fill*         0x00000cf4        0x4 
+ .text          0x00000cf8       0x60 .\ARM_GCC_484\Debug\Super-Eagle.a(CyBootAsmGnu.o)
+                0x00000cf8                CyDelayCycles
+                0x00000d3c                CyEnterCriticalSection
+                0x00000d44                CyExitCriticalSection
+ .text.CyHalt   0x00000d58       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
+                0x00000d58                CyHalt
+ .text.CyDelay  0x00000d70       0x44 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
+                0x00000d70                CyDelay
  .text.CyDelayUs
-                0x00001144       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
-                0x00001144                CyDelayUs
+                0x00000db4       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
+                0x00000db4                CyDelayUs
  .text.CyIntSetVector
-                0x00001168       0x50 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
-                0x00001168                CyIntSetVector
+                0x00000dd8       0x50 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
+                0x00000dd8                CyIntSetVector
  .text.CyIntSetPriority
-                0x000011b8       0x44 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
-                0x000011b8                CyIntSetPriority
+                0x00000e28       0x44 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
+                0x00000e28                CyIntSetPriority
+ .text.CAN_1_Init
+                0x00000e6c      0x170 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+                0x00000e6c                CAN_1_Init
+ .text.CAN_1_Enable
+                0x00000fdc       0x78 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+                0x00000fdc                CAN_1_Enable
+ .text.CAN_1_Start
+                0x00001054       0x3c .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+                0x00001054                CAN_1_Start
+ .text.CAN_1_GlobalIntEnable
+                0x00001090       0x40 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+                0x00001090                CAN_1_GlobalIntEnable
+ .text.CAN_1_SetPreScaler
+                0x000010d0       0x44 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+                0x000010d0                CAN_1_SetPreScaler
+ .text.CAN_1_SetArbiter
+                0x00001114       0x6c .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+                0x00001114                CAN_1_SetArbiter
+ .text.CAN_1_SetTsegSample
+                0x00001180       0xc4 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+                0x00001180                CAN_1_SetTsegSample
+ .text.CAN_1_SetRestartType
+                0x00001244       0x6c .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+                0x00001244                CAN_1_SetRestartType
+ .text.CAN_1_SetEdgeMode
+                0x000012b0       0x6c .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+                0x000012b0                CAN_1_SetEdgeMode
+ .text.CAN_1_SetOpMode
+                0x0000131c       0x6c .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+                0x0000131c                CAN_1_SetOpMode
+ .text.CAN_1_SetIrqMask
+                0x00001388       0x38 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+                0x00001388                CAN_1_SetIrqMask
+ .text.CAN_1_RxBufConfig
+                0x000013c0       0xec .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+                0x000013c0                CAN_1_RxBufConfig
+ .text.CAN_1_TxBufConfig
+                0x000014ac       0x88 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+                0x000014ac                CAN_1_TxBufConfig
+ .text.CAN_1_MsgRXIsr
+                0x00001534       0xb0 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_INT.o)
+                0x00001534                CAN_1_MsgRXIsr
+ .text.CAN_1_ISR
+                0x000015e4       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_INT.o)
+                0x000015e4                CAN_1_ISR
+ .text.CAN_1_ReceiveMsg
+                0x00001600       0x48 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_TX_RX_func.o)
+                0x00001600                CAN_1_ReceiveMsg
+ .text.CAN_1_ReceiveMsgbms_temp
+                0x00001648       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_TX_RX_func.o)
+                0x00001648                CAN_1_ReceiveMsgbms_temp
+ .text.CAN_1_ReceiveMsgbms_volt
+                0x00001668       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_TX_RX_func.o)
+                0x00001668                CAN_1_ReceiveMsgbms_volt
+ .text.CAN_1_ReceiveMsgbms_status
+                0x00001688       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_TX_RX_func.o)
+                0x00001688                CAN_1_ReceiveMsgbms_status
+ .text.CAN_1_ReceiveMsgbms_current
+                0x000016a8       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_TX_RX_func.o)
+                0x000016a8                CAN_1_ReceiveMsgbms_current
  .text.FSM_Timer_Init
-                0x000011fc       0x4c .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
-                0x000011fc                FSM_Timer_Init
+                0x000016c8       0x4c .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
+                0x000016c8                FSM_Timer_Init
  .text.FSM_Timer_Enable
-                0x00001248       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
-                0x00001248                FSM_Timer_Enable
+                0x00001714       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
+                0x00001714                FSM_Timer_Enable
  .text.FSM_Timer_Start
-                0x00001268       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
-                0x00001268                FSM_Timer_Start
+                0x00001734       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
+                0x00001734                FSM_Timer_Start
  .text.FSM_Timer_SetInterruptMode
-                0x00001288       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
-                0x00001288                FSM_Timer_SetInterruptMode
+                0x00001754       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
+                0x00001754                FSM_Timer_SetInterruptMode
  .text.FSM_Timer_ReadStatusRegister
-                0x000012a8       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
-                0x000012a8                FSM_Timer_ReadStatusRegister
+                0x00001774       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
+                0x00001774                FSM_Timer_ReadStatusRegister
  .text.FSM_Timer_WritePeriod
-                0x000012c0       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
-                0x000012c0                FSM_Timer_WritePeriod
+                0x0000178c       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
+                0x0000178c                FSM_Timer_WritePeriod
  .text.FSM_Timer_ReadCapture
-                0x000012dc       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
-                0x000012dc                FSM_Timer_ReadCapture
+                0x000017a8       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
+                0x000017a8                FSM_Timer_ReadCapture
  .text.FSM_Timer_WriteCounter
-                0x000012f8       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
-                0x000012f8                FSM_Timer_WriteCounter
+                0x000017c4       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
+                0x000017c4                FSM_Timer_WriteCounter
  .text.FSM_Timer_ClearFIFO
-                0x00001314       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
-                0x00001314                FSM_Timer_ClearFIFO
+                0x000017e0       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
+                0x000017e0                FSM_Timer_ClearFIFO
  .text.FSM_ISR_StartEx
-                0x00001330       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
-                0x00001330                FSM_ISR_StartEx
+                0x000017fc       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
+                0x000017fc                FSM_ISR_StartEx
  .text.FSM_ISR_SetVector
-                0x00001354       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
-                0x00001354                FSM_ISR_SetVector
+                0x00001820       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
+                0x00001820                FSM_ISR_SetVector
  .text.FSM_ISR_SetPriority
-                0x00001378       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
-                0x00001378                FSM_ISR_SetPriority
+                0x00001844       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
+                0x00001844                FSM_ISR_SetPriority
  .text.FSM_ISR_Enable
-                0x0000139c       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
-                0x0000139c                FSM_ISR_Enable
+                0x00001868       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
+                0x00001868                FSM_ISR_Enable
  .text.FSM_ISR_Disable
-                0x000013b4       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
-                0x000013b4                FSM_ISR_Disable
- .text.button_sw2_ClearInterrupt
-                0x000013cc       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw2.o)
-                0x000013cc                button_sw2_ClearInterrupt
- .text.isr_sw2_StartEx
-                0x000013ec       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
-                0x000013ec                isr_sw2_StartEx
- .text.isr_sw2_SetVector
-                0x00001410       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
-                0x00001410                isr_sw2_SetVector
- .text.isr_sw2_SetPriority
-                0x00001434       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
-                0x00001434                isr_sw2_SetPriority
- .text.isr_sw2_Enable
-                0x00001458       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
-                0x00001458                isr_sw2_Enable
- .text.isr_sw2_Disable
-                0x00001470       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
-                0x00001470                isr_sw2_Disable
- .text.isr_sw1_StartEx
-                0x00001488       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
-                0x00001488                isr_sw1_StartEx
- .text.isr_sw1_SetVector
-                0x000014ac       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
-                0x000014ac                isr_sw1_SetVector
- .text.isr_sw1_SetPriority
-                0x000014d0       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
-                0x000014d0                isr_sw1_SetPriority
- .text.isr_sw1_Enable
-                0x000014f4       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
-                0x000014f4                isr_sw1_Enable
- .text.isr_sw1_Disable
-                0x0000150c       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
-                0x0000150c                isr_sw1_Disable
- .text.button_sw1_ClearInterrupt
-                0x00001524       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw1.o)
-                0x00001524                button_sw1_ClearInterrupt
+                0x00001880       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
+                0x00001880                FSM_ISR_Disable
  .text.LCD_ISR_StartEx
-                0x00001544       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
-                0x00001544                LCD_ISR_StartEx
+                0x00001898       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
+                0x00001898                LCD_ISR_StartEx
  .text.LCD_ISR_SetVector
-                0x00001568       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
-                0x00001568                LCD_ISR_SetVector
+                0x000018bc       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
+                0x000018bc                LCD_ISR_SetVector
  .text.LCD_ISR_SetPriority
-                0x0000158c       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
-                0x0000158c                LCD_ISR_SetPriority
+                0x000018e0       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
+                0x000018e0                LCD_ISR_SetPriority
  .text.LCD_ISR_Enable
-                0x000015b0       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
-                0x000015b0                LCD_ISR_Enable
+                0x00001904       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
+                0x00001904                LCD_ISR_Enable
  .text.LCD_ISR_Disable
-                0x000015c8       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
-                0x000015c8                LCD_ISR_Disable
+                0x0000191c       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
+                0x0000191c                LCD_ISR_Disable
  .text.LCD_Timer_Init
-                0x000015e0       0x4c .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
-                0x000015e0                LCD_Timer_Init
+                0x00001934       0x4c .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
+                0x00001934                LCD_Timer_Init
  .text.LCD_Timer_Enable
-                0x0000162c       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
-                0x0000162c                LCD_Timer_Enable
+                0x00001980       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
+                0x00001980                LCD_Timer_Enable
  .text.LCD_Timer_Start
-                0x0000164c       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
-                0x0000164c                LCD_Timer_Start
+                0x000019a0       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
+                0x000019a0                LCD_Timer_Start
  .text.LCD_Timer_SetInterruptMode
-                0x0000166c       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
-                0x0000166c                LCD_Timer_SetInterruptMode
+                0x000019c0       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
+                0x000019c0                LCD_Timer_SetInterruptMode
  .text.LCD_Timer_ReadStatusRegister
-                0x0000168c       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
-                0x0000168c                LCD_Timer_ReadStatusRegister
+                0x000019e0       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
+                0x000019e0                LCD_Timer_ReadStatusRegister
  .text.LCD_Timer_WritePeriod
-                0x000016a4       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
-                0x000016a4                LCD_Timer_WritePeriod
+                0x000019f8       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
+                0x000019f8                LCD_Timer_WritePeriod
  .text.LCD_Timer_ReadCapture
-                0x000016c0       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
-                0x000016c0                LCD_Timer_ReadCapture
+                0x00001a14       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
+                0x00001a14                LCD_Timer_ReadCapture
  .text.LCD_Timer_WriteCounter
-                0x000016dc       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
-                0x000016dc                LCD_Timer_WriteCounter
+                0x00001a30       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
+                0x00001a30                LCD_Timer_WriteCounter
  .text.LCD_Timer_ClearFIFO
-                0x000016f8       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
-                0x000016f8                LCD_Timer_ClearFIFO
- .text.Throttle_ADC_Start
-                0x00001714       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
-                0x00001714                Throttle_ADC_Start
- .text.Throttle_ADC_Init
-                0x00001734       0x44 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
-                0x00001734                Throttle_ADC_Init
- .text.Throttle_ADC_Enable
-                0x00001778       0xf4 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
-                0x00001778                Throttle_ADC_Enable
- .text.Throttle_ADC_SetResolution
-                0x0000186c       0x50 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
-                0x0000186c                Throttle_ADC_SetResolution
- .text.Throttle_ADC_GetResult8
-                0x000018bc       0x2c .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
-                0x000018bc                Throttle_ADC_GetResult8
- .text.Throttle_ADC_CalcGain
-                0x000018e8       0x94 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
- .text.Throttle_ADC_ISR
-                0x0000197c        0xc .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_INT.o)
-                0x0000197c                Throttle_ADC_ISR
- .text.Throttle_ADC_theACLK_SetModeRegister
-                0x00001988       0x34 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
-                0x00001988                Throttle_ADC_theACLK_SetModeRegister
- .text.Brake_ADC_Start
-                0x000019bc       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
-                0x000019bc                Brake_ADC_Start
- .text.Brake_ADC_Init
-                0x000019dc       0x44 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
-                0x000019dc                Brake_ADC_Init
- .text.Brake_ADC_Enable
-                0x00001a20       0xf4 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
-                0x00001a20                Brake_ADC_Enable
- .text.Brake_ADC_SetResolution
-                0x00001b14       0x50 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
-                0x00001b14                Brake_ADC_SetResolution
- .text.Brake_ADC_CalcGain
-                0x00001b64       0x94 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
- .text.Brake_ADC_ISR
-                0x00001bf8        0xc .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_INT.o)
-                0x00001bf8                Brake_ADC_ISR
+                0x00001a4c       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
+                0x00001a4c                LCD_Timer_ClearFIFO
  .text.Fake_Timer_Init
-                0x00001c04       0x4c .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
-                0x00001c04                Fake_Timer_Init
+                0x00001a68       0x4c .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
+                0x00001a68                Fake_Timer_Init
  .text.Fake_Timer_Enable
-                0x00001c50       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
-                0x00001c50                Fake_Timer_Enable
+                0x00001ab4       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
+                0x00001ab4                Fake_Timer_Enable
  .text.Fake_Timer_Start
-                0x00001c70       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
-                0x00001c70                Fake_Timer_Start
+                0x00001ad4       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
+                0x00001ad4                Fake_Timer_Start
  .text.Fake_Timer_SetInterruptMode
-                0x00001c90       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
-                0x00001c90                Fake_Timer_SetInterruptMode
+                0x00001af4       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
+                0x00001af4                Fake_Timer_SetInterruptMode
  .text.Fake_Timer_ReadStatusRegister
-                0x00001cb0       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
-                0x00001cb0                Fake_Timer_ReadStatusRegister
+                0x00001b14       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
+                0x00001b14                Fake_Timer_ReadStatusRegister
  .text.Fake_Timer_WritePeriod
-                0x00001cc8       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
-                0x00001cc8                Fake_Timer_WritePeriod
+                0x00001b2c       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
+                0x00001b2c                Fake_Timer_WritePeriod
  .text.Fake_Timer_ReadCapture
-                0x00001ce4       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
-                0x00001ce4                Fake_Timer_ReadCapture
+                0x00001b48       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
+                0x00001b48                Fake_Timer_ReadCapture
  .text.Fake_Timer_WriteCounter
-                0x00001d00       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
-                0x00001d00                Fake_Timer_WriteCounter
+                0x00001b64       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
+                0x00001b64                Fake_Timer_WriteCounter
  .text.Fake_Timer_ClearFIFO
-                0x00001d1c       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
-                0x00001d1c                Fake_Timer_ClearFIFO
+                0x00001b80       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
+                0x00001b80                Fake_Timer_ClearFIFO
  .text.Fake_ISR_StartEx
-                0x00001d38       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
-                0x00001d38                Fake_ISR_StartEx
+                0x00001b9c       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
+                0x00001b9c                Fake_ISR_StartEx
  .text.Fake_ISR_SetVector
-                0x00001d5c       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
-                0x00001d5c                Fake_ISR_SetVector
+                0x00001bc0       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
+                0x00001bc0                Fake_ISR_SetVector
  .text.Fake_ISR_SetPriority
-                0x00001d80       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
-                0x00001d80                Fake_ISR_SetPriority
+                0x00001be4       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
+                0x00001be4                Fake_ISR_SetPriority
  .text.Fake_ISR_Enable
-                0x00001da4       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
-                0x00001da4                Fake_ISR_Enable
+                0x00001c08       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
+                0x00001c08                Fake_ISR_Enable
  .text.Fake_ISR_Disable
-                0x00001dbc       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
-                0x00001dbc                Fake_ISR_Disable
- .text.Brake_ADC_theACLK_SetModeRegister
-                0x00001dd4       0x34 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
-                0x00001dd4                Brake_ADC_theACLK_SetModeRegister
+                0x00001c20       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
+                0x00001c20                Fake_ISR_Disable
+ .text.BTN_OK_ClearInterrupt
+                0x00001c38       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_OK.o)
+                0x00001c38                BTN_OK_ClearInterrupt
+ .text.BTN_Back_ClearInterrupt
+                0x00001c54       0x1c .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_Back.o)
+                0x00001c54                BTN_Back_ClearInterrupt
+ .text.Rotary_ClearInterrupt
+                0x00001c70       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(Rotary.o)
+                0x00001c70                Rotary_ClearInterrupt
+ .text.isr_back_StartEx
+                0x00001c90       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
+                0x00001c90                isr_back_StartEx
+ .text.isr_back_SetVector
+                0x00001cb4       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
+                0x00001cb4                isr_back_SetVector
+ .text.isr_back_SetPriority
+                0x00001cd8       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
+                0x00001cd8                isr_back_SetPriority
+ .text.isr_back_Enable
+                0x00001cfc       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
+                0x00001cfc                isr_back_Enable
+ .text.isr_back_Disable
+                0x00001d14       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
+                0x00001d14                isr_back_Disable
+ .text.isr_OK_StartEx
+                0x00001d2c       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
+                0x00001d2c                isr_OK_StartEx
+ .text.isr_OK_SetVector
+                0x00001d50       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
+                0x00001d50                isr_OK_SetVector
+ .text.isr_OK_SetPriority
+                0x00001d74       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
+                0x00001d74                isr_OK_SetPriority
+ .text.isr_OK_Enable
+                0x00001d98       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
+                0x00001d98                isr_OK_Enable
+ .text.isr_OK_Disable
+                0x00001db0       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
+                0x00001db0                isr_OK_Disable
+ .text.isr_rotary_StartEx
+                0x00001dc8       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
+                0x00001dc8                isr_rotary_StartEx
+ .text.isr_rotary_SetVector
+                0x00001dec       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
+                0x00001dec                isr_rotary_SetVector
+ .text.isr_rotary_SetPriority
+                0x00001e10       0x24 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
+                0x00001e10                isr_rotary_SetPriority
+ .text.isr_rotary_Enable
+                0x00001e34       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
+                0x00001e34                isr_rotary_Enable
+ .text.isr_rotary_Disable
+                0x00001e4c       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
+                0x00001e4c                isr_rotary_Disable
  .text.CySetReg24
-                0x00001e08       0x38 .\ARM_GCC_484\Debug\Super-Eagle.a(cyutils.o)
-                0x00001e08                CySetReg24
+                0x00001e64       0x38 .\ARM_GCC_484\Debug\Super-Eagle.a(cyutils.o)
+                0x00001e64                CySetReg24
  .text.__libc_init_array
-                0x00001e40       0x4c c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-init.o)
-                0x00001e40                __libc_init_array
- .text.memcpy   0x00001e8c       0x12 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memcpy-stub.o)
-                0x00001e8c                memcpy
- .text.memset   0x00001e9e       0x10 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memset.o)
-                0x00001e9e                memset
+                0x00001e9c       0x4c d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-init.o)
+                0x00001e9c                __libc_init_array
+ .text.memcpy   0x00001ee8       0x12 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memcpy-stub.o)
+                0x00001ee8                memcpy
+ .text.memset   0x00001efa       0x10 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memset.o)
+                0x00001efa                memset
  *(.plt)
  *(.gnu.warning)
  *(.glue_7t)
@@ -1168,77 +1099,76 @@ END GROUP
  *(.ARM.extab* .gnu.linkonce.armextab.*)
  *(.gcc_except_table)
 
-.v4_bx          0x00001eb0        0x0
+.v4_bx          0x00001f0c        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x00001eb0        0x0
- .iplt          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
+.iplt           0x00001f0c        0x0
+ .iplt          0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
 
 .eh_frame_hdr
  *(.eh_frame_hdr)
 
-.eh_frame       0x00001eb0        0x4
+.eh_frame       0x00001f0c        0x4
  *(.eh_frame)
- .eh_frame      0x00001eb0        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
- .eh_frame      0x00001eb0        0x4 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtend.o
-                0x00001eb4                PROVIDE (__exidx_start, .)
+ .eh_frame      0x00001f0c        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
+ .eh_frame      0x00001f0c        0x4 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtend.o
+                0x00001f10                PROVIDE (__exidx_start, .)
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x00001eb4                __exidx_end = .
+                0x00001f10                __exidx_end = .
 
-.rodata         0x00001eb4      0x4ec
+.rodata         0x00001f10      0x810
  *(.rodata .rodata.* .gnu.linkonce.r.*)
- .rodata        0x00001eb4       0x5c .\ARM_GCC_484\Debug\dash_board.o
- .rodata        0x00001f10      0x41c .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
- .rodata        0x0000232c       0x40 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_BarGraph.o)
-                0x0000232c                LCD_customFonts
-                0x0000236c                . = ALIGN (0x4)
+ .rodata        0x00001f10       0x64 .\ARM_GCC_484\Debug\dash_board.o
+ .rodata        0x00001f74      0x618 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
+ .rodata        0x0000258c      0x160 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+                0x000026ec                . = ALIGN (0x4)
  *(.init)
- .init          0x0000236c        0x4 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crti.o
-                0x0000236c                _init
- .init          0x00002370        0x8 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtn.o
-                0x00002378                . = ALIGN (0x4)
-                0x00002378                __preinit_array_start = .
+ .init          0x000026ec        0x4 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crti.o
+                0x000026ec                _init
+ .init          0x000026f0        0x8 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtn.o
+                0x000026f8                . = ALIGN (0x4)
+                0x000026f8                __preinit_array_start = .
  *(.preinit_array)
-                0x00002378                __preinit_array_end = .
-                0x00002378                . = ALIGN (0x4)
-                0x00002378                __init_array_start = .
+                0x000026f8                __preinit_array_end = .
+                0x000026f8                . = ALIGN (0x4)
+                0x000026f8                __init_array_start = .
  *(SORT(.init_array.*))
  *(.init_array)
- .init_array    0x00002378        0x4 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
- .init_array    0x0000237c        0x4 .\ARM_GCC_484\Debug\Cm3Start.o
-                0x00002380                __init_array_end = .
-                0x00002380                . = ALIGN (0x4)
+ .init_array    0x000026f8        0x4 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
+ .init_array    0x000026fc        0x4 .\ARM_GCC_484\Debug\Cm3Start.o
+                0x00002700                __init_array_end = .
+                0x00002700                . = ALIGN (0x4)
  *(.fini)
- .fini          0x00002380        0x4 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crti.o
-                0x00002380                _fini
- .fini          0x00002384        0x8 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtn.o
-                0x0000238c                . = ALIGN (0x4)
-                0x0000238c                __fini_array_start = .
+ .fini          0x00002700        0x4 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crti.o
+                0x00002700                _fini
+ .fini          0x00002704        0x8 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtn.o
+                0x0000270c                . = ALIGN (0x4)
+                0x0000270c                __fini_array_start = .
  *(.fini_array)
- .fini_array    0x0000238c        0x4 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
+ .fini_array    0x0000270c        0x4 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
  *(SORT(.fini_array.*))
-                0x00002390                __fini_array_end = .
-                0x00002390                . = ALIGN (0x4)
+                0x00002710                __fini_array_end = .
+                0x00002710                . = ALIGN (0x4)
  *crtbegin.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o) .ctors)
  *(SORT(.ctors.*))
  *crtend.o(.ctors)
-                0x00002390                . = ALIGN (0x4)
+                0x00002710                . = ALIGN (0x4)
  *crtbegin.o(.dtors)
  *(EXCLUDE_FILE(*crtend.o) .dtors)
  *(SORT(.dtors.*))
  *crtend.o(.dtors)
-                0x00002390                . = ALIGN (0x4)
-                0x00002390                __cy_regions = .
-                0x00002390        0x4 LONG 0x23a0 __cy_region_init_ram
-                0x00002394        0x4 LONG 0x1fff8108 __cy_region_start_data
-                0x00002398        0x4 LONG 0x18 __cy_region_init_size_ram
-                0x0000239c        0x4 LONG 0x48 __cy_region_zero_size_ram
-                0x000023a0                __cy_regions_end = .
-                0x000023a0                . = ALIGN (0x8)
-                0x000023a0                _etext = .
+                0x00002710                . = ALIGN (0x4)
+                0x00002710                __cy_regions = .
+                0x00002710        0x4 LONG 0x2720 __cy_region_init_ram
+                0x00002714        0x4 LONG 0x1fff8108 __cy_region_start_data
+                0x00002718        0x4 LONG 0x18 __cy_region_init_size_ram
+                0x0000271c        0x4 LONG 0x38 __cy_region_zero_size_ram
+                0x00002720                __cy_regions_end = .
+                0x00002720                . = ALIGN (0x8)
+                0x00002720                _etext = .
 
 .ramvectors     0x1fff8000      0x100
                 0x1fff8000                __cy_region_start_ram = .
@@ -1252,11 +1182,11 @@ END GROUP
  .noinit        0x1fff8104        0x1 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
                 0x1fff8104                CyResetStatus
 
-.data           0x1fff8108       0x18 load address 0x000023a0
+.data           0x1fff8108       0x18 load address 0x00002720
                 0x1fff8108                __cy_region_start_data = .
  *(.jcr)
- .jcr           0x1fff8108        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
- .jcr           0x1fff8108        0x4 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtend.o
+ .jcr           0x1fff8108        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
+ .jcr           0x1fff8108        0x4 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtend.o
  *(.got.plt)
  *(.got)
  *(.shdata)
@@ -1271,63 +1201,53 @@ END GROUP
  *(.ram)
                 0x1fff8120                _edata = .
 
-.igot.plt       0x1fff8120        0x0 load address 0x000023b8
- .igot.plt      0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
+.igot.plt       0x1fff8120        0x0 load address 0x00002738
+ .igot.plt      0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
 
-.bss            0x1fff8120       0x48 load address 0x000023b8
+.bss            0x1fff8120       0x38 load address 0x00002738
                 0x1fff8120                PROVIDE (__bss_start__, .)
  *(.shbss)
  *(.bss .bss.* .gnu.linkonce.b.*)
- .bss           0x1fff8120       0x1c c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
- .bss           0x1fff813c        0x4 .\ARM_GCC_484\Debug\main.o
+ .bss           0x1fff8120       0x1c d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
+ .bss           0x1fff813c        0x6 .\ARM_GCC_484\Debug\main.o
                 0x1fff813c                event
                 0x1fff813e                state
                 0x1fff813f                current_page
- .bss           0x1fff8140        0x2 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
-                0x1fff8140                LCD_enableState
-                0x1fff8141                LCD_initVar
- .bss           0x1fff8142        0x1 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
-                0x1fff8142                FSM_Timer_initVar
- .bss           0x1fff8143        0x1 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
-                0x1fff8143                LCD_Timer_initVar
- .bss           0x1fff8144        0x1 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
-                0x1fff8144                Throttle_ADC_initVar
- .bss           0x1fff8145        0x1 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
-                0x1fff8145                Brake_ADC_initVar
- .bss           0x1fff8146        0x1 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
-                0x1fff8146                Fake_Timer_initVar
+                0x1fff8140                mode
+ .bss           0x1fff8142        0xa .\ARM_GCC_484\Debug\can_manager.o
+                0x1fff8142                info_battery_voltage
+                0x1fff8144                info_battery_current
+                0x1fff8146                info_battery_temp
+                0x1fff8148                info_car_speed
+                0x1fff814a                info_common_time
+ .bss           0x1fff814c        0x2 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
+                0x1fff814c                LCD_enableState
+                0x1fff814d                LCD_initVar
+ .bss           0x1fff814e        0x1 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+                0x1fff814e                CAN_1_initVar
+ .bss           0x1fff814f        0x1 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
+                0x1fff814f                FSM_Timer_initVar
+ .bss           0x1fff8150        0x1 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
+                0x1fff8150                LCD_Timer_initVar
+ .bss           0x1fff8151        0x1 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
+                0x1fff8151                Fake_Timer_initVar
  *(COMMON)
- COMMON         0x1fff8147        0x2 .\ARM_GCC_484\Debug\main.o
-                0x1fff8147                throttle
-                0x1fff8148                brake
- *fill*         0x1fff8149        0x3 
- COMMON         0x1fff814c        0xa .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
-                0x1fff814c                Throttle_ADC_countsPerVolt
-                0x1fff814e                Throttle_ADC_offset
-                0x1fff8150                Throttle_ADC_countsPer10Volt
-                0x1fff8154                Throttle_ADC_shift
- *fill*         0x1fff8156        0x2 
- COMMON         0x1fff8158        0xa .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
-                0x1fff8158                Brake_ADC_countsPer10Volt
-                0x1fff815c                Brake_ADC_countsPerVolt
-                0x1fff815e                Brake_ADC_offset
-                0x1fff8160                Brake_ADC_shift
-                0x1fff8168                . = ALIGN (0x8)
- *fill*         0x1fff8162        0x6 
+                0x1fff8158                . = ALIGN (0x8)
+ *fill*         0x1fff8152        0x6 
  *(.ram.b)
-                0x1fff8168                _end = .
-                0x1fff8168                __end = .
-                0x1fff8168                PROVIDE (end, .)
-                0x1fff8168                PROVIDE (__bss_end__, .)
-                0x000023a0                __cy_region_init_ram = LOADADDR (.data)
+                0x1fff8158                _end = .
+                0x1fff8158                __end = .
+                0x1fff8158                PROVIDE (end, .)
+                0x1fff8158                PROVIDE (__bss_end__, .)
+                0x00002720                __cy_region_init_ram = LOADADDR (.data)
                 0x00000018                __cy_region_init_size_ram = (_edata - ADDR (.data))
-                0x00000048                __cy_region_zero_size_ram = (_end - _edata)
+                0x00000038                __cy_region_zero_size_ram = (_end - _edata)
 
-.heap           0x1fff8168       0x80 load address 0x000023b8
-                0x1fff8168                . = _end
-                0x1fff81e8                . = (. + 0x80)
- *fill*         0x1fff8168       0x80 
-                0x1fff81e8                __cy_heap_limit = .
+.heap           0x1fff8158       0x80 load address 0x00002738
+                0x1fff8158                . = _end
+                0x1fff81d8                . = (. + 0x80)
+ *fill*         0x1fff8158       0x80 
+                0x1fff81d8                __cy_heap_limit = .
 
 .stack          0x20007800      0x800
                 0x20007800                __cy_stack_limit = .
@@ -1372,8 +1292,8 @@ END GROUP
  .cymeta        0x90500000        0xc .\ARM_GCC_484\Debug\cymetadata.o
                 0x90500000                cy_metadata
 
-.rel.dyn        0x000023b8        0x0 load address 0x9050000c
- .rel.iplt      0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
+.rel.dyn        0x00002738        0x0 load address 0x9050000c
+ .rel.iplt      0x00000000        0x0 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
 
 .stab
  *(.stab)
@@ -1393,277 +1313,266 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0xe18
+.debug_aranges  0x00000000      0xdb0
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x50 .\ARM_GCC_484\Debug\main.o
+                0x00000000       0x58 .\ARM_GCC_484\Debug\main.o
  .debug_aranges
-                0x00000050       0x20 .\ARM_GCC_484\Debug\LCD_Bar.o
+                0x00000058       0x20 .\ARM_GCC_484\Debug\LCD_Bar.o
  .debug_aranges
-                0x00000070       0x70 .\ARM_GCC_484\Debug\state_event.o
+                0x00000078       0x70 .\ARM_GCC_484\Debug\state_event.o
  .debug_aranges
-                0x000000e0       0x38 .\ARM_GCC_484\Debug\dash_board.o
+                0x000000e8       0x38 .\ARM_GCC_484\Debug\dash_board.o
  .debug_aranges
-                0x00000118       0x18 .\ARM_GCC_484\Debug\cymetadata.o
+                0x00000120       0x28 .\ARM_GCC_484\Debug\can_manager.o
  .debug_aranges
-                0x00000130       0x48 .\ARM_GCC_484\Debug\Cm3Start.o
+                0x00000148       0x18 .\ARM_GCC_484\Debug\cymetadata.o
  .debug_aranges
-                0x00000178       0x60 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
+                0x00000160       0x48 .\ARM_GCC_484\Debug\Cm3Start.o
  .debug_aranges
-                0x000001d8       0x28 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_BarGraph.o)
+                0x000001a8       0x60 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
  .debug_aranges
-                0x00000200       0x78 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
+                0x00000208       0x98 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
  .debug_aranges
-                0x00000278       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(CyBootAsmGnu.o)
+                0x000002a0       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(CyBootAsmGnu.o)
  .debug_aranges
-                0x00000298      0x290 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
+                0x000002c0      0x290 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
  .debug_aranges
-                0x00000528       0x90 .\ARM_GCC_484\Debug\Super-Eagle.a(cyPm.o)
+                0x00000550       0x90 .\ARM_GCC_484\Debug\Super-Eagle.a(cyPm.o)
  .debug_aranges
-                0x000005b8       0x90 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
+                0x000005e0       0xc0 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
  .debug_aranges
-                0x00000648       0x80 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
+                0x000006a0       0x28 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_INT.o)
  .debug_aranges
-                0x000006c8       0x40 .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw2.o)
+                0x000006c8       0x58 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_TX_RX_func.o)
  .debug_aranges
-                0x00000708       0x80 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
+                0x00000720       0x90 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
  .debug_aranges
-                0x00000788       0x80 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
+                0x000007b0       0x80 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
  .debug_aranges
-                0x00000808       0x40 .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw1.o)
+                0x00000830       0x80 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
  .debug_aranges
-                0x00000848       0x80 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
+                0x000008b0       0x90 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
  .debug_aranges
-                0x000008c8       0x90 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
+                0x00000940       0x90 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
  .debug_aranges
-                0x00000958       0xa8 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
+                0x000009d0       0x80 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
  .debug_aranges
-                0x00000a00       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_INT.o)
+                0x00000a50       0x40 .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_OK.o)
  .debug_aranges
-                0x00000a20       0x80 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
+                0x00000a90       0x40 .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_Back.o)
  .debug_aranges
-                0x00000aa0       0xa8 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
+                0x00000ad0       0x40 .\ARM_GCC_484\Debug\Super-Eagle.a(Rotary.o)
  .debug_aranges
-                0x00000b48       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_INT.o)
+                0x00000b10       0x80 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
  .debug_aranges
-                0x00000b68       0x90 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
+                0x00000b90       0x80 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
  .debug_aranges
-                0x00000bf8       0x80 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
+                0x00000c10       0x80 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
  .debug_aranges
-                0x00000c78       0x80 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
+                0x00000c90       0x88 .\ARM_GCC_484\Debug\Super-Eagle.a(CyFlash.o)
  .debug_aranges
-                0x00000cf8       0x88 .\ARM_GCC_484\Debug\Super-Eagle.a(CyFlash.o)
+                0x00000d18       0x78 .\ARM_GCC_484\Debug\Super-Eagle.a(CySpc.o)
  .debug_aranges
-                0x00000d80       0x78 .\ARM_GCC_484\Debug\Super-Eagle.a(CySpc.o)
- .debug_aranges
-                0x00000df8       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(cyutils.o)
+                0x00000d90       0x20 .\ARM_GCC_484\Debug\Super-Eagle.a(cyutils.o)
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x54d1
+.debug_info     0x00000000     0x5827
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0x256 .\ARM_GCC_484\Debug\main.o
- .debug_info    0x00000256      0x141 .\ARM_GCC_484\Debug\LCD_Bar.o
- .debug_info    0x00000397      0x1be .\ARM_GCC_484\Debug\state_event.o
- .debug_info    0x00000555      0x22f .\ARM_GCC_484\Debug\dash_board.o
- .debug_info    0x00000784      0x139 .\ARM_GCC_484\Debug\cymetadata.o
- .debug_info    0x000008bd      0x323 .\ARM_GCC_484\Debug\Cm3Start.o
- .debug_info    0x00000be0      0x4c1 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
- .debug_info    0x000010a1      0x16e .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_BarGraph.o)
- .debug_info    0x0000120f      0x2ce .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
- .debug_info    0x000014dd       0x87 .\ARM_GCC_484\Debug\Super-Eagle.a(CyBootAsmGnu.o)
- .debug_info    0x00001564      0xd85 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
- .debug_info    0x000022e9      0x536 .\ARM_GCC_484\Debug\Super-Eagle.a(cyPm.o)
- .debug_info    0x0000281f      0x252 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
- .debug_info    0x00002a71      0x234 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
- .debug_info    0x00002ca5      0x132 .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw2.o)
- .debug_info    0x00002dd7      0x234 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
- .debug_info    0x0000300b      0x234 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
- .debug_info    0x0000323f      0x132 .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw1.o)
- .debug_info    0x00003371      0x234 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
- .debug_info    0x000035a5      0x252 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
- .debug_info    0x000037f7      0x47f .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
- .debug_info    0x00003c76       0x92 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_INT.o)
- .debug_info    0x00003d08      0x297 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
- .debug_info    0x00003f9f      0x47f .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
- .debug_info    0x0000441e       0x92 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_INT.o)
- .debug_info    0x000044b0      0x252 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
- .debug_info    0x00004702      0x234 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
- .debug_info    0x00004936      0x297 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
- .debug_info    0x00004bcd      0x3c1 .\ARM_GCC_484\Debug\Super-Eagle.a(CyFlash.o)
- .debug_info    0x00004f8e      0x456 .\ARM_GCC_484\Debug\Super-Eagle.a(CySpc.o)
- .debug_info    0x000053e4       0xed .\ARM_GCC_484\Debug\Super-Eagle.a(cyutils.o)
+ .debug_info    0x00000000      0x25c .\ARM_GCC_484\Debug\main.o
+ .debug_info    0x0000025c      0x173 .\ARM_GCC_484\Debug\LCD_Bar.o
+ .debug_info    0x000003cf      0x1be .\ARM_GCC_484\Debug\state_event.o
+ .debug_info    0x0000058d      0x221 .\ARM_GCC_484\Debug\dash_board.o
+ .debug_info    0x000007ae      0x279 .\ARM_GCC_484\Debug\can_manager.o
+ .debug_info    0x00000a27      0x139 .\ARM_GCC_484\Debug\cymetadata.o
+ .debug_info    0x00000b60      0x323 .\ARM_GCC_484\Debug\Cm3Start.o
+ .debug_info    0x00000e83      0x553 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
+ .debug_info    0x000013d6      0x3c4 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
+ .debug_info    0x0000179a       0x87 .\ARM_GCC_484\Debug\Super-Eagle.a(CyBootAsmGnu.o)
+ .debug_info    0x00001821      0xd85 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
+ .debug_info    0x000025a6      0x536 .\ARM_GCC_484\Debug\Super-Eagle.a(cyPm.o)
+ .debug_info    0x00002adc      0x708 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+ .debug_info    0x000031e4      0x1d7 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_INT.o)
+ .debug_info    0x000033bb      0x398 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_TX_RX_func.o)
+ .debug_info    0x00003753      0x252 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
+ .debug_info    0x000039a5      0x236 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
+ .debug_info    0x00003bdb      0x236 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
+ .debug_info    0x00003e11      0x252 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
+ .debug_info    0x00004063      0x252 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
+ .debug_info    0x000042b5      0x236 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
+ .debug_info    0x000044eb      0x132 .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_OK.o)
+ .debug_info    0x0000461d      0x132 .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_Back.o)
+ .debug_info    0x0000474f      0x132 .\ARM_GCC_484\Debug\Super-Eagle.a(Rotary.o)
+ .debug_info    0x00004881      0x236 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
+ .debug_info    0x00004ab7      0x236 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
+ .debug_info    0x00004ced      0x236 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
+ .debug_info    0x00004f23      0x3c1 .\ARM_GCC_484\Debug\Super-Eagle.a(CyFlash.o)
+ .debug_info    0x000052e4      0x456 .\ARM_GCC_484\Debug\Super-Eagle.a(CySpc.o)
+ .debug_info    0x0000573a       0xed .\ARM_GCC_484\Debug\Super-Eagle.a(cyutils.o)
 
-.debug_abbrev   0x00000000     0x200c
+.debug_abbrev   0x00000000     0x20bd
  *(.debug_abbrev)
- .debug_abbrev  0x00000000       0xdf .\ARM_GCC_484\Debug\main.o
- .debug_abbrev  0x000000df       0xac .\ARM_GCC_484\Debug\LCD_Bar.o
- .debug_abbrev  0x0000018b       0x93 .\ARM_GCC_484\Debug\state_event.o
- .debug_abbrev  0x0000021e       0xc8 .\ARM_GCC_484\Debug\dash_board.o
- .debug_abbrev  0x000002e6       0x5d .\ARM_GCC_484\Debug\cymetadata.o
- .debug_abbrev  0x00000343      0x1c5 .\ARM_GCC_484\Debug\Cm3Start.o
- .debug_abbrev  0x00000508      0x1a8 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
- .debug_abbrev  0x000006b0       0xb1 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_BarGraph.o)
- .debug_abbrev  0x00000761      0x13e .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
- .debug_abbrev  0x0000089f       0x14 .\ARM_GCC_484\Debug\Super-Eagle.a(CyBootAsmGnu.o)
- .debug_abbrev  0x000008b3      0x217 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
- .debug_abbrev  0x00000aca      0x16e .\ARM_GCC_484\Debug\Super-Eagle.a(cyPm.o)
- .debug_abbrev  0x00000c38      0x142 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
- .debug_abbrev  0x00000d7a      0x12b .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
- .debug_abbrev  0x00000ea5       0x9d .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw2.o)
- .debug_abbrev  0x00000f42      0x12b .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
- .debug_abbrev  0x0000106d      0x12b .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
- .debug_abbrev  0x00001198       0x9d .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw1.o)
- .debug_abbrev  0x00001235      0x12b .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
- .debug_abbrev  0x00001360      0x142 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
- .debug_abbrev  0x000014a2      0x180 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
- .debug_abbrev  0x00001622       0x42 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_INT.o)
- .debug_abbrev  0x00001664      0x12a .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
- .debug_abbrev  0x0000178e      0x180 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
- .debug_abbrev  0x0000190e       0x42 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_INT.o)
- .debug_abbrev  0x00001950      0x142 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
- .debug_abbrev  0x00001a92      0x12b .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
- .debug_abbrev  0x00001bbd      0x12a .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
- .debug_abbrev  0x00001ce7      0x12d .\ARM_GCC_484\Debug\Super-Eagle.a(CyFlash.o)
- .debug_abbrev  0x00001e14      0x179 .\ARM_GCC_484\Debug\Super-Eagle.a(CySpc.o)
- .debug_abbrev  0x00001f8d       0x7f .\ARM_GCC_484\Debug\Super-Eagle.a(cyutils.o)
+ .debug_abbrev  0x00000000       0xe1 .\ARM_GCC_484\Debug\main.o
+ .debug_abbrev  0x000000e1       0xd6 .\ARM_GCC_484\Debug\LCD_Bar.o
+ .debug_abbrev  0x000001b7       0x93 .\ARM_GCC_484\Debug\state_event.o
+ .debug_abbrev  0x0000024a       0xcf .\ARM_GCC_484\Debug\dash_board.o
+ .debug_abbrev  0x00000319       0xf4 .\ARM_GCC_484\Debug\can_manager.o
+ .debug_abbrev  0x0000040d       0x5d .\ARM_GCC_484\Debug\cymetadata.o
+ .debug_abbrev  0x0000046a      0x1c5 .\ARM_GCC_484\Debug\Cm3Start.o
+ .debug_abbrev  0x0000062f      0x1aa .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
+ .debug_abbrev  0x000007d9      0x12d .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
+ .debug_abbrev  0x00000906       0x14 .\ARM_GCC_484\Debug\Super-Eagle.a(CyBootAsmGnu.o)
+ .debug_abbrev  0x0000091a      0x217 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
+ .debug_abbrev  0x00000b31      0x16e .\ARM_GCC_484\Debug\Super-Eagle.a(cyPm.o)
+ .debug_abbrev  0x00000c9f      0x153 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+ .debug_abbrev  0x00000df2       0xc9 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_INT.o)
+ .debug_abbrev  0x00000ebb      0x13c .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_TX_RX_func.o)
+ .debug_abbrev  0x00000ff7      0x142 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
+ .debug_abbrev  0x00001139      0x156 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
+ .debug_abbrev  0x0000128f      0x156 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
+ .debug_abbrev  0x000013e5      0x142 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
+ .debug_abbrev  0x00001527      0x142 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
+ .debug_abbrev  0x00001669      0x156 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
+ .debug_abbrev  0x000017bf       0x9d .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_OK.o)
+ .debug_abbrev  0x0000185c       0x9d .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_Back.o)
+ .debug_abbrev  0x000018f9       0x9d .\ARM_GCC_484\Debug\Super-Eagle.a(Rotary.o)
+ .debug_abbrev  0x00001996      0x156 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
+ .debug_abbrev  0x00001aec      0x156 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
+ .debug_abbrev  0x00001c42      0x156 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
+ .debug_abbrev  0x00001d98      0x12d .\ARM_GCC_484\Debug\Super-Eagle.a(CyFlash.o)
+ .debug_abbrev  0x00001ec5      0x179 .\ARM_GCC_484\Debug\Super-Eagle.a(CySpc.o)
+ .debug_abbrev  0x0000203e       0x7f .\ARM_GCC_484\Debug\Super-Eagle.a(cyutils.o)
 
-.debug_line     0x00000000     0x3470
+.debug_line     0x00000000     0x3327
  *(.debug_line)
- .debug_line    0x00000000      0x2d7 .\ARM_GCC_484\Debug\main.o
- .debug_line    0x000002d7      0x175 .\ARM_GCC_484\Debug\LCD_Bar.o
- .debug_line    0x0000044c      0x223 .\ARM_GCC_484\Debug\state_event.o
- .debug_line    0x0000066f      0x1fb .\ARM_GCC_484\Debug\dash_board.o
- .debug_line    0x0000086a       0x53 .\ARM_GCC_484\Debug\cymetadata.o
- .debug_line    0x000008bd      0x1d0 .\ARM_GCC_484\Debug\Cm3Start.o
- .debug_line    0x00000a8d      0x20b .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
- .debug_line    0x00000c98       0xb9 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_BarGraph.o)
- .debug_line    0x00000d51      0x190 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
- .debug_line    0x00000ee1       0x7f .\ARM_GCC_484\Debug\Super-Eagle.a(CyBootAsmGnu.o)
- .debug_line    0x00000f60      0x839 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
- .debug_line    0x00001799      0x366 .\ARM_GCC_484\Debug\Super-Eagle.a(cyPm.o)
- .debug_line    0x00001aff      0x178 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
- .debug_line    0x00001c77      0x142 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
- .debug_line    0x00001db9       0xad .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw2.o)
- .debug_line    0x00001e66      0x152 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
- .debug_line    0x00001fb8      0x152 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
- .debug_line    0x0000210a       0xad .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw1.o)
- .debug_line    0x000021b7      0x152 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
- .debug_line    0x00002309      0x178 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
- .debug_line    0x00002481      0x20b .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
- .debug_line    0x0000268c       0x5e .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_INT.o)
- .debug_line    0x000026ea      0x1d0 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
- .debug_line    0x000028ba      0x208 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
- .debug_line    0x00002ac2       0x5b .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_INT.o)
- .debug_line    0x00002b1d      0x179 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
- .debug_line    0x00002c96      0x153 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
- .debug_line    0x00002de9      0x1cd .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
- .debug_line    0x00002fb6      0x22a .\ARM_GCC_484\Debug\Super-Eagle.a(CyFlash.o)
- .debug_line    0x000031e0      0x22c .\ARM_GCC_484\Debug\Super-Eagle.a(CySpc.o)
- .debug_line    0x0000340c       0x64 .\ARM_GCC_484\Debug\Super-Eagle.a(cyutils.o)
+ .debug_line    0x00000000      0x22c .\ARM_GCC_484\Debug\main.o
+ .debug_line    0x0000022c      0x167 .\ARM_GCC_484\Debug\LCD_Bar.o
+ .debug_line    0x00000393      0x215 .\ARM_GCC_484\Debug\state_event.o
+ .debug_line    0x000005a8      0x1cd .\ARM_GCC_484\Debug\dash_board.o
+ .debug_line    0x00000775      0x1a8 .\ARM_GCC_484\Debug\can_manager.o
+ .debug_line    0x0000091d       0x53 .\ARM_GCC_484\Debug\cymetadata.o
+ .debug_line    0x00000970      0x1c9 .\ARM_GCC_484\Debug\Cm3Start.o
+ .debug_line    0x00000b39      0x217 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
+ .debug_line    0x00000d50      0x1ef .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
+ .debug_line    0x00000f3f       0x7f .\ARM_GCC_484\Debug\Super-Eagle.a(CyBootAsmGnu.o)
+ .debug_line    0x00000fbe      0x839 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
+ .debug_line    0x000017f7      0x366 .\ARM_GCC_484\Debug\Super-Eagle.a(cyPm.o)
+ .debug_line    0x00001b5d      0x2d8 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+ .debug_line    0x00001e35       0xa2 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_INT.o)
+ .debug_line    0x00001ed7      0x150 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_TX_RX_func.o)
+ .debug_line    0x00002027      0x178 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
+ .debug_line    0x0000219f      0x142 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
+ .debug_line    0x000022e1      0x152 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
+ .debug_line    0x00002433      0x178 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
+ .debug_line    0x000025ab      0x179 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
+ .debug_line    0x00002724      0x153 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
+ .debug_line    0x00002877       0xa9 .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_OK.o)
+ .debug_line    0x00002920       0xab .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_Back.o)
+ .debug_line    0x000029cb       0xa9 .\ARM_GCC_484\Debug\Super-Eagle.a(Rotary.o)
+ .debug_line    0x00002a74      0x153 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
+ .debug_line    0x00002bc7      0x151 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
+ .debug_line    0x00002d18      0x155 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
+ .debug_line    0x00002e6d      0x22a .\ARM_GCC_484\Debug\Super-Eagle.a(CyFlash.o)
+ .debug_line    0x00003097      0x22c .\ARM_GCC_484\Debug\Super-Eagle.a(CySpc.o)
+ .debug_line    0x000032c3       0x64 .\ARM_GCC_484\Debug\Super-Eagle.a(cyutils.o)
 
-.debug_frame    0x00000000     0x2c14
+.debug_frame    0x00000000     0x29f0
  *(.debug_frame)
- .debug_frame   0x00000000       0xd4 .\ARM_GCC_484\Debug\main.o
- .debug_frame   0x000000d4       0x30 .\ARM_GCC_484\Debug\LCD_Bar.o
- .debug_frame   0x00000104      0x144 .\ARM_GCC_484\Debug\state_event.o
- .debug_frame   0x00000248       0x88 .\ARM_GCC_484\Debug\dash_board.o
- .debug_frame   0x000002d0       0xc4 .\ARM_GCC_484\Debug\Cm3Start.o
- .debug_frame   0x00000394      0x120 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
- .debug_frame   0x000004b4       0x50 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_BarGraph.o)
- .debug_frame   0x00000504      0x180 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
- .debug_frame   0x00000684      0x924 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
- .debug_frame   0x00000fa8      0x1d0 .\ARM_GCC_484\Debug\Super-Eagle.a(cyPm.o)
- .debug_frame   0x00001178      0x1c0 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
- .debug_frame   0x00001338      0x180 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
- .debug_frame   0x000014b8       0x9c .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw2.o)
- .debug_frame   0x00001554      0x180 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
- .debug_frame   0x000016d4      0x180 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
- .debug_frame   0x00001854       0x9c .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw1.o)
- .debug_frame   0x000018f0      0x180 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
- .debug_frame   0x00001a70      0x1c0 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
- .debug_frame   0x00001c30      0x230 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
- .debug_frame   0x00001e60       0x2c .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_INT.o)
- .debug_frame   0x00001e8c      0x184 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
- .debug_frame   0x00002010      0x230 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
- .debug_frame   0x00002240       0x2c .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_INT.o)
- .debug_frame   0x0000226c      0x1c0 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
- .debug_frame   0x0000242c      0x180 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
- .debug_frame   0x000025ac      0x184 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
- .debug_frame   0x00002730      0x1c8 .\ARM_GCC_484\Debug\Super-Eagle.a(CyFlash.o)
- .debug_frame   0x000028f8      0x174 .\ARM_GCC_484\Debug\Super-Eagle.a(CySpc.o)
- .debug_frame   0x00002a6c       0x2c .\ARM_GCC_484\Debug\Super-Eagle.a(cyutils.o)
- .debug_frame   0x00002a98       0x58 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(bpabi.o)
- .debug_frame   0x00002af0       0x34 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_divdi3.o)
- .debug_frame   0x00002b24       0x34 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_udivdi3.o)
- .debug_frame   0x00002b58       0x20 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-errno.o)
- .debug_frame   0x00002b78       0x28 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-exit.o)
- .debug_frame   0x00002ba0       0x2c c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-init.o)
- .debug_frame   0x00002bcc       0x28 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memcpy-stub.o)
- .debug_frame   0x00002bf4       0x20 c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memset.o)
+ .debug_frame   0x00000000       0xf0 .\ARM_GCC_484\Debug\main.o
+ .debug_frame   0x000000f0       0x30 .\ARM_GCC_484\Debug\LCD_Bar.o
+ .debug_frame   0x00000120      0x144 .\ARM_GCC_484\Debug\state_event.o
+ .debug_frame   0x00000264       0x88 .\ARM_GCC_484\Debug\dash_board.o
+ .debug_frame   0x000002ec       0x4c .\ARM_GCC_484\Debug\can_manager.o
+ .debug_frame   0x00000338       0xc4 .\ARM_GCC_484\Debug\Cm3Start.o
+ .debug_frame   0x000003fc      0x120 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
+ .debug_frame   0x0000051c      0x200 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
+ .debug_frame   0x0000071c      0x924 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
+ .debug_frame   0x00001040      0x1d0 .\ARM_GCC_484\Debug\Super-Eagle.a(cyPm.o)
+ .debug_frame   0x00001210      0x26c .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+ .debug_frame   0x0000147c       0x4c .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_INT.o)
+ .debug_frame   0x000014c8       0xf0 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_TX_RX_func.o)
+ .debug_frame   0x000015b8      0x1c0 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
+ .debug_frame   0x00001778      0x180 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
+ .debug_frame   0x000018f8      0x180 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
+ .debug_frame   0x00001a78      0x1c0 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
+ .debug_frame   0x00001c38      0x1c0 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
+ .debug_frame   0x00001df8      0x180 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
+ .debug_frame   0x00001f78       0x9c .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_OK.o)
+ .debug_frame   0x00002014       0x9c .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_Back.o)
+ .debug_frame   0x000020b0       0x9c .\ARM_GCC_484\Debug\Super-Eagle.a(Rotary.o)
+ .debug_frame   0x0000214c      0x180 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
+ .debug_frame   0x000022cc      0x180 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
+ .debug_frame   0x0000244c      0x180 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
+ .debug_frame   0x000025cc      0x1c8 .\ARM_GCC_484\Debug\Super-Eagle.a(CyFlash.o)
+ .debug_frame   0x00002794      0x174 .\ARM_GCC_484\Debug\Super-Eagle.a(CySpc.o)
+ .debug_frame   0x00002908       0x2c .\ARM_GCC_484\Debug\Super-Eagle.a(cyutils.o)
+ .debug_frame   0x00002934       0x20 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-errno.o)
+ .debug_frame   0x00002954       0x28 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-exit.o)
+ .debug_frame   0x0000297c       0x2c d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-init.o)
+ .debug_frame   0x000029a8       0x28 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memcpy-stub.o)
+ .debug_frame   0x000029d0       0x20 d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memset.o)
 
-.debug_str      0x00000000     0x2be1
+.debug_str      0x00000000     0x28f3
  *(.debug_str)
- .debug_str     0x00000000      0x275 .\ARM_GCC_484\Debug\main.o
-                                0x2d6 (size before relaxing)
- .debug_str     0x00000275       0x38 .\ARM_GCC_484\Debug\LCD_Bar.o
-                                0x1bb (size before relaxing)
- .debug_str     0x000002ad       0xcf .\ARM_GCC_484\Debug\state_event.o
+ .debug_str     0x00000000      0x234 .\ARM_GCC_484\Debug\main.o
+                                0x286 (size before relaxing)
+ .debug_str     0x00000234       0x4d .\ARM_GCC_484\Debug\LCD_Bar.o
+                                0x1d0 (size before relaxing)
+ .debug_str     0x00000281      0x145 .\ARM_GCC_484\Debug\state_event.o
                                 0x2b6 (size before relaxing)
- .debug_str     0x0000037c       0x96 .\ARM_GCC_484\Debug\dash_board.o
-                                0x2ef (size before relaxing)
- .debug_str     0x00000412       0x77 .\ARM_GCC_484\Debug\cymetadata.o
+ .debug_str     0x000003c6       0xa4 .\ARM_GCC_484\Debug\dash_board.o
+                                0x300 (size before relaxing)
+ .debug_str     0x0000046a       0xa2 .\ARM_GCC_484\Debug\can_manager.o
+                                0x26f (size before relaxing)
+ .debug_str     0x0000050c       0x77 .\ARM_GCC_484\Debug\cymetadata.o
                                 0x1cf (size before relaxing)
- .debug_str     0x00000489      0x139 .\ARM_GCC_484\Debug\Cm3Start.o
+ .debug_str     0x00000583      0x12d .\ARM_GCC_484\Debug\Cm3Start.o
                                 0x2b0 (size before relaxing)
- .debug_str     0x000005c2      0x1eb .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
-                                0x386 (size before relaxing)
- .debug_str     0x000007ad       0xaa .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_BarGraph.o)
-                                0x208 (size before relaxing)
- .debug_str     0x00000857      0x104 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
-                                0x295 (size before relaxing)
- .debug_str     0x0000095b      0x79e .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
+ .debug_str     0x000006b0      0x207 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
+                                0x3a2 (size before relaxing)
+ .debug_str     0x000008b7      0x171 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
+                                0x2f2 (size before relaxing)
+ .debug_str     0x00000a28      0x792 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
                                 0x970 (size before relaxing)
- .debug_str     0x000010f9      0x371 .\ARM_GCC_484\Debug\Super-Eagle.a(cyPm.o)
+ .debug_str     0x000011ba      0x371 .\ARM_GCC_484\Debug\Super-Eagle.a(cyPm.o)
                                 0x500 (size before relaxing)
- .debug_str     0x0000146a      0x1c5 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
+ .debug_str     0x0000152b      0x2fd .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+                                0x484 (size before relaxing)
+ .debug_str     0x00001828       0x3e .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_INT.o)
+                                0x20d (size before relaxing)
+ .debug_str     0x00001866       0xf3 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_TX_RX_func.o)
+                                0x315 (size before relaxing)
+ .debug_str     0x00001959      0x1c5 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
                                 0x32f (size before relaxing)
- .debug_str     0x0000162f      0x104 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
+ .debug_str     0x00001b1e      0x104 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
                                 0x29b (size before relaxing)
- .debug_str     0x00001733       0x9b .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw2.o)
-                                0x1fa (size before relaxing)
- .debug_str     0x000017ce      0x104 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
+ .debug_str     0x00001c22      0x104 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
                                 0x29b (size before relaxing)
- .debug_str     0x000018d2      0x104 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
-                                0x29b (size before relaxing)
- .debug_str     0x000019d6       0x90 .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw1.o)
-                                0x1fa (size before relaxing)
- .debug_str     0x00001a66      0x104 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
-                                0x29b (size before relaxing)
- .debug_str     0x00001b6a      0x1a0 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
+ .debug_str     0x00001d26      0x1a0 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
                                 0x32f (size before relaxing)
- .debug_str     0x00001d0a      0x2b4 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
-                                0x468 (size before relaxing)
- .debug_str     0x00001fbe       0x3d .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_INT.o)
-                                0x186 (size before relaxing)
- .debug_str     0x00001ffb      0x255 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
-                                0x3c4 (size before relaxing)
- .debug_str     0x00002250      0x204 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
-                                0x420 (size before relaxing)
- .debug_str     0x00002454       0x37 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_INT.o)
-                                0x180 (size before relaxing)
- .debug_str     0x0000248b      0x1b2 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
+ .debug_str     0x00001ec6      0x1b2 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
                                 0x341 (size before relaxing)
- .debug_str     0x0000263d      0x112 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
+ .debug_str     0x00002078      0x112 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
                                 0x2a9 (size before relaxing)
- .debug_str     0x0000274f      0x1d7 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
-                                0x39a (size before relaxing)
- .debug_str     0x00002926      0x15f .\ARM_GCC_484\Debug\Super-Eagle.a(CyFlash.o)
+ .debug_str     0x0000218a       0x83 .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_OK.o)
+                                0x1e2 (size before relaxing)
+ .debug_str     0x0000220d       0x84 .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_Back.o)
+                                0x1ee (size before relaxing)
+ .debug_str     0x00002291       0x78 .\ARM_GCC_484\Debug\Super-Eagle.a(Rotary.o)
+                                0x1e2 (size before relaxing)
+ .debug_str     0x00002309      0x112 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
+                                0x2a9 (size before relaxing)
+ .debug_str     0x0000241b       0xf6 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
+                                0x28d (size before relaxing)
+ .debug_str     0x00002511      0x12e .\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
+                                0x2c5 (size before relaxing)
+ .debug_str     0x0000263f      0x158 .\ARM_GCC_484\Debug\Super-Eagle.a(CyFlash.o)
                                 0x2e7 (size before relaxing)
- .debug_str     0x00002a85      0x121 .\ARM_GCC_484\Debug\Super-Eagle.a(CySpc.o)
+ .debug_str     0x00002797      0x121 .\ARM_GCC_484\Debug\Super-Eagle.a(CySpc.o)
                                 0x2cc (size before relaxing)
- .debug_str     0x00002ba6       0x3b .\ARM_GCC_484\Debug\Super-Eagle.a(cyutils.o)
+ .debug_str     0x000028b8       0x3b .\ARM_GCC_484\Debug\Super-Eagle.a(cyutils.o)
                                 0x197 (size before relaxing)
 
 .debug_loc
@@ -1672,37 +1581,36 @@ END GROUP
 .debug_macinfo
  *(.debug_macinfo)
 
-.debug_ranges   0x00000000      0xc10
+.debug_ranges   0x00000000      0xbb8
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x40 .\ARM_GCC_484\Debug\main.o
- .debug_ranges  0x00000040       0x10 .\ARM_GCC_484\Debug\LCD_Bar.o
- .debug_ranges  0x00000050       0x60 .\ARM_GCC_484\Debug\state_event.o
- .debug_ranges  0x000000b0       0x28 .\ARM_GCC_484\Debug\dash_board.o
- .debug_ranges  0x000000d8       0x38 .\ARM_GCC_484\Debug\Cm3Start.o
- .debug_ranges  0x00000110       0x50 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
- .debug_ranges  0x00000160       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_BarGraph.o)
- .debug_ranges  0x00000178       0x68 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
- .debug_ranges  0x000001e0      0x280 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
- .debug_ranges  0x00000460       0x80 .\ARM_GCC_484\Debug\Super-Eagle.a(cyPm.o)
- .debug_ranges  0x000004e0       0x80 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
- .debug_ranges  0x00000560       0x70 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
- .debug_ranges  0x000005d0       0x30 .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw2.o)
- .debug_ranges  0x00000600       0x70 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
- .debug_ranges  0x00000670       0x70 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
- .debug_ranges  0x000006e0       0x30 .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw1.o)
- .debug_ranges  0x00000710       0x70 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
- .debug_ranges  0x00000780       0x80 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
- .debug_ranges  0x00000800       0x98 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
- .debug_ranges  0x00000898       0x10 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_INT.o)
- .debug_ranges  0x000008a8       0x70 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
- .debug_ranges  0x00000918       0x98 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
- .debug_ranges  0x000009b0       0x10 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_INT.o)
- .debug_ranges  0x000009c0       0x80 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
- .debug_ranges  0x00000a40       0x70 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
- .debug_ranges  0x00000ab0       0x70 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
- .debug_ranges  0x00000b20       0x78 .\ARM_GCC_484\Debug\Super-Eagle.a(CyFlash.o)
- .debug_ranges  0x00000b98       0x68 .\ARM_GCC_484\Debug\Super-Eagle.a(CySpc.o)
- .debug_ranges  0x00000c00       0x10 .\ARM_GCC_484\Debug\Super-Eagle.a(cyutils.o)
+ .debug_ranges  0x00000000       0x48 .\ARM_GCC_484\Debug\main.o
+ .debug_ranges  0x00000048       0x10 .\ARM_GCC_484\Debug\LCD_Bar.o
+ .debug_ranges  0x00000058       0x60 .\ARM_GCC_484\Debug\state_event.o
+ .debug_ranges  0x000000b8       0x28 .\ARM_GCC_484\Debug\dash_board.o
+ .debug_ranges  0x000000e0       0x18 .\ARM_GCC_484\Debug\can_manager.o
+ .debug_ranges  0x000000f8       0x38 .\ARM_GCC_484\Debug\Cm3Start.o
+ .debug_ranges  0x00000130       0x50 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
+ .debug_ranges  0x00000180       0x88 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
+ .debug_ranges  0x00000208      0x280 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
+ .debug_ranges  0x00000488       0x80 .\ARM_GCC_484\Debug\Super-Eagle.a(cyPm.o)
+ .debug_ranges  0x00000508       0xb0 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+ .debug_ranges  0x000005b8       0x18 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_INT.o)
+ .debug_ranges  0x000005d0       0x48 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_TX_RX_func.o)
+ .debug_ranges  0x00000618       0x80 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
+ .debug_ranges  0x00000698       0x70 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
+ .debug_ranges  0x00000708       0x70 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
+ .debug_ranges  0x00000778       0x80 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
+ .debug_ranges  0x000007f8       0x80 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
+ .debug_ranges  0x00000878       0x70 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
+ .debug_ranges  0x000008e8       0x30 .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_OK.o)
+ .debug_ranges  0x00000918       0x30 .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_Back.o)
+ .debug_ranges  0x00000948       0x30 .\ARM_GCC_484\Debug\Super-Eagle.a(Rotary.o)
+ .debug_ranges  0x00000978       0x70 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
+ .debug_ranges  0x000009e8       0x70 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
+ .debug_ranges  0x00000a58       0x70 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
+ .debug_ranges  0x00000ac8       0x78 .\ARM_GCC_484\Debug\Super-Eagle.a(CyFlash.o)
+ .debug_ranges  0x00000b40       0x68 .\ARM_GCC_484\Debug\Super-Eagle.a(CySpc.o)
+ .debug_ranges  0x00000ba8       0x10 .\ARM_GCC_484\Debug\Super-Eagle.a(cyutils.o)
 
 .comment        0x00000000       0x70
  .comment       0x00000000       0x70 .\ARM_GCC_484\Debug\main.o
@@ -1710,29 +1618,28 @@ END GROUP
  .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\LCD_Bar.o
  .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\state_event.o
  .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\dash_board.o
+ .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\can_manager.o
  .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\cymetadata.o
  .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Cm3Start.o
  .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
- .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_BarGraph.o)
  .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
  .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(CyLib.o)
  .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(cyPm.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_INT.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_TX_RX_func.o)
  .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
  .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
- .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw2.o)
- .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
- .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
- .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw1.o)
  .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
  .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
- .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
- .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_INT.o)
- .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
- .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
- .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_INT.o)
  .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
  .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
- .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_OK.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_Back.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(Rotary.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
  .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(CyFlash.o)
  .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(CySpc.o)
  .comment       0x00000000       0x71 .\ARM_GCC_484\Debug\Super-Eagle.a(cyutils.o)
@@ -1756,11 +1663,11 @@ END GROUP
                 0x00000000       0x29
  *(.ARM.attributes)
  .ARM.attributes
-                0x00000000       0x1d c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crti.o
+                0x00000000       0x1d d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crti.o
  .ARM.attributes
-                0x0000001d       0x2d c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
+                0x0000001d       0x2d d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtbegin.o
  .ARM.attributes
-                0x0000004a       0x1b c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m/crt0.o
+                0x0000004a       0x1b d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m/crt0.o
  .ARM.attributes
                 0x00000065       0x33 .\ARM_GCC_484\Debug\main.o
  .ARM.attributes
@@ -1770,13 +1677,13 @@ END GROUP
  .ARM.attributes
                 0x000000fe       0x33 .\ARM_GCC_484\Debug\dash_board.o
  .ARM.attributes
-                0x00000131       0x33 .\ARM_GCC_484\Debug\cymetadata.o
+                0x00000131       0x33 .\ARM_GCC_484\Debug\can_manager.o
  .ARM.attributes
-                0x00000164       0x33 .\ARM_GCC_484\Debug\Cm3Start.o
+                0x00000164       0x33 .\ARM_GCC_484\Debug\cymetadata.o
  .ARM.attributes
-                0x00000197       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
+                0x00000197       0x33 .\ARM_GCC_484\Debug\Cm3Start.o
  .ARM.attributes
-                0x000001ca       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_BarGraph.o)
+                0x000001ca       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(cyfitter_cfg.o)
  .ARM.attributes
                 0x000001fd       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD.o)
  .ARM.attributes
@@ -1786,73 +1693,57 @@ END GROUP
  .ARM.attributes
                 0x00000284       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(cyPm.o)
  .ARM.attributes
-                0x000002b7       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
+                0x000002b7       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1.o)
  .ARM.attributes
-                0x000002ea       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
+                0x000002ea       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_INT.o)
  .ARM.attributes
-                0x0000031d       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw2.o)
+                0x0000031d       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(CAN_1_TX_RX_func.o)
  .ARM.attributes
-                0x00000350       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw2.o)
+                0x00000350       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_Timer.o)
  .ARM.attributes
-                0x00000383       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_sw1.o)
+                0x00000383       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(FSM_ISR.o)
  .ARM.attributes
-                0x000003b6       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(button_sw1.o)
+                0x000003b6       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
  .ARM.attributes
-                0x000003e9       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_ISR.o)
+                0x000003e9       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
  .ARM.attributes
-                0x0000041c       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(LCD_Timer.o)
+                0x0000041c       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
  .ARM.attributes
-                0x0000044f       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC.o)
+                0x0000044f       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
  .ARM.attributes
-                0x00000482       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_INT.o)
+                0x00000482       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_OK.o)
  .ARM.attributes
-                0x000004b5       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(Throttle_ADC_theACLK.o)
+                0x000004b5       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(BTN_Back.o)
  .ARM.attributes
-                0x000004e8       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC.o)
+                0x000004e8       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(Rotary.o)
  .ARM.attributes
-                0x0000051b       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_INT.o)
+                0x0000051b       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_back.o)
  .ARM.attributes
-                0x0000054e       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_Timer.o)
+                0x0000054e       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_OK.o)
  .ARM.attributes
-                0x00000581       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(Fake_ISR.o)
+                0x00000581       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(isr_rotary.o)
  .ARM.attributes
-                0x000005b4       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(Brake_ADC_theACLK.o)
+                0x000005b4       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(CyFlash.o)
  .ARM.attributes
-                0x000005e7       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(CyFlash.o)
+                0x000005e7       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(CySpc.o)
  .ARM.attributes
-                0x0000061a       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(CySpc.o)
+                0x0000061a       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(cyutils.o)
  .ARM.attributes
-                0x0000064d       0x33 .\ARM_GCC_484\Debug\Super-Eagle.a(cyutils.o)
+                0x0000064d       0x2d d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-errno.o)
  .ARM.attributes
-                0x00000680       0x1d c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_addsubsf3.o)
+                0x0000067a       0x2d d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-exit.o)
  .ARM.attributes
-                0x0000069d       0x1d c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_arm_muldivsf3.o)
+                0x000006a7       0x2d d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-impure.o)
  .ARM.attributes
-                0x000006ba       0x1d c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_aeabi_ldivmod.o)
+                0x000006d4       0x2d d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-init.o)
  .ARM.attributes
-                0x000006d7       0x2d c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(bpabi.o)
+                0x00000701       0x2d d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memcpy-stub.o)
  .ARM.attributes
-                0x00000704       0x1d c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_dvmd_tls.o)
+                0x0000072e       0x2d d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memset.o)
  .ARM.attributes
-                0x00000721       0x2d c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_divdi3.o)
+                0x0000075b       0x2d d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtend.o
  .ARM.attributes
-                0x0000074e       0x2d c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m\libgcc.a(_udivdi3.o)
- .ARM.attributes
-                0x0000077b       0x2d c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-errno.o)
- .ARM.attributes
-                0x000007a8       0x2d c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-exit.o)
- .ARM.attributes
-                0x000007d5       0x2d c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-impure.o)
- .ARM.attributes
-                0x00000802       0x2d c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-init.o)
- .ARM.attributes
-                0x0000082f       0x2d c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memcpy-stub.o)
- .ARM.attributes
-                0x0000085c       0x2d c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7-m\libg_s.a(lib_a-memset.o)
- .ARM.attributes
-                0x00000889       0x2d c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtend.o
- .ARM.attributes
-                0x000008b6       0x1d c:/program files (x86)/cypress/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtn.o
+                0x00000788       0x1d d:/software/psoccreator/psoc creator/3.1/psoc creator/import/gnu_cs/arm/4.8.4/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7-m/crtn.o
 
 /DISCARD/
  *(.note.GNU-stack)

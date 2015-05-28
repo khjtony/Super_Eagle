@@ -1,0 +1,1100 @@
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccTjcCHz.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"can_manager.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.comm	can_buffer,8,4
+  19              		.global	info_battery_voltage
+  20              		.bss
+  21              		.align	1
+  22              		.type	info_battery_voltage, %object
+  23              		.size	info_battery_voltage, 2
+  24              	info_battery_voltage:
+  25 0000 0000     		.space	2
+  26              		.global	info_battery_current
+  27              		.align	1
+  28              		.type	info_battery_current, %object
+  29              		.size	info_battery_current, 2
+  30              	info_battery_current:
+  31 0002 0000     		.space	2
+  32              		.global	info_battery_temp
+  33              		.align	1
+  34              		.type	info_battery_temp, %object
+  35              		.size	info_battery_temp, 2
+  36              	info_battery_temp:
+  37 0004 0000     		.space	2
+  38              		.global	info_car_speed
+  39              		.align	1
+  40              		.type	info_car_speed, %object
+  41              		.size	info_car_speed, 2
+  42              	info_car_speed:
+  43 0006 0000     		.space	2
+  44              		.global	info_common_time
+  45              		.align	1
+  46              		.type	info_common_time, %object
+  47              		.size	info_common_time, 2
+  48              	info_common_time:
+  49 0008 0000     		.space	2
+  50              		.section	.text.can_test_send,"ax",%progbits
+  51              		.align	2
+  52              		.global	can_test_send
+  53              		.thumb
+  54              		.thumb_func
+  55              		.type	can_test_send, %function
+  56              	can_test_send:
+  57              	.LFB56:
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccTjcCHz.s 			page 2
+
+
+  58              		.file 1 ".\\can_manager.c"
+   1:.\can_manager.c **** #include "can_manager.h"
+   2:.\can_manager.c **** 
+   3:.\can_manager.c **** volatile uint8_t can_buffer[8];
+   4:.\can_manager.c ****     uint16_t info_battery_voltage = 0;
+   5:.\can_manager.c ****     uint16_t info_battery_current = 0;
+   6:.\can_manager.c ****     uint16_t info_battery_temp = 0;
+   7:.\can_manager.c ****     uint16_t info_car_speed = 0;
+   8:.\can_manager.c ****     uint16_t info_common_time = 0;
+   9:.\can_manager.c **** 
+  10:.\can_manager.c **** /* Data Frame format for Voltage and Temperature
+  11:.\can_manager.c **** The datatype consists of three bytes:
+  12:.\can_manager.c **** 1. Identifying Number (eg cell #1)
+  13:.\can_manager.c **** 2. upper byte of data
+  14:.\can_manager.c **** 3. lower byte of data
+  15:.\can_manager.c **** */
+  16:.\can_manager.c **** 
+  17:.\can_manager.c **** 
+  18:.\can_manager.c **** 
+  19:.\can_manager.c ****                     
+  20:.\can_manager.c **** 
+  21:.\can_manager.c ****                     
+  22:.\can_manager.c **** uint8_t can_test_send()
+  23:.\can_manager.c **** {
+  59              		.loc 1 23 0
+  60              		.cfi_startproc
+  61              		@ args = 0, pretend = 0, frame = 40
+  62              		@ frame_needed = 1, uses_anonymous_args = 0
+  63 0000 80B5     		push	{r7, lr}
+  64              		.cfi_def_cfa_offset 8
+  65              		.cfi_offset 7, -8
+  66              		.cfi_offset 14, -4
+  67 0002 8AB0     		sub	sp, sp, #40
+  68              		.cfi_def_cfa_offset 48
+  69 0004 00AF     		add	r7, sp, #0
+  70              		.cfi_def_cfa_register 7
+  24:.\can_manager.c ****     uint16_t ID=0x205;
+  71              		.loc 1 24 0
+  72 0006 40F20523 		movw	r3, #517
+  73 000a BB84     		strh	r3, [r7, #36]	@ movhi
+  25:.\can_manager.c ****     uint8_t msg[8];
+  26:.\can_manager.c ****     //msg[0~3] is left
+  27:.\can_manager.c ****     msg[0]=0x0f;
+  74              		.loc 1 27 0
+  75 000c 0F23     		movs	r3, #15
+  76 000e 3B76     		strb	r3, [r7, #24]
+  28:.\can_manager.c ****     msg[1]=0xf0;
+  77              		.loc 1 28 0
+  78 0010 F023     		movs	r3, #240
+  79 0012 7B76     		strb	r3, [r7, #25]
+  29:.\can_manager.c ****     msg[2]=0x0f;
+  80              		.loc 1 29 0
+  81 0014 0F23     		movs	r3, #15
+  82 0016 BB76     		strb	r3, [r7, #26]
+  30:.\can_manager.c ****     msg[3]=0xf0;
+  83              		.loc 1 30 0
+  84 0018 F023     		movs	r3, #240
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccTjcCHz.s 			page 3
+
+
+  85 001a FB76     		strb	r3, [r7, #27]
+  31:.\can_manager.c ****     //msg[4~7] is right
+  32:.\can_manager.c ****     msg[4]=0x9a;
+  86              		.loc 1 32 0
+  87 001c 9A23     		movs	r3, #154
+  88 001e 3B77     		strb	r3, [r7, #28]
+  33:.\can_manager.c ****     msg[5]=0xbc;
+  89              		.loc 1 33 0
+  90 0020 BC23     		movs	r3, #188
+  91 0022 7B77     		strb	r3, [r7, #29]
+  34:.\can_manager.c ****     msg[6]=0xde;
+  92              		.loc 1 34 0
+  93 0024 DE23     		movs	r3, #222
+  94 0026 BB77     		strb	r3, [r7, #30]
+  35:.\can_manager.c ****     msg[7]=0xff;
+  95              		.loc 1 35 0
+  96 0028 FF23     		movs	r3, #255
+  97 002a FB77     		strb	r3, [r7, #31]
+  36:.\can_manager.c ****     
+  37:.\can_manager.c ****     
+  38:.\can_manager.c ****     
+  39:.\can_manager.c **** 	uint8_t i, state;
+  40:.\can_manager.c **** 	CAN_1_TX_MSG message;
+  41:.\can_manager.c **** 	CAN_1_DATA_BYTES_MSG payload;
+  42:.\can_manager.c **** 
+  43:.\can_manager.c **** 	message.id = ID; // edit for testing
+  98              		.loc 1 43 0
+  99 002c BB8C     		ldrh	r3, [r7, #36]
+ 100 002e FB60     		str	r3, [r7, #12]
+  44:.\can_manager.c **** 	message.rtr = 0;
+ 101              		.loc 1 44 0
+ 102 0030 0023     		movs	r3, #0
+ 103 0032 3B74     		strb	r3, [r7, #16]
+  45:.\can_manager.c **** 	message.ide = 0;
+ 104              		.loc 1 45 0
+ 105 0034 0023     		movs	r3, #0
+ 106 0036 7B74     		strb	r3, [r7, #17]
+  46:.\can_manager.c **** 	message.dlc = 0x08;
+ 107              		.loc 1 46 0
+ 108 0038 0823     		movs	r3, #8
+ 109 003a BB74     		strb	r3, [r7, #18]
+  47:.\can_manager.c **** 	message.irq = 1;
+ 110              		.loc 1 47 0
+ 111 003c 0123     		movs	r3, #1
+ 112 003e FB74     		strb	r3, [r7, #19]
+  48:.\can_manager.c **** 	message.msg = &payload;
+ 113              		.loc 1 48 0
+ 114 0040 3B1D     		adds	r3, r7, #4
+ 115 0042 7B61     		str	r3, [r7, #20]
+  49:.\can_manager.c **** 
+  50:.\can_manager.c **** 	for(i=0;i<8;i++)
+ 116              		.loc 1 50 0
+ 117 0044 0023     		movs	r3, #0
+ 118 0046 87F82730 		strb	r3, [r7, #39]
+ 119 004a 12E0     		b	.L2
+ 120              	.L3:
+  51:.\can_manager.c **** 		payload.byte[i] = msg[i];
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccTjcCHz.s 			page 4
+
+
+ 121              		.loc 1 51 0 discriminator 2
+ 122 004c 97F82730 		ldrb	r3, [r7, #39]	@ zero_extendqisi2
+ 123 0050 97F82720 		ldrb	r2, [r7, #39]	@ zero_extendqisi2
+ 124 0054 07F12801 		add	r1, r7, #40
+ 125 0058 0A44     		add	r2, r2, r1
+ 126 005a 12F8102C 		ldrb	r2, [r2, #-16]	@ zero_extendqisi2
+ 127 005e 07F12801 		add	r1, r7, #40
+ 128 0062 0B44     		add	r3, r3, r1
+ 129 0064 03F8242C 		strb	r2, [r3, #-36]
+  50:.\can_manager.c **** 	for(i=0;i<8;i++)
+ 130              		.loc 1 50 0 discriminator 2
+ 131 0068 97F82730 		ldrb	r3, [r7, #39]	@ zero_extendqisi2
+ 132 006c 0133     		adds	r3, r3, #1
+ 133 006e 87F82730 		strb	r3, [r7, #39]
+ 134              	.L2:
+  50:.\can_manager.c **** 	for(i=0;i<8;i++)
+ 135              		.loc 1 50 0 is_stmt 0 discriminator 1
+ 136 0072 97F82730 		ldrb	r3, [r7, #39]	@ zero_extendqisi2
+ 137 0076 072B     		cmp	r3, #7
+ 138 0078 E8D9     		bls	.L3
+  52:.\can_manager.c **** 
+  53:.\can_manager.c **** 	state = CAN_1_SendMsg(&message);
+ 139              		.loc 1 53 0 is_stmt 1
+ 140 007a 07F10C03 		add	r3, r7, #12
+ 141 007e 1846     		mov	r0, r3
+ 142 0080 FFF7FEFF 		bl	CAN_1_SendMsg
+ 143 0084 0346     		mov	r3, r0
+ 144 0086 87F82330 		strb	r3, [r7, #35]
+  54:.\can_manager.c **** 
+  55:.\can_manager.c **** /*
+  56:.\can_manager.c **** 	if(state != CYRET_SUCCESS)
+  57:.\can_manager.c **** 	{
+  58:.\can_manager.c **** 		LED_Write(1);
+  59:.\can_manager.c **** 		return CAN_1_FAIL;
+  60:.\can_manager.c **** 	}
+  61:.\can_manager.c **** 
+  62:.\can_manager.c **** 	LED_Write(0);
+  63:.\can_manager.c **** 	return CYRET_SUCCESS;
+  64:.\can_manager.c **** */
+  65:.\can_manager.c **** 	
+  66:.\can_manager.c **** 	return state;
+ 145              		.loc 1 66 0
+ 146 008a 97F82330 		ldrb	r3, [r7, #35]	@ zero_extendqisi2
+  67:.\can_manager.c **** } // can_test_send()
+ 147              		.loc 1 67 0
+ 148 008e 1846     		mov	r0, r3
+ 149 0090 2837     		adds	r7, r7, #40
+ 150 0092 BD46     		mov	sp, r7
+ 151              		@ sp needed
+ 152 0094 80BD     		pop	{r7, pc}
+ 153              		.cfi_endproc
+ 154              	.LFE56:
+ 155              		.size	can_test_send, .-can_test_send
+ 156 0096 00BF     		.section	.text.can_init,"ax",%progbits
+ 157              		.align	2
+ 158              		.global	can_init
+ 159              		.thumb
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccTjcCHz.s 			page 5
+
+
+ 160              		.thumb_func
+ 161              		.type	can_init, %function
+ 162              	can_init:
+ 163              	.LFB57:
+  68:.\can_manager.c **** 
+  69:.\can_manager.c **** 
+  70:.\can_manager.c **** void can_init()
+  71:.\can_manager.c **** {
+ 164              		.loc 1 71 0
+ 165              		.cfi_startproc
+ 166              		@ args = 0, pretend = 0, frame = 0
+ 167              		@ frame_needed = 1, uses_anonymous_args = 0
+ 168 0000 80B5     		push	{r7, lr}
+ 169              		.cfi_def_cfa_offset 8
+ 170              		.cfi_offset 7, -8
+ 171              		.cfi_offset 14, -4
+ 172 0002 00AF     		add	r7, sp, #0
+ 173              		.cfi_def_cfa_register 7
+  72:.\can_manager.c **** 	CAN_1_GlobalIntEnable(); // CAN Initialization
+ 174              		.loc 1 72 0
+ 175 0004 FFF7FEFF 		bl	CAN_1_GlobalIntEnable
+  73:.\can_manager.c **** 	CAN_1_Init();
+ 176              		.loc 1 73 0
+ 177 0008 FFF7FEFF 		bl	CAN_1_Init
+  74:.\can_manager.c **** 	CAN_1_Start();
+ 178              		.loc 1 74 0
+ 179 000c FFF7FEFF 		bl	CAN_1_Start
+  75:.\can_manager.c **** } // can_init()...
+ 180              		.loc 1 75 0
+ 181 0010 80BD     		pop	{r7, pc}
+ 182              		.cfi_endproc
+ 183              	.LFE57:
+ 184              		.size	can_init, .-can_init
+ 185 0012 00BF     		.text
+ 186              	.Letext0:
+ 187              		.file 2 "d:\\software\\psoccreator\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4.8.4\\a
+ 188              		.file 3 "d:\\software\\psoccreator\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4.8.4\\a
+ 189              		.file 4 ".\\Generated_Source\\PSoC5/cytypes.h"
+ 190              		.file 5 ".\\Generated_Source\\PSoC5/CAN_1.h"
+ 191              		.file 6 ".\\Generated_Source\\PSoC5/core_cm3.h"
+ 192              		.section	.debug_info,"",%progbits
+ 193              	.Ldebug_info0:
+ 194 0000 75020000 		.4byte	0x275
+ 195 0004 0400     		.2byte	0x4
+ 196 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 197 000a 04       		.byte	0x4
+ 198 000b 01       		.uleb128 0x1
+ 199 000c 89000000 		.4byte	.LASF34
+ 200 0010 01       		.byte	0x1
+ 201 0011 37010000 		.4byte	.LASF35
+ 202 0015 38020000 		.4byte	.LASF36
+ 203 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 204 001d 00000000 		.4byte	0
+ 205 0021 00000000 		.4byte	.Ldebug_line0
+ 206 0025 02       		.uleb128 0x2
+ 207 0026 01       		.byte	0x1
+ 208 0027 06       		.byte	0x6
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccTjcCHz.s 			page 6
+
+
+ 209 0028 6F000000 		.4byte	.LASF0
+ 210 002c 03       		.uleb128 0x3
+ 211 002d 11000000 		.4byte	.LASF3
+ 212 0031 02       		.byte	0x2
+ 213 0032 1C       		.byte	0x1c
+ 214 0033 37000000 		.4byte	0x37
+ 215 0037 02       		.uleb128 0x2
+ 216 0038 01       		.byte	0x1
+ 217 0039 08       		.byte	0x8
+ 218 003a 7B000000 		.4byte	.LASF1
+ 219 003e 02       		.uleb128 0x2
+ 220 003f 02       		.byte	0x2
+ 221 0040 05       		.byte	0x5
+ 222 0041 5F010000 		.4byte	.LASF2
+ 223 0045 03       		.uleb128 0x3
+ 224 0046 47010000 		.4byte	.LASF4
+ 225 004a 02       		.byte	0x2
+ 226 004b 26       		.byte	0x26
+ 227 004c 50000000 		.4byte	0x50
+ 228 0050 02       		.uleb128 0x2
+ 229 0051 02       		.byte	0x2
+ 230 0052 07       		.byte	0x7
+ 231 0053 17010000 		.4byte	.LASF5
+ 232 0057 03       		.uleb128 0x3
+ 233 0058 21000000 		.4byte	.LASF6
+ 234 005c 02       		.byte	0x2
+ 235 005d 37       		.byte	0x37
+ 236 005e 62000000 		.4byte	0x62
+ 237 0062 02       		.uleb128 0x2
+ 238 0063 04       		.byte	0x4
+ 239 0064 05       		.byte	0x5
+ 240 0065 2B000000 		.4byte	.LASF7
+ 241 0069 02       		.uleb128 0x2
+ 242 006a 04       		.byte	0x4
+ 243 006b 07       		.byte	0x7
+ 244 006c 05010000 		.4byte	.LASF8
+ 245 0070 02       		.uleb128 0x2
+ 246 0071 08       		.byte	0x8
+ 247 0072 05       		.byte	0x5
+ 248 0073 E7010000 		.4byte	.LASF9
+ 249 0077 02       		.uleb128 0x2
+ 250 0078 08       		.byte	0x8
+ 251 0079 07       		.byte	0x7
+ 252 007a 9A010000 		.4byte	.LASF10
+ 253 007e 04       		.uleb128 0x4
+ 254 007f 04       		.byte	0x4
+ 255 0080 05       		.byte	0x5
+ 256 0081 696E7400 		.ascii	"int\000"
+ 257 0085 02       		.uleb128 0x2
+ 258 0086 04       		.byte	0x4
+ 259 0087 07       		.byte	0x7
+ 260 0088 8D010000 		.4byte	.LASF11
+ 261 008c 03       		.uleb128 0x3
+ 262 008d B1010000 		.4byte	.LASF12
+ 263 0091 03       		.byte	0x3
+ 264 0092 2A       		.byte	0x2a
+ 265 0093 2C000000 		.4byte	0x2c
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccTjcCHz.s 			page 7
+
+
+ 266 0097 03       		.uleb128 0x3
+ 267 0098 1E020000 		.4byte	.LASF13
+ 268 009c 03       		.byte	0x3
+ 269 009d 36       		.byte	0x36
+ 270 009e 45000000 		.4byte	0x45
+ 271 00a2 03       		.uleb128 0x3
+ 272 00a3 D6010000 		.4byte	.LASF14
+ 273 00a7 03       		.byte	0x3
+ 274 00a8 41       		.byte	0x41
+ 275 00a9 57000000 		.4byte	0x57
+ 276 00ad 03       		.uleb128 0x3
+ 277 00ae 59010000 		.4byte	.LASF15
+ 278 00b2 04       		.byte	0x4
+ 279 00b3 A1       		.byte	0xa1
+ 280 00b4 37000000 		.4byte	0x37
+ 281 00b8 03       		.uleb128 0x3
+ 282 00b9 7B010000 		.4byte	.LASF16
+ 283 00bd 04       		.byte	0x4
+ 284 00be A3       		.byte	0xa3
+ 285 00bf 69000000 		.4byte	0x69
+ 286 00c3 02       		.uleb128 0x2
+ 287 00c4 04       		.byte	0x4
+ 288 00c5 04       		.byte	0x4
+ 289 00c6 69000000 		.4byte	.LASF17
+ 290 00ca 02       		.uleb128 0x2
+ 291 00cb 08       		.byte	0x8
+ 292 00cc 04       		.byte	0x4
+ 293 00cd 52010000 		.4byte	.LASF18
+ 294 00d1 02       		.uleb128 0x2
+ 295 00d2 01       		.byte	0x1
+ 296 00d3 08       		.byte	0x8
+ 297 00d4 F5010000 		.4byte	.LASF19
+ 298 00d8 02       		.uleb128 0x2
+ 299 00d9 04       		.byte	0x4
+ 300 00da 07       		.byte	0x7
+ 301 00db DE010000 		.4byte	.LASF20
+ 302 00df 05       		.uleb128 0x5
+ 303 00e0 08       		.byte	0x8
+ 304 00e1 05       		.byte	0x5
+ 305 00e2 63       		.byte	0x63
+ 306 00e3 F4000000 		.4byte	0xf4
+ 307 00e7 06       		.uleb128 0x6
+ 308 00e8 4F000000 		.4byte	.LASF22
+ 309 00ec 05       		.byte	0x5
+ 310 00ed 65       		.byte	0x65
+ 311 00ee F4000000 		.4byte	0xf4
+ 312 00f2 00       		.byte	0
+ 313 00f3 00       		.byte	0
+ 314 00f4 07       		.uleb128 0x7
+ 315 00f5 AD000000 		.4byte	0xad
+ 316 00f9 04010000 		.4byte	0x104
+ 317 00fd 08       		.uleb128 0x8
+ 318 00fe D8000000 		.4byte	0xd8
+ 319 0102 07       		.byte	0x7
+ 320 0103 00       		.byte	0
+ 321 0104 03       		.uleb128 0x3
+ 322 0105 FA010000 		.4byte	.LASF21
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccTjcCHz.s 			page 8
+
+
+ 323 0109 05       		.byte	0x5
+ 324 010a 66       		.byte	0x66
+ 325 010b DF000000 		.4byte	0xdf
+ 326 010f 05       		.uleb128 0x5
+ 327 0110 0C       		.byte	0xc
+ 328 0111 05       		.byte	0x5
+ 329 0112 75       		.byte	0x75
+ 330 0113 5F010000 		.4byte	0x15f
+ 331 0117 09       		.uleb128 0x9
+ 332 0118 696400   		.ascii	"id\000"
+ 333 011b 05       		.byte	0x5
+ 334 011c 77       		.byte	0x77
+ 335 011d B8000000 		.4byte	0xb8
+ 336 0121 00       		.byte	0
+ 337 0122 09       		.uleb128 0x9
+ 338 0123 72747200 		.ascii	"rtr\000"
+ 339 0127 05       		.byte	0x5
+ 340 0128 78       		.byte	0x78
+ 341 0129 AD000000 		.4byte	0xad
+ 342 012d 04       		.byte	0x4
+ 343 012e 09       		.uleb128 0x9
+ 344 012f 69646500 		.ascii	"ide\000"
+ 345 0133 05       		.byte	0x5
+ 346 0134 79       		.byte	0x79
+ 347 0135 AD000000 		.4byte	0xad
+ 348 0139 05       		.byte	0x5
+ 349 013a 09       		.uleb128 0x9
+ 350 013b 646C6300 		.ascii	"dlc\000"
+ 351 013f 05       		.byte	0x5
+ 352 0140 7A       		.byte	0x7a
+ 353 0141 AD000000 		.4byte	0xad
+ 354 0145 06       		.byte	0x6
+ 355 0146 09       		.uleb128 0x9
+ 356 0147 69727100 		.ascii	"irq\000"
+ 357 014b 05       		.byte	0x5
+ 358 014c 7B       		.byte	0x7b
+ 359 014d AD000000 		.4byte	0xad
+ 360 0151 07       		.byte	0x7
+ 361 0152 09       		.uleb128 0x9
+ 362 0153 6D736700 		.ascii	"msg\000"
+ 363 0157 05       		.byte	0x5
+ 364 0158 7C       		.byte	0x7c
+ 365 0159 5F010000 		.4byte	0x15f
+ 366 015d 08       		.byte	0x8
+ 367 015e 00       		.byte	0
+ 368 015f 0A       		.uleb128 0xa
+ 369 0160 04       		.byte	0x4
+ 370 0161 04010000 		.4byte	0x104
+ 371 0165 03       		.uleb128 0x3
+ 372 0166 34000000 		.4byte	.LASF23
+ 373 016a 05       		.byte	0x5
+ 374 016b 7D       		.byte	0x7d
+ 375 016c 0F010000 		.4byte	0x10f
+ 376 0170 0B       		.uleb128 0xb
+ 377 0171 41000000 		.4byte	.LASF37
+ 378 0175 01       		.byte	0x1
+ 379 0176 16       		.byte	0x16
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccTjcCHz.s 			page 9
+
+
+ 380 0177 8C000000 		.4byte	0x8c
+ 381 017b 00000000 		.4byte	.LFB56
+ 382 017f 96000000 		.4byte	.LFE56-.LFB56
+ 383 0183 01       		.uleb128 0x1
+ 384 0184 9C       		.byte	0x9c
+ 385 0185 DB010000 		.4byte	0x1db
+ 386 0189 0C       		.uleb128 0xc
+ 387 018a 494400   		.ascii	"ID\000"
+ 388 018d 01       		.byte	0x1
+ 389 018e 18       		.byte	0x18
+ 390 018f 97000000 		.4byte	0x97
+ 391 0193 02       		.uleb128 0x2
+ 392 0194 91       		.byte	0x91
+ 393 0195 74       		.sleb128 -12
+ 394 0196 0C       		.uleb128 0xc
+ 395 0197 6D736700 		.ascii	"msg\000"
+ 396 019b 01       		.byte	0x1
+ 397 019c 19       		.byte	0x19
+ 398 019d DB010000 		.4byte	0x1db
+ 399 01a1 02       		.uleb128 0x2
+ 400 01a2 91       		.byte	0x91
+ 401 01a3 68       		.sleb128 -24
+ 402 01a4 0C       		.uleb128 0xc
+ 403 01a5 6900     		.ascii	"i\000"
+ 404 01a7 01       		.byte	0x1
+ 405 01a8 27       		.byte	0x27
+ 406 01a9 8C000000 		.4byte	0x8c
+ 407 01ad 02       		.uleb128 0x2
+ 408 01ae 91       		.byte	0x91
+ 409 01af 77       		.sleb128 -9
+ 410 01b0 0D       		.uleb128 0xd
+ 411 01b1 1B000000 		.4byte	.LASF24
+ 412 01b5 01       		.byte	0x1
+ 413 01b6 27       		.byte	0x27
+ 414 01b7 8C000000 		.4byte	0x8c
+ 415 01bb 02       		.uleb128 0x2
+ 416 01bc 91       		.byte	0x91
+ 417 01bd 73       		.sleb128 -13
+ 418 01be 0D       		.uleb128 0xd
+ 419 01bf 00000000 		.4byte	.LASF25
+ 420 01c3 01       		.byte	0x1
+ 421 01c4 28       		.byte	0x28
+ 422 01c5 65010000 		.4byte	0x165
+ 423 01c9 02       		.uleb128 0x2
+ 424 01ca 91       		.byte	0x91
+ 425 01cb 5C       		.sleb128 -36
+ 426 01cc 0D       		.uleb128 0xd
+ 427 01cd B9010000 		.4byte	.LASF26
+ 428 01d1 01       		.byte	0x1
+ 429 01d2 29       		.byte	0x29
+ 430 01d3 04010000 		.4byte	0x104
+ 431 01d7 02       		.uleb128 0x2
+ 432 01d8 91       		.byte	0x91
+ 433 01d9 54       		.sleb128 -44
+ 434 01da 00       		.byte	0
+ 435 01db 07       		.uleb128 0x7
+ 436 01dc 8C000000 		.4byte	0x8c
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccTjcCHz.s 			page 10
+
+
+ 437 01e0 EB010000 		.4byte	0x1eb
+ 438 01e4 08       		.uleb128 0x8
+ 439 01e5 D8000000 		.4byte	0xd8
+ 440 01e9 07       		.byte	0x7
+ 441 01ea 00       		.byte	0
+ 442 01eb 0E       		.uleb128 0xe
+ 443 01ec 08000000 		.4byte	.LASF38
+ 444 01f0 01       		.byte	0x1
+ 445 01f1 46       		.byte	0x46
+ 446 01f2 00000000 		.4byte	.LFB57
+ 447 01f6 12000000 		.4byte	.LFE57-.LFB57
+ 448 01fa 01       		.uleb128 0x1
+ 449 01fb 9C       		.byte	0x9c
+ 450 01fc 0F       		.uleb128 0xf
+ 451 01fd 2A010000 		.4byte	.LASF27
+ 452 0201 06       		.byte	0x6
+ 453 0202 1606     		.2byte	0x616
+ 454 0204 08020000 		.4byte	0x208
+ 455 0208 10       		.uleb128 0x10
+ 456 0209 A2000000 		.4byte	0xa2
+ 457 020d 11       		.uleb128 0x11
+ 458 020e 82010000 		.4byte	.LASF28
+ 459 0212 01       		.byte	0x1
+ 460 0213 03       		.byte	0x3
+ 461 0214 1E020000 		.4byte	0x21e
+ 462 0218 05       		.uleb128 0x5
+ 463 0219 03       		.byte	0x3
+ 464 021a 00000000 		.4byte	can_buffer
+ 465 021e 10       		.uleb128 0x10
+ 466 021f DB010000 		.4byte	0x1db
+ 467 0223 11       		.uleb128 0x11
+ 468 0224 54000000 		.4byte	.LASF29
+ 469 0228 01       		.byte	0x1
+ 470 0229 04       		.byte	0x4
+ 471 022a 97000000 		.4byte	0x97
+ 472 022e 05       		.uleb128 0x5
+ 473 022f 03       		.byte	0x3
+ 474 0230 00000000 		.4byte	info_battery_voltage
+ 475 0234 11       		.uleb128 0x11
+ 476 0235 C1010000 		.4byte	.LASF30
+ 477 0239 01       		.byte	0x1
+ 478 023a 05       		.byte	0x5
+ 479 023b 97000000 		.4byte	0x97
+ 480 023f 05       		.uleb128 0x5
+ 481 0240 03       		.byte	0x3
+ 482 0241 00000000 		.4byte	info_battery_current
+ 483 0245 11       		.uleb128 0x11
+ 484 0246 69010000 		.4byte	.LASF31
+ 485 024a 01       		.byte	0x1
+ 486 024b 06       		.byte	0x6
+ 487 024c 97000000 		.4byte	0x97
+ 488 0250 05       		.uleb128 0x5
+ 489 0251 03       		.byte	0x3
+ 490 0252 00000000 		.4byte	info_battery_temp
+ 491 0256 11       		.uleb128 0x11
+ 492 0257 0F020000 		.4byte	.LASF32
+ 493 025b 01       		.byte	0x1
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccTjcCHz.s 			page 11
+
+
+ 494 025c 07       		.byte	0x7
+ 495 025d 97000000 		.4byte	0x97
+ 496 0261 05       		.uleb128 0x5
+ 497 0262 03       		.byte	0x3
+ 498 0263 00000000 		.4byte	info_car_speed
+ 499 0267 11       		.uleb128 0x11
+ 500 0268 27020000 		.4byte	.LASF33
+ 501 026c 01       		.byte	0x1
+ 502 026d 08       		.byte	0x8
+ 503 026e 97000000 		.4byte	0x97
+ 504 0272 05       		.uleb128 0x5
+ 505 0273 03       		.byte	0x3
+ 506 0274 00000000 		.4byte	info_common_time
+ 507 0278 00       		.byte	0
+ 508              		.section	.debug_abbrev,"",%progbits
+ 509              	.Ldebug_abbrev0:
+ 510 0000 01       		.uleb128 0x1
+ 511 0001 11       		.uleb128 0x11
+ 512 0002 01       		.byte	0x1
+ 513 0003 25       		.uleb128 0x25
+ 514 0004 0E       		.uleb128 0xe
+ 515 0005 13       		.uleb128 0x13
+ 516 0006 0B       		.uleb128 0xb
+ 517 0007 03       		.uleb128 0x3
+ 518 0008 0E       		.uleb128 0xe
+ 519 0009 1B       		.uleb128 0x1b
+ 520 000a 0E       		.uleb128 0xe
+ 521 000b 55       		.uleb128 0x55
+ 522 000c 17       		.uleb128 0x17
+ 523 000d 11       		.uleb128 0x11
+ 524 000e 01       		.uleb128 0x1
+ 525 000f 10       		.uleb128 0x10
+ 526 0010 17       		.uleb128 0x17
+ 527 0011 00       		.byte	0
+ 528 0012 00       		.byte	0
+ 529 0013 02       		.uleb128 0x2
+ 530 0014 24       		.uleb128 0x24
+ 531 0015 00       		.byte	0
+ 532 0016 0B       		.uleb128 0xb
+ 533 0017 0B       		.uleb128 0xb
+ 534 0018 3E       		.uleb128 0x3e
+ 535 0019 0B       		.uleb128 0xb
+ 536 001a 03       		.uleb128 0x3
+ 537 001b 0E       		.uleb128 0xe
+ 538 001c 00       		.byte	0
+ 539 001d 00       		.byte	0
+ 540 001e 03       		.uleb128 0x3
+ 541 001f 16       		.uleb128 0x16
+ 542 0020 00       		.byte	0
+ 543 0021 03       		.uleb128 0x3
+ 544 0022 0E       		.uleb128 0xe
+ 545 0023 3A       		.uleb128 0x3a
+ 546 0024 0B       		.uleb128 0xb
+ 547 0025 3B       		.uleb128 0x3b
+ 548 0026 0B       		.uleb128 0xb
+ 549 0027 49       		.uleb128 0x49
+ 550 0028 13       		.uleb128 0x13
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccTjcCHz.s 			page 12
+
+
+ 551 0029 00       		.byte	0
+ 552 002a 00       		.byte	0
+ 553 002b 04       		.uleb128 0x4
+ 554 002c 24       		.uleb128 0x24
+ 555 002d 00       		.byte	0
+ 556 002e 0B       		.uleb128 0xb
+ 557 002f 0B       		.uleb128 0xb
+ 558 0030 3E       		.uleb128 0x3e
+ 559 0031 0B       		.uleb128 0xb
+ 560 0032 03       		.uleb128 0x3
+ 561 0033 08       		.uleb128 0x8
+ 562 0034 00       		.byte	0
+ 563 0035 00       		.byte	0
+ 564 0036 05       		.uleb128 0x5
+ 565 0037 13       		.uleb128 0x13
+ 566 0038 01       		.byte	0x1
+ 567 0039 0B       		.uleb128 0xb
+ 568 003a 0B       		.uleb128 0xb
+ 569 003b 3A       		.uleb128 0x3a
+ 570 003c 0B       		.uleb128 0xb
+ 571 003d 3B       		.uleb128 0x3b
+ 572 003e 0B       		.uleb128 0xb
+ 573 003f 01       		.uleb128 0x1
+ 574 0040 13       		.uleb128 0x13
+ 575 0041 00       		.byte	0
+ 576 0042 00       		.byte	0
+ 577 0043 06       		.uleb128 0x6
+ 578 0044 0D       		.uleb128 0xd
+ 579 0045 00       		.byte	0
+ 580 0046 03       		.uleb128 0x3
+ 581 0047 0E       		.uleb128 0xe
+ 582 0048 3A       		.uleb128 0x3a
+ 583 0049 0B       		.uleb128 0xb
+ 584 004a 3B       		.uleb128 0x3b
+ 585 004b 0B       		.uleb128 0xb
+ 586 004c 49       		.uleb128 0x49
+ 587 004d 13       		.uleb128 0x13
+ 588 004e 38       		.uleb128 0x38
+ 589 004f 0B       		.uleb128 0xb
+ 590 0050 00       		.byte	0
+ 591 0051 00       		.byte	0
+ 592 0052 07       		.uleb128 0x7
+ 593 0053 01       		.uleb128 0x1
+ 594 0054 01       		.byte	0x1
+ 595 0055 49       		.uleb128 0x49
+ 596 0056 13       		.uleb128 0x13
+ 597 0057 01       		.uleb128 0x1
+ 598 0058 13       		.uleb128 0x13
+ 599 0059 00       		.byte	0
+ 600 005a 00       		.byte	0
+ 601 005b 08       		.uleb128 0x8
+ 602 005c 21       		.uleb128 0x21
+ 603 005d 00       		.byte	0
+ 604 005e 49       		.uleb128 0x49
+ 605 005f 13       		.uleb128 0x13
+ 606 0060 2F       		.uleb128 0x2f
+ 607 0061 0B       		.uleb128 0xb
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccTjcCHz.s 			page 13
+
+
+ 608 0062 00       		.byte	0
+ 609 0063 00       		.byte	0
+ 610 0064 09       		.uleb128 0x9
+ 611 0065 0D       		.uleb128 0xd
+ 612 0066 00       		.byte	0
+ 613 0067 03       		.uleb128 0x3
+ 614 0068 08       		.uleb128 0x8
+ 615 0069 3A       		.uleb128 0x3a
+ 616 006a 0B       		.uleb128 0xb
+ 617 006b 3B       		.uleb128 0x3b
+ 618 006c 0B       		.uleb128 0xb
+ 619 006d 49       		.uleb128 0x49
+ 620 006e 13       		.uleb128 0x13
+ 621 006f 38       		.uleb128 0x38
+ 622 0070 0B       		.uleb128 0xb
+ 623 0071 00       		.byte	0
+ 624 0072 00       		.byte	0
+ 625 0073 0A       		.uleb128 0xa
+ 626 0074 0F       		.uleb128 0xf
+ 627 0075 00       		.byte	0
+ 628 0076 0B       		.uleb128 0xb
+ 629 0077 0B       		.uleb128 0xb
+ 630 0078 49       		.uleb128 0x49
+ 631 0079 13       		.uleb128 0x13
+ 632 007a 00       		.byte	0
+ 633 007b 00       		.byte	0
+ 634 007c 0B       		.uleb128 0xb
+ 635 007d 2E       		.uleb128 0x2e
+ 636 007e 01       		.byte	0x1
+ 637 007f 3F       		.uleb128 0x3f
+ 638 0080 19       		.uleb128 0x19
+ 639 0081 03       		.uleb128 0x3
+ 640 0082 0E       		.uleb128 0xe
+ 641 0083 3A       		.uleb128 0x3a
+ 642 0084 0B       		.uleb128 0xb
+ 643 0085 3B       		.uleb128 0x3b
+ 644 0086 0B       		.uleb128 0xb
+ 645 0087 49       		.uleb128 0x49
+ 646 0088 13       		.uleb128 0x13
+ 647 0089 11       		.uleb128 0x11
+ 648 008a 01       		.uleb128 0x1
+ 649 008b 12       		.uleb128 0x12
+ 650 008c 06       		.uleb128 0x6
+ 651 008d 40       		.uleb128 0x40
+ 652 008e 18       		.uleb128 0x18
+ 653 008f 9642     		.uleb128 0x2116
+ 654 0091 19       		.uleb128 0x19
+ 655 0092 01       		.uleb128 0x1
+ 656 0093 13       		.uleb128 0x13
+ 657 0094 00       		.byte	0
+ 658 0095 00       		.byte	0
+ 659 0096 0C       		.uleb128 0xc
+ 660 0097 34       		.uleb128 0x34
+ 661 0098 00       		.byte	0
+ 662 0099 03       		.uleb128 0x3
+ 663 009a 08       		.uleb128 0x8
+ 664 009b 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccTjcCHz.s 			page 14
+
+
+ 665 009c 0B       		.uleb128 0xb
+ 666 009d 3B       		.uleb128 0x3b
+ 667 009e 0B       		.uleb128 0xb
+ 668 009f 49       		.uleb128 0x49
+ 669 00a0 13       		.uleb128 0x13
+ 670 00a1 02       		.uleb128 0x2
+ 671 00a2 18       		.uleb128 0x18
+ 672 00a3 00       		.byte	0
+ 673 00a4 00       		.byte	0
+ 674 00a5 0D       		.uleb128 0xd
+ 675 00a6 34       		.uleb128 0x34
+ 676 00a7 00       		.byte	0
+ 677 00a8 03       		.uleb128 0x3
+ 678 00a9 0E       		.uleb128 0xe
+ 679 00aa 3A       		.uleb128 0x3a
+ 680 00ab 0B       		.uleb128 0xb
+ 681 00ac 3B       		.uleb128 0x3b
+ 682 00ad 0B       		.uleb128 0xb
+ 683 00ae 49       		.uleb128 0x49
+ 684 00af 13       		.uleb128 0x13
+ 685 00b0 02       		.uleb128 0x2
+ 686 00b1 18       		.uleb128 0x18
+ 687 00b2 00       		.byte	0
+ 688 00b3 00       		.byte	0
+ 689 00b4 0E       		.uleb128 0xe
+ 690 00b5 2E       		.uleb128 0x2e
+ 691 00b6 00       		.byte	0
+ 692 00b7 3F       		.uleb128 0x3f
+ 693 00b8 19       		.uleb128 0x19
+ 694 00b9 03       		.uleb128 0x3
+ 695 00ba 0E       		.uleb128 0xe
+ 696 00bb 3A       		.uleb128 0x3a
+ 697 00bc 0B       		.uleb128 0xb
+ 698 00bd 3B       		.uleb128 0x3b
+ 699 00be 0B       		.uleb128 0xb
+ 700 00bf 11       		.uleb128 0x11
+ 701 00c0 01       		.uleb128 0x1
+ 702 00c1 12       		.uleb128 0x12
+ 703 00c2 06       		.uleb128 0x6
+ 704 00c3 40       		.uleb128 0x40
+ 705 00c4 18       		.uleb128 0x18
+ 706 00c5 9642     		.uleb128 0x2116
+ 707 00c7 19       		.uleb128 0x19
+ 708 00c8 00       		.byte	0
+ 709 00c9 00       		.byte	0
+ 710 00ca 0F       		.uleb128 0xf
+ 711 00cb 34       		.uleb128 0x34
+ 712 00cc 00       		.byte	0
+ 713 00cd 03       		.uleb128 0x3
+ 714 00ce 0E       		.uleb128 0xe
+ 715 00cf 3A       		.uleb128 0x3a
+ 716 00d0 0B       		.uleb128 0xb
+ 717 00d1 3B       		.uleb128 0x3b
+ 718 00d2 05       		.uleb128 0x5
+ 719 00d3 49       		.uleb128 0x49
+ 720 00d4 13       		.uleb128 0x13
+ 721 00d5 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccTjcCHz.s 			page 15
+
+
+ 722 00d6 19       		.uleb128 0x19
+ 723 00d7 3C       		.uleb128 0x3c
+ 724 00d8 19       		.uleb128 0x19
+ 725 00d9 00       		.byte	0
+ 726 00da 00       		.byte	0
+ 727 00db 10       		.uleb128 0x10
+ 728 00dc 35       		.uleb128 0x35
+ 729 00dd 00       		.byte	0
+ 730 00de 49       		.uleb128 0x49
+ 731 00df 13       		.uleb128 0x13
+ 732 00e0 00       		.byte	0
+ 733 00e1 00       		.byte	0
+ 734 00e2 11       		.uleb128 0x11
+ 735 00e3 34       		.uleb128 0x34
+ 736 00e4 00       		.byte	0
+ 737 00e5 03       		.uleb128 0x3
+ 738 00e6 0E       		.uleb128 0xe
+ 739 00e7 3A       		.uleb128 0x3a
+ 740 00e8 0B       		.uleb128 0xb
+ 741 00e9 3B       		.uleb128 0x3b
+ 742 00ea 0B       		.uleb128 0xb
+ 743 00eb 49       		.uleb128 0x49
+ 744 00ec 13       		.uleb128 0x13
+ 745 00ed 3F       		.uleb128 0x3f
+ 746 00ee 19       		.uleb128 0x19
+ 747 00ef 02       		.uleb128 0x2
+ 748 00f0 18       		.uleb128 0x18
+ 749 00f1 00       		.byte	0
+ 750 00f2 00       		.byte	0
+ 751 00f3 00       		.byte	0
+ 752              		.section	.debug_aranges,"",%progbits
+ 753 0000 24000000 		.4byte	0x24
+ 754 0004 0200     		.2byte	0x2
+ 755 0006 00000000 		.4byte	.Ldebug_info0
+ 756 000a 04       		.byte	0x4
+ 757 000b 00       		.byte	0
+ 758 000c 0000     		.2byte	0
+ 759 000e 0000     		.2byte	0
+ 760 0010 00000000 		.4byte	.LFB56
+ 761 0014 96000000 		.4byte	.LFE56-.LFB56
+ 762 0018 00000000 		.4byte	.LFB57
+ 763 001c 12000000 		.4byte	.LFE57-.LFB57
+ 764 0020 00000000 		.4byte	0
+ 765 0024 00000000 		.4byte	0
+ 766              		.section	.debug_ranges,"",%progbits
+ 767              	.Ldebug_ranges0:
+ 768 0000 00000000 		.4byte	.LFB56
+ 769 0004 96000000 		.4byte	.LFE56
+ 770 0008 00000000 		.4byte	.LFB57
+ 771 000c 12000000 		.4byte	.LFE57
+ 772 0010 00000000 		.4byte	0
+ 773 0014 00000000 		.4byte	0
+ 774              		.section	.debug_line,"",%progbits
+ 775              	.Ldebug_line0:
+ 776 0000 A4010000 		.section	.debug_str,"MS",%progbits,1
+ 776      02005501 
+ 776      00000201 
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccTjcCHz.s 			page 16
+
+
+ 776      FB0E0D00 
+ 776      01010101 
+ 777              	.LASF25:
+ 778 0000 6D657373 		.ascii	"message\000"
+ 778      61676500 
+ 779              	.LASF38:
+ 780 0008 63616E5F 		.ascii	"can_init\000"
+ 780      696E6974 
+ 780      00
+ 781              	.LASF3:
+ 782 0011 5F5F7569 		.ascii	"__uint8_t\000"
+ 782      6E74385F 
+ 782      7400
+ 783              	.LASF24:
+ 784 001b 73746174 		.ascii	"state\000"
+ 784      6500
+ 785              	.LASF6:
+ 786 0021 5F5F696E 		.ascii	"__int32_t\000"
+ 786      7433325F 
+ 786      7400
+ 787              	.LASF7:
+ 788 002b 6C6F6E67 		.ascii	"long int\000"
+ 788      20696E74 
+ 788      00
+ 789              	.LASF23:
+ 790 0034 43414E5F 		.ascii	"CAN_1_TX_MSG\000"
+ 790      315F5458 
+ 790      5F4D5347 
+ 790      00
+ 791              	.LASF37:
+ 792 0041 63616E5F 		.ascii	"can_test_send\000"
+ 792      74657374 
+ 792      5F73656E 
+ 792      6400
+ 793              	.LASF22:
+ 794 004f 62797465 		.ascii	"byte\000"
+ 794      00
+ 795              	.LASF29:
+ 796 0054 696E666F 		.ascii	"info_battery_voltage\000"
+ 796      5F626174 
+ 796      74657279 
+ 796      5F766F6C 
+ 796      74616765 
+ 797              	.LASF17:
+ 798 0069 666C6F61 		.ascii	"float\000"
+ 798      7400
+ 799              	.LASF0:
+ 800 006f 7369676E 		.ascii	"signed char\000"
+ 800      65642063 
+ 800      68617200 
+ 801              	.LASF1:
+ 802 007b 756E7369 		.ascii	"unsigned char\000"
+ 802      676E6564 
+ 802      20636861 
+ 802      7200
+ 803              	.LASF34:
+ 804 0089 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccTjcCHz.s 			page 17
+
+
+ 804      4320342E 
+ 804      382E3420 
+ 804      32303134 
+ 804      30353236 
+ 805 00bc 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
+ 805      20726576 
+ 805      6973696F 
+ 805      6E203231 
+ 805      31333538 
+ 806 00ef 30202D66 		.ascii	"0 -ffunction-sections\000"
+ 806      66756E63 
+ 806      74696F6E 
+ 806      2D736563 
+ 806      74696F6E 
+ 807              	.LASF8:
+ 808 0105 6C6F6E67 		.ascii	"long unsigned int\000"
+ 808      20756E73 
+ 808      69676E65 
+ 808      6420696E 
+ 808      7400
+ 809              	.LASF5:
+ 810 0117 73686F72 		.ascii	"short unsigned int\000"
+ 810      7420756E 
+ 810      7369676E 
+ 810      65642069 
+ 810      6E7400
+ 811              	.LASF27:
+ 812 012a 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 812      52784275 
+ 812      66666572 
+ 812      00
+ 813              	.LASF35:
+ 814 0137 2E5C6361 		.ascii	".\\can_manager.c\000"
+ 814      6E5F6D61 
+ 814      6E616765 
+ 814      722E6300 
+ 815              	.LASF4:
+ 816 0147 5F5F7569 		.ascii	"__uint16_t\000"
+ 816      6E743136 
+ 816      5F7400
+ 817              	.LASF18:
+ 818 0152 646F7562 		.ascii	"double\000"
+ 818      6C6500
+ 819              	.LASF15:
+ 820 0159 75696E74 		.ascii	"uint8\000"
+ 820      3800
+ 821              	.LASF2:
+ 822 015f 73686F72 		.ascii	"short int\000"
+ 822      7420696E 
+ 822      7400
+ 823              	.LASF31:
+ 824 0169 696E666F 		.ascii	"info_battery_temp\000"
+ 824      5F626174 
+ 824      74657279 
+ 824      5F74656D 
+ 824      7000
+ 825              	.LASF16:
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccTjcCHz.s 			page 18
+
+
+ 826 017b 75696E74 		.ascii	"uint32\000"
+ 826      333200
+ 827              	.LASF28:
+ 828 0182 63616E5F 		.ascii	"can_buffer\000"
+ 828      62756666 
+ 828      657200
+ 829              	.LASF11:
+ 830 018d 756E7369 		.ascii	"unsigned int\000"
+ 830      676E6564 
+ 830      20696E74 
+ 830      00
+ 831              	.LASF10:
+ 832 019a 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 832      206C6F6E 
+ 832      6720756E 
+ 832      7369676E 
+ 832      65642069 
+ 833              	.LASF12:
+ 834 01b1 75696E74 		.ascii	"uint8_t\000"
+ 834      385F7400 
+ 835              	.LASF26:
+ 836 01b9 7061796C 		.ascii	"payload\000"
+ 836      6F616400 
+ 837              	.LASF30:
+ 838 01c1 696E666F 		.ascii	"info_battery_current\000"
+ 838      5F626174 
+ 838      74657279 
+ 838      5F637572 
+ 838      72656E74 
+ 839              	.LASF14:
+ 840 01d6 696E7433 		.ascii	"int32_t\000"
+ 840      325F7400 
+ 841              	.LASF20:
+ 842 01de 73697A65 		.ascii	"sizetype\000"
+ 842      74797065 
+ 842      00
+ 843              	.LASF9:
+ 844 01e7 6C6F6E67 		.ascii	"long long int\000"
+ 844      206C6F6E 
+ 844      6720696E 
+ 844      7400
+ 845              	.LASF19:
+ 846 01f5 63686172 		.ascii	"char\000"
+ 846      00
+ 847              	.LASF21:
+ 848 01fa 43414E5F 		.ascii	"CAN_1_DATA_BYTES_MSG\000"
+ 848      315F4441 
+ 848      54415F42 
+ 848      59544553 
+ 848      5F4D5347 
+ 849              	.LASF32:
+ 850 020f 696E666F 		.ascii	"info_car_speed\000"
+ 850      5F636172 
+ 850      5F737065 
+ 850      656400
+ 851              	.LASF13:
+ 852 021e 75696E74 		.ascii	"uint16_t\000"
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccTjcCHz.s 			page 19
+
+
+ 852      31365F74 
+ 852      00
+ 853              	.LASF33:
+ 854 0227 696E666F 		.ascii	"info_common_time\000"
+ 854      5F636F6D 
+ 854      6D6F6E5F 
+ 854      74696D65 
+ 854      00
+ 855              	.LASF36:
+ 856 0238 443A5C77 		.ascii	"D:\\workspace\\super-eagle\\Super-Eagle\\Super-Eagl"
+ 856      6F726B73 
+ 856      70616365 
+ 856      5C737570 
+ 856      65722D65 
+ 857 0267 652E6379 		.ascii	"e.cydsn\000"
+ 857      64736E00 
+ 858              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

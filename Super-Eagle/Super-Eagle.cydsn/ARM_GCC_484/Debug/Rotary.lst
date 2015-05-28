@@ -1,0 +1,892 @@
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccM10BBE.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"Rotary.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.Rotary_Write,"ax",%progbits
+  19              		.align	2
+  20              		.global	Rotary_Write
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	Rotary_Write, %function
+  24              	Rotary_Write:
+  25              	.LFB0:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\Rotary.c"
+   1:.\Generated_Source\PSoC5/Rotary.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/Rotary.c **** * File Name: Rotary.c  
+   3:.\Generated_Source\PSoC5/Rotary.c **** * Version 2.10
+   4:.\Generated_Source\PSoC5/Rotary.c **** *
+   5:.\Generated_Source\PSoC5/Rotary.c **** * Description:
+   6:.\Generated_Source\PSoC5/Rotary.c **** *  This file contains API to enable firmware control of a Pins component.
+   7:.\Generated_Source\PSoC5/Rotary.c **** *
+   8:.\Generated_Source\PSoC5/Rotary.c **** * Note:
+   9:.\Generated_Source\PSoC5/Rotary.c **** *
+  10:.\Generated_Source\PSoC5/Rotary.c **** ********************************************************************************
+  11:.\Generated_Source\PSoC5/Rotary.c **** * Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  12:.\Generated_Source\PSoC5/Rotary.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  13:.\Generated_Source\PSoC5/Rotary.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  14:.\Generated_Source\PSoC5/Rotary.c **** * the software package with which this file was provided.
+  15:.\Generated_Source\PSoC5/Rotary.c **** *******************************************************************************/
+  16:.\Generated_Source\PSoC5/Rotary.c **** 
+  17:.\Generated_Source\PSoC5/Rotary.c **** #include "cytypes.h"
+  18:.\Generated_Source\PSoC5/Rotary.c **** #include "Rotary.h"
+  19:.\Generated_Source\PSoC5/Rotary.c **** 
+  20:.\Generated_Source\PSoC5/Rotary.c **** /* APIs are not generated for P15[7:6] on PSoC 5 */
+  21:.\Generated_Source\PSoC5/Rotary.c **** #if !(CY_PSOC5A &&\
+  22:.\Generated_Source\PSoC5/Rotary.c **** 	 Rotary__PORT == 15 && ((Rotary__MASK & 0xC0) != 0))
+  23:.\Generated_Source\PSoC5/Rotary.c **** 
+  24:.\Generated_Source\PSoC5/Rotary.c **** 
+  25:.\Generated_Source\PSoC5/Rotary.c **** /*******************************************************************************
+  26:.\Generated_Source\PSoC5/Rotary.c **** * Function Name: Rotary_Write
+  27:.\Generated_Source\PSoC5/Rotary.c **** ********************************************************************************
+  28:.\Generated_Source\PSoC5/Rotary.c **** *
+  29:.\Generated_Source\PSoC5/Rotary.c **** * Summary:
+  30:.\Generated_Source\PSoC5/Rotary.c **** *  Assign a new value to the digital port's data output register.  
+  31:.\Generated_Source\PSoC5/Rotary.c **** *
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccM10BBE.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/Rotary.c **** * Parameters:  
+  33:.\Generated_Source\PSoC5/Rotary.c **** *  prtValue:  The value to be assigned to the Digital Port. 
+  34:.\Generated_Source\PSoC5/Rotary.c **** *
+  35:.\Generated_Source\PSoC5/Rotary.c **** * Return: 
+  36:.\Generated_Source\PSoC5/Rotary.c **** *  None
+  37:.\Generated_Source\PSoC5/Rotary.c **** *  
+  38:.\Generated_Source\PSoC5/Rotary.c **** *******************************************************************************/
+  39:.\Generated_Source\PSoC5/Rotary.c **** void Rotary_Write(uint8 value) 
+  40:.\Generated_Source\PSoC5/Rotary.c **** {
+  27              		.loc 1 40 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 16
+  30              		@ frame_needed = 1, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  32 0000 80B4     		push	{r7}
+  33              		.cfi_def_cfa_offset 4
+  34              		.cfi_offset 7, -4
+  35 0002 85B0     		sub	sp, sp, #20
+  36              		.cfi_def_cfa_offset 24
+  37 0004 00AF     		add	r7, sp, #0
+  38              		.cfi_def_cfa_register 7
+  39 0006 0346     		mov	r3, r0
+  40 0008 FB71     		strb	r3, [r7, #7]
+  41:.\Generated_Source\PSoC5/Rotary.c ****     uint8 staticBits = (Rotary_DR & (uint8)(~Rotary_MASK));
+  41              		.loc 1 41 0
+  42 000a 0A4B     		ldr	r3, .L2
+  43 000c 1B78     		ldrb	r3, [r3]
+  44 000e DBB2     		uxtb	r3, r3
+  45 0010 23F00103 		bic	r3, r3, #1
+  46 0014 FB73     		strb	r3, [r7, #15]
+  42:.\Generated_Source\PSoC5/Rotary.c ****     Rotary_DR = staticBits | ((uint8)(value << Rotary_SHIFT) & Rotary_MASK);
+  47              		.loc 1 42 0
+  48 0016 074B     		ldr	r3, .L2
+  49 0018 FA79     		ldrb	r2, [r7, #7]
+  50 001a 02F00102 		and	r2, r2, #1
+  51 001e D1B2     		uxtb	r1, r2
+  52 0020 FA7B     		ldrb	r2, [r7, #15]
+  53 0022 0A43     		orrs	r2, r2, r1
+  54 0024 D2B2     		uxtb	r2, r2
+  55 0026 1A70     		strb	r2, [r3]
+  43:.\Generated_Source\PSoC5/Rotary.c **** }
+  56              		.loc 1 43 0
+  57 0028 1437     		adds	r7, r7, #20
+  58 002a BD46     		mov	sp, r7
+  59              		@ sp needed
+  60 002c 5DF8047B 		ldr	r7, [sp], #4
+  61 0030 7047     		bx	lr
+  62              	.L3:
+  63 0032 00BF     		.align	2
+  64              	.L2:
+  65 0034 50510040 		.word	1073762640
+  66              		.cfi_endproc
+  67              	.LFE0:
+  68              		.size	Rotary_Write, .-Rotary_Write
+  69              		.section	.text.Rotary_SetDriveMode,"ax",%progbits
+  70              		.align	2
+  71              		.global	Rotary_SetDriveMode
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccM10BBE.s 			page 3
+
+
+  72              		.thumb
+  73              		.thumb_func
+  74              		.type	Rotary_SetDriveMode, %function
+  75              	Rotary_SetDriveMode:
+  76              	.LFB1:
+  44:.\Generated_Source\PSoC5/Rotary.c **** 
+  45:.\Generated_Source\PSoC5/Rotary.c **** 
+  46:.\Generated_Source\PSoC5/Rotary.c **** /*******************************************************************************
+  47:.\Generated_Source\PSoC5/Rotary.c **** * Function Name: Rotary_SetDriveMode
+  48:.\Generated_Source\PSoC5/Rotary.c **** ********************************************************************************
+  49:.\Generated_Source\PSoC5/Rotary.c **** *
+  50:.\Generated_Source\PSoC5/Rotary.c **** * Summary:
+  51:.\Generated_Source\PSoC5/Rotary.c **** *  Change the drive mode on the pins of the port.
+  52:.\Generated_Source\PSoC5/Rotary.c **** * 
+  53:.\Generated_Source\PSoC5/Rotary.c **** * Parameters:  
+  54:.\Generated_Source\PSoC5/Rotary.c **** *  mode:  Change the pins to one of the following drive modes.
+  55:.\Generated_Source\PSoC5/Rotary.c **** *
+  56:.\Generated_Source\PSoC5/Rotary.c **** *  Rotary_DM_STRONG     Strong Drive 
+  57:.\Generated_Source\PSoC5/Rotary.c **** *  Rotary_DM_OD_HI      Open Drain, Drives High 
+  58:.\Generated_Source\PSoC5/Rotary.c **** *  Rotary_DM_OD_LO      Open Drain, Drives Low 
+  59:.\Generated_Source\PSoC5/Rotary.c **** *  Rotary_DM_RES_UP     Resistive Pull Up 
+  60:.\Generated_Source\PSoC5/Rotary.c **** *  Rotary_DM_RES_DWN    Resistive Pull Down 
+  61:.\Generated_Source\PSoC5/Rotary.c **** *  Rotary_DM_RES_UPDWN  Resistive Pull Up/Down 
+  62:.\Generated_Source\PSoC5/Rotary.c **** *  Rotary_DM_DIG_HIZ    High Impedance Digital 
+  63:.\Generated_Source\PSoC5/Rotary.c **** *  Rotary_DM_ALG_HIZ    High Impedance Analog 
+  64:.\Generated_Source\PSoC5/Rotary.c **** *
+  65:.\Generated_Source\PSoC5/Rotary.c **** * Return: 
+  66:.\Generated_Source\PSoC5/Rotary.c **** *  None
+  67:.\Generated_Source\PSoC5/Rotary.c **** *
+  68:.\Generated_Source\PSoC5/Rotary.c **** *******************************************************************************/
+  69:.\Generated_Source\PSoC5/Rotary.c **** void Rotary_SetDriveMode(uint8 mode) 
+  70:.\Generated_Source\PSoC5/Rotary.c **** {
+  77              		.loc 1 70 0
+  78              		.cfi_startproc
+  79              		@ args = 0, pretend = 0, frame = 8
+  80              		@ frame_needed = 1, uses_anonymous_args = 0
+  81              		@ link register save eliminated.
+  82 0000 80B4     		push	{r7}
+  83              		.cfi_def_cfa_offset 4
+  84              		.cfi_offset 7, -4
+  85 0002 83B0     		sub	sp, sp, #12
+  86              		.cfi_def_cfa_offset 16
+  87 0004 00AF     		add	r7, sp, #0
+  88              		.cfi_def_cfa_register 7
+  89 0006 0346     		mov	r3, r0
+  90 0008 FB71     		strb	r3, [r7, #7]
+  71:.\Generated_Source\PSoC5/Rotary.c **** 	CyPins_SetPinDriveMode(Rotary_0, mode);
+  91              		.loc 1 71 0
+  92 000a 0A4B     		ldr	r3, .L5
+  93 000c 094A     		ldr	r2, .L5
+  94 000e 1278     		ldrb	r2, [r2]
+  95 0010 D2B2     		uxtb	r2, r2
+  96 0012 D2B2     		uxtb	r2, r2
+  97 0014 22F00E02 		bic	r2, r2, #14
+  98 0018 D1B2     		uxtb	r1, r2
+  99 001a FA79     		ldrb	r2, [r7, #7]	@ zero_extendqisi2
+ 100 001c 02F00E02 		and	r2, r2, #14
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccM10BBE.s 			page 4
+
+
+ 101 0020 D2B2     		uxtb	r2, r2
+ 102 0022 0A43     		orrs	r2, r2, r1
+ 103 0024 D2B2     		uxtb	r2, r2
+ 104 0026 D2B2     		uxtb	r2, r2
+ 105 0028 1A70     		strb	r2, [r3]
+  72:.\Generated_Source\PSoC5/Rotary.c **** }
+ 106              		.loc 1 72 0
+ 107 002a 0C37     		adds	r7, r7, #12
+ 108 002c BD46     		mov	sp, r7
+ 109              		@ sp needed
+ 110 002e 5DF8047B 		ldr	r7, [sp], #4
+ 111 0032 7047     		bx	lr
+ 112              	.L6:
+ 113              		.align	2
+ 114              	.L5:
+ 115 0034 28500040 		.word	1073762344
+ 116              		.cfi_endproc
+ 117              	.LFE1:
+ 118              		.size	Rotary_SetDriveMode, .-Rotary_SetDriveMode
+ 119              		.section	.text.Rotary_Read,"ax",%progbits
+ 120              		.align	2
+ 121              		.global	Rotary_Read
+ 122              		.thumb
+ 123              		.thumb_func
+ 124              		.type	Rotary_Read, %function
+ 125              	Rotary_Read:
+ 126              	.LFB2:
+  73:.\Generated_Source\PSoC5/Rotary.c **** 
+  74:.\Generated_Source\PSoC5/Rotary.c **** 
+  75:.\Generated_Source\PSoC5/Rotary.c **** /*******************************************************************************
+  76:.\Generated_Source\PSoC5/Rotary.c **** * Function Name: Rotary_Read
+  77:.\Generated_Source\PSoC5/Rotary.c **** ********************************************************************************
+  78:.\Generated_Source\PSoC5/Rotary.c **** *
+  79:.\Generated_Source\PSoC5/Rotary.c **** * Summary:
+  80:.\Generated_Source\PSoC5/Rotary.c **** *  Read the current value on the pins of the Digital Port in right justified 
+  81:.\Generated_Source\PSoC5/Rotary.c **** *  form.
+  82:.\Generated_Source\PSoC5/Rotary.c **** *
+  83:.\Generated_Source\PSoC5/Rotary.c **** * Parameters:  
+  84:.\Generated_Source\PSoC5/Rotary.c **** *  None
+  85:.\Generated_Source\PSoC5/Rotary.c **** *
+  86:.\Generated_Source\PSoC5/Rotary.c **** * Return: 
+  87:.\Generated_Source\PSoC5/Rotary.c **** *  Returns the current value of the Digital Port as a right justified number
+  88:.\Generated_Source\PSoC5/Rotary.c **** *  
+  89:.\Generated_Source\PSoC5/Rotary.c **** * Note:
+  90:.\Generated_Source\PSoC5/Rotary.c **** *  Macro Rotary_ReadPS calls this function. 
+  91:.\Generated_Source\PSoC5/Rotary.c **** *  
+  92:.\Generated_Source\PSoC5/Rotary.c **** *******************************************************************************/
+  93:.\Generated_Source\PSoC5/Rotary.c **** uint8 Rotary_Read(void) 
+  94:.\Generated_Source\PSoC5/Rotary.c **** {
+ 127              		.loc 1 94 0
+ 128              		.cfi_startproc
+ 129              		@ args = 0, pretend = 0, frame = 0
+ 130              		@ frame_needed = 1, uses_anonymous_args = 0
+ 131              		@ link register save eliminated.
+ 132 0000 80B4     		push	{r7}
+ 133              		.cfi_def_cfa_offset 4
+ 134              		.cfi_offset 7, -4
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccM10BBE.s 			page 5
+
+
+ 135 0002 00AF     		add	r7, sp, #0
+ 136              		.cfi_def_cfa_register 7
+  95:.\Generated_Source\PSoC5/Rotary.c ****     return (Rotary_PS & Rotary_MASK) >> Rotary_SHIFT;
+ 137              		.loc 1 95 0
+ 138 0004 054B     		ldr	r3, .L9
+ 139 0006 1B78     		ldrb	r3, [r3]
+ 140 0008 DBB2     		uxtb	r3, r3
+ 141 000a 03F00103 		and	r3, r3, #1
+ 142 000e DBB2     		uxtb	r3, r3
+  96:.\Generated_Source\PSoC5/Rotary.c **** }
+ 143              		.loc 1 96 0
+ 144 0010 1846     		mov	r0, r3
+ 145 0012 BD46     		mov	sp, r7
+ 146              		@ sp needed
+ 147 0014 5DF8047B 		ldr	r7, [sp], #4
+ 148 0018 7047     		bx	lr
+ 149              	.L10:
+ 150 001a 00BF     		.align	2
+ 151              	.L9:
+ 152 001c 51510040 		.word	1073762641
+ 153              		.cfi_endproc
+ 154              	.LFE2:
+ 155              		.size	Rotary_Read, .-Rotary_Read
+ 156              		.section	.text.Rotary_ReadDataReg,"ax",%progbits
+ 157              		.align	2
+ 158              		.global	Rotary_ReadDataReg
+ 159              		.thumb
+ 160              		.thumb_func
+ 161              		.type	Rotary_ReadDataReg, %function
+ 162              	Rotary_ReadDataReg:
+ 163              	.LFB3:
+  97:.\Generated_Source\PSoC5/Rotary.c **** 
+  98:.\Generated_Source\PSoC5/Rotary.c **** 
+  99:.\Generated_Source\PSoC5/Rotary.c **** /*******************************************************************************
+ 100:.\Generated_Source\PSoC5/Rotary.c **** * Function Name: Rotary_ReadDataReg
+ 101:.\Generated_Source\PSoC5/Rotary.c **** ********************************************************************************
+ 102:.\Generated_Source\PSoC5/Rotary.c **** *
+ 103:.\Generated_Source\PSoC5/Rotary.c **** * Summary:
+ 104:.\Generated_Source\PSoC5/Rotary.c **** *  Read the current value assigned to a Digital Port's data output register
+ 105:.\Generated_Source\PSoC5/Rotary.c **** *
+ 106:.\Generated_Source\PSoC5/Rotary.c **** * Parameters:  
+ 107:.\Generated_Source\PSoC5/Rotary.c **** *  None 
+ 108:.\Generated_Source\PSoC5/Rotary.c **** *
+ 109:.\Generated_Source\PSoC5/Rotary.c **** * Return: 
+ 110:.\Generated_Source\PSoC5/Rotary.c **** *  Returns the current value assigned to the Digital Port's data output register
+ 111:.\Generated_Source\PSoC5/Rotary.c **** *  
+ 112:.\Generated_Source\PSoC5/Rotary.c **** *******************************************************************************/
+ 113:.\Generated_Source\PSoC5/Rotary.c **** uint8 Rotary_ReadDataReg(void) 
+ 114:.\Generated_Source\PSoC5/Rotary.c **** {
+ 164              		.loc 1 114 0
+ 165              		.cfi_startproc
+ 166              		@ args = 0, pretend = 0, frame = 0
+ 167              		@ frame_needed = 1, uses_anonymous_args = 0
+ 168              		@ link register save eliminated.
+ 169 0000 80B4     		push	{r7}
+ 170              		.cfi_def_cfa_offset 4
+ 171              		.cfi_offset 7, -4
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccM10BBE.s 			page 6
+
+
+ 172 0002 00AF     		add	r7, sp, #0
+ 173              		.cfi_def_cfa_register 7
+ 115:.\Generated_Source\PSoC5/Rotary.c ****     return (Rotary_DR & Rotary_MASK) >> Rotary_SHIFT;
+ 174              		.loc 1 115 0
+ 175 0004 054B     		ldr	r3, .L13
+ 176 0006 1B78     		ldrb	r3, [r3]
+ 177 0008 DBB2     		uxtb	r3, r3
+ 178 000a 03F00103 		and	r3, r3, #1
+ 179 000e DBB2     		uxtb	r3, r3
+ 116:.\Generated_Source\PSoC5/Rotary.c **** }
+ 180              		.loc 1 116 0
+ 181 0010 1846     		mov	r0, r3
+ 182 0012 BD46     		mov	sp, r7
+ 183              		@ sp needed
+ 184 0014 5DF8047B 		ldr	r7, [sp], #4
+ 185 0018 7047     		bx	lr
+ 186              	.L14:
+ 187 001a 00BF     		.align	2
+ 188              	.L13:
+ 189 001c 50510040 		.word	1073762640
+ 190              		.cfi_endproc
+ 191              	.LFE3:
+ 192              		.size	Rotary_ReadDataReg, .-Rotary_ReadDataReg
+ 193              		.section	.text.Rotary_ClearInterrupt,"ax",%progbits
+ 194              		.align	2
+ 195              		.global	Rotary_ClearInterrupt
+ 196              		.thumb
+ 197              		.thumb_func
+ 198              		.type	Rotary_ClearInterrupt, %function
+ 199              	Rotary_ClearInterrupt:
+ 200              	.LFB4:
+ 117:.\Generated_Source\PSoC5/Rotary.c **** 
+ 118:.\Generated_Source\PSoC5/Rotary.c **** 
+ 119:.\Generated_Source\PSoC5/Rotary.c **** /* If Interrupts Are Enabled for this Pins component */ 
+ 120:.\Generated_Source\PSoC5/Rotary.c **** #if defined(Rotary_INTSTAT) 
+ 121:.\Generated_Source\PSoC5/Rotary.c **** 
+ 122:.\Generated_Source\PSoC5/Rotary.c ****     /*******************************************************************************
+ 123:.\Generated_Source\PSoC5/Rotary.c ****     * Function Name: Rotary_ClearInterrupt
+ 124:.\Generated_Source\PSoC5/Rotary.c ****     ********************************************************************************
+ 125:.\Generated_Source\PSoC5/Rotary.c ****     * Summary:
+ 126:.\Generated_Source\PSoC5/Rotary.c ****     *  Clears any active interrupts attached to port and returns the value of the 
+ 127:.\Generated_Source\PSoC5/Rotary.c ****     *  interrupt status register.
+ 128:.\Generated_Source\PSoC5/Rotary.c ****     *
+ 129:.\Generated_Source\PSoC5/Rotary.c ****     * Parameters:  
+ 130:.\Generated_Source\PSoC5/Rotary.c ****     *  None 
+ 131:.\Generated_Source\PSoC5/Rotary.c ****     *
+ 132:.\Generated_Source\PSoC5/Rotary.c ****     * Return: 
+ 133:.\Generated_Source\PSoC5/Rotary.c ****     *  Returns the value of the interrupt status register
+ 134:.\Generated_Source\PSoC5/Rotary.c ****     *  
+ 135:.\Generated_Source\PSoC5/Rotary.c ****     *******************************************************************************/
+ 136:.\Generated_Source\PSoC5/Rotary.c ****     uint8 Rotary_ClearInterrupt(void) 
+ 137:.\Generated_Source\PSoC5/Rotary.c ****     {
+ 201              		.loc 1 137 0
+ 202              		.cfi_startproc
+ 203              		@ args = 0, pretend = 0, frame = 0
+ 204              		@ frame_needed = 1, uses_anonymous_args = 0
+ 205              		@ link register save eliminated.
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccM10BBE.s 			page 7
+
+
+ 206 0000 80B4     		push	{r7}
+ 207              		.cfi_def_cfa_offset 4
+ 208              		.cfi_offset 7, -4
+ 209 0002 00AF     		add	r7, sp, #0
+ 210              		.cfi_def_cfa_register 7
+ 138:.\Generated_Source\PSoC5/Rotary.c ****         return (Rotary_INTSTAT & Rotary_MASK) >> Rotary_SHIFT;
+ 211              		.loc 1 138 0
+ 212 0004 054B     		ldr	r3, .L17
+ 213 0006 1B78     		ldrb	r3, [r3]
+ 214 0008 DBB2     		uxtb	r3, r3
+ 215 000a 03F00103 		and	r3, r3, #1
+ 216 000e DBB2     		uxtb	r3, r3
+ 139:.\Generated_Source\PSoC5/Rotary.c ****     }
+ 217              		.loc 1 139 0
+ 218 0010 1846     		mov	r0, r3
+ 219 0012 BD46     		mov	sp, r7
+ 220              		@ sp needed
+ 221 0014 5DF8047B 		ldr	r7, [sp], #4
+ 222 0018 7047     		bx	lr
+ 223              	.L18:
+ 224 001a 00BF     		.align	2
+ 225              	.L17:
+ 226 001c 85450040 		.word	1073759621
+ 227              		.cfi_endproc
+ 228              	.LFE4:
+ 229              		.size	Rotary_ClearInterrupt, .-Rotary_ClearInterrupt
+ 230              		.text
+ 231              	.Letext0:
+ 232              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 233              		.section	.debug_info,"",%progbits
+ 234              	.Ldebug_info0:
+ 235 0000 2E010000 		.4byte	0x12e
+ 236 0004 0400     		.2byte	0x4
+ 237 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 238 000a 04       		.byte	0x4
+ 239 000b 01       		.uleb128 0x1
+ 240 000c D7000000 		.4byte	.LASF21
+ 241 0010 01       		.byte	0x1
+ 242 0011 25000000 		.4byte	.LASF22
+ 243 0015 98010000 		.4byte	.LASF23
+ 244 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 245 001d 00000000 		.4byte	0
+ 246 0021 00000000 		.4byte	.Ldebug_line0
+ 247 0025 02       		.uleb128 0x2
+ 248 0026 01       		.byte	0x1
+ 249 0027 06       		.byte	0x6
+ 250 0028 4D000000 		.4byte	.LASF0
+ 251 002c 02       		.uleb128 0x2
+ 252 002d 01       		.byte	0x1
+ 253 002e 08       		.byte	0x8
+ 254 002f 59000000 		.4byte	.LASF1
+ 255 0033 02       		.uleb128 0x2
+ 256 0034 02       		.byte	0x2
+ 257 0035 05       		.byte	0x5
+ 258 0036 73010000 		.4byte	.LASF2
+ 259 003a 02       		.uleb128 0x2
+ 260 003b 02       		.byte	0x2
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccM10BBE.s 			page 8
+
+
+ 261 003c 07       		.byte	0x7
+ 262 003d 7E000000 		.4byte	.LASF3
+ 263 0041 02       		.uleb128 0x2
+ 264 0042 04       		.byte	0x4
+ 265 0043 05       		.byte	0x5
+ 266 0044 83010000 		.4byte	.LASF4
+ 267 0048 02       		.uleb128 0x2
+ 268 0049 04       		.byte	0x4
+ 269 004a 07       		.byte	0x7
+ 270 004b 6C000000 		.4byte	.LASF5
+ 271 004f 02       		.uleb128 0x2
+ 272 0050 08       		.byte	0x8
+ 273 0051 05       		.byte	0x5
+ 274 0052 53010000 		.4byte	.LASF6
+ 275 0056 02       		.uleb128 0x2
+ 276 0057 08       		.byte	0x8
+ 277 0058 07       		.byte	0x7
+ 278 0059 BB000000 		.4byte	.LASF7
+ 279 005d 03       		.uleb128 0x3
+ 280 005e 04       		.byte	0x4
+ 281 005f 05       		.byte	0x5
+ 282 0060 696E7400 		.ascii	"int\000"
+ 283 0064 02       		.uleb128 0x2
+ 284 0065 04       		.byte	0x4
+ 285 0066 07       		.byte	0x7
+ 286 0067 AE000000 		.4byte	.LASF8
+ 287 006b 04       		.uleb128 0x4
+ 288 006c 7D010000 		.4byte	.LASF12
+ 289 0070 02       		.byte	0x2
+ 290 0071 A1       		.byte	0xa1
+ 291 0072 2C000000 		.4byte	0x2c
+ 292 0076 02       		.uleb128 0x2
+ 293 0077 04       		.byte	0x4
+ 294 0078 04       		.byte	0x4
+ 295 0079 47000000 		.4byte	.LASF9
+ 296 007d 02       		.uleb128 0x2
+ 297 007e 08       		.byte	0x8
+ 298 007f 04       		.byte	0x4
+ 299 0080 A7000000 		.4byte	.LASF10
+ 300 0084 02       		.uleb128 0x2
+ 301 0085 01       		.byte	0x1
+ 302 0086 08       		.byte	0x8
+ 303 0087 61010000 		.4byte	.LASF11
+ 304 008b 05       		.uleb128 0x5
+ 305 008c 67000000 		.4byte	.LASF13
+ 306 0090 02       		.byte	0x2
+ 307 0091 4B01     		.2byte	0x14b
+ 308 0093 97000000 		.4byte	0x97
+ 309 0097 06       		.uleb128 0x6
+ 310 0098 6B000000 		.4byte	0x6b
+ 311 009c 07       		.uleb128 0x7
+ 312 009d 66010000 		.4byte	.LASF14
+ 313 00a1 01       		.byte	0x1
+ 314 00a2 27       		.byte	0x27
+ 315 00a3 00000000 		.4byte	.LFB0
+ 316 00a7 38000000 		.4byte	.LFE0-.LFB0
+ 317 00ab 01       		.uleb128 0x1
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccM10BBE.s 			page 9
+
+
+ 318 00ac 9C       		.byte	0x9c
+ 319 00ad CE000000 		.4byte	0xce
+ 320 00b1 08       		.uleb128 0x8
+ 321 00b2 14000000 		.4byte	.LASF16
+ 322 00b6 01       		.byte	0x1
+ 323 00b7 27       		.byte	0x27
+ 324 00b8 6B000000 		.4byte	0x6b
+ 325 00bc 02       		.uleb128 0x2
+ 326 00bd 91       		.byte	0x91
+ 327 00be 6F       		.sleb128 -17
+ 328 00bf 09       		.uleb128 0x9
+ 329 00c0 1A000000 		.4byte	.LASF24
+ 330 00c4 01       		.byte	0x1
+ 331 00c5 29       		.byte	0x29
+ 332 00c6 6B000000 		.4byte	0x6b
+ 333 00ca 02       		.uleb128 0x2
+ 334 00cb 91       		.byte	0x91
+ 335 00cc 77       		.sleb128 -9
+ 336 00cd 00       		.byte	0
+ 337 00ce 07       		.uleb128 0x7
+ 338 00cf 00000000 		.4byte	.LASF15
+ 339 00d3 01       		.byte	0x1
+ 340 00d4 45       		.byte	0x45
+ 341 00d5 00000000 		.4byte	.LFB1
+ 342 00d9 38000000 		.4byte	.LFE1-.LFB1
+ 343 00dd 01       		.uleb128 0x1
+ 344 00de 9C       		.byte	0x9c
+ 345 00df F2000000 		.4byte	0xf2
+ 346 00e3 08       		.uleb128 0x8
+ 347 00e4 D2000000 		.4byte	.LASF17
+ 348 00e8 01       		.byte	0x1
+ 349 00e9 45       		.byte	0x45
+ 350 00ea 6B000000 		.4byte	0x6b
+ 351 00ee 02       		.uleb128 0x2
+ 352 00ef 91       		.byte	0x91
+ 353 00f0 77       		.sleb128 -9
+ 354 00f1 00       		.byte	0
+ 355 00f2 0A       		.uleb128 0xa
+ 356 00f3 8C010000 		.4byte	.LASF18
+ 357 00f7 01       		.byte	0x1
+ 358 00f8 5D       		.byte	0x5d
+ 359 00f9 6B000000 		.4byte	0x6b
+ 360 00fd 00000000 		.4byte	.LFB2
+ 361 0101 20000000 		.4byte	.LFE2-.LFB2
+ 362 0105 01       		.uleb128 0x1
+ 363 0106 9C       		.byte	0x9c
+ 364 0107 0A       		.uleb128 0xa
+ 365 0108 CF010000 		.4byte	.LASF19
+ 366 010c 01       		.byte	0x1
+ 367 010d 71       		.byte	0x71
+ 368 010e 6B000000 		.4byte	0x6b
+ 369 0112 00000000 		.4byte	.LFB3
+ 370 0116 20000000 		.4byte	.LFE3-.LFB3
+ 371 011a 01       		.uleb128 0x1
+ 372 011b 9C       		.byte	0x9c
+ 373 011c 0A       		.uleb128 0xa
+ 374 011d 91000000 		.4byte	.LASF20
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccM10BBE.s 			page 10
+
+
+ 375 0121 01       		.byte	0x1
+ 376 0122 88       		.byte	0x88
+ 377 0123 6B000000 		.4byte	0x6b
+ 378 0127 00000000 		.4byte	.LFB4
+ 379 012b 20000000 		.4byte	.LFE4-.LFB4
+ 380 012f 01       		.uleb128 0x1
+ 381 0130 9C       		.byte	0x9c
+ 382 0131 00       		.byte	0
+ 383              		.section	.debug_abbrev,"",%progbits
+ 384              	.Ldebug_abbrev0:
+ 385 0000 01       		.uleb128 0x1
+ 386 0001 11       		.uleb128 0x11
+ 387 0002 01       		.byte	0x1
+ 388 0003 25       		.uleb128 0x25
+ 389 0004 0E       		.uleb128 0xe
+ 390 0005 13       		.uleb128 0x13
+ 391 0006 0B       		.uleb128 0xb
+ 392 0007 03       		.uleb128 0x3
+ 393 0008 0E       		.uleb128 0xe
+ 394 0009 1B       		.uleb128 0x1b
+ 395 000a 0E       		.uleb128 0xe
+ 396 000b 55       		.uleb128 0x55
+ 397 000c 17       		.uleb128 0x17
+ 398 000d 11       		.uleb128 0x11
+ 399 000e 01       		.uleb128 0x1
+ 400 000f 10       		.uleb128 0x10
+ 401 0010 17       		.uleb128 0x17
+ 402 0011 00       		.byte	0
+ 403 0012 00       		.byte	0
+ 404 0013 02       		.uleb128 0x2
+ 405 0014 24       		.uleb128 0x24
+ 406 0015 00       		.byte	0
+ 407 0016 0B       		.uleb128 0xb
+ 408 0017 0B       		.uleb128 0xb
+ 409 0018 3E       		.uleb128 0x3e
+ 410 0019 0B       		.uleb128 0xb
+ 411 001a 03       		.uleb128 0x3
+ 412 001b 0E       		.uleb128 0xe
+ 413 001c 00       		.byte	0
+ 414 001d 00       		.byte	0
+ 415 001e 03       		.uleb128 0x3
+ 416 001f 24       		.uleb128 0x24
+ 417 0020 00       		.byte	0
+ 418 0021 0B       		.uleb128 0xb
+ 419 0022 0B       		.uleb128 0xb
+ 420 0023 3E       		.uleb128 0x3e
+ 421 0024 0B       		.uleb128 0xb
+ 422 0025 03       		.uleb128 0x3
+ 423 0026 08       		.uleb128 0x8
+ 424 0027 00       		.byte	0
+ 425 0028 00       		.byte	0
+ 426 0029 04       		.uleb128 0x4
+ 427 002a 16       		.uleb128 0x16
+ 428 002b 00       		.byte	0
+ 429 002c 03       		.uleb128 0x3
+ 430 002d 0E       		.uleb128 0xe
+ 431 002e 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccM10BBE.s 			page 11
+
+
+ 432 002f 0B       		.uleb128 0xb
+ 433 0030 3B       		.uleb128 0x3b
+ 434 0031 0B       		.uleb128 0xb
+ 435 0032 49       		.uleb128 0x49
+ 436 0033 13       		.uleb128 0x13
+ 437 0034 00       		.byte	0
+ 438 0035 00       		.byte	0
+ 439 0036 05       		.uleb128 0x5
+ 440 0037 16       		.uleb128 0x16
+ 441 0038 00       		.byte	0
+ 442 0039 03       		.uleb128 0x3
+ 443 003a 0E       		.uleb128 0xe
+ 444 003b 3A       		.uleb128 0x3a
+ 445 003c 0B       		.uleb128 0xb
+ 446 003d 3B       		.uleb128 0x3b
+ 447 003e 05       		.uleb128 0x5
+ 448 003f 49       		.uleb128 0x49
+ 449 0040 13       		.uleb128 0x13
+ 450 0041 00       		.byte	0
+ 451 0042 00       		.byte	0
+ 452 0043 06       		.uleb128 0x6
+ 453 0044 35       		.uleb128 0x35
+ 454 0045 00       		.byte	0
+ 455 0046 49       		.uleb128 0x49
+ 456 0047 13       		.uleb128 0x13
+ 457 0048 00       		.byte	0
+ 458 0049 00       		.byte	0
+ 459 004a 07       		.uleb128 0x7
+ 460 004b 2E       		.uleb128 0x2e
+ 461 004c 01       		.byte	0x1
+ 462 004d 3F       		.uleb128 0x3f
+ 463 004e 19       		.uleb128 0x19
+ 464 004f 03       		.uleb128 0x3
+ 465 0050 0E       		.uleb128 0xe
+ 466 0051 3A       		.uleb128 0x3a
+ 467 0052 0B       		.uleb128 0xb
+ 468 0053 3B       		.uleb128 0x3b
+ 469 0054 0B       		.uleb128 0xb
+ 470 0055 27       		.uleb128 0x27
+ 471 0056 19       		.uleb128 0x19
+ 472 0057 11       		.uleb128 0x11
+ 473 0058 01       		.uleb128 0x1
+ 474 0059 12       		.uleb128 0x12
+ 475 005a 06       		.uleb128 0x6
+ 476 005b 40       		.uleb128 0x40
+ 477 005c 18       		.uleb128 0x18
+ 478 005d 9742     		.uleb128 0x2117
+ 479 005f 19       		.uleb128 0x19
+ 480 0060 01       		.uleb128 0x1
+ 481 0061 13       		.uleb128 0x13
+ 482 0062 00       		.byte	0
+ 483 0063 00       		.byte	0
+ 484 0064 08       		.uleb128 0x8
+ 485 0065 05       		.uleb128 0x5
+ 486 0066 00       		.byte	0
+ 487 0067 03       		.uleb128 0x3
+ 488 0068 0E       		.uleb128 0xe
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccM10BBE.s 			page 12
+
+
+ 489 0069 3A       		.uleb128 0x3a
+ 490 006a 0B       		.uleb128 0xb
+ 491 006b 3B       		.uleb128 0x3b
+ 492 006c 0B       		.uleb128 0xb
+ 493 006d 49       		.uleb128 0x49
+ 494 006e 13       		.uleb128 0x13
+ 495 006f 02       		.uleb128 0x2
+ 496 0070 18       		.uleb128 0x18
+ 497 0071 00       		.byte	0
+ 498 0072 00       		.byte	0
+ 499 0073 09       		.uleb128 0x9
+ 500 0074 34       		.uleb128 0x34
+ 501 0075 00       		.byte	0
+ 502 0076 03       		.uleb128 0x3
+ 503 0077 0E       		.uleb128 0xe
+ 504 0078 3A       		.uleb128 0x3a
+ 505 0079 0B       		.uleb128 0xb
+ 506 007a 3B       		.uleb128 0x3b
+ 507 007b 0B       		.uleb128 0xb
+ 508 007c 49       		.uleb128 0x49
+ 509 007d 13       		.uleb128 0x13
+ 510 007e 02       		.uleb128 0x2
+ 511 007f 18       		.uleb128 0x18
+ 512 0080 00       		.byte	0
+ 513 0081 00       		.byte	0
+ 514 0082 0A       		.uleb128 0xa
+ 515 0083 2E       		.uleb128 0x2e
+ 516 0084 00       		.byte	0
+ 517 0085 3F       		.uleb128 0x3f
+ 518 0086 19       		.uleb128 0x19
+ 519 0087 03       		.uleb128 0x3
+ 520 0088 0E       		.uleb128 0xe
+ 521 0089 3A       		.uleb128 0x3a
+ 522 008a 0B       		.uleb128 0xb
+ 523 008b 3B       		.uleb128 0x3b
+ 524 008c 0B       		.uleb128 0xb
+ 525 008d 27       		.uleb128 0x27
+ 526 008e 19       		.uleb128 0x19
+ 527 008f 49       		.uleb128 0x49
+ 528 0090 13       		.uleb128 0x13
+ 529 0091 11       		.uleb128 0x11
+ 530 0092 01       		.uleb128 0x1
+ 531 0093 12       		.uleb128 0x12
+ 532 0094 06       		.uleb128 0x6
+ 533 0095 40       		.uleb128 0x40
+ 534 0096 18       		.uleb128 0x18
+ 535 0097 9742     		.uleb128 0x2117
+ 536 0099 19       		.uleb128 0x19
+ 537 009a 00       		.byte	0
+ 538 009b 00       		.byte	0
+ 539 009c 00       		.byte	0
+ 540              		.section	.debug_aranges,"",%progbits
+ 541 0000 3C000000 		.4byte	0x3c
+ 542 0004 0200     		.2byte	0x2
+ 543 0006 00000000 		.4byte	.Ldebug_info0
+ 544 000a 04       		.byte	0x4
+ 545 000b 00       		.byte	0
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccM10BBE.s 			page 13
+
+
+ 546 000c 0000     		.2byte	0
+ 547 000e 0000     		.2byte	0
+ 548 0010 00000000 		.4byte	.LFB0
+ 549 0014 38000000 		.4byte	.LFE0-.LFB0
+ 550 0018 00000000 		.4byte	.LFB1
+ 551 001c 38000000 		.4byte	.LFE1-.LFB1
+ 552 0020 00000000 		.4byte	.LFB2
+ 553 0024 20000000 		.4byte	.LFE2-.LFB2
+ 554 0028 00000000 		.4byte	.LFB3
+ 555 002c 20000000 		.4byte	.LFE3-.LFB3
+ 556 0030 00000000 		.4byte	.LFB4
+ 557 0034 20000000 		.4byte	.LFE4-.LFB4
+ 558 0038 00000000 		.4byte	0
+ 559 003c 00000000 		.4byte	0
+ 560              		.section	.debug_ranges,"",%progbits
+ 561              	.Ldebug_ranges0:
+ 562 0000 00000000 		.4byte	.LFB0
+ 563 0004 38000000 		.4byte	.LFE0
+ 564 0008 00000000 		.4byte	.LFB1
+ 565 000c 38000000 		.4byte	.LFE1
+ 566 0010 00000000 		.4byte	.LFB2
+ 567 0014 20000000 		.4byte	.LFE2
+ 568 0018 00000000 		.4byte	.LFB3
+ 569 001c 20000000 		.4byte	.LFE3
+ 570 0020 00000000 		.4byte	.LFB4
+ 571 0024 20000000 		.4byte	.LFE4
+ 572 0028 00000000 		.4byte	0
+ 573 002c 00000000 		.4byte	0
+ 574              		.section	.debug_line,"",%progbits
+ 575              	.Ldebug_line0:
+ 576 0000 A5000000 		.section	.debug_str,"MS",%progbits,1
+ 576      02004500 
+ 576      00000201 
+ 576      FB0E0D00 
+ 576      01010101 
+ 577              	.LASF15:
+ 578 0000 526F7461 		.ascii	"Rotary_SetDriveMode\000"
+ 578      72795F53 
+ 578      65744472 
+ 578      6976654D 
+ 578      6F646500 
+ 579              	.LASF16:
+ 580 0014 76616C75 		.ascii	"value\000"
+ 580      6500
+ 581              	.LASF24:
+ 582 001a 73746174 		.ascii	"staticBits\000"
+ 582      69634269 
+ 582      747300
+ 583              	.LASF22:
+ 584 0025 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\Rotary.c\000"
+ 584      6E657261 
+ 584      7465645F 
+ 584      536F7572 
+ 584      63655C50 
+ 585              	.LASF9:
+ 586 0047 666C6F61 		.ascii	"float\000"
+ 586      7400
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccM10BBE.s 			page 14
+
+
+ 587              	.LASF0:
+ 588 004d 7369676E 		.ascii	"signed char\000"
+ 588      65642063 
+ 588      68617200 
+ 589              	.LASF1:
+ 590 0059 756E7369 		.ascii	"unsigned char\000"
+ 590      676E6564 
+ 590      20636861 
+ 590      7200
+ 591              	.LASF13:
+ 592 0067 72656738 		.ascii	"reg8\000"
+ 592      00
+ 593              	.LASF5:
+ 594 006c 6C6F6E67 		.ascii	"long unsigned int\000"
+ 594      20756E73 
+ 594      69676E65 
+ 594      6420696E 
+ 594      7400
+ 595              	.LASF3:
+ 596 007e 73686F72 		.ascii	"short unsigned int\000"
+ 596      7420756E 
+ 596      7369676E 
+ 596      65642069 
+ 596      6E7400
+ 597              	.LASF20:
+ 598 0091 526F7461 		.ascii	"Rotary_ClearInterrupt\000"
+ 598      72795F43 
+ 598      6C656172 
+ 598      496E7465 
+ 598      72727570 
+ 599              	.LASF10:
+ 600 00a7 646F7562 		.ascii	"double\000"
+ 600      6C6500
+ 601              	.LASF8:
+ 602 00ae 756E7369 		.ascii	"unsigned int\000"
+ 602      676E6564 
+ 602      20696E74 
+ 602      00
+ 603              	.LASF7:
+ 604 00bb 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 604      206C6F6E 
+ 604      6720756E 
+ 604      7369676E 
+ 604      65642069 
+ 605              	.LASF17:
+ 606 00d2 6D6F6465 		.ascii	"mode\000"
+ 606      00
+ 607              	.LASF21:
+ 608 00d7 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 608      4320342E 
+ 608      382E3420 
+ 608      32303134 
+ 608      30353236 
+ 609 010a 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
+ 609      20726576 
+ 609      6973696F 
+ 609      6E203231 
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccM10BBE.s 			page 15
+
+
+ 609      31333538 
+ 610 013d 30202D66 		.ascii	"0 -ffunction-sections\000"
+ 610      66756E63 
+ 610      74696F6E 
+ 610      2D736563 
+ 610      74696F6E 
+ 611              	.LASF6:
+ 612 0153 6C6F6E67 		.ascii	"long long int\000"
+ 612      206C6F6E 
+ 612      6720696E 
+ 612      7400
+ 613              	.LASF11:
+ 614 0161 63686172 		.ascii	"char\000"
+ 614      00
+ 615              	.LASF14:
+ 616 0166 526F7461 		.ascii	"Rotary_Write\000"
+ 616      72795F57 
+ 616      72697465 
+ 616      00
+ 617              	.LASF2:
+ 618 0173 73686F72 		.ascii	"short int\000"
+ 618      7420696E 
+ 618      7400
+ 619              	.LASF12:
+ 620 017d 75696E74 		.ascii	"uint8\000"
+ 620      3800
+ 621              	.LASF4:
+ 622 0183 6C6F6E67 		.ascii	"long int\000"
+ 622      20696E74 
+ 622      00
+ 623              	.LASF18:
+ 624 018c 526F7461 		.ascii	"Rotary_Read\000"
+ 624      72795F52 
+ 624      65616400 
+ 625              	.LASF23:
+ 626 0198 443A5C77 		.ascii	"D:\\workspace\\super-eagle\\Super-Eagle\\Super-Eagl"
+ 626      6F726B73 
+ 626      70616365 
+ 626      5C737570 
+ 626      65722D65 
+ 627 01c7 652E6379 		.ascii	"e.cydsn\000"
+ 627      64736E00 
+ 628              	.LASF19:
+ 629 01cf 526F7461 		.ascii	"Rotary_ReadDataReg\000"
+ 629      72795F52 
+ 629      65616444 
+ 629      61746152 
+ 629      656700
+ 630              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

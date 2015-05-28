@@ -1,0 +1,836 @@
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccEnj5fQ.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"LED_Strip_PM.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.data
+  19              		.align	2
+  20              		.type	LED_Strip_backup, %object
+  21              		.size	LED_Strip_backup, 2
+  22              	LED_Strip_backup:
+  23 0000 00       		.byte	0
+  24 0001 0F       		.byte	15
+  25 0002 0000     		.section	.text.LED_Strip_SaveConfig,"ax",%progbits
+  26              		.align	2
+  27              		.global	LED_Strip_SaveConfig
+  28              		.thumb
+  29              		.thumb_func
+  30              		.type	LED_Strip_SaveConfig, %function
+  31              	LED_Strip_SaveConfig:
+  32              	.LFB0:
+  33              		.file 1 ".\\Generated_Source\\PSoC5\\LED_Strip_PM.c"
+   1:.\Generated_Source\PSoC5/LED_Strip_PM.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * File Name: LED_Strip_PM.c
+   3:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Version 2.50
+   4:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
+   5:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Description:
+   6:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  This file contains the setup, control and status commands to support
+   7:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  component operations in low power mode.
+   8:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
+   9:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Note:
+  10:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
+  11:.\Generated_Source\PSoC5/LED_Strip_PM.c **** ********************************************************************************
+  12:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  13:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  14:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  15:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * the software package with which this file was provided.
+  16:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *******************************************************************************/
+  17:.\Generated_Source\PSoC5/LED_Strip_PM.c **** 
+  18:.\Generated_Source\PSoC5/LED_Strip_PM.c **** #include "LED_Strip_PVT.h"
+  19:.\Generated_Source\PSoC5/LED_Strip_PM.c **** 
+  20:.\Generated_Source\PSoC5/LED_Strip_PM.c **** static LED_Strip_BACKUP_STRUCT LED_Strip_backup =
+  21:.\Generated_Source\PSoC5/LED_Strip_PM.c **** {
+  22:.\Generated_Source\PSoC5/LED_Strip_PM.c ****     LED_Strip_DISABLED,
+  23:.\Generated_Source\PSoC5/LED_Strip_PM.c ****     LED_Strip_BITCTR_INIT,
+  24:.\Generated_Source\PSoC5/LED_Strip_PM.c **** };
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccEnj5fQ.s 			page 2
+
+
+  25:.\Generated_Source\PSoC5/LED_Strip_PM.c **** 
+  26:.\Generated_Source\PSoC5/LED_Strip_PM.c **** 
+  27:.\Generated_Source\PSoC5/LED_Strip_PM.c **** /*******************************************************************************
+  28:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Function Name: LED_Strip_SaveConfig
+  29:.\Generated_Source\PSoC5/LED_Strip_PM.c **** ********************************************************************************
+  30:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
+  31:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Summary:
+  32:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  Empty function. Included for consistency with other components.
+  33:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
+  34:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Parameters:
+  35:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  None.
+  36:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
+  37:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Return:
+  38:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  None.
+  39:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
+  40:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *******************************************************************************/
+  41:.\Generated_Source\PSoC5/LED_Strip_PM.c **** void LED_Strip_SaveConfig(void) 
+  42:.\Generated_Source\PSoC5/LED_Strip_PM.c **** {
+  34              		.loc 1 42 0
+  35              		.cfi_startproc
+  36              		@ args = 0, pretend = 0, frame = 0
+  37              		@ frame_needed = 1, uses_anonymous_args = 0
+  38              		@ link register save eliminated.
+  39 0000 80B4     		push	{r7}
+  40              		.cfi_def_cfa_offset 4
+  41              		.cfi_offset 7, -4
+  42 0002 00AF     		add	r7, sp, #0
+  43              		.cfi_def_cfa_register 7
+  43:.\Generated_Source\PSoC5/LED_Strip_PM.c **** 
+  44:.\Generated_Source\PSoC5/LED_Strip_PM.c **** }
+  44              		.loc 1 44 0
+  45 0004 BD46     		mov	sp, r7
+  46              		@ sp needed
+  47 0006 5DF8047B 		ldr	r7, [sp], #4
+  48 000a 7047     		bx	lr
+  49              		.cfi_endproc
+  50              	.LFE0:
+  51              		.size	LED_Strip_SaveConfig, .-LED_Strip_SaveConfig
+  52              		.section	.text.LED_Strip_RestoreConfig,"ax",%progbits
+  53              		.align	2
+  54              		.global	LED_Strip_RestoreConfig
+  55              		.thumb
+  56              		.thumb_func
+  57              		.type	LED_Strip_RestoreConfig, %function
+  58              	LED_Strip_RestoreConfig:
+  59              	.LFB1:
+  45:.\Generated_Source\PSoC5/LED_Strip_PM.c **** 
+  46:.\Generated_Source\PSoC5/LED_Strip_PM.c **** 
+  47:.\Generated_Source\PSoC5/LED_Strip_PM.c **** /*******************************************************************************
+  48:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Function Name: LED_Strip_RestoreConfig
+  49:.\Generated_Source\PSoC5/LED_Strip_PM.c **** ********************************************************************************
+  50:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
+  51:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Summary:
+  52:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  Empty function. Included for consistency with other components.
+  53:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
+  54:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Parameters:
+  55:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  None.
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccEnj5fQ.s 			page 3
+
+
+  56:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
+  57:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Return:
+  58:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  None.
+  59:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
+  60:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *******************************************************************************/
+  61:.\Generated_Source\PSoC5/LED_Strip_PM.c **** void LED_Strip_RestoreConfig(void) 
+  62:.\Generated_Source\PSoC5/LED_Strip_PM.c **** {
+  60              		.loc 1 62 0
+  61              		.cfi_startproc
+  62              		@ args = 0, pretend = 0, frame = 0
+  63              		@ frame_needed = 1, uses_anonymous_args = 0
+  64              		@ link register save eliminated.
+  65 0000 80B4     		push	{r7}
+  66              		.cfi_def_cfa_offset 4
+  67              		.cfi_offset 7, -4
+  68 0002 00AF     		add	r7, sp, #0
+  69              		.cfi_def_cfa_register 7
+  63:.\Generated_Source\PSoC5/LED_Strip_PM.c **** 
+  64:.\Generated_Source\PSoC5/LED_Strip_PM.c **** }
+  70              		.loc 1 64 0
+  71 0004 BD46     		mov	sp, r7
+  72              		@ sp needed
+  73 0006 5DF8047B 		ldr	r7, [sp], #4
+  74 000a 7047     		bx	lr
+  75              		.cfi_endproc
+  76              	.LFE1:
+  77              		.size	LED_Strip_RestoreConfig, .-LED_Strip_RestoreConfig
+  78              		.section	.text.LED_Strip_Sleep,"ax",%progbits
+  79              		.align	2
+  80              		.global	LED_Strip_Sleep
+  81              		.thumb
+  82              		.thumb_func
+  83              		.type	LED_Strip_Sleep, %function
+  84              	LED_Strip_Sleep:
+  85              	.LFB2:
+  65:.\Generated_Source\PSoC5/LED_Strip_PM.c **** 
+  66:.\Generated_Source\PSoC5/LED_Strip_PM.c **** 
+  67:.\Generated_Source\PSoC5/LED_Strip_PM.c **** /*******************************************************************************
+  68:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Function Name: LED_Strip_Sleep
+  69:.\Generated_Source\PSoC5/LED_Strip_PM.c **** ********************************************************************************
+  70:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
+  71:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Summary:
+  72:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  Prepare SPIM Component goes to sleep.
+  73:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
+  74:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Parameters:
+  75:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  None.
+  76:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
+  77:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Return:
+  78:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  None.
+  79:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
+  80:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Global Variables:
+  81:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  LED_Strip_backup - modified when non-retention registers are saved.
+  82:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
+  83:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Reentrant:
+  84:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  No.
+  85:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
+  86:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *******************************************************************************/
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccEnj5fQ.s 			page 4
+
+
+  87:.\Generated_Source\PSoC5/LED_Strip_PM.c **** void LED_Strip_Sleep(void) 
+  88:.\Generated_Source\PSoC5/LED_Strip_PM.c **** {
+  86              		.loc 1 88 0
+  87              		.cfi_startproc
+  88              		@ args = 0, pretend = 0, frame = 0
+  89              		@ frame_needed = 1, uses_anonymous_args = 0
+  90 0000 80B5     		push	{r7, lr}
+  91              		.cfi_def_cfa_offset 8
+  92              		.cfi_offset 7, -8
+  93              		.cfi_offset 14, -4
+  94 0002 00AF     		add	r7, sp, #0
+  95              		.cfi_def_cfa_register 7
+  89:.\Generated_Source\PSoC5/LED_Strip_PM.c ****     /* Save components enable state */
+  90:.\Generated_Source\PSoC5/LED_Strip_PM.c ****     LED_Strip_backup.enableState = ((uint8) LED_Strip_IS_ENABLED);
+  96              		.loc 1 90 0
+  97 0004 074B     		ldr	r3, .L4
+  98 0006 1B78     		ldrb	r3, [r3]
+  99 0008 DBB2     		uxtb	r3, r3
+ 100 000a 03F01003 		and	r3, r3, #16
+ 101 000e 002B     		cmp	r3, #0
+ 102 0010 0CBF     		ite	eq
+ 103 0012 0023     		moveq	r3, #0
+ 104 0014 0123     		movne	r3, #1
+ 105 0016 DBB2     		uxtb	r3, r3
+ 106 0018 1A46     		mov	r2, r3
+ 107 001a 034B     		ldr	r3, .L4+4
+ 108 001c 1A70     		strb	r2, [r3]
+  91:.\Generated_Source\PSoC5/LED_Strip_PM.c **** 
+  92:.\Generated_Source\PSoC5/LED_Strip_PM.c ****     LED_Strip_Stop();
+ 109              		.loc 1 92 0
+ 110 001e FFF7FEFF 		bl	LED_Strip_Stop
+  93:.\Generated_Source\PSoC5/LED_Strip_PM.c **** }
+ 111              		.loc 1 93 0
+ 112 0022 80BD     		pop	{r7, pc}
+ 113              	.L5:
+ 114              		.align	2
+ 115              	.L4:
+ 116 0024 90640040 		.word	1073767568
+ 117 0028 00000000 		.word	LED_Strip_backup
+ 118              		.cfi_endproc
+ 119              	.LFE2:
+ 120              		.size	LED_Strip_Sleep, .-LED_Strip_Sleep
+ 121              		.section	.text.LED_Strip_Wakeup,"ax",%progbits
+ 122              		.align	2
+ 123              		.global	LED_Strip_Wakeup
+ 124              		.thumb
+ 125              		.thumb_func
+ 126              		.type	LED_Strip_Wakeup, %function
+ 127              	LED_Strip_Wakeup:
+ 128              	.LFB3:
+  94:.\Generated_Source\PSoC5/LED_Strip_PM.c **** 
+  95:.\Generated_Source\PSoC5/LED_Strip_PM.c **** 
+  96:.\Generated_Source\PSoC5/LED_Strip_PM.c **** /*******************************************************************************
+  97:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Function Name: LED_Strip_Wakeup
+  98:.\Generated_Source\PSoC5/LED_Strip_PM.c **** ********************************************************************************
+  99:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
+ 100:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Summary:
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccEnj5fQ.s 			page 5
+
+
+ 101:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  Prepare SPIM Component to wake up.
+ 102:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
+ 103:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Parameters:
+ 104:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  None.
+ 105:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
+ 106:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Return:
+ 107:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  None.
+ 108:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
+ 109:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Global Variables:
+ 110:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  LED_Strip_backup - used when non-retention registers are restored.
+ 111:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  LED_Strip_txBufferWrite - modified every function call - resets to
+ 112:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  zero.
+ 113:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  LED_Strip_txBufferRead - modified every function call - resets to
+ 114:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  zero.
+ 115:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  LED_Strip_rxBufferWrite - modified every function call - resets to
+ 116:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  zero.
+ 117:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  LED_Strip_rxBufferRead - modified every function call - resets to
+ 118:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  zero.
+ 119:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
+ 120:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Reentrant:
+ 121:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  No.
+ 122:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
+ 123:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *******************************************************************************/
+ 124:.\Generated_Source\PSoC5/LED_Strip_PM.c **** void LED_Strip_Wakeup(void) 
+ 125:.\Generated_Source\PSoC5/LED_Strip_PM.c **** {
+ 129              		.loc 1 125 0
+ 130              		.cfi_startproc
+ 131              		@ args = 0, pretend = 0, frame = 0
+ 132              		@ frame_needed = 1, uses_anonymous_args = 0
+ 133 0000 80B5     		push	{r7, lr}
+ 134              		.cfi_def_cfa_offset 8
+ 135              		.cfi_offset 7, -8
+ 136              		.cfi_offset 14, -4
+ 137 0002 00AF     		add	r7, sp, #0
+ 138              		.cfi_def_cfa_register 7
+ 126:.\Generated_Source\PSoC5/LED_Strip_PM.c ****     #if(LED_Strip_RX_SOFTWARE_BUF_ENABLED)
+ 127:.\Generated_Source\PSoC5/LED_Strip_PM.c ****         LED_Strip_rxBufferFull  = 0u;
+ 128:.\Generated_Source\PSoC5/LED_Strip_PM.c ****         LED_Strip_rxBufferRead  = 0u;
+ 129:.\Generated_Source\PSoC5/LED_Strip_PM.c ****         LED_Strip_rxBufferWrite = 0u;
+ 130:.\Generated_Source\PSoC5/LED_Strip_PM.c ****     #endif /* (LED_Strip_RX_SOFTWARE_BUF_ENABLED) */
+ 131:.\Generated_Source\PSoC5/LED_Strip_PM.c **** 
+ 132:.\Generated_Source\PSoC5/LED_Strip_PM.c ****     #if(LED_Strip_TX_SOFTWARE_BUF_ENABLED)
+ 133:.\Generated_Source\PSoC5/LED_Strip_PM.c ****         LED_Strip_txBufferFull  = 0u;
+ 134:.\Generated_Source\PSoC5/LED_Strip_PM.c ****         LED_Strip_txBufferRead  = 0u;
+ 135:.\Generated_Source\PSoC5/LED_Strip_PM.c ****         LED_Strip_txBufferWrite = 0u;
+ 136:.\Generated_Source\PSoC5/LED_Strip_PM.c ****     #endif /* (LED_Strip_TX_SOFTWARE_BUF_ENABLED) */
+ 137:.\Generated_Source\PSoC5/LED_Strip_PM.c **** 
+ 138:.\Generated_Source\PSoC5/LED_Strip_PM.c ****     /* Clear any data from the RX and TX FIFO */
+ 139:.\Generated_Source\PSoC5/LED_Strip_PM.c ****     LED_Strip_ClearFIFO();
+ 139              		.loc 1 139 0
+ 140 0004 FFF7FEFF 		bl	LED_Strip_ClearFIFO
+ 140:.\Generated_Source\PSoC5/LED_Strip_PM.c **** 
+ 141:.\Generated_Source\PSoC5/LED_Strip_PM.c ****     /* Restore components block enable state */
+ 142:.\Generated_Source\PSoC5/LED_Strip_PM.c ****     if(0u != LED_Strip_backup.enableState)
+ 141              		.loc 1 142 0
+ 142 0008 034B     		ldr	r3, .L8
+ 143 000a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccEnj5fQ.s 			page 6
+
+
+ 144 000c 002B     		cmp	r3, #0
+ 145 000e 01D0     		beq	.L6
+ 143:.\Generated_Source\PSoC5/LED_Strip_PM.c ****     {
+ 144:.\Generated_Source\PSoC5/LED_Strip_PM.c ****         LED_Strip_Enable();
+ 146              		.loc 1 144 0
+ 147 0010 FFF7FEFF 		bl	LED_Strip_Enable
+ 148              	.L6:
+ 145:.\Generated_Source\PSoC5/LED_Strip_PM.c ****     }
+ 146:.\Generated_Source\PSoC5/LED_Strip_PM.c **** }
+ 149              		.loc 1 146 0
+ 150 0014 80BD     		pop	{r7, pc}
+ 151              	.L9:
+ 152 0016 00BF     		.align	2
+ 153              	.L8:
+ 154 0018 00000000 		.word	LED_Strip_backup
+ 155              		.cfi_endproc
+ 156              	.LFE3:
+ 157              		.size	LED_Strip_Wakeup, .-LED_Strip_Wakeup
+ 158              		.text
+ 159              	.Letext0:
+ 160              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 161              		.file 3 ".\\Generated_Source\\PSoC5\\LED_Strip.h"
+ 162              		.section	.debug_info,"",%progbits
+ 163              	.Ldebug_info0:
+ 164 0000 21010000 		.4byte	0x121
+ 165 0004 0400     		.2byte	0x4
+ 166 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 167 000a 04       		.byte	0x4
+ 168 000b 01       		.uleb128 0x1
+ 169 000c 7E010000 		.4byte	.LASF22
+ 170 0010 01       		.byte	0x1
+ 171 0011 E5000000 		.4byte	.LASF23
+ 172 0015 3D010000 		.4byte	.LASF24
+ 173 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 174 001d 00000000 		.4byte	0
+ 175 0021 00000000 		.4byte	.Ldebug_line0
+ 176 0025 02       		.uleb128 0x2
+ 177 0026 01       		.byte	0x1
+ 178 0027 06       		.byte	0x6
+ 179 0028 2B010000 		.4byte	.LASF0
+ 180 002c 02       		.uleb128 0x2
+ 181 002d 01       		.byte	0x1
+ 182 002e 08       		.byte	0x8
+ 183 002f 92000000 		.4byte	.LASF1
+ 184 0033 02       		.uleb128 0x2
+ 185 0034 02       		.byte	0x2
+ 186 0035 05       		.byte	0x5
+ 187 0036 74010000 		.4byte	.LASF2
+ 188 003a 02       		.uleb128 0x2
+ 189 003b 02       		.byte	0x2
+ 190 003c 07       		.byte	0x7
+ 191 003d 18010000 		.4byte	.LASF3
+ 192 0041 02       		.uleb128 0x2
+ 193 0042 04       		.byte	0x4
+ 194 0043 05       		.byte	0x5
+ 195 0044 B8000000 		.4byte	.LASF4
+ 196 0048 02       		.uleb128 0x2
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccEnj5fQ.s 			page 7
+
+
+ 197 0049 04       		.byte	0x4
+ 198 004a 07       		.byte	0x7
+ 199 004b 4C000000 		.4byte	.LASF5
+ 200 004f 02       		.uleb128 0x2
+ 201 0050 08       		.byte	0x8
+ 202 0051 05       		.byte	0x5
+ 203 0052 00000000 		.4byte	.LASF6
+ 204 0056 02       		.uleb128 0x2
+ 205 0057 08       		.byte	0x8
+ 206 0058 07       		.byte	0x7
+ 207 0059 5E000000 		.4byte	.LASF7
+ 208 005d 03       		.uleb128 0x3
+ 209 005e 04       		.byte	0x4
+ 210 005f 05       		.byte	0x5
+ 211 0060 696E7400 		.ascii	"int\000"
+ 212 0064 02       		.uleb128 0x2
+ 213 0065 04       		.byte	0x4
+ 214 0066 07       		.byte	0x7
+ 215 0067 23000000 		.4byte	.LASF8
+ 216 006b 04       		.uleb128 0x4
+ 217 006c 46000000 		.4byte	.LASF12
+ 218 0070 02       		.byte	0x2
+ 219 0071 A1       		.byte	0xa1
+ 220 0072 2C000000 		.4byte	0x2c
+ 221 0076 02       		.uleb128 0x2
+ 222 0077 04       		.byte	0x4
+ 223 0078 04       		.byte	0x4
+ 224 0079 37010000 		.4byte	.LASF9
+ 225 007d 02       		.uleb128 0x2
+ 226 007e 08       		.byte	0x8
+ 227 007f 04       		.byte	0x4
+ 228 0080 DE000000 		.4byte	.LASF10
+ 229 0084 02       		.uleb128 0x2
+ 230 0085 01       		.byte	0x1
+ 231 0086 08       		.byte	0x8
+ 232 0087 8D000000 		.4byte	.LASF11
+ 233 008b 05       		.uleb128 0x5
+ 234 008c 41000000 		.4byte	.LASF13
+ 235 0090 02       		.byte	0x2
+ 236 0091 4B01     		.2byte	0x14b
+ 237 0093 97000000 		.4byte	0x97
+ 238 0097 06       		.uleb128 0x6
+ 239 0098 6B000000 		.4byte	0x6b
+ 240 009c 02       		.uleb128 0x2
+ 241 009d 04       		.byte	0x4
+ 242 009e 07       		.byte	0x7
+ 243 009f 0A020000 		.4byte	.LASF14
+ 244 00a3 07       		.uleb128 0x7
+ 245 00a4 02       		.byte	0x2
+ 246 00a5 03       		.byte	0x3
+ 247 00a6 46       		.byte	0x46
+ 248 00a7 C4000000 		.4byte	0xc4
+ 249 00ab 08       		.uleb128 0x8
+ 250 00ac D2000000 		.4byte	.LASF15
+ 251 00b0 03       		.byte	0x3
+ 252 00b1 48       		.byte	0x48
+ 253 00b2 6B000000 		.4byte	0x6b
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccEnj5fQ.s 			page 8
+
+
+ 254 00b6 00       		.byte	0
+ 255 00b7 08       		.uleb128 0x8
+ 256 00b8 0D010000 		.4byte	.LASF16
+ 257 00bc 03       		.byte	0x3
+ 258 00bd 49       		.byte	0x49
+ 259 00be 6B000000 		.4byte	0x6b
+ 260 00c2 01       		.byte	0x1
+ 261 00c3 00       		.byte	0
+ 262 00c4 04       		.uleb128 0x4
+ 263 00c5 A0000000 		.4byte	.LASF17
+ 264 00c9 03       		.byte	0x3
+ 265 00ca 4A       		.byte	0x4a
+ 266 00cb A3000000 		.4byte	0xa3
+ 267 00cf 09       		.uleb128 0x9
+ 268 00d0 0E000000 		.4byte	.LASF18
+ 269 00d4 01       		.byte	0x1
+ 270 00d5 29       		.byte	0x29
+ 271 00d6 00000000 		.4byte	.LFB0
+ 272 00da 0C000000 		.4byte	.LFE0-.LFB0
+ 273 00de 01       		.uleb128 0x1
+ 274 00df 9C       		.byte	0x9c
+ 275 00e0 09       		.uleb128 0x9
+ 276 00e1 75000000 		.4byte	.LASF19
+ 277 00e5 01       		.byte	0x1
+ 278 00e6 3D       		.byte	0x3d
+ 279 00e7 00000000 		.4byte	.LFB1
+ 280 00eb 0C000000 		.4byte	.LFE1-.LFB1
+ 281 00ef 01       		.uleb128 0x1
+ 282 00f0 9C       		.byte	0x9c
+ 283 00f1 0A       		.uleb128 0xa
+ 284 00f2 FA010000 		.4byte	.LASF20
+ 285 00f6 01       		.byte	0x1
+ 286 00f7 57       		.byte	0x57
+ 287 00f8 00000000 		.4byte	.LFB2
+ 288 00fc 2C000000 		.4byte	.LFE2-.LFB2
+ 289 0100 01       		.uleb128 0x1
+ 290 0101 9C       		.byte	0x9c
+ 291 0102 0A       		.uleb128 0xa
+ 292 0103 30000000 		.4byte	.LASF21
+ 293 0107 01       		.byte	0x1
+ 294 0108 7C       		.byte	0x7c
+ 295 0109 00000000 		.4byte	.LFB3
+ 296 010d 1C000000 		.4byte	.LFE3-.LFB3
+ 297 0111 01       		.uleb128 0x1
+ 298 0112 9C       		.byte	0x9c
+ 299 0113 0B       		.uleb128 0xb
+ 300 0114 C1000000 		.4byte	.LASF25
+ 301 0118 01       		.byte	0x1
+ 302 0119 14       		.byte	0x14
+ 303 011a C4000000 		.4byte	0xc4
+ 304 011e 05       		.uleb128 0x5
+ 305 011f 03       		.byte	0x3
+ 306 0120 00000000 		.4byte	LED_Strip_backup
+ 307 0124 00       		.byte	0
+ 308              		.section	.debug_abbrev,"",%progbits
+ 309              	.Ldebug_abbrev0:
+ 310 0000 01       		.uleb128 0x1
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccEnj5fQ.s 			page 9
+
+
+ 311 0001 11       		.uleb128 0x11
+ 312 0002 01       		.byte	0x1
+ 313 0003 25       		.uleb128 0x25
+ 314 0004 0E       		.uleb128 0xe
+ 315 0005 13       		.uleb128 0x13
+ 316 0006 0B       		.uleb128 0xb
+ 317 0007 03       		.uleb128 0x3
+ 318 0008 0E       		.uleb128 0xe
+ 319 0009 1B       		.uleb128 0x1b
+ 320 000a 0E       		.uleb128 0xe
+ 321 000b 55       		.uleb128 0x55
+ 322 000c 17       		.uleb128 0x17
+ 323 000d 11       		.uleb128 0x11
+ 324 000e 01       		.uleb128 0x1
+ 325 000f 10       		.uleb128 0x10
+ 326 0010 17       		.uleb128 0x17
+ 327 0011 00       		.byte	0
+ 328 0012 00       		.byte	0
+ 329 0013 02       		.uleb128 0x2
+ 330 0014 24       		.uleb128 0x24
+ 331 0015 00       		.byte	0
+ 332 0016 0B       		.uleb128 0xb
+ 333 0017 0B       		.uleb128 0xb
+ 334 0018 3E       		.uleb128 0x3e
+ 335 0019 0B       		.uleb128 0xb
+ 336 001a 03       		.uleb128 0x3
+ 337 001b 0E       		.uleb128 0xe
+ 338 001c 00       		.byte	0
+ 339 001d 00       		.byte	0
+ 340 001e 03       		.uleb128 0x3
+ 341 001f 24       		.uleb128 0x24
+ 342 0020 00       		.byte	0
+ 343 0021 0B       		.uleb128 0xb
+ 344 0022 0B       		.uleb128 0xb
+ 345 0023 3E       		.uleb128 0x3e
+ 346 0024 0B       		.uleb128 0xb
+ 347 0025 03       		.uleb128 0x3
+ 348 0026 08       		.uleb128 0x8
+ 349 0027 00       		.byte	0
+ 350 0028 00       		.byte	0
+ 351 0029 04       		.uleb128 0x4
+ 352 002a 16       		.uleb128 0x16
+ 353 002b 00       		.byte	0
+ 354 002c 03       		.uleb128 0x3
+ 355 002d 0E       		.uleb128 0xe
+ 356 002e 3A       		.uleb128 0x3a
+ 357 002f 0B       		.uleb128 0xb
+ 358 0030 3B       		.uleb128 0x3b
+ 359 0031 0B       		.uleb128 0xb
+ 360 0032 49       		.uleb128 0x49
+ 361 0033 13       		.uleb128 0x13
+ 362 0034 00       		.byte	0
+ 363 0035 00       		.byte	0
+ 364 0036 05       		.uleb128 0x5
+ 365 0037 16       		.uleb128 0x16
+ 366 0038 00       		.byte	0
+ 367 0039 03       		.uleb128 0x3
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccEnj5fQ.s 			page 10
+
+
+ 368 003a 0E       		.uleb128 0xe
+ 369 003b 3A       		.uleb128 0x3a
+ 370 003c 0B       		.uleb128 0xb
+ 371 003d 3B       		.uleb128 0x3b
+ 372 003e 05       		.uleb128 0x5
+ 373 003f 49       		.uleb128 0x49
+ 374 0040 13       		.uleb128 0x13
+ 375 0041 00       		.byte	0
+ 376 0042 00       		.byte	0
+ 377 0043 06       		.uleb128 0x6
+ 378 0044 35       		.uleb128 0x35
+ 379 0045 00       		.byte	0
+ 380 0046 49       		.uleb128 0x49
+ 381 0047 13       		.uleb128 0x13
+ 382 0048 00       		.byte	0
+ 383 0049 00       		.byte	0
+ 384 004a 07       		.uleb128 0x7
+ 385 004b 13       		.uleb128 0x13
+ 386 004c 01       		.byte	0x1
+ 387 004d 0B       		.uleb128 0xb
+ 388 004e 0B       		.uleb128 0xb
+ 389 004f 3A       		.uleb128 0x3a
+ 390 0050 0B       		.uleb128 0xb
+ 391 0051 3B       		.uleb128 0x3b
+ 392 0052 0B       		.uleb128 0xb
+ 393 0053 01       		.uleb128 0x1
+ 394 0054 13       		.uleb128 0x13
+ 395 0055 00       		.byte	0
+ 396 0056 00       		.byte	0
+ 397 0057 08       		.uleb128 0x8
+ 398 0058 0D       		.uleb128 0xd
+ 399 0059 00       		.byte	0
+ 400 005a 03       		.uleb128 0x3
+ 401 005b 0E       		.uleb128 0xe
+ 402 005c 3A       		.uleb128 0x3a
+ 403 005d 0B       		.uleb128 0xb
+ 404 005e 3B       		.uleb128 0x3b
+ 405 005f 0B       		.uleb128 0xb
+ 406 0060 49       		.uleb128 0x49
+ 407 0061 13       		.uleb128 0x13
+ 408 0062 38       		.uleb128 0x38
+ 409 0063 0B       		.uleb128 0xb
+ 410 0064 00       		.byte	0
+ 411 0065 00       		.byte	0
+ 412 0066 09       		.uleb128 0x9
+ 413 0067 2E       		.uleb128 0x2e
+ 414 0068 00       		.byte	0
+ 415 0069 3F       		.uleb128 0x3f
+ 416 006a 19       		.uleb128 0x19
+ 417 006b 03       		.uleb128 0x3
+ 418 006c 0E       		.uleb128 0xe
+ 419 006d 3A       		.uleb128 0x3a
+ 420 006e 0B       		.uleb128 0xb
+ 421 006f 3B       		.uleb128 0x3b
+ 422 0070 0B       		.uleb128 0xb
+ 423 0071 27       		.uleb128 0x27
+ 424 0072 19       		.uleb128 0x19
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccEnj5fQ.s 			page 11
+
+
+ 425 0073 11       		.uleb128 0x11
+ 426 0074 01       		.uleb128 0x1
+ 427 0075 12       		.uleb128 0x12
+ 428 0076 06       		.uleb128 0x6
+ 429 0077 40       		.uleb128 0x40
+ 430 0078 18       		.uleb128 0x18
+ 431 0079 9742     		.uleb128 0x2117
+ 432 007b 19       		.uleb128 0x19
+ 433 007c 00       		.byte	0
+ 434 007d 00       		.byte	0
+ 435 007e 0A       		.uleb128 0xa
+ 436 007f 2E       		.uleb128 0x2e
+ 437 0080 00       		.byte	0
+ 438 0081 3F       		.uleb128 0x3f
+ 439 0082 19       		.uleb128 0x19
+ 440 0083 03       		.uleb128 0x3
+ 441 0084 0E       		.uleb128 0xe
+ 442 0085 3A       		.uleb128 0x3a
+ 443 0086 0B       		.uleb128 0xb
+ 444 0087 3B       		.uleb128 0x3b
+ 445 0088 0B       		.uleb128 0xb
+ 446 0089 27       		.uleb128 0x27
+ 447 008a 19       		.uleb128 0x19
+ 448 008b 11       		.uleb128 0x11
+ 449 008c 01       		.uleb128 0x1
+ 450 008d 12       		.uleb128 0x12
+ 451 008e 06       		.uleb128 0x6
+ 452 008f 40       		.uleb128 0x40
+ 453 0090 18       		.uleb128 0x18
+ 454 0091 9642     		.uleb128 0x2116
+ 455 0093 19       		.uleb128 0x19
+ 456 0094 00       		.byte	0
+ 457 0095 00       		.byte	0
+ 458 0096 0B       		.uleb128 0xb
+ 459 0097 34       		.uleb128 0x34
+ 460 0098 00       		.byte	0
+ 461 0099 03       		.uleb128 0x3
+ 462 009a 0E       		.uleb128 0xe
+ 463 009b 3A       		.uleb128 0x3a
+ 464 009c 0B       		.uleb128 0xb
+ 465 009d 3B       		.uleb128 0x3b
+ 466 009e 0B       		.uleb128 0xb
+ 467 009f 49       		.uleb128 0x49
+ 468 00a0 13       		.uleb128 0x13
+ 469 00a1 02       		.uleb128 0x2
+ 470 00a2 18       		.uleb128 0x18
+ 471 00a3 00       		.byte	0
+ 472 00a4 00       		.byte	0
+ 473 00a5 00       		.byte	0
+ 474              		.section	.debug_aranges,"",%progbits
+ 475 0000 34000000 		.4byte	0x34
+ 476 0004 0200     		.2byte	0x2
+ 477 0006 00000000 		.4byte	.Ldebug_info0
+ 478 000a 04       		.byte	0x4
+ 479 000b 00       		.byte	0
+ 480 000c 0000     		.2byte	0
+ 481 000e 0000     		.2byte	0
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccEnj5fQ.s 			page 12
+
+
+ 482 0010 00000000 		.4byte	.LFB0
+ 483 0014 0C000000 		.4byte	.LFE0-.LFB0
+ 484 0018 00000000 		.4byte	.LFB1
+ 485 001c 0C000000 		.4byte	.LFE1-.LFB1
+ 486 0020 00000000 		.4byte	.LFB2
+ 487 0024 2C000000 		.4byte	.LFE2-.LFB2
+ 488 0028 00000000 		.4byte	.LFB3
+ 489 002c 1C000000 		.4byte	.LFE3-.LFB3
+ 490 0030 00000000 		.4byte	0
+ 491 0034 00000000 		.4byte	0
+ 492              		.section	.debug_ranges,"",%progbits
+ 493              	.Ldebug_ranges0:
+ 494 0000 00000000 		.4byte	.LFB0
+ 495 0004 0C000000 		.4byte	.LFE0
+ 496 0008 00000000 		.4byte	.LFB1
+ 497 000c 0C000000 		.4byte	.LFE1
+ 498 0010 00000000 		.4byte	.LFB2
+ 499 0014 2C000000 		.4byte	.LFE2
+ 500 0018 00000000 		.4byte	.LFB3
+ 501 001c 1C000000 		.4byte	.LFE3
+ 502 0020 00000000 		.4byte	0
+ 503 0024 00000000 		.4byte	0
+ 504              		.section	.debug_line,"",%progbits
+ 505              	.Ldebug_line0:
+ 506 0000 A9000000 		.section	.debug_str,"MS",%progbits,1
+ 506      02005A00 
+ 506      00000201 
+ 506      FB0E0D00 
+ 506      01010101 
+ 507              	.LASF6:
+ 508 0000 6C6F6E67 		.ascii	"long long int\000"
+ 508      206C6F6E 
+ 508      6720696E 
+ 508      7400
+ 509              	.LASF18:
+ 510 000e 4C45445F 		.ascii	"LED_Strip_SaveConfig\000"
+ 510      53747269 
+ 510      705F5361 
+ 510      7665436F 
+ 510      6E666967 
+ 511              	.LASF8:
+ 512 0023 756E7369 		.ascii	"unsigned int\000"
+ 512      676E6564 
+ 512      20696E74 
+ 512      00
+ 513              	.LASF21:
+ 514 0030 4C45445F 		.ascii	"LED_Strip_Wakeup\000"
+ 514      53747269 
+ 514      705F5761 
+ 514      6B657570 
+ 514      00
+ 515              	.LASF13:
+ 516 0041 72656738 		.ascii	"reg8\000"
+ 516      00
+ 517              	.LASF12:
+ 518 0046 75696E74 		.ascii	"uint8\000"
+ 518      3800
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccEnj5fQ.s 			page 13
+
+
+ 519              	.LASF5:
+ 520 004c 6C6F6E67 		.ascii	"long unsigned int\000"
+ 520      20756E73 
+ 520      69676E65 
+ 520      6420696E 
+ 520      7400
+ 521              	.LASF7:
+ 522 005e 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 522      206C6F6E 
+ 522      6720756E 
+ 522      7369676E 
+ 522      65642069 
+ 523              	.LASF19:
+ 524 0075 4C45445F 		.ascii	"LED_Strip_RestoreConfig\000"
+ 524      53747269 
+ 524      705F5265 
+ 524      73746F72 
+ 524      65436F6E 
+ 525              	.LASF11:
+ 526 008d 63686172 		.ascii	"char\000"
+ 526      00
+ 527              	.LASF1:
+ 528 0092 756E7369 		.ascii	"unsigned char\000"
+ 528      676E6564 
+ 528      20636861 
+ 528      7200
+ 529              	.LASF17:
+ 530 00a0 4C45445F 		.ascii	"LED_Strip_BACKUP_STRUCT\000"
+ 530      53747269 
+ 530      705F4241 
+ 530      434B5550 
+ 530      5F535452 
+ 531              	.LASF4:
+ 532 00b8 6C6F6E67 		.ascii	"long int\000"
+ 532      20696E74 
+ 532      00
+ 533              	.LASF25:
+ 534 00c1 4C45445F 		.ascii	"LED_Strip_backup\000"
+ 534      53747269 
+ 534      705F6261 
+ 534      636B7570 
+ 534      00
+ 535              	.LASF15:
+ 536 00d2 656E6162 		.ascii	"enableState\000"
+ 536      6C655374 
+ 536      61746500 
+ 537              	.LASF10:
+ 538 00de 646F7562 		.ascii	"double\000"
+ 538      6C6500
+ 539              	.LASF23:
+ 540 00e5 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\LED_Strip_PM.c\000"
+ 540      6E657261 
+ 540      7465645F 
+ 540      536F7572 
+ 540      63655C50 
+ 541              	.LASF16:
+ 542 010d 636E7472 		.ascii	"cntrPeriod\000"
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccEnj5fQ.s 			page 14
+
+
+ 542      50657269 
+ 542      6F6400
+ 543              	.LASF3:
+ 544 0118 73686F72 		.ascii	"short unsigned int\000"
+ 544      7420756E 
+ 544      7369676E 
+ 544      65642069 
+ 544      6E7400
+ 545              	.LASF0:
+ 546 012b 7369676E 		.ascii	"signed char\000"
+ 546      65642063 
+ 546      68617200 
+ 547              	.LASF9:
+ 548 0137 666C6F61 		.ascii	"float\000"
+ 548      7400
+ 549              	.LASF24:
+ 550 013d 443A5C77 		.ascii	"D:\\workspace\\super-eagle\\Super-Eagle\\Super-Eagl"
+ 550      6F726B73 
+ 550      70616365 
+ 550      5C737570 
+ 550      65722D65 
+ 551 016c 652E6379 		.ascii	"e.cydsn\000"
+ 551      64736E00 
+ 552              	.LASF2:
+ 553 0174 73686F72 		.ascii	"short int\000"
+ 553      7420696E 
+ 553      7400
+ 554              	.LASF22:
+ 555 017e 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 555      4320342E 
+ 555      382E3420 
+ 555      32303134 
+ 555      30353236 
+ 556 01b1 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
+ 556      20726576 
+ 556      6973696F 
+ 556      6E203231 
+ 556      31333538 
+ 557 01e4 30202D66 		.ascii	"0 -ffunction-sections\000"
+ 557      66756E63 
+ 557      74696F6E 
+ 557      2D736563 
+ 557      74696F6E 
+ 558              	.LASF20:
+ 559 01fa 4C45445F 		.ascii	"LED_Strip_Sleep\000"
+ 559      53747269 
+ 559      705F536C 
+ 559      65657000 
+ 560              	.LASF14:
+ 561 020a 73697A65 		.ascii	"sizetype\000"
+ 561      74797065 
+ 561      00
+ 562              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

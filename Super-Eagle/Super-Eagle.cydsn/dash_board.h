@@ -17,7 +17,7 @@
 #include <project.h>
 #include "state_event.h"
     
-    
+
     
 void Dash_display_Mode(Dash_Mode mode);
 void Dash_display_State(States newState);

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 1
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 1
   37              		.loc 1 18 0
   38 0004 00BF     		nop
   19:.\state_event.c **** }
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 2
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 2
 
 
   39              		.loc 1 19 0
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 1
   87              		@ link register save eliminated.
   88 0000 80B4     		push	{r7}
   89              		.cfi_def_cfa_offset 4
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 3
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 3
 
 
   90              		.cfi_offset 7, -4
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 1
  137              	action_charging:
  138              	.LFB60:
   33:.\state_event.c **** 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 4
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 4
 
 
   34:.\state_event.c **** void action_charging(){
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 1
  186              		.size	action_soft_fault, .-action_soft_fault
  187 000e 00BF     		.section	.text.action_hard_fault,"ax",%progbits
  188              		.align	2
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 5
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 5
 
 
  189              		.global	action_hard_fault
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 1
  233              		.loc 1 50 0
  234 0004 00BF     		nop
   51:.\state_event.c **** }
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 6
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 6
 
 
  235              		.loc 1 51 0
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 1
  282              		@ frame_needed = 1, uses_anonymous_args = 0
  283              		@ link register save eliminated.
  284 0000 80B4     		push	{r7}
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 7
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 7
 
 
  285              		.cfi_def_cfa_offset 4
@@ -413,12 +413,12 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 1
  327              		.size	get_CAN_error, .-get_CAN_error
  328              		.text
  329              	.Letext0:
- 330              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4
- 331              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4
+ 330              		.file 2 "d:\\software\\psoccreator\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4.8.4\\a
+ 331              		.file 3 "d:\\software\\psoccreator\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4.8.4\\a
  332              		.file 4 ".\\state_event.h"
  333              		.file 5 ".\\Generated_Source\\PSoC5/core_cm3.h"
  334              		.section	.debug_info,"",%progbits
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 8
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 8
 
 
  335              	.Ldebug_info0:
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 1
  389 006f 02       		.uleb128 0x2
  390 0070 04       		.byte	0x4
  391 0071 07       		.byte	0x7
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 9
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 9
 
 
  392 0072 CE010000 		.4byte	.LASF8
@@ -506,7 +506,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 1
  414 009d 05       		.uleb128 0x5
  415 009e 01       		.byte	0x1
  416 009f 04       		.byte	0x4
- 417 00a0 14       		.byte	0x14
+ 417 00a0 1B       		.byte	0x1b
  418 00a1 E2000000 		.4byte	0xe2
  419 00a5 06       		.uleb128 0x6
  420 00a6 97010000 		.4byte	.LASF15
@@ -538,14 +538,14 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 1
  446 00db 06       		.uleb128 0x6
  447 00dc 38000000 		.4byte	.LASF24
  448 00e0 09       		.sleb128 9
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 10
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 10
 
 
  449 00e1 00       		.byte	0
  450 00e2 03       		.uleb128 0x3
  451 00e3 7C010000 		.4byte	.LASF25
  452 00e7 04       		.byte	0x4
- 453 00e8 1F       		.byte	0x1f
+ 453 00e8 26       		.byte	0x26
  454 00e9 9D000000 		.4byte	0x9d
  455 00ed 07       		.uleb128 0x7
  456 00ee 74020000 		.4byte	.LASF26
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 1
  503 0153 07       		.uleb128 0x7
  504 0154 9D010000 		.4byte	.LASF32
  505 0158 01       		.byte	0x1
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 11
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 11
 
 
  506 0159 2A       		.byte	0x2a
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 1
  560 0006 0B       		.uleb128 0xb
  561 0007 03       		.uleb128 0x3
  562 0008 0E       		.uleb128 0xe
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 12
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 12
 
 
  563 0009 1B       		.uleb128 0x1b
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 1
  617 003f 01       		.uleb128 0x1
  618 0040 13       		.uleb128 0x13
  619 0041 00       		.byte	0
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 13
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 13
 
 
  620 0042 00       		.byte	0
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 1
  674 007a 09       		.uleb128 0x9
  675 007b 34       		.uleb128 0x34
  676 007c 00       		.byte	0
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 14
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 14
 
 
  677 007d 03       		.uleb128 0x3
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 1
  731              		.section	.debug_ranges,"",%progbits
  732              	.Ldebug_ranges0:
  733 0000 00000000 		.4byte	.LFB56
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 15
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 15
 
 
  734 0004 0E000000 		.4byte	.LFE56
@@ -866,8 +866,8 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 1
  756 005c 00000000 		.4byte	0
  757              		.section	.debug_line,"",%progbits
  758              	.Ldebug_line0:
- 759 0000 1F020000 		.section	.debug_str,"MS",%progbits,1
- 759      02005E01 
+ 759 0000 11020000 		.section	.debug_str,"MS",%progbits,1
+ 759      02005001 
  759      00000201 
  759      FB0E0D00 
  759      01010101 
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 1
  771 003d 5F5F696E 		.ascii	"__int32_t\000"
  771      7433325F 
  771      7400
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 16
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 16
 
 
  772              	.LASF17:
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 1
  792      31333538 
  793 012f 30202D66 		.ascii	"0 -ffunction-sections\000"
  793      66756E63 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 17
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 17
 
 
  793      74696F6E 
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 1
  815      20696E74 
  815      00
  816              	.LASF7:
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 18
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 18
 
 
  817 01db 6C6F6E67 		.ascii	"long long unsigned int\000"
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 1
  839              	.LASF4:
  840 029c 6C6F6E67 		.ascii	"long int\000"
  840      20696E74 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccXHaC1C.s 			page 19
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 19
 
 
  840      00

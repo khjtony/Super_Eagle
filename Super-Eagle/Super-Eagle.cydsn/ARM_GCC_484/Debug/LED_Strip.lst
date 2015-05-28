@@ -1,0 +1,3671 @@
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"LED_Strip.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	LED_Strip_initVar
+  19              		.bss
+  20              		.type	LED_Strip_initVar, %object
+  21              		.size	LED_Strip_initVar, 1
+  22              	LED_Strip_initVar:
+  23 0000 00       		.space	1
+  24              		.comm	LED_Strip_swStatusTx,1,1
+  25              		.comm	LED_Strip_swStatusRx,1,1
+  26              		.section	.text.LED_Strip_Init,"ax",%progbits
+  27              		.align	2
+  28              		.global	LED_Strip_Init
+  29              		.thumb
+  30              		.thumb_func
+  31              		.type	LED_Strip_Init, %function
+  32              	LED_Strip_Init:
+  33              	.LFB0:
+  34              		.file 1 ".\\Generated_Source\\PSoC5\\LED_Strip.c"
+   1:.\Generated_Source\PSoC5/LED_Strip.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/LED_Strip.c **** * File Name: LED_Strip.c
+   3:.\Generated_Source\PSoC5/LED_Strip.c **** * Version 2.50
+   4:.\Generated_Source\PSoC5/LED_Strip.c **** *
+   5:.\Generated_Source\PSoC5/LED_Strip.c **** * Description:
+   6:.\Generated_Source\PSoC5/LED_Strip.c **** *  This file provides all API functionality of the SPI Master component.
+   7:.\Generated_Source\PSoC5/LED_Strip.c **** *
+   8:.\Generated_Source\PSoC5/LED_Strip.c **** * Note:
+   9:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+  10:.\Generated_Source\PSoC5/LED_Strip.c **** *
+  11:.\Generated_Source\PSoC5/LED_Strip.c **** ********************************************************************************
+  12:.\Generated_Source\PSoC5/LED_Strip.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  13:.\Generated_Source\PSoC5/LED_Strip.c **** * You may use this file only in accordance with the license, terms, conditions,
+  14:.\Generated_Source\PSoC5/LED_Strip.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  15:.\Generated_Source\PSoC5/LED_Strip.c **** * the software package with which this file was provided.
+  16:.\Generated_Source\PSoC5/LED_Strip.c **** *******************************************************************************/
+  17:.\Generated_Source\PSoC5/LED_Strip.c **** 
+  18:.\Generated_Source\PSoC5/LED_Strip.c **** #include "LED_Strip_PVT.h"
+  19:.\Generated_Source\PSoC5/LED_Strip.c **** 
+  20:.\Generated_Source\PSoC5/LED_Strip.c **** #if(LED_Strip_TX_SOFTWARE_BUF_ENABLED)
+  21:.\Generated_Source\PSoC5/LED_Strip.c ****     volatile uint8 LED_Strip_txBuffer[LED_Strip_TX_BUFFER_SIZE];
+  22:.\Generated_Source\PSoC5/LED_Strip.c ****     volatile uint8 LED_Strip_txBufferFull;
+  23:.\Generated_Source\PSoC5/LED_Strip.c ****     volatile uint8 LED_Strip_txBufferRead;
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 2
+
+
+  24:.\Generated_Source\PSoC5/LED_Strip.c ****     volatile uint8 LED_Strip_txBufferWrite;
+  25:.\Generated_Source\PSoC5/LED_Strip.c **** #endif /* (LED_Strip_TX_SOFTWARE_BUF_ENABLED) */
+  26:.\Generated_Source\PSoC5/LED_Strip.c **** 
+  27:.\Generated_Source\PSoC5/LED_Strip.c **** #if(LED_Strip_RX_SOFTWARE_BUF_ENABLED)
+  28:.\Generated_Source\PSoC5/LED_Strip.c ****     volatile uint8 LED_Strip_rxBuffer[LED_Strip_RX_BUFFER_SIZE];
+  29:.\Generated_Source\PSoC5/LED_Strip.c ****     volatile uint8 LED_Strip_rxBufferFull;
+  30:.\Generated_Source\PSoC5/LED_Strip.c ****     volatile uint8 LED_Strip_rxBufferRead;
+  31:.\Generated_Source\PSoC5/LED_Strip.c ****     volatile uint8 LED_Strip_rxBufferWrite;
+  32:.\Generated_Source\PSoC5/LED_Strip.c **** #endif /* (LED_Strip_RX_SOFTWARE_BUF_ENABLED) */
+  33:.\Generated_Source\PSoC5/LED_Strip.c **** 
+  34:.\Generated_Source\PSoC5/LED_Strip.c **** uint8 LED_Strip_initVar = 0u;
+  35:.\Generated_Source\PSoC5/LED_Strip.c **** 
+  36:.\Generated_Source\PSoC5/LED_Strip.c **** volatile uint8 LED_Strip_swStatusTx;
+  37:.\Generated_Source\PSoC5/LED_Strip.c **** volatile uint8 LED_Strip_swStatusRx;
+  38:.\Generated_Source\PSoC5/LED_Strip.c **** 
+  39:.\Generated_Source\PSoC5/LED_Strip.c **** 
+  40:.\Generated_Source\PSoC5/LED_Strip.c **** /*******************************************************************************
+  41:.\Generated_Source\PSoC5/LED_Strip.c **** * Function Name: LED_Strip_Init
+  42:.\Generated_Source\PSoC5/LED_Strip.c **** ********************************************************************************
+  43:.\Generated_Source\PSoC5/LED_Strip.c **** *
+  44:.\Generated_Source\PSoC5/LED_Strip.c **** * Summary:
+  45:.\Generated_Source\PSoC5/LED_Strip.c **** *  Inits/Restores default SPIM configuration provided with customizer.
+  46:.\Generated_Source\PSoC5/LED_Strip.c **** *
+  47:.\Generated_Source\PSoC5/LED_Strip.c **** * Parameters:
+  48:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+  49:.\Generated_Source\PSoC5/LED_Strip.c **** *
+  50:.\Generated_Source\PSoC5/LED_Strip.c **** * Return:
+  51:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+  52:.\Generated_Source\PSoC5/LED_Strip.c **** *
+  53:.\Generated_Source\PSoC5/LED_Strip.c **** * Side Effects:
+  54:.\Generated_Source\PSoC5/LED_Strip.c **** *  When this function is called it initializes all of the necessary parameters
+  55:.\Generated_Source\PSoC5/LED_Strip.c **** *  for execution. i.e. setting the initial interrupt mask, configuring the
+  56:.\Generated_Source\PSoC5/LED_Strip.c **** *  interrupt service routine, configuring the bit-counter parameters and
+  57:.\Generated_Source\PSoC5/LED_Strip.c **** *  clearing the FIFO and Status Register.
+  58:.\Generated_Source\PSoC5/LED_Strip.c **** *
+  59:.\Generated_Source\PSoC5/LED_Strip.c **** * Reentrant:
+  60:.\Generated_Source\PSoC5/LED_Strip.c **** *  No.
+  61:.\Generated_Source\PSoC5/LED_Strip.c **** *
+  62:.\Generated_Source\PSoC5/LED_Strip.c **** *******************************************************************************/
+  63:.\Generated_Source\PSoC5/LED_Strip.c **** void LED_Strip_Init(void) 
+  64:.\Generated_Source\PSoC5/LED_Strip.c **** {
+  35              		.loc 1 64 0
+  36              		.cfi_startproc
+  37              		@ args = 0, pretend = 0, frame = 0
+  38              		@ frame_needed = 1, uses_anonymous_args = 0
+  39 0000 80B5     		push	{r7, lr}
+  40              		.cfi_def_cfa_offset 8
+  41              		.cfi_offset 7, -8
+  42              		.cfi_offset 14, -4
+  43 0002 00AF     		add	r7, sp, #0
+  44              		.cfi_def_cfa_register 7
+  65:.\Generated_Source\PSoC5/LED_Strip.c ****     /* Initialize the Bit counter */
+  66:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_COUNTER_PERIOD_REG = LED_Strip_BITCTR_INIT;
+  45              		.loc 1 66 0
+  46 0004 074B     		ldr	r3, .L2
+  47 0006 0F22     		movs	r2, #15
+  48 0008 1A70     		strb	r2, [r3]
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 3
+
+
+  67:.\Generated_Source\PSoC5/LED_Strip.c **** 
+  68:.\Generated_Source\PSoC5/LED_Strip.c ****     /* Init TX ISR  */
+  69:.\Generated_Source\PSoC5/LED_Strip.c ****     #if(0u != LED_Strip_INTERNAL_TX_INT_ENABLED)
+  70:.\Generated_Source\PSoC5/LED_Strip.c ****         CyIntDisable         (LED_Strip_TX_ISR_NUMBER);
+  71:.\Generated_Source\PSoC5/LED_Strip.c ****         CyIntSetPriority     (LED_Strip_TX_ISR_NUMBER,  LED_Strip_TX_ISR_PRIORITY);
+  72:.\Generated_Source\PSoC5/LED_Strip.c ****         (void) CyIntSetVector(LED_Strip_TX_ISR_NUMBER, &LED_Strip_TX_ISR);
+  73:.\Generated_Source\PSoC5/LED_Strip.c ****     #endif /* (0u != LED_Strip_INTERNAL_TX_INT_ENABLED) */
+  74:.\Generated_Source\PSoC5/LED_Strip.c **** 
+  75:.\Generated_Source\PSoC5/LED_Strip.c ****     /* Init RX ISR  */
+  76:.\Generated_Source\PSoC5/LED_Strip.c ****     #if(0u != LED_Strip_INTERNAL_RX_INT_ENABLED)
+  77:.\Generated_Source\PSoC5/LED_Strip.c ****         CyIntDisable         (LED_Strip_RX_ISR_NUMBER);
+  78:.\Generated_Source\PSoC5/LED_Strip.c ****         CyIntSetPriority     (LED_Strip_RX_ISR_NUMBER,  LED_Strip_RX_ISR_PRIORITY);
+  79:.\Generated_Source\PSoC5/LED_Strip.c ****         (void) CyIntSetVector(LED_Strip_RX_ISR_NUMBER, &LED_Strip_RX_ISR);
+  80:.\Generated_Source\PSoC5/LED_Strip.c ****     #endif /* (0u != LED_Strip_INTERNAL_RX_INT_ENABLED) */
+  81:.\Generated_Source\PSoC5/LED_Strip.c **** 
+  82:.\Generated_Source\PSoC5/LED_Strip.c ****     /* Clear any stray data from the RX and TX FIFO */
+  83:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_ClearFIFO();
+  49              		.loc 1 83 0
+  50 000a FFF7FEFF 		bl	LED_Strip_ClearFIFO
+  84:.\Generated_Source\PSoC5/LED_Strip.c **** 
+  85:.\Generated_Source\PSoC5/LED_Strip.c ****     #if(LED_Strip_RX_SOFTWARE_BUF_ENABLED)
+  86:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_rxBufferFull  = 0u;
+  87:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_rxBufferRead  = 0u;
+  88:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_rxBufferWrite = 0u;
+  89:.\Generated_Source\PSoC5/LED_Strip.c ****     #endif /* (LED_Strip_RX_SOFTWARE_BUF_ENABLED) */
+  90:.\Generated_Source\PSoC5/LED_Strip.c **** 
+  91:.\Generated_Source\PSoC5/LED_Strip.c ****     #if(LED_Strip_TX_SOFTWARE_BUF_ENABLED)
+  92:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_txBufferFull  = 0u;
+  93:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_txBufferRead  = 0u;
+  94:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_txBufferWrite = 0u;
+  95:.\Generated_Source\PSoC5/LED_Strip.c ****     #endif /* (LED_Strip_TX_SOFTWARE_BUF_ENABLED) */
+  96:.\Generated_Source\PSoC5/LED_Strip.c **** 
+  97:.\Generated_Source\PSoC5/LED_Strip.c ****     (void) LED_Strip_ReadTxStatus(); /* Clear Tx status and swStatusTx */
+  51              		.loc 1 97 0
+  52 000e FFF7FEFF 		bl	LED_Strip_ReadTxStatus
+  98:.\Generated_Source\PSoC5/LED_Strip.c ****     (void) LED_Strip_ReadRxStatus(); /* Clear Rx status and swStatusRx */
+  53              		.loc 1 98 0
+  54 0012 FFF7FEFF 		bl	LED_Strip_ReadRxStatus
+  99:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 100:.\Generated_Source\PSoC5/LED_Strip.c ****     /* Configure TX and RX interrupt mask */
+ 101:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_TX_STATUS_MASK_REG = LED_Strip_TX_INIT_INTERRUPTS_MASK;
+  55              		.loc 1 101 0
+  56 0016 044B     		ldr	r3, .L2+4
+  57 0018 0022     		movs	r2, #0
+  58 001a 1A70     		strb	r2, [r3]
+ 102:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_RX_STATUS_MASK_REG = LED_Strip_RX_INIT_INTERRUPTS_MASK;
+  59              		.loc 1 102 0
+  60 001c 034B     		ldr	r3, .L2+8
+  61 001e 0022     		movs	r2, #0
+  62 0020 1A70     		strb	r2, [r3]
+ 103:.\Generated_Source\PSoC5/LED_Strip.c **** }
+  63              		.loc 1 103 0
+  64 0022 80BD     		pop	{r7, pc}
+  65              	.L3:
+  66              		.align	2
+  67              	.L2:
+  68 0024 81640040 		.word	1073767553
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 4
+
+
+  69 0028 80640040 		.word	1073767552
+  70 002c 82640040 		.word	1073767554
+  71              		.cfi_endproc
+  72              	.LFE0:
+  73              		.size	LED_Strip_Init, .-LED_Strip_Init
+  74              		.section	.text.LED_Strip_Enable,"ax",%progbits
+  75              		.align	2
+  76              		.global	LED_Strip_Enable
+  77              		.thumb
+  78              		.thumb_func
+  79              		.type	LED_Strip_Enable, %function
+  80              	LED_Strip_Enable:
+  81              	.LFB1:
+ 104:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 105:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 106:.\Generated_Source\PSoC5/LED_Strip.c **** /*******************************************************************************
+ 107:.\Generated_Source\PSoC5/LED_Strip.c **** * Function Name: LED_Strip_Enable
+ 108:.\Generated_Source\PSoC5/LED_Strip.c **** ********************************************************************************
+ 109:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 110:.\Generated_Source\PSoC5/LED_Strip.c **** * Summary:
+ 111:.\Generated_Source\PSoC5/LED_Strip.c **** *  Enable SPIM component.
+ 112:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 113:.\Generated_Source\PSoC5/LED_Strip.c **** * Parameters:
+ 114:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 115:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 116:.\Generated_Source\PSoC5/LED_Strip.c **** * Return:
+ 117:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 118:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 119:.\Generated_Source\PSoC5/LED_Strip.c **** *******************************************************************************/
+ 120:.\Generated_Source\PSoC5/LED_Strip.c **** void LED_Strip_Enable(void) 
+ 121:.\Generated_Source\PSoC5/LED_Strip.c **** {
+  82              		.loc 1 121 0
+  83              		.cfi_startproc
+  84              		@ args = 0, pretend = 0, frame = 8
+  85              		@ frame_needed = 1, uses_anonymous_args = 0
+  86 0000 80B5     		push	{r7, lr}
+  87              		.cfi_def_cfa_offset 8
+  88              		.cfi_offset 7, -8
+  89              		.cfi_offset 14, -4
+  90 0002 82B0     		sub	sp, sp, #8
+  91              		.cfi_def_cfa_offset 16
+  92 0004 00AF     		add	r7, sp, #0
+  93              		.cfi_def_cfa_register 7
+ 122:.\Generated_Source\PSoC5/LED_Strip.c ****     uint8 enableInterrupts;
+ 123:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 124:.\Generated_Source\PSoC5/LED_Strip.c ****     enableInterrupts = CyEnterCriticalSection();
+  94              		.loc 1 124 0
+  95 0006 FFF7FEFF 		bl	CyEnterCriticalSection
+  96 000a 0346     		mov	r3, r0
+  97 000c FB71     		strb	r3, [r7, #7]
+ 125:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_COUNTER_CONTROL_REG |= LED_Strip_CNTR_ENABLE;
+  98              		.loc 1 125 0
+  99 000e 124B     		ldr	r3, .L5
+ 100 0010 114A     		ldr	r2, .L5
+ 101 0012 1278     		ldrb	r2, [r2]
+ 102 0014 D2B2     		uxtb	r2, r2
+ 103 0016 42F02002 		orr	r2, r2, #32
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 5
+
+
+ 104 001a D2B2     		uxtb	r2, r2
+ 105 001c 1A70     		strb	r2, [r3]
+ 126:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_TX_STATUS_ACTL_REG  |= LED_Strip_INT_ENABLE;
+ 106              		.loc 1 126 0
+ 107 001e 0F4B     		ldr	r3, .L5+4
+ 108 0020 0E4A     		ldr	r2, .L5+4
+ 109 0022 1278     		ldrb	r2, [r2]
+ 110 0024 D2B2     		uxtb	r2, r2
+ 111 0026 42F01002 		orr	r2, r2, #16
+ 112 002a D2B2     		uxtb	r2, r2
+ 113 002c 1A70     		strb	r2, [r3]
+ 127:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_RX_STATUS_ACTL_REG  |= LED_Strip_INT_ENABLE;
+ 114              		.loc 1 127 0
+ 115 002e 0C4B     		ldr	r3, .L5+8
+ 116 0030 0B4A     		ldr	r2, .L5+8
+ 117 0032 1278     		ldrb	r2, [r2]
+ 118 0034 D2B2     		uxtb	r2, r2
+ 119 0036 42F01002 		orr	r2, r2, #16
+ 120 003a D2B2     		uxtb	r2, r2
+ 121 003c 1A70     		strb	r2, [r3]
+ 128:.\Generated_Source\PSoC5/LED_Strip.c ****     CyExitCriticalSection(enableInterrupts);
+ 122              		.loc 1 128 0
+ 123 003e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 124 0040 1846     		mov	r0, r3
+ 125 0042 FFF7FEFF 		bl	CyExitCriticalSection
+ 129:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 130:.\Generated_Source\PSoC5/LED_Strip.c ****     #if(0u != LED_Strip_INTERNAL_CLOCK)
+ 131:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_IntClock_Enable();
+ 126              		.loc 1 131 0
+ 127 0046 FFF7FEFF 		bl	LED_Strip_IntClock_Start
+ 132:.\Generated_Source\PSoC5/LED_Strip.c ****     #endif /* (0u != LED_Strip_INTERNAL_CLOCK) */
+ 133:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 134:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_EnableTxInt();
+ 128              		.loc 1 134 0
+ 129 004a FFF7FEFF 		bl	LED_Strip_EnableTxInt
+ 135:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_EnableRxInt();
+ 130              		.loc 1 135 0
+ 131 004e FFF7FEFF 		bl	LED_Strip_EnableRxInt
+ 136:.\Generated_Source\PSoC5/LED_Strip.c **** }
+ 132              		.loc 1 136 0
+ 133 0052 0837     		adds	r7, r7, #8
+ 134 0054 BD46     		mov	sp, r7
+ 135              		@ sp needed
+ 136 0056 80BD     		pop	{r7, pc}
+ 137              	.L6:
+ 138              		.align	2
+ 139              	.L5:
+ 140 0058 91640040 		.word	1073767569
+ 141 005c 90640040 		.word	1073767568
+ 142 0060 92640040 		.word	1073767570
+ 143              		.cfi_endproc
+ 144              	.LFE1:
+ 145              		.size	LED_Strip_Enable, .-LED_Strip_Enable
+ 146              		.section	.text.LED_Strip_Start,"ax",%progbits
+ 147              		.align	2
+ 148              		.global	LED_Strip_Start
+ 149              		.thumb
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 6
+
+
+ 150              		.thumb_func
+ 151              		.type	LED_Strip_Start, %function
+ 152              	LED_Strip_Start:
+ 153              	.LFB2:
+ 137:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 138:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 139:.\Generated_Source\PSoC5/LED_Strip.c **** /*******************************************************************************
+ 140:.\Generated_Source\PSoC5/LED_Strip.c **** * Function Name: LED_Strip_Start
+ 141:.\Generated_Source\PSoC5/LED_Strip.c **** ********************************************************************************
+ 142:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 143:.\Generated_Source\PSoC5/LED_Strip.c **** * Summary:
+ 144:.\Generated_Source\PSoC5/LED_Strip.c **** *  Initialize and Enable the SPI Master component.
+ 145:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 146:.\Generated_Source\PSoC5/LED_Strip.c **** * Parameters:
+ 147:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 148:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 149:.\Generated_Source\PSoC5/LED_Strip.c **** * Return:
+ 150:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 151:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 152:.\Generated_Source\PSoC5/LED_Strip.c **** * Global variables:
+ 153:.\Generated_Source\PSoC5/LED_Strip.c **** *  LED_Strip_initVar - used to check initial configuration, modified on
+ 154:.\Generated_Source\PSoC5/LED_Strip.c **** *  first function call.
+ 155:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 156:.\Generated_Source\PSoC5/LED_Strip.c **** * Theory:
+ 157:.\Generated_Source\PSoC5/LED_Strip.c **** *  Enable the clock input to enable operation.
+ 158:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 159:.\Generated_Source\PSoC5/LED_Strip.c **** * Reentrant:
+ 160:.\Generated_Source\PSoC5/LED_Strip.c **** *  No.
+ 161:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 162:.\Generated_Source\PSoC5/LED_Strip.c **** *******************************************************************************/
+ 163:.\Generated_Source\PSoC5/LED_Strip.c **** void LED_Strip_Start(void) 
+ 164:.\Generated_Source\PSoC5/LED_Strip.c **** {
+ 154              		.loc 1 164 0
+ 155              		.cfi_startproc
+ 156              		@ args = 0, pretend = 0, frame = 0
+ 157              		@ frame_needed = 1, uses_anonymous_args = 0
+ 158 0000 80B5     		push	{r7, lr}
+ 159              		.cfi_def_cfa_offset 8
+ 160              		.cfi_offset 7, -8
+ 161              		.cfi_offset 14, -4
+ 162 0002 00AF     		add	r7, sp, #0
+ 163              		.cfi_def_cfa_register 7
+ 165:.\Generated_Source\PSoC5/LED_Strip.c ****     if(0u == LED_Strip_initVar)
+ 164              		.loc 1 165 0
+ 165 0004 054B     		ldr	r3, .L9
+ 166 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 167 0008 002B     		cmp	r3, #0
+ 168 000a 04D1     		bne	.L8
+ 166:.\Generated_Source\PSoC5/LED_Strip.c ****     {
+ 167:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_Init();
+ 169              		.loc 1 167 0
+ 170 000c FFF7FEFF 		bl	LED_Strip_Init
+ 168:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_initVar = 1u;
+ 171              		.loc 1 168 0
+ 172 0010 024B     		ldr	r3, .L9
+ 173 0012 0122     		movs	r2, #1
+ 174 0014 1A70     		strb	r2, [r3]
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 7
+
+
+ 175              	.L8:
+ 169:.\Generated_Source\PSoC5/LED_Strip.c ****     }
+ 170:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 171:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_Enable();
+ 176              		.loc 1 171 0
+ 177 0016 FFF7FEFF 		bl	LED_Strip_Enable
+ 172:.\Generated_Source\PSoC5/LED_Strip.c **** }
+ 178              		.loc 1 172 0
+ 179 001a 80BD     		pop	{r7, pc}
+ 180              	.L10:
+ 181              		.align	2
+ 182              	.L9:
+ 183 001c 00000000 		.word	LED_Strip_initVar
+ 184              		.cfi_endproc
+ 185              	.LFE2:
+ 186              		.size	LED_Strip_Start, .-LED_Strip_Start
+ 187              		.section	.text.LED_Strip_Stop,"ax",%progbits
+ 188              		.align	2
+ 189              		.global	LED_Strip_Stop
+ 190              		.thumb
+ 191              		.thumb_func
+ 192              		.type	LED_Strip_Stop, %function
+ 193              	LED_Strip_Stop:
+ 194              	.LFB3:
+ 173:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 174:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 175:.\Generated_Source\PSoC5/LED_Strip.c **** /*******************************************************************************
+ 176:.\Generated_Source\PSoC5/LED_Strip.c **** * Function Name: LED_Strip_Stop
+ 177:.\Generated_Source\PSoC5/LED_Strip.c **** ********************************************************************************
+ 178:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 179:.\Generated_Source\PSoC5/LED_Strip.c **** * Summary:
+ 180:.\Generated_Source\PSoC5/LED_Strip.c **** *  Disable the SPI Master component.
+ 181:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 182:.\Generated_Source\PSoC5/LED_Strip.c **** * Parameters:
+ 183:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 184:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 185:.\Generated_Source\PSoC5/LED_Strip.c **** * Return:
+ 186:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 187:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 188:.\Generated_Source\PSoC5/LED_Strip.c **** * Theory:
+ 189:.\Generated_Source\PSoC5/LED_Strip.c **** *  Disable the clock input to enable operation.
+ 190:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 191:.\Generated_Source\PSoC5/LED_Strip.c **** *******************************************************************************/
+ 192:.\Generated_Source\PSoC5/LED_Strip.c **** void LED_Strip_Stop(void) 
+ 193:.\Generated_Source\PSoC5/LED_Strip.c **** {
+ 195              		.loc 1 193 0
+ 196              		.cfi_startproc
+ 197              		@ args = 0, pretend = 0, frame = 8
+ 198              		@ frame_needed = 1, uses_anonymous_args = 0
+ 199 0000 80B5     		push	{r7, lr}
+ 200              		.cfi_def_cfa_offset 8
+ 201              		.cfi_offset 7, -8
+ 202              		.cfi_offset 14, -4
+ 203 0002 82B0     		sub	sp, sp, #8
+ 204              		.cfi_def_cfa_offset 16
+ 205 0004 00AF     		add	r7, sp, #0
+ 206              		.cfi_def_cfa_register 7
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 8
+
+
+ 194:.\Generated_Source\PSoC5/LED_Strip.c ****     uint8 enableInterrupts;
+ 195:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 196:.\Generated_Source\PSoC5/LED_Strip.c ****     enableInterrupts = CyEnterCriticalSection();
+ 207              		.loc 1 196 0
+ 208 0006 FFF7FEFF 		bl	CyEnterCriticalSection
+ 209 000a 0346     		mov	r3, r0
+ 210 000c FB71     		strb	r3, [r7, #7]
+ 197:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_TX_STATUS_ACTL_REG &= ((uint8) ~LED_Strip_INT_ENABLE);
+ 211              		.loc 1 197 0
+ 212 000e 0E4B     		ldr	r3, .L12
+ 213 0010 0D4A     		ldr	r2, .L12
+ 214 0012 1278     		ldrb	r2, [r2]
+ 215 0014 D2B2     		uxtb	r2, r2
+ 216 0016 22F01002 		bic	r2, r2, #16
+ 217 001a D2B2     		uxtb	r2, r2
+ 218 001c 1A70     		strb	r2, [r3]
+ 198:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_RX_STATUS_ACTL_REG &= ((uint8) ~LED_Strip_INT_ENABLE);
+ 219              		.loc 1 198 0
+ 220 001e 0B4B     		ldr	r3, .L12+4
+ 221 0020 0A4A     		ldr	r2, .L12+4
+ 222 0022 1278     		ldrb	r2, [r2]
+ 223 0024 D2B2     		uxtb	r2, r2
+ 224 0026 22F01002 		bic	r2, r2, #16
+ 225 002a D2B2     		uxtb	r2, r2
+ 226 002c 1A70     		strb	r2, [r3]
+ 199:.\Generated_Source\PSoC5/LED_Strip.c ****     CyExitCriticalSection(enableInterrupts);
+ 227              		.loc 1 199 0
+ 228 002e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 229 0030 1846     		mov	r0, r3
+ 230 0032 FFF7FEFF 		bl	CyExitCriticalSection
+ 200:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 201:.\Generated_Source\PSoC5/LED_Strip.c ****     #if(0u != LED_Strip_INTERNAL_CLOCK)
+ 202:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_IntClock_Disable();
+ 231              		.loc 1 202 0
+ 232 0036 FFF7FEFF 		bl	LED_Strip_IntClock_Stop
+ 203:.\Generated_Source\PSoC5/LED_Strip.c ****     #endif /* (0u != LED_Strip_INTERNAL_CLOCK) */
+ 204:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 205:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_DisableTxInt();
+ 233              		.loc 1 205 0
+ 234 003a FFF7FEFF 		bl	LED_Strip_DisableTxInt
+ 206:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_DisableRxInt();
+ 235              		.loc 1 206 0
+ 236 003e FFF7FEFF 		bl	LED_Strip_DisableRxInt
+ 207:.\Generated_Source\PSoC5/LED_Strip.c **** }
+ 237              		.loc 1 207 0
+ 238 0042 0837     		adds	r7, r7, #8
+ 239 0044 BD46     		mov	sp, r7
+ 240              		@ sp needed
+ 241 0046 80BD     		pop	{r7, pc}
+ 242              	.L13:
+ 243              		.align	2
+ 244              	.L12:
+ 245 0048 90640040 		.word	1073767568
+ 246 004c 92640040 		.word	1073767570
+ 247              		.cfi_endproc
+ 248              	.LFE3:
+ 249              		.size	LED_Strip_Stop, .-LED_Strip_Stop
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 9
+
+
+ 250              		.section	.text.LED_Strip_EnableTxInt,"ax",%progbits
+ 251              		.align	2
+ 252              		.global	LED_Strip_EnableTxInt
+ 253              		.thumb
+ 254              		.thumb_func
+ 255              		.type	LED_Strip_EnableTxInt, %function
+ 256              	LED_Strip_EnableTxInt:
+ 257              	.LFB4:
+ 208:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 209:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 210:.\Generated_Source\PSoC5/LED_Strip.c **** /*******************************************************************************
+ 211:.\Generated_Source\PSoC5/LED_Strip.c **** * Function Name: LED_Strip_EnableTxInt
+ 212:.\Generated_Source\PSoC5/LED_Strip.c **** ********************************************************************************
+ 213:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 214:.\Generated_Source\PSoC5/LED_Strip.c **** * Summary:
+ 215:.\Generated_Source\PSoC5/LED_Strip.c **** *  Enable internal Tx interrupt generation.
+ 216:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 217:.\Generated_Source\PSoC5/LED_Strip.c **** * Parameters:
+ 218:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 219:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 220:.\Generated_Source\PSoC5/LED_Strip.c **** * Return:
+ 221:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 222:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 223:.\Generated_Source\PSoC5/LED_Strip.c **** * Theory:
+ 224:.\Generated_Source\PSoC5/LED_Strip.c **** *  Enable the internal Tx interrupt output -or- the interrupt component itself.
+ 225:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 226:.\Generated_Source\PSoC5/LED_Strip.c **** *******************************************************************************/
+ 227:.\Generated_Source\PSoC5/LED_Strip.c **** void LED_Strip_EnableTxInt(void) 
+ 228:.\Generated_Source\PSoC5/LED_Strip.c **** {
+ 258              		.loc 1 228 0
+ 259              		.cfi_startproc
+ 260              		@ args = 0, pretend = 0, frame = 0
+ 261              		@ frame_needed = 1, uses_anonymous_args = 0
+ 262              		@ link register save eliminated.
+ 263 0000 80B4     		push	{r7}
+ 264              		.cfi_def_cfa_offset 4
+ 265              		.cfi_offset 7, -4
+ 266 0002 00AF     		add	r7, sp, #0
+ 267              		.cfi_def_cfa_register 7
+ 229:.\Generated_Source\PSoC5/LED_Strip.c ****     #if(0u != LED_Strip_INTERNAL_TX_INT_ENABLED)
+ 230:.\Generated_Source\PSoC5/LED_Strip.c ****         CyIntEnable(LED_Strip_TX_ISR_NUMBER);
+ 231:.\Generated_Source\PSoC5/LED_Strip.c ****     #endif /* (0u != LED_Strip_INTERNAL_TX_INT_ENABLED) */
+ 232:.\Generated_Source\PSoC5/LED_Strip.c **** }
+ 268              		.loc 1 232 0
+ 269 0004 BD46     		mov	sp, r7
+ 270              		@ sp needed
+ 271 0006 5DF8047B 		ldr	r7, [sp], #4
+ 272 000a 7047     		bx	lr
+ 273              		.cfi_endproc
+ 274              	.LFE4:
+ 275              		.size	LED_Strip_EnableTxInt, .-LED_Strip_EnableTxInt
+ 276              		.section	.text.LED_Strip_EnableRxInt,"ax",%progbits
+ 277              		.align	2
+ 278              		.global	LED_Strip_EnableRxInt
+ 279              		.thumb
+ 280              		.thumb_func
+ 281              		.type	LED_Strip_EnableRxInt, %function
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 10
+
+
+ 282              	LED_Strip_EnableRxInt:
+ 283              	.LFB5:
+ 233:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 234:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 235:.\Generated_Source\PSoC5/LED_Strip.c **** /*******************************************************************************
+ 236:.\Generated_Source\PSoC5/LED_Strip.c **** * Function Name: LED_Strip_EnableRxInt
+ 237:.\Generated_Source\PSoC5/LED_Strip.c **** ********************************************************************************
+ 238:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 239:.\Generated_Source\PSoC5/LED_Strip.c **** * Summary:
+ 240:.\Generated_Source\PSoC5/LED_Strip.c **** *  Enable internal Rx interrupt generation.
+ 241:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 242:.\Generated_Source\PSoC5/LED_Strip.c **** * Parameters:
+ 243:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 244:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 245:.\Generated_Source\PSoC5/LED_Strip.c **** * Return:
+ 246:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 247:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 248:.\Generated_Source\PSoC5/LED_Strip.c **** * Theory:
+ 249:.\Generated_Source\PSoC5/LED_Strip.c **** *  Enable the internal Rx interrupt output -or- the interrupt component itself.
+ 250:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 251:.\Generated_Source\PSoC5/LED_Strip.c **** *******************************************************************************/
+ 252:.\Generated_Source\PSoC5/LED_Strip.c **** void LED_Strip_EnableRxInt(void) 
+ 253:.\Generated_Source\PSoC5/LED_Strip.c **** {
+ 284              		.loc 1 253 0
+ 285              		.cfi_startproc
+ 286              		@ args = 0, pretend = 0, frame = 0
+ 287              		@ frame_needed = 1, uses_anonymous_args = 0
+ 288              		@ link register save eliminated.
+ 289 0000 80B4     		push	{r7}
+ 290              		.cfi_def_cfa_offset 4
+ 291              		.cfi_offset 7, -4
+ 292 0002 00AF     		add	r7, sp, #0
+ 293              		.cfi_def_cfa_register 7
+ 254:.\Generated_Source\PSoC5/LED_Strip.c ****     #if(0u != LED_Strip_INTERNAL_RX_INT_ENABLED)
+ 255:.\Generated_Source\PSoC5/LED_Strip.c ****         CyIntEnable(LED_Strip_RX_ISR_NUMBER);
+ 256:.\Generated_Source\PSoC5/LED_Strip.c ****     #endif /* (0u != LED_Strip_INTERNAL_RX_INT_ENABLED) */
+ 257:.\Generated_Source\PSoC5/LED_Strip.c **** }
+ 294              		.loc 1 257 0
+ 295 0004 BD46     		mov	sp, r7
+ 296              		@ sp needed
+ 297 0006 5DF8047B 		ldr	r7, [sp], #4
+ 298 000a 7047     		bx	lr
+ 299              		.cfi_endproc
+ 300              	.LFE5:
+ 301              		.size	LED_Strip_EnableRxInt, .-LED_Strip_EnableRxInt
+ 302              		.section	.text.LED_Strip_DisableTxInt,"ax",%progbits
+ 303              		.align	2
+ 304              		.global	LED_Strip_DisableTxInt
+ 305              		.thumb
+ 306              		.thumb_func
+ 307              		.type	LED_Strip_DisableTxInt, %function
+ 308              	LED_Strip_DisableTxInt:
+ 309              	.LFB6:
+ 258:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 259:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 260:.\Generated_Source\PSoC5/LED_Strip.c **** /*******************************************************************************
+ 261:.\Generated_Source\PSoC5/LED_Strip.c **** * Function Name: LED_Strip_DisableTxInt
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 11
+
+
+ 262:.\Generated_Source\PSoC5/LED_Strip.c **** ********************************************************************************
+ 263:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 264:.\Generated_Source\PSoC5/LED_Strip.c **** * Summary:
+ 265:.\Generated_Source\PSoC5/LED_Strip.c **** *  Disable internal Tx interrupt generation.
+ 266:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 267:.\Generated_Source\PSoC5/LED_Strip.c **** * Parameters:
+ 268:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 269:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 270:.\Generated_Source\PSoC5/LED_Strip.c **** * Return:
+ 271:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 272:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 273:.\Generated_Source\PSoC5/LED_Strip.c **** * Theory:
+ 274:.\Generated_Source\PSoC5/LED_Strip.c **** *  Disable the internal Tx interrupt output -or- the interrupt component itself.
+ 275:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 276:.\Generated_Source\PSoC5/LED_Strip.c **** *******************************************************************************/
+ 277:.\Generated_Source\PSoC5/LED_Strip.c **** void LED_Strip_DisableTxInt(void) 
+ 278:.\Generated_Source\PSoC5/LED_Strip.c **** {
+ 310              		.loc 1 278 0
+ 311              		.cfi_startproc
+ 312              		@ args = 0, pretend = 0, frame = 0
+ 313              		@ frame_needed = 1, uses_anonymous_args = 0
+ 314              		@ link register save eliminated.
+ 315 0000 80B4     		push	{r7}
+ 316              		.cfi_def_cfa_offset 4
+ 317              		.cfi_offset 7, -4
+ 318 0002 00AF     		add	r7, sp, #0
+ 319              		.cfi_def_cfa_register 7
+ 279:.\Generated_Source\PSoC5/LED_Strip.c ****     #if(0u != LED_Strip_INTERNAL_TX_INT_ENABLED)
+ 280:.\Generated_Source\PSoC5/LED_Strip.c ****         CyIntDisable(LED_Strip_TX_ISR_NUMBER);
+ 281:.\Generated_Source\PSoC5/LED_Strip.c ****     #endif /* (0u != LED_Strip_INTERNAL_TX_INT_ENABLED) */
+ 282:.\Generated_Source\PSoC5/LED_Strip.c **** }
+ 320              		.loc 1 282 0
+ 321 0004 BD46     		mov	sp, r7
+ 322              		@ sp needed
+ 323 0006 5DF8047B 		ldr	r7, [sp], #4
+ 324 000a 7047     		bx	lr
+ 325              		.cfi_endproc
+ 326              	.LFE6:
+ 327              		.size	LED_Strip_DisableTxInt, .-LED_Strip_DisableTxInt
+ 328              		.section	.text.LED_Strip_DisableRxInt,"ax",%progbits
+ 329              		.align	2
+ 330              		.global	LED_Strip_DisableRxInt
+ 331              		.thumb
+ 332              		.thumb_func
+ 333              		.type	LED_Strip_DisableRxInt, %function
+ 334              	LED_Strip_DisableRxInt:
+ 335              	.LFB7:
+ 283:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 284:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 285:.\Generated_Source\PSoC5/LED_Strip.c **** /*******************************************************************************
+ 286:.\Generated_Source\PSoC5/LED_Strip.c **** * Function Name: LED_Strip_DisableRxInt
+ 287:.\Generated_Source\PSoC5/LED_Strip.c **** ********************************************************************************
+ 288:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 289:.\Generated_Source\PSoC5/LED_Strip.c **** * Summary:
+ 290:.\Generated_Source\PSoC5/LED_Strip.c **** *  Disable internal Rx interrupt generation.
+ 291:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 292:.\Generated_Source\PSoC5/LED_Strip.c **** * Parameters:
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 12
+
+
+ 293:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 294:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 295:.\Generated_Source\PSoC5/LED_Strip.c **** * Return:
+ 296:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 297:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 298:.\Generated_Source\PSoC5/LED_Strip.c **** * Theory:
+ 299:.\Generated_Source\PSoC5/LED_Strip.c **** *  Disable the internal Rx interrupt output -or- the interrupt component itself.
+ 300:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 301:.\Generated_Source\PSoC5/LED_Strip.c **** *******************************************************************************/
+ 302:.\Generated_Source\PSoC5/LED_Strip.c **** void LED_Strip_DisableRxInt(void) 
+ 303:.\Generated_Source\PSoC5/LED_Strip.c **** {
+ 336              		.loc 1 303 0
+ 337              		.cfi_startproc
+ 338              		@ args = 0, pretend = 0, frame = 0
+ 339              		@ frame_needed = 1, uses_anonymous_args = 0
+ 340              		@ link register save eliminated.
+ 341 0000 80B4     		push	{r7}
+ 342              		.cfi_def_cfa_offset 4
+ 343              		.cfi_offset 7, -4
+ 344 0002 00AF     		add	r7, sp, #0
+ 345              		.cfi_def_cfa_register 7
+ 304:.\Generated_Source\PSoC5/LED_Strip.c ****     #if(0u != LED_Strip_INTERNAL_RX_INT_ENABLED)
+ 305:.\Generated_Source\PSoC5/LED_Strip.c ****         CyIntDisable(LED_Strip_RX_ISR_NUMBER);
+ 306:.\Generated_Source\PSoC5/LED_Strip.c ****     #endif /* (0u != LED_Strip_INTERNAL_RX_INT_ENABLED) */
+ 307:.\Generated_Source\PSoC5/LED_Strip.c **** }
+ 346              		.loc 1 307 0
+ 347 0004 BD46     		mov	sp, r7
+ 348              		@ sp needed
+ 349 0006 5DF8047B 		ldr	r7, [sp], #4
+ 350 000a 7047     		bx	lr
+ 351              		.cfi_endproc
+ 352              	.LFE7:
+ 353              		.size	LED_Strip_DisableRxInt, .-LED_Strip_DisableRxInt
+ 354              		.section	.text.LED_Strip_SetTxInterruptMode,"ax",%progbits
+ 355              		.align	2
+ 356              		.global	LED_Strip_SetTxInterruptMode
+ 357              		.thumb
+ 358              		.thumb_func
+ 359              		.type	LED_Strip_SetTxInterruptMode, %function
+ 360              	LED_Strip_SetTxInterruptMode:
+ 361              	.LFB8:
+ 308:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 309:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 310:.\Generated_Source\PSoC5/LED_Strip.c **** /*******************************************************************************
+ 311:.\Generated_Source\PSoC5/LED_Strip.c **** * Function Name: LED_Strip_SetTxInterruptMode
+ 312:.\Generated_Source\PSoC5/LED_Strip.c **** ********************************************************************************
+ 313:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 314:.\Generated_Source\PSoC5/LED_Strip.c **** * Summary:
+ 315:.\Generated_Source\PSoC5/LED_Strip.c **** *  Configure which status bits trigger an interrupt event.
+ 316:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 317:.\Generated_Source\PSoC5/LED_Strip.c **** * Parameters:
+ 318:.\Generated_Source\PSoC5/LED_Strip.c **** *  intSrc: An or'd combination of the desired status bit masks (defined in the
+ 319:.\Generated_Source\PSoC5/LED_Strip.c **** *  header file).
+ 320:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 321:.\Generated_Source\PSoC5/LED_Strip.c **** * Return:
+ 322:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 323:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 13
+
+
+ 324:.\Generated_Source\PSoC5/LED_Strip.c **** * Theory:
+ 325:.\Generated_Source\PSoC5/LED_Strip.c **** *  Enables the output of specific status bits to the interrupt controller.
+ 326:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 327:.\Generated_Source\PSoC5/LED_Strip.c **** *******************************************************************************/
+ 328:.\Generated_Source\PSoC5/LED_Strip.c **** void LED_Strip_SetTxInterruptMode(uint8 intSrc) 
+ 329:.\Generated_Source\PSoC5/LED_Strip.c **** {
+ 362              		.loc 1 329 0
+ 363              		.cfi_startproc
+ 364              		@ args = 0, pretend = 0, frame = 8
+ 365              		@ frame_needed = 1, uses_anonymous_args = 0
+ 366              		@ link register save eliminated.
+ 367 0000 80B4     		push	{r7}
+ 368              		.cfi_def_cfa_offset 4
+ 369              		.cfi_offset 7, -4
+ 370 0002 83B0     		sub	sp, sp, #12
+ 371              		.cfi_def_cfa_offset 16
+ 372 0004 00AF     		add	r7, sp, #0
+ 373              		.cfi_def_cfa_register 7
+ 374 0006 0346     		mov	r3, r0
+ 375 0008 FB71     		strb	r3, [r7, #7]
+ 330:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_TX_STATUS_MASK_REG = intSrc;
+ 376              		.loc 1 330 0
+ 377 000a 044B     		ldr	r3, .L19
+ 378 000c FA79     		ldrb	r2, [r7, #7]
+ 379 000e 1A70     		strb	r2, [r3]
+ 331:.\Generated_Source\PSoC5/LED_Strip.c **** }
+ 380              		.loc 1 331 0
+ 381 0010 0C37     		adds	r7, r7, #12
+ 382 0012 BD46     		mov	sp, r7
+ 383              		@ sp needed
+ 384 0014 5DF8047B 		ldr	r7, [sp], #4
+ 385 0018 7047     		bx	lr
+ 386              	.L20:
+ 387 001a 00BF     		.align	2
+ 388              	.L19:
+ 389 001c 80640040 		.word	1073767552
+ 390              		.cfi_endproc
+ 391              	.LFE8:
+ 392              		.size	LED_Strip_SetTxInterruptMode, .-LED_Strip_SetTxInterruptMode
+ 393              		.section	.text.LED_Strip_SetRxInterruptMode,"ax",%progbits
+ 394              		.align	2
+ 395              		.global	LED_Strip_SetRxInterruptMode
+ 396              		.thumb
+ 397              		.thumb_func
+ 398              		.type	LED_Strip_SetRxInterruptMode, %function
+ 399              	LED_Strip_SetRxInterruptMode:
+ 400              	.LFB9:
+ 332:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 333:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 334:.\Generated_Source\PSoC5/LED_Strip.c **** /*******************************************************************************
+ 335:.\Generated_Source\PSoC5/LED_Strip.c **** * Function Name: LED_Strip_SetRxInterruptMode
+ 336:.\Generated_Source\PSoC5/LED_Strip.c **** ********************************************************************************
+ 337:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 338:.\Generated_Source\PSoC5/LED_Strip.c **** * Summary:
+ 339:.\Generated_Source\PSoC5/LED_Strip.c **** *  Configure which status bits trigger an interrupt event.
+ 340:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 341:.\Generated_Source\PSoC5/LED_Strip.c **** * Parameters:
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 14
+
+
+ 342:.\Generated_Source\PSoC5/LED_Strip.c **** *  intSrc: An or'd combination of the desired status bit masks (defined in the
+ 343:.\Generated_Source\PSoC5/LED_Strip.c **** *  header file).
+ 344:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 345:.\Generated_Source\PSoC5/LED_Strip.c **** * Return:
+ 346:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 347:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 348:.\Generated_Source\PSoC5/LED_Strip.c **** * Theory:
+ 349:.\Generated_Source\PSoC5/LED_Strip.c **** *  Enables the output of specific status bits to the interrupt controller.
+ 350:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 351:.\Generated_Source\PSoC5/LED_Strip.c **** *******************************************************************************/
+ 352:.\Generated_Source\PSoC5/LED_Strip.c **** void LED_Strip_SetRxInterruptMode(uint8 intSrc) 
+ 353:.\Generated_Source\PSoC5/LED_Strip.c **** {
+ 401              		.loc 1 353 0
+ 402              		.cfi_startproc
+ 403              		@ args = 0, pretend = 0, frame = 8
+ 404              		@ frame_needed = 1, uses_anonymous_args = 0
+ 405              		@ link register save eliminated.
+ 406 0000 80B4     		push	{r7}
+ 407              		.cfi_def_cfa_offset 4
+ 408              		.cfi_offset 7, -4
+ 409 0002 83B0     		sub	sp, sp, #12
+ 410              		.cfi_def_cfa_offset 16
+ 411 0004 00AF     		add	r7, sp, #0
+ 412              		.cfi_def_cfa_register 7
+ 413 0006 0346     		mov	r3, r0
+ 414 0008 FB71     		strb	r3, [r7, #7]
+ 354:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_RX_STATUS_MASK_REG  = intSrc;
+ 415              		.loc 1 354 0
+ 416 000a 044B     		ldr	r3, .L22
+ 417 000c FA79     		ldrb	r2, [r7, #7]
+ 418 000e 1A70     		strb	r2, [r3]
+ 355:.\Generated_Source\PSoC5/LED_Strip.c **** }
+ 419              		.loc 1 355 0
+ 420 0010 0C37     		adds	r7, r7, #12
+ 421 0012 BD46     		mov	sp, r7
+ 422              		@ sp needed
+ 423 0014 5DF8047B 		ldr	r7, [sp], #4
+ 424 0018 7047     		bx	lr
+ 425              	.L23:
+ 426 001a 00BF     		.align	2
+ 427              	.L22:
+ 428 001c 82640040 		.word	1073767554
+ 429              		.cfi_endproc
+ 430              	.LFE9:
+ 431              		.size	LED_Strip_SetRxInterruptMode, .-LED_Strip_SetRxInterruptMode
+ 432              		.section	.text.LED_Strip_ReadTxStatus,"ax",%progbits
+ 433              		.align	2
+ 434              		.global	LED_Strip_ReadTxStatus
+ 435              		.thumb
+ 436              		.thumb_func
+ 437              		.type	LED_Strip_ReadTxStatus, %function
+ 438              	LED_Strip_ReadTxStatus:
+ 439              	.LFB10:
+ 356:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 357:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 358:.\Generated_Source\PSoC5/LED_Strip.c **** /*******************************************************************************
+ 359:.\Generated_Source\PSoC5/LED_Strip.c **** * Function Name: LED_Strip_ReadTxStatus
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 15
+
+
+ 360:.\Generated_Source\PSoC5/LED_Strip.c **** ********************************************************************************
+ 361:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 362:.\Generated_Source\PSoC5/LED_Strip.c **** * Summary:
+ 363:.\Generated_Source\PSoC5/LED_Strip.c **** *  Read the Tx status register for the component.
+ 364:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 365:.\Generated_Source\PSoC5/LED_Strip.c **** * Parameters:
+ 366:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 367:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 368:.\Generated_Source\PSoC5/LED_Strip.c **** * Return:
+ 369:.\Generated_Source\PSoC5/LED_Strip.c **** *  Contents of the Tx status register.
+ 370:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 371:.\Generated_Source\PSoC5/LED_Strip.c **** * Global variables:
+ 372:.\Generated_Source\PSoC5/LED_Strip.c **** *  LED_Strip_swStatusTx - used to store in software status register,
+ 373:.\Generated_Source\PSoC5/LED_Strip.c **** *  modified every function call - resets to zero.
+ 374:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 375:.\Generated_Source\PSoC5/LED_Strip.c **** * Theory:
+ 376:.\Generated_Source\PSoC5/LED_Strip.c **** *  Allows the user and the API to read the Tx status register for error
+ 377:.\Generated_Source\PSoC5/LED_Strip.c **** *  detection and flow control.
+ 378:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 379:.\Generated_Source\PSoC5/LED_Strip.c **** * Side Effects:
+ 380:.\Generated_Source\PSoC5/LED_Strip.c **** *  Clear Tx status register of the component.
+ 381:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 382:.\Generated_Source\PSoC5/LED_Strip.c **** * Reentrant:
+ 383:.\Generated_Source\PSoC5/LED_Strip.c **** *  No.
+ 384:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 385:.\Generated_Source\PSoC5/LED_Strip.c **** *******************************************************************************/
+ 386:.\Generated_Source\PSoC5/LED_Strip.c **** uint8 LED_Strip_ReadTxStatus(void) 
+ 387:.\Generated_Source\PSoC5/LED_Strip.c **** {
+ 440              		.loc 1 387 0
+ 441              		.cfi_startproc
+ 442              		@ args = 0, pretend = 0, frame = 8
+ 443              		@ frame_needed = 1, uses_anonymous_args = 0
+ 444              		@ link register save eliminated.
+ 445 0000 80B4     		push	{r7}
+ 446              		.cfi_def_cfa_offset 4
+ 447              		.cfi_offset 7, -4
+ 448 0002 83B0     		sub	sp, sp, #12
+ 449              		.cfi_def_cfa_offset 16
+ 450 0004 00AF     		add	r7, sp, #0
+ 451              		.cfi_def_cfa_register 7
+ 388:.\Generated_Source\PSoC5/LED_Strip.c ****     uint8 tmpStatus;
+ 389:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 390:.\Generated_Source\PSoC5/LED_Strip.c ****     #if(LED_Strip_TX_SOFTWARE_BUF_ENABLED)
+ 391:.\Generated_Source\PSoC5/LED_Strip.c ****         /* Disable TX interrupt to protect global veriables */
+ 392:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_DisableTxInt();
+ 393:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 394:.\Generated_Source\PSoC5/LED_Strip.c ****         tmpStatus = LED_Strip_GET_STATUS_TX(LED_Strip_swStatusTx);
+ 395:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_swStatusTx = 0u;
+ 396:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 397:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_EnableTxInt();
+ 398:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 399:.\Generated_Source\PSoC5/LED_Strip.c ****     #else
+ 400:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 401:.\Generated_Source\PSoC5/LED_Strip.c ****         tmpStatus = LED_Strip_TX_STATUS_REG;
+ 452              		.loc 1 401 0
+ 453 0006 054B     		ldr	r3, .L26
+ 454 0008 1B78     		ldrb	r3, [r3]
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 16
+
+
+ 455 000a FB71     		strb	r3, [r7, #7]
+ 402:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 403:.\Generated_Source\PSoC5/LED_Strip.c ****     #endif /* (LED_Strip_TX_SOFTWARE_BUF_ENABLED) */
+ 404:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 405:.\Generated_Source\PSoC5/LED_Strip.c ****     return(tmpStatus);
+ 456              		.loc 1 405 0
+ 457 000c FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 406:.\Generated_Source\PSoC5/LED_Strip.c **** }
+ 458              		.loc 1 406 0
+ 459 000e 1846     		mov	r0, r3
+ 460 0010 0C37     		adds	r7, r7, #12
+ 461 0012 BD46     		mov	sp, r7
+ 462              		@ sp needed
+ 463 0014 5DF8047B 		ldr	r7, [sp], #4
+ 464 0018 7047     		bx	lr
+ 465              	.L27:
+ 466 001a 00BF     		.align	2
+ 467              	.L26:
+ 468 001c 60640040 		.word	1073767520
+ 469              		.cfi_endproc
+ 470              	.LFE10:
+ 471              		.size	LED_Strip_ReadTxStatus, .-LED_Strip_ReadTxStatus
+ 472              		.section	.text.LED_Strip_ReadRxStatus,"ax",%progbits
+ 473              		.align	2
+ 474              		.global	LED_Strip_ReadRxStatus
+ 475              		.thumb
+ 476              		.thumb_func
+ 477              		.type	LED_Strip_ReadRxStatus, %function
+ 478              	LED_Strip_ReadRxStatus:
+ 479              	.LFB11:
+ 407:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 408:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 409:.\Generated_Source\PSoC5/LED_Strip.c **** /*******************************************************************************
+ 410:.\Generated_Source\PSoC5/LED_Strip.c **** * Function Name: LED_Strip_ReadRxStatus
+ 411:.\Generated_Source\PSoC5/LED_Strip.c **** ********************************************************************************
+ 412:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 413:.\Generated_Source\PSoC5/LED_Strip.c **** * Summary:
+ 414:.\Generated_Source\PSoC5/LED_Strip.c **** *  Read the Rx status register for the component.
+ 415:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 416:.\Generated_Source\PSoC5/LED_Strip.c **** * Parameters:
+ 417:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 418:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 419:.\Generated_Source\PSoC5/LED_Strip.c **** * Return:
+ 420:.\Generated_Source\PSoC5/LED_Strip.c **** *  Contents of the Rx status register.
+ 421:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 422:.\Generated_Source\PSoC5/LED_Strip.c **** * Global variables:
+ 423:.\Generated_Source\PSoC5/LED_Strip.c **** *  LED_Strip_swStatusRx - used to store in software Rx status register,
+ 424:.\Generated_Source\PSoC5/LED_Strip.c **** *  modified every function call - resets to zero.
+ 425:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 426:.\Generated_Source\PSoC5/LED_Strip.c **** * Theory:
+ 427:.\Generated_Source\PSoC5/LED_Strip.c **** *  Allows the user and the API to read the Rx status register for error
+ 428:.\Generated_Source\PSoC5/LED_Strip.c **** *  detection and flow control.
+ 429:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 430:.\Generated_Source\PSoC5/LED_Strip.c **** * Side Effects:
+ 431:.\Generated_Source\PSoC5/LED_Strip.c **** *  Clear Rx status register of the component.
+ 432:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 433:.\Generated_Source\PSoC5/LED_Strip.c **** * Reentrant:
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 17
+
+
+ 434:.\Generated_Source\PSoC5/LED_Strip.c **** *  No.
+ 435:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 436:.\Generated_Source\PSoC5/LED_Strip.c **** *******************************************************************************/
+ 437:.\Generated_Source\PSoC5/LED_Strip.c **** uint8 LED_Strip_ReadRxStatus(void) 
+ 438:.\Generated_Source\PSoC5/LED_Strip.c **** {
+ 480              		.loc 1 438 0
+ 481              		.cfi_startproc
+ 482              		@ args = 0, pretend = 0, frame = 8
+ 483              		@ frame_needed = 1, uses_anonymous_args = 0
+ 484              		@ link register save eliminated.
+ 485 0000 80B4     		push	{r7}
+ 486              		.cfi_def_cfa_offset 4
+ 487              		.cfi_offset 7, -4
+ 488 0002 83B0     		sub	sp, sp, #12
+ 489              		.cfi_def_cfa_offset 16
+ 490 0004 00AF     		add	r7, sp, #0
+ 491              		.cfi_def_cfa_register 7
+ 439:.\Generated_Source\PSoC5/LED_Strip.c ****     uint8 tmpStatus;
+ 440:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 441:.\Generated_Source\PSoC5/LED_Strip.c ****     #if(LED_Strip_RX_SOFTWARE_BUF_ENABLED)
+ 442:.\Generated_Source\PSoC5/LED_Strip.c ****         /* Disable RX interrupt to protect global veriables */
+ 443:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_DisableRxInt();
+ 444:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 445:.\Generated_Source\PSoC5/LED_Strip.c ****         tmpStatus = LED_Strip_GET_STATUS_RX(LED_Strip_swStatusRx);
+ 446:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_swStatusRx = 0u;
+ 447:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 448:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_EnableRxInt();
+ 449:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 450:.\Generated_Source\PSoC5/LED_Strip.c ****     #else
+ 451:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 452:.\Generated_Source\PSoC5/LED_Strip.c ****         tmpStatus = LED_Strip_RX_STATUS_REG;
+ 492              		.loc 1 452 0
+ 493 0006 054B     		ldr	r3, .L30
+ 494 0008 1B78     		ldrb	r3, [r3]
+ 495 000a FB71     		strb	r3, [r7, #7]
+ 453:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 454:.\Generated_Source\PSoC5/LED_Strip.c ****     #endif /* (LED_Strip_RX_SOFTWARE_BUF_ENABLED) */
+ 455:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 456:.\Generated_Source\PSoC5/LED_Strip.c ****     return(tmpStatus);
+ 496              		.loc 1 456 0
+ 497 000c FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 457:.\Generated_Source\PSoC5/LED_Strip.c **** }
+ 498              		.loc 1 457 0
+ 499 000e 1846     		mov	r0, r3
+ 500 0010 0C37     		adds	r7, r7, #12
+ 501 0012 BD46     		mov	sp, r7
+ 502              		@ sp needed
+ 503 0014 5DF8047B 		ldr	r7, [sp], #4
+ 504 0018 7047     		bx	lr
+ 505              	.L31:
+ 506 001a 00BF     		.align	2
+ 507              	.L30:
+ 508 001c 62640040 		.word	1073767522
+ 509              		.cfi_endproc
+ 510              	.LFE11:
+ 511              		.size	LED_Strip_ReadRxStatus, .-LED_Strip_ReadRxStatus
+ 512              		.section	.text.LED_Strip_WriteTxData,"ax",%progbits
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 18
+
+
+ 513              		.align	2
+ 514              		.global	LED_Strip_WriteTxData
+ 515              		.thumb
+ 516              		.thumb_func
+ 517              		.type	LED_Strip_WriteTxData, %function
+ 518              	LED_Strip_WriteTxData:
+ 519              	.LFB12:
+ 458:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 459:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 460:.\Generated_Source\PSoC5/LED_Strip.c **** /*******************************************************************************
+ 461:.\Generated_Source\PSoC5/LED_Strip.c **** * Function Name: LED_Strip_WriteTxData
+ 462:.\Generated_Source\PSoC5/LED_Strip.c **** ********************************************************************************
+ 463:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 464:.\Generated_Source\PSoC5/LED_Strip.c **** * Summary:
+ 465:.\Generated_Source\PSoC5/LED_Strip.c **** *  Write a byte of data to be sent across the SPI.
+ 466:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 467:.\Generated_Source\PSoC5/LED_Strip.c **** * Parameters:
+ 468:.\Generated_Source\PSoC5/LED_Strip.c **** *  txDataByte: The data value to send across the SPI.
+ 469:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 470:.\Generated_Source\PSoC5/LED_Strip.c **** * Return:
+ 471:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 472:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 473:.\Generated_Source\PSoC5/LED_Strip.c **** * Global variables:
+ 474:.\Generated_Source\PSoC5/LED_Strip.c **** *  LED_Strip_txBufferWrite - used for the account of the bytes which
+ 475:.\Generated_Source\PSoC5/LED_Strip.c **** *  have been written down in the TX software buffer, modified every function
+ 476:.\Generated_Source\PSoC5/LED_Strip.c **** *  call if TX Software Buffer is used.
+ 477:.\Generated_Source\PSoC5/LED_Strip.c **** *  LED_Strip_txBufferRead - used for the account of the bytes which
+ 478:.\Generated_Source\PSoC5/LED_Strip.c **** *  have been read from the TX software buffer.
+ 479:.\Generated_Source\PSoC5/LED_Strip.c **** *  LED_Strip_txBuffer[LED_Strip_TX_BUFFER_SIZE] - used to store
+ 480:.\Generated_Source\PSoC5/LED_Strip.c **** *  data to sending, modified every function call if TX Software Buffer is used.
+ 481:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 482:.\Generated_Source\PSoC5/LED_Strip.c **** * Theory:
+ 483:.\Generated_Source\PSoC5/LED_Strip.c **** *  Allows the user to transmit any byte of data in a single transfer.
+ 484:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 485:.\Generated_Source\PSoC5/LED_Strip.c **** * Side Effects:
+ 486:.\Generated_Source\PSoC5/LED_Strip.c **** *  If this function is called again before the previous byte is finished then
+ 487:.\Generated_Source\PSoC5/LED_Strip.c **** *  the next byte will be appended to the transfer with no time between
+ 488:.\Generated_Source\PSoC5/LED_Strip.c **** *  the byte transfers. Clear Tx status register of the component.
+ 489:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 490:.\Generated_Source\PSoC5/LED_Strip.c **** * Reentrant:
+ 491:.\Generated_Source\PSoC5/LED_Strip.c **** *  No.
+ 492:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 493:.\Generated_Source\PSoC5/LED_Strip.c **** *******************************************************************************/
+ 494:.\Generated_Source\PSoC5/LED_Strip.c **** void LED_Strip_WriteTxData(uint8 txData) 
+ 495:.\Generated_Source\PSoC5/LED_Strip.c **** {
+ 520              		.loc 1 495 0
+ 521              		.cfi_startproc
+ 522              		@ args = 0, pretend = 0, frame = 8
+ 523              		@ frame_needed = 1, uses_anonymous_args = 0
+ 524              		@ link register save eliminated.
+ 525 0000 80B4     		push	{r7}
+ 526              		.cfi_def_cfa_offset 4
+ 527              		.cfi_offset 7, -4
+ 528 0002 83B0     		sub	sp, sp, #12
+ 529              		.cfi_def_cfa_offset 16
+ 530 0004 00AF     		add	r7, sp, #0
+ 531              		.cfi_def_cfa_register 7
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 19
+
+
+ 532 0006 0346     		mov	r3, r0
+ 533 0008 FB71     		strb	r3, [r7, #7]
+ 496:.\Generated_Source\PSoC5/LED_Strip.c ****     #if(LED_Strip_TX_SOFTWARE_BUF_ENABLED)
+ 497:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 498:.\Generated_Source\PSoC5/LED_Strip.c ****         uint8 tempStatus;
+ 499:.\Generated_Source\PSoC5/LED_Strip.c ****         uint8 tmpTxBufferRead;
+ 500:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 501:.\Generated_Source\PSoC5/LED_Strip.c ****         /* Block if TX buffer is FULL: don't overwrite */
+ 502:.\Generated_Source\PSoC5/LED_Strip.c ****         do
+ 503:.\Generated_Source\PSoC5/LED_Strip.c ****         {
+ 504:.\Generated_Source\PSoC5/LED_Strip.c ****             tmpTxBufferRead = LED_Strip_txBufferRead;
+ 505:.\Generated_Source\PSoC5/LED_Strip.c ****             if(0u == tmpTxBufferRead)
+ 506:.\Generated_Source\PSoC5/LED_Strip.c ****             {
+ 507:.\Generated_Source\PSoC5/LED_Strip.c ****                 tmpTxBufferRead = (LED_Strip_TX_BUFFER_SIZE - 1u);
+ 508:.\Generated_Source\PSoC5/LED_Strip.c ****             }
+ 509:.\Generated_Source\PSoC5/LED_Strip.c ****             else
+ 510:.\Generated_Source\PSoC5/LED_Strip.c ****             {
+ 511:.\Generated_Source\PSoC5/LED_Strip.c ****                 tmpTxBufferRead--;
+ 512:.\Generated_Source\PSoC5/LED_Strip.c ****             }
+ 513:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 514:.\Generated_Source\PSoC5/LED_Strip.c ****         }while(tmpTxBufferRead == LED_Strip_txBufferWrite);
+ 515:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 516:.\Generated_Source\PSoC5/LED_Strip.c ****         /* Disable TX interrupt to protect global veriables */
+ 517:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_DisableTxInt();
+ 518:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 519:.\Generated_Source\PSoC5/LED_Strip.c ****         tempStatus = LED_Strip_GET_STATUS_TX(LED_Strip_swStatusTx);
+ 520:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_swStatusTx = tempStatus;
+ 521:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 522:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 523:.\Generated_Source\PSoC5/LED_Strip.c ****         if((LED_Strip_txBufferRead == LED_Strip_txBufferWrite) &&
+ 524:.\Generated_Source\PSoC5/LED_Strip.c ****            (0u != (LED_Strip_swStatusTx & LED_Strip_STS_TX_FIFO_NOT_FULL)))
+ 525:.\Generated_Source\PSoC5/LED_Strip.c ****         {
+ 526:.\Generated_Source\PSoC5/LED_Strip.c ****             /* Put data element into the TX FIFO */
+ 527:.\Generated_Source\PSoC5/LED_Strip.c ****             CY_SET_REG8(LED_Strip_TXDATA_PTR, txData);
+ 528:.\Generated_Source\PSoC5/LED_Strip.c ****         }
+ 529:.\Generated_Source\PSoC5/LED_Strip.c ****         else
+ 530:.\Generated_Source\PSoC5/LED_Strip.c ****         {
+ 531:.\Generated_Source\PSoC5/LED_Strip.c ****             /* Add to the TX software buffer */
+ 532:.\Generated_Source\PSoC5/LED_Strip.c ****             LED_Strip_txBufferWrite++;
+ 533:.\Generated_Source\PSoC5/LED_Strip.c ****             if(LED_Strip_txBufferWrite >= LED_Strip_TX_BUFFER_SIZE)
+ 534:.\Generated_Source\PSoC5/LED_Strip.c ****             {
+ 535:.\Generated_Source\PSoC5/LED_Strip.c ****                 LED_Strip_txBufferWrite = 0u;
+ 536:.\Generated_Source\PSoC5/LED_Strip.c ****             }
+ 537:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 538:.\Generated_Source\PSoC5/LED_Strip.c ****             if(LED_Strip_txBufferWrite == LED_Strip_txBufferRead)
+ 539:.\Generated_Source\PSoC5/LED_Strip.c ****             {
+ 540:.\Generated_Source\PSoC5/LED_Strip.c ****                 LED_Strip_txBufferRead++;
+ 541:.\Generated_Source\PSoC5/LED_Strip.c ****                 if(LED_Strip_txBufferRead >= LED_Strip_TX_BUFFER_SIZE)
+ 542:.\Generated_Source\PSoC5/LED_Strip.c ****                 {
+ 543:.\Generated_Source\PSoC5/LED_Strip.c ****                     LED_Strip_txBufferRead = 0u;
+ 544:.\Generated_Source\PSoC5/LED_Strip.c ****                 }
+ 545:.\Generated_Source\PSoC5/LED_Strip.c ****                 LED_Strip_txBufferFull = 1u;
+ 546:.\Generated_Source\PSoC5/LED_Strip.c ****             }
+ 547:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 548:.\Generated_Source\PSoC5/LED_Strip.c ****             LED_Strip_txBuffer[LED_Strip_txBufferWrite] = txData;
+ 549:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 550:.\Generated_Source\PSoC5/LED_Strip.c ****             LED_Strip_TX_STATUS_MASK_REG |= LED_Strip_STS_TX_FIFO_NOT_FULL;
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 20
+
+
+ 551:.\Generated_Source\PSoC5/LED_Strip.c ****         }
+ 552:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 553:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_EnableTxInt();
+ 554:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 555:.\Generated_Source\PSoC5/LED_Strip.c ****     #else
+ 556:.\Generated_Source\PSoC5/LED_Strip.c ****         /* Wait until TX FIFO has a place */
+ 557:.\Generated_Source\PSoC5/LED_Strip.c ****         while(0u == (LED_Strip_TX_STATUS_REG & LED_Strip_STS_TX_FIFO_NOT_FULL))
+ 534              		.loc 1 557 0
+ 535 000a 00BF     		nop
+ 536              	.L33:
+ 537              		.loc 1 557 0 is_stmt 0 discriminator 1
+ 538 000c 074B     		ldr	r3, .L34
+ 539 000e 1B78     		ldrb	r3, [r3]
+ 540 0010 DBB2     		uxtb	r3, r3
+ 541 0012 03F00403 		and	r3, r3, #4
+ 542 0016 002B     		cmp	r3, #0
+ 543 0018 F8D0     		beq	.L33
+ 558:.\Generated_Source\PSoC5/LED_Strip.c ****         {
+ 559:.\Generated_Source\PSoC5/LED_Strip.c ****         }
+ 560:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 561:.\Generated_Source\PSoC5/LED_Strip.c ****         /* Put data element into the TX FIFO */
+ 562:.\Generated_Source\PSoC5/LED_Strip.c ****         CY_SET_REG8(LED_Strip_TXDATA_PTR, txData);
+ 544              		.loc 1 562 0 is_stmt 1
+ 545 001a 054B     		ldr	r3, .L34+4
+ 546 001c FA79     		ldrb	r2, [r7, #7]
+ 547 001e 1A70     		strb	r2, [r3]
+ 563:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 564:.\Generated_Source\PSoC5/LED_Strip.c ****     #endif /* (LED_Strip_TX_SOFTWARE_BUF_ENABLED) */
+ 565:.\Generated_Source\PSoC5/LED_Strip.c **** }
+ 548              		.loc 1 565 0
+ 549 0020 0C37     		adds	r7, r7, #12
+ 550 0022 BD46     		mov	sp, r7
+ 551              		@ sp needed
+ 552 0024 5DF8047B 		ldr	r7, [sp], #4
+ 553 0028 7047     		bx	lr
+ 554              	.L35:
+ 555 002a 00BF     		.align	2
+ 556              	.L34:
+ 557 002c 60640040 		.word	1073767520
+ 558 0030 41640040 		.word	1073767489
+ 559              		.cfi_endproc
+ 560              	.LFE12:
+ 561              		.size	LED_Strip_WriteTxData, .-LED_Strip_WriteTxData
+ 562              		.section	.text.LED_Strip_ReadRxData,"ax",%progbits
+ 563              		.align	2
+ 564              		.global	LED_Strip_ReadRxData
+ 565              		.thumb
+ 566              		.thumb_func
+ 567              		.type	LED_Strip_ReadRxData, %function
+ 568              	LED_Strip_ReadRxData:
+ 569              	.LFB13:
+ 566:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 567:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 568:.\Generated_Source\PSoC5/LED_Strip.c **** /*******************************************************************************
+ 569:.\Generated_Source\PSoC5/LED_Strip.c **** * Function Name: LED_Strip_ReadRxData
+ 570:.\Generated_Source\PSoC5/LED_Strip.c **** ********************************************************************************
+ 571:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 21
+
+
+ 572:.\Generated_Source\PSoC5/LED_Strip.c **** * Summary:
+ 573:.\Generated_Source\PSoC5/LED_Strip.c **** *  Read the next byte of data received across the SPI.
+ 574:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 575:.\Generated_Source\PSoC5/LED_Strip.c **** * Parameters:
+ 576:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 577:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 578:.\Generated_Source\PSoC5/LED_Strip.c **** * Return:
+ 579:.\Generated_Source\PSoC5/LED_Strip.c **** *  The next byte of data read from the FIFO.
+ 580:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 581:.\Generated_Source\PSoC5/LED_Strip.c **** * Global variables:
+ 582:.\Generated_Source\PSoC5/LED_Strip.c **** *  LED_Strip_rxBufferWrite - used for the account of the bytes which
+ 583:.\Generated_Source\PSoC5/LED_Strip.c **** *  have been written down in the RX software buffer.
+ 584:.\Generated_Source\PSoC5/LED_Strip.c **** *  LED_Strip_rxBufferRead - used for the account of the bytes which
+ 585:.\Generated_Source\PSoC5/LED_Strip.c **** *  have been read from the RX software buffer, modified every function
+ 586:.\Generated_Source\PSoC5/LED_Strip.c **** *  call if RX Software Buffer is used.
+ 587:.\Generated_Source\PSoC5/LED_Strip.c **** *  LED_Strip_rxBuffer[LED_Strip_RX_BUFFER_SIZE] - used to store
+ 588:.\Generated_Source\PSoC5/LED_Strip.c **** *  received data.
+ 589:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 590:.\Generated_Source\PSoC5/LED_Strip.c **** * Theory:
+ 591:.\Generated_Source\PSoC5/LED_Strip.c **** *  Allows the user to read a byte of data received.
+ 592:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 593:.\Generated_Source\PSoC5/LED_Strip.c **** * Side Effects:
+ 594:.\Generated_Source\PSoC5/LED_Strip.c **** *  Will return invalid data if the FIFO is empty. The user should Call
+ 595:.\Generated_Source\PSoC5/LED_Strip.c **** *  GetRxBufferSize() and if it returns a non-zero value then it is safe to call
+ 596:.\Generated_Source\PSoC5/LED_Strip.c **** *  ReadByte() function.
+ 597:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 598:.\Generated_Source\PSoC5/LED_Strip.c **** * Reentrant:
+ 599:.\Generated_Source\PSoC5/LED_Strip.c **** *  No.
+ 600:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 601:.\Generated_Source\PSoC5/LED_Strip.c **** *******************************************************************************/
+ 602:.\Generated_Source\PSoC5/LED_Strip.c **** uint8 LED_Strip_ReadRxData(void) 
+ 603:.\Generated_Source\PSoC5/LED_Strip.c **** {
+ 570              		.loc 1 603 0
+ 571              		.cfi_startproc
+ 572              		@ args = 0, pretend = 0, frame = 8
+ 573              		@ frame_needed = 1, uses_anonymous_args = 0
+ 574              		@ link register save eliminated.
+ 575 0000 80B4     		push	{r7}
+ 576              		.cfi_def_cfa_offset 4
+ 577              		.cfi_offset 7, -4
+ 578 0002 83B0     		sub	sp, sp, #12
+ 579              		.cfi_def_cfa_offset 16
+ 580 0004 00AF     		add	r7, sp, #0
+ 581              		.cfi_def_cfa_register 7
+ 604:.\Generated_Source\PSoC5/LED_Strip.c ****     uint8 rxData;
+ 605:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 606:.\Generated_Source\PSoC5/LED_Strip.c ****     #if(LED_Strip_RX_SOFTWARE_BUF_ENABLED)
+ 607:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 608:.\Generated_Source\PSoC5/LED_Strip.c ****         /* Disable RX interrupt to protect global veriables */
+ 609:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_DisableRxInt();
+ 610:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 611:.\Generated_Source\PSoC5/LED_Strip.c ****         if(LED_Strip_rxBufferRead != LED_Strip_rxBufferWrite)
+ 612:.\Generated_Source\PSoC5/LED_Strip.c ****         {
+ 613:.\Generated_Source\PSoC5/LED_Strip.c ****             if(0u == LED_Strip_rxBufferFull)
+ 614:.\Generated_Source\PSoC5/LED_Strip.c ****             {
+ 615:.\Generated_Source\PSoC5/LED_Strip.c ****                 LED_Strip_rxBufferRead++;
+ 616:.\Generated_Source\PSoC5/LED_Strip.c ****                 if(LED_Strip_rxBufferRead >= LED_Strip_RX_BUFFER_SIZE)
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 22
+
+
+ 617:.\Generated_Source\PSoC5/LED_Strip.c ****                 {
+ 618:.\Generated_Source\PSoC5/LED_Strip.c ****                     LED_Strip_rxBufferRead = 0u;
+ 619:.\Generated_Source\PSoC5/LED_Strip.c ****                 }
+ 620:.\Generated_Source\PSoC5/LED_Strip.c ****             }
+ 621:.\Generated_Source\PSoC5/LED_Strip.c ****             else
+ 622:.\Generated_Source\PSoC5/LED_Strip.c ****             {
+ 623:.\Generated_Source\PSoC5/LED_Strip.c ****                 LED_Strip_rxBufferFull = 0u;
+ 624:.\Generated_Source\PSoC5/LED_Strip.c ****             }
+ 625:.\Generated_Source\PSoC5/LED_Strip.c ****         }
+ 626:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 627:.\Generated_Source\PSoC5/LED_Strip.c ****         rxData = LED_Strip_rxBuffer[LED_Strip_rxBufferRead];
+ 628:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 629:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_EnableRxInt();
+ 630:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 631:.\Generated_Source\PSoC5/LED_Strip.c ****     #else
+ 632:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 633:.\Generated_Source\PSoC5/LED_Strip.c ****         rxData = CY_GET_REG8(LED_Strip_RXDATA_PTR);
+ 582              		.loc 1 633 0
+ 583 0006 054B     		ldr	r3, .L38
+ 584 0008 1B78     		ldrb	r3, [r3]
+ 585 000a FB71     		strb	r3, [r7, #7]
+ 634:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 635:.\Generated_Source\PSoC5/LED_Strip.c ****     #endif /* (LED_Strip_RX_SOFTWARE_BUF_ENABLED) */
+ 636:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 637:.\Generated_Source\PSoC5/LED_Strip.c ****     return(rxData);
+ 586              		.loc 1 637 0
+ 587 000c FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 638:.\Generated_Source\PSoC5/LED_Strip.c **** }
+ 588              		.loc 1 638 0
+ 589 000e 1846     		mov	r0, r3
+ 590 0010 0C37     		adds	r7, r7, #12
+ 591 0012 BD46     		mov	sp, r7
+ 592              		@ sp needed
+ 593 0014 5DF8047B 		ldr	r7, [sp], #4
+ 594 0018 7047     		bx	lr
+ 595              	.L39:
+ 596 001a 00BF     		.align	2
+ 597              	.L38:
+ 598 001c 51640040 		.word	1073767505
+ 599              		.cfi_endproc
+ 600              	.LFE13:
+ 601              		.size	LED_Strip_ReadRxData, .-LED_Strip_ReadRxData
+ 602              		.section	.text.LED_Strip_GetRxBufferSize,"ax",%progbits
+ 603              		.align	2
+ 604              		.global	LED_Strip_GetRxBufferSize
+ 605              		.thumb
+ 606              		.thumb_func
+ 607              		.type	LED_Strip_GetRxBufferSize, %function
+ 608              	LED_Strip_GetRxBufferSize:
+ 609              	.LFB14:
+ 639:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 640:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 641:.\Generated_Source\PSoC5/LED_Strip.c **** /*******************************************************************************
+ 642:.\Generated_Source\PSoC5/LED_Strip.c **** * Function Name: LED_Strip_GetRxBufferSize
+ 643:.\Generated_Source\PSoC5/LED_Strip.c **** ********************************************************************************
+ 644:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 645:.\Generated_Source\PSoC5/LED_Strip.c **** * Summary:
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 23
+
+
+ 646:.\Generated_Source\PSoC5/LED_Strip.c **** *  Returns the number of bytes/words of data currently held in the RX buffer.
+ 647:.\Generated_Source\PSoC5/LED_Strip.c **** *  If RX Software Buffer not used then function return 0 if FIFO empty or 1 if
+ 648:.\Generated_Source\PSoC5/LED_Strip.c **** *  FIFO not empty. In another case function return size of RX Software Buffer.
+ 649:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 650:.\Generated_Source\PSoC5/LED_Strip.c **** * Parameters:
+ 651:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 652:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 653:.\Generated_Source\PSoC5/LED_Strip.c **** * Return:
+ 654:.\Generated_Source\PSoC5/LED_Strip.c **** *  Integer count of the number of bytes/words in the RX buffer.
+ 655:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 656:.\Generated_Source\PSoC5/LED_Strip.c **** * Global variables:
+ 657:.\Generated_Source\PSoC5/LED_Strip.c **** *  LED_Strip_rxBufferWrite - used for the account of the bytes which
+ 658:.\Generated_Source\PSoC5/LED_Strip.c **** *  have been written down in the RX software buffer.
+ 659:.\Generated_Source\PSoC5/LED_Strip.c **** *  LED_Strip_rxBufferRead - used for the account of the bytes which
+ 660:.\Generated_Source\PSoC5/LED_Strip.c **** *  have been read from the RX software buffer.
+ 661:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 662:.\Generated_Source\PSoC5/LED_Strip.c **** * Side Effects:
+ 663:.\Generated_Source\PSoC5/LED_Strip.c **** *  Clear status register of the component.
+ 664:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 665:.\Generated_Source\PSoC5/LED_Strip.c **** *******************************************************************************/
+ 666:.\Generated_Source\PSoC5/LED_Strip.c **** uint8 LED_Strip_GetRxBufferSize(void) 
+ 667:.\Generated_Source\PSoC5/LED_Strip.c **** {
+ 610              		.loc 1 667 0
+ 611              		.cfi_startproc
+ 612              		@ args = 0, pretend = 0, frame = 8
+ 613              		@ frame_needed = 1, uses_anonymous_args = 0
+ 614              		@ link register save eliminated.
+ 615 0000 80B4     		push	{r7}
+ 616              		.cfi_def_cfa_offset 4
+ 617              		.cfi_offset 7, -4
+ 618 0002 83B0     		sub	sp, sp, #12
+ 619              		.cfi_def_cfa_offset 16
+ 620 0004 00AF     		add	r7, sp, #0
+ 621              		.cfi_def_cfa_register 7
+ 668:.\Generated_Source\PSoC5/LED_Strip.c ****     uint8 size;
+ 669:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 670:.\Generated_Source\PSoC5/LED_Strip.c ****     #if(LED_Strip_RX_SOFTWARE_BUF_ENABLED)
+ 671:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 672:.\Generated_Source\PSoC5/LED_Strip.c ****         /* Disable RX interrupt to protect global veriables */
+ 673:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_DisableRxInt();
+ 674:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 675:.\Generated_Source\PSoC5/LED_Strip.c ****         if(LED_Strip_rxBufferRead == LED_Strip_rxBufferWrite)
+ 676:.\Generated_Source\PSoC5/LED_Strip.c ****         {
+ 677:.\Generated_Source\PSoC5/LED_Strip.c ****             size = 0u;
+ 678:.\Generated_Source\PSoC5/LED_Strip.c ****         }
+ 679:.\Generated_Source\PSoC5/LED_Strip.c ****         else if(LED_Strip_rxBufferRead < LED_Strip_rxBufferWrite)
+ 680:.\Generated_Source\PSoC5/LED_Strip.c ****         {
+ 681:.\Generated_Source\PSoC5/LED_Strip.c ****             size = (LED_Strip_rxBufferWrite - LED_Strip_rxBufferRead);
+ 682:.\Generated_Source\PSoC5/LED_Strip.c ****         }
+ 683:.\Generated_Source\PSoC5/LED_Strip.c ****         else
+ 684:.\Generated_Source\PSoC5/LED_Strip.c ****         {
+ 685:.\Generated_Source\PSoC5/LED_Strip.c ****             size = (LED_Strip_RX_BUFFER_SIZE - LED_Strip_rxBufferRead) + LED_Strip_rxBufferWrite;
+ 686:.\Generated_Source\PSoC5/LED_Strip.c ****         }
+ 687:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 688:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_EnableRxInt();
+ 689:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 690:.\Generated_Source\PSoC5/LED_Strip.c ****     #else
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 24
+
+
+ 691:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 692:.\Generated_Source\PSoC5/LED_Strip.c ****         /* We can only know if there is data in the RX FIFO */
+ 693:.\Generated_Source\PSoC5/LED_Strip.c ****         size = (0u != (LED_Strip_RX_STATUS_REG & LED_Strip_STS_RX_FIFO_NOT_EMPTY)) ? 1u : 0u;
+ 622              		.loc 1 693 0
+ 623 0006 094B     		ldr	r3, .L44
+ 624 0008 1B78     		ldrb	r3, [r3]
+ 625 000a DBB2     		uxtb	r3, r3
+ 626 000c 03F02003 		and	r3, r3, #32
+ 627 0010 002B     		cmp	r3, #0
+ 628 0012 01D0     		beq	.L41
+ 629              		.loc 1 693 0 is_stmt 0 discriminator 1
+ 630 0014 0123     		movs	r3, #1
+ 631 0016 00E0     		b	.L42
+ 632              	.L41:
+ 633              		.loc 1 693 0 discriminator 2
+ 634 0018 0023     		movs	r3, #0
+ 635              	.L42:
+ 636              		.loc 1 693 0 discriminator 3
+ 637 001a FB71     		strb	r3, [r7, #7]
+ 694:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 695:.\Generated_Source\PSoC5/LED_Strip.c ****     #endif /* (LED_Strip_TX_SOFTWARE_BUF_ENABLED) */
+ 696:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 697:.\Generated_Source\PSoC5/LED_Strip.c ****     return(size);
+ 638              		.loc 1 697 0 is_stmt 1 discriminator 3
+ 639 001c FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 698:.\Generated_Source\PSoC5/LED_Strip.c **** }
+ 640              		.loc 1 698 0 discriminator 3
+ 641 001e 1846     		mov	r0, r3
+ 642 0020 0C37     		adds	r7, r7, #12
+ 643 0022 BD46     		mov	sp, r7
+ 644              		@ sp needed
+ 645 0024 5DF8047B 		ldr	r7, [sp], #4
+ 646 0028 7047     		bx	lr
+ 647              	.L45:
+ 648 002a 00BF     		.align	2
+ 649              	.L44:
+ 650 002c 62640040 		.word	1073767522
+ 651              		.cfi_endproc
+ 652              	.LFE14:
+ 653              		.size	LED_Strip_GetRxBufferSize, .-LED_Strip_GetRxBufferSize
+ 654              		.section	.text.LED_Strip_GetTxBufferSize,"ax",%progbits
+ 655              		.align	2
+ 656              		.global	LED_Strip_GetTxBufferSize
+ 657              		.thumb
+ 658              		.thumb_func
+ 659              		.type	LED_Strip_GetTxBufferSize, %function
+ 660              	LED_Strip_GetTxBufferSize:
+ 661              	.LFB15:
+ 699:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 700:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 701:.\Generated_Source\PSoC5/LED_Strip.c **** /*******************************************************************************
+ 702:.\Generated_Source\PSoC5/LED_Strip.c **** * Function Name: LED_Strip_GetTxBufferSize
+ 703:.\Generated_Source\PSoC5/LED_Strip.c **** ********************************************************************************
+ 704:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 705:.\Generated_Source\PSoC5/LED_Strip.c **** * Summary:
+ 706:.\Generated_Source\PSoC5/LED_Strip.c **** *  Returns the number of bytes/words of data currently held in the TX buffer.
+ 707:.\Generated_Source\PSoC5/LED_Strip.c **** *  If TX Software Buffer not used then function return 0 - if FIFO empty, 1 - if
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 25
+
+
+ 708:.\Generated_Source\PSoC5/LED_Strip.c **** *  FIFO not full, 4 - if FIFO full. In another case function return size of TX
+ 709:.\Generated_Source\PSoC5/LED_Strip.c **** *  Software Buffer.
+ 710:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 711:.\Generated_Source\PSoC5/LED_Strip.c **** * Parameters:
+ 712:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 713:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 714:.\Generated_Source\PSoC5/LED_Strip.c **** * Return:
+ 715:.\Generated_Source\PSoC5/LED_Strip.c **** *  Integer count of the number of bytes/words in the TX buffer.
+ 716:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 717:.\Generated_Source\PSoC5/LED_Strip.c **** * Global variables:
+ 718:.\Generated_Source\PSoC5/LED_Strip.c **** *  LED_Strip_txBufferWrite - used for the account of the bytes which
+ 719:.\Generated_Source\PSoC5/LED_Strip.c **** *  have been written down in the TX software buffer.
+ 720:.\Generated_Source\PSoC5/LED_Strip.c **** *  LED_Strip_txBufferRead - used for the account of the bytes which
+ 721:.\Generated_Source\PSoC5/LED_Strip.c **** *  have been read from the TX software buffer.
+ 722:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 723:.\Generated_Source\PSoC5/LED_Strip.c **** * Side Effects:
+ 724:.\Generated_Source\PSoC5/LED_Strip.c **** *  Clear status register of the component.
+ 725:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 726:.\Generated_Source\PSoC5/LED_Strip.c **** *******************************************************************************/
+ 727:.\Generated_Source\PSoC5/LED_Strip.c **** uint8  LED_Strip_GetTxBufferSize(void) 
+ 728:.\Generated_Source\PSoC5/LED_Strip.c **** {
+ 662              		.loc 1 728 0
+ 663              		.cfi_startproc
+ 664              		@ args = 0, pretend = 0, frame = 8
+ 665              		@ frame_needed = 1, uses_anonymous_args = 0
+ 666              		@ link register save eliminated.
+ 667 0000 80B4     		push	{r7}
+ 668              		.cfi_def_cfa_offset 4
+ 669              		.cfi_offset 7, -4
+ 670 0002 83B0     		sub	sp, sp, #12
+ 671              		.cfi_def_cfa_offset 16
+ 672 0004 00AF     		add	r7, sp, #0
+ 673              		.cfi_def_cfa_register 7
+ 729:.\Generated_Source\PSoC5/LED_Strip.c ****     uint8 size;
+ 730:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 731:.\Generated_Source\PSoC5/LED_Strip.c ****     #if(LED_Strip_TX_SOFTWARE_BUF_ENABLED)
+ 732:.\Generated_Source\PSoC5/LED_Strip.c ****         /* Disable TX interrupt to protect global veriables */
+ 733:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_DisableTxInt();
+ 734:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 735:.\Generated_Source\PSoC5/LED_Strip.c ****         if(LED_Strip_txBufferRead == LED_Strip_txBufferWrite)
+ 736:.\Generated_Source\PSoC5/LED_Strip.c ****         {
+ 737:.\Generated_Source\PSoC5/LED_Strip.c ****             size = 0u;
+ 738:.\Generated_Source\PSoC5/LED_Strip.c ****         }
+ 739:.\Generated_Source\PSoC5/LED_Strip.c ****         else if(LED_Strip_txBufferRead < LED_Strip_txBufferWrite)
+ 740:.\Generated_Source\PSoC5/LED_Strip.c ****         {
+ 741:.\Generated_Source\PSoC5/LED_Strip.c ****             size = (LED_Strip_txBufferWrite - LED_Strip_txBufferRead);
+ 742:.\Generated_Source\PSoC5/LED_Strip.c ****         }
+ 743:.\Generated_Source\PSoC5/LED_Strip.c ****         else
+ 744:.\Generated_Source\PSoC5/LED_Strip.c ****         {
+ 745:.\Generated_Source\PSoC5/LED_Strip.c ****             size = (LED_Strip_TX_BUFFER_SIZE - LED_Strip_txBufferRead) + LED_Strip_txBufferWrite;
+ 746:.\Generated_Source\PSoC5/LED_Strip.c ****         }
+ 747:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 748:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_EnableTxInt();
+ 749:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 750:.\Generated_Source\PSoC5/LED_Strip.c ****     #else
+ 751:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 752:.\Generated_Source\PSoC5/LED_Strip.c ****         size = LED_Strip_TX_STATUS_REG;
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 26
+
+
+ 674              		.loc 1 752 0
+ 675 0006 0E4B     		ldr	r3, .L51
+ 676 0008 1B78     		ldrb	r3, [r3]
+ 677 000a FB71     		strb	r3, [r7, #7]
+ 753:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 754:.\Generated_Source\PSoC5/LED_Strip.c ****         if(0u != (size & LED_Strip_STS_TX_FIFO_EMPTY))
+ 678              		.loc 1 754 0
+ 679 000c FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 680 000e 03F00203 		and	r3, r3, #2
+ 681 0012 002B     		cmp	r3, #0
+ 682 0014 02D0     		beq	.L47
+ 755:.\Generated_Source\PSoC5/LED_Strip.c ****         {
+ 756:.\Generated_Source\PSoC5/LED_Strip.c ****             size = 0u;
+ 683              		.loc 1 756 0
+ 684 0016 0023     		movs	r3, #0
+ 685 0018 FB71     		strb	r3, [r7, #7]
+ 686 001a 09E0     		b	.L48
+ 687              	.L47:
+ 757:.\Generated_Source\PSoC5/LED_Strip.c ****         }
+ 758:.\Generated_Source\PSoC5/LED_Strip.c ****         else if(0u != (size & LED_Strip_STS_TX_FIFO_NOT_FULL))
+ 688              		.loc 1 758 0
+ 689 001c FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 690 001e 03F00403 		and	r3, r3, #4
+ 691 0022 002B     		cmp	r3, #0
+ 692 0024 02D0     		beq	.L49
+ 759:.\Generated_Source\PSoC5/LED_Strip.c ****         {
+ 760:.\Generated_Source\PSoC5/LED_Strip.c ****             size = 1u;
+ 693              		.loc 1 760 0
+ 694 0026 0123     		movs	r3, #1
+ 695 0028 FB71     		strb	r3, [r7, #7]
+ 696 002a 01E0     		b	.L48
+ 697              	.L49:
+ 761:.\Generated_Source\PSoC5/LED_Strip.c ****         }
+ 762:.\Generated_Source\PSoC5/LED_Strip.c ****         else
+ 763:.\Generated_Source\PSoC5/LED_Strip.c ****         {
+ 764:.\Generated_Source\PSoC5/LED_Strip.c ****             size = LED_Strip_FIFO_SIZE;
+ 698              		.loc 1 764 0
+ 699 002c 0423     		movs	r3, #4
+ 700 002e FB71     		strb	r3, [r7, #7]
+ 701              	.L48:
+ 765:.\Generated_Source\PSoC5/LED_Strip.c ****         }
+ 766:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 767:.\Generated_Source\PSoC5/LED_Strip.c ****     #endif /* (LED_Strip_TX_SOFTWARE_BUF_ENABLED) */
+ 768:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 769:.\Generated_Source\PSoC5/LED_Strip.c ****     return(size);
+ 702              		.loc 1 769 0
+ 703 0030 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 770:.\Generated_Source\PSoC5/LED_Strip.c **** }
+ 704              		.loc 1 770 0
+ 705 0032 1846     		mov	r0, r3
+ 706 0034 0C37     		adds	r7, r7, #12
+ 707 0036 BD46     		mov	sp, r7
+ 708              		@ sp needed
+ 709 0038 5DF8047B 		ldr	r7, [sp], #4
+ 710 003c 7047     		bx	lr
+ 711              	.L52:
+ 712 003e 00BF     		.align	2
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 27
+
+
+ 713              	.L51:
+ 714 0040 60640040 		.word	1073767520
+ 715              		.cfi_endproc
+ 716              	.LFE15:
+ 717              		.size	LED_Strip_GetTxBufferSize, .-LED_Strip_GetTxBufferSize
+ 718              		.section	.text.LED_Strip_ClearRxBuffer,"ax",%progbits
+ 719              		.align	2
+ 720              		.global	LED_Strip_ClearRxBuffer
+ 721              		.thumb
+ 722              		.thumb_func
+ 723              		.type	LED_Strip_ClearRxBuffer, %function
+ 724              	LED_Strip_ClearRxBuffer:
+ 725              	.LFB16:
+ 771:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 772:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 773:.\Generated_Source\PSoC5/LED_Strip.c **** /*******************************************************************************
+ 774:.\Generated_Source\PSoC5/LED_Strip.c **** * Function Name: LED_Strip_ClearRxBuffer
+ 775:.\Generated_Source\PSoC5/LED_Strip.c **** ********************************************************************************
+ 776:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 777:.\Generated_Source\PSoC5/LED_Strip.c **** * Summary:
+ 778:.\Generated_Source\PSoC5/LED_Strip.c **** *  Clear the RX RAM buffer by setting the read and write pointers both to zero.
+ 779:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 780:.\Generated_Source\PSoC5/LED_Strip.c **** * Parameters:
+ 781:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 782:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 783:.\Generated_Source\PSoC5/LED_Strip.c **** * Return:
+ 784:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 785:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 786:.\Generated_Source\PSoC5/LED_Strip.c **** * Global variables:
+ 787:.\Generated_Source\PSoC5/LED_Strip.c **** *  LED_Strip_rxBufferWrite - used for the account of the bytes which
+ 788:.\Generated_Source\PSoC5/LED_Strip.c **** *  have been written down in the RX software buffer, modified every function
+ 789:.\Generated_Source\PSoC5/LED_Strip.c **** *  call - resets to zero.
+ 790:.\Generated_Source\PSoC5/LED_Strip.c **** *  LED_Strip_rxBufferRead - used for the account of the bytes which
+ 791:.\Generated_Source\PSoC5/LED_Strip.c **** *  have been read from the RX software buffer, modified every function call -
+ 792:.\Generated_Source\PSoC5/LED_Strip.c **** *  resets to zero.
+ 793:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 794:.\Generated_Source\PSoC5/LED_Strip.c **** * Theory:
+ 795:.\Generated_Source\PSoC5/LED_Strip.c **** *  Setting the pointers to zero makes the system believe there is no data to
+ 796:.\Generated_Source\PSoC5/LED_Strip.c **** *  read and writing will resume at address 0 overwriting any data that may have
+ 797:.\Generated_Source\PSoC5/LED_Strip.c **** *  remained in the RAM.
+ 798:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 799:.\Generated_Source\PSoC5/LED_Strip.c **** * Side Effects:
+ 800:.\Generated_Source\PSoC5/LED_Strip.c **** *  Any received data not read from the RAM buffer will be lost when overwritten.
+ 801:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 802:.\Generated_Source\PSoC5/LED_Strip.c **** * Reentrant:
+ 803:.\Generated_Source\PSoC5/LED_Strip.c **** *  No.
+ 804:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 805:.\Generated_Source\PSoC5/LED_Strip.c **** *******************************************************************************/
+ 806:.\Generated_Source\PSoC5/LED_Strip.c **** void LED_Strip_ClearRxBuffer(void) 
+ 807:.\Generated_Source\PSoC5/LED_Strip.c **** {
+ 726              		.loc 1 807 0
+ 727              		.cfi_startproc
+ 728              		@ args = 0, pretend = 0, frame = 0
+ 729              		@ frame_needed = 1, uses_anonymous_args = 0
+ 730              		@ link register save eliminated.
+ 731 0000 80B4     		push	{r7}
+ 732              		.cfi_def_cfa_offset 4
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 28
+
+
+ 733              		.cfi_offset 7, -4
+ 734 0002 00AF     		add	r7, sp, #0
+ 735              		.cfi_def_cfa_register 7
+ 808:.\Generated_Source\PSoC5/LED_Strip.c ****     /* Clear Hardware RX FIFO */
+ 809:.\Generated_Source\PSoC5/LED_Strip.c ****     while(0u !=(LED_Strip_RX_STATUS_REG & LED_Strip_STS_RX_FIFO_NOT_EMPTY))
+ 736              		.loc 1 809 0
+ 737 0004 01E0     		b	.L54
+ 738              	.L55:
+ 810:.\Generated_Source\PSoC5/LED_Strip.c ****     {
+ 811:.\Generated_Source\PSoC5/LED_Strip.c ****         (void) CY_GET_REG8(LED_Strip_RXDATA_PTR);
+ 739              		.loc 1 811 0
+ 740 0006 064B     		ldr	r3, .L56
+ 741 0008 1B78     		ldrb	r3, [r3]
+ 742              	.L54:
+ 809:.\Generated_Source\PSoC5/LED_Strip.c ****     while(0u !=(LED_Strip_RX_STATUS_REG & LED_Strip_STS_RX_FIFO_NOT_EMPTY))
+ 743              		.loc 1 809 0 discriminator 1
+ 744 000a 064B     		ldr	r3, .L56+4
+ 745 000c 1B78     		ldrb	r3, [r3]
+ 746 000e DBB2     		uxtb	r3, r3
+ 747 0010 03F02003 		and	r3, r3, #32
+ 748 0014 002B     		cmp	r3, #0
+ 749 0016 F6D1     		bne	.L55
+ 812:.\Generated_Source\PSoC5/LED_Strip.c ****     }
+ 813:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 814:.\Generated_Source\PSoC5/LED_Strip.c ****     #if(LED_Strip_RX_SOFTWARE_BUF_ENABLED)
+ 815:.\Generated_Source\PSoC5/LED_Strip.c ****         /* Disable RX interrupt to protect global veriables */
+ 816:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_DisableRxInt();
+ 817:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 818:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_rxBufferFull  = 0u;
+ 819:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_rxBufferRead  = 0u;
+ 820:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_rxBufferWrite = 0u;
+ 821:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 822:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_EnableRxInt();
+ 823:.\Generated_Source\PSoC5/LED_Strip.c ****     #endif /* (LED_Strip_RX_SOFTWARE_BUF_ENABLED) */
+ 824:.\Generated_Source\PSoC5/LED_Strip.c **** }
+ 750              		.loc 1 824 0
+ 751 0018 BD46     		mov	sp, r7
+ 752              		@ sp needed
+ 753 001a 5DF8047B 		ldr	r7, [sp], #4
+ 754 001e 7047     		bx	lr
+ 755              	.L57:
+ 756              		.align	2
+ 757              	.L56:
+ 758 0020 51640040 		.word	1073767505
+ 759 0024 62640040 		.word	1073767522
+ 760              		.cfi_endproc
+ 761              	.LFE16:
+ 762              		.size	LED_Strip_ClearRxBuffer, .-LED_Strip_ClearRxBuffer
+ 763              		.section	.text.LED_Strip_ClearTxBuffer,"ax",%progbits
+ 764              		.align	2
+ 765              		.global	LED_Strip_ClearTxBuffer
+ 766              		.thumb
+ 767              		.thumb_func
+ 768              		.type	LED_Strip_ClearTxBuffer, %function
+ 769              	LED_Strip_ClearTxBuffer:
+ 770              	.LFB17:
+ 825:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 29
+
+
+ 826:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 827:.\Generated_Source\PSoC5/LED_Strip.c **** /*******************************************************************************
+ 828:.\Generated_Source\PSoC5/LED_Strip.c **** * Function Name: LED_Strip_ClearTxBuffer
+ 829:.\Generated_Source\PSoC5/LED_Strip.c **** ********************************************************************************
+ 830:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 831:.\Generated_Source\PSoC5/LED_Strip.c **** * Summary:
+ 832:.\Generated_Source\PSoC5/LED_Strip.c **** *  Clear the TX RAM buffer by setting the read and write pointers both to zero.
+ 833:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 834:.\Generated_Source\PSoC5/LED_Strip.c **** * Parameters:
+ 835:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 836:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 837:.\Generated_Source\PSoC5/LED_Strip.c **** * Return:
+ 838:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 839:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 840:.\Generated_Source\PSoC5/LED_Strip.c **** * Global variables:
+ 841:.\Generated_Source\PSoC5/LED_Strip.c **** *  LED_Strip_txBufferWrite - used for the account of the bytes which
+ 842:.\Generated_Source\PSoC5/LED_Strip.c **** *  have been written down in the TX software buffer, modified every function
+ 843:.\Generated_Source\PSoC5/LED_Strip.c **** *  call - resets to zero.
+ 844:.\Generated_Source\PSoC5/LED_Strip.c **** *  LED_Strip_txBufferRead - used for the account of the bytes which
+ 845:.\Generated_Source\PSoC5/LED_Strip.c **** *  have been read from the TX software buffer, modified every function call -
+ 846:.\Generated_Source\PSoC5/LED_Strip.c **** *  resets to zero.
+ 847:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 848:.\Generated_Source\PSoC5/LED_Strip.c **** * Theory:
+ 849:.\Generated_Source\PSoC5/LED_Strip.c **** *  Setting the pointers to zero makes the system believe there is no data to
+ 850:.\Generated_Source\PSoC5/LED_Strip.c **** *  read and writing will resume at address 0 overwriting any data that may have
+ 851:.\Generated_Source\PSoC5/LED_Strip.c **** *  remained in the RAM.
+ 852:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 853:.\Generated_Source\PSoC5/LED_Strip.c **** * Side Effects:
+ 854:.\Generated_Source\PSoC5/LED_Strip.c **** *  Any data not yet transmitted from the RAM buffer will be lost when
+ 855:.\Generated_Source\PSoC5/LED_Strip.c **** *  overwritten.
+ 856:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 857:.\Generated_Source\PSoC5/LED_Strip.c **** * Reentrant:
+ 858:.\Generated_Source\PSoC5/LED_Strip.c **** *  No.
+ 859:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 860:.\Generated_Source\PSoC5/LED_Strip.c **** *******************************************************************************/
+ 861:.\Generated_Source\PSoC5/LED_Strip.c **** void LED_Strip_ClearTxBuffer(void) 
+ 862:.\Generated_Source\PSoC5/LED_Strip.c **** {
+ 771              		.loc 1 862 0
+ 772              		.cfi_startproc
+ 773              		@ args = 0, pretend = 0, frame = 8
+ 774              		@ frame_needed = 1, uses_anonymous_args = 0
+ 775 0000 80B5     		push	{r7, lr}
+ 776              		.cfi_def_cfa_offset 8
+ 777              		.cfi_offset 7, -8
+ 778              		.cfi_offset 14, -4
+ 779 0002 82B0     		sub	sp, sp, #8
+ 780              		.cfi_def_cfa_offset 16
+ 781 0004 00AF     		add	r7, sp, #0
+ 782              		.cfi_def_cfa_register 7
+ 863:.\Generated_Source\PSoC5/LED_Strip.c ****     uint8 enableInterrupts;
+ 864:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 865:.\Generated_Source\PSoC5/LED_Strip.c ****     enableInterrupts = CyEnterCriticalSection();
+ 783              		.loc 1 865 0
+ 784 0006 FFF7FEFF 		bl	CyEnterCriticalSection
+ 785 000a 0346     		mov	r3, r0
+ 786 000c FB71     		strb	r3, [r7, #7]
+ 866:.\Generated_Source\PSoC5/LED_Strip.c ****     /* Clear TX FIFO */
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 30
+
+
+ 867:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_AUX_CONTROL_DP0_REG |= ((uint8)  LED_Strip_TX_FIFO_CLR);
+ 787              		.loc 1 867 0
+ 788 000e 0B4B     		ldr	r3, .L59
+ 789 0010 0A4A     		ldr	r2, .L59
+ 790 0012 1278     		ldrb	r2, [r2]
+ 791 0014 D2B2     		uxtb	r2, r2
+ 792 0016 42F00102 		orr	r2, r2, #1
+ 793 001a D2B2     		uxtb	r2, r2
+ 794 001c 1A70     		strb	r2, [r3]
+ 868:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_AUX_CONTROL_DP0_REG &= ((uint8) ~LED_Strip_TX_FIFO_CLR);
+ 795              		.loc 1 868 0
+ 796 001e 074B     		ldr	r3, .L59
+ 797 0020 064A     		ldr	r2, .L59
+ 798 0022 1278     		ldrb	r2, [r2]
+ 799 0024 D2B2     		uxtb	r2, r2
+ 800 0026 22F00102 		bic	r2, r2, #1
+ 801 002a D2B2     		uxtb	r2, r2
+ 802 002c 1A70     		strb	r2, [r3]
+ 869:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 870:.\Generated_Source\PSoC5/LED_Strip.c ****     #if(LED_Strip_USE_SECOND_DATAPATH)
+ 871:.\Generated_Source\PSoC5/LED_Strip.c ****         /* Clear TX FIFO for 2nd Datapath */
+ 872:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_AUX_CONTROL_DP1_REG |= ((uint8)  LED_Strip_TX_FIFO_CLR);
+ 873:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_AUX_CONTROL_DP1_REG &= ((uint8) ~LED_Strip_TX_FIFO_CLR);
+ 874:.\Generated_Source\PSoC5/LED_Strip.c ****     #endif /* (LED_Strip_USE_SECOND_DATAPATH) */
+ 875:.\Generated_Source\PSoC5/LED_Strip.c ****     CyExitCriticalSection(enableInterrupts);
+ 803              		.loc 1 875 0
+ 804 002e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 805 0030 1846     		mov	r0, r3
+ 806 0032 FFF7FEFF 		bl	CyExitCriticalSection
+ 876:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 877:.\Generated_Source\PSoC5/LED_Strip.c ****     #if(LED_Strip_TX_SOFTWARE_BUF_ENABLED)
+ 878:.\Generated_Source\PSoC5/LED_Strip.c ****         /* Disable TX interrupt to protect global veriables */
+ 879:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_DisableTxInt();
+ 880:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 881:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_txBufferFull  = 0u;
+ 882:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_txBufferRead  = 0u;
+ 883:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_txBufferWrite = 0u;
+ 884:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 885:.\Generated_Source\PSoC5/LED_Strip.c ****         /* Buffer is EMPTY: disable TX FIFO NOT FULL interrupt */
+ 886:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_TX_STATUS_MASK_REG &= ((uint8) ~LED_Strip_STS_TX_FIFO_NOT_FULL);
+ 887:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 888:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_EnableTxInt();
+ 889:.\Generated_Source\PSoC5/LED_Strip.c ****     #endif /* (LED_Strip_TX_SOFTWARE_BUF_ENABLED) */
+ 890:.\Generated_Source\PSoC5/LED_Strip.c **** }
+ 807              		.loc 1 890 0
+ 808 0036 0837     		adds	r7, r7, #8
+ 809 0038 BD46     		mov	sp, r7
+ 810              		@ sp needed
+ 811 003a 80BD     		pop	{r7, pc}
+ 812              	.L60:
+ 813              		.align	2
+ 814              	.L59:
+ 815 003c 91640040 		.word	1073767569
+ 816              		.cfi_endproc
+ 817              	.LFE17:
+ 818              		.size	LED_Strip_ClearTxBuffer, .-LED_Strip_ClearTxBuffer
+ 819              		.section	.text.LED_Strip_PutArray,"ax",%progbits
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 31
+
+
+ 820              		.align	2
+ 821              		.global	LED_Strip_PutArray
+ 822              		.thumb
+ 823              		.thumb_func
+ 824              		.type	LED_Strip_PutArray, %function
+ 825              	LED_Strip_PutArray:
+ 826              	.LFB18:
+ 891:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 892:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 893:.\Generated_Source\PSoC5/LED_Strip.c **** #if(0u != LED_Strip_BIDIRECTIONAL_MODE)
+ 894:.\Generated_Source\PSoC5/LED_Strip.c ****     /*******************************************************************************
+ 895:.\Generated_Source\PSoC5/LED_Strip.c ****     * Function Name: LED_Strip_TxEnable
+ 896:.\Generated_Source\PSoC5/LED_Strip.c ****     ********************************************************************************
+ 897:.\Generated_Source\PSoC5/LED_Strip.c ****     *
+ 898:.\Generated_Source\PSoC5/LED_Strip.c ****     * Summary:
+ 899:.\Generated_Source\PSoC5/LED_Strip.c ****     *  If the SPI master is configured to use a single bi-directional pin then this
+ 900:.\Generated_Source\PSoC5/LED_Strip.c ****     *  will set the bi-directional pin to transmit.
+ 901:.\Generated_Source\PSoC5/LED_Strip.c ****     *
+ 902:.\Generated_Source\PSoC5/LED_Strip.c ****     * Parameters:
+ 903:.\Generated_Source\PSoC5/LED_Strip.c ****     *  None.
+ 904:.\Generated_Source\PSoC5/LED_Strip.c ****     *
+ 905:.\Generated_Source\PSoC5/LED_Strip.c ****     * Return:
+ 906:.\Generated_Source\PSoC5/LED_Strip.c ****     *  None.
+ 907:.\Generated_Source\PSoC5/LED_Strip.c ****     *
+ 908:.\Generated_Source\PSoC5/LED_Strip.c ****     *******************************************************************************/
+ 909:.\Generated_Source\PSoC5/LED_Strip.c ****     void LED_Strip_TxEnable(void) 
+ 910:.\Generated_Source\PSoC5/LED_Strip.c ****     {
+ 911:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_CONTROL_REG |= LED_Strip_CTRL_TX_SIGNAL_EN;
+ 912:.\Generated_Source\PSoC5/LED_Strip.c ****     }
+ 913:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 914:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 915:.\Generated_Source\PSoC5/LED_Strip.c ****     /*******************************************************************************
+ 916:.\Generated_Source\PSoC5/LED_Strip.c ****     * Function Name: LED_Strip_TxDisable
+ 917:.\Generated_Source\PSoC5/LED_Strip.c ****     ********************************************************************************
+ 918:.\Generated_Source\PSoC5/LED_Strip.c ****     *
+ 919:.\Generated_Source\PSoC5/LED_Strip.c ****     * Summary:
+ 920:.\Generated_Source\PSoC5/LED_Strip.c ****     *  If the SPI master is configured to use a single bi-directional pin then this
+ 921:.\Generated_Source\PSoC5/LED_Strip.c ****     *  will set the bi-directional pin to receive.
+ 922:.\Generated_Source\PSoC5/LED_Strip.c ****     *
+ 923:.\Generated_Source\PSoC5/LED_Strip.c ****     * Parameters:
+ 924:.\Generated_Source\PSoC5/LED_Strip.c ****     *  None.
+ 925:.\Generated_Source\PSoC5/LED_Strip.c ****     *
+ 926:.\Generated_Source\PSoC5/LED_Strip.c ****     * Return:
+ 927:.\Generated_Source\PSoC5/LED_Strip.c ****     *  None.
+ 928:.\Generated_Source\PSoC5/LED_Strip.c ****     *
+ 929:.\Generated_Source\PSoC5/LED_Strip.c ****     *******************************************************************************/
+ 930:.\Generated_Source\PSoC5/LED_Strip.c ****     void LED_Strip_TxDisable(void) 
+ 931:.\Generated_Source\PSoC5/LED_Strip.c ****     {
+ 932:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_CONTROL_REG &= ((uint8) ~LED_Strip_CTRL_TX_SIGNAL_EN);
+ 933:.\Generated_Source\PSoC5/LED_Strip.c ****     }
+ 934:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 935:.\Generated_Source\PSoC5/LED_Strip.c **** #endif /* (0u != LED_Strip_BIDIRECTIONAL_MODE) */
+ 936:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 937:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 938:.\Generated_Source\PSoC5/LED_Strip.c **** /*******************************************************************************
+ 939:.\Generated_Source\PSoC5/LED_Strip.c **** * Function Name: LED_Strip_PutArray
+ 940:.\Generated_Source\PSoC5/LED_Strip.c **** ********************************************************************************
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 32
+
+
+ 941:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 942:.\Generated_Source\PSoC5/LED_Strip.c **** * Summary:
+ 943:.\Generated_Source\PSoC5/LED_Strip.c **** *  Write available data from ROM/RAM to the TX buffer while space is available
+ 944:.\Generated_Source\PSoC5/LED_Strip.c **** *  in the TX buffer. Keep trying until all data is passed to the TX buffer.
+ 945:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 946:.\Generated_Source\PSoC5/LED_Strip.c **** * Parameters:
+ 947:.\Generated_Source\PSoC5/LED_Strip.c **** *  *buffer: Pointer to the location in RAM containing the data to send
+ 948:.\Generated_Source\PSoC5/LED_Strip.c **** *  byteCount: The number of bytes to move to the transmit buffer.
+ 949:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 950:.\Generated_Source\PSoC5/LED_Strip.c **** * Return:
+ 951:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 952:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 953:.\Generated_Source\PSoC5/LED_Strip.c **** * Side Effects:
+ 954:.\Generated_Source\PSoC5/LED_Strip.c **** *  Will stay in this routine until all data has been sent.  May get locked in
+ 955:.\Generated_Source\PSoC5/LED_Strip.c **** *  this loop if data is not being initiated by the master if there is not
+ 956:.\Generated_Source\PSoC5/LED_Strip.c **** *  enough room in the TX FIFO.
+ 957:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 958:.\Generated_Source\PSoC5/LED_Strip.c **** * Reentrant:
+ 959:.\Generated_Source\PSoC5/LED_Strip.c **** *  No.
+ 960:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 961:.\Generated_Source\PSoC5/LED_Strip.c **** *******************************************************************************/
+ 962:.\Generated_Source\PSoC5/LED_Strip.c **** void LED_Strip_PutArray(const uint8 buffer[], uint8 byteCount)
+ 963:.\Generated_Source\PSoC5/LED_Strip.c ****                                                                           
+ 964:.\Generated_Source\PSoC5/LED_Strip.c **** {
+ 827              		.loc 1 964 0
+ 828              		.cfi_startproc
+ 829              		@ args = 0, pretend = 0, frame = 16
+ 830              		@ frame_needed = 1, uses_anonymous_args = 0
+ 831 0000 80B5     		push	{r7, lr}
+ 832              		.cfi_def_cfa_offset 8
+ 833              		.cfi_offset 7, -8
+ 834              		.cfi_offset 14, -4
+ 835 0002 84B0     		sub	sp, sp, #16
+ 836              		.cfi_def_cfa_offset 24
+ 837 0004 00AF     		add	r7, sp, #0
+ 838              		.cfi_def_cfa_register 7
+ 839 0006 7860     		str	r0, [r7, #4]
+ 840 0008 0B46     		mov	r3, r1
+ 841 000a FB70     		strb	r3, [r7, #3]
+ 965:.\Generated_Source\PSoC5/LED_Strip.c ****     uint8 bufIndex;
+ 966:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 967:.\Generated_Source\PSoC5/LED_Strip.c ****     bufIndex = 0u;
+ 842              		.loc 1 967 0
+ 843 000c 0023     		movs	r3, #0
+ 844 000e FB73     		strb	r3, [r7, #15]
+ 968:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 969:.\Generated_Source\PSoC5/LED_Strip.c ****     while(byteCount > 0u)
+ 845              		.loc 1 969 0
+ 846 0010 0CE0     		b	.L62
+ 847              	.L63:
+ 970:.\Generated_Source\PSoC5/LED_Strip.c ****     {
+ 971:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_WriteTxData(buffer[bufIndex]);
+ 848              		.loc 1 971 0
+ 849 0012 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 850 0014 7A68     		ldr	r2, [r7, #4]
+ 851 0016 1344     		add	r3, r3, r2
+ 852 0018 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 33
+
+
+ 853 001a 1846     		mov	r0, r3
+ 854 001c FFF7FEFF 		bl	LED_Strip_WriteTxData
+ 972:.\Generated_Source\PSoC5/LED_Strip.c ****         bufIndex++;
+ 855              		.loc 1 972 0
+ 856 0020 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 857 0022 0133     		adds	r3, r3, #1
+ 858 0024 FB73     		strb	r3, [r7, #15]
+ 973:.\Generated_Source\PSoC5/LED_Strip.c ****         byteCount--;
+ 859              		.loc 1 973 0
+ 860 0026 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 861 0028 013B     		subs	r3, r3, #1
+ 862 002a FB70     		strb	r3, [r7, #3]
+ 863              	.L62:
+ 969:.\Generated_Source\PSoC5/LED_Strip.c ****     while(byteCount > 0u)
+ 864              		.loc 1 969 0 discriminator 1
+ 865 002c FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 866 002e 002B     		cmp	r3, #0
+ 867 0030 EFD1     		bne	.L63
+ 974:.\Generated_Source\PSoC5/LED_Strip.c ****     }
+ 975:.\Generated_Source\PSoC5/LED_Strip.c **** }
+ 868              		.loc 1 975 0
+ 869 0032 1037     		adds	r7, r7, #16
+ 870 0034 BD46     		mov	sp, r7
+ 871              		@ sp needed
+ 872 0036 80BD     		pop	{r7, pc}
+ 873              		.cfi_endproc
+ 874              	.LFE18:
+ 875              		.size	LED_Strip_PutArray, .-LED_Strip_PutArray
+ 876              		.section	.text.LED_Strip_ClearFIFO,"ax",%progbits
+ 877              		.align	2
+ 878              		.global	LED_Strip_ClearFIFO
+ 879              		.thumb
+ 880              		.thumb_func
+ 881              		.type	LED_Strip_ClearFIFO, %function
+ 882              	LED_Strip_ClearFIFO:
+ 883              	.LFB19:
+ 976:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 977:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 978:.\Generated_Source\PSoC5/LED_Strip.c **** /*******************************************************************************
+ 979:.\Generated_Source\PSoC5/LED_Strip.c **** * Function Name: LED_Strip_ClearFIFO
+ 980:.\Generated_Source\PSoC5/LED_Strip.c **** ********************************************************************************
+ 981:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 982:.\Generated_Source\PSoC5/LED_Strip.c **** * Summary:
+ 983:.\Generated_Source\PSoC5/LED_Strip.c **** *  Clear the RX and TX FIFO's of all data for a fresh start.
+ 984:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 985:.\Generated_Source\PSoC5/LED_Strip.c **** * Parameters:
+ 986:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 987:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 988:.\Generated_Source\PSoC5/LED_Strip.c **** * Return:
+ 989:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+ 990:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 991:.\Generated_Source\PSoC5/LED_Strip.c **** * Side Effects:
+ 992:.\Generated_Source\PSoC5/LED_Strip.c **** *  Clear status register of the component.
+ 993:.\Generated_Source\PSoC5/LED_Strip.c **** *
+ 994:.\Generated_Source\PSoC5/LED_Strip.c **** *******************************************************************************/
+ 995:.\Generated_Source\PSoC5/LED_Strip.c **** void LED_Strip_ClearFIFO(void) 
+ 996:.\Generated_Source\PSoC5/LED_Strip.c **** {
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 34
+
+
+ 884              		.loc 1 996 0
+ 885              		.cfi_startproc
+ 886              		@ args = 0, pretend = 0, frame = 8
+ 887              		@ frame_needed = 1, uses_anonymous_args = 0
+ 888 0000 80B5     		push	{r7, lr}
+ 889              		.cfi_def_cfa_offset 8
+ 890              		.cfi_offset 7, -8
+ 891              		.cfi_offset 14, -4
+ 892 0002 82B0     		sub	sp, sp, #8
+ 893              		.cfi_def_cfa_offset 16
+ 894 0004 00AF     		add	r7, sp, #0
+ 895              		.cfi_def_cfa_register 7
+ 997:.\Generated_Source\PSoC5/LED_Strip.c ****     uint8 enableInterrupts;
+ 998:.\Generated_Source\PSoC5/LED_Strip.c **** 
+ 999:.\Generated_Source\PSoC5/LED_Strip.c ****     /* Clear Hardware RX FIFO */
+1000:.\Generated_Source\PSoC5/LED_Strip.c ****     while(0u !=(LED_Strip_RX_STATUS_REG & LED_Strip_STS_RX_FIFO_NOT_EMPTY))
+ 896              		.loc 1 1000 0
+ 897 0006 01E0     		b	.L65
+ 898              	.L66:
+1001:.\Generated_Source\PSoC5/LED_Strip.c ****     {
+1002:.\Generated_Source\PSoC5/LED_Strip.c ****         (void) CY_GET_REG8(LED_Strip_RXDATA_PTR);
+ 899              		.loc 1 1002 0
+ 900 0008 114B     		ldr	r3, .L67
+ 901 000a 1B78     		ldrb	r3, [r3]
+ 902              	.L65:
+1000:.\Generated_Source\PSoC5/LED_Strip.c ****     while(0u !=(LED_Strip_RX_STATUS_REG & LED_Strip_STS_RX_FIFO_NOT_EMPTY))
+ 903              		.loc 1 1000 0 discriminator 1
+ 904 000c 114B     		ldr	r3, .L67+4
+ 905 000e 1B78     		ldrb	r3, [r3]
+ 906 0010 DBB2     		uxtb	r3, r3
+ 907 0012 03F02003 		and	r3, r3, #32
+ 908 0016 002B     		cmp	r3, #0
+ 909 0018 F6D1     		bne	.L66
+1003:.\Generated_Source\PSoC5/LED_Strip.c ****     }
+1004:.\Generated_Source\PSoC5/LED_Strip.c **** 
+1005:.\Generated_Source\PSoC5/LED_Strip.c ****     enableInterrupts = CyEnterCriticalSection();
+ 910              		.loc 1 1005 0
+ 911 001a FFF7FEFF 		bl	CyEnterCriticalSection
+ 912 001e 0346     		mov	r3, r0
+ 913 0020 FB71     		strb	r3, [r7, #7]
+1006:.\Generated_Source\PSoC5/LED_Strip.c ****     /* Clear TX FIFO */
+1007:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_AUX_CONTROL_DP0_REG |= ((uint8)  LED_Strip_TX_FIFO_CLR);
+ 914              		.loc 1 1007 0
+ 915 0022 0D4B     		ldr	r3, .L67+8
+ 916 0024 0C4A     		ldr	r2, .L67+8
+ 917 0026 1278     		ldrb	r2, [r2]
+ 918 0028 D2B2     		uxtb	r2, r2
+ 919 002a 42F00102 		orr	r2, r2, #1
+ 920 002e D2B2     		uxtb	r2, r2
+ 921 0030 1A70     		strb	r2, [r3]
+1008:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_AUX_CONTROL_DP0_REG &= ((uint8) ~LED_Strip_TX_FIFO_CLR);
+ 922              		.loc 1 1008 0
+ 923 0032 094B     		ldr	r3, .L67+8
+ 924 0034 084A     		ldr	r2, .L67+8
+ 925 0036 1278     		ldrb	r2, [r2]
+ 926 0038 D2B2     		uxtb	r2, r2
+ 927 003a 22F00102 		bic	r2, r2, #1
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 35
+
+
+ 928 003e D2B2     		uxtb	r2, r2
+ 929 0040 1A70     		strb	r2, [r3]
+1009:.\Generated_Source\PSoC5/LED_Strip.c **** 
+1010:.\Generated_Source\PSoC5/LED_Strip.c ****     #if(LED_Strip_USE_SECOND_DATAPATH)
+1011:.\Generated_Source\PSoC5/LED_Strip.c ****         /* Clear TX FIFO for 2nd Datapath */
+1012:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_AUX_CONTROL_DP1_REG |= ((uint8)  LED_Strip_TX_FIFO_CLR);
+1013:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_AUX_CONTROL_DP1_REG &= ((uint8) ~LED_Strip_TX_FIFO_CLR);
+1014:.\Generated_Source\PSoC5/LED_Strip.c ****     #endif /* (LED_Strip_USE_SECOND_DATAPATH) */
+1015:.\Generated_Source\PSoC5/LED_Strip.c ****     CyExitCriticalSection(enableInterrupts);
+ 930              		.loc 1 1015 0
+ 931 0042 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 932 0044 1846     		mov	r0, r3
+ 933 0046 FFF7FEFF 		bl	CyExitCriticalSection
+1016:.\Generated_Source\PSoC5/LED_Strip.c **** }
+ 934              		.loc 1 1016 0
+ 935 004a 0837     		adds	r7, r7, #8
+ 936 004c BD46     		mov	sp, r7
+ 937              		@ sp needed
+ 938 004e 80BD     		pop	{r7, pc}
+ 939              	.L68:
+ 940              		.align	2
+ 941              	.L67:
+ 942 0050 51640040 		.word	1073767505
+ 943 0054 62640040 		.word	1073767522
+ 944 0058 91640040 		.word	1073767569
+ 945              		.cfi_endproc
+ 946              	.LFE19:
+ 947              		.size	LED_Strip_ClearFIFO, .-LED_Strip_ClearFIFO
+ 948              		.section	.text.LED_Strip_EnableInt,"ax",%progbits
+ 949              		.align	2
+ 950              		.global	LED_Strip_EnableInt
+ 951              		.thumb
+ 952              		.thumb_func
+ 953              		.type	LED_Strip_EnableInt, %function
+ 954              	LED_Strip_EnableInt:
+ 955              	.LFB20:
+1017:.\Generated_Source\PSoC5/LED_Strip.c **** 
+1018:.\Generated_Source\PSoC5/LED_Strip.c **** 
+1019:.\Generated_Source\PSoC5/LED_Strip.c **** /* Following functions are for version Compatibility, they are obsolete.
+1020:.\Generated_Source\PSoC5/LED_Strip.c **** *  Please do not use it in new projects.
+1021:.\Generated_Source\PSoC5/LED_Strip.c **** */
+1022:.\Generated_Source\PSoC5/LED_Strip.c **** 
+1023:.\Generated_Source\PSoC5/LED_Strip.c **** 
+1024:.\Generated_Source\PSoC5/LED_Strip.c **** /*******************************************************************************
+1025:.\Generated_Source\PSoC5/LED_Strip.c **** * Function Name: LED_Strip_EnableInt
+1026:.\Generated_Source\PSoC5/LED_Strip.c **** ********************************************************************************
+1027:.\Generated_Source\PSoC5/LED_Strip.c **** *
+1028:.\Generated_Source\PSoC5/LED_Strip.c **** * Summary:
+1029:.\Generated_Source\PSoC5/LED_Strip.c **** *  Enable internal interrupt generation.
+1030:.\Generated_Source\PSoC5/LED_Strip.c **** *
+1031:.\Generated_Source\PSoC5/LED_Strip.c **** * Parameters:
+1032:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+1033:.\Generated_Source\PSoC5/LED_Strip.c **** *
+1034:.\Generated_Source\PSoC5/LED_Strip.c **** * Return:
+1035:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+1036:.\Generated_Source\PSoC5/LED_Strip.c **** *
+1037:.\Generated_Source\PSoC5/LED_Strip.c **** * Theory:
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 36
+
+
+1038:.\Generated_Source\PSoC5/LED_Strip.c **** *  Enable the internal interrupt output -or- the interrupt component itself.
+1039:.\Generated_Source\PSoC5/LED_Strip.c **** *
+1040:.\Generated_Source\PSoC5/LED_Strip.c **** *******************************************************************************/
+1041:.\Generated_Source\PSoC5/LED_Strip.c **** void LED_Strip_EnableInt(void) 
+1042:.\Generated_Source\PSoC5/LED_Strip.c **** {
+ 956              		.loc 1 1042 0
+ 957              		.cfi_startproc
+ 958              		@ args = 0, pretend = 0, frame = 0
+ 959              		@ frame_needed = 1, uses_anonymous_args = 0
+ 960 0000 80B5     		push	{r7, lr}
+ 961              		.cfi_def_cfa_offset 8
+ 962              		.cfi_offset 7, -8
+ 963              		.cfi_offset 14, -4
+ 964 0002 00AF     		add	r7, sp, #0
+ 965              		.cfi_def_cfa_register 7
+1043:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_EnableRxInt();
+ 966              		.loc 1 1043 0
+ 967 0004 FFF7FEFF 		bl	LED_Strip_EnableRxInt
+1044:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_EnableTxInt();
+ 968              		.loc 1 1044 0
+ 969 0008 FFF7FEFF 		bl	LED_Strip_EnableTxInt
+1045:.\Generated_Source\PSoC5/LED_Strip.c **** }
+ 970              		.loc 1 1045 0
+ 971 000c 80BD     		pop	{r7, pc}
+ 972              		.cfi_endproc
+ 973              	.LFE20:
+ 974              		.size	LED_Strip_EnableInt, .-LED_Strip_EnableInt
+ 975 000e 00BF     		.section	.text.LED_Strip_DisableInt,"ax",%progbits
+ 976              		.align	2
+ 977              		.global	LED_Strip_DisableInt
+ 978              		.thumb
+ 979              		.thumb_func
+ 980              		.type	LED_Strip_DisableInt, %function
+ 981              	LED_Strip_DisableInt:
+ 982              	.LFB21:
+1046:.\Generated_Source\PSoC5/LED_Strip.c **** 
+1047:.\Generated_Source\PSoC5/LED_Strip.c **** 
+1048:.\Generated_Source\PSoC5/LED_Strip.c **** /*******************************************************************************
+1049:.\Generated_Source\PSoC5/LED_Strip.c **** * Function Name: LED_Strip_DisableInt
+1050:.\Generated_Source\PSoC5/LED_Strip.c **** ********************************************************************************
+1051:.\Generated_Source\PSoC5/LED_Strip.c **** *
+1052:.\Generated_Source\PSoC5/LED_Strip.c **** * Summary:
+1053:.\Generated_Source\PSoC5/LED_Strip.c **** *  Disable internal interrupt generation.
+1054:.\Generated_Source\PSoC5/LED_Strip.c **** *
+1055:.\Generated_Source\PSoC5/LED_Strip.c **** * Parameters:
+1056:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+1057:.\Generated_Source\PSoC5/LED_Strip.c **** *
+1058:.\Generated_Source\PSoC5/LED_Strip.c **** * Return:
+1059:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+1060:.\Generated_Source\PSoC5/LED_Strip.c **** *
+1061:.\Generated_Source\PSoC5/LED_Strip.c **** * Theory:
+1062:.\Generated_Source\PSoC5/LED_Strip.c **** *  Disable the internal interrupt output -or- the interrupt component itself.
+1063:.\Generated_Source\PSoC5/LED_Strip.c **** *
+1064:.\Generated_Source\PSoC5/LED_Strip.c **** *******************************************************************************/
+1065:.\Generated_Source\PSoC5/LED_Strip.c **** void LED_Strip_DisableInt(void) 
+1066:.\Generated_Source\PSoC5/LED_Strip.c **** {
+ 983              		.loc 1 1066 0
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 37
+
+
+ 984              		.cfi_startproc
+ 985              		@ args = 0, pretend = 0, frame = 0
+ 986              		@ frame_needed = 1, uses_anonymous_args = 0
+ 987 0000 80B5     		push	{r7, lr}
+ 988              		.cfi_def_cfa_offset 8
+ 989              		.cfi_offset 7, -8
+ 990              		.cfi_offset 14, -4
+ 991 0002 00AF     		add	r7, sp, #0
+ 992              		.cfi_def_cfa_register 7
+1067:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_DisableTxInt();
+ 993              		.loc 1 1067 0
+ 994 0004 FFF7FEFF 		bl	LED_Strip_DisableTxInt
+1068:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_DisableRxInt();
+ 995              		.loc 1 1068 0
+ 996 0008 FFF7FEFF 		bl	LED_Strip_DisableRxInt
+1069:.\Generated_Source\PSoC5/LED_Strip.c **** }
+ 997              		.loc 1 1069 0
+ 998 000c 80BD     		pop	{r7, pc}
+ 999              		.cfi_endproc
+ 1000              	.LFE21:
+ 1001              		.size	LED_Strip_DisableInt, .-LED_Strip_DisableInt
+ 1002 000e 00BF     		.section	.text.LED_Strip_SetInterruptMode,"ax",%progbits
+ 1003              		.align	2
+ 1004              		.global	LED_Strip_SetInterruptMode
+ 1005              		.thumb
+ 1006              		.thumb_func
+ 1007              		.type	LED_Strip_SetInterruptMode, %function
+ 1008              	LED_Strip_SetInterruptMode:
+ 1009              	.LFB22:
+1070:.\Generated_Source\PSoC5/LED_Strip.c **** 
+1071:.\Generated_Source\PSoC5/LED_Strip.c **** 
+1072:.\Generated_Source\PSoC5/LED_Strip.c **** /*******************************************************************************
+1073:.\Generated_Source\PSoC5/LED_Strip.c **** * Function Name: LED_Strip_SetInterruptMode
+1074:.\Generated_Source\PSoC5/LED_Strip.c **** ********************************************************************************
+1075:.\Generated_Source\PSoC5/LED_Strip.c **** *
+1076:.\Generated_Source\PSoC5/LED_Strip.c **** * Summary:
+1077:.\Generated_Source\PSoC5/LED_Strip.c **** *  Configure which status bits trigger an interrupt event.
+1078:.\Generated_Source\PSoC5/LED_Strip.c **** *
+1079:.\Generated_Source\PSoC5/LED_Strip.c **** * Parameters:
+1080:.\Generated_Source\PSoC5/LED_Strip.c **** *  intSrc: An or'd combination of the desired status bit masks (defined in the
+1081:.\Generated_Source\PSoC5/LED_Strip.c **** *  header file).
+1082:.\Generated_Source\PSoC5/LED_Strip.c **** *
+1083:.\Generated_Source\PSoC5/LED_Strip.c **** * Return:
+1084:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+1085:.\Generated_Source\PSoC5/LED_Strip.c **** *
+1086:.\Generated_Source\PSoC5/LED_Strip.c **** * Theory:
+1087:.\Generated_Source\PSoC5/LED_Strip.c **** *  Enables the output of specific status bits to the interrupt controller.
+1088:.\Generated_Source\PSoC5/LED_Strip.c **** *
+1089:.\Generated_Source\PSoC5/LED_Strip.c **** *******************************************************************************/
+1090:.\Generated_Source\PSoC5/LED_Strip.c **** void LED_Strip_SetInterruptMode(uint8 intSrc) 
+1091:.\Generated_Source\PSoC5/LED_Strip.c **** {
+ 1010              		.loc 1 1091 0
+ 1011              		.cfi_startproc
+ 1012              		@ args = 0, pretend = 0, frame = 8
+ 1013              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1014              		@ link register save eliminated.
+ 1015 0000 80B4     		push	{r7}
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 38
+
+
+ 1016              		.cfi_def_cfa_offset 4
+ 1017              		.cfi_offset 7, -4
+ 1018 0002 83B0     		sub	sp, sp, #12
+ 1019              		.cfi_def_cfa_offset 16
+ 1020 0004 00AF     		add	r7, sp, #0
+ 1021              		.cfi_def_cfa_register 7
+ 1022 0006 0346     		mov	r3, r0
+ 1023 0008 FB71     		strb	r3, [r7, #7]
+1092:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_TX_STATUS_MASK_REG  = (intSrc & ((uint8) ~LED_Strip_STS_SPI_IDLE));
+ 1024              		.loc 1 1092 0
+ 1025 000a 074B     		ldr	r3, .L72
+ 1026 000c FA79     		ldrb	r2, [r7, #7]
+ 1027 000e 22F01002 		bic	r2, r2, #16
+ 1028 0012 D2B2     		uxtb	r2, r2
+ 1029 0014 1A70     		strb	r2, [r3]
+1093:.\Generated_Source\PSoC5/LED_Strip.c ****     LED_Strip_RX_STATUS_MASK_REG  =  intSrc;
+ 1030              		.loc 1 1093 0
+ 1031 0016 054B     		ldr	r3, .L72+4
+ 1032 0018 FA79     		ldrb	r2, [r7, #7]
+ 1033 001a 1A70     		strb	r2, [r3]
+1094:.\Generated_Source\PSoC5/LED_Strip.c **** }
+ 1034              		.loc 1 1094 0
+ 1035 001c 0C37     		adds	r7, r7, #12
+ 1036 001e BD46     		mov	sp, r7
+ 1037              		@ sp needed
+ 1038 0020 5DF8047B 		ldr	r7, [sp], #4
+ 1039 0024 7047     		bx	lr
+ 1040              	.L73:
+ 1041 0026 00BF     		.align	2
+ 1042              	.L72:
+ 1043 0028 80640040 		.word	1073767552
+ 1044 002c 82640040 		.word	1073767554
+ 1045              		.cfi_endproc
+ 1046              	.LFE22:
+ 1047              		.size	LED_Strip_SetInterruptMode, .-LED_Strip_SetInterruptMode
+ 1048              		.section	.text.LED_Strip_ReadStatus,"ax",%progbits
+ 1049              		.align	2
+ 1050              		.global	LED_Strip_ReadStatus
+ 1051              		.thumb
+ 1052              		.thumb_func
+ 1053              		.type	LED_Strip_ReadStatus, %function
+ 1054              	LED_Strip_ReadStatus:
+ 1055              	.LFB23:
+1095:.\Generated_Source\PSoC5/LED_Strip.c **** 
+1096:.\Generated_Source\PSoC5/LED_Strip.c **** 
+1097:.\Generated_Source\PSoC5/LED_Strip.c **** /*******************************************************************************
+1098:.\Generated_Source\PSoC5/LED_Strip.c **** * Function Name: LED_Strip_ReadStatus
+1099:.\Generated_Source\PSoC5/LED_Strip.c **** ********************************************************************************
+1100:.\Generated_Source\PSoC5/LED_Strip.c **** *
+1101:.\Generated_Source\PSoC5/LED_Strip.c **** * Summary:
+1102:.\Generated_Source\PSoC5/LED_Strip.c **** *  Read the status register for the component.
+1103:.\Generated_Source\PSoC5/LED_Strip.c **** *
+1104:.\Generated_Source\PSoC5/LED_Strip.c **** * Parameters:
+1105:.\Generated_Source\PSoC5/LED_Strip.c **** *  None.
+1106:.\Generated_Source\PSoC5/LED_Strip.c **** *
+1107:.\Generated_Source\PSoC5/LED_Strip.c **** * Return:
+1108:.\Generated_Source\PSoC5/LED_Strip.c **** *  Contents of the status register.
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 39
+
+
+1109:.\Generated_Source\PSoC5/LED_Strip.c **** *
+1110:.\Generated_Source\PSoC5/LED_Strip.c **** * Global variables:
+1111:.\Generated_Source\PSoC5/LED_Strip.c **** *  LED_Strip_swStatus - used to store in software status register,
+1112:.\Generated_Source\PSoC5/LED_Strip.c **** *  modified every function call - resets to zero.
+1113:.\Generated_Source\PSoC5/LED_Strip.c **** *
+1114:.\Generated_Source\PSoC5/LED_Strip.c **** * Theory:
+1115:.\Generated_Source\PSoC5/LED_Strip.c **** *  Allows the user and the API to read the status register for error detection
+1116:.\Generated_Source\PSoC5/LED_Strip.c **** *  and flow control.
+1117:.\Generated_Source\PSoC5/LED_Strip.c **** *
+1118:.\Generated_Source\PSoC5/LED_Strip.c **** * Side Effects:
+1119:.\Generated_Source\PSoC5/LED_Strip.c **** *  Clear status register of the component.
+1120:.\Generated_Source\PSoC5/LED_Strip.c **** *
+1121:.\Generated_Source\PSoC5/LED_Strip.c **** * Reentrant:
+1122:.\Generated_Source\PSoC5/LED_Strip.c **** *  No.
+1123:.\Generated_Source\PSoC5/LED_Strip.c **** *
+1124:.\Generated_Source\PSoC5/LED_Strip.c **** *******************************************************************************/
+1125:.\Generated_Source\PSoC5/LED_Strip.c **** uint8 LED_Strip_ReadStatus(void) 
+1126:.\Generated_Source\PSoC5/LED_Strip.c **** {
+ 1056              		.loc 1 1126 0
+ 1057              		.cfi_startproc
+ 1058              		@ args = 0, pretend = 0, frame = 8
+ 1059              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1060              		@ link register save eliminated.
+ 1061 0000 80B4     		push	{r7}
+ 1062              		.cfi_def_cfa_offset 4
+ 1063              		.cfi_offset 7, -4
+ 1064 0002 83B0     		sub	sp, sp, #12
+ 1065              		.cfi_def_cfa_offset 16
+ 1066 0004 00AF     		add	r7, sp, #0
+ 1067              		.cfi_def_cfa_register 7
+1127:.\Generated_Source\PSoC5/LED_Strip.c ****     uint8 tmpStatus;
+1128:.\Generated_Source\PSoC5/LED_Strip.c **** 
+1129:.\Generated_Source\PSoC5/LED_Strip.c ****     #if(LED_Strip_TX_SOFTWARE_BUF_ENABLED || LED_Strip_RX_SOFTWARE_BUF_ENABLED)
+1130:.\Generated_Source\PSoC5/LED_Strip.c **** 
+1131:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_DisableInt();
+1132:.\Generated_Source\PSoC5/LED_Strip.c **** 
+1133:.\Generated_Source\PSoC5/LED_Strip.c ****         tmpStatus  = LED_Strip_GET_STATUS_RX(LED_Strip_swStatusRx);
+1134:.\Generated_Source\PSoC5/LED_Strip.c ****         tmpStatus |= LED_Strip_GET_STATUS_TX(LED_Strip_swStatusTx);
+1135:.\Generated_Source\PSoC5/LED_Strip.c ****         tmpStatus &= ((uint8) ~LED_Strip_STS_SPI_IDLE);
+1136:.\Generated_Source\PSoC5/LED_Strip.c **** 
+1137:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_swStatusTx = 0u;
+1138:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_swStatusRx = 0u;
+1139:.\Generated_Source\PSoC5/LED_Strip.c **** 
+1140:.\Generated_Source\PSoC5/LED_Strip.c ****         LED_Strip_EnableInt();
+1141:.\Generated_Source\PSoC5/LED_Strip.c **** 
+1142:.\Generated_Source\PSoC5/LED_Strip.c ****     #else
+1143:.\Generated_Source\PSoC5/LED_Strip.c **** 
+1144:.\Generated_Source\PSoC5/LED_Strip.c ****         tmpStatus  = LED_Strip_RX_STATUS_REG;
+ 1068              		.loc 1 1144 0
+ 1069 0006 0A4B     		ldr	r3, .L76
+ 1070 0008 1B78     		ldrb	r3, [r3]
+ 1071 000a FB71     		strb	r3, [r7, #7]
+1145:.\Generated_Source\PSoC5/LED_Strip.c ****         tmpStatus |= LED_Strip_TX_STATUS_REG;
+ 1072              		.loc 1 1145 0
+ 1073 000c 094B     		ldr	r3, .L76+4
+ 1074 000e 1B78     		ldrb	r3, [r3]
+ 1075 0010 DAB2     		uxtb	r2, r3
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 40
+
+
+ 1076 0012 FB79     		ldrb	r3, [r7, #7]
+ 1077 0014 1343     		orrs	r3, r3, r2
+ 1078 0016 FB71     		strb	r3, [r7, #7]
+1146:.\Generated_Source\PSoC5/LED_Strip.c ****         tmpStatus &= ((uint8) ~LED_Strip_STS_SPI_IDLE);
+ 1079              		.loc 1 1146 0
+ 1080 0018 FB79     		ldrb	r3, [r7, #7]
+ 1081 001a 23F01003 		bic	r3, r3, #16
+ 1082 001e FB71     		strb	r3, [r7, #7]
+1147:.\Generated_Source\PSoC5/LED_Strip.c **** 
+1148:.\Generated_Source\PSoC5/LED_Strip.c ****     #endif /* (LED_Strip_TX_SOFTWARE_BUF_ENABLED || LED_Strip_RX_SOFTWARE_BUF_ENABLED) */
+1149:.\Generated_Source\PSoC5/LED_Strip.c **** 
+1150:.\Generated_Source\PSoC5/LED_Strip.c ****     return(tmpStatus);
+ 1083              		.loc 1 1150 0
+ 1084 0020 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+1151:.\Generated_Source\PSoC5/LED_Strip.c **** }
+ 1085              		.loc 1 1151 0
+ 1086 0022 1846     		mov	r0, r3
+ 1087 0024 0C37     		adds	r7, r7, #12
+ 1088 0026 BD46     		mov	sp, r7
+ 1089              		@ sp needed
+ 1090 0028 5DF8047B 		ldr	r7, [sp], #4
+ 1091 002c 7047     		bx	lr
+ 1092              	.L77:
+ 1093 002e 00BF     		.align	2
+ 1094              	.L76:
+ 1095 0030 62640040 		.word	1073767522
+ 1096 0034 60640040 		.word	1073767520
+ 1097              		.cfi_endproc
+ 1098              	.LFE23:
+ 1099              		.size	LED_Strip_ReadStatus, .-LED_Strip_ReadStatus
+ 1100              		.text
+ 1101              	.Letext0:
+ 1102              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 1103              		.section	.debug_info,"",%progbits
+ 1104              	.Ldebug_info0:
+ 1105 0000 E8030000 		.4byte	0x3e8
+ 1106 0004 0400     		.2byte	0x4
+ 1107 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1108 000a 04       		.byte	0x4
+ 1109 000b 01       		.uleb128 0x1
+ 1110 000c F1000000 		.4byte	.LASF51
+ 1111 0010 01       		.byte	0x1
+ 1112 0011 18000000 		.4byte	.LASF52
+ 1113 0015 74020000 		.4byte	.LASF53
+ 1114 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 1115 001d 00000000 		.4byte	0
+ 1116 0021 00000000 		.4byte	.Ldebug_line0
+ 1117 0025 02       		.uleb128 0x2
+ 1118 0026 01       		.byte	0x1
+ 1119 0027 06       		.byte	0x6
+ 1120 0028 D5030000 		.4byte	.LASF0
+ 1121 002c 02       		.uleb128 0x2
+ 1122 002d 01       		.byte	0x1
+ 1123 002e 08       		.byte	0x8
+ 1124 002f AB020000 		.4byte	.LASF1
+ 1125 0033 02       		.uleb128 0x2
+ 1126 0034 02       		.byte	0x2
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 41
+
+
+ 1127 0035 05       		.byte	0x5
+ 1128 0036 43030000 		.4byte	.LASF2
+ 1129 003a 02       		.uleb128 0x2
+ 1130 003b 02       		.byte	0x2
+ 1131 003c 07       		.byte	0x7
+ 1132 003d 82000000 		.4byte	.LASF3
+ 1133 0041 02       		.uleb128 0x2
+ 1134 0042 04       		.byte	0x4
+ 1135 0043 05       		.byte	0x5
+ 1136 0044 99030000 		.4byte	.LASF4
+ 1137 0048 02       		.uleb128 0x2
+ 1138 0049 04       		.byte	0x4
+ 1139 004a 07       		.byte	0x7
+ 1140 004b 6D010000 		.4byte	.LASF5
+ 1141 004f 02       		.uleb128 0x2
+ 1142 0050 08       		.byte	0x8
+ 1143 0051 05       		.byte	0x5
+ 1144 0052 D3020000 		.4byte	.LASF6
+ 1145 0056 02       		.uleb128 0x2
+ 1146 0057 08       		.byte	0x8
+ 1147 0058 07       		.byte	0x7
+ 1148 0059 54020000 		.4byte	.LASF7
+ 1149 005d 03       		.uleb128 0x3
+ 1150 005e 04       		.byte	0x4
+ 1151 005f 05       		.byte	0x5
+ 1152 0060 696E7400 		.ascii	"int\000"
+ 1153 0064 02       		.uleb128 0x2
+ 1154 0065 04       		.byte	0x4
+ 1155 0066 07       		.byte	0x7
+ 1156 0067 31020000 		.4byte	.LASF8
+ 1157 006b 04       		.uleb128 0x4
+ 1158 006c 7F010000 		.4byte	.LASF12
+ 1159 0070 02       		.byte	0x2
+ 1160 0071 A1       		.byte	0xa1
+ 1161 0072 2C000000 		.4byte	0x2c
+ 1162 0076 02       		.uleb128 0x2
+ 1163 0077 04       		.byte	0x4
+ 1164 0078 04       		.byte	0x4
+ 1165 0079 C7000000 		.4byte	.LASF9
+ 1166 007d 02       		.uleb128 0x2
+ 1167 007e 08       		.byte	0x8
+ 1168 007f 04       		.byte	0x4
+ 1169 0080 A4000000 		.4byte	.LASF10
+ 1170 0084 02       		.uleb128 0x2
+ 1171 0085 01       		.byte	0x1
+ 1172 0086 08       		.byte	0x8
+ 1173 0087 F6020000 		.4byte	.LASF11
+ 1174 008b 05       		.uleb128 0x5
+ 1175 008c D2000000 		.4byte	.LASF13
+ 1176 0090 02       		.byte	0x2
+ 1177 0091 4B01     		.2byte	0x14b
+ 1178 0093 97000000 		.4byte	0x97
+ 1179 0097 06       		.uleb128 0x6
+ 1180 0098 6B000000 		.4byte	0x6b
+ 1181 009c 02       		.uleb128 0x2
+ 1182 009d 04       		.byte	0x4
+ 1183 009e 07       		.byte	0x7
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 42
+
+
+ 1184 009f B9020000 		.4byte	.LASF14
+ 1185 00a3 07       		.uleb128 0x7
+ 1186 00a4 5E030000 		.4byte	.LASF15
+ 1187 00a8 01       		.byte	0x1
+ 1188 00a9 3F       		.byte	0x3f
+ 1189 00aa 00000000 		.4byte	.LFB0
+ 1190 00ae 30000000 		.4byte	.LFE0-.LFB0
+ 1191 00b2 01       		.uleb128 0x1
+ 1192 00b3 9C       		.byte	0x9c
+ 1193 00b4 08       		.uleb128 0x8
+ 1194 00b5 4D030000 		.4byte	.LASF17
+ 1195 00b9 01       		.byte	0x1
+ 1196 00ba 78       		.byte	0x78
+ 1197 00bb 00000000 		.4byte	.LFB1
+ 1198 00bf 64000000 		.4byte	.LFE1-.LFB1
+ 1199 00c3 01       		.uleb128 0x1
+ 1200 00c4 9C       		.byte	0x9c
+ 1201 00c5 D8000000 		.4byte	0xd8
+ 1202 00c9 09       		.uleb128 0x9
+ 1203 00ca C2020000 		.4byte	.LASF19
+ 1204 00ce 01       		.byte	0x1
+ 1205 00cf 7A       		.byte	0x7a
+ 1206 00d0 6B000000 		.4byte	0x6b
+ 1207 00d4 02       		.uleb128 0x2
+ 1208 00d5 91       		.byte	0x91
+ 1209 00d6 77       		.sleb128 -9
+ 1210 00d7 00       		.byte	0
+ 1211 00d8 07       		.uleb128 0x7
+ 1212 00d9 F5030000 		.4byte	.LASF16
+ 1213 00dd 01       		.byte	0x1
+ 1214 00de A3       		.byte	0xa3
+ 1215 00df 00000000 		.4byte	.LFB2
+ 1216 00e3 20000000 		.4byte	.LFE2-.LFB2
+ 1217 00e7 01       		.uleb128 0x1
+ 1218 00e8 9C       		.byte	0x9c
+ 1219 00e9 08       		.uleb128 0x8
+ 1220 00ea 95000000 		.4byte	.LASF18
+ 1221 00ee 01       		.byte	0x1
+ 1222 00ef C0       		.byte	0xc0
+ 1223 00f0 00000000 		.4byte	.LFB3
+ 1224 00f4 50000000 		.4byte	.LFE3-.LFB3
+ 1225 00f8 01       		.uleb128 0x1
+ 1226 00f9 9C       		.byte	0x9c
+ 1227 00fa 0D010000 		.4byte	0x10d
+ 1228 00fe 09       		.uleb128 0x9
+ 1229 00ff C2020000 		.4byte	.LASF19
+ 1230 0103 01       		.byte	0x1
+ 1231 0104 C2       		.byte	0xc2
+ 1232 0105 6B000000 		.4byte	0x6b
+ 1233 0109 02       		.uleb128 0x2
+ 1234 010a 91       		.byte	0x91
+ 1235 010b 77       		.sleb128 -9
+ 1236 010c 00       		.byte	0
+ 1237 010d 0A       		.uleb128 0xa
+ 1238 010e BF030000 		.4byte	.LASF20
+ 1239 0112 01       		.byte	0x1
+ 1240 0113 E3       		.byte	0xe3
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 43
+
+
+ 1241 0114 00000000 		.4byte	.LFB4
+ 1242 0118 0C000000 		.4byte	.LFE4-.LFB4
+ 1243 011c 01       		.uleb128 0x1
+ 1244 011d 9C       		.byte	0x9c
+ 1245 011e 0A       		.uleb128 0xa
+ 1246 011f A6010000 		.4byte	.LASF21
+ 1247 0123 01       		.byte	0x1
+ 1248 0124 FC       		.byte	0xfc
+ 1249 0125 00000000 		.4byte	.LFB5
+ 1250 0129 0C000000 		.4byte	.LFE5-.LFB5
+ 1251 012d 01       		.uleb128 0x1
+ 1252 012e 9C       		.byte	0x9c
+ 1253 012f 0B       		.uleb128 0xb
+ 1254 0130 82030000 		.4byte	.LASF22
+ 1255 0134 01       		.byte	0x1
+ 1256 0135 1501     		.2byte	0x115
+ 1257 0137 00000000 		.4byte	.LFB6
+ 1258 013b 0C000000 		.4byte	.LFE6-.LFB6
+ 1259 013f 01       		.uleb128 0x1
+ 1260 0140 9C       		.byte	0x9c
+ 1261 0141 0B       		.uleb128 0xb
+ 1262 0142 85010000 		.4byte	.LASF23
+ 1263 0146 01       		.byte	0x1
+ 1264 0147 2E01     		.2byte	0x12e
+ 1265 0149 00000000 		.4byte	.LFB7
+ 1266 014d 0C000000 		.4byte	.LFE7-.LFB7
+ 1267 0151 01       		.uleb128 0x1
+ 1268 0152 9C       		.byte	0x9c
+ 1269 0153 0C       		.uleb128 0xc
+ 1270 0154 3D000000 		.4byte	.LASF24
+ 1271 0158 01       		.byte	0x1
+ 1272 0159 4801     		.2byte	0x148
+ 1273 015b 00000000 		.4byte	.LFB8
+ 1274 015f 20000000 		.4byte	.LFE8-.LFB8
+ 1275 0163 01       		.uleb128 0x1
+ 1276 0164 9C       		.byte	0x9c
+ 1277 0165 79010000 		.4byte	0x179
+ 1278 0169 0D       		.uleb128 0xd
+ 1279 016a FA010000 		.4byte	.LASF26
+ 1280 016e 01       		.byte	0x1
+ 1281 016f 4801     		.2byte	0x148
+ 1282 0171 6B000000 		.4byte	0x6b
+ 1283 0175 02       		.uleb128 0x2
+ 1284 0176 91       		.byte	0x91
+ 1285 0177 77       		.sleb128 -9
+ 1286 0178 00       		.byte	0
+ 1287 0179 0C       		.uleb128 0xc
+ 1288 017a FB020000 		.4byte	.LASF25
+ 1289 017e 01       		.byte	0x1
+ 1290 017f 6001     		.2byte	0x160
+ 1291 0181 00000000 		.4byte	.LFB9
+ 1292 0185 20000000 		.4byte	.LFE9-.LFB9
+ 1293 0189 01       		.uleb128 0x1
+ 1294 018a 9C       		.byte	0x9c
+ 1295 018b 9F010000 		.4byte	0x19f
+ 1296 018f 0D       		.uleb128 0xd
+ 1297 0190 FA010000 		.4byte	.LASF26
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 44
+
+
+ 1298 0194 01       		.byte	0x1
+ 1299 0195 6001     		.2byte	0x160
+ 1300 0197 6B000000 		.4byte	0x6b
+ 1301 019b 02       		.uleb128 0x2
+ 1302 019c 91       		.byte	0x91
+ 1303 019d 77       		.sleb128 -9
+ 1304 019e 00       		.byte	0
+ 1305 019f 0E       		.uleb128 0xe
+ 1306 01a0 CE010000 		.4byte	.LASF28
+ 1307 01a4 01       		.byte	0x1
+ 1308 01a5 8201     		.2byte	0x182
+ 1309 01a7 6B000000 		.4byte	0x6b
+ 1310 01ab 00000000 		.4byte	.LFB10
+ 1311 01af 20000000 		.4byte	.LFE10-.LFB10
+ 1312 01b3 01       		.uleb128 0x1
+ 1313 01b4 9C       		.byte	0x9c
+ 1314 01b5 C9010000 		.4byte	0x1c9
+ 1315 01b9 0F       		.uleb128 0xf
+ 1316 01ba A2030000 		.4byte	.LASF27
+ 1317 01be 01       		.byte	0x1
+ 1318 01bf 8401     		.2byte	0x184
+ 1319 01c1 6B000000 		.4byte	0x6b
+ 1320 01c5 02       		.uleb128 0x2
+ 1321 01c6 91       		.byte	0x91
+ 1322 01c7 77       		.sleb128 -9
+ 1323 01c8 00       		.byte	0
+ 1324 01c9 0E       		.uleb128 0xe
+ 1325 01ca 2C030000 		.4byte	.LASF29
+ 1326 01ce 01       		.byte	0x1
+ 1327 01cf B501     		.2byte	0x1b5
+ 1328 01d1 6B000000 		.4byte	0x6b
+ 1329 01d5 00000000 		.4byte	.LFB11
+ 1330 01d9 20000000 		.4byte	.LFE11-.LFB11
+ 1331 01dd 01       		.uleb128 0x1
+ 1332 01de 9C       		.byte	0x9c
+ 1333 01df F3010000 		.4byte	0x1f3
+ 1334 01e3 0F       		.uleb128 0xf
+ 1335 01e4 A2030000 		.4byte	.LASF27
+ 1336 01e8 01       		.byte	0x1
+ 1337 01e9 B701     		.2byte	0x1b7
+ 1338 01eb 6B000000 		.4byte	0x6b
+ 1339 01ef 02       		.uleb128 0x2
+ 1340 01f0 91       		.byte	0x91
+ 1341 01f1 77       		.sleb128 -9
+ 1342 01f2 00       		.byte	0
+ 1343 01f3 0C       		.uleb128 0xc
+ 1344 01f4 3E020000 		.4byte	.LASF30
+ 1345 01f8 01       		.byte	0x1
+ 1346 01f9 EE01     		.2byte	0x1ee
+ 1347 01fb 00000000 		.4byte	.LFB12
+ 1348 01ff 34000000 		.4byte	.LFE12-.LFB12
+ 1349 0203 01       		.uleb128 0x1
+ 1350 0204 9C       		.byte	0x9c
+ 1351 0205 19020000 		.4byte	0x219
+ 1352 0209 0D       		.uleb128 0xd
+ 1353 020a 7B000000 		.4byte	.LASF31
+ 1354 020e 01       		.byte	0x1
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 45
+
+
+ 1355 020f EE01     		.2byte	0x1ee
+ 1356 0211 6B000000 		.4byte	0x6b
+ 1357 0215 02       		.uleb128 0x2
+ 1358 0216 91       		.byte	0x91
+ 1359 0217 77       		.sleb128 -9
+ 1360 0218 00       		.byte	0
+ 1361 0219 0E       		.uleb128 0xe
+ 1362 021a E1020000 		.4byte	.LASF32
+ 1363 021e 01       		.byte	0x1
+ 1364 021f 5A02     		.2byte	0x25a
+ 1365 0221 6B000000 		.4byte	0x6b
+ 1366 0225 00000000 		.4byte	.LFB13
+ 1367 0229 20000000 		.4byte	.LFE13-.LFB13
+ 1368 022d 01       		.uleb128 0x1
+ 1369 022e 9C       		.byte	0x9c
+ 1370 022f 43020000 		.4byte	0x243
+ 1371 0233 0F       		.uleb128 0xf
+ 1372 0234 C0000000 		.4byte	.LASF33
+ 1373 0238 01       		.byte	0x1
+ 1374 0239 5C02     		.2byte	0x25c
+ 1375 023b 6B000000 		.4byte	0x6b
+ 1376 023f 02       		.uleb128 0x2
+ 1377 0240 91       		.byte	0x91
+ 1378 0241 77       		.sleb128 -9
+ 1379 0242 00       		.byte	0
+ 1380 0243 0E       		.uleb128 0xe
+ 1381 0244 D7000000 		.4byte	.LASF34
+ 1382 0248 01       		.byte	0x1
+ 1383 0249 9A02     		.2byte	0x29a
+ 1384 024b 6B000000 		.4byte	0x6b
+ 1385 024f 00000000 		.4byte	.LFB14
+ 1386 0253 30000000 		.4byte	.LFE14-.LFB14
+ 1387 0257 01       		.uleb128 0x1
+ 1388 0258 9C       		.byte	0x9c
+ 1389 0259 6D020000 		.4byte	0x26d
+ 1390 025d 0F       		.uleb128 0xf
+ 1391 025e CD000000 		.4byte	.LASF35
+ 1392 0262 01       		.byte	0x1
+ 1393 0263 9C02     		.2byte	0x29c
+ 1394 0265 6B000000 		.4byte	0x6b
+ 1395 0269 02       		.uleb128 0x2
+ 1396 026a 91       		.byte	0x91
+ 1397 026b 77       		.sleb128 -9
+ 1398 026c 00       		.byte	0
+ 1399 026d 0E       		.uleb128 0xe
+ 1400 026e 61000000 		.4byte	.LASF36
+ 1401 0272 01       		.byte	0x1
+ 1402 0273 D702     		.2byte	0x2d7
+ 1403 0275 6B000000 		.4byte	0x6b
+ 1404 0279 00000000 		.4byte	.LFB15
+ 1405 027d 44000000 		.4byte	.LFE15-.LFB15
+ 1406 0281 01       		.uleb128 0x1
+ 1407 0282 9C       		.byte	0x9c
+ 1408 0283 97020000 		.4byte	0x297
+ 1409 0287 0F       		.uleb128 0xf
+ 1410 0288 CD000000 		.4byte	.LASF35
+ 1411 028c 01       		.byte	0x1
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 46
+
+
+ 1412 028d D902     		.2byte	0x2d9
+ 1413 028f 6B000000 		.4byte	0x6b
+ 1414 0293 02       		.uleb128 0x2
+ 1415 0294 91       		.byte	0x91
+ 1416 0295 77       		.sleb128 -9
+ 1417 0296 00       		.byte	0
+ 1418 0297 0B       		.uleb128 0xb
+ 1419 0298 00000000 		.4byte	.LASF37
+ 1420 029c 01       		.byte	0x1
+ 1421 029d 2603     		.2byte	0x326
+ 1422 029f 00000000 		.4byte	.LFB16
+ 1423 02a3 28000000 		.4byte	.LFE16-.LFB16
+ 1424 02a7 01       		.uleb128 0x1
+ 1425 02a8 9C       		.byte	0x9c
+ 1426 02a9 10       		.uleb128 0x10
+ 1427 02aa 05040000 		.4byte	.LASF38
+ 1428 02ae 01       		.byte	0x1
+ 1429 02af 5D03     		.2byte	0x35d
+ 1430 02b1 00000000 		.4byte	.LFB17
+ 1431 02b5 40000000 		.4byte	.LFE17-.LFB17
+ 1432 02b9 01       		.uleb128 0x1
+ 1433 02ba 9C       		.byte	0x9c
+ 1434 02bb CF020000 		.4byte	0x2cf
+ 1435 02bf 0F       		.uleb128 0xf
+ 1436 02c0 C2020000 		.4byte	.LASF19
+ 1437 02c4 01       		.byte	0x1
+ 1438 02c5 5F03     		.2byte	0x35f
+ 1439 02c7 6B000000 		.4byte	0x6b
+ 1440 02cb 02       		.uleb128 0x2
+ 1441 02cc 91       		.byte	0x91
+ 1442 02cd 77       		.sleb128 -9
+ 1443 02ce 00       		.byte	0
+ 1444 02cf 10       		.uleb128 0x10
+ 1445 02d0 AC030000 		.4byte	.LASF39
+ 1446 02d4 01       		.byte	0x1
+ 1447 02d5 C203     		.2byte	0x3c2
+ 1448 02d7 00000000 		.4byte	.LFB18
+ 1449 02db 38000000 		.4byte	.LFE18-.LFB18
+ 1450 02df 01       		.uleb128 0x1
+ 1451 02e0 9C       		.byte	0x9c
+ 1452 02e1 13030000 		.4byte	0x313
+ 1453 02e5 0D       		.uleb128 0xd
+ 1454 02e6 5A000000 		.4byte	.LASF40
+ 1455 02ea 01       		.byte	0x1
+ 1456 02eb C203     		.2byte	0x3c2
+ 1457 02ed 13030000 		.4byte	0x313
+ 1458 02f1 02       		.uleb128 0x2
+ 1459 02f2 91       		.byte	0x91
+ 1460 02f3 6C       		.sleb128 -20
+ 1461 02f4 0D       		.uleb128 0xd
+ 1462 02f5 9C010000 		.4byte	.LASF41
+ 1463 02f9 01       		.byte	0x1
+ 1464 02fa C203     		.2byte	0x3c2
+ 1465 02fc 6B000000 		.4byte	0x6b
+ 1466 0300 02       		.uleb128 0x2
+ 1467 0301 91       		.byte	0x91
+ 1468 0302 6B       		.sleb128 -21
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 47
+
+
+ 1469 0303 0F       		.uleb128 0xf
+ 1470 0304 6B020000 		.4byte	.LASF42
+ 1471 0308 01       		.byte	0x1
+ 1472 0309 C503     		.2byte	0x3c5
+ 1473 030b 6B000000 		.4byte	0x6b
+ 1474 030f 02       		.uleb128 0x2
+ 1475 0310 91       		.byte	0x91
+ 1476 0311 77       		.sleb128 -9
+ 1477 0312 00       		.byte	0
+ 1478 0313 11       		.uleb128 0x11
+ 1479 0314 04       		.byte	0x4
+ 1480 0315 19030000 		.4byte	0x319
+ 1481 0319 12       		.uleb128 0x12
+ 1482 031a 6B000000 		.4byte	0x6b
+ 1483 031e 10       		.uleb128 0x10
+ 1484 031f E1030000 		.4byte	.LASF43
+ 1485 0323 01       		.byte	0x1
+ 1486 0324 E303     		.2byte	0x3e3
+ 1487 0326 00000000 		.4byte	.LFB19
+ 1488 032a 5C000000 		.4byte	.LFE19-.LFB19
+ 1489 032e 01       		.uleb128 0x1
+ 1490 032f 9C       		.byte	0x9c
+ 1491 0330 44030000 		.4byte	0x344
+ 1492 0334 0F       		.uleb128 0xf
+ 1493 0335 C2020000 		.4byte	.LASF19
+ 1494 0339 01       		.byte	0x1
+ 1495 033a E503     		.2byte	0x3e5
+ 1496 033c 6B000000 		.4byte	0x6b
+ 1497 0340 02       		.uleb128 0x2
+ 1498 0341 91       		.byte	0x91
+ 1499 0342 77       		.sleb128 -9
+ 1500 0343 00       		.byte	0
+ 1501 0344 13       		.uleb128 0x13
+ 1502 0345 18030000 		.4byte	.LASF44
+ 1503 0349 01       		.byte	0x1
+ 1504 034a 1104     		.2byte	0x411
+ 1505 034c 00000000 		.4byte	.LFB20
+ 1506 0350 0E000000 		.4byte	.LFE20-.LFB20
+ 1507 0354 01       		.uleb128 0x1
+ 1508 0355 9C       		.byte	0x9c
+ 1509 0356 13       		.uleb128 0x13
+ 1510 0357 E5010000 		.4byte	.LASF45
+ 1511 035b 01       		.byte	0x1
+ 1512 035c 2904     		.2byte	0x429
+ 1513 035e 00000000 		.4byte	.LFB21
+ 1514 0362 0E000000 		.4byte	.LFE21-.LFB21
+ 1515 0366 01       		.uleb128 0x1
+ 1516 0367 9C       		.byte	0x9c
+ 1517 0368 0C       		.uleb128 0xc
+ 1518 0369 16020000 		.4byte	.LASF46
+ 1519 036d 01       		.byte	0x1
+ 1520 036e 4204     		.2byte	0x442
+ 1521 0370 00000000 		.4byte	.LFB22
+ 1522 0374 30000000 		.4byte	.LFE22-.LFB22
+ 1523 0378 01       		.uleb128 0x1
+ 1524 0379 9C       		.byte	0x9c
+ 1525 037a 8E030000 		.4byte	0x38e
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 48
+
+
+ 1526 037e 0D       		.uleb128 0xd
+ 1527 037f FA010000 		.4byte	.LASF26
+ 1528 0383 01       		.byte	0x1
+ 1529 0384 4204     		.2byte	0x442
+ 1530 0386 6B000000 		.4byte	0x6b
+ 1531 038a 02       		.uleb128 0x2
+ 1532 038b 91       		.byte	0x91
+ 1533 038c 77       		.sleb128 -9
+ 1534 038d 00       		.byte	0
+ 1535 038e 0E       		.uleb128 0xe
+ 1536 038f AB000000 		.4byte	.LASF47
+ 1537 0393 01       		.byte	0x1
+ 1538 0394 6504     		.2byte	0x465
+ 1539 0396 6B000000 		.4byte	0x6b
+ 1540 039a 00000000 		.4byte	.LFB23
+ 1541 039e 38000000 		.4byte	.LFE23-.LFB23
+ 1542 03a2 01       		.uleb128 0x1
+ 1543 03a3 9C       		.byte	0x9c
+ 1544 03a4 B8030000 		.4byte	0x3b8
+ 1545 03a8 0F       		.uleb128 0xf
+ 1546 03a9 A2030000 		.4byte	.LASF27
+ 1547 03ad 01       		.byte	0x1
+ 1548 03ae 6704     		.2byte	0x467
+ 1549 03b0 6B000000 		.4byte	0x6b
+ 1550 03b4 02       		.uleb128 0x2
+ 1551 03b5 91       		.byte	0x91
+ 1552 03b6 77       		.sleb128 -9
+ 1553 03b7 00       		.byte	0
+ 1554 03b8 14       		.uleb128 0x14
+ 1555 03b9 BC010000 		.4byte	.LASF48
+ 1556 03bd 01       		.byte	0x1
+ 1557 03be 22       		.byte	0x22
+ 1558 03bf 6B000000 		.4byte	0x6b
+ 1559 03c3 05       		.uleb128 0x5
+ 1560 03c4 03       		.byte	0x3
+ 1561 03c5 00000000 		.4byte	LED_Strip_initVar
+ 1562 03c9 14       		.uleb128 0x14
+ 1563 03ca 01020000 		.4byte	.LASF49
+ 1564 03ce 01       		.byte	0x1
+ 1565 03cf 24       		.byte	0x24
+ 1566 03d0 97000000 		.4byte	0x97
+ 1567 03d4 05       		.uleb128 0x5
+ 1568 03d5 03       		.byte	0x3
+ 1569 03d6 00000000 		.4byte	LED_Strip_swStatusTx
+ 1570 03da 14       		.uleb128 0x14
+ 1571 03db 6D030000 		.4byte	.LASF50
+ 1572 03df 01       		.byte	0x1
+ 1573 03e0 25       		.byte	0x25
+ 1574 03e1 97000000 		.4byte	0x97
+ 1575 03e5 05       		.uleb128 0x5
+ 1576 03e6 03       		.byte	0x3
+ 1577 03e7 00000000 		.4byte	LED_Strip_swStatusRx
+ 1578 03eb 00       		.byte	0
+ 1579              		.section	.debug_abbrev,"",%progbits
+ 1580              	.Ldebug_abbrev0:
+ 1581 0000 01       		.uleb128 0x1
+ 1582 0001 11       		.uleb128 0x11
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 49
+
+
+ 1583 0002 01       		.byte	0x1
+ 1584 0003 25       		.uleb128 0x25
+ 1585 0004 0E       		.uleb128 0xe
+ 1586 0005 13       		.uleb128 0x13
+ 1587 0006 0B       		.uleb128 0xb
+ 1588 0007 03       		.uleb128 0x3
+ 1589 0008 0E       		.uleb128 0xe
+ 1590 0009 1B       		.uleb128 0x1b
+ 1591 000a 0E       		.uleb128 0xe
+ 1592 000b 55       		.uleb128 0x55
+ 1593 000c 17       		.uleb128 0x17
+ 1594 000d 11       		.uleb128 0x11
+ 1595 000e 01       		.uleb128 0x1
+ 1596 000f 10       		.uleb128 0x10
+ 1597 0010 17       		.uleb128 0x17
+ 1598 0011 00       		.byte	0
+ 1599 0012 00       		.byte	0
+ 1600 0013 02       		.uleb128 0x2
+ 1601 0014 24       		.uleb128 0x24
+ 1602 0015 00       		.byte	0
+ 1603 0016 0B       		.uleb128 0xb
+ 1604 0017 0B       		.uleb128 0xb
+ 1605 0018 3E       		.uleb128 0x3e
+ 1606 0019 0B       		.uleb128 0xb
+ 1607 001a 03       		.uleb128 0x3
+ 1608 001b 0E       		.uleb128 0xe
+ 1609 001c 00       		.byte	0
+ 1610 001d 00       		.byte	0
+ 1611 001e 03       		.uleb128 0x3
+ 1612 001f 24       		.uleb128 0x24
+ 1613 0020 00       		.byte	0
+ 1614 0021 0B       		.uleb128 0xb
+ 1615 0022 0B       		.uleb128 0xb
+ 1616 0023 3E       		.uleb128 0x3e
+ 1617 0024 0B       		.uleb128 0xb
+ 1618 0025 03       		.uleb128 0x3
+ 1619 0026 08       		.uleb128 0x8
+ 1620 0027 00       		.byte	0
+ 1621 0028 00       		.byte	0
+ 1622 0029 04       		.uleb128 0x4
+ 1623 002a 16       		.uleb128 0x16
+ 1624 002b 00       		.byte	0
+ 1625 002c 03       		.uleb128 0x3
+ 1626 002d 0E       		.uleb128 0xe
+ 1627 002e 3A       		.uleb128 0x3a
+ 1628 002f 0B       		.uleb128 0xb
+ 1629 0030 3B       		.uleb128 0x3b
+ 1630 0031 0B       		.uleb128 0xb
+ 1631 0032 49       		.uleb128 0x49
+ 1632 0033 13       		.uleb128 0x13
+ 1633 0034 00       		.byte	0
+ 1634 0035 00       		.byte	0
+ 1635 0036 05       		.uleb128 0x5
+ 1636 0037 16       		.uleb128 0x16
+ 1637 0038 00       		.byte	0
+ 1638 0039 03       		.uleb128 0x3
+ 1639 003a 0E       		.uleb128 0xe
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 50
+
+
+ 1640 003b 3A       		.uleb128 0x3a
+ 1641 003c 0B       		.uleb128 0xb
+ 1642 003d 3B       		.uleb128 0x3b
+ 1643 003e 05       		.uleb128 0x5
+ 1644 003f 49       		.uleb128 0x49
+ 1645 0040 13       		.uleb128 0x13
+ 1646 0041 00       		.byte	0
+ 1647 0042 00       		.byte	0
+ 1648 0043 06       		.uleb128 0x6
+ 1649 0044 35       		.uleb128 0x35
+ 1650 0045 00       		.byte	0
+ 1651 0046 49       		.uleb128 0x49
+ 1652 0047 13       		.uleb128 0x13
+ 1653 0048 00       		.byte	0
+ 1654 0049 00       		.byte	0
+ 1655 004a 07       		.uleb128 0x7
+ 1656 004b 2E       		.uleb128 0x2e
+ 1657 004c 00       		.byte	0
+ 1658 004d 3F       		.uleb128 0x3f
+ 1659 004e 19       		.uleb128 0x19
+ 1660 004f 03       		.uleb128 0x3
+ 1661 0050 0E       		.uleb128 0xe
+ 1662 0051 3A       		.uleb128 0x3a
+ 1663 0052 0B       		.uleb128 0xb
+ 1664 0053 3B       		.uleb128 0x3b
+ 1665 0054 0B       		.uleb128 0xb
+ 1666 0055 27       		.uleb128 0x27
+ 1667 0056 19       		.uleb128 0x19
+ 1668 0057 11       		.uleb128 0x11
+ 1669 0058 01       		.uleb128 0x1
+ 1670 0059 12       		.uleb128 0x12
+ 1671 005a 06       		.uleb128 0x6
+ 1672 005b 40       		.uleb128 0x40
+ 1673 005c 18       		.uleb128 0x18
+ 1674 005d 9642     		.uleb128 0x2116
+ 1675 005f 19       		.uleb128 0x19
+ 1676 0060 00       		.byte	0
+ 1677 0061 00       		.byte	0
+ 1678 0062 08       		.uleb128 0x8
+ 1679 0063 2E       		.uleb128 0x2e
+ 1680 0064 01       		.byte	0x1
+ 1681 0065 3F       		.uleb128 0x3f
+ 1682 0066 19       		.uleb128 0x19
+ 1683 0067 03       		.uleb128 0x3
+ 1684 0068 0E       		.uleb128 0xe
+ 1685 0069 3A       		.uleb128 0x3a
+ 1686 006a 0B       		.uleb128 0xb
+ 1687 006b 3B       		.uleb128 0x3b
+ 1688 006c 0B       		.uleb128 0xb
+ 1689 006d 27       		.uleb128 0x27
+ 1690 006e 19       		.uleb128 0x19
+ 1691 006f 11       		.uleb128 0x11
+ 1692 0070 01       		.uleb128 0x1
+ 1693 0071 12       		.uleb128 0x12
+ 1694 0072 06       		.uleb128 0x6
+ 1695 0073 40       		.uleb128 0x40
+ 1696 0074 18       		.uleb128 0x18
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 51
+
+
+ 1697 0075 9642     		.uleb128 0x2116
+ 1698 0077 19       		.uleb128 0x19
+ 1699 0078 01       		.uleb128 0x1
+ 1700 0079 13       		.uleb128 0x13
+ 1701 007a 00       		.byte	0
+ 1702 007b 00       		.byte	0
+ 1703 007c 09       		.uleb128 0x9
+ 1704 007d 34       		.uleb128 0x34
+ 1705 007e 00       		.byte	0
+ 1706 007f 03       		.uleb128 0x3
+ 1707 0080 0E       		.uleb128 0xe
+ 1708 0081 3A       		.uleb128 0x3a
+ 1709 0082 0B       		.uleb128 0xb
+ 1710 0083 3B       		.uleb128 0x3b
+ 1711 0084 0B       		.uleb128 0xb
+ 1712 0085 49       		.uleb128 0x49
+ 1713 0086 13       		.uleb128 0x13
+ 1714 0087 02       		.uleb128 0x2
+ 1715 0088 18       		.uleb128 0x18
+ 1716 0089 00       		.byte	0
+ 1717 008a 00       		.byte	0
+ 1718 008b 0A       		.uleb128 0xa
+ 1719 008c 2E       		.uleb128 0x2e
+ 1720 008d 00       		.byte	0
+ 1721 008e 3F       		.uleb128 0x3f
+ 1722 008f 19       		.uleb128 0x19
+ 1723 0090 03       		.uleb128 0x3
+ 1724 0091 0E       		.uleb128 0xe
+ 1725 0092 3A       		.uleb128 0x3a
+ 1726 0093 0B       		.uleb128 0xb
+ 1727 0094 3B       		.uleb128 0x3b
+ 1728 0095 0B       		.uleb128 0xb
+ 1729 0096 27       		.uleb128 0x27
+ 1730 0097 19       		.uleb128 0x19
+ 1731 0098 11       		.uleb128 0x11
+ 1732 0099 01       		.uleb128 0x1
+ 1733 009a 12       		.uleb128 0x12
+ 1734 009b 06       		.uleb128 0x6
+ 1735 009c 40       		.uleb128 0x40
+ 1736 009d 18       		.uleb128 0x18
+ 1737 009e 9742     		.uleb128 0x2117
+ 1738 00a0 19       		.uleb128 0x19
+ 1739 00a1 00       		.byte	0
+ 1740 00a2 00       		.byte	0
+ 1741 00a3 0B       		.uleb128 0xb
+ 1742 00a4 2E       		.uleb128 0x2e
+ 1743 00a5 00       		.byte	0
+ 1744 00a6 3F       		.uleb128 0x3f
+ 1745 00a7 19       		.uleb128 0x19
+ 1746 00a8 03       		.uleb128 0x3
+ 1747 00a9 0E       		.uleb128 0xe
+ 1748 00aa 3A       		.uleb128 0x3a
+ 1749 00ab 0B       		.uleb128 0xb
+ 1750 00ac 3B       		.uleb128 0x3b
+ 1751 00ad 05       		.uleb128 0x5
+ 1752 00ae 27       		.uleb128 0x27
+ 1753 00af 19       		.uleb128 0x19
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 52
+
+
+ 1754 00b0 11       		.uleb128 0x11
+ 1755 00b1 01       		.uleb128 0x1
+ 1756 00b2 12       		.uleb128 0x12
+ 1757 00b3 06       		.uleb128 0x6
+ 1758 00b4 40       		.uleb128 0x40
+ 1759 00b5 18       		.uleb128 0x18
+ 1760 00b6 9742     		.uleb128 0x2117
+ 1761 00b8 19       		.uleb128 0x19
+ 1762 00b9 00       		.byte	0
+ 1763 00ba 00       		.byte	0
+ 1764 00bb 0C       		.uleb128 0xc
+ 1765 00bc 2E       		.uleb128 0x2e
+ 1766 00bd 01       		.byte	0x1
+ 1767 00be 3F       		.uleb128 0x3f
+ 1768 00bf 19       		.uleb128 0x19
+ 1769 00c0 03       		.uleb128 0x3
+ 1770 00c1 0E       		.uleb128 0xe
+ 1771 00c2 3A       		.uleb128 0x3a
+ 1772 00c3 0B       		.uleb128 0xb
+ 1773 00c4 3B       		.uleb128 0x3b
+ 1774 00c5 05       		.uleb128 0x5
+ 1775 00c6 27       		.uleb128 0x27
+ 1776 00c7 19       		.uleb128 0x19
+ 1777 00c8 11       		.uleb128 0x11
+ 1778 00c9 01       		.uleb128 0x1
+ 1779 00ca 12       		.uleb128 0x12
+ 1780 00cb 06       		.uleb128 0x6
+ 1781 00cc 40       		.uleb128 0x40
+ 1782 00cd 18       		.uleb128 0x18
+ 1783 00ce 9742     		.uleb128 0x2117
+ 1784 00d0 19       		.uleb128 0x19
+ 1785 00d1 01       		.uleb128 0x1
+ 1786 00d2 13       		.uleb128 0x13
+ 1787 00d3 00       		.byte	0
+ 1788 00d4 00       		.byte	0
+ 1789 00d5 0D       		.uleb128 0xd
+ 1790 00d6 05       		.uleb128 0x5
+ 1791 00d7 00       		.byte	0
+ 1792 00d8 03       		.uleb128 0x3
+ 1793 00d9 0E       		.uleb128 0xe
+ 1794 00da 3A       		.uleb128 0x3a
+ 1795 00db 0B       		.uleb128 0xb
+ 1796 00dc 3B       		.uleb128 0x3b
+ 1797 00dd 05       		.uleb128 0x5
+ 1798 00de 49       		.uleb128 0x49
+ 1799 00df 13       		.uleb128 0x13
+ 1800 00e0 02       		.uleb128 0x2
+ 1801 00e1 18       		.uleb128 0x18
+ 1802 00e2 00       		.byte	0
+ 1803 00e3 00       		.byte	0
+ 1804 00e4 0E       		.uleb128 0xe
+ 1805 00e5 2E       		.uleb128 0x2e
+ 1806 00e6 01       		.byte	0x1
+ 1807 00e7 3F       		.uleb128 0x3f
+ 1808 00e8 19       		.uleb128 0x19
+ 1809 00e9 03       		.uleb128 0x3
+ 1810 00ea 0E       		.uleb128 0xe
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 53
+
+
+ 1811 00eb 3A       		.uleb128 0x3a
+ 1812 00ec 0B       		.uleb128 0xb
+ 1813 00ed 3B       		.uleb128 0x3b
+ 1814 00ee 05       		.uleb128 0x5
+ 1815 00ef 27       		.uleb128 0x27
+ 1816 00f0 19       		.uleb128 0x19
+ 1817 00f1 49       		.uleb128 0x49
+ 1818 00f2 13       		.uleb128 0x13
+ 1819 00f3 11       		.uleb128 0x11
+ 1820 00f4 01       		.uleb128 0x1
+ 1821 00f5 12       		.uleb128 0x12
+ 1822 00f6 06       		.uleb128 0x6
+ 1823 00f7 40       		.uleb128 0x40
+ 1824 00f8 18       		.uleb128 0x18
+ 1825 00f9 9742     		.uleb128 0x2117
+ 1826 00fb 19       		.uleb128 0x19
+ 1827 00fc 01       		.uleb128 0x1
+ 1828 00fd 13       		.uleb128 0x13
+ 1829 00fe 00       		.byte	0
+ 1830 00ff 00       		.byte	0
+ 1831 0100 0F       		.uleb128 0xf
+ 1832 0101 34       		.uleb128 0x34
+ 1833 0102 00       		.byte	0
+ 1834 0103 03       		.uleb128 0x3
+ 1835 0104 0E       		.uleb128 0xe
+ 1836 0105 3A       		.uleb128 0x3a
+ 1837 0106 0B       		.uleb128 0xb
+ 1838 0107 3B       		.uleb128 0x3b
+ 1839 0108 05       		.uleb128 0x5
+ 1840 0109 49       		.uleb128 0x49
+ 1841 010a 13       		.uleb128 0x13
+ 1842 010b 02       		.uleb128 0x2
+ 1843 010c 18       		.uleb128 0x18
+ 1844 010d 00       		.byte	0
+ 1845 010e 00       		.byte	0
+ 1846 010f 10       		.uleb128 0x10
+ 1847 0110 2E       		.uleb128 0x2e
+ 1848 0111 01       		.byte	0x1
+ 1849 0112 3F       		.uleb128 0x3f
+ 1850 0113 19       		.uleb128 0x19
+ 1851 0114 03       		.uleb128 0x3
+ 1852 0115 0E       		.uleb128 0xe
+ 1853 0116 3A       		.uleb128 0x3a
+ 1854 0117 0B       		.uleb128 0xb
+ 1855 0118 3B       		.uleb128 0x3b
+ 1856 0119 05       		.uleb128 0x5
+ 1857 011a 27       		.uleb128 0x27
+ 1858 011b 19       		.uleb128 0x19
+ 1859 011c 11       		.uleb128 0x11
+ 1860 011d 01       		.uleb128 0x1
+ 1861 011e 12       		.uleb128 0x12
+ 1862 011f 06       		.uleb128 0x6
+ 1863 0120 40       		.uleb128 0x40
+ 1864 0121 18       		.uleb128 0x18
+ 1865 0122 9642     		.uleb128 0x2116
+ 1866 0124 19       		.uleb128 0x19
+ 1867 0125 01       		.uleb128 0x1
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 54
+
+
+ 1868 0126 13       		.uleb128 0x13
+ 1869 0127 00       		.byte	0
+ 1870 0128 00       		.byte	0
+ 1871 0129 11       		.uleb128 0x11
+ 1872 012a 0F       		.uleb128 0xf
+ 1873 012b 00       		.byte	0
+ 1874 012c 0B       		.uleb128 0xb
+ 1875 012d 0B       		.uleb128 0xb
+ 1876 012e 49       		.uleb128 0x49
+ 1877 012f 13       		.uleb128 0x13
+ 1878 0130 00       		.byte	0
+ 1879 0131 00       		.byte	0
+ 1880 0132 12       		.uleb128 0x12
+ 1881 0133 26       		.uleb128 0x26
+ 1882 0134 00       		.byte	0
+ 1883 0135 49       		.uleb128 0x49
+ 1884 0136 13       		.uleb128 0x13
+ 1885 0137 00       		.byte	0
+ 1886 0138 00       		.byte	0
+ 1887 0139 13       		.uleb128 0x13
+ 1888 013a 2E       		.uleb128 0x2e
+ 1889 013b 00       		.byte	0
+ 1890 013c 3F       		.uleb128 0x3f
+ 1891 013d 19       		.uleb128 0x19
+ 1892 013e 03       		.uleb128 0x3
+ 1893 013f 0E       		.uleb128 0xe
+ 1894 0140 3A       		.uleb128 0x3a
+ 1895 0141 0B       		.uleb128 0xb
+ 1896 0142 3B       		.uleb128 0x3b
+ 1897 0143 05       		.uleb128 0x5
+ 1898 0144 27       		.uleb128 0x27
+ 1899 0145 19       		.uleb128 0x19
+ 1900 0146 11       		.uleb128 0x11
+ 1901 0147 01       		.uleb128 0x1
+ 1902 0148 12       		.uleb128 0x12
+ 1903 0149 06       		.uleb128 0x6
+ 1904 014a 40       		.uleb128 0x40
+ 1905 014b 18       		.uleb128 0x18
+ 1906 014c 9642     		.uleb128 0x2116
+ 1907 014e 19       		.uleb128 0x19
+ 1908 014f 00       		.byte	0
+ 1909 0150 00       		.byte	0
+ 1910 0151 14       		.uleb128 0x14
+ 1911 0152 34       		.uleb128 0x34
+ 1912 0153 00       		.byte	0
+ 1913 0154 03       		.uleb128 0x3
+ 1914 0155 0E       		.uleb128 0xe
+ 1915 0156 3A       		.uleb128 0x3a
+ 1916 0157 0B       		.uleb128 0xb
+ 1917 0158 3B       		.uleb128 0x3b
+ 1918 0159 0B       		.uleb128 0xb
+ 1919 015a 49       		.uleb128 0x49
+ 1920 015b 13       		.uleb128 0x13
+ 1921 015c 3F       		.uleb128 0x3f
+ 1922 015d 19       		.uleb128 0x19
+ 1923 015e 02       		.uleb128 0x2
+ 1924 015f 18       		.uleb128 0x18
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 55
+
+
+ 1925 0160 00       		.byte	0
+ 1926 0161 00       		.byte	0
+ 1927 0162 00       		.byte	0
+ 1928              		.section	.debug_aranges,"",%progbits
+ 1929 0000 D4000000 		.4byte	0xd4
+ 1930 0004 0200     		.2byte	0x2
+ 1931 0006 00000000 		.4byte	.Ldebug_info0
+ 1932 000a 04       		.byte	0x4
+ 1933 000b 00       		.byte	0
+ 1934 000c 0000     		.2byte	0
+ 1935 000e 0000     		.2byte	0
+ 1936 0010 00000000 		.4byte	.LFB0
+ 1937 0014 30000000 		.4byte	.LFE0-.LFB0
+ 1938 0018 00000000 		.4byte	.LFB1
+ 1939 001c 64000000 		.4byte	.LFE1-.LFB1
+ 1940 0020 00000000 		.4byte	.LFB2
+ 1941 0024 20000000 		.4byte	.LFE2-.LFB2
+ 1942 0028 00000000 		.4byte	.LFB3
+ 1943 002c 50000000 		.4byte	.LFE3-.LFB3
+ 1944 0030 00000000 		.4byte	.LFB4
+ 1945 0034 0C000000 		.4byte	.LFE4-.LFB4
+ 1946 0038 00000000 		.4byte	.LFB5
+ 1947 003c 0C000000 		.4byte	.LFE5-.LFB5
+ 1948 0040 00000000 		.4byte	.LFB6
+ 1949 0044 0C000000 		.4byte	.LFE6-.LFB6
+ 1950 0048 00000000 		.4byte	.LFB7
+ 1951 004c 0C000000 		.4byte	.LFE7-.LFB7
+ 1952 0050 00000000 		.4byte	.LFB8
+ 1953 0054 20000000 		.4byte	.LFE8-.LFB8
+ 1954 0058 00000000 		.4byte	.LFB9
+ 1955 005c 20000000 		.4byte	.LFE9-.LFB9
+ 1956 0060 00000000 		.4byte	.LFB10
+ 1957 0064 20000000 		.4byte	.LFE10-.LFB10
+ 1958 0068 00000000 		.4byte	.LFB11
+ 1959 006c 20000000 		.4byte	.LFE11-.LFB11
+ 1960 0070 00000000 		.4byte	.LFB12
+ 1961 0074 34000000 		.4byte	.LFE12-.LFB12
+ 1962 0078 00000000 		.4byte	.LFB13
+ 1963 007c 20000000 		.4byte	.LFE13-.LFB13
+ 1964 0080 00000000 		.4byte	.LFB14
+ 1965 0084 30000000 		.4byte	.LFE14-.LFB14
+ 1966 0088 00000000 		.4byte	.LFB15
+ 1967 008c 44000000 		.4byte	.LFE15-.LFB15
+ 1968 0090 00000000 		.4byte	.LFB16
+ 1969 0094 28000000 		.4byte	.LFE16-.LFB16
+ 1970 0098 00000000 		.4byte	.LFB17
+ 1971 009c 40000000 		.4byte	.LFE17-.LFB17
+ 1972 00a0 00000000 		.4byte	.LFB18
+ 1973 00a4 38000000 		.4byte	.LFE18-.LFB18
+ 1974 00a8 00000000 		.4byte	.LFB19
+ 1975 00ac 5C000000 		.4byte	.LFE19-.LFB19
+ 1976 00b0 00000000 		.4byte	.LFB20
+ 1977 00b4 0E000000 		.4byte	.LFE20-.LFB20
+ 1978 00b8 00000000 		.4byte	.LFB21
+ 1979 00bc 0E000000 		.4byte	.LFE21-.LFB21
+ 1980 00c0 00000000 		.4byte	.LFB22
+ 1981 00c4 30000000 		.4byte	.LFE22-.LFB22
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 56
+
+
+ 1982 00c8 00000000 		.4byte	.LFB23
+ 1983 00cc 38000000 		.4byte	.LFE23-.LFB23
+ 1984 00d0 00000000 		.4byte	0
+ 1985 00d4 00000000 		.4byte	0
+ 1986              		.section	.debug_ranges,"",%progbits
+ 1987              	.Ldebug_ranges0:
+ 1988 0000 00000000 		.4byte	.LFB0
+ 1989 0004 30000000 		.4byte	.LFE0
+ 1990 0008 00000000 		.4byte	.LFB1
+ 1991 000c 64000000 		.4byte	.LFE1
+ 1992 0010 00000000 		.4byte	.LFB2
+ 1993 0014 20000000 		.4byte	.LFE2
+ 1994 0018 00000000 		.4byte	.LFB3
+ 1995 001c 50000000 		.4byte	.LFE3
+ 1996 0020 00000000 		.4byte	.LFB4
+ 1997 0024 0C000000 		.4byte	.LFE4
+ 1998 0028 00000000 		.4byte	.LFB5
+ 1999 002c 0C000000 		.4byte	.LFE5
+ 2000 0030 00000000 		.4byte	.LFB6
+ 2001 0034 0C000000 		.4byte	.LFE6
+ 2002 0038 00000000 		.4byte	.LFB7
+ 2003 003c 0C000000 		.4byte	.LFE7
+ 2004 0040 00000000 		.4byte	.LFB8
+ 2005 0044 20000000 		.4byte	.LFE8
+ 2006 0048 00000000 		.4byte	.LFB9
+ 2007 004c 20000000 		.4byte	.LFE9
+ 2008 0050 00000000 		.4byte	.LFB10
+ 2009 0054 20000000 		.4byte	.LFE10
+ 2010 0058 00000000 		.4byte	.LFB11
+ 2011 005c 20000000 		.4byte	.LFE11
+ 2012 0060 00000000 		.4byte	.LFB12
+ 2013 0064 34000000 		.4byte	.LFE12
+ 2014 0068 00000000 		.4byte	.LFB13
+ 2015 006c 20000000 		.4byte	.LFE13
+ 2016 0070 00000000 		.4byte	.LFB14
+ 2017 0074 30000000 		.4byte	.LFE14
+ 2018 0078 00000000 		.4byte	.LFB15
+ 2019 007c 44000000 		.4byte	.LFE15
+ 2020 0080 00000000 		.4byte	.LFB16
+ 2021 0084 28000000 		.4byte	.LFE16
+ 2022 0088 00000000 		.4byte	.LFB17
+ 2023 008c 40000000 		.4byte	.LFE17
+ 2024 0090 00000000 		.4byte	.LFB18
+ 2025 0094 38000000 		.4byte	.LFE18
+ 2026 0098 00000000 		.4byte	.LFB19
+ 2027 009c 5C000000 		.4byte	.LFE19
+ 2028 00a0 00000000 		.4byte	.LFB20
+ 2029 00a4 0E000000 		.4byte	.LFE20
+ 2030 00a8 00000000 		.4byte	.LFB21
+ 2031 00ac 0E000000 		.4byte	.LFE21
+ 2032 00b0 00000000 		.4byte	.LFB22
+ 2033 00b4 30000000 		.4byte	.LFE22
+ 2034 00b8 00000000 		.4byte	.LFB23
+ 2035 00bc 38000000 		.4byte	.LFE23
+ 2036 00c0 00000000 		.4byte	0
+ 2037 00c4 00000000 		.4byte	0
+ 2038              		.section	.debug_line,"",%progbits
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 57
+
+
+ 2039              	.Ldebug_line0:
+ 2040 0000 71020000 		.section	.debug_str,"MS",%progbits,1
+ 2040      02004800 
+ 2040      00000201 
+ 2040      FB0E0D00 
+ 2040      01010101 
+ 2041              	.LASF37:
+ 2042 0000 4C45445F 		.ascii	"LED_Strip_ClearRxBuffer\000"
+ 2042      53747269 
+ 2042      705F436C 
+ 2042      65617252 
+ 2042      78427566 
+ 2043              	.LASF52:
+ 2044 0018 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\LED_Strip.c\000"
+ 2044      6E657261 
+ 2044      7465645F 
+ 2044      536F7572 
+ 2044      63655C50 
+ 2045              	.LASF24:
+ 2046 003d 4C45445F 		.ascii	"LED_Strip_SetTxInterruptMode\000"
+ 2046      53747269 
+ 2046      705F5365 
+ 2046      74547849 
+ 2046      6E746572 
+ 2047              	.LASF40:
+ 2048 005a 62756666 		.ascii	"buffer\000"
+ 2048      657200
+ 2049              	.LASF36:
+ 2050 0061 4C45445F 		.ascii	"LED_Strip_GetTxBufferSize\000"
+ 2050      53747269 
+ 2050      705F4765 
+ 2050      74547842 
+ 2050      75666665 
+ 2051              	.LASF31:
+ 2052 007b 74784461 		.ascii	"txData\000"
+ 2052      746100
+ 2053              	.LASF3:
+ 2054 0082 73686F72 		.ascii	"short unsigned int\000"
+ 2054      7420756E 
+ 2054      7369676E 
+ 2054      65642069 
+ 2054      6E7400
+ 2055              	.LASF18:
+ 2056 0095 4C45445F 		.ascii	"LED_Strip_Stop\000"
+ 2056      53747269 
+ 2056      705F5374 
+ 2056      6F7000
+ 2057              	.LASF10:
+ 2058 00a4 646F7562 		.ascii	"double\000"
+ 2058      6C6500
+ 2059              	.LASF47:
+ 2060 00ab 4C45445F 		.ascii	"LED_Strip_ReadStatus\000"
+ 2060      53747269 
+ 2060      705F5265 
+ 2060      61645374 
+ 2060      61747573 
+ 2061              	.LASF33:
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 58
+
+
+ 2062 00c0 72784461 		.ascii	"rxData\000"
+ 2062      746100
+ 2063              	.LASF9:
+ 2064 00c7 666C6F61 		.ascii	"float\000"
+ 2064      7400
+ 2065              	.LASF35:
+ 2066 00cd 73697A65 		.ascii	"size\000"
+ 2066      00
+ 2067              	.LASF13:
+ 2068 00d2 72656738 		.ascii	"reg8\000"
+ 2068      00
+ 2069              	.LASF34:
+ 2070 00d7 4C45445F 		.ascii	"LED_Strip_GetRxBufferSize\000"
+ 2070      53747269 
+ 2070      705F4765 
+ 2070      74527842 
+ 2070      75666665 
+ 2071              	.LASF51:
+ 2072 00f1 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 2072      4320342E 
+ 2072      382E3420 
+ 2072      32303134 
+ 2072      30353236 
+ 2073 0124 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
+ 2073      20726576 
+ 2073      6973696F 
+ 2073      6E203231 
+ 2073      31333538 
+ 2074 0157 30202D66 		.ascii	"0 -ffunction-sections\000"
+ 2074      66756E63 
+ 2074      74696F6E 
+ 2074      2D736563 
+ 2074      74696F6E 
+ 2075              	.LASF5:
+ 2076 016d 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2076      20756E73 
+ 2076      69676E65 
+ 2076      6420696E 
+ 2076      7400
+ 2077              	.LASF12:
+ 2078 017f 75696E74 		.ascii	"uint8\000"
+ 2078      3800
+ 2079              	.LASF23:
+ 2080 0185 4C45445F 		.ascii	"LED_Strip_DisableRxInt\000"
+ 2080      53747269 
+ 2080      705F4469 
+ 2080      7361626C 
+ 2080      65527849 
+ 2081              	.LASF41:
+ 2082 019c 62797465 		.ascii	"byteCount\000"
+ 2082      436F756E 
+ 2082      7400
+ 2083              	.LASF21:
+ 2084 01a6 4C45445F 		.ascii	"LED_Strip_EnableRxInt\000"
+ 2084      53747269 
+ 2084      705F456E 
+ 2084      61626C65 
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 59
+
+
+ 2084      5278496E 
+ 2085              	.LASF48:
+ 2086 01bc 4C45445F 		.ascii	"LED_Strip_initVar\000"
+ 2086      53747269 
+ 2086      705F696E 
+ 2086      69745661 
+ 2086      7200
+ 2087              	.LASF28:
+ 2088 01ce 4C45445F 		.ascii	"LED_Strip_ReadTxStatus\000"
+ 2088      53747269 
+ 2088      705F5265 
+ 2088      61645478 
+ 2088      53746174 
+ 2089              	.LASF45:
+ 2090 01e5 4C45445F 		.ascii	"LED_Strip_DisableInt\000"
+ 2090      53747269 
+ 2090      705F4469 
+ 2090      7361626C 
+ 2090      65496E74 
+ 2091              	.LASF26:
+ 2092 01fa 696E7453 		.ascii	"intSrc\000"
+ 2092      726300
+ 2093              	.LASF49:
+ 2094 0201 4C45445F 		.ascii	"LED_Strip_swStatusTx\000"
+ 2094      53747269 
+ 2094      705F7377 
+ 2094      53746174 
+ 2094      75735478 
+ 2095              	.LASF46:
+ 2096 0216 4C45445F 		.ascii	"LED_Strip_SetInterruptMode\000"
+ 2096      53747269 
+ 2096      705F5365 
+ 2096      74496E74 
+ 2096      65727275 
+ 2097              	.LASF8:
+ 2098 0231 756E7369 		.ascii	"unsigned int\000"
+ 2098      676E6564 
+ 2098      20696E74 
+ 2098      00
+ 2099              	.LASF30:
+ 2100 023e 4C45445F 		.ascii	"LED_Strip_WriteTxData\000"
+ 2100      53747269 
+ 2100      705F5772 
+ 2100      69746554 
+ 2100      78446174 
+ 2101              	.LASF7:
+ 2102 0254 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2102      206C6F6E 
+ 2102      6720756E 
+ 2102      7369676E 
+ 2102      65642069 
+ 2103              	.LASF42:
+ 2104 026b 62756649 		.ascii	"bufIndex\000"
+ 2104      6E646578 
+ 2104      00
+ 2105              	.LASF53:
+ 2106 0274 443A5C77 		.ascii	"D:\\workspace\\super-eagle\\Super-Eagle\\Super-Eagl"
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 60
+
+
+ 2106      6F726B73 
+ 2106      70616365 
+ 2106      5C737570 
+ 2106      65722D65 
+ 2107 02a3 652E6379 		.ascii	"e.cydsn\000"
+ 2107      64736E00 
+ 2108              	.LASF1:
+ 2109 02ab 756E7369 		.ascii	"unsigned char\000"
+ 2109      676E6564 
+ 2109      20636861 
+ 2109      7200
+ 2110              	.LASF14:
+ 2111 02b9 73697A65 		.ascii	"sizetype\000"
+ 2111      74797065 
+ 2111      00
+ 2112              	.LASF19:
+ 2113 02c2 656E6162 		.ascii	"enableInterrupts\000"
+ 2113      6C65496E 
+ 2113      74657272 
+ 2113      75707473 
+ 2113      00
+ 2114              	.LASF6:
+ 2115 02d3 6C6F6E67 		.ascii	"long long int\000"
+ 2115      206C6F6E 
+ 2115      6720696E 
+ 2115      7400
+ 2116              	.LASF32:
+ 2117 02e1 4C45445F 		.ascii	"LED_Strip_ReadRxData\000"
+ 2117      53747269 
+ 2117      705F5265 
+ 2117      61645278 
+ 2117      44617461 
+ 2118              	.LASF11:
+ 2119 02f6 63686172 		.ascii	"char\000"
+ 2119      00
+ 2120              	.LASF25:
+ 2121 02fb 4C45445F 		.ascii	"LED_Strip_SetRxInterruptMode\000"
+ 2121      53747269 
+ 2121      705F5365 
+ 2121      74527849 
+ 2121      6E746572 
+ 2122              	.LASF44:
+ 2123 0318 4C45445F 		.ascii	"LED_Strip_EnableInt\000"
+ 2123      53747269 
+ 2123      705F456E 
+ 2123      61626C65 
+ 2123      496E7400 
+ 2124              	.LASF29:
+ 2125 032c 4C45445F 		.ascii	"LED_Strip_ReadRxStatus\000"
+ 2125      53747269 
+ 2125      705F5265 
+ 2125      61645278 
+ 2125      53746174 
+ 2126              	.LASF2:
+ 2127 0343 73686F72 		.ascii	"short int\000"
+ 2127      7420696E 
+ 2127      7400
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 61
+
+
+ 2128              	.LASF17:
+ 2129 034d 4C45445F 		.ascii	"LED_Strip_Enable\000"
+ 2129      53747269 
+ 2129      705F456E 
+ 2129      61626C65 
+ 2129      00
+ 2130              	.LASF15:
+ 2131 035e 4C45445F 		.ascii	"LED_Strip_Init\000"
+ 2131      53747269 
+ 2131      705F496E 
+ 2131      697400
+ 2132              	.LASF50:
+ 2133 036d 4C45445F 		.ascii	"LED_Strip_swStatusRx\000"
+ 2133      53747269 
+ 2133      705F7377 
+ 2133      53746174 
+ 2133      75735278 
+ 2134              	.LASF22:
+ 2135 0382 4C45445F 		.ascii	"LED_Strip_DisableTxInt\000"
+ 2135      53747269 
+ 2135      705F4469 
+ 2135      7361626C 
+ 2135      65547849 
+ 2136              	.LASF4:
+ 2137 0399 6C6F6E67 		.ascii	"long int\000"
+ 2137      20696E74 
+ 2137      00
+ 2138              	.LASF27:
+ 2139 03a2 746D7053 		.ascii	"tmpStatus\000"
+ 2139      74617475 
+ 2139      7300
+ 2140              	.LASF39:
+ 2141 03ac 4C45445F 		.ascii	"LED_Strip_PutArray\000"
+ 2141      53747269 
+ 2141      705F5075 
+ 2141      74417272 
+ 2141      617900
+ 2142              	.LASF20:
+ 2143 03bf 4C45445F 		.ascii	"LED_Strip_EnableTxInt\000"
+ 2143      53747269 
+ 2143      705F456E 
+ 2143      61626C65 
+ 2143      5478496E 
+ 2144              	.LASF0:
+ 2145 03d5 7369676E 		.ascii	"signed char\000"
+ 2145      65642063 
+ 2145      68617200 
+ 2146              	.LASF43:
+ 2147 03e1 4C45445F 		.ascii	"LED_Strip_ClearFIFO\000"
+ 2147      53747269 
+ 2147      705F436C 
+ 2147      65617246 
+ 2147      49464F00 
+ 2148              	.LASF16:
+ 2149 03f5 4C45445F 		.ascii	"LED_Strip_Start\000"
+ 2149      53747269 
+ 2149      705F5374 
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccUhAN6I.s 			page 62
+
+
+ 2149      61727400 
+ 2150              	.LASF38:
+ 2151 0405 4C45445F 		.ascii	"LED_Strip_ClearTxBuffer\000"
+ 2151      53747269 
+ 2151      705F436C 
+ 2151      65617254 
+ 2151      78427566 
+ 2152              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

@@ -37,13 +37,15 @@
         <Files Root="D:\workspace\super-eagle\Super-Eagle\Super-Eagle.cydsn">
           <File BuildType="BUILD" Toolchain="">.\device.h</File>
           <File BuildType="BUILD" Toolchain="">.\data.h</File>
-          <File BuildType="BUILD" Toolchain="">.\dash_board.h</File>
           <File BuildType="BUILD" Toolchain="">.\LCD_Bar.h</File>
           <File BuildType="BUILD" Toolchain="">.\state_event.h</File>
+          <File BuildType="BUILD" Toolchain="">.\can_manager.h</File>
+          <File BuildType="BUILD" Toolchain="">.\dash_board.h</File>
           <File BuildType="BUILD" Toolchain="">.\main.c</File>
           <File BuildType="BUILD" Toolchain="">.\LCD_Bar.c</File>
           <File BuildType="BUILD" Toolchain="">.\state_event.c</File>
           <File BuildType="BUILD" Toolchain="">.\dash_board.c</File>
+          <File BuildType="BUILD" Toolchain="">.\can_manager.c</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="D:\workspace\super-eagle\Super-Eagle\Super-Eagle.cydsn\Generated_Source\PSoC5">
@@ -64,7 +66,6 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\cyfitteriar.inc</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\cyfitter.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\cydisabledsheets.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LCD_BarGraph.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LCD.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LCD.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LCD_PM.c</File>
@@ -93,6 +94,11 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\core_cmInstr.h</File>
           <File BuildType="BUILD" Toolchain="ARM IAR Generic">.\Generated_Source\PSoC5\CyBootAsmIar.s</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\project.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\CAN_1.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\CAN_1.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\CAN_1_INT.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\CAN_1_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\CAN_1_TX_RX_func.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Rx_1_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Rx_1.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Rx_1.h</File>
@@ -104,16 +110,6 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\FSM_Timer_PM.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\FSM_ISR.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\FSM_ISR.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\button_sw2_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\button_sw2.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\button_sw2.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\isr_sw2.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\isr_sw2.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\isr_sw1.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\isr_sw1.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\button_sw1_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\button_sw1.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\button_sw1.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Button_Status.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Button_Status.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Status_Clock.c</File>
@@ -123,44 +119,48 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LCD_Timer.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LCD_Timer.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LCD_Timer_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Throttle_ADC.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Throttle_ADC.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Throttle_ADC_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Throttle_ADC_INT.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Throttle_pos_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Throttle_pos.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Throttle_pos.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Throttle_neg_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Throttle_neg.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Throttle_neg.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Throttle_ADC_IRQ.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Throttle_ADC_IRQ.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Throttle_ADC_theACLK.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Throttle_ADC_theACLK.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\CAN.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\CAN.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\CAN_INT.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\CAN_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\CAN_TX_RX_func.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Brake_neg_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Brake_neg.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Brake_neg.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Brake_ADC.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Brake_ADC.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Brake_ADC_INT.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Brake_ADC_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Brake_pos_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Brake_pos.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Brake_pos.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Fake_Timer.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Fake_Timer.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Fake_Timer_PM.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Fake_ISR.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Fake_ISR.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Brake_ADC_IRQ.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Brake_ADC_IRQ.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Brake_ADC_theACLK.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Brake_ADC_theACLK.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\BTN_OK_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\BTN_OK.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\BTN_OK.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\BTN_Back_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\BTN_Back.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\BTN_Back.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Rotary_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Rotary.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Rotary.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LED_Strip.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LED_Strip.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LED_Strip_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LED_Strip_INT.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LED_Strip_PVT.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LED_MOSI_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LED_MOSI.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LED_MOSI.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LED_CLK_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LED_CLK.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LED_CLK.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LED_SS_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LED_SS.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LED_SS.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LED_MISO_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LED_MISO.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LED_MISO.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\OK_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\OK.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\OK.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LED_Strip_IntClock.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LED_Strip_IntClock.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\isr_back.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\isr_back.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\isr_OK.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\isr_OK.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\isr_rotary.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\isr_rotary.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="D:\workspace\super-eagle\Super-Eagle\Super-Eagle.cydsn\Export\ARM_GCC_Generic">

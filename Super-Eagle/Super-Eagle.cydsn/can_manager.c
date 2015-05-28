@@ -1,7 +1,11 @@
 #include "can_manager.h"
 
 volatile uint8_t can_buffer[8];
-
+    uint16_t info_battery_voltage = 0;
+    uint16_t info_battery_current = 0;
+    uint16_t info_battery_temp = 0;
+    uint16_t info_car_speed = 0;
+    uint16_t info_common_time = 0;
 
 /* Data Frame format for Voltage and Temperature
 The datatype consists of three bytes:

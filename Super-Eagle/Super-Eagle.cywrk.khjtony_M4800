@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Super-Eagle\Super-Eagle\Source Files\main.c">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Super-Eagle\Super-Eagle\Generated_Source\PSoC5\CAN_1\CAN_1_TX_RX_func.c">
 <ExpandedNodeIds>
 <v>Super-Eagle</v>
 <v>Super-Eagle\Super-Eagle</v>
@@ -33,11 +33,11 @@
 <v>Super-Eagle\Super-Eagle\Source Files\main.c</v>
 <v>Super-Eagle\Super-Eagle\Source Files\state_event.c</v>
 <v>Super-Eagle\Super-Eagle\CharLCD_HBar.pdf</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source</v>
 <v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5</v>
 <v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\BTN_Back\BTN_Back.c</v>
 <v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\BTN_Back\BTN_Back.h</v>
 <v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\BTN_Back\BTN_Back_aliases.h</v>
-<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\BTN_OK</v>
 <v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\BTN_OK\BTN_OK.c</v>
 <v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\BTN_OK\BTN_OK.h</v>
 <v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\BTN_OK\BTN_OK_aliases.h</v>
@@ -83,16 +83,15 @@
 <v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\FSM_Timer\FSM_Timer.c</v>
 <v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\FSM_Timer\FSM_Timer.h</v>
 <v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\FSM_Timer\FSM_Timer_PM.c</v>
-<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\isr_back</v>
 <v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\isr_back\isr_back.c</v>
 <v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\isr_back\isr_back.h</v>
 <v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\isr_OK\isr_OK.c</v>
 <v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\isr_OK\isr_OK.h</v>
 <v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\isr_rotary\isr_rotary.c</v>
 <v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\isr_rotary\isr_rotary.h</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\LCD</v>
 <v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\LCD\LCD.c</v>
 <v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\LCD\LCD.h</v>
-<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\LCD\LCD_BarGraph.c</v>
 <v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\LCD\LCD_PM.c</v>
 <v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\LCD_ISR\LCD_ISR.c</v>
 <v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\LCD_ISR\LCD_ISR.h</v>
@@ -186,7 +185,42 @@
 <v>Super-Eagle\Super-Eagle\Source Files\state_event.c</v>
 <v>Super-Eagle\Super-Eagle\CharLCD_HBar.pdf</v>
 <v>Super-Eagle\Super-Eagle\Generated_Source</v>
-<v>Super-Eagle\Super-Eagle\routine.txt</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\BTN_Back</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\BTN_OK</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\Button_Status</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\CAN_1</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\CAN_1\CAN_1.c</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\CAN_1\CAN_1.h</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\CAN_1\CAN_1_INT.c</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\CAN_1\CAN_1_PM.c</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\CAN_1\CAN_1_TX_RX_func.c</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\cy_boot</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\Fake_ISR</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\Fake_Timer</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\FSM_ISR</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\FSM_Timer</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\isr_back</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\isr_OK</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\isr_rotary</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\LCD</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\LCD\LCD.c</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\LCD\LCD.h</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\LCD\LCD_PM.c</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\LCD_ISR</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\LCD_LCDPort</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\LCD_Timer</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\LCD_Timer\LCD_Timer.c</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\LCD_Timer\LCD_Timer.h</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\LCD_Timer\LCD_Timer_PM.c</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\LED_CLK</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\LED_CLK\LED_CLK.c</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\LED_CLK\LED_CLK.h</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\LED_CLK\LED_CLK_aliases.h</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\LED_MISO</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\LED_MISO\LED_MISO.c</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\LED_MISO\LED_MISO.h</v>
+<v>Super-Eagle\Super-Eagle\Generated_Source\PSoC5\LED_MISO\LED_MISO_aliases.h</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -211,11 +245,14 @@
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\BTN_Back.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\BTN_OK.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\Button_Status.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\CAN_1.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\CAN_1_INT.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\CAN_1_PM.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\CAN_1_TX_RX_func.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\can_manager.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\Cm3Start.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\CyBootAsmGnu.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\CyDmac.lst</v>
@@ -233,15 +270,27 @@
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\FSM_ISR.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\FSM_Timer.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\FSM_Timer_PM.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\isr_back.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\isr_OK.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\isr_rotary.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LCD.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LCD_Bar.lst</v>
-<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LCD_BarGraph.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LCD_ISR.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LCD_LCDPort.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LCD_PM.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LCD_Timer.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LCD_Timer_PM.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LED_CLK.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LED_MISO.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LED_MOSI.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LED_SS.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LED_Strip.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LED_Strip_INT.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LED_Strip_IntClock.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LED_Strip_PM.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\main.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\OK.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\Rotary.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\Rx_1.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\state_event.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\Status_Clock.lst</v>
@@ -259,11 +308,14 @@
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\BTN_Back.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\BTN_OK.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\Button_Status.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\CAN_1.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\CAN_1_INT.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\CAN_1_PM.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\CAN_1_TX_RX_func.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\can_manager.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\Cm3Start.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\CyBootAsmGnu.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\CyDmac.lst</v>
@@ -281,24 +333,30 @@
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\FSM_ISR.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\FSM_Timer.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\FSM_Timer_PM.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\isr_back.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\isr_OK.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\isr_rotary.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LCD.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LCD_Bar.lst</v>
-<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LCD_BarGraph.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LCD_ISR.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LCD_LCDPort.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LCD_PM.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LCD_Timer.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LCD_Timer_PM.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LED_CLK.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LED_MISO.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LED_MOSI.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LED_SS.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LED_Strip.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LED_Strip_INT.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LED_Strip_IntClock.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\LED_Strip_PM.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\main.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\OK.lst</v>
+<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\Rotary.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\Rx_1.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\state_event.lst</v>
 <v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\Status_Clock.lst</v>
-<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Listing Files\Tx_1.lst</v>
-<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Super-Eagle.elf</v>
-<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Super-Eagle.hex</v>
-<v>Super-Eagle\Super-Eagle\CortexM3\ARM_GCC_484\Debug\Super-Eagle.map</v>
-<v>Super-Eagle\Super-Eagle\Super-Eagle.rpt</v>
-<v>Super-Eagle\Super-Eagle\Super-Eagle_timing.html</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -352,20 +410,14 @@
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
 <OpenDocs>
-<name v=".\Super-Eagle.cydsn\TopDesign\TopDesign.cysch" />
-<name v=".\Super-Eagle.cydsn\Super-Eagle.cydwr" />
-<name v=".\Super-Eagle.cydsn\state_event.h" />
-<name v=".\Super-Eagle.cydsn\LCD_Bar.h" />
-<name v=".\Super-Eagle.cydsn\Generated_Source\PSoC5\Throttle_ADC.c" />
-<name v=".\Super-Eagle.cydsn\Generated_Source\PSoC5\Throttle_ADC_INT.c" />
-<name v=".\Super-Eagle.cydsn\state_event.c" />
 <name v=".\Super-Eagle.cydsn\dash_board.c" />
-<name v=".\Super-Eagle.cydsn\main.c" />
+<name v=".\Super-Eagle.cydsn\can_manager.h" />
+<name v=".\Super-Eagle.cydsn\can_manager.c" />
+<name v=".\Super-Eagle.cydsn\Generated_Source\PSoC5\CAN_1_TX_RX_func.c" />
 <name v=".\Super-Eagle.cydsn\dash_board.h" />
-<name v=".\Super-Eagle.cydsn\routine.txt" />
-<name v=".\Super-Eagle.cydsn\Generated_Source\PSoC5\FSM_ISR.c" />
-<name v=".\Super-Eagle.cydsn\LCD_Bar.c" />
-<name v=".\Super-Eagle.cydsn\Generated_Source\PSoC5\LCD_BarGraph.c" />
+<name v=".\Super-Eagle.cydsn\main.c" />
+<name v=".\Super-Eagle.cydsn\state_event.h" />
+<name v=".\Super-Eagle.cydsn\TopDesign\TopDesign.cysch" />
 </OpenDocs>
 <config v="" />
 <AutoUpdate v="true" />

@@ -10,10 +10,17 @@
  * ========================================
 */
 #include "dash_board.h"
+#include "can_manager.h"
 #include "LCD_Bar.h"
 
 void _dash_state_drive(uint8_t);
 void _dash_state_charging(uint8_t);
+extern volatile Dash_Mode mode;
+extern uint16_t info_battery_voltage;
+extern uint16_t info_battery_current;
+extern uint16_t info_battery_temp;
+extern uint16_t info_car_speed;
+extern uint16_t info_common_time;
 
 void Dash_display_Mode(Dash_Mode mode){
     LCD_Position(0u,0u);
@@ -87,6 +94,13 @@ void Dash_display_Event(Events newEvent){
 
 void Dash_display_Value(){
     //display two values, msg, or err_msg
+    if (mode == COMMON){
+        //left voltage right current
+        LCD_Position(1u,0u);
+        LCD_PrintNumber(info_battery_voltage);
+        LCD_Position(1u,1u);
+        LCD_PrintNumber(info_battery_current);
+    }
 
 }
 

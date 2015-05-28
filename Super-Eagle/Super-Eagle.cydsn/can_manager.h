@@ -5,6 +5,10 @@
 #include "data.h"
 
 
+
+    
+    
+    
 typedef enum{
     NO_ERROR=0x0000,
     CHARGEMODE=0x0001,

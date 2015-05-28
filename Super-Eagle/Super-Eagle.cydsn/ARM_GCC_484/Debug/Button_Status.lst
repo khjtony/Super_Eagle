@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 1
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccJqr4NS.s 			page 1
 
 
    1              		.syntax unified
@@ -29,7 +29,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 1
   26              		.file 1 ".\\Generated_Source\\PSoC5\\Button_Status.c"
    1:.\Generated_Source\PSoC5/Button_Status.c **** /*******************************************************************************
    2:.\Generated_Source\PSoC5/Button_Status.c **** * File Name: Button_Status.c  
-   3:.\Generated_Source\PSoC5/Button_Status.c **** * Version 1.80
+   3:.\Generated_Source\PSoC5/Button_Status.c **** * Version 1.90
    4:.\Generated_Source\PSoC5/Button_Status.c **** *
    5:.\Generated_Source\PSoC5/Button_Status.c **** * Description:
    6:.\Generated_Source\PSoC5/Button_Status.c **** *  This file contains API to enable firmware to read the value of a Status 
@@ -38,7 +38,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 1
    9:.\Generated_Source\PSoC5/Button_Status.c **** * Note:
   10:.\Generated_Source\PSoC5/Button_Status.c **** *
   11:.\Generated_Source\PSoC5/Button_Status.c **** ********************************************************************************
-  12:.\Generated_Source\PSoC5/Button_Status.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  12:.\Generated_Source\PSoC5/Button_Status.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
   13:.\Generated_Source\PSoC5/Button_Status.c **** * You may use this file only in accordance with the license, terms, conditions, 
   14:.\Generated_Source\PSoC5/Button_Status.c **** * disclaimers, and limitations in the end user license agreement accompanying 
   15:.\Generated_Source\PSoC5/Button_Status.c **** * the software package with which this file was provided.
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 1
   29:.\Generated_Source\PSoC5/Button_Status.c **** *
   30:.\Generated_Source\PSoC5/Button_Status.c **** * Parameters:
   31:.\Generated_Source\PSoC5/Button_Status.c **** *  None.
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 2
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccJqr4NS.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/Button_Status.c **** *
@@ -93,7 +93,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 1
   47              	.L4:
   48              		.align	2
   49              	.L3:
-  50 0014 64650040 		.word	1073767780
+  50 0014 64640040 		.word	1073767524
   51              		.cfi_endproc
   52              	.LFE0:
   53              		.size	Button_Status_Read, .-Button_Status_Read
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 1
   51:.\Generated_Source\PSoC5/Button_Status.c **** *  None.
   52:.\Generated_Source\PSoC5/Button_Status.c **** *
   53:.\Generated_Source\PSoC5/Button_Status.c **** * Return:
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 3
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccJqr4NS.s 			page 3
 
 
   54:.\Generated_Source\PSoC5/Button_Status.c **** *  None.
@@ -167,7 +167,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 1
   95              	.L7:
   96              		.align	2
   97              	.L6:
-  98 002c 94650040 		.word	1073767828
+  98 002c 94640040 		.word	1073767572
   99              		.cfi_endproc
  100              	.LFE1:
  101              		.size	Button_Status_InterruptEnable, .-Button_Status_InterruptEnable
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 1
  106              		.thumb_func
  107              		.type	Button_Status_InterruptDisable, %function
  108              	Button_Status_InterruptDisable:
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 4
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccJqr4NS.s 			page 4
 
 
  109              	.LFB2:
@@ -238,13 +238,13 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 1
  140 0028 BD46     		mov	sp, r7
  141              		@ sp needed
  142 002a 80BD     		pop	{r7, pc}
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 5
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccJqr4NS.s 			page 5
 
 
  143              	.L10:
  144              		.align	2
  145              	.L9:
- 146 002c 94650040 		.word	1073767828
+ 146 002c 94640040 		.word	1073767572
  147              		.cfi_endproc
  148              	.LFE2:
  149              		.size	Button_Status_InterruptDisable, .-Button_Status_InterruptDisable
@@ -289,7 +289,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 1
  170 0006 0346     		mov	r3, r0
  171 0008 FB71     		strb	r3, [r7, #7]
  105:.\Generated_Source\PSoC5/Button_Status.c ****     #if(Button_Status_INPUTS < 8u)
- 106:.\Generated_Source\PSoC5/Button_Status.c ****     	mask &= (uint8)((((uint8)1u) << Button_Status_INPUTS) - 1u);
+ 106:.\Generated_Source\PSoC5/Button_Status.c ****     	mask &= ((uint8)(1u << Button_Status_INPUTS) - 1u);
  172              		.loc 1 106 0
  173 000a FB79     		ldrb	r3, [r7, #7]
  174 000c 03F00303 		and	r3, r3, #3
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 1
  108:.\Generated_Source\PSoC5/Button_Status.c ****     Button_Status_Status_Mask = mask;
  176              		.loc 1 108 0
  177 0012 044B     		ldr	r3, .L12
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 6
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccJqr4NS.s 			page 6
 
 
  178 0014 FA79     		ldrb	r2, [r7, #7]
@@ -313,7 +313,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 1
  186              	.L13:
  187 0022 00BF     		.align	2
  188              	.L12:
- 189 0024 84650040 		.word	1073767812
+ 189 0024 84640040 		.word	1073767556
  190              		.cfi_endproc
  191              	.LFE3:
  192              		.size	Button_Status_WriteMask, .-Button_Status_WriteMask
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 1
  212 0004 034B     		ldr	r3, .L16
  213 0006 1B78     		ldrb	r3, [r3]
  214 0008 DBB2     		uxtb	r3, r3
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 7
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccJqr4NS.s 			page 7
 
 
  129:.\Generated_Source\PSoC5/Button_Status.c **** }
@@ -371,7 +371,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 1
  221              	.L17:
  222              		.align	2
  223              	.L16:
- 224 0014 84650040 		.word	1073767812
+ 224 0014 84640040 		.word	1073767556
  225              		.cfi_endproc
  226              	.LFE4:
  227              		.size	Button_Status_ReadMask, .-Button_Status_ReadMask
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 1
  268 004b 75000000 		.4byte	.LASF5
  269 004f 02       		.uleb128 0x2
  270 0050 08       		.byte	0x8
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 8
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccJqr4NS.s 			page 8
 
 
  271 0051 05       		.byte	0x5
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 1
  325 00be 39       		.byte	0x39
  326 00bf 00000000 		.4byte	.LFB1
  327 00c3 30000000 		.4byte	.LFE1-.LFB1
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 9
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccJqr4NS.s 			page 9
 
 
  328 00c7 01       		.uleb128 0x1
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 1
  382 0133 18000000 		.4byte	.LFE4-.LFB4
  383 0137 01       		.uleb128 0x1
  384 0138 9C       		.byte	0x9c
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 10
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccJqr4NS.s 			page 10
 
 
  385 0139 00       		.byte	0
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 1
  439 0033 13       		.uleb128 0x13
  440 0034 00       		.byte	0
  441 0035 00       		.byte	0
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 11
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccJqr4NS.s 			page 11
 
 
  442 0036 05       		.uleb128 0x5
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 1
  496 006d 3B       		.uleb128 0x3b
  497 006e 0B       		.uleb128 0xb
  498 006f 27       		.uleb128 0x27
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 12
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccJqr4NS.s 			page 12
 
 
  499 0070 19       		.uleb128 0x19
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 1
  553 00a8 05       		.uleb128 0x5
  554 00a9 00       		.byte	0
  555 00aa 03       		.uleb128 0x3
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 13
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccJqr4NS.s 			page 13
 
 
  556 00ab 0E       		.uleb128 0xe
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 1
  606 0000 6C6F6E67 		.ascii	"long long int\000"
  606      206C6F6E 
  606      6720696E 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 14
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccJqr4NS.s 			page 14
 
 
  606      7400
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 1
  629      74657272 
  630              	.LASF16:
  631 00d4 42757474 		.ascii	"Button_Status_InterruptDisable\000"
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 15
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccJqr4NS.s 			page 15
 
 
  631      6F6E5F53 
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 1
  651      2D736563 
  651      74696F6E 
  652              	.LASF22:
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccRDKTIQ.s 			page 16
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccJqr4NS.s 			page 16
 
 
  653 01d8 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\Button_Status.c\000"
