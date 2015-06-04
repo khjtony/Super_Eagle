@@ -71,7 +71,6 @@ void fatal_fault(){
 
 CY_ISR(isr_rotary)
 {
-    Rotary_ClearInterrupt();
     if (mode == INFO){
         current_page += 1;
         if (current_page > MAX_PAGE){
@@ -82,8 +81,7 @@ CY_ISR(isr_rotary)
 }
 
 CY_ISR(isr_OK)
-{
-    BTN_OK_ClearInterrupt();    
+{   
     if (mode == COMMON){
         mode = INFO;
     }else{
@@ -93,8 +91,7 @@ CY_ISR(isr_OK)
 }
 
 CY_ISR(isr_back)
-{
-    BTN_Back_ClearInterrupt();    
+{   
     mode = COMMON;
     return;
 }
@@ -119,6 +116,7 @@ CY_ISR(Fake_Handler)
 
 CY_ISR(FSM_Handler){
     FSM_Timer_STATUS;
+    
     switch(state)// FSM, should be in the highest int priority
 		{
 			case STARTUP:

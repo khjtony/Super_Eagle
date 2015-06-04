@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 1
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc9RuzZG.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 1
   55              	fatal_fault:
   56              	.LFB56:
   57              		.file 1 ".\\main.c"
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 2
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc9RuzZG.s 			page 2
 
 
    1:.\main.c      **** /*******************************************************************************
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 1
   55:.\main.c      **** *  None.
   56:.\main.c      **** *
   57:.\main.c      **** * Return:
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 3
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc9RuzZG.s 			page 3
 
 
   58:.\main.c      **** *  None.
@@ -170,1324 +170,1324 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 1
   88              		.cfi_startproc
   89              		@ args = 0, pretend = 0, frame = 0
   90              		@ frame_needed = 1, uses_anonymous_args = 0
-  91 0000 80B5     		push	{r7, lr}
-  92              		.cfi_def_cfa_offset 8
-  93              		.cfi_offset 7, -8
-  94              		.cfi_offset 14, -4
+  91              		@ link register save eliminated.
+  92 0000 80B4     		push	{r7}
+  93              		.cfi_def_cfa_offset 4
+  94              		.cfi_offset 7, -4
   95 0002 00AF     		add	r7, sp, #0
   96              		.cfi_def_cfa_register 7
-  74:.\main.c      ****     Rotary_ClearInterrupt();
+  74:.\main.c      ****     if (mode == INFO){
   97              		.loc 1 74 0
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 4
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc9RuzZG.s 			page 4
 
 
-  98 0004 FFF7FEFF 		bl	Rotary_ClearInterrupt
-  75:.\main.c      ****     if (mode == INFO){
-  99              		.loc 1 75 0
- 100 0008 0A4B     		ldr	r3, .L6
- 101 000a 1B78     		ldrb	r3, [r3]
- 102 000c DBB2     		uxtb	r3, r3
- 103 000e 012B     		cmp	r3, #1
- 104 0010 0ED1     		bne	.L4
-  76:.\main.c      ****         current_page += 1;
- 105              		.loc 1 76 0
- 106 0012 094B     		ldr	r3, .L6+4
- 107 0014 1B78     		ldrb	r3, [r3]
- 108 0016 DBB2     		uxtb	r3, r3
- 109 0018 0133     		adds	r3, r3, #1
- 110 001a DAB2     		uxtb	r2, r3
- 111 001c 064B     		ldr	r3, .L6+4
- 112 001e 1A70     		strb	r2, [r3]
-  77:.\main.c      ****         if (current_page > MAX_PAGE){
- 113              		.loc 1 77 0
- 114 0020 054B     		ldr	r3, .L6+4
- 115 0022 1B78     		ldrb	r3, [r3]
- 116 0024 DBB2     		uxtb	r3, r3
- 117 0026 052B     		cmp	r3, #5
- 118 0028 02D9     		bls	.L4
-  78:.\main.c      ****             current_page = 1;
- 119              		.loc 1 78 0
- 120 002a 034B     		ldr	r3, .L6+4
- 121 002c 0122     		movs	r2, #1
- 122 002e 1A70     		strb	r2, [r3]
- 123              	.L4:
-  79:.\main.c      ****         }
-  80:.\main.c      ****     }
-  81:.\main.c      ****     return; 
+  98 0004 0C4B     		ldr	r3, .L6
+  99 0006 1B78     		ldrb	r3, [r3]
+ 100 0008 DBB2     		uxtb	r3, r3
+ 101 000a 012B     		cmp	r3, #1
+ 102 000c 0ED1     		bne	.L4
+  75:.\main.c      ****         current_page += 1;
+ 103              		.loc 1 75 0
+ 104 000e 0B4B     		ldr	r3, .L6+4
+ 105 0010 1B78     		ldrb	r3, [r3]
+ 106 0012 DBB2     		uxtb	r3, r3
+ 107 0014 0133     		adds	r3, r3, #1
+ 108 0016 DAB2     		uxtb	r2, r3
+ 109 0018 084B     		ldr	r3, .L6+4
+ 110 001a 1A70     		strb	r2, [r3]
+  76:.\main.c      ****         if (current_page > MAX_PAGE){
+ 111              		.loc 1 76 0
+ 112 001c 074B     		ldr	r3, .L6+4
+ 113 001e 1B78     		ldrb	r3, [r3]
+ 114 0020 DBB2     		uxtb	r3, r3
+ 115 0022 052B     		cmp	r3, #5
+ 116 0024 02D9     		bls	.L4
+  77:.\main.c      ****             current_page = 1;
+ 117              		.loc 1 77 0
+ 118 0026 054B     		ldr	r3, .L6+4
+ 119 0028 0122     		movs	r2, #1
+ 120 002a 1A70     		strb	r2, [r3]
+ 121              	.L4:
+  78:.\main.c      ****         }
+  79:.\main.c      ****     }
+  80:.\main.c      ****     return; 
+ 122              		.loc 1 80 0
+ 123 002c 00BF     		nop
+  81:.\main.c      **** }
  124              		.loc 1 81 0
- 125 0030 00BF     		nop
-  82:.\main.c      **** }
- 126              		.loc 1 82 0
- 127 0032 80BD     		pop	{r7, pc}
- 128              	.L7:
- 129              		.align	2
- 130              	.L6:
- 131 0034 00000000 		.word	mode
- 132 0038 00000000 		.word	current_page
- 133              		.cfi_endproc
- 134              	.LFE57:
- 135              		.size	isr_rotary, .-isr_rotary
- 136              		.section	.text.isr_OK,"ax",%progbits
- 137              		.align	2
- 138              		.global	isr_OK
- 139              		.thumb
- 140              		.thumb_func
- 141              		.type	isr_OK, %function
- 142              	isr_OK:
- 143              	.LFB58:
-  83:.\main.c      **** 
-  84:.\main.c      **** CY_ISR(isr_OK)
-  85:.\main.c      **** {
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 5
+ 125 002e BD46     		mov	sp, r7
+ 126              		@ sp needed
+ 127 0030 5DF8047B 		ldr	r7, [sp], #4
+ 128 0034 7047     		bx	lr
+ 129              	.L7:
+ 130 0036 00BF     		.align	2
+ 131              	.L6:
+ 132 0038 00000000 		.word	mode
+ 133 003c 00000000 		.word	current_page
+ 134              		.cfi_endproc
+ 135              	.LFE57:
+ 136              		.size	isr_rotary, .-isr_rotary
+ 137              		.section	.text.isr_OK,"ax",%progbits
+ 138              		.align	2
+ 139              		.global	isr_OK
+ 140              		.thumb
+ 141              		.thumb_func
+ 142              		.type	isr_OK, %function
+ 143              	isr_OK:
+ 144              	.LFB58:
+  82:.\main.c      **** 
+  83:.\main.c      **** CY_ISR(isr_OK)
+  84:.\main.c      **** {   
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc9RuzZG.s 			page 5
 
 
- 144              		.loc 1 85 0
- 145              		.cfi_startproc
- 146              		@ args = 0, pretend = 0, frame = 0
- 147              		@ frame_needed = 1, uses_anonymous_args = 0
- 148 0000 80B5     		push	{r7, lr}
- 149              		.cfi_def_cfa_offset 8
- 150              		.cfi_offset 7, -8
- 151              		.cfi_offset 14, -4
- 152 0002 00AF     		add	r7, sp, #0
- 153              		.cfi_def_cfa_register 7
-  86:.\main.c      ****     BTN_OK_ClearInterrupt();    
- 154              		.loc 1 86 0
- 155 0004 FFF7FEFF 		bl	BTN_OK_ClearInterrupt
-  87:.\main.c      ****     if (mode == COMMON){
- 156              		.loc 1 87 0
- 157 0008 064B     		ldr	r3, .L12
- 158 000a 1B78     		ldrb	r3, [r3]
- 159 000c DBB2     		uxtb	r3, r3
- 160 000e 002B     		cmp	r3, #0
- 161 0010 03D1     		bne	.L9
-  88:.\main.c      ****         mode = INFO;
- 162              		.loc 1 88 0
- 163 0012 044B     		ldr	r3, .L12
- 164 0014 0122     		movs	r2, #1
- 165 0016 1A70     		strb	r2, [r3]
- 166 0018 02E0     		b	.L10
- 167              	.L9:
-  89:.\main.c      ****     }else{
-  90:.\main.c      ****         mode = COMMON;
- 168              		.loc 1 90 0
- 169 001a 024B     		ldr	r3, .L12
- 170 001c 0022     		movs	r2, #0
- 171 001e 1A70     		strb	r2, [r3]
- 172              	.L10:
-  91:.\main.c      ****     }
-  92:.\main.c      ****     return; 
- 173              		.loc 1 92 0
- 174 0020 00BF     		nop
-  93:.\main.c      **** }
- 175              		.loc 1 93 0
- 176 0022 80BD     		pop	{r7, pc}
- 177              	.L13:
- 178              		.align	2
- 179              	.L12:
- 180 0024 00000000 		.word	mode
- 181              		.cfi_endproc
- 182              	.LFE58:
- 183              		.size	isr_OK, .-isr_OK
- 184              		.section	.text.isr_back,"ax",%progbits
- 185              		.align	2
- 186              		.global	isr_back
- 187              		.thumb
- 188              		.thumb_func
- 189              		.type	isr_back, %function
- 190              	isr_back:
- 191              	.LFB59:
-  94:.\main.c      **** 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 6
+ 145              		.loc 1 84 0
+ 146              		.cfi_startproc
+ 147              		@ args = 0, pretend = 0, frame = 0
+ 148              		@ frame_needed = 1, uses_anonymous_args = 0
+ 149              		@ link register save eliminated.
+ 150 0000 80B4     		push	{r7}
+ 151              		.cfi_def_cfa_offset 4
+ 152              		.cfi_offset 7, -4
+ 153 0002 00AF     		add	r7, sp, #0
+ 154              		.cfi_def_cfa_register 7
+  85:.\main.c      ****     if (mode == COMMON){
+ 155              		.loc 1 85 0
+ 156 0004 084B     		ldr	r3, .L12
+ 157 0006 1B78     		ldrb	r3, [r3]
+ 158 0008 DBB2     		uxtb	r3, r3
+ 159 000a 002B     		cmp	r3, #0
+ 160 000c 03D1     		bne	.L9
+  86:.\main.c      ****         mode = INFO;
+ 161              		.loc 1 86 0
+ 162 000e 064B     		ldr	r3, .L12
+ 163 0010 0122     		movs	r2, #1
+ 164 0012 1A70     		strb	r2, [r3]
+ 165 0014 02E0     		b	.L10
+ 166              	.L9:
+  87:.\main.c      ****     }else{
+  88:.\main.c      ****         mode = COMMON;
+ 167              		.loc 1 88 0
+ 168 0016 044B     		ldr	r3, .L12
+ 169 0018 0022     		movs	r2, #0
+ 170 001a 1A70     		strb	r2, [r3]
+ 171              	.L10:
+  89:.\main.c      ****     }
+  90:.\main.c      ****     return; 
+ 172              		.loc 1 90 0
+ 173 001c 00BF     		nop
+  91:.\main.c      **** }
+ 174              		.loc 1 91 0
+ 175 001e BD46     		mov	sp, r7
+ 176              		@ sp needed
+ 177 0020 5DF8047B 		ldr	r7, [sp], #4
+ 178 0024 7047     		bx	lr
+ 179              	.L13:
+ 180 0026 00BF     		.align	2
+ 181              	.L12:
+ 182 0028 00000000 		.word	mode
+ 183              		.cfi_endproc
+ 184              	.LFE58:
+ 185              		.size	isr_OK, .-isr_OK
+ 186              		.section	.text.isr_back,"ax",%progbits
+ 187              		.align	2
+ 188              		.global	isr_back
+ 189              		.thumb
+ 190              		.thumb_func
+ 191              		.type	isr_back, %function
+ 192              	isr_back:
+ 193              	.LFB59:
+  92:.\main.c      **** 
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc9RuzZG.s 			page 6
 
 
-  95:.\main.c      **** CY_ISR(isr_back)
-  96:.\main.c      **** {
- 192              		.loc 1 96 0
- 193              		.cfi_startproc
- 194              		@ args = 0, pretend = 0, frame = 0
- 195              		@ frame_needed = 1, uses_anonymous_args = 0
- 196 0000 80B5     		push	{r7, lr}
- 197              		.cfi_def_cfa_offset 8
- 198              		.cfi_offset 7, -8
- 199              		.cfi_offset 14, -4
- 200 0002 00AF     		add	r7, sp, #0
- 201              		.cfi_def_cfa_register 7
-  97:.\main.c      ****     BTN_Back_ClearInterrupt();    
- 202              		.loc 1 97 0
- 203 0004 FFF7FEFF 		bl	BTN_Back_ClearInterrupt
-  98:.\main.c      ****     mode = COMMON;
- 204              		.loc 1 98 0
- 205 0008 024B     		ldr	r3, .L16
- 206 000a 0022     		movs	r2, #0
- 207 000c 1A70     		strb	r2, [r3]
-  99:.\main.c      ****     return;
- 208              		.loc 1 99 0
- 209 000e 00BF     		nop
- 100:.\main.c      **** }
- 210              		.loc 1 100 0
- 211 0010 80BD     		pop	{r7, pc}
- 212              	.L17:
- 213 0012 00BF     		.align	2
- 214              	.L16:
- 215 0014 00000000 		.word	mode
- 216              		.cfi_endproc
- 217              	.LFE59:
- 218              		.size	isr_back, .-isr_back
- 219              		.section	.text.LCD_Handler,"ax",%progbits
- 220              		.align	2
- 221              		.global	LCD_Handler
- 222              		.thumb
- 223              		.thumb_func
- 224              		.type	LCD_Handler, %function
- 225              	LCD_Handler:
- 226              	.LFB60:
- 101:.\main.c      **** 
- 102:.\main.c      **** 
- 103:.\main.c      **** CY_ISR(LCD_Handler)
- 104:.\main.c      **** {
- 227              		.loc 1 104 0
- 228              		.cfi_startproc
- 229              		@ args = 0, pretend = 0, frame = 0
- 230              		@ frame_needed = 1, uses_anonymous_args = 0
- 231 0000 80B5     		push	{r7, lr}
- 232              		.cfi_def_cfa_offset 8
- 233              		.cfi_offset 7, -8
- 234              		.cfi_offset 14, -4
- 235 0002 00AF     		add	r7, sp, #0
- 236              		.cfi_def_cfa_register 7
- 105:.\main.c      ****     LCD_Timer_STATUS;
- 237              		.loc 1 105 0
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 7
+  93:.\main.c      **** CY_ISR(isr_back)
+  94:.\main.c      **** {   
+ 194              		.loc 1 94 0
+ 195              		.cfi_startproc
+ 196              		@ args = 0, pretend = 0, frame = 0
+ 197              		@ frame_needed = 1, uses_anonymous_args = 0
+ 198              		@ link register save eliminated.
+ 199 0000 80B4     		push	{r7}
+ 200              		.cfi_def_cfa_offset 4
+ 201              		.cfi_offset 7, -4
+ 202 0002 00AF     		add	r7, sp, #0
+ 203              		.cfi_def_cfa_register 7
+  95:.\main.c      ****     mode = COMMON;
+ 204              		.loc 1 95 0
+ 205 0004 034B     		ldr	r3, .L16
+ 206 0006 0022     		movs	r2, #0
+ 207 0008 1A70     		strb	r2, [r3]
+  96:.\main.c      ****     return;
+ 208              		.loc 1 96 0
+ 209 000a 00BF     		nop
+  97:.\main.c      **** }
+ 210              		.loc 1 97 0
+ 211 000c BD46     		mov	sp, r7
+ 212              		@ sp needed
+ 213 000e 5DF8047B 		ldr	r7, [sp], #4
+ 214 0012 7047     		bx	lr
+ 215              	.L17:
+ 216              		.align	2
+ 217              	.L16:
+ 218 0014 00000000 		.word	mode
+ 219              		.cfi_endproc
+ 220              	.LFE59:
+ 221              		.size	isr_back, .-isr_back
+ 222              		.section	.text.LCD_Handler,"ax",%progbits
+ 223              		.align	2
+ 224              		.global	LCD_Handler
+ 225              		.thumb
+ 226              		.thumb_func
+ 227              		.type	LCD_Handler, %function
+ 228              	LCD_Handler:
+ 229              	.LFB60:
+  98:.\main.c      **** 
+  99:.\main.c      **** 
+ 100:.\main.c      **** CY_ISR(LCD_Handler)
+ 101:.\main.c      **** {
+ 230              		.loc 1 101 0
+ 231              		.cfi_startproc
+ 232              		@ args = 0, pretend = 0, frame = 0
+ 233              		@ frame_needed = 1, uses_anonymous_args = 0
+ 234 0000 80B5     		push	{r7, lr}
+ 235              		.cfi_def_cfa_offset 8
+ 236              		.cfi_offset 7, -8
+ 237              		.cfi_offset 14, -4
+ 238 0002 00AF     		add	r7, sp, #0
+ 239              		.cfi_def_cfa_register 7
+ 102:.\main.c      ****     LCD_Timer_STATUS;
+ 240              		.loc 1 102 0
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc9RuzZG.s 			page 7
 
 
- 238 0004 0A4B     		ldr	r3, .L20
- 239 0006 1B78     		ldrb	r3, [r3]
- 106:.\main.c      ****     LCD_ClearDisplay();
- 240              		.loc 1 106 0
- 241 0008 0120     		movs	r0, #1
- 242 000a FFF7FEFF 		bl	LCD_WriteControl
- 107:.\main.c      ****     Dash_display_Mode(mode);
- 243              		.loc 1 107 0
- 244 000e 094B     		ldr	r3, .L20+4
- 245 0010 1B78     		ldrb	r3, [r3]
- 246 0012 DBB2     		uxtb	r3, r3
- 247 0014 1846     		mov	r0, r3
- 248 0016 FFF7FEFF 		bl	Dash_display_Mode
- 108:.\main.c      ****     Dash_display_State(state);
- 249              		.loc 1 108 0
- 250 001a 074B     		ldr	r3, .L20+8
- 251 001c 1B78     		ldrb	r3, [r3]
- 252 001e DBB2     		uxtb	r3, r3
- 253 0020 1846     		mov	r0, r3
- 254 0022 FFF7FEFF 		bl	Dash_display_State
- 109:.\main.c      ****     Dash_display_Value();
- 255              		.loc 1 109 0
- 256 0026 FFF7FEFF 		bl	Dash_display_Value
- 110:.\main.c      ****     return;
- 257              		.loc 1 110 0
- 258 002a 00BF     		nop
- 111:.\main.c      **** }
- 259              		.loc 1 111 0
- 260 002c 80BD     		pop	{r7, pc}
- 261              	.L21:
- 262 002e 00BF     		.align	2
- 263              	.L20:
- 264 0030 66650040 		.word	1073767782
- 265 0034 00000000 		.word	mode
- 266 0038 00000000 		.word	state
- 267              		.cfi_endproc
- 268              	.LFE60:
- 269              		.size	LCD_Handler, .-LCD_Handler
- 270              		.section	.text.Fake_Handler,"ax",%progbits
- 271              		.align	2
- 272              		.global	Fake_Handler
- 273              		.thumb
- 274              		.thumb_func
- 275              		.type	Fake_Handler, %function
- 276              	Fake_Handler:
- 277              	.LFB61:
- 112:.\main.c      **** 
- 113:.\main.c      **** CY_ISR(Fake_Handler)
- 114:.\main.c      **** {
- 278              		.loc 1 114 0
- 279              		.cfi_startproc
- 280              		@ args = 0, pretend = 0, frame = 0
- 281              		@ frame_needed = 1, uses_anonymous_args = 0
- 282              		@ link register save eliminated.
- 283 0000 80B4     		push	{r7}
- 284              		.cfi_def_cfa_offset 4
- 285              		.cfi_offset 7, -4
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 8
+ 241 0004 0A4B     		ldr	r3, .L20
+ 242 0006 1B78     		ldrb	r3, [r3]
+ 103:.\main.c      ****     LCD_ClearDisplay();
+ 243              		.loc 1 103 0
+ 244 0008 0120     		movs	r0, #1
+ 245 000a FFF7FEFF 		bl	LCD_WriteControl
+ 104:.\main.c      ****     Dash_display_Mode(mode);
+ 246              		.loc 1 104 0
+ 247 000e 094B     		ldr	r3, .L20+4
+ 248 0010 1B78     		ldrb	r3, [r3]
+ 249 0012 DBB2     		uxtb	r3, r3
+ 250 0014 1846     		mov	r0, r3
+ 251 0016 FFF7FEFF 		bl	Dash_display_Mode
+ 105:.\main.c      ****     Dash_display_State(state);
+ 252              		.loc 1 105 0
+ 253 001a 074B     		ldr	r3, .L20+8
+ 254 001c 1B78     		ldrb	r3, [r3]
+ 255 001e DBB2     		uxtb	r3, r3
+ 256 0020 1846     		mov	r0, r3
+ 257 0022 FFF7FEFF 		bl	Dash_display_State
+ 106:.\main.c      ****     Dash_display_Value();
+ 258              		.loc 1 106 0
+ 259 0026 FFF7FEFF 		bl	Dash_display_Value
+ 107:.\main.c      ****     return;
+ 260              		.loc 1 107 0
+ 261 002a 00BF     		nop
+ 108:.\main.c      **** }
+ 262              		.loc 1 108 0
+ 263 002c 80BD     		pop	{r7, pc}
+ 264              	.L21:
+ 265 002e 00BF     		.align	2
+ 266              	.L20:
+ 267 0030 66650040 		.word	1073767782
+ 268 0034 00000000 		.word	mode
+ 269 0038 00000000 		.word	state
+ 270              		.cfi_endproc
+ 271              	.LFE60:
+ 272              		.size	LCD_Handler, .-LCD_Handler
+ 273              		.section	.text.Fake_Handler,"ax",%progbits
+ 274              		.align	2
+ 275              		.global	Fake_Handler
+ 276              		.thumb
+ 277              		.thumb_func
+ 278              		.type	Fake_Handler, %function
+ 279              	Fake_Handler:
+ 280              	.LFB61:
+ 109:.\main.c      **** 
+ 110:.\main.c      **** CY_ISR(Fake_Handler)
+ 111:.\main.c      **** {
+ 281              		.loc 1 111 0
+ 282              		.cfi_startproc
+ 283              		@ args = 0, pretend = 0, frame = 0
+ 284              		@ frame_needed = 1, uses_anonymous_args = 0
+ 285              		@ link register save eliminated.
+ 286 0000 80B4     		push	{r7}
+ 287              		.cfi_def_cfa_offset 4
+ 288              		.cfi_offset 7, -4
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc9RuzZG.s 			page 8
 
 
- 286 0002 00AF     		add	r7, sp, #0
- 287              		.cfi_def_cfa_register 7
- 115:.\main.c      ****     Fake_Timer_STATUS;
- 288              		.loc 1 115 0
- 289 0004 034B     		ldr	r3, .L24
- 290 0006 1B78     		ldrb	r3, [r3]
- 116:.\main.c      ****     return;
- 291              		.loc 1 116 0
- 292 0008 00BF     		nop
- 117:.\main.c      **** }
- 293              		.loc 1 117 0
- 294 000a BD46     		mov	sp, r7
- 295              		@ sp needed
- 296 000c 5DF8047B 		ldr	r7, [sp], #4
- 297 0010 7047     		bx	lr
- 298              	.L25:
- 299 0012 00BF     		.align	2
- 300              	.L24:
- 301 0014 6A650040 		.word	1073767786
- 302              		.cfi_endproc
- 303              	.LFE61:
- 304              		.size	Fake_Handler, .-Fake_Handler
- 305              		.section	.text.FSM_Handler,"ax",%progbits
- 306              		.align	2
- 307              		.global	FSM_Handler
- 308              		.thumb
- 309              		.thumb_func
- 310              		.type	FSM_Handler, %function
- 311              	FSM_Handler:
- 312              	.LFB62:
- 118:.\main.c      **** 
- 119:.\main.c      **** 
- 120:.\main.c      **** CY_ISR(FSM_Handler){
- 313              		.loc 1 120 0
- 314              		.cfi_startproc
- 315              		@ args = 0, pretend = 0, frame = 0
- 316              		@ frame_needed = 1, uses_anonymous_args = 0
- 317 0000 80B5     		push	{r7, lr}
- 318              		.cfi_def_cfa_offset 8
- 319              		.cfi_offset 7, -8
- 320              		.cfi_offset 14, -4
- 321 0002 00AF     		add	r7, sp, #0
- 322              		.cfi_def_cfa_register 7
- 121:.\main.c      ****     FSM_Timer_STATUS;
- 323              		.loc 1 121 0
- 324 0004 104B     		ldr	r3, .L38
- 325 0006 1B78     		ldrb	r3, [r3]
- 122:.\main.c      ****     switch(state)// FSM, should be in the highest int priority
- 326              		.loc 1 122 0
- 327 0008 104B     		ldr	r3, .L38+4
- 328 000a 1B78     		ldrb	r3, [r3]
- 329 000c DBB2     		uxtb	r3, r3
- 330 000e 062B     		cmp	r3, #6
- 331 0010 11D8     		bhi	.L27
- 332 0012 01A2     		adr	r2, .L29
- 333 0014 52F823F0 		ldr	pc, [r2, r3, lsl #2]
- 334              		.p2align 2
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 9
+ 289 0002 00AF     		add	r7, sp, #0
+ 290              		.cfi_def_cfa_register 7
+ 112:.\main.c      ****     Fake_Timer_STATUS;
+ 291              		.loc 1 112 0
+ 292 0004 034B     		ldr	r3, .L24
+ 293 0006 1B78     		ldrb	r3, [r3]
+ 113:.\main.c      ****     return;
+ 294              		.loc 1 113 0
+ 295 0008 00BF     		nop
+ 114:.\main.c      **** }
+ 296              		.loc 1 114 0
+ 297 000a BD46     		mov	sp, r7
+ 298              		@ sp needed
+ 299 000c 5DF8047B 		ldr	r7, [sp], #4
+ 300 0010 7047     		bx	lr
+ 301              	.L25:
+ 302 0012 00BF     		.align	2
+ 303              	.L24:
+ 304 0014 6A650040 		.word	1073767786
+ 305              		.cfi_endproc
+ 306              	.LFE61:
+ 307              		.size	Fake_Handler, .-Fake_Handler
+ 308              		.section	.text.FSM_Handler,"ax",%progbits
+ 309              		.align	2
+ 310              		.global	FSM_Handler
+ 311              		.thumb
+ 312              		.thumb_func
+ 313              		.type	FSM_Handler, %function
+ 314              	FSM_Handler:
+ 315              	.LFB62:
+ 115:.\main.c      **** 
+ 116:.\main.c      **** 
+ 117:.\main.c      **** CY_ISR(FSM_Handler){
+ 316              		.loc 1 117 0
+ 317              		.cfi_startproc
+ 318              		@ args = 0, pretend = 0, frame = 0
+ 319              		@ frame_needed = 1, uses_anonymous_args = 0
+ 320 0000 80B5     		push	{r7, lr}
+ 321              		.cfi_def_cfa_offset 8
+ 322              		.cfi_offset 7, -8
+ 323              		.cfi_offset 14, -4
+ 324 0002 00AF     		add	r7, sp, #0
+ 325              		.cfi_def_cfa_register 7
+ 118:.\main.c      ****     FSM_Timer_STATUS;
+ 326              		.loc 1 118 0
+ 327 0004 104B     		ldr	r3, .L38
+ 328 0006 1B78     		ldrb	r3, [r3]
+ 119:.\main.c      ****     switch(state)// FSM, should be in the highest int priority
+ 329              		.loc 1 119 0
+ 330 0008 104B     		ldr	r3, .L38+4
+ 331 000a 1B78     		ldrb	r3, [r3]
+ 332 000c DBB2     		uxtb	r3, r3
+ 333 000e 062B     		cmp	r3, #6
+ 334 0010 11D8     		bhi	.L27
+ 335 0012 01A2     		adr	r2, .L29
+ 336 0014 52F823F0 		ldr	pc, [r2, r3, lsl #2]
+ 337              		.p2align 2
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc9RuzZG.s 			page 9
 
 
- 335              	.L29:
- 336 0018 3D000000 		.word	.L37+1
- 337 001c 3D000000 		.word	.L37+1
- 338 0020 3D000000 		.word	.L37+1
- 339 0024 3D000000 		.word	.L37+1
- 340 0028 3D000000 		.word	.L37+1
- 341 002c 3D000000 		.word	.L37+1
- 342 0030 35000000 		.word	.L35+1
- 343              		.p2align 1
- 344              	.L35:
- 123:.\main.c      **** 		{
- 124:.\main.c      **** 			case STARTUP:
- 125:.\main.c      **** 				break;
- 126:.\main.c      **** 			case NEUTRAL:
- 127:.\main.c      **** 				break;
- 128:.\main.c      **** 			case DRIVE:
- 129:.\main.c      **** 				break;
- 130:.\main.c      **** 			case PRECHARGE:
- 131:.\main.c      **** 				break;
- 132:.\main.c      **** 			case CHARGING:
- 133:.\main.c      **** 				break;
- 134:.\main.c      **** 			case SOFT_FAULT:
+ 338              	.L29:
+ 339 0018 3D000000 		.word	.L37+1
+ 340 001c 3D000000 		.word	.L37+1
+ 341 0020 3D000000 		.word	.L37+1
+ 342 0024 3D000000 		.word	.L37+1
+ 343 0028 3D000000 		.word	.L37+1
+ 344 002c 3D000000 		.word	.L37+1
+ 345 0030 35000000 		.word	.L35+1
+ 346              		.p2align 1
+ 347              	.L35:
+ 120:.\main.c      **** 		{
+ 121:.\main.c      **** 			case STARTUP:
+ 122:.\main.c      **** 				break;
+ 123:.\main.c      **** 			case NEUTRAL:
+ 124:.\main.c      **** 				break;
+ 125:.\main.c      **** 			case DRIVE:
+ 126:.\main.c      **** 				break;
+ 127:.\main.c      **** 			case PRECHARGE:
+ 128:.\main.c      **** 				break;
+ 129:.\main.c      **** 			case CHARGING:
+ 130:.\main.c      **** 				break;
+ 131:.\main.c      **** 			case SOFT_FAULT:
+ 132:.\main.c      **** 				break;
+ 133:.\main.c      **** 			case HARD_FAULT:
+ 134:.\main.c      **** 				for(;;);	// trap fault
+ 348              		.loc 1 134 0 discriminator 1
+ 349 0034 FEE7     		b	.L35
+ 350              	.L27:
  135:.\main.c      **** 				break;
- 136:.\main.c      **** 			case HARD_FAULT:
- 137:.\main.c      **** 				for(;;);	// trap fault
- 345              		.loc 1 137 0 discriminator 1
- 346 0034 FEE7     		b	.L35
- 347              	.L27:
+ 136:.\main.c      **** 			default: // INVALID STATE
+ 137:.\main.c      **** 				fatal_fault();
+ 351              		.loc 1 137 0
+ 352 0036 FFF7FEFF 		bl	fatal_fault
  138:.\main.c      **** 				break;
- 139:.\main.c      **** 			default: // INVALID STATE
- 140:.\main.c      **** 				fatal_fault();
- 348              		.loc 1 140 0
- 349 0036 FFF7FEFF 		bl	fatal_fault
- 141:.\main.c      **** 				break;
- 350              		.loc 1 141 0
- 351 003a 00E0     		b	.L36
- 352              	.L37:
- 125:.\main.c      **** 				break;
- 353              		.loc 1 125 0
- 354 003c 00BF     		nop
- 355              	.L36:
- 142:.\main.c      ****         }; // switch state
- 143:.\main.c      ****         event=0x0; //wipe the event signal
- 356              		.loc 1 143 0
- 357 003e 044B     		ldr	r3, .L38+8
- 358 0040 0022     		movs	r2, #0
- 359 0042 1A80     		strh	r2, [r3]	@ movhi
- 144:.\main.c      **** }
- 360              		.loc 1 144 0
- 361 0044 80BD     		pop	{r7, pc}
- 362              	.L39:
- 363 0046 00BF     		.align	2
- 364              	.L38:
- 365 0048 65640040 		.word	1073767525
- 366 004c 00000000 		.word	state
- 367 0050 00000000 		.word	event
- 368              		.cfi_endproc
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 10
+ 353              		.loc 1 138 0
+ 354 003a 00E0     		b	.L36
+ 355              	.L37:
+ 122:.\main.c      **** 				break;
+ 356              		.loc 1 122 0
+ 357 003c 00BF     		nop
+ 358              	.L36:
+ 139:.\main.c      ****         }; // switch state
+ 140:.\main.c      ****         event=0x0; //wipe the event signal
+ 359              		.loc 1 140 0
+ 360 003e 044B     		ldr	r3, .L38+8
+ 361 0040 0022     		movs	r2, #0
+ 362 0042 1A80     		strh	r2, [r3]	@ movhi
+ 141:.\main.c      **** }
+ 363              		.loc 1 141 0
+ 364 0044 80BD     		pop	{r7, pc}
+ 365              	.L39:
+ 366 0046 00BF     		.align	2
+ 367              	.L38:
+ 368 0048 65640040 		.word	1073767525
+ 369 004c 00000000 		.word	state
+ 370 0050 00000000 		.word	event
+ 371              		.cfi_endproc
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc9RuzZG.s 			page 10
 
 
- 369              	.LFE62:
- 370              		.size	FSM_Handler, .-FSM_Handler
- 371              		.section	.text.main,"ax",%progbits
- 372              		.align	2
- 373              		.global	main
- 374              		.thumb
- 375              		.thumb_func
- 376              		.type	main, %function
- 377              	main:
- 378              	.LFB63:
+ 372              	.LFE62:
+ 373              		.size	FSM_Handler, .-FSM_Handler
+ 374              		.section	.text.main,"ax",%progbits
+ 375              		.align	2
+ 376              		.global	main
+ 377              		.thumb
+ 378              		.thumb_func
+ 379              		.type	main, %function
+ 380              	main:
+ 381              	.LFB63:
+ 142:.\main.c      **** 
+ 143:.\main.c      **** 
+ 144:.\main.c      **** 
  145:.\main.c      **** 
  146:.\main.c      **** 
- 147:.\main.c      **** 
- 148:.\main.c      **** 
- 149:.\main.c      **** 
- 150:.\main.c      **** int main()
- 151:.\main.c      **** {   
- 379              		.loc 1 151 0
- 380              		.cfi_startproc
- 381              		@ args = 0, pretend = 0, frame = 0
- 382              		@ frame_needed = 1, uses_anonymous_args = 0
- 383 0000 80B5     		push	{r7, lr}
- 384              		.cfi_def_cfa_offset 8
- 385              		.cfi_offset 7, -8
- 386              		.cfi_offset 14, -4
- 387 0002 00AF     		add	r7, sp, #0
- 388              		.cfi_def_cfa_register 7
- 152:.\main.c      ****     /* Enable the global interrupt */
- 153:.\main.c      ****     CyGlobalIntEnable;
- 389              		.loc 1 153 0
- 390              	@ 153 ".\main.c" 1
- 391 0004 62B6     		CPSIE   i
- 392              	@ 0 "" 2
- 154:.\main.c      ****     
- 155:.\main.c      ****     //setup startup state
- 156:.\main.c      ****     state = STARTUP;
- 393              		.loc 1 156 0
- 394              		.thumb
- 395 0006 134B     		ldr	r3, .L42
- 396 0008 0022     		movs	r2, #0
- 397 000a 1A70     		strb	r2, [r3]
- 157:.\main.c      ****     mode = COMMON;
- 398              		.loc 1 157 0
- 399 000c 124B     		ldr	r3, .L42+4
- 400 000e 0022     		movs	r2, #0
- 401 0010 1A70     		strb	r2, [r3]
- 158:.\main.c      ****     
- 159:.\main.c      ****     /* Enable the Interrupt component connected to Timer interrupt */
- 160:.\main.c      ****     FSM_ISR_StartEx(FSM_Handler);
- 402              		.loc 1 160 0
- 403 0012 1248     		ldr	r0, .L42+8
- 404 0014 FFF7FEFF 		bl	FSM_ISR_StartEx
- 161:.\main.c      ****     LCD_ISR_StartEx(LCD_Handler);
- 405              		.loc 1 161 0
- 406 0018 1148     		ldr	r0, .L42+12
- 407 001a FFF7FEFF 		bl	LCD_ISR_StartEx
- 162:.\main.c      ****     isr_OK_StartEx(isr_OK);
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 11
+ 147:.\main.c      **** int main()
+ 148:.\main.c      **** {   
+ 382              		.loc 1 148 0
+ 383              		.cfi_startproc
+ 384              		@ args = 0, pretend = 0, frame = 0
+ 385              		@ frame_needed = 1, uses_anonymous_args = 0
+ 386 0000 80B5     		push	{r7, lr}
+ 387              		.cfi_def_cfa_offset 8
+ 388              		.cfi_offset 7, -8
+ 389              		.cfi_offset 14, -4
+ 390 0002 00AF     		add	r7, sp, #0
+ 391              		.cfi_def_cfa_register 7
+ 149:.\main.c      ****     /* Enable the global interrupt */
+ 150:.\main.c      ****     CyGlobalIntEnable;
+ 392              		.loc 1 150 0
+ 393              	@ 150 ".\main.c" 1
+ 394 0004 62B6     		CPSIE   i
+ 395              	@ 0 "" 2
+ 151:.\main.c      ****     
+ 152:.\main.c      ****     //setup startup state
+ 153:.\main.c      ****     state = STARTUP;
+ 396              		.loc 1 153 0
+ 397              		.thumb
+ 398 0006 134B     		ldr	r3, .L42
+ 399 0008 0022     		movs	r2, #0
+ 400 000a 1A70     		strb	r2, [r3]
+ 154:.\main.c      ****     mode = COMMON;
+ 401              		.loc 1 154 0
+ 402 000c 124B     		ldr	r3, .L42+4
+ 403 000e 0022     		movs	r2, #0
+ 404 0010 1A70     		strb	r2, [r3]
+ 155:.\main.c      ****     
+ 156:.\main.c      ****     /* Enable the Interrupt component connected to Timer interrupt */
+ 157:.\main.c      ****     FSM_ISR_StartEx(FSM_Handler);
+ 405              		.loc 1 157 0
+ 406 0012 1248     		ldr	r0, .L42+8
+ 407 0014 FFF7FEFF 		bl	FSM_ISR_StartEx
+ 158:.\main.c      ****     LCD_ISR_StartEx(LCD_Handler);
+ 408              		.loc 1 158 0
+ 409 0018 1148     		ldr	r0, .L42+12
+ 410 001a FFF7FEFF 		bl	LCD_ISR_StartEx
+ 159:.\main.c      ****     isr_OK_StartEx(isr_OK);
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc9RuzZG.s 			page 11
 
 
- 408              		.loc 1 162 0
- 409 001e 1148     		ldr	r0, .L42+16
- 410 0020 FFF7FEFF 		bl	isr_OK_StartEx
- 163:.\main.c      ****     isr_back_StartEx(isr_back);
- 411              		.loc 1 163 0
- 412 0024 1048     		ldr	r0, .L42+20
- 413 0026 FFF7FEFF 		bl	isr_back_StartEx
- 164:.\main.c      ****     isr_rotary_StartEx(isr_rotary);
- 414              		.loc 1 164 0
- 415 002a 1048     		ldr	r0, .L42+24
- 416 002c FFF7FEFF 		bl	isr_rotary_StartEx
- 165:.\main.c      ****     Fake_ISR_StartEx(Fake_Handler);
- 417              		.loc 1 165 0
- 418 0030 0F48     		ldr	r0, .L42+28
- 419 0032 FFF7FEFF 		bl	Fake_ISR_StartEx
- 166:.\main.c      **** 
- 167:.\main.c      **** 	
- 168:.\main.c      ****     
- 169:.\main.c      ****     /* Start the components */
- 170:.\main.c      ****     FSM_Timer_Start();
- 420              		.loc 1 170 0
- 421 0036 FFF7FEFF 		bl	FSM_Timer_Start
- 171:.\main.c      ****     LCD_Timer_Start();
- 422              		.loc 1 171 0
- 423 003a FFF7FEFF 		bl	LCD_Timer_Start
- 172:.\main.c      ****     Fake_Timer_Start();
- 424              		.loc 1 172 0
- 425 003e FFF7FEFF 		bl	Fake_Timer_Start
- 173:.\main.c      ****     can_init();
- 426              		.loc 1 173 0
- 427 0042 FFF7FEFF 		bl	can_init
- 174:.\main.c      ****     
- 175:.\main.c      ****     
+ 411              		.loc 1 159 0
+ 412 001e 1148     		ldr	r0, .L42+16
+ 413 0020 FFF7FEFF 		bl	isr_OK_StartEx
+ 160:.\main.c      ****     isr_back_StartEx(isr_back);
+ 414              		.loc 1 160 0
+ 415 0024 1048     		ldr	r0, .L42+20
+ 416 0026 FFF7FEFF 		bl	isr_back_StartEx
+ 161:.\main.c      ****     isr_rotary_StartEx(isr_rotary);
+ 417              		.loc 1 161 0
+ 418 002a 1048     		ldr	r0, .L42+24
+ 419 002c FFF7FEFF 		bl	isr_rotary_StartEx
+ 162:.\main.c      ****     Fake_ISR_StartEx(Fake_Handler);
+ 420              		.loc 1 162 0
+ 421 0030 0F48     		ldr	r0, .L42+28
+ 422 0032 FFF7FEFF 		bl	Fake_ISR_StartEx
+ 163:.\main.c      **** 
+ 164:.\main.c      **** 	
+ 165:.\main.c      ****     
+ 166:.\main.c      ****     /* Start the components */
+ 167:.\main.c      ****     FSM_Timer_Start();
+ 423              		.loc 1 167 0
+ 424 0036 FFF7FEFF 		bl	FSM_Timer_Start
+ 168:.\main.c      ****     LCD_Timer_Start();
+ 425              		.loc 1 168 0
+ 426 003a FFF7FEFF 		bl	LCD_Timer_Start
+ 169:.\main.c      ****     Fake_Timer_Start();
+ 427              		.loc 1 169 0
+ 428 003e FFF7FEFF 		bl	Fake_Timer_Start
+ 170:.\main.c      ****     can_init();
+ 429              		.loc 1 170 0
+ 430 0042 FFF7FEFF 		bl	can_init
+ 171:.\main.c      ****     
+ 172:.\main.c      ****     
+ 173:.\main.c      ****     
+ 174:.\main.c      ****     /* Start LCD */
+ 175:.\main.c      ****     LCD_Start();
+ 431              		.loc 1 175 0
+ 432 0046 FFF7FEFF 		bl	LCD_Start
+ 433              	.L41:
  176:.\main.c      ****     
- 177:.\main.c      ****     /* Start LCD */
- 178:.\main.c      ****     LCD_Start();
- 428              		.loc 1 178 0
- 429 0046 FFF7FEFF 		bl	LCD_Start
- 430              	.L41:
- 179:.\main.c      ****     
- 180:.\main.c      ****     for(;;)
- 181:.\main.c      **** 	{
- 182:.\main.c      ****       
- 183:.\main.c      ****         CyDelay(10u);
- 431              		.loc 1 183 0 discriminator 1
- 432 004a 0A20     		movs	r0, #10
- 433 004c FFF7FEFF 		bl	CyDelay
- 184:.\main.c      **** 	} // main loop
- 434              		.loc 1 184 0 discriminator 1
- 435 0050 FBE7     		b	.L41
- 436              	.L43:
- 437 0052 00BF     		.align	2
- 438              	.L42:
- 439 0054 00000000 		.word	state
- 440 0058 00000000 		.word	mode
- 441 005c 00000000 		.word	FSM_Handler
- 442 0060 00000000 		.word	LCD_Handler
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 12
+ 177:.\main.c      ****     for(;;)
+ 178:.\main.c      **** 	{
+ 179:.\main.c      ****       
+ 180:.\main.c      ****         CyDelay(10u);
+ 434              		.loc 1 180 0 discriminator 1
+ 435 004a 0A20     		movs	r0, #10
+ 436 004c FFF7FEFF 		bl	CyDelay
+ 181:.\main.c      **** 	} // main loop
+ 437              		.loc 1 181 0 discriminator 1
+ 438 0050 FBE7     		b	.L41
+ 439              	.L43:
+ 440 0052 00BF     		.align	2
+ 441              	.L42:
+ 442 0054 00000000 		.word	state
+ 443 0058 00000000 		.word	mode
+ 444 005c 00000000 		.word	FSM_Handler
+ 445 0060 00000000 		.word	LCD_Handler
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc9RuzZG.s 			page 12
 
 
- 443 0064 00000000 		.word	isr_OK
- 444 0068 00000000 		.word	isr_back
- 445 006c 00000000 		.word	isr_rotary
- 446 0070 00000000 		.word	Fake_Handler
- 447              		.cfi_endproc
- 448              	.LFE63:
- 449              		.size	main, .-main
- 450              		.text
- 451              	.Letext0:
- 452              		.file 2 "d:\\software\\psoccreator\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4.8.4\\a
- 453              		.file 3 "d:\\software\\psoccreator\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4.8.4\\a
- 454              		.file 4 ".\\Generated_Source\\PSoC5/cytypes.h"
- 455              		.file 5 ".\\state_event.h"
- 456              		.file 6 ".\\Generated_Source\\PSoC5/core_cm3.h"
- 457              		.section	.debug_info,"",%progbits
- 458              	.Ldebug_info0:
- 459 0000 58020000 		.4byte	0x258
- 460 0004 0400     		.2byte	0x4
- 461 0006 00000000 		.4byte	.Ldebug_abbrev0
- 462 000a 04       		.byte	0x4
- 463 000b 01       		.uleb128 0x1
- 464 000c 54010000 		.4byte	.LASF46
- 465 0010 01       		.byte	0x1
- 466 0011 58000000 		.4byte	.LASF47
- 467 0015 34020000 		.4byte	.LASF48
- 468 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 469 001d 00000000 		.4byte	0
- 470 0021 00000000 		.4byte	.Ldebug_line0
- 471 0025 02       		.uleb128 0x2
- 472 0026 01       		.byte	0x1
- 473 0027 06       		.byte	0x6
- 474 0028 16000000 		.4byte	.LASF0
- 475 002c 03       		.uleb128 0x3
- 476 002d 22000000 		.4byte	.LASF3
- 477 0031 02       		.byte	0x2
- 478 0032 1C       		.byte	0x1c
- 479 0033 37000000 		.4byte	0x37
- 480 0037 02       		.uleb128 0x2
- 481 0038 01       		.byte	0x1
- 482 0039 08       		.byte	0x8
- 483 003a 74000000 		.4byte	.LASF1
- 484 003e 02       		.uleb128 0x2
- 485 003f 02       		.byte	0x2
- 486 0040 05       		.byte	0x5
- 487 0041 13020000 		.4byte	.LASF2
- 488 0045 03       		.uleb128 0x3
- 489 0046 F0000000 		.4byte	.LASF4
- 490 004a 02       		.byte	0x2
- 491 004b 26       		.byte	0x26
- 492 004c 50000000 		.4byte	0x50
- 493 0050 02       		.uleb128 0x2
- 494 0051 02       		.byte	0x2
- 495 0052 07       		.byte	0x7
- 496 0053 BA000000 		.4byte	.LASF5
- 497 0057 03       		.uleb128 0x3
- 498 0058 38000000 		.4byte	.LASF6
- 499 005c 02       		.byte	0x2
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 13
+ 446 0064 00000000 		.word	isr_OK
+ 447 0068 00000000 		.word	isr_back
+ 448 006c 00000000 		.word	isr_rotary
+ 449 0070 00000000 		.word	Fake_Handler
+ 450              		.cfi_endproc
+ 451              	.LFE63:
+ 452              		.size	main, .-main
+ 453              		.text
+ 454              	.Letext0:
+ 455              		.file 2 "d:\\software\\psoccreator\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4.8.4\\a
+ 456              		.file 3 "d:\\software\\psoccreator\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4.8.4\\a
+ 457              		.file 4 ".\\Generated_Source\\PSoC5/cytypes.h"
+ 458              		.file 5 ".\\state_event.h"
+ 459              		.file 6 ".\\Generated_Source\\PSoC5/core_cm3.h"
+ 460              		.section	.debug_info,"",%progbits
+ 461              	.Ldebug_info0:
+ 462 0000 58020000 		.4byte	0x258
+ 463 0004 0400     		.2byte	0x4
+ 464 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 465 000a 04       		.byte	0x4
+ 466 000b 01       		.uleb128 0x1
+ 467 000c 54010000 		.4byte	.LASF46
+ 468 0010 01       		.byte	0x1
+ 469 0011 58000000 		.4byte	.LASF47
+ 470 0015 34020000 		.4byte	.LASF48
+ 471 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 472 001d 00000000 		.4byte	0
+ 473 0021 00000000 		.4byte	.Ldebug_line0
+ 474 0025 02       		.uleb128 0x2
+ 475 0026 01       		.byte	0x1
+ 476 0027 06       		.byte	0x6
+ 477 0028 16000000 		.4byte	.LASF0
+ 478 002c 03       		.uleb128 0x3
+ 479 002d 22000000 		.4byte	.LASF3
+ 480 0031 02       		.byte	0x2
+ 481 0032 1C       		.byte	0x1c
+ 482 0033 37000000 		.4byte	0x37
+ 483 0037 02       		.uleb128 0x2
+ 484 0038 01       		.byte	0x1
+ 485 0039 08       		.byte	0x8
+ 486 003a 74000000 		.4byte	.LASF1
+ 487 003e 02       		.uleb128 0x2
+ 488 003f 02       		.byte	0x2
+ 489 0040 05       		.byte	0x5
+ 490 0041 13020000 		.4byte	.LASF2
+ 491 0045 03       		.uleb128 0x3
+ 492 0046 F0000000 		.4byte	.LASF4
+ 493 004a 02       		.byte	0x2
+ 494 004b 26       		.byte	0x26
+ 495 004c 50000000 		.4byte	0x50
+ 496 0050 02       		.uleb128 0x2
+ 497 0051 02       		.byte	0x2
+ 498 0052 07       		.byte	0x7
+ 499 0053 BA000000 		.4byte	.LASF5
+ 500 0057 03       		.uleb128 0x3
+ 501 0058 38000000 		.4byte	.LASF6
+ 502 005c 02       		.byte	0x2
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc9RuzZG.s 			page 13
 
 
- 500 005d 37       		.byte	0x37
- 501 005e 62000000 		.4byte	0x62
- 502 0062 02       		.uleb128 0x2
- 503 0063 04       		.byte	0x4
- 504 0064 05       		.byte	0x5
- 505 0065 49000000 		.4byte	.LASF7
- 506 0069 02       		.uleb128 0x2
- 507 006a 04       		.byte	0x4
- 508 006b 07       		.byte	0x7
- 509 006c 9C000000 		.4byte	.LASF8
- 510 0070 02       		.uleb128 0x2
- 511 0071 08       		.byte	0x8
- 512 0072 05       		.byte	0x5
- 513 0073 00000000 		.4byte	.LASF9
- 514 0077 02       		.uleb128 0x2
- 515 0078 08       		.byte	0x8
- 516 0079 07       		.byte	0x7
- 517 007a 30010000 		.4byte	.LASF10
- 518 007e 04       		.uleb128 0x4
- 519 007f 04       		.byte	0x4
- 520 0080 05       		.byte	0x5
- 521 0081 696E7400 		.ascii	"int\000"
- 522 0085 02       		.uleb128 0x2
- 523 0086 04       		.byte	0x4
- 524 0087 07       		.byte	0x7
- 525 0088 23010000 		.4byte	.LASF11
- 526 008c 03       		.uleb128 0x3
- 527 008d 47010000 		.4byte	.LASF12
- 528 0091 03       		.byte	0x3
- 529 0092 2A       		.byte	0x2a
- 530 0093 2C000000 		.4byte	0x2c
- 531 0097 03       		.uleb128 0x3
- 532 0098 1D020000 		.4byte	.LASF13
- 533 009c 03       		.byte	0x3
- 534 009d 36       		.byte	0x36
- 535 009e 45000000 		.4byte	0x45
- 536 00a2 03       		.uleb128 0x3
- 537 00a3 D0010000 		.4byte	.LASF14
- 538 00a7 03       		.byte	0x3
- 539 00a8 41       		.byte	0x41
- 540 00a9 57000000 		.4byte	0x57
- 541 00ad 03       		.uleb128 0x3
- 542 00ae 52000000 		.4byte	.LASF15
- 543 00b2 04       		.byte	0x4
- 544 00b3 A1       		.byte	0xa1
- 545 00b4 37000000 		.4byte	0x37
- 546 00b8 02       		.uleb128 0x2
- 547 00b9 04       		.byte	0x4
- 548 00ba 04       		.byte	0x4
- 549 00bb 61000000 		.4byte	.LASF16
- 550 00bf 02       		.uleb128 0x2
- 551 00c0 08       		.byte	0x8
- 552 00c1 04       		.byte	0x4
- 553 00c2 FB000000 		.4byte	.LASF17
- 554 00c6 02       		.uleb128 0x2
- 555 00c7 01       		.byte	0x1
- 556 00c8 08       		.byte	0x8
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 14
+ 503 005d 37       		.byte	0x37
+ 504 005e 62000000 		.4byte	0x62
+ 505 0062 02       		.uleb128 0x2
+ 506 0063 04       		.byte	0x4
+ 507 0064 05       		.byte	0x5
+ 508 0065 49000000 		.4byte	.LASF7
+ 509 0069 02       		.uleb128 0x2
+ 510 006a 04       		.byte	0x4
+ 511 006b 07       		.byte	0x7
+ 512 006c 9C000000 		.4byte	.LASF8
+ 513 0070 02       		.uleb128 0x2
+ 514 0071 08       		.byte	0x8
+ 515 0072 05       		.byte	0x5
+ 516 0073 00000000 		.4byte	.LASF9
+ 517 0077 02       		.uleb128 0x2
+ 518 0078 08       		.byte	0x8
+ 519 0079 07       		.byte	0x7
+ 520 007a 30010000 		.4byte	.LASF10
+ 521 007e 04       		.uleb128 0x4
+ 522 007f 04       		.byte	0x4
+ 523 0080 05       		.byte	0x5
+ 524 0081 696E7400 		.ascii	"int\000"
+ 525 0085 02       		.uleb128 0x2
+ 526 0086 04       		.byte	0x4
+ 527 0087 07       		.byte	0x7
+ 528 0088 23010000 		.4byte	.LASF11
+ 529 008c 03       		.uleb128 0x3
+ 530 008d 47010000 		.4byte	.LASF12
+ 531 0091 03       		.byte	0x3
+ 532 0092 2A       		.byte	0x2a
+ 533 0093 2C000000 		.4byte	0x2c
+ 534 0097 03       		.uleb128 0x3
+ 535 0098 1D020000 		.4byte	.LASF13
+ 536 009c 03       		.byte	0x3
+ 537 009d 36       		.byte	0x36
+ 538 009e 45000000 		.4byte	0x45
+ 539 00a2 03       		.uleb128 0x3
+ 540 00a3 D0010000 		.4byte	.LASF14
+ 541 00a7 03       		.byte	0x3
+ 542 00a8 41       		.byte	0x41
+ 543 00a9 57000000 		.4byte	0x57
+ 544 00ad 03       		.uleb128 0x3
+ 545 00ae 52000000 		.4byte	.LASF15
+ 546 00b2 04       		.byte	0x4
+ 547 00b3 A1       		.byte	0xa1
+ 548 00b4 37000000 		.4byte	0x37
+ 549 00b8 02       		.uleb128 0x2
+ 550 00b9 04       		.byte	0x4
+ 551 00ba 04       		.byte	0x4
+ 552 00bb 61000000 		.4byte	.LASF16
+ 553 00bf 02       		.uleb128 0x2
+ 554 00c0 08       		.byte	0x8
+ 555 00c1 04       		.byte	0x4
+ 556 00c2 FB000000 		.4byte	.LASF17
+ 557 00c6 02       		.uleb128 0x2
+ 558 00c7 01       		.byte	0x1
+ 559 00c8 08       		.byte	0x8
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc9RuzZG.s 			page 14
 
 
- 557 00c9 ED010000 		.4byte	.LASF18
- 558 00cd 05       		.uleb128 0x5
- 559 00ce 82000000 		.4byte	.LASF19
- 560 00d2 04       		.byte	0x4
- 561 00d3 4B01     		.2byte	0x14b
- 562 00d5 D9000000 		.4byte	0xd9
- 563 00d9 06       		.uleb128 0x6
- 564 00da AD000000 		.4byte	0xad
- 565 00de 02       		.uleb128 0x2
- 566 00df 04       		.byte	0x4
- 567 00e0 07       		.byte	0x7
- 568 00e1 D8010000 		.4byte	.LASF20
- 569 00e5 06       		.uleb128 0x6
- 570 00e6 8C000000 		.4byte	0x8c
- 571 00ea 06       		.uleb128 0x6
- 572 00eb 97000000 		.4byte	0x97
- 573 00ef 07       		.uleb128 0x7
- 574 00f0 01       		.byte	0x1
- 575 00f1 05       		.byte	0x5
- 576 00f2 07       		.byte	0x7
- 577 00f3 04010000 		.4byte	0x104
- 578 00f7 08       		.uleb128 0x8
- 579 00f8 76020000 		.4byte	.LASF21
- 580 00fc 00       		.sleb128 0
- 581 00fd 08       		.uleb128 0x8
- 582 00fe 18010000 		.4byte	.LASF22
- 583 0102 01       		.sleb128 1
- 584 0103 00       		.byte	0
- 585 0104 03       		.uleb128 0x3
- 586 0105 92000000 		.4byte	.LASF23
- 587 0109 05       		.byte	0x5
- 588 010a 0A       		.byte	0xa
- 589 010b EF000000 		.4byte	0xef
- 590 010f 07       		.uleb128 0x7
- 591 0110 01       		.byte	0x1
- 592 0111 05       		.byte	0x5
- 593 0112 0E       		.byte	0xe
- 594 0113 42010000 		.4byte	0x142
- 595 0117 08       		.uleb128 0x8
- 596 0118 0E000000 		.4byte	.LASF24
- 597 011c 00       		.sleb128 0
- 598 011d 08       		.uleb128 0x8
- 599 011e 2C020000 		.4byte	.LASF25
- 600 0122 01       		.sleb128 1
- 601 0123 08       		.uleb128 0x8
- 602 0124 32000000 		.4byte	.LASF26
- 603 0128 02       		.sleb128 2
- 604 0129 08       		.uleb128 0x8
- 605 012a 09020000 		.4byte	.LASF27
- 606 012e 03       		.sleb128 3
- 607 012f 08       		.uleb128 0x8
- 608 0130 7D020000 		.4byte	.LASF28
- 609 0134 04       		.sleb128 4
- 610 0135 08       		.uleb128 0x8
- 611 0136 6B020000 		.4byte	.LASF29
- 612 013a 05       		.sleb128 5
- 613 013b 08       		.uleb128 0x8
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 15
+ 560 00c9 ED010000 		.4byte	.LASF18
+ 561 00cd 05       		.uleb128 0x5
+ 562 00ce 82000000 		.4byte	.LASF19
+ 563 00d2 04       		.byte	0x4
+ 564 00d3 4B01     		.2byte	0x14b
+ 565 00d5 D9000000 		.4byte	0xd9
+ 566 00d9 06       		.uleb128 0x6
+ 567 00da AD000000 		.4byte	0xad
+ 568 00de 02       		.uleb128 0x2
+ 569 00df 04       		.byte	0x4
+ 570 00e0 07       		.byte	0x7
+ 571 00e1 D8010000 		.4byte	.LASF20
+ 572 00e5 06       		.uleb128 0x6
+ 573 00e6 8C000000 		.4byte	0x8c
+ 574 00ea 06       		.uleb128 0x6
+ 575 00eb 97000000 		.4byte	0x97
+ 576 00ef 07       		.uleb128 0x7
+ 577 00f0 01       		.byte	0x1
+ 578 00f1 05       		.byte	0x5
+ 579 00f2 07       		.byte	0x7
+ 580 00f3 04010000 		.4byte	0x104
+ 581 00f7 08       		.uleb128 0x8
+ 582 00f8 76020000 		.4byte	.LASF21
+ 583 00fc 00       		.sleb128 0
+ 584 00fd 08       		.uleb128 0x8
+ 585 00fe 18010000 		.4byte	.LASF22
+ 586 0102 01       		.sleb128 1
+ 587 0103 00       		.byte	0
+ 588 0104 03       		.uleb128 0x3
+ 589 0105 92000000 		.4byte	.LASF23
+ 590 0109 05       		.byte	0x5
+ 591 010a 0A       		.byte	0xa
+ 592 010b EF000000 		.4byte	0xef
+ 593 010f 07       		.uleb128 0x7
+ 594 0110 01       		.byte	0x1
+ 595 0111 05       		.byte	0x5
+ 596 0112 0E       		.byte	0xe
+ 597 0113 42010000 		.4byte	0x142
+ 598 0117 08       		.uleb128 0x8
+ 599 0118 0E000000 		.4byte	.LASF24
+ 600 011c 00       		.sleb128 0
+ 601 011d 08       		.uleb128 0x8
+ 602 011e 2C020000 		.4byte	.LASF25
+ 603 0122 01       		.sleb128 1
+ 604 0123 08       		.uleb128 0x8
+ 605 0124 32000000 		.4byte	.LASF26
+ 606 0128 02       		.sleb128 2
+ 607 0129 08       		.uleb128 0x8
+ 608 012a 09020000 		.4byte	.LASF27
+ 609 012e 03       		.sleb128 3
+ 610 012f 08       		.uleb128 0x8
+ 611 0130 7D020000 		.4byte	.LASF28
+ 612 0134 04       		.sleb128 4
+ 613 0135 08       		.uleb128 0x8
+ 614 0136 6B020000 		.4byte	.LASF29
+ 615 013a 05       		.sleb128 5
+ 616 013b 08       		.uleb128 0x8
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc9RuzZG.s 			page 15
 
 
- 614 013c 87000000 		.4byte	.LASF30
- 615 0140 06       		.sleb128 6
- 616 0141 00       		.byte	0
- 617 0142 09       		.uleb128 0x9
- 618 0143 AE000000 		.4byte	.LASF49
- 619 0147 01       		.byte	0x1
- 620 0148 41       		.byte	0x41
- 621 0149 00000000 		.4byte	.LFB56
- 622 014d 08000000 		.4byte	.LFE56-.LFB56
- 623 0151 01       		.uleb128 0x1
- 624 0152 9C       		.byte	0x9c
- 625 0153 0A       		.uleb128 0xa
- 626 0154 F2010000 		.4byte	.LASF31
- 627 0158 01       		.byte	0x1
- 628 0159 48       		.byte	0x48
- 629 015a 00000000 		.4byte	.LFB57
- 630 015e 3C000000 		.4byte	.LFE57-.LFB57
- 631 0162 01       		.uleb128 0x1
- 632 0163 9C       		.byte	0x9c
- 633 0164 0A       		.uleb128 0xa
- 634 0165 42000000 		.4byte	.LASF32
- 635 0169 01       		.byte	0x1
- 636 016a 54       		.byte	0x54
- 637 016b 00000000 		.4byte	.LFB58
- 638 016f 28000000 		.4byte	.LFE58-.LFB58
- 639 0173 01       		.uleb128 0x1
- 640 0174 9C       		.byte	0x9c
- 641 0175 0A       		.uleb128 0xa
- 642 0176 0F010000 		.4byte	.LASF33
- 643 017a 01       		.byte	0x1
- 644 017b 5F       		.byte	0x5f
- 645 017c 00000000 		.4byte	.LFB59
- 646 0180 18000000 		.4byte	.LFE59-.LFB59
- 647 0184 01       		.uleb128 0x1
- 648 0185 9C       		.byte	0x9c
- 649 0186 0A       		.uleb128 0xa
- 650 0187 E1010000 		.4byte	.LASF34
- 651 018b 01       		.byte	0x1
- 652 018c 67       		.byte	0x67
- 653 018d 00000000 		.4byte	.LFB60
- 654 0191 3C000000 		.4byte	.LFE60-.LFB60
- 655 0195 01       		.uleb128 0x1
- 656 0196 9C       		.byte	0x9c
- 657 0197 0B       		.uleb128 0xb
- 658 0198 CD000000 		.4byte	.LASF35
- 659 019c 01       		.byte	0x1
- 660 019d 71       		.byte	0x71
- 661 019e 00000000 		.4byte	.LFB61
- 662 01a2 18000000 		.4byte	.LFE61-.LFB61
- 663 01a6 01       		.uleb128 0x1
- 664 01a7 9C       		.byte	0x9c
- 665 01a8 0A       		.uleb128 0xa
- 666 01a9 FD010000 		.4byte	.LASF36
- 667 01ad 01       		.byte	0x1
- 668 01ae 78       		.byte	0x78
- 669 01af 00000000 		.4byte	.LFB62
- 670 01b3 54000000 		.4byte	.LFE62-.LFB62
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 16
+ 617 013c 87000000 		.4byte	.LASF30
+ 618 0140 06       		.sleb128 6
+ 619 0141 00       		.byte	0
+ 620 0142 09       		.uleb128 0x9
+ 621 0143 AE000000 		.4byte	.LASF49
+ 622 0147 01       		.byte	0x1
+ 623 0148 41       		.byte	0x41
+ 624 0149 00000000 		.4byte	.LFB56
+ 625 014d 08000000 		.4byte	.LFE56-.LFB56
+ 626 0151 01       		.uleb128 0x1
+ 627 0152 9C       		.byte	0x9c
+ 628 0153 0A       		.uleb128 0xa
+ 629 0154 F2010000 		.4byte	.LASF31
+ 630 0158 01       		.byte	0x1
+ 631 0159 48       		.byte	0x48
+ 632 015a 00000000 		.4byte	.LFB57
+ 633 015e 40000000 		.4byte	.LFE57-.LFB57
+ 634 0162 01       		.uleb128 0x1
+ 635 0163 9C       		.byte	0x9c
+ 636 0164 0A       		.uleb128 0xa
+ 637 0165 42000000 		.4byte	.LASF32
+ 638 0169 01       		.byte	0x1
+ 639 016a 53       		.byte	0x53
+ 640 016b 00000000 		.4byte	.LFB58
+ 641 016f 2C000000 		.4byte	.LFE58-.LFB58
+ 642 0173 01       		.uleb128 0x1
+ 643 0174 9C       		.byte	0x9c
+ 644 0175 0A       		.uleb128 0xa
+ 645 0176 0F010000 		.4byte	.LASF33
+ 646 017a 01       		.byte	0x1
+ 647 017b 5D       		.byte	0x5d
+ 648 017c 00000000 		.4byte	.LFB59
+ 649 0180 18000000 		.4byte	.LFE59-.LFB59
+ 650 0184 01       		.uleb128 0x1
+ 651 0185 9C       		.byte	0x9c
+ 652 0186 0B       		.uleb128 0xb
+ 653 0187 E1010000 		.4byte	.LASF34
+ 654 018b 01       		.byte	0x1
+ 655 018c 64       		.byte	0x64
+ 656 018d 00000000 		.4byte	.LFB60
+ 657 0191 3C000000 		.4byte	.LFE60-.LFB60
+ 658 0195 01       		.uleb128 0x1
+ 659 0196 9C       		.byte	0x9c
+ 660 0197 0A       		.uleb128 0xa
+ 661 0198 CD000000 		.4byte	.LASF35
+ 662 019c 01       		.byte	0x1
+ 663 019d 6E       		.byte	0x6e
+ 664 019e 00000000 		.4byte	.LFB61
+ 665 01a2 18000000 		.4byte	.LFE61-.LFB61
+ 666 01a6 01       		.uleb128 0x1
+ 667 01a7 9C       		.byte	0x9c
+ 668 01a8 0B       		.uleb128 0xb
+ 669 01a9 FD010000 		.4byte	.LASF36
+ 670 01ad 01       		.byte	0x1
+ 671 01ae 75       		.byte	0x75
+ 672 01af 00000000 		.4byte	.LFB62
+ 673 01b3 54000000 		.4byte	.LFE62-.LFB62
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc9RuzZG.s 			page 16
 
 
- 671 01b7 01       		.uleb128 0x1
- 672 01b8 9C       		.byte	0x9c
- 673 01b9 0C       		.uleb128 0xc
- 674 01ba 0A010000 		.4byte	.LASF37
- 675 01be 01       		.byte	0x1
- 676 01bf 96       		.byte	0x96
- 677 01c0 7E000000 		.4byte	0x7e
- 678 01c4 00000000 		.4byte	.LFB63
- 679 01c8 74000000 		.4byte	.LFE63-.LFB63
- 680 01cc 01       		.uleb128 0x1
- 681 01cd 9C       		.byte	0x9c
- 682 01ce 0D       		.uleb128 0xd
- 683 01cf DA000000 		.4byte	.LASF38
- 684 01d3 06       		.byte	0x6
- 685 01d4 1606     		.2byte	0x616
- 686 01d6 DA010000 		.4byte	0x1da
- 687 01da 06       		.uleb128 0x6
- 688 01db A2000000 		.4byte	0xa2
- 689 01df 0E       		.uleb128 0xe
- 690 01e0 1D010000 		.4byte	.LASF39
- 691 01e4 01       		.byte	0x1
- 692 01e5 1E       		.byte	0x1e
- 693 01e6 EA000000 		.4byte	0xea
- 694 01ea 05       		.uleb128 0x5
- 695 01eb 03       		.byte	0x3
- 696 01ec 00000000 		.4byte	event
- 697 01f0 0E       		.uleb128 0xe
- 698 01f1 2C000000 		.4byte	.LASF40
- 699 01f5 01       		.byte	0x1
- 700 01f6 1F       		.byte	0x1f
- 701 01f7 E5000000 		.4byte	0xe5
- 702 01fb 05       		.uleb128 0x5
- 703 01fc 03       		.byte	0x3
- 704 01fd 00000000 		.4byte	state
- 705 0201 0E       		.uleb128 0xe
- 706 0202 67000000 		.4byte	.LASF41
- 707 0206 01       		.byte	0x1
- 708 0207 20       		.byte	0x20
- 709 0208 E5000000 		.4byte	0xe5
- 710 020c 05       		.uleb128 0x5
- 711 020d 03       		.byte	0x3
- 712 020e 00000000 		.4byte	current_page
- 713 0212 0E       		.uleb128 0xe
- 714 0213 E7000000 		.4byte	.LASF42
- 715 0217 01       		.byte	0x1
- 716 0218 21       		.byte	0x21
- 717 0219 E5000000 		.4byte	0xe5
- 718 021d 05       		.uleb128 0x5
- 719 021e 03       		.byte	0x3
- 720 021f 00000000 		.4byte	throttle
- 721 0223 0E       		.uleb128 0xe
- 722 0224 02010000 		.4byte	.LASF43
- 723 0228 01       		.byte	0x1
- 724 0229 22       		.byte	0x22
- 725 022a E5000000 		.4byte	0xe5
- 726 022e 05       		.uleb128 0x5
- 727 022f 03       		.byte	0x3
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 17
+ 674 01b7 01       		.uleb128 0x1
+ 675 01b8 9C       		.byte	0x9c
+ 676 01b9 0C       		.uleb128 0xc
+ 677 01ba 0A010000 		.4byte	.LASF37
+ 678 01be 01       		.byte	0x1
+ 679 01bf 93       		.byte	0x93
+ 680 01c0 7E000000 		.4byte	0x7e
+ 681 01c4 00000000 		.4byte	.LFB63
+ 682 01c8 74000000 		.4byte	.LFE63-.LFB63
+ 683 01cc 01       		.uleb128 0x1
+ 684 01cd 9C       		.byte	0x9c
+ 685 01ce 0D       		.uleb128 0xd
+ 686 01cf DA000000 		.4byte	.LASF38
+ 687 01d3 06       		.byte	0x6
+ 688 01d4 1606     		.2byte	0x616
+ 689 01d6 DA010000 		.4byte	0x1da
+ 690 01da 06       		.uleb128 0x6
+ 691 01db A2000000 		.4byte	0xa2
+ 692 01df 0E       		.uleb128 0xe
+ 693 01e0 1D010000 		.4byte	.LASF39
+ 694 01e4 01       		.byte	0x1
+ 695 01e5 1E       		.byte	0x1e
+ 696 01e6 EA000000 		.4byte	0xea
+ 697 01ea 05       		.uleb128 0x5
+ 698 01eb 03       		.byte	0x3
+ 699 01ec 00000000 		.4byte	event
+ 700 01f0 0E       		.uleb128 0xe
+ 701 01f1 2C000000 		.4byte	.LASF40
+ 702 01f5 01       		.byte	0x1
+ 703 01f6 1F       		.byte	0x1f
+ 704 01f7 E5000000 		.4byte	0xe5
+ 705 01fb 05       		.uleb128 0x5
+ 706 01fc 03       		.byte	0x3
+ 707 01fd 00000000 		.4byte	state
+ 708 0201 0E       		.uleb128 0xe
+ 709 0202 67000000 		.4byte	.LASF41
+ 710 0206 01       		.byte	0x1
+ 711 0207 20       		.byte	0x20
+ 712 0208 E5000000 		.4byte	0xe5
+ 713 020c 05       		.uleb128 0x5
+ 714 020d 03       		.byte	0x3
+ 715 020e 00000000 		.4byte	current_page
+ 716 0212 0E       		.uleb128 0xe
+ 717 0213 E7000000 		.4byte	.LASF42
+ 718 0217 01       		.byte	0x1
+ 719 0218 21       		.byte	0x21
+ 720 0219 E5000000 		.4byte	0xe5
+ 721 021d 05       		.uleb128 0x5
+ 722 021e 03       		.byte	0x3
+ 723 021f 00000000 		.4byte	throttle
+ 724 0223 0E       		.uleb128 0xe
+ 725 0224 02010000 		.4byte	.LASF43
+ 726 0228 01       		.byte	0x1
+ 727 0229 22       		.byte	0x22
+ 728 022a E5000000 		.4byte	0xe5
+ 729 022e 05       		.uleb128 0x5
+ 730 022f 03       		.byte	0x3
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc9RuzZG.s 			page 17
 
 
- 728 0230 00000000 		.4byte	battery
- 729 0234 0E       		.uleb128 0xe
- 730 0235 26020000 		.4byte	.LASF44
- 731 0239 01       		.byte	0x1
- 732 023a 23       		.byte	0x23
- 733 023b E5000000 		.4byte	0xe5
- 734 023f 05       		.uleb128 0x5
- 735 0240 03       		.byte	0x3
- 736 0241 00000000 		.4byte	brake
- 737 0245 0E       		.uleb128 0xe
- 738 0246 4F010000 		.4byte	.LASF45
- 739 024a 01       		.byte	0x1
- 740 024b 25       		.byte	0x25
- 741 024c 56020000 		.4byte	0x256
- 742 0250 05       		.uleb128 0x5
- 743 0251 03       		.byte	0x3
- 744 0252 00000000 		.4byte	mode
- 745 0256 06       		.uleb128 0x6
- 746 0257 04010000 		.4byte	0x104
- 747 025b 00       		.byte	0
- 748              		.section	.debug_abbrev,"",%progbits
- 749              	.Ldebug_abbrev0:
- 750 0000 01       		.uleb128 0x1
- 751 0001 11       		.uleb128 0x11
- 752 0002 01       		.byte	0x1
- 753 0003 25       		.uleb128 0x25
- 754 0004 0E       		.uleb128 0xe
- 755 0005 13       		.uleb128 0x13
- 756 0006 0B       		.uleb128 0xb
- 757 0007 03       		.uleb128 0x3
- 758 0008 0E       		.uleb128 0xe
- 759 0009 1B       		.uleb128 0x1b
- 760 000a 0E       		.uleb128 0xe
- 761 000b 55       		.uleb128 0x55
- 762 000c 17       		.uleb128 0x17
- 763 000d 11       		.uleb128 0x11
- 764 000e 01       		.uleb128 0x1
- 765 000f 10       		.uleb128 0x10
- 766 0010 17       		.uleb128 0x17
- 767 0011 00       		.byte	0
- 768 0012 00       		.byte	0
- 769 0013 02       		.uleb128 0x2
- 770 0014 24       		.uleb128 0x24
- 771 0015 00       		.byte	0
- 772 0016 0B       		.uleb128 0xb
- 773 0017 0B       		.uleb128 0xb
- 774 0018 3E       		.uleb128 0x3e
- 775 0019 0B       		.uleb128 0xb
- 776 001a 03       		.uleb128 0x3
- 777 001b 0E       		.uleb128 0xe
- 778 001c 00       		.byte	0
- 779 001d 00       		.byte	0
- 780 001e 03       		.uleb128 0x3
- 781 001f 16       		.uleb128 0x16
- 782 0020 00       		.byte	0
- 783 0021 03       		.uleb128 0x3
- 784 0022 0E       		.uleb128 0xe
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 18
+ 731 0230 00000000 		.4byte	battery
+ 732 0234 0E       		.uleb128 0xe
+ 733 0235 26020000 		.4byte	.LASF44
+ 734 0239 01       		.byte	0x1
+ 735 023a 23       		.byte	0x23
+ 736 023b E5000000 		.4byte	0xe5
+ 737 023f 05       		.uleb128 0x5
+ 738 0240 03       		.byte	0x3
+ 739 0241 00000000 		.4byte	brake
+ 740 0245 0E       		.uleb128 0xe
+ 741 0246 4F010000 		.4byte	.LASF45
+ 742 024a 01       		.byte	0x1
+ 743 024b 25       		.byte	0x25
+ 744 024c 56020000 		.4byte	0x256
+ 745 0250 05       		.uleb128 0x5
+ 746 0251 03       		.byte	0x3
+ 747 0252 00000000 		.4byte	mode
+ 748 0256 06       		.uleb128 0x6
+ 749 0257 04010000 		.4byte	0x104
+ 750 025b 00       		.byte	0
+ 751              		.section	.debug_abbrev,"",%progbits
+ 752              	.Ldebug_abbrev0:
+ 753 0000 01       		.uleb128 0x1
+ 754 0001 11       		.uleb128 0x11
+ 755 0002 01       		.byte	0x1
+ 756 0003 25       		.uleb128 0x25
+ 757 0004 0E       		.uleb128 0xe
+ 758 0005 13       		.uleb128 0x13
+ 759 0006 0B       		.uleb128 0xb
+ 760 0007 03       		.uleb128 0x3
+ 761 0008 0E       		.uleb128 0xe
+ 762 0009 1B       		.uleb128 0x1b
+ 763 000a 0E       		.uleb128 0xe
+ 764 000b 55       		.uleb128 0x55
+ 765 000c 17       		.uleb128 0x17
+ 766 000d 11       		.uleb128 0x11
+ 767 000e 01       		.uleb128 0x1
+ 768 000f 10       		.uleb128 0x10
+ 769 0010 17       		.uleb128 0x17
+ 770 0011 00       		.byte	0
+ 771 0012 00       		.byte	0
+ 772 0013 02       		.uleb128 0x2
+ 773 0014 24       		.uleb128 0x24
+ 774 0015 00       		.byte	0
+ 775 0016 0B       		.uleb128 0xb
+ 776 0017 0B       		.uleb128 0xb
+ 777 0018 3E       		.uleb128 0x3e
+ 778 0019 0B       		.uleb128 0xb
+ 779 001a 03       		.uleb128 0x3
+ 780 001b 0E       		.uleb128 0xe
+ 781 001c 00       		.byte	0
+ 782 001d 00       		.byte	0
+ 783 001e 03       		.uleb128 0x3
+ 784 001f 16       		.uleb128 0x16
+ 785 0020 00       		.byte	0
+ 786 0021 03       		.uleb128 0x3
+ 787 0022 0E       		.uleb128 0xe
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc9RuzZG.s 			page 18
 
 
- 785 0023 3A       		.uleb128 0x3a
- 786 0024 0B       		.uleb128 0xb
- 787 0025 3B       		.uleb128 0x3b
- 788 0026 0B       		.uleb128 0xb
- 789 0027 49       		.uleb128 0x49
- 790 0028 13       		.uleb128 0x13
- 791 0029 00       		.byte	0
- 792 002a 00       		.byte	0
- 793 002b 04       		.uleb128 0x4
- 794 002c 24       		.uleb128 0x24
- 795 002d 00       		.byte	0
- 796 002e 0B       		.uleb128 0xb
- 797 002f 0B       		.uleb128 0xb
- 798 0030 3E       		.uleb128 0x3e
- 799 0031 0B       		.uleb128 0xb
- 800 0032 03       		.uleb128 0x3
- 801 0033 08       		.uleb128 0x8
- 802 0034 00       		.byte	0
- 803 0035 00       		.byte	0
- 804 0036 05       		.uleb128 0x5
- 805 0037 16       		.uleb128 0x16
- 806 0038 00       		.byte	0
- 807 0039 03       		.uleb128 0x3
- 808 003a 0E       		.uleb128 0xe
- 809 003b 3A       		.uleb128 0x3a
- 810 003c 0B       		.uleb128 0xb
- 811 003d 3B       		.uleb128 0x3b
- 812 003e 05       		.uleb128 0x5
- 813 003f 49       		.uleb128 0x49
- 814 0040 13       		.uleb128 0x13
- 815 0041 00       		.byte	0
- 816 0042 00       		.byte	0
- 817 0043 06       		.uleb128 0x6
- 818 0044 35       		.uleb128 0x35
- 819 0045 00       		.byte	0
- 820 0046 49       		.uleb128 0x49
- 821 0047 13       		.uleb128 0x13
- 822 0048 00       		.byte	0
- 823 0049 00       		.byte	0
- 824 004a 07       		.uleb128 0x7
- 825 004b 04       		.uleb128 0x4
- 826 004c 01       		.byte	0x1
- 827 004d 0B       		.uleb128 0xb
- 828 004e 0B       		.uleb128 0xb
- 829 004f 3A       		.uleb128 0x3a
- 830 0050 0B       		.uleb128 0xb
- 831 0051 3B       		.uleb128 0x3b
- 832 0052 0B       		.uleb128 0xb
- 833 0053 01       		.uleb128 0x1
- 834 0054 13       		.uleb128 0x13
- 835 0055 00       		.byte	0
- 836 0056 00       		.byte	0
- 837 0057 08       		.uleb128 0x8
- 838 0058 28       		.uleb128 0x28
- 839 0059 00       		.byte	0
- 840 005a 03       		.uleb128 0x3
- 841 005b 0E       		.uleb128 0xe
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 19
+ 788 0023 3A       		.uleb128 0x3a
+ 789 0024 0B       		.uleb128 0xb
+ 790 0025 3B       		.uleb128 0x3b
+ 791 0026 0B       		.uleb128 0xb
+ 792 0027 49       		.uleb128 0x49
+ 793 0028 13       		.uleb128 0x13
+ 794 0029 00       		.byte	0
+ 795 002a 00       		.byte	0
+ 796 002b 04       		.uleb128 0x4
+ 797 002c 24       		.uleb128 0x24
+ 798 002d 00       		.byte	0
+ 799 002e 0B       		.uleb128 0xb
+ 800 002f 0B       		.uleb128 0xb
+ 801 0030 3E       		.uleb128 0x3e
+ 802 0031 0B       		.uleb128 0xb
+ 803 0032 03       		.uleb128 0x3
+ 804 0033 08       		.uleb128 0x8
+ 805 0034 00       		.byte	0
+ 806 0035 00       		.byte	0
+ 807 0036 05       		.uleb128 0x5
+ 808 0037 16       		.uleb128 0x16
+ 809 0038 00       		.byte	0
+ 810 0039 03       		.uleb128 0x3
+ 811 003a 0E       		.uleb128 0xe
+ 812 003b 3A       		.uleb128 0x3a
+ 813 003c 0B       		.uleb128 0xb
+ 814 003d 3B       		.uleb128 0x3b
+ 815 003e 05       		.uleb128 0x5
+ 816 003f 49       		.uleb128 0x49
+ 817 0040 13       		.uleb128 0x13
+ 818 0041 00       		.byte	0
+ 819 0042 00       		.byte	0
+ 820 0043 06       		.uleb128 0x6
+ 821 0044 35       		.uleb128 0x35
+ 822 0045 00       		.byte	0
+ 823 0046 49       		.uleb128 0x49
+ 824 0047 13       		.uleb128 0x13
+ 825 0048 00       		.byte	0
+ 826 0049 00       		.byte	0
+ 827 004a 07       		.uleb128 0x7
+ 828 004b 04       		.uleb128 0x4
+ 829 004c 01       		.byte	0x1
+ 830 004d 0B       		.uleb128 0xb
+ 831 004e 0B       		.uleb128 0xb
+ 832 004f 3A       		.uleb128 0x3a
+ 833 0050 0B       		.uleb128 0xb
+ 834 0051 3B       		.uleb128 0x3b
+ 835 0052 0B       		.uleb128 0xb
+ 836 0053 01       		.uleb128 0x1
+ 837 0054 13       		.uleb128 0x13
+ 838 0055 00       		.byte	0
+ 839 0056 00       		.byte	0
+ 840 0057 08       		.uleb128 0x8
+ 841 0058 28       		.uleb128 0x28
+ 842 0059 00       		.byte	0
+ 843 005a 03       		.uleb128 0x3
+ 844 005b 0E       		.uleb128 0xe
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc9RuzZG.s 			page 19
 
 
- 842 005c 1C       		.uleb128 0x1c
- 843 005d 0D       		.uleb128 0xd
- 844 005e 00       		.byte	0
- 845 005f 00       		.byte	0
- 846 0060 09       		.uleb128 0x9
- 847 0061 2E       		.uleb128 0x2e
- 848 0062 00       		.byte	0
- 849 0063 3F       		.uleb128 0x3f
- 850 0064 19       		.uleb128 0x19
- 851 0065 03       		.uleb128 0x3
- 852 0066 0E       		.uleb128 0xe
- 853 0067 3A       		.uleb128 0x3a
- 854 0068 0B       		.uleb128 0xb
- 855 0069 3B       		.uleb128 0x3b
- 856 006a 0B       		.uleb128 0xb
- 857 006b 11       		.uleb128 0x11
- 858 006c 01       		.uleb128 0x1
- 859 006d 12       		.uleb128 0x12
- 860 006e 06       		.uleb128 0x6
- 861 006f 40       		.uleb128 0x40
- 862 0070 18       		.uleb128 0x18
- 863 0071 9742     		.uleb128 0x2117
- 864 0073 19       		.uleb128 0x19
- 865 0074 00       		.byte	0
- 866 0075 00       		.byte	0
- 867 0076 0A       		.uleb128 0xa
- 868 0077 2E       		.uleb128 0x2e
- 869 0078 00       		.byte	0
- 870 0079 3F       		.uleb128 0x3f
- 871 007a 19       		.uleb128 0x19
- 872 007b 03       		.uleb128 0x3
- 873 007c 0E       		.uleb128 0xe
- 874 007d 3A       		.uleb128 0x3a
- 875 007e 0B       		.uleb128 0xb
- 876 007f 3B       		.uleb128 0x3b
- 877 0080 0B       		.uleb128 0xb
- 878 0081 27       		.uleb128 0x27
- 879 0082 19       		.uleb128 0x19
- 880 0083 11       		.uleb128 0x11
- 881 0084 01       		.uleb128 0x1
- 882 0085 12       		.uleb128 0x12
- 883 0086 06       		.uleb128 0x6
- 884 0087 40       		.uleb128 0x40
- 885 0088 18       		.uleb128 0x18
- 886 0089 9642     		.uleb128 0x2116
- 887 008b 19       		.uleb128 0x19
- 888 008c 00       		.byte	0
- 889 008d 00       		.byte	0
- 890 008e 0B       		.uleb128 0xb
- 891 008f 2E       		.uleb128 0x2e
- 892 0090 00       		.byte	0
- 893 0091 3F       		.uleb128 0x3f
- 894 0092 19       		.uleb128 0x19
- 895 0093 03       		.uleb128 0x3
- 896 0094 0E       		.uleb128 0xe
- 897 0095 3A       		.uleb128 0x3a
- 898 0096 0B       		.uleb128 0xb
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 20
+ 845 005c 1C       		.uleb128 0x1c
+ 846 005d 0D       		.uleb128 0xd
+ 847 005e 00       		.byte	0
+ 848 005f 00       		.byte	0
+ 849 0060 09       		.uleb128 0x9
+ 850 0061 2E       		.uleb128 0x2e
+ 851 0062 00       		.byte	0
+ 852 0063 3F       		.uleb128 0x3f
+ 853 0064 19       		.uleb128 0x19
+ 854 0065 03       		.uleb128 0x3
+ 855 0066 0E       		.uleb128 0xe
+ 856 0067 3A       		.uleb128 0x3a
+ 857 0068 0B       		.uleb128 0xb
+ 858 0069 3B       		.uleb128 0x3b
+ 859 006a 0B       		.uleb128 0xb
+ 860 006b 11       		.uleb128 0x11
+ 861 006c 01       		.uleb128 0x1
+ 862 006d 12       		.uleb128 0x12
+ 863 006e 06       		.uleb128 0x6
+ 864 006f 40       		.uleb128 0x40
+ 865 0070 18       		.uleb128 0x18
+ 866 0071 9742     		.uleb128 0x2117
+ 867 0073 19       		.uleb128 0x19
+ 868 0074 00       		.byte	0
+ 869 0075 00       		.byte	0
+ 870 0076 0A       		.uleb128 0xa
+ 871 0077 2E       		.uleb128 0x2e
+ 872 0078 00       		.byte	0
+ 873 0079 3F       		.uleb128 0x3f
+ 874 007a 19       		.uleb128 0x19
+ 875 007b 03       		.uleb128 0x3
+ 876 007c 0E       		.uleb128 0xe
+ 877 007d 3A       		.uleb128 0x3a
+ 878 007e 0B       		.uleb128 0xb
+ 879 007f 3B       		.uleb128 0x3b
+ 880 0080 0B       		.uleb128 0xb
+ 881 0081 27       		.uleb128 0x27
+ 882 0082 19       		.uleb128 0x19
+ 883 0083 11       		.uleb128 0x11
+ 884 0084 01       		.uleb128 0x1
+ 885 0085 12       		.uleb128 0x12
+ 886 0086 06       		.uleb128 0x6
+ 887 0087 40       		.uleb128 0x40
+ 888 0088 18       		.uleb128 0x18
+ 889 0089 9742     		.uleb128 0x2117
+ 890 008b 19       		.uleb128 0x19
+ 891 008c 00       		.byte	0
+ 892 008d 00       		.byte	0
+ 893 008e 0B       		.uleb128 0xb
+ 894 008f 2E       		.uleb128 0x2e
+ 895 0090 00       		.byte	0
+ 896 0091 3F       		.uleb128 0x3f
+ 897 0092 19       		.uleb128 0x19
+ 898 0093 03       		.uleb128 0x3
+ 899 0094 0E       		.uleb128 0xe
+ 900 0095 3A       		.uleb128 0x3a
+ 901 0096 0B       		.uleb128 0xb
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc9RuzZG.s 			page 20
 
 
- 899 0097 3B       		.uleb128 0x3b
- 900 0098 0B       		.uleb128 0xb
- 901 0099 27       		.uleb128 0x27
- 902 009a 19       		.uleb128 0x19
- 903 009b 11       		.uleb128 0x11
- 904 009c 01       		.uleb128 0x1
- 905 009d 12       		.uleb128 0x12
- 906 009e 06       		.uleb128 0x6
- 907 009f 40       		.uleb128 0x40
- 908 00a0 18       		.uleb128 0x18
- 909 00a1 9742     		.uleb128 0x2117
- 910 00a3 19       		.uleb128 0x19
- 911 00a4 00       		.byte	0
- 912 00a5 00       		.byte	0
- 913 00a6 0C       		.uleb128 0xc
- 914 00a7 2E       		.uleb128 0x2e
- 915 00a8 00       		.byte	0
- 916 00a9 3F       		.uleb128 0x3f
- 917 00aa 19       		.uleb128 0x19
- 918 00ab 03       		.uleb128 0x3
- 919 00ac 0E       		.uleb128 0xe
- 920 00ad 3A       		.uleb128 0x3a
- 921 00ae 0B       		.uleb128 0xb
- 922 00af 3B       		.uleb128 0x3b
- 923 00b0 0B       		.uleb128 0xb
- 924 00b1 49       		.uleb128 0x49
- 925 00b2 13       		.uleb128 0x13
- 926 00b3 11       		.uleb128 0x11
- 927 00b4 01       		.uleb128 0x1
- 928 00b5 12       		.uleb128 0x12
- 929 00b6 06       		.uleb128 0x6
- 930 00b7 40       		.uleb128 0x40
- 931 00b8 18       		.uleb128 0x18
- 932 00b9 9642     		.uleb128 0x2116
- 933 00bb 19       		.uleb128 0x19
- 934 00bc 00       		.byte	0
- 935 00bd 00       		.byte	0
- 936 00be 0D       		.uleb128 0xd
- 937 00bf 34       		.uleb128 0x34
- 938 00c0 00       		.byte	0
- 939 00c1 03       		.uleb128 0x3
- 940 00c2 0E       		.uleb128 0xe
- 941 00c3 3A       		.uleb128 0x3a
- 942 00c4 0B       		.uleb128 0xb
- 943 00c5 3B       		.uleb128 0x3b
- 944 00c6 05       		.uleb128 0x5
- 945 00c7 49       		.uleb128 0x49
- 946 00c8 13       		.uleb128 0x13
- 947 00c9 3F       		.uleb128 0x3f
- 948 00ca 19       		.uleb128 0x19
- 949 00cb 3C       		.uleb128 0x3c
- 950 00cc 19       		.uleb128 0x19
- 951 00cd 00       		.byte	0
- 952 00ce 00       		.byte	0
- 953 00cf 0E       		.uleb128 0xe
- 954 00d0 34       		.uleb128 0x34
- 955 00d1 00       		.byte	0
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 21
+ 902 0097 3B       		.uleb128 0x3b
+ 903 0098 0B       		.uleb128 0xb
+ 904 0099 27       		.uleb128 0x27
+ 905 009a 19       		.uleb128 0x19
+ 906 009b 11       		.uleb128 0x11
+ 907 009c 01       		.uleb128 0x1
+ 908 009d 12       		.uleb128 0x12
+ 909 009e 06       		.uleb128 0x6
+ 910 009f 40       		.uleb128 0x40
+ 911 00a0 18       		.uleb128 0x18
+ 912 00a1 9642     		.uleb128 0x2116
+ 913 00a3 19       		.uleb128 0x19
+ 914 00a4 00       		.byte	0
+ 915 00a5 00       		.byte	0
+ 916 00a6 0C       		.uleb128 0xc
+ 917 00a7 2E       		.uleb128 0x2e
+ 918 00a8 00       		.byte	0
+ 919 00a9 3F       		.uleb128 0x3f
+ 920 00aa 19       		.uleb128 0x19
+ 921 00ab 03       		.uleb128 0x3
+ 922 00ac 0E       		.uleb128 0xe
+ 923 00ad 3A       		.uleb128 0x3a
+ 924 00ae 0B       		.uleb128 0xb
+ 925 00af 3B       		.uleb128 0x3b
+ 926 00b0 0B       		.uleb128 0xb
+ 927 00b1 49       		.uleb128 0x49
+ 928 00b2 13       		.uleb128 0x13
+ 929 00b3 11       		.uleb128 0x11
+ 930 00b4 01       		.uleb128 0x1
+ 931 00b5 12       		.uleb128 0x12
+ 932 00b6 06       		.uleb128 0x6
+ 933 00b7 40       		.uleb128 0x40
+ 934 00b8 18       		.uleb128 0x18
+ 935 00b9 9642     		.uleb128 0x2116
+ 936 00bb 19       		.uleb128 0x19
+ 937 00bc 00       		.byte	0
+ 938 00bd 00       		.byte	0
+ 939 00be 0D       		.uleb128 0xd
+ 940 00bf 34       		.uleb128 0x34
+ 941 00c0 00       		.byte	0
+ 942 00c1 03       		.uleb128 0x3
+ 943 00c2 0E       		.uleb128 0xe
+ 944 00c3 3A       		.uleb128 0x3a
+ 945 00c4 0B       		.uleb128 0xb
+ 946 00c5 3B       		.uleb128 0x3b
+ 947 00c6 05       		.uleb128 0x5
+ 948 00c7 49       		.uleb128 0x49
+ 949 00c8 13       		.uleb128 0x13
+ 950 00c9 3F       		.uleb128 0x3f
+ 951 00ca 19       		.uleb128 0x19
+ 952 00cb 3C       		.uleb128 0x3c
+ 953 00cc 19       		.uleb128 0x19
+ 954 00cd 00       		.byte	0
+ 955 00ce 00       		.byte	0
+ 956 00cf 0E       		.uleb128 0xe
+ 957 00d0 34       		.uleb128 0x34
+ 958 00d1 00       		.byte	0
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc9RuzZG.s 			page 21
 
 
- 956 00d2 03       		.uleb128 0x3
- 957 00d3 0E       		.uleb128 0xe
- 958 00d4 3A       		.uleb128 0x3a
- 959 00d5 0B       		.uleb128 0xb
- 960 00d6 3B       		.uleb128 0x3b
- 961 00d7 0B       		.uleb128 0xb
- 962 00d8 49       		.uleb128 0x49
- 963 00d9 13       		.uleb128 0x13
- 964 00da 3F       		.uleb128 0x3f
- 965 00db 19       		.uleb128 0x19
- 966 00dc 02       		.uleb128 0x2
- 967 00dd 18       		.uleb128 0x18
- 968 00de 00       		.byte	0
- 969 00df 00       		.byte	0
- 970 00e0 00       		.byte	0
- 971              		.section	.debug_aranges,"",%progbits
- 972 0000 54000000 		.4byte	0x54
- 973 0004 0200     		.2byte	0x2
- 974 0006 00000000 		.4byte	.Ldebug_info0
- 975 000a 04       		.byte	0x4
- 976 000b 00       		.byte	0
- 977 000c 0000     		.2byte	0
- 978 000e 0000     		.2byte	0
- 979 0010 00000000 		.4byte	.LFB56
- 980 0014 08000000 		.4byte	.LFE56-.LFB56
- 981 0018 00000000 		.4byte	.LFB57
- 982 001c 3C000000 		.4byte	.LFE57-.LFB57
- 983 0020 00000000 		.4byte	.LFB58
- 984 0024 28000000 		.4byte	.LFE58-.LFB58
- 985 0028 00000000 		.4byte	.LFB59
- 986 002c 18000000 		.4byte	.LFE59-.LFB59
- 987 0030 00000000 		.4byte	.LFB60
- 988 0034 3C000000 		.4byte	.LFE60-.LFB60
- 989 0038 00000000 		.4byte	.LFB61
- 990 003c 18000000 		.4byte	.LFE61-.LFB61
- 991 0040 00000000 		.4byte	.LFB62
- 992 0044 54000000 		.4byte	.LFE62-.LFB62
- 993 0048 00000000 		.4byte	.LFB63
- 994 004c 74000000 		.4byte	.LFE63-.LFB63
- 995 0050 00000000 		.4byte	0
- 996 0054 00000000 		.4byte	0
- 997              		.section	.debug_ranges,"",%progbits
- 998              	.Ldebug_ranges0:
- 999 0000 00000000 		.4byte	.LFB56
- 1000 0004 08000000 		.4byte	.LFE56
- 1001 0008 00000000 		.4byte	.LFB57
- 1002 000c 3C000000 		.4byte	.LFE57
- 1003 0010 00000000 		.4byte	.LFB58
- 1004 0014 28000000 		.4byte	.LFE58
- 1005 0018 00000000 		.4byte	.LFB59
- 1006 001c 18000000 		.4byte	.LFE59
- 1007 0020 00000000 		.4byte	.LFB60
- 1008 0024 3C000000 		.4byte	.LFE60
- 1009 0028 00000000 		.4byte	.LFB61
- 1010 002c 18000000 		.4byte	.LFE61
- 1011 0030 00000000 		.4byte	.LFB62
- 1012 0034 54000000 		.4byte	.LFE62
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 22
+ 959 00d2 03       		.uleb128 0x3
+ 960 00d3 0E       		.uleb128 0xe
+ 961 00d4 3A       		.uleb128 0x3a
+ 962 00d5 0B       		.uleb128 0xb
+ 963 00d6 3B       		.uleb128 0x3b
+ 964 00d7 0B       		.uleb128 0xb
+ 965 00d8 49       		.uleb128 0x49
+ 966 00d9 13       		.uleb128 0x13
+ 967 00da 3F       		.uleb128 0x3f
+ 968 00db 19       		.uleb128 0x19
+ 969 00dc 02       		.uleb128 0x2
+ 970 00dd 18       		.uleb128 0x18
+ 971 00de 00       		.byte	0
+ 972 00df 00       		.byte	0
+ 973 00e0 00       		.byte	0
+ 974              		.section	.debug_aranges,"",%progbits
+ 975 0000 54000000 		.4byte	0x54
+ 976 0004 0200     		.2byte	0x2
+ 977 0006 00000000 		.4byte	.Ldebug_info0
+ 978 000a 04       		.byte	0x4
+ 979 000b 00       		.byte	0
+ 980 000c 0000     		.2byte	0
+ 981 000e 0000     		.2byte	0
+ 982 0010 00000000 		.4byte	.LFB56
+ 983 0014 08000000 		.4byte	.LFE56-.LFB56
+ 984 0018 00000000 		.4byte	.LFB57
+ 985 001c 40000000 		.4byte	.LFE57-.LFB57
+ 986 0020 00000000 		.4byte	.LFB58
+ 987 0024 2C000000 		.4byte	.LFE58-.LFB58
+ 988 0028 00000000 		.4byte	.LFB59
+ 989 002c 18000000 		.4byte	.LFE59-.LFB59
+ 990 0030 00000000 		.4byte	.LFB60
+ 991 0034 3C000000 		.4byte	.LFE60-.LFB60
+ 992 0038 00000000 		.4byte	.LFB61
+ 993 003c 18000000 		.4byte	.LFE61-.LFB61
+ 994 0040 00000000 		.4byte	.LFB62
+ 995 0044 54000000 		.4byte	.LFE62-.LFB62
+ 996 0048 00000000 		.4byte	.LFB63
+ 997 004c 74000000 		.4byte	.LFE63-.LFB63
+ 998 0050 00000000 		.4byte	0
+ 999 0054 00000000 		.4byte	0
+ 1000              		.section	.debug_ranges,"",%progbits
+ 1001              	.Ldebug_ranges0:
+ 1002 0000 00000000 		.4byte	.LFB56
+ 1003 0004 08000000 		.4byte	.LFE56
+ 1004 0008 00000000 		.4byte	.LFB57
+ 1005 000c 40000000 		.4byte	.LFE57
+ 1006 0010 00000000 		.4byte	.LFB58
+ 1007 0014 2C000000 		.4byte	.LFE58
+ 1008 0018 00000000 		.4byte	.LFB59
+ 1009 001c 18000000 		.4byte	.LFE59
+ 1010 0020 00000000 		.4byte	.LFB60
+ 1011 0024 3C000000 		.4byte	.LFE60
+ 1012 0028 00000000 		.4byte	.LFB61
+ 1013 002c 18000000 		.4byte	.LFE61
+ 1014 0030 00000000 		.4byte	.LFB62
+ 1015 0034 54000000 		.4byte	.LFE62
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc9RuzZG.s 			page 22
 
 
- 1013 0038 00000000 		.4byte	.LFB63
- 1014 003c 74000000 		.4byte	.LFE63
- 1015 0040 00000000 		.4byte	0
- 1016 0044 00000000 		.4byte	0
- 1017              		.section	.debug_line,"",%progbits
- 1018              	.Ldebug_line0:
- 1019 0000 28020000 		.section	.debug_str,"MS",%progbits,1
- 1019      02005601 
- 1019      00000201 
- 1019      FB0E0D00 
- 1019      01010101 
- 1020              	.LASF9:
- 1021 0000 6C6F6E67 		.ascii	"long long int\000"
- 1021      206C6F6E 
- 1021      6720696E 
- 1021      7400
- 1022              	.LASF24:
- 1023 000e 53544152 		.ascii	"STARTUP\000"
- 1023      54555000 
- 1024              	.LASF0:
- 1025 0016 7369676E 		.ascii	"signed char\000"
- 1025      65642063 
- 1025      68617200 
- 1026              	.LASF3:
- 1027 0022 5F5F7569 		.ascii	"__uint8_t\000"
- 1027      6E74385F 
- 1027      7400
- 1028              	.LASF40:
- 1029 002c 73746174 		.ascii	"state\000"
- 1029      6500
- 1030              	.LASF26:
- 1031 0032 44524956 		.ascii	"DRIVE\000"
- 1031      4500
- 1032              	.LASF6:
- 1033 0038 5F5F696E 		.ascii	"__int32_t\000"
- 1033      7433325F 
- 1033      7400
- 1034              	.LASF32:
- 1035 0042 6973725F 		.ascii	"isr_OK\000"
- 1035      4F4B00
- 1036              	.LASF7:
- 1037 0049 6C6F6E67 		.ascii	"long int\000"
- 1037      20696E74 
- 1037      00
- 1038              	.LASF15:
- 1039 0052 75696E74 		.ascii	"uint8\000"
- 1039      3800
- 1040              	.LASF47:
- 1041 0058 2E5C6D61 		.ascii	".\\main.c\000"
- 1041      696E2E63 
- 1041      00
- 1042              	.LASF16:
- 1043 0061 666C6F61 		.ascii	"float\000"
- 1043      7400
- 1044              	.LASF41:
- 1045 0067 63757272 		.ascii	"current_page\000"
- 1045      656E745F 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 23
+ 1016 0038 00000000 		.4byte	.LFB63
+ 1017 003c 74000000 		.4byte	.LFE63
+ 1018 0040 00000000 		.4byte	0
+ 1019 0044 00000000 		.4byte	0
+ 1020              		.section	.debug_line,"",%progbits
+ 1021              	.Ldebug_line0:
+ 1022 0000 25020000 		.section	.debug_str,"MS",%progbits,1
+ 1022      02005601 
+ 1022      00000201 
+ 1022      FB0E0D00 
+ 1022      01010101 
+ 1023              	.LASF9:
+ 1024 0000 6C6F6E67 		.ascii	"long long int\000"
+ 1024      206C6F6E 
+ 1024      6720696E 
+ 1024      7400
+ 1025              	.LASF24:
+ 1026 000e 53544152 		.ascii	"STARTUP\000"
+ 1026      54555000 
+ 1027              	.LASF0:
+ 1028 0016 7369676E 		.ascii	"signed char\000"
+ 1028      65642063 
+ 1028      68617200 
+ 1029              	.LASF3:
+ 1030 0022 5F5F7569 		.ascii	"__uint8_t\000"
+ 1030      6E74385F 
+ 1030      7400
+ 1031              	.LASF40:
+ 1032 002c 73746174 		.ascii	"state\000"
+ 1032      6500
+ 1033              	.LASF26:
+ 1034 0032 44524956 		.ascii	"DRIVE\000"
+ 1034      4500
+ 1035              	.LASF6:
+ 1036 0038 5F5F696E 		.ascii	"__int32_t\000"
+ 1036      7433325F 
+ 1036      7400
+ 1037              	.LASF32:
+ 1038 0042 6973725F 		.ascii	"isr_OK\000"
+ 1038      4F4B00
+ 1039              	.LASF7:
+ 1040 0049 6C6F6E67 		.ascii	"long int\000"
+ 1040      20696E74 
+ 1040      00
+ 1041              	.LASF15:
+ 1042 0052 75696E74 		.ascii	"uint8\000"
+ 1042      3800
+ 1043              	.LASF47:
+ 1044 0058 2E5C6D61 		.ascii	".\\main.c\000"
+ 1044      696E2E63 
+ 1044      00
+ 1045              	.LASF16:
+ 1046 0061 666C6F61 		.ascii	"float\000"
+ 1046      7400
+ 1047              	.LASF41:
+ 1048 0067 63757272 		.ascii	"current_page\000"
+ 1048      656E745F 
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc9RuzZG.s 			page 23
 
 
- 1045      70616765 
- 1045      00
- 1046              	.LASF1:
- 1047 0074 756E7369 		.ascii	"unsigned char\000"
- 1047      676E6564 
- 1047      20636861 
- 1047      7200
- 1048              	.LASF19:
- 1049 0082 72656738 		.ascii	"reg8\000"
- 1049      00
- 1050              	.LASF30:
- 1051 0087 48415244 		.ascii	"HARD_FAULT\000"
- 1051      5F464155 
- 1051      4C5400
- 1052              	.LASF23:
- 1053 0092 44617368 		.ascii	"Dash_Mode\000"
- 1053      5F4D6F64 
- 1053      6500
- 1054              	.LASF8:
- 1055 009c 6C6F6E67 		.ascii	"long unsigned int\000"
- 1055      20756E73 
- 1055      69676E65 
- 1055      6420696E 
- 1055      7400
- 1056              	.LASF49:
- 1057 00ae 66617461 		.ascii	"fatal_fault\000"
- 1057      6C5F6661 
- 1057      756C7400 
- 1058              	.LASF5:
- 1059 00ba 73686F72 		.ascii	"short unsigned int\000"
- 1059      7420756E 
- 1059      7369676E 
- 1059      65642069 
- 1059      6E7400
- 1060              	.LASF35:
- 1061 00cd 46616B65 		.ascii	"Fake_Handler\000"
- 1061      5F48616E 
- 1061      646C6572 
- 1061      00
- 1062              	.LASF38:
- 1063 00da 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 1063      52784275 
- 1063      66666572 
- 1063      00
- 1064              	.LASF42:
- 1065 00e7 7468726F 		.ascii	"throttle\000"
- 1065      74746C65 
- 1065      00
- 1066              	.LASF4:
- 1067 00f0 5F5F7569 		.ascii	"__uint16_t\000"
- 1067      6E743136 
- 1067      5F7400
- 1068              	.LASF17:
- 1069 00fb 646F7562 		.ascii	"double\000"
- 1069      6C6500
- 1070              	.LASF43:
- 1071 0102 62617474 		.ascii	"battery\000"
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 24
+ 1048      70616765 
+ 1048      00
+ 1049              	.LASF1:
+ 1050 0074 756E7369 		.ascii	"unsigned char\000"
+ 1050      676E6564 
+ 1050      20636861 
+ 1050      7200
+ 1051              	.LASF19:
+ 1052 0082 72656738 		.ascii	"reg8\000"
+ 1052      00
+ 1053              	.LASF30:
+ 1054 0087 48415244 		.ascii	"HARD_FAULT\000"
+ 1054      5F464155 
+ 1054      4C5400
+ 1055              	.LASF23:
+ 1056 0092 44617368 		.ascii	"Dash_Mode\000"
+ 1056      5F4D6F64 
+ 1056      6500
+ 1057              	.LASF8:
+ 1058 009c 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1058      20756E73 
+ 1058      69676E65 
+ 1058      6420696E 
+ 1058      7400
+ 1059              	.LASF49:
+ 1060 00ae 66617461 		.ascii	"fatal_fault\000"
+ 1060      6C5F6661 
+ 1060      756C7400 
+ 1061              	.LASF5:
+ 1062 00ba 73686F72 		.ascii	"short unsigned int\000"
+ 1062      7420756E 
+ 1062      7369676E 
+ 1062      65642069 
+ 1062      6E7400
+ 1063              	.LASF35:
+ 1064 00cd 46616B65 		.ascii	"Fake_Handler\000"
+ 1064      5F48616E 
+ 1064      646C6572 
+ 1064      00
+ 1065              	.LASF38:
+ 1066 00da 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1066      52784275 
+ 1066      66666572 
+ 1066      00
+ 1067              	.LASF42:
+ 1068 00e7 7468726F 		.ascii	"throttle\000"
+ 1068      74746C65 
+ 1068      00
+ 1069              	.LASF4:
+ 1070 00f0 5F5F7569 		.ascii	"__uint16_t\000"
+ 1070      6E743136 
+ 1070      5F7400
+ 1071              	.LASF17:
+ 1072 00fb 646F7562 		.ascii	"double\000"
+ 1072      6C6500
+ 1073              	.LASF43:
+ 1074 0102 62617474 		.ascii	"battery\000"
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc9RuzZG.s 			page 24
 
 
- 1071      65727900 
- 1072              	.LASF37:
- 1073 010a 6D61696E 		.ascii	"main\000"
- 1073      00
- 1074              	.LASF33:
- 1075 010f 6973725F 		.ascii	"isr_back\000"
- 1075      6261636B 
- 1075      00
- 1076              	.LASF22:
- 1077 0118 494E464F 		.ascii	"INFO\000"
- 1077      00
- 1078              	.LASF39:
- 1079 011d 6576656E 		.ascii	"event\000"
- 1079      7400
- 1080              	.LASF11:
- 1081 0123 756E7369 		.ascii	"unsigned int\000"
- 1081      676E6564 
- 1081      20696E74 
- 1081      00
- 1082              	.LASF10:
- 1083 0130 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1083      206C6F6E 
- 1083      6720756E 
- 1083      7369676E 
- 1083      65642069 
- 1084              	.LASF12:
- 1085 0147 75696E74 		.ascii	"uint8_t\000"
- 1085      385F7400 
- 1086              	.LASF45:
- 1087 014f 6D6F6465 		.ascii	"mode\000"
- 1087      00
- 1088              	.LASF46:
- 1089 0154 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
- 1089      4320342E 
- 1089      382E3420 
- 1089      32303134 
- 1089      30353236 
- 1090 0187 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
- 1090      20726576 
- 1090      6973696F 
- 1090      6E203231 
- 1090      31333538 
- 1091 01ba 30202D66 		.ascii	"0 -ffunction-sections\000"
- 1091      66756E63 
- 1091      74696F6E 
- 1091      2D736563 
- 1091      74696F6E 
- 1092              	.LASF14:
- 1093 01d0 696E7433 		.ascii	"int32_t\000"
- 1093      325F7400 
- 1094              	.LASF20:
- 1095 01d8 73697A65 		.ascii	"sizetype\000"
- 1095      74797065 
- 1095      00
- 1096              	.LASF34:
- 1097 01e1 4C43445F 		.ascii	"LCD_Handler\000"
- 1097      48616E64 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccutgpOk.s 			page 25
+ 1074      65727900 
+ 1075              	.LASF37:
+ 1076 010a 6D61696E 		.ascii	"main\000"
+ 1076      00
+ 1077              	.LASF33:
+ 1078 010f 6973725F 		.ascii	"isr_back\000"
+ 1078      6261636B 
+ 1078      00
+ 1079              	.LASF22:
+ 1080 0118 494E464F 		.ascii	"INFO\000"
+ 1080      00
+ 1081              	.LASF39:
+ 1082 011d 6576656E 		.ascii	"event\000"
+ 1082      7400
+ 1083              	.LASF11:
+ 1084 0123 756E7369 		.ascii	"unsigned int\000"
+ 1084      676E6564 
+ 1084      20696E74 
+ 1084      00
+ 1085              	.LASF10:
+ 1086 0130 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1086      206C6F6E 
+ 1086      6720756E 
+ 1086      7369676E 
+ 1086      65642069 
+ 1087              	.LASF12:
+ 1088 0147 75696E74 		.ascii	"uint8_t\000"
+ 1088      385F7400 
+ 1089              	.LASF45:
+ 1090 014f 6D6F6465 		.ascii	"mode\000"
+ 1090      00
+ 1091              	.LASF46:
+ 1092 0154 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 1092      4320342E 
+ 1092      382E3420 
+ 1092      32303134 
+ 1092      30353236 
+ 1093 0187 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
+ 1093      20726576 
+ 1093      6973696F 
+ 1093      6E203231 
+ 1093      31333538 
+ 1094 01ba 30202D66 		.ascii	"0 -ffunction-sections\000"
+ 1094      66756E63 
+ 1094      74696F6E 
+ 1094      2D736563 
+ 1094      74696F6E 
+ 1095              	.LASF14:
+ 1096 01d0 696E7433 		.ascii	"int32_t\000"
+ 1096      325F7400 
+ 1097              	.LASF20:
+ 1098 01d8 73697A65 		.ascii	"sizetype\000"
+ 1098      74797065 
+ 1098      00
+ 1099              	.LASF34:
+ 1100 01e1 4C43445F 		.ascii	"LCD_Handler\000"
+ 1100      48616E64 
+ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc9RuzZG.s 			page 25
 
 
- 1097      6C657200 
- 1098              	.LASF18:
- 1099 01ed 63686172 		.ascii	"char\000"
- 1099      00
- 1100              	.LASF31:
- 1101 01f2 6973725F 		.ascii	"isr_rotary\000"
- 1101      726F7461 
- 1101      727900
- 1102              	.LASF36:
- 1103 01fd 46534D5F 		.ascii	"FSM_Handler\000"
- 1103      48616E64 
- 1103      6C657200 
- 1104              	.LASF27:
- 1105 0209 50524543 		.ascii	"PRECHARGE\000"
- 1105      48415247 
- 1105      4500
- 1106              	.LASF2:
- 1107 0213 73686F72 		.ascii	"short int\000"
- 1107      7420696E 
- 1107      7400
- 1108              	.LASF13:
- 1109 021d 75696E74 		.ascii	"uint16_t\000"
- 1109      31365F74 
- 1109      00
- 1110              	.LASF44:
- 1111 0226 6272616B 		.ascii	"brake\000"
- 1111      6500
- 1112              	.LASF25:
- 1113 022c 4E455554 		.ascii	"NEUTRAL\000"
- 1113      52414C00 
- 1114              	.LASF48:
- 1115 0234 443A5C77 		.ascii	"D:\\workspace\\super-eagle\\Super-Eagle\\Super-Eagl"
- 1115      6F726B73 
- 1115      70616365 
- 1115      5C737570 
- 1115      65722D65 
- 1116 0263 652E6379 		.ascii	"e.cydsn\000"
- 1116      64736E00 
- 1117              	.LASF29:
- 1118 026b 534F4654 		.ascii	"SOFT_FAULT\000"
- 1118      5F464155 
- 1118      4C5400
- 1119              	.LASF21:
- 1120 0276 434F4D4D 		.ascii	"COMMON\000"
- 1120      4F4E00
- 1121              	.LASF28:
- 1122 027d 43484152 		.ascii	"CHARGING\000"
- 1122      47494E47 
- 1122      00
- 1123              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br
+ 1100      6C657200 
+ 1101              	.LASF18:
+ 1102 01ed 63686172 		.ascii	"char\000"
+ 1102      00
+ 1103              	.LASF31:
+ 1104 01f2 6973725F 		.ascii	"isr_rotary\000"
+ 1104      726F7461 
+ 1104      727900
+ 1105              	.LASF36:
+ 1106 01fd 46534D5F 		.ascii	"FSM_Handler\000"
+ 1106      48616E64 
+ 1106      6C657200 
+ 1107              	.LASF27:
+ 1108 0209 50524543 		.ascii	"PRECHARGE\000"
+ 1108      48415247 
+ 1108      4500
+ 1109              	.LASF2:
+ 1110 0213 73686F72 		.ascii	"short int\000"
+ 1110      7420696E 
+ 1110      7400
+ 1111              	.LASF13:
+ 1112 021d 75696E74 		.ascii	"uint16_t\000"
+ 1112      31365F74 
+ 1112      00
+ 1113              	.LASF44:
+ 1114 0226 6272616B 		.ascii	"brake\000"
+ 1114      6500
+ 1115              	.LASF25:
+ 1116 022c 4E455554 		.ascii	"NEUTRAL\000"
+ 1116      52414C00 
+ 1117              	.LASF48:
+ 1118 0234 443A5C77 		.ascii	"D:\\workspace\\super-eagle\\Super-Eagle\\Super-Eagl"
+ 1118      6F726B73 
+ 1118      70616365 
+ 1118      5C737570 
+ 1118      65722D65 
+ 1119 0263 652E6379 		.ascii	"e.cydsn\000"
+ 1119      64736E00 
+ 1120              	.LASF29:
+ 1121 026b 534F4654 		.ascii	"SOFT_FAULT\000"
+ 1121      5F464155 
+ 1121      4C5400
+ 1122              	.LASF21:
+ 1123 0276 434F4D4D 		.ascii	"COMMON\000"
+ 1123      4F4E00
+ 1124              	.LASF28:
+ 1125 027d 43484152 		.ascii	"CHARGING\000"
+ 1125      47494E47 
+ 1125      00
+ 1126              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

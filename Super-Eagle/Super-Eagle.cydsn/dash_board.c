@@ -16,11 +16,21 @@
 void _dash_state_drive(uint8_t);
 void _dash_state_charging(uint8_t);
 extern volatile Dash_Mode mode;
-extern uint16_t info_battery_voltage;
+
+
+extern uint32_t info_battery_voltage;
 extern uint16_t info_battery_current;
 extern uint16_t info_battery_temp;
+extern uint16_t info_battery_status;
 extern uint16_t info_car_speed;
 extern uint16_t info_common_time;
+
+
+
+
+
+
+
 
 void Dash_display_Mode(Dash_Mode mode){
     LCD_Position(0u,0u);
