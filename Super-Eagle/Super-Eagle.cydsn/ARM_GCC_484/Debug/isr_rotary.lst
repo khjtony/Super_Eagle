@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
   29:.\Generated_Source\PSoC5/isr_rotary.c **** 
   30:.\Generated_Source\PSoC5/isr_rotary.c **** /* `#END` */
   31:.\Generated_Source\PSoC5/isr_rotary.c **** 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 2
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/isr_rotary.c **** #ifndef CYINT_IRQ_BASE
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
   43 000e 0720     		movs	r0, #7
   44 0010 FFF7FEFF 		bl	isr_rotary_SetPriority
   70:.\Generated_Source\PSoC5/isr_rotary.c **** 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 3
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 3
 
 
   71:.\Generated_Source\PSoC5/isr_rotary.c ****     /* Enable it. */
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
   65              		.cfi_startproc
   66              		@ args = 0, pretend = 0, frame = 8
   67              		@ frame_needed = 1, uses_anonymous_args = 0
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 4
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 4
 
 
   68 0000 80B5     		push	{r7, lr}
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  124:.\Generated_Source\PSoC5/isr_rotary.c **** *   Disables and removes the interrupt.
  125:.\Generated_Source\PSoC5/isr_rotary.c **** *
  126:.\Generated_Source\PSoC5/isr_rotary.c **** * Parameters:  
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 5
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 5
 
 
  127:.\Generated_Source\PSoC5/isr_rotary.c **** *   None
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  149:.\Generated_Source\PSoC5/isr_rotary.c **** *
  150:.\Generated_Source\PSoC5/isr_rotary.c **** *   Add custom code between the coments to keep the next version of this file
  151:.\Generated_Source\PSoC5/isr_rotary.c **** *   from over writting your code.
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 6
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 6
 
 
  152:.\Generated_Source\PSoC5/isr_rotary.c **** *
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  180:.\Generated_Source\PSoC5/isr_rotary.c **** *   Function definition example:
  181:.\Generated_Source\PSoC5/isr_rotary.c **** *   CY_ISR(MyISR)
  182:.\Generated_Source\PSoC5/isr_rotary.c **** *   {
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 7
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 7
 
 
  183:.\Generated_Source\PSoC5/isr_rotary.c **** *   }
@@ -399,7 +399,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  201:.\Generated_Source\PSoC5/isr_rotary.c ****     ramVectorTable[CYINT_IRQ_BASE + (uint32)isr_rotary__INTC_NUMBER] = address;
  178              		.loc 1 201 0
  179 000e FB68     		ldr	r3, [r7, #12]
- 180 0010 6433     		adds	r3, r3, #100
+ 180 0010 5C33     		adds	r3, r3, #92
  181 0012 7A68     		ldr	r2, [r7, #4]
  182 0014 1A60     		str	r2, [r3]
  202:.\Generated_Source\PSoC5/isr_rotary.c **** }
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  195              		.size	isr_rotary_SetVector, .-isr_rotary_SetVector
  196              		.section	.text.isr_rotary_GetVector,"ax",%progbits
  197              		.align	2
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 8
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 8
 
 
  198              		.global	isr_rotary_GetVector
@@ -468,7 +468,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  225:.\Generated_Source\PSoC5/isr_rotary.c ****     return ramVectorTable[CYINT_IRQ_BASE + (uint32)isr_rotary__INTC_NUMBER];
  220              		.loc 1 225 0
  221 000c 7B68     		ldr	r3, [r7, #4]
- 222 000e 5B6E     		ldr	r3, [r3, #100]
+ 222 000e DB6D     		ldr	r3, [r3, #92]
  226:.\Generated_Source\PSoC5/isr_rotary.c **** }
  223              		.loc 1 226 0
  224 0010 1846     		mov	r0, r3
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  228 0016 5DF8047B 		ldr	r7, [sp], #4
  229 001a 7047     		bx	lr
  230              	.L15:
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 9
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 9
 
 
  231              		.align	2
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  257 0006 0346     		mov	r3, r0
  258 0008 FB71     		strb	r3, [r7, #7]
  255:.\Generated_Source\PSoC5/isr_rotary.c ****     *isr_rotary_INTC_PRIOR = priority << 5;
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 10
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 10
 
 
  259              		.loc 1 255 0
@@ -557,7 +557,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  271              	.L18:
  272 001e 00BF     		.align	2
  273              	.L17:
- 274 0020 09E400E0 		.word	-536812535
+ 274 0020 07E400E0 		.word	-536812537
  275              		.cfi_endproc
  276              	.LFE6:
  277              		.size	isr_rotary_SetPriority, .-isr_rotary_SetPriority
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  292              		.cfi_def_cfa_offset 4
  293              		.cfi_offset 7, -4
  294 0002 83B0     		sub	sp, sp, #12
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 11
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 11
 
 
  295              		.cfi_def_cfa_offset 16
@@ -629,7 +629,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  313              	.L22:
  314 001e 00BF     		.align	2
  315              	.L21:
- 316 0020 09E400E0 		.word	-536812535
+ 316 0020 07E400E0 		.word	-536812537
  317              		.cfi_endproc
  318              	.LFE7:
  319              		.size	isr_rotary_GetPriority, .-isr_rotary_GetPriority
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  298:.\Generated_Source\PSoC5/isr_rotary.c **** * Return:
  299:.\Generated_Source\PSoC5/isr_rotary.c **** *   None
  300:.\Generated_Source\PSoC5/isr_rotary.c **** *
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 12
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 12
 
 
  301:.\Generated_Source\PSoC5/isr_rotary.c **** *******************************************************************************/
@@ -678,16 +678,16 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  305:.\Generated_Source\PSoC5/isr_rotary.c ****     *isr_rotary_INTC_SET_EN = isr_rotary__INTC_MASK;
  338              		.loc 1 305 0
  339 0004 034B     		ldr	r3, .L24
- 340 0006 4FF40072 		mov	r2, #512
- 341 000a 1A60     		str	r2, [r3]
+ 340 0006 8022     		movs	r2, #128
+ 341 0008 1A60     		str	r2, [r3]
  306:.\Generated_Source\PSoC5/isr_rotary.c **** }
  342              		.loc 1 306 0
- 343 000c BD46     		mov	sp, r7
+ 343 000a BD46     		mov	sp, r7
  344              		@ sp needed
- 345 000e 5DF8047B 		ldr	r7, [sp], #4
- 346 0012 7047     		bx	lr
+ 345 000c 5DF8047B 		ldr	r7, [sp], #4
+ 346 0010 7047     		bx	lr
  347              	.L25:
- 348              		.align	2
+ 348 0012 00BF     		.align	2
  349              	.L24:
  350 0014 00E100E0 		.word	-536813312
  351              		.cfi_endproc
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  321:.\Generated_Source\PSoC5/isr_rotary.c **** *
  322:.\Generated_Source\PSoC5/isr_rotary.c **** *******************************************************************************/
  323:.\Generated_Source\PSoC5/isr_rotary.c **** uint8 isr_rotary_GetState(void)
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 13
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 13
 
 
  324:.\Generated_Source\PSoC5/isr_rotary.c **** {
@@ -737,7 +737,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  372              		.loc 1 326 0
  373 0004 064B     		ldr	r3, .L30
  374 0006 1B68     		ldr	r3, [r3]
- 375 0008 03F40073 		and	r3, r3, #512
+ 375 0008 03F08003 		and	r3, r3, #128
  376 000c 002B     		cmp	r3, #0
  377 000e 01D0     		beq	.L27
  378              		.loc 1 326 0 is_stmt 0 discriminator 1
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  334:.\Generated_Source\PSoC5/isr_rotary.c **** * Summary:
  335:.\Generated_Source\PSoC5/isr_rotary.c **** *   Disables the Interrupt in the interrupt controller.
  336:.\Generated_Source\PSoC5/isr_rotary.c **** *
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 14
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 14
 
 
  337:.\Generated_Source\PSoC5/isr_rotary.c **** * Parameters:
@@ -804,16 +804,16 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  347:.\Generated_Source\PSoC5/isr_rotary.c ****     *isr_rotary_INTC_CLR_EN = isr_rotary__INTC_MASK;
  416              		.loc 1 347 0
  417 0004 034B     		ldr	r3, .L33
- 418 0006 4FF40072 		mov	r2, #512
- 419 000a 1A60     		str	r2, [r3]
+ 418 0006 8022     		movs	r2, #128
+ 419 0008 1A60     		str	r2, [r3]
  348:.\Generated_Source\PSoC5/isr_rotary.c **** }
  420              		.loc 1 348 0
- 421 000c BD46     		mov	sp, r7
+ 421 000a BD46     		mov	sp, r7
  422              		@ sp needed
- 423 000e 5DF8047B 		ldr	r7, [sp], #4
- 424 0012 7047     		bx	lr
+ 423 000c 5DF8047B 		ldr	r7, [sp], #4
+ 424 0010 7047     		bx	lr
  425              	.L34:
- 426              		.align	2
+ 426 0012 00BF     		.align	2
  427              	.L33:
  428 0014 80E100E0 		.word	-536813184
  429              		.cfi_endproc
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  357:.\Generated_Source\PSoC5/isr_rotary.c **** *   generating the interrupt.
  358:.\Generated_Source\PSoC5/isr_rotary.c **** *
  359:.\Generated_Source\PSoC5/isr_rotary.c **** * Parameters:
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 15
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 15
 
 
  360:.\Generated_Source\PSoC5/isr_rotary.c **** *   None
@@ -867,16 +867,16 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  373:.\Generated_Source\PSoC5/isr_rotary.c ****     *isr_rotary_INTC_SET_PD = isr_rotary__INTC_MASK;
  450              		.loc 1 373 0
  451 0004 034B     		ldr	r3, .L36
- 452 0006 4FF40072 		mov	r2, #512
- 453 000a 1A60     		str	r2, [r3]
+ 452 0006 8022     		movs	r2, #128
+ 453 0008 1A60     		str	r2, [r3]
  374:.\Generated_Source\PSoC5/isr_rotary.c **** }
  454              		.loc 1 374 0
- 455 000c BD46     		mov	sp, r7
+ 455 000a BD46     		mov	sp, r7
  456              		@ sp needed
- 457 000e 5DF8047B 		ldr	r7, [sp], #4
- 458 0012 7047     		bx	lr
+ 457 000c 5DF8047B 		ldr	r7, [sp], #4
+ 458 0010 7047     		bx	lr
  459              	.L37:
- 460              		.align	2
+ 460 0012 00BF     		.align	2
  461              	.L36:
  462 0014 00E200E0 		.word	-536813056
  463              		.cfi_endproc
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  380:.\Generated_Source\PSoC5/isr_rotary.c **** *
  381:.\Generated_Source\PSoC5/isr_rotary.c **** * Summary:
  382:.\Generated_Source\PSoC5/isr_rotary.c **** *   Clears a pending interrupt in the interrupt controller.
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 16
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 16
 
 
  383:.\Generated_Source\PSoC5/isr_rotary.c **** *
@@ -929,16 +929,16 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  398:.\Generated_Source\PSoC5/isr_rotary.c ****     *isr_rotary_INTC_CLR_PD = isr_rotary__INTC_MASK;
  484              		.loc 1 398 0
  485 0004 034B     		ldr	r3, .L39
- 486 0006 4FF40072 		mov	r2, #512
- 487 000a 1A60     		str	r2, [r3]
+ 486 0006 8022     		movs	r2, #128
+ 487 0008 1A60     		str	r2, [r3]
  399:.\Generated_Source\PSoC5/isr_rotary.c **** }
  488              		.loc 1 399 0
- 489 000c BD46     		mov	sp, r7
+ 489 000a BD46     		mov	sp, r7
  490              		@ sp needed
- 491 000e 5DF8047B 		ldr	r7, [sp], #4
- 492 0012 7047     		bx	lr
+ 491 000c 5DF8047B 		ldr	r7, [sp], #4
+ 492 0010 7047     		bx	lr
  493              	.L40:
- 494              		.align	2
+ 494 0012 00BF     		.align	2
  495              	.L39:
  496 0014 80E200E0 		.word	-536812928
  497              		.cfi_endproc
@@ -946,7 +946,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  499              		.size	isr_rotary_ClearPending, .-isr_rotary_ClearPending
  500              		.text
  501              	.Letext0:
- 502              		.file 2 ".\\Generated_Source\\PSoC5/cytypes.h"
+ 502              		.file 2 "Generated_Source\\PSoC5/cytypes.h"
  503              		.section	.debug_info,"",%progbits
  504              	.Ldebug_info0:
  505 0000 32020000 		.4byte	0x232
@@ -954,11 +954,11 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  507 0006 00000000 		.4byte	.Ldebug_abbrev0
  508 000a 04       		.byte	0x4
  509 000b 01       		.uleb128 0x1
- 510 000c 65010000 		.4byte	.LASF33
+ 510 000c 9C010000 		.4byte	.LASF33
  511 0010 01       		.byte	0x1
- 512 0011 52000000 		.4byte	.LASF34
- 513 0015 E1010000 		.4byte	.LASF35
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 17
+ 512 0011 75000000 		.4byte	.LASF34
+ 513 0015 3E000000 		.4byte	.LASF35
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 17
 
 
  514 0019 00000000 		.4byte	.Ldebug_ranges0+0
@@ -971,7 +971,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  521 002c 03       		.uleb128 0x3
  522 002d 04       		.byte	0x4
  523 002e 07       		.byte	0x7
- 524 002f 04010000 		.4byte	.LASF0
+ 524 002f 3B010000 		.4byte	.LASF0
  525 0033 03       		.uleb128 0x3
  526 0034 01       		.byte	0x1
  527 0035 06       		.byte	0x6
@@ -979,7 +979,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  529 003a 03       		.uleb128 0x3
  530 003b 01       		.byte	0x1
  531 003c 08       		.byte	0x8
- 532 003d 96000000 		.4byte	.LASF2
+ 532 003d B9000000 		.4byte	.LASF2
  533 0041 03       		.uleb128 0x3
  534 0042 02       		.byte	0x2
  535 0043 05       		.byte	0x5
@@ -995,7 +995,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  545 0056 03       		.uleb128 0x3
  546 0057 04       		.byte	0x4
  547 0058 07       		.byte	0x7
- 548 0059 A9000000 		.4byte	.LASF6
+ 548 0059 CC000000 		.4byte	.LASF6
  549 005d 03       		.uleb128 0x3
  550 005e 08       		.byte	0x8
  551 005f 05       		.byte	0x5
@@ -1003,7 +1003,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  553 0064 03       		.uleb128 0x3
  554 0065 08       		.byte	0x8
  555 0066 07       		.byte	0x7
- 556 0067 19010000 		.4byte	.LASF8
+ 556 0067 50010000 		.4byte	.LASF8
  557 006b 03       		.uleb128 0x3
  558 006c 04       		.byte	0x4
  559 006d 07       		.byte	0x7
@@ -1017,28 +1017,28 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  567 007b 08       		.byte	0x8
  568 007c 45020000 		.4byte	.LASF10
  569 0080 06       		.uleb128 0x6
- 570 0081 D2000000 		.4byte	.LASF11
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 18
+ 570 0081 F5000000 		.4byte	.LASF11
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 18
 
 
  571 0085 02       		.byte	0x2
  572 0086 A1       		.byte	0xa1
  573 0087 3A000000 		.4byte	0x3a
  574 008b 06       		.uleb128 0x6
- 575 008c FD000000 		.4byte	.LASF12
+ 575 008c 34010000 		.4byte	.LASF12
  576 0090 02       		.byte	0x2
  577 0091 A3       		.byte	0xa3
  578 0092 56000000 		.4byte	0x56
  579 0096 03       		.uleb128 0x3
  580 0097 04       		.byte	0x4
  581 0098 04       		.byte	0x4
- 582 0099 90000000 		.4byte	.LASF13
+ 582 0099 B3000000 		.4byte	.LASF13
  583 009d 03       		.uleb128 0x3
  584 009e 08       		.byte	0x8
  585 009f 04       		.byte	0x4
- 586 00a0 F6000000 		.4byte	.LASF14
+ 586 00a0 19010000 		.4byte	.LASF14
  587 00a4 07       		.uleb128 0x7
- 588 00a5 A4000000 		.4byte	.LASF15
+ 588 00a5 C7000000 		.4byte	.LASF15
  589 00a9 02       		.byte	0x2
  590 00aa 4B01     		.2byte	0x14b
  591 00ac B0000000 		.4byte	0xb0
@@ -1052,12 +1052,12 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  599 00c1 08       		.uleb128 0x8
  600 00c2 8B000000 		.4byte	0x8b
  601 00c6 07       		.uleb128 0x7
- 602 00c7 30010000 		.4byte	.LASF17
+ 602 00c7 67010000 		.4byte	.LASF17
  603 00cb 02       		.byte	0x2
  604 00cc 5D01     		.2byte	0x15d
  605 00ce 72000000 		.4byte	0x72
  606 00d2 09       		.uleb128 0x9
- 607 00d3 3D010000 		.4byte	.LASF18
+ 607 00d3 74010000 		.4byte	.LASF18
  608 00d7 01       		.byte	0x1
  609 00d8 3C       		.byte	0x3c
  610 00d9 00000000 		.4byte	.LFB0
@@ -1074,11 +1074,11 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  621 00f3 9C       		.byte	0x9c
  622 00f4 07010000 		.4byte	0x107
  623 00f8 0B       		.uleb128 0xb
- 624 00f9 11010000 		.4byte	.LASF23
+ 624 00f9 48010000 		.4byte	.LASF23
  625 00fd 01       		.byte	0x1
  626 00fe 67       		.byte	0x67
  627 00ff C6000000 		.4byte	0xc6
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 19
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 19
 
 
  628 0103 02       		.uleb128 0x2
@@ -1102,7 +1102,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  646 0127 01       		.uleb128 0x1
  647 0128 9C       		.byte	0x9c
  648 0129 0D       		.uleb128 0xd
- 649 012a E1000000 		.4byte	.LASF22
+ 649 012a 04010000 		.4byte	.LASF22
  650 012e 01       		.byte	0x1
  651 012f C3       		.byte	0xc3
  652 0130 00000000 		.4byte	.LFB4
@@ -1111,7 +1111,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  655 0139 9C       		.byte	0x9c
  656 013a 5B010000 		.4byte	0x15b
  657 013e 0B       		.uleb128 0xb
- 658 013f 11010000 		.4byte	.LASF23
+ 658 013f 48010000 		.4byte	.LASF23
  659 0143 01       		.byte	0x1
  660 0144 C3       		.byte	0xc3
  661 0145 C6000000 		.4byte	0xc6
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  682 016c 00000000 		.4byte	.LFB5
  683 0170 20000000 		.4byte	.LFE5-.LFB5
  684 0174 01       		.uleb128 0x1
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 20
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 20
 
 
  685 0175 9C       		.byte	0x9c
@@ -1153,7 +1153,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  694 0187 74       		.sleb128 -12
  695 0188 00       		.byte	0
  696 0189 0D       		.uleb128 0xd
- 697 018a 4E010000 		.4byte	.LASF25
+ 697 018a 85010000 		.4byte	.LASF25
  698 018e 01       		.byte	0x1
  699 018f FD       		.byte	0xfd
  700 0190 00000000 		.4byte	.LFB6
@@ -1162,7 +1162,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  703 0199 9C       		.byte	0x9c
  704 019a AD010000 		.4byte	0x1ad
  705 019e 0B       		.uleb128 0xb
- 706 019f D8000000 		.4byte	.LASF26
+ 706 019f FB000000 		.4byte	.LASF26
  707 01a3 01       		.byte	0x1
  708 01a4 FD       		.byte	0xfd
  709 01a5 80000000 		.4byte	0x80
@@ -1171,7 +1171,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  712 01ab 77       		.sleb128 -9
  713 01ac 00       		.byte	0
  714 01ad 10       		.uleb128 0x10
- 715 01ae BB000000 		.4byte	.LASF28
+ 715 01ae DE000000 		.4byte	.LASF28
  716 01b2 01       		.byte	0x1
  717 01b3 1301     		.2byte	0x113
  718 01b5 80000000 		.4byte	0x80
@@ -1181,7 +1181,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  722 01c2 9C       		.byte	0x9c
  723 01c3 D7010000 		.4byte	0x1d7
  724 01c7 11       		.uleb128 0x11
- 725 01c8 D8000000 		.4byte	.LASF26
+ 725 01c8 FB000000 		.4byte	.LASF26
  726 01cc 01       		.byte	0x1
  727 01cd 1501     		.2byte	0x115
  728 01cf 80000000 		.4byte	0x80
@@ -1198,10 +1198,10 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  739 01e7 01       		.uleb128 0x1
  740 01e8 9C       		.byte	0x9c
  741 01e9 13       		.uleb128 0x13
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 21
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 21
 
 
- 742 01ea 3E000000 		.4byte	.LASF36
+ 742 01ea 20010000 		.4byte	.LASF36
  743 01ee 01       		.byte	0x1
  744 01ef 4301     		.2byte	0x143
  745 01f1 80000000 		.4byte	0x80
@@ -1226,7 +1226,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  764 0221 01       		.uleb128 0x1
  765 0222 9C       		.byte	0x9c
  766 0223 12       		.uleb128 0x12
- 767 0224 78000000 		.4byte	.LASF32
+ 767 0224 9B000000 		.4byte	.LASF32
  768 0228 01       		.byte	0x1
  769 0229 8C01     		.2byte	0x18c
  770 022b 00000000 		.4byte	.LFB12
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  796 0013 02       		.uleb128 0x2
  797 0014 24       		.uleb128 0x24
  798 0015 00       		.byte	0
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 22
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 22
 
 
  799 0016 0B       		.uleb128 0xb
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  853 004c 0B       		.uleb128 0xb
  854 004d 3B       		.uleb128 0x3b
  855 004e 05       		.uleb128 0x5
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 23
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 23
 
 
  856 004f 49       		.uleb128 0x49
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  910 0087 19       		.uleb128 0x19
  911 0088 01       		.uleb128 0x1
  912 0089 13       		.uleb128 0x13
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 24
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 24
 
 
  913 008a 00       		.byte	0
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  967 00c1 01       		.uleb128 0x1
  968 00c2 12       		.uleb128 0x12
  969 00c3 06       		.uleb128 0x6
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 25
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 25
 
 
  970 00c4 40       		.uleb128 0x40
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  1024 00fc 19       		.uleb128 0x19
  1025 00fd 03       		.uleb128 0x3
  1026 00fe 0E       		.uleb128 0xe
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 26
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 26
 
 
  1027 00ff 3A       		.uleb128 0x3a
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  1081 0136 9742     		.uleb128 0x2117
  1082 0138 19       		.uleb128 0x19
  1083 0139 00       		.byte	0
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 27
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 27
 
 
  1084 013a 00       		.byte	0
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  1138 005c 24000000 		.4byte	.LFE9-.LFB9
  1139 0060 00000000 		.4byte	.LFB10
  1140 0064 18000000 		.4byte	.LFE10-.LFB10
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 28
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 28
 
 
  1141 0068 00000000 		.4byte	.LFB11
@@ -1659,8 +1659,8 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  1176 006c 00000000 		.4byte	0
  1177              		.section	.debug_line,"",%progbits
  1178              	.Ldebug_line0:
- 1179 0000 51010000 		.section	.debug_str,"MS",%progbits,1
- 1179      02004900 
+ 1179 0000 68010000 		.section	.debug_str,"MS",%progbits,1
+ 1179      02006000 
  1179      00000201 
  1179      FB0E0D00 
  1179      01010101 
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  1185      726F7461 
  1185      72795F44 
  1185      69736162 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 29
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 29
 
 
  1185      6C6500
@@ -1688,127 +1688,127 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  1187      7369676E 
  1187      65642069 
  1187      6E7400
- 1188              	.LASF36:
- 1189 003e 6973725F 		.ascii	"isr_rotary_GetState\000"
- 1189      726F7461 
- 1189      72795F47 
- 1189      65745374 
- 1189      61746500 
- 1190              	.LASF34:
- 1191 0052 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\isr_rotary.c\000"
- 1191      6E657261 
- 1191      7465645F 
- 1191      536F7572 
- 1191      63655C50 
- 1192              	.LASF32:
- 1193 0078 6973725F 		.ascii	"isr_rotary_ClearPending\000"
- 1193      726F7461 
- 1193      72795F43 
- 1193      6C656172 
- 1193      50656E64 
- 1194              	.LASF13:
- 1195 0090 666C6F61 		.ascii	"float\000"
- 1195      7400
- 1196              	.LASF2:
- 1197 0096 756E7369 		.ascii	"unsigned char\000"
- 1197      676E6564 
- 1197      20636861 
- 1197      7200
- 1198              	.LASF15:
- 1199 00a4 72656738 		.ascii	"reg8\000"
- 1199      00
- 1200              	.LASF6:
- 1201 00a9 6C6F6E67 		.ascii	"long unsigned int\000"
- 1201      20756E73 
- 1201      69676E65 
- 1201      6420696E 
- 1201      7400
- 1202              	.LASF28:
- 1203 00bb 6973725F 		.ascii	"isr_rotary_GetPriority\000"
- 1203      726F7461 
- 1203      72795F47 
- 1203      65745072 
- 1203      696F7269 
- 1204              	.LASF11:
- 1205 00d2 75696E74 		.ascii	"uint8\000"
- 1205      3800
- 1206              	.LASF26:
- 1207 00d8 7072696F 		.ascii	"priority\000"
- 1207      72697479 
- 1207      00
- 1208              	.LASF22:
- 1209 00e1 6973725F 		.ascii	"isr_rotary_SetVector\000"
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 30
+ 1188              	.LASF35:
+ 1189 003e 443A5C77 		.ascii	"D:\\workspace\\Super-Eagle\\Super-Eagle\\Super-Eagl"
+ 1189      6F726B73 
+ 1189      70616365 
+ 1189      5C537570 
+ 1189      65722D45 
+ 1190 006d 652E6379 		.ascii	"e.cydsn\000"
+ 1190      64736E00 
+ 1191              	.LASF34:
+ 1192 0075 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\isr_rotary.c\000"
+ 1192      6E657261 
+ 1192      7465645F 
+ 1192      536F7572 
+ 1192      63655C50 
+ 1193              	.LASF32:
+ 1194 009b 6973725F 		.ascii	"isr_rotary_ClearPending\000"
+ 1194      726F7461 
+ 1194      72795F43 
+ 1194      6C656172 
+ 1194      50656E64 
+ 1195              	.LASF13:
+ 1196 00b3 666C6F61 		.ascii	"float\000"
+ 1196      7400
+ 1197              	.LASF2:
+ 1198 00b9 756E7369 		.ascii	"unsigned char\000"
+ 1198      676E6564 
+ 1198      20636861 
+ 1198      7200
+ 1199              	.LASF15:
+ 1200 00c7 72656738 		.ascii	"reg8\000"
+ 1200      00
+ 1201              	.LASF6:
+ 1202 00cc 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1202      20756E73 
+ 1202      69676E65 
+ 1202      6420696E 
+ 1202      7400
+ 1203              	.LASF28:
+ 1204 00de 6973725F 		.ascii	"isr_rotary_GetPriority\000"
+ 1204      726F7461 
+ 1204      72795F47 
+ 1204      65745072 
+ 1204      696F7269 
+ 1205              	.LASF11:
+ 1206 00f5 75696E74 		.ascii	"uint8\000"
+ 1206      3800
+ 1207              	.LASF26:
+ 1208 00fb 7072696F 		.ascii	"priority\000"
+ 1208      72697479 
+ 1208      00
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 30
 
 
- 1209      726F7461 
- 1209      72795F53 
- 1209      65745665 
- 1209      63746F72 
- 1210              	.LASF14:
- 1211 00f6 646F7562 		.ascii	"double\000"
- 1211      6C6500
- 1212              	.LASF12:
- 1213 00fd 75696E74 		.ascii	"uint32\000"
- 1213      333200
- 1214              	.LASF0:
- 1215 0104 756E7369 		.ascii	"unsigned int\000"
- 1215      676E6564 
- 1215      20696E74 
- 1215      00
- 1216              	.LASF23:
- 1217 0111 61646472 		.ascii	"address\000"
- 1217      65737300 
- 1218              	.LASF8:
- 1219 0119 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1219      206C6F6E 
- 1219      6720756E 
- 1219      7369676E 
- 1219      65642069 
- 1220              	.LASF17:
- 1221 0130 63796973 		.ascii	"cyisraddress\000"
- 1221      72616464 
- 1221      72657373 
- 1221      00
- 1222              	.LASF18:
- 1223 013d 6973725F 		.ascii	"isr_rotary_Start\000"
- 1223      726F7461 
- 1223      72795F53 
- 1223      74617274 
- 1223      00
- 1224              	.LASF25:
- 1225 014e 6973725F 		.ascii	"isr_rotary_SetPriority\000"
- 1225      726F7461 
- 1225      72795F53 
- 1225      65745072 
- 1225      696F7269 
- 1226              	.LASF33:
- 1227 0165 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
- 1227      4320342E 
- 1227      382E3420 
- 1227      32303134 
- 1227      30353236 
- 1228 0198 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
- 1228      20726576 
- 1228      6973696F 
- 1228      6E203231 
- 1228      31333538 
- 1229 01cb 30202D66 		.ascii	"0 -ffunction-sections\000"
- 1229      66756E63 
- 1229      74696F6E 
- 1229      2D736563 
- 1229      74696F6E 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 31
+ 1209              	.LASF22:
+ 1210 0104 6973725F 		.ascii	"isr_rotary_SetVector\000"
+ 1210      726F7461 
+ 1210      72795F53 
+ 1210      65745665 
+ 1210      63746F72 
+ 1211              	.LASF14:
+ 1212 0119 646F7562 		.ascii	"double\000"
+ 1212      6C6500
+ 1213              	.LASF36:
+ 1214 0120 6973725F 		.ascii	"isr_rotary_GetState\000"
+ 1214      726F7461 
+ 1214      72795F47 
+ 1214      65745374 
+ 1214      61746500 
+ 1215              	.LASF12:
+ 1216 0134 75696E74 		.ascii	"uint32\000"
+ 1216      333200
+ 1217              	.LASF0:
+ 1218 013b 756E7369 		.ascii	"unsigned int\000"
+ 1218      676E6564 
+ 1218      20696E74 
+ 1218      00
+ 1219              	.LASF23:
+ 1220 0148 61646472 		.ascii	"address\000"
+ 1220      65737300 
+ 1221              	.LASF8:
+ 1222 0150 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1222      206C6F6E 
+ 1222      6720756E 
+ 1222      7369676E 
+ 1222      65642069 
+ 1223              	.LASF17:
+ 1224 0167 63796973 		.ascii	"cyisraddress\000"
+ 1224      72616464 
+ 1224      72657373 
+ 1224      00
+ 1225              	.LASF18:
+ 1226 0174 6973725F 		.ascii	"isr_rotary_Start\000"
+ 1226      726F7461 
+ 1226      72795F53 
+ 1226      74617274 
+ 1226      00
+ 1227              	.LASF25:
+ 1228 0185 6973725F 		.ascii	"isr_rotary_SetPriority\000"
+ 1228      726F7461 
+ 1228      72795F53 
+ 1228      65745072 
+ 1228      696F7269 
+ 1229              	.LASF33:
+ 1230 019c 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 1230      4320342E 
+ 1230      382E3420 
+ 1230      32303134 
+ 1230      30353236 
+ 1231 01cf 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
+ 1231      20726576 
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 31
 
 
- 1230              	.LASF35:
- 1231 01e1 443A5C77 		.ascii	"D:\\workspace\\super-eagle\\Super-Eagle\\Super-Eagl"
- 1231      6F726B73 
- 1231      70616365 
- 1231      5C737570 
- 1231      65722D65 
- 1232 0210 652E6379 		.ascii	"e.cydsn\000"
- 1232      64736E00 
+ 1231      6973696F 
+ 1231      6E203231 
+ 1231      31333538 
+ 1232 0202 30202D66 		.ascii	"0 -ffunction-sections\000"
+ 1232      66756E63 
+ 1232      74696F6E 
+ 1232      2D736563 
+ 1232      74696F6E 
  1233              	.LASF9:
  1234 0218 73697A65 		.ascii	"sizetype\000"
  1234      74797065 
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 1
  1252      20696E74 
  1252      00
  1253              	.LASF1:
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cchR1Dpu.s 			page 32
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccs52mCd.s 			page 32
 
 
  1254 02a6 7369676E 		.ascii	"signed char\000"

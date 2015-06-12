@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
   20:.\Generated_Source\PSoC5/CySpc.c **** #define CY_SPC_KEY_TWO(x)                   ((uint8) (((uint16) 0xD3u) + ((uint16) (x))))
   21:.\Generated_Source\PSoC5/CySpc.c **** 
   22:.\Generated_Source\PSoC5/CySpc.c **** /* Command Codes */
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 2
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 2
 
 
   23:.\Generated_Source\PSoC5/CySpc.c **** #define CY_SPC_CMD_LD_BYTE                  (0x00u)
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
   77:.\Generated_Source\PSoC5/CySpc.c **** *******************************************************************************/
   78:.\Generated_Source\PSoC5/CySpc.c **** void CySpcStart(void) 
   79:.\Generated_Source\PSoC5/CySpc.c **** {
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 3
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 3
 
 
   36              		.loc 1 79 0
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
   81 0040 B0430040 		.word	1073759152
   82              		.cfi_endproc
   83              	.LFE0:
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 4
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 4
 
 
   84              		.size	CySpcStart, .-CySpcStart
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  110:.\Generated_Source\PSoC5/CySpc.c ****     CY_SPC_PM_STBY_REG &= ((uint8)(~PM_SPC_PM_EN));
  117              		.loc 1 110 0
  118 001e 084B     		ldr	r3, .L5+4
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 5
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 5
 
 
  119 0020 074A     		ldr	r2, .L5+4
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  134:.\Generated_Source\PSoC5/CySpc.c **** *******************************************************************************/
  135:.\Generated_Source\PSoC5/CySpc.c **** uint8 CySpcReadData(uint8 buffer[], uint8 size) 
  136:.\Generated_Source\PSoC5/CySpc.c **** {
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 6
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 6
 
 
  150              		.loc 1 136 0
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  193 0036 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
  194 0038 0133     		adds	r3, r3, #1
  195 003a FB73     		strb	r3, [r7, #15]
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 7
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 7
 
 
  196              	.L8:
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  169:.\Generated_Source\PSoC5/CySpc.c **** *   Number bytes to load.
  170:.\Generated_Source\PSoC5/CySpc.c **** *
  171:.\Generated_Source\PSoC5/CySpc.c **** * Return:
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 8
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 8
 
 
  172:.\Generated_Source\PSoC5/CySpc.c **** *  CYRET_STARTED
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  262 002a 0F2B     		cmp	r3, #15
  263 002c 43D8     		bhi	.L18
  264              	.L17:
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 9
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 9
 
 
  190:.\Generated_Source\PSoC5/CySpc.c ****     {
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  307 0078 D2B2     		uxtb	r2, r2
  308 007a 1A70     		strb	r2, [r3]
  202:.\Generated_Source\PSoC5/CySpc.c ****                 CY_SPC_CPU_DATA_REG = ((uint8)(size - 1u));
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 10
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 10
 
 
  309              		.loc 1 202 0
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  346 00ae 0423     		movs	r3, #4
  347 00b0 FB60     		str	r3, [r7, #12]
  191:.\Generated_Source\PSoC5/CySpc.c ****         if(CY_SPC_IDLE)
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 11
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 11
 
 
  348              		.loc 1 191 0
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  237:.\Generated_Source\PSoC5/CySpc.c **** *  array with the modified data.
  238:.\Generated_Source\PSoC5/CySpc.c **** *
  239:.\Generated_Source\PSoC5/CySpc.c **** * Parameters:
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 12
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 12
 
 
  240:.\Generated_Source\PSoC5/CySpc.c **** *  uint8 array:
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  409              		.loc 1 266 0
  410 0022 194B     		ldr	r3, .L38+4
  411 0024 B622     		movs	r2, #182
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 13
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 13
 
 
  412 0026 1A70     		strb	r2, [r3]
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  453 0066 F2D3     		bcc	.L34
  454 0068 04E0     		b	.L36
  455              	.L32:
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 14
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 14
 
 
  278:.\Generated_Source\PSoC5/CySpc.c ****             }
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  298:.\Generated_Source\PSoC5/CySpc.c **** *  Loads a row of data into the row latch of a Flash/EEPROM array.
  299:.\Generated_Source\PSoC5/CySpc.c **** *
  300:.\Generated_Source\PSoC5/CySpc.c **** *  The only data that are going to be changed should be passed. The function
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 15
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 15
 
 
  301:.\Generated_Source\PSoC5/CySpc.c **** *  will handle unmodified data preservation based on DWR settings and input
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  334:.\Generated_Source\PSoC5/CySpc.c ****     #endif /* (CYDEV_ECC_ENABLE == 0) */
  335:.\Generated_Source\PSoC5/CySpc.c **** 
  336:.\Generated_Source\PSoC5/CySpc.c ****     /* Make sure the SPC is ready to accept command */
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 16
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 16
 
 
  337:.\Generated_Source\PSoC5/CySpc.c ****     if(CY_SPC_IDLE)
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  361:.\Generated_Source\PSoC5/CySpc.c ****                 *******************************************************************/
  362:.\Generated_Source\PSoC5/CySpc.c ****                 if ((size == CYDEV_ECC_ROW_SIZE) && (array <= CY_SPC_LAST_FLASH_ARRAYID))
  541              		.loc 1 362 0
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 17
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 17
 
 
  542 004a FB88     		ldrh	r3, [r7, #6]
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  373:.\Generated_Source\PSoC5/CySpc.c **** 
  374:.\Generated_Source\PSoC5/CySpc.c ****             #endif /* ((CYDEV_ECC_ENABLE == 0u) && (CYDEV_CONFIGURATION_ECC == 0u)) */
  375:.\Generated_Source\PSoC5/CySpc.c **** 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 18
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 18
 
 
  376:.\Generated_Source\PSoC5/CySpc.c **** 
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  607 00a8 20D1     		bne	.L51
  608              		.loc 1 402 0 is_stmt 0 discriminator 1
  609 00aa FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 19
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 19
 
 
  610 00ac 3F2B     		cmp	r3, #63
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  416:.\Generated_Source\PSoC5/CySpc.c ****                 if(0u != row)
  417:.\Generated_Source\PSoC5/CySpc.c ****                 {
  418:.\Generated_Source\PSoC5/CySpc.c ****                     /* To remove unreferenced local variable warning */
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 20
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 20
 
 
  419:.\Generated_Source\PSoC5/CySpc.c ****                 }
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  439:.\Generated_Source\PSoC5/CySpc.c **** ********************************************************************************
  440:.\Generated_Source\PSoC5/CySpc.c **** * Summary:
  441:.\Generated_Source\PSoC5/CySpc.c **** *  Erases then programs a row in Flash/EEPROM with data in row latch.
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 21
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 21
 
 
  442:.\Generated_Source\PSoC5/CySpc.c **** *
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  706 001e 26D0     		beq	.L56
  471:.\Generated_Source\PSoC5/CySpc.c ****     {
  472:.\Generated_Source\PSoC5/CySpc.c ****         CY_SPC_CPU_DATA_REG = CY_SPC_KEY_ONE;
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 22
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 22
 
 
  707              		.loc 1 472 0
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  750 0066 04E0     		b	.L59
  751              	.L57:
  484:.\Generated_Source\PSoC5/CySpc.c ****         }
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 23
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 23
 
 
  485:.\Generated_Source\PSoC5/CySpc.c ****         else
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  505:.\Generated_Source\PSoC5/CySpc.c **** * Parameters:
  506:.\Generated_Source\PSoC5/CySpc.c **** *  uint8 array:
  507:.\Generated_Source\PSoC5/CySpc.c **** *   Id of the array.
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 24
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 24
 
 
  508:.\Generated_Source\PSoC5/CySpc.c **** *
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  820              		.loc 1 527 0
  821 002c 0F4B     		ldr	r3, .L69+4
  822 002e 0822     		movs	r2, #8
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 25
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 25
 
 
  823 0030 1A70     		strb	r2, [r3]
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  858 0064 7047     		bx	lr
  859              	.L70:
  860 0066 00BF     		.align	2
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 26
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 26
 
 
  861              	.L69:
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  887 0006 0346     		mov	r3, r0
  888 0008 FB71     		strb	r3, [r7, #7]
  575:.\Generated_Source\PSoC5/CySpc.c ****     cystatus status = CYRET_STARTED;
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 27
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 27
 
 
  889              		.loc 1 575 0
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  927 0048 01E0     		b	.L75
  928              	.L72:
  592:.\Generated_Source\PSoC5/CySpc.c ****         }
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 28
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 28
 
 
  593:.\Generated_Source\PSoC5/CySpc.c ****     }
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  618:.\Generated_Source\PSoC5/CySpc.c **** cystatus CySpcLock(void)
  619:.\Generated_Source\PSoC5/CySpc.c **** {
  958              		.loc 1 619 0
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 29
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 29
 
 
  959              		.cfi_startproc
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  996 0030 0B4B     		ldr	r3, .L82+4
  997 0032 0B4A     		ldr	r2, .L82+4
  998 0034 1268     		ldr	r2, [r2]
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 30
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 30
 
 
  999 0036 22F00102 		bic	r2, r2, #1
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1036              	.L82:
  1037 005c 00000000 		.word	SpcLockState
  1038 0060 04000840 		.word	1074266116
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 31
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 31
 
 
  1039 0064 04000000 		.word	spcWaitPipeBypass
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1068 000e 0D4B     		ldr	r3, .L86
  1069 0010 0022     		movs	r2, #0
  1070 0012 1A70     		strb	r2, [r3]
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 32
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 32
 
 
  679:.\Generated_Source\PSoC5/CySpc.c **** 
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1105 0036 1846     		mov	r0, r3
  1106 0038 FFF7FEFF 		bl	CyExitCriticalSection
  699:.\Generated_Source\PSoC5/CySpc.c **** }
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 33
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 33
 
 
  1107              		.loc 1 699 0
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1142 0006 0723     		movs	r3, #7
  1143 0008 7B60     		str	r3, [r7, #4]
  719:.\Generated_Source\PSoC5/CySpc.c **** 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 34
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 34
 
 
  720:.\Generated_Source\PSoC5/CySpc.c ****     /* Make sure the SPC is ready to accept command */
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1184              	.LFE11:
  1185              		.size	CySpcGetAlgorithm, .-CySpcGetAlgorithm
  1186              		.text
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 35
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 35
 
 
  1187              	.Letext0:
@@ -2050,10 +2050,10 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1193 0006 00000000 		.4byte	.Ldebug_abbrev0
  1194 000a 04       		.byte	0x4
  1195 000b 01       		.uleb128 0x1
- 1196 000c 59010000 		.4byte	.LASF43
+ 1196 000c 90010000 		.4byte	.LASF43
  1197 0010 01       		.byte	0x1
  1198 0011 45000000 		.4byte	.LASF44
- 1199 0015 D5010000 		.4byte	.LASF45
+ 1199 0015 79000000 		.4byte	.LASF45
  1200 0019 00000000 		.4byte	.Ldebug_ranges0+0
  1201 001d 00000000 		.4byte	0
  1202 0021 00000000 		.4byte	.Ldebug_line0
@@ -2064,7 +2064,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1207 002c 02       		.uleb128 0x2
  1208 002d 01       		.byte	0x1
  1209 002e 08       		.byte	0x8
- 1210 002f E5000000 		.4byte	.LASF1
+ 1210 002f 1C010000 		.4byte	.LASF1
  1211 0033 02       		.uleb128 0x2
  1212 0034 02       		.byte	0x2
  1213 0035 05       		.byte	0x5
@@ -2080,7 +2080,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1223 0048 02       		.uleb128 0x2
  1224 0049 04       		.byte	0x4
  1225 004a 07       		.byte	0x7
- 1226 004b AD000000 		.4byte	.LASF5
+ 1226 004b E4000000 		.4byte	.LASF5
  1227 004f 02       		.uleb128 0x2
  1228 0050 08       		.byte	0x8
  1229 0051 05       		.byte	0x5
@@ -2088,7 +2088,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1231 0056 02       		.uleb128 0x2
  1232 0057 08       		.byte	0x8
  1233 0058 07       		.byte	0x7
- 1234 0059 34010000 		.4byte	.LASF7
+ 1234 0059 6B010000 		.4byte	.LASF7
  1235 005d 03       		.uleb128 0x3
  1236 005e 04       		.byte	0x4
  1237 005f 05       		.byte	0x5
@@ -2096,33 +2096,33 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1239 0064 02       		.uleb128 0x2
  1240 0065 04       		.byte	0x4
  1241 0066 07       		.byte	0x7
- 1242 0067 1F010000 		.4byte	.LASF8
+ 1242 0067 56010000 		.4byte	.LASF8
  1243 006b 04       		.uleb128 0x4
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 36
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 36
 
 
- 1244 006c BF000000 		.4byte	.LASF9
+ 1244 006c F6000000 		.4byte	.LASF9
  1245 0070 02       		.byte	0x2
  1246 0071 A1       		.byte	0xa1
  1247 0072 2C000000 		.4byte	0x2c
  1248 0076 04       		.uleb128 0x4
- 1249 0077 07010000 		.4byte	.LASF10
+ 1249 0077 3E010000 		.4byte	.LASF10
  1250 007b 02       		.byte	0x2
  1251 007c A2       		.byte	0xa2
  1252 007d 3A000000 		.4byte	0x3a
  1253 0081 04       		.uleb128 0x4
- 1254 0082 18010000 		.4byte	.LASF11
+ 1254 0082 4F010000 		.4byte	.LASF11
  1255 0086 02       		.byte	0x2
  1256 0087 A3       		.byte	0xa3
  1257 0088 48000000 		.4byte	0x48
  1258 008c 02       		.uleb128 0x2
  1259 008d 04       		.byte	0x4
  1260 008e 04       		.byte	0x4
- 1261 008f 8E000000 		.4byte	.LASF12
+ 1261 008f C5000000 		.4byte	.LASF12
  1262 0093 02       		.uleb128 0x2
  1263 0094 08       		.byte	0x8
  1264 0095 04       		.byte	0x4
- 1265 0096 F3000000 		.4byte	.LASF13
+ 1265 0096 2A010000 		.4byte	.LASF13
  1266 009a 02       		.uleb128 0x2
  1267 009b 01       		.byte	0x1
  1268 009c 08       		.byte	0x8
@@ -2133,7 +2133,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1273 00a7 4301     		.2byte	0x143
  1274 00a9 48000000 		.4byte	0x48
  1275 00ad 05       		.uleb128 0x5
- 1276 00ae 99000000 		.4byte	.LASF16
+ 1276 00ae D0000000 		.4byte	.LASF16
  1277 00b2 02       		.byte	0x2
  1278 00b3 4B01     		.2byte	0x14b
  1279 00b5 B9000000 		.4byte	0xb9
@@ -2158,12 +2158,12 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1298 00e1 44000000 		.4byte	.LFE0-.LFB0
  1299 00e5 01       		.uleb128 0x1
  1300 00e6 9C       		.byte	0x9c
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 37
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 37
 
 
  1301 00e7 FA000000 		.4byte	0xfa
  1302 00eb 08       		.uleb128 0x8
- 1303 00ec 9E000000 		.4byte	.LASF21
+ 1303 00ec D5000000 		.4byte	.LASF21
  1304 00f0 01       		.byte	0x1
  1305 00f1 51       		.byte	0x51
  1306 00f2 6B000000 		.4byte	0x6b
@@ -2181,7 +2181,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1318 010a 9C       		.byte	0x9c
  1319 010b 1E010000 		.4byte	0x11e
  1320 010f 08       		.uleb128 0x8
- 1321 0110 9E000000 		.4byte	.LASF21
+ 1321 0110 D5000000 		.4byte	.LASF21
  1322 0114 01       		.byte	0x1
  1323 0115 6B       		.byte	0x6b
  1324 0116 6B000000 		.4byte	0x6b
@@ -2190,7 +2190,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1327 011c 77       		.sleb128 -9
  1328 011d 00       		.byte	0
  1329 011e 09       		.uleb128 0x9
- 1330 011f 79000000 		.4byte	.LASF24
+ 1330 011f B0000000 		.4byte	.LASF24
  1331 0123 01       		.byte	0x1
  1332 0124 87       		.byte	0x87
  1333 0125 6B000000 		.4byte	0x6b
@@ -2208,7 +2208,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1345 0143 91       		.byte	0x91
  1346 0144 6C       		.sleb128 -20
  1347 0145 0A       		.uleb128 0xa
- 1348 0146 94000000 		.4byte	.LASF23
+ 1348 0146 CB000000 		.4byte	.LASF23
  1349 014a 01       		.byte	0x1
  1350 014b 87       		.byte	0x87
  1351 014c 6B000000 		.4byte	0x6b
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1355 0153 0B       		.uleb128 0xb
  1356 0154 6900     		.ascii	"i\000"
  1357 0156 01       		.byte	0x1
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 38
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 38
 
 
  1358 0157 89       		.byte	0x89
@@ -2241,7 +2241,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1375 017a 9C       		.byte	0x9c
  1376 017b D2010000 		.4byte	0x1d2
  1377 017f 0A       		.uleb128 0xa
- 1378 0180 DF000000 		.4byte	.LASF26
+ 1378 0180 16010000 		.4byte	.LASF26
  1379 0184 01       		.byte	0x1
  1380 0185 B2       		.byte	0xb2
  1381 0186 6B000000 		.4byte	0x6b
@@ -2249,7 +2249,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1383 018b 91       		.byte	0x91
  1384 018c 6F       		.sleb128 -17
  1385 018d 0A       		.uleb128 0xa
- 1386 018e 2C010000 		.4byte	.LASF27
+ 1386 018e 63010000 		.4byte	.LASF27
  1387 0192 01       		.byte	0x1
  1388 0193 B2       		.byte	0xb2
  1389 0194 76000000 		.4byte	0x76
@@ -2265,7 +2265,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1399 01a7 91       		.byte	0x91
  1400 01a8 68       		.sleb128 -24
  1401 01a9 0A       		.uleb128 0xa
- 1402 01aa 94000000 		.4byte	.LASF23
+ 1402 01aa CB000000 		.4byte	.LASF23
  1403 01ae 01       		.byte	0x1
  1404 01af B2       		.byte	0xb2
  1405 01b0 6B000000 		.4byte	0x6b
@@ -2273,12 +2273,12 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1407 01b5 91       		.byte	0x91
  1408 01b6 6E       		.sleb128 -18
  1409 01b7 08       		.uleb128 0x8
- 1410 01b8 87000000 		.4byte	.LASF28
+ 1410 01b8 BE000000 		.4byte	.LASF28
  1411 01bc 01       		.byte	0x1
  1412 01bd B5       		.byte	0xb5
  1413 01be A1000000 		.4byte	0xa1
  1414 01c2 02       		.uleb128 0x2
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 39
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 39
 
 
  1415 01c3 91       		.byte	0x91
@@ -2308,7 +2308,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1439 01f2 9C       		.byte	0x9c
  1440 01f3 41020000 		.4byte	0x241
  1441 01f7 10       		.uleb128 0x10
- 1442 01f8 DF000000 		.4byte	.LASF26
+ 1442 01f8 16010000 		.4byte	.LASF26
  1443 01fc 01       		.byte	0x1
  1444 01fd 0201     		.2byte	0x102
  1445 01ff 6B000000 		.4byte	0x6b
@@ -2324,7 +2324,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1455 0213 91       		.byte	0x91
  1456 0214 68       		.sleb128 -24
  1457 0215 10       		.uleb128 0x10
- 1458 0216 94000000 		.4byte	.LASF23
+ 1458 0216 CB000000 		.4byte	.LASF23
  1459 021a 01       		.byte	0x1
  1460 021b 0201     		.2byte	0x102
  1461 021d 76000000 		.4byte	0x76
@@ -2332,13 +2332,13 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1463 0222 91       		.byte	0x91
  1464 0223 6C       		.sleb128 -20
  1465 0224 11       		.uleb128 0x11
- 1466 0225 87000000 		.4byte	.LASF28
+ 1466 0225 BE000000 		.4byte	.LASF28
  1467 0229 01       		.byte	0x1
  1468 022a 0401     		.2byte	0x104
  1469 022c A1000000 		.4byte	0xa1
  1470 0230 02       		.uleb128 0x2
  1471 0231 91       		.byte	0x91
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 40
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 40
 
 
  1472 0232 74       		.sleb128 -12
@@ -2362,7 +2362,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1490 0256 9C       		.byte	0x9c
  1491 0257 C3020000 		.4byte	0x2c3
  1492 025b 10       		.uleb128 0x10
- 1493 025c DF000000 		.4byte	.LASF26
+ 1493 025c 16010000 		.4byte	.LASF26
  1494 0260 01       		.byte	0x1
  1495 0261 4601     		.2byte	0x146
  1496 0263 6B000000 		.4byte	0x6b
@@ -2386,7 +2386,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1514 0286 91       		.byte	0x91
  1515 0287 60       		.sleb128 -32
  1516 0288 10       		.uleb128 0x10
- 1517 0289 94000000 		.4byte	.LASF23
+ 1517 0289 CB000000 		.4byte	.LASF23
  1518 028d 01       		.byte	0x1
  1519 028e 4601     		.2byte	0x146
  1520 0290 76000000 		.4byte	0x76
@@ -2394,11 +2394,11 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1522 0295 91       		.byte	0x91
  1523 0296 5E       		.sleb128 -34
  1524 0297 11       		.uleb128 0x11
- 1525 0298 87000000 		.4byte	.LASF28
+ 1525 0298 BE000000 		.4byte	.LASF28
  1526 029c 01       		.byte	0x1
  1527 029d 4901     		.2byte	0x149
  1528 029f A1000000 		.4byte	0xa1
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 41
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 41
 
 
  1529 02a3 02       		.uleb128 0x2
@@ -2432,7 +2432,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1557 02d8 9C       		.byte	0x9c
  1558 02d9 29030000 		.4byte	0x329
  1559 02dd 10       		.uleb128 0x10
- 1560 02de DF000000 		.4byte	.LASF26
+ 1560 02de 16010000 		.4byte	.LASF26
  1561 02e2 01       		.byte	0x1
  1562 02e3 D001     		.2byte	0x1d0
  1563 02e5 6B000000 		.4byte	0x6b
@@ -2440,7 +2440,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1565 02ea 91       		.byte	0x91
  1566 02eb 6F       		.sleb128 -17
  1567 02ec 10       		.uleb128 0x10
- 1568 02ed 2C010000 		.4byte	.LASF27
+ 1568 02ed 63010000 		.4byte	.LASF27
  1569 02f1 01       		.byte	0x1
  1570 02f2 D001     		.2byte	0x1d0
  1571 02f4 76000000 		.4byte	0x76
@@ -2448,7 +2448,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1573 02f9 91       		.byte	0x91
  1574 02fa 6C       		.sleb128 -20
  1575 02fb 10       		.uleb128 0x10
- 1576 02fc D2000000 		.4byte	.LASF33
+ 1576 02fc 09010000 		.4byte	.LASF33
  1577 0300 01       		.byte	0x1
  1578 0301 D001     		.2byte	0x1d0
  1579 0303 6B000000 		.4byte	0x6b
@@ -2456,9 +2456,9 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1581 0308 91       		.byte	0x91
  1582 0309 6E       		.sleb128 -18
  1583 030a 10       		.uleb128 0x10
- 1584 030b 4B010000 		.4byte	.LASF34
+ 1584 030b 82010000 		.4byte	.LASF34
  1585 030f 01       		.byte	0x1
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 42
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 42
 
 
  1586 0310 D001     		.2byte	0x1d0
@@ -2467,7 +2467,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1589 0317 91       		.byte	0x91
  1590 0318 6B       		.sleb128 -21
  1591 0319 11       		.uleb128 0x11
- 1592 031a 87000000 		.4byte	.LASF28
+ 1592 031a BE000000 		.4byte	.LASF28
  1593 031e 01       		.byte	0x1
  1594 031f D301     		.2byte	0x1d3
  1595 0321 A1000000 		.4byte	0xa1
@@ -2486,7 +2486,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1608 033e 9C       		.byte	0x9c
  1609 033f 71030000 		.4byte	0x371
  1610 0343 10       		.uleb128 0x10
- 1611 0344 DF000000 		.4byte	.LASF26
+ 1611 0344 16010000 		.4byte	.LASF26
  1612 0348 01       		.byte	0x1
  1613 0349 0602     		.2byte	0x206
  1614 034b 6B000000 		.4byte	0x6b
@@ -2502,7 +2502,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1624 035f 91       		.byte	0x91
  1625 0360 6E       		.sleb128 -18
  1626 0361 11       		.uleb128 0x11
- 1627 0362 87000000 		.4byte	.LASF28
+ 1627 0362 BE000000 		.4byte	.LASF28
  1628 0366 01       		.byte	0x1
  1629 0367 0802     		.2byte	0x208
  1630 0369 A1000000 		.4byte	0xa1
@@ -2511,14 +2511,14 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1633 036f 74       		.sleb128 -12
  1634 0370 00       		.byte	0
  1635 0371 0F       		.uleb128 0xf
- 1636 0372 FA000000 		.4byte	.LASF37
+ 1636 0372 31010000 		.4byte	.LASF37
  1637 0376 01       		.byte	0x1
  1638 0377 3D02     		.2byte	0x23d
  1639 0379 A1000000 		.4byte	0xa1
  1640 037d 00000000 		.4byte	.LFB8
  1641 0381 64000000 		.4byte	.LFE8-.LFB8
  1642 0385 01       		.uleb128 0x1
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 43
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 43
 
 
  1643 0386 9C       		.byte	0x9c
@@ -2532,7 +2532,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1651 0398 91       		.byte	0x91
  1652 0399 6F       		.sleb128 -17
  1653 039a 11       		.uleb128 0x11
- 1654 039b 87000000 		.4byte	.LASF28
+ 1654 039b BE000000 		.4byte	.LASF28
  1655 039f 01       		.byte	0x1
  1656 03a0 3F02     		.2byte	0x23f
  1657 03a2 A1000000 		.4byte	0xa1
@@ -2541,7 +2541,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1660 03a8 74       		.sleb128 -12
  1661 03a9 00       		.byte	0
  1662 03aa 14       		.uleb128 0x14
- 1663 03ab 0E010000 		.4byte	.LASF39
+ 1663 03ab 45010000 		.4byte	.LASF39
  1664 03af 01       		.byte	0x1
  1665 03b0 6A02     		.2byte	0x26a
  1666 03b2 A1000000 		.4byte	0xa1
@@ -2551,7 +2551,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1670 03bf 9C       		.byte	0x9c
  1671 03c0 E3030000 		.4byte	0x3e3
  1672 03c4 11       		.uleb128 0x11
- 1673 03c5 87000000 		.4byte	.LASF28
+ 1673 03c5 BE000000 		.4byte	.LASF28
  1674 03c9 01       		.byte	0x1
  1675 03ca 6C02     		.2byte	0x26c
  1676 03cc A1000000 		.4byte	0xa1
@@ -2559,7 +2559,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1678 03d1 91       		.byte	0x91
  1679 03d2 74       		.sleb128 -12
  1680 03d3 11       		.uleb128 0x11
- 1681 03d4 9E000000 		.4byte	.LASF21
+ 1681 03d4 D5000000 		.4byte	.LASF21
  1682 03d8 01       		.byte	0x1
  1683 03d9 6D02     		.2byte	0x26d
  1684 03db 6B000000 		.4byte	0x6b
@@ -2577,8 +2577,8 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1696 03f4 9C       		.byte	0x9c
  1697 03f5 09040000 		.4byte	0x409
  1698 03f9 11       		.uleb128 0x11
- 1699 03fa 9E000000 		.4byte	.LASF21
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 44
+ 1699 03fa D5000000 		.4byte	.LASF21
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 44
 
 
  1700 03fe 01       		.byte	0x1
@@ -2599,7 +2599,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1715 041e 9C       		.byte	0x9c
  1716 041f 33040000 		.4byte	0x433
  1717 0423 11       		.uleb128 0x11
- 1718 0424 87000000 		.4byte	.LASF28
+ 1718 0424 BE000000 		.4byte	.LASF28
  1719 0428 01       		.byte	0x1
  1720 0429 CE02     		.2byte	0x2ce
  1721 042b A1000000 		.4byte	0xa1
@@ -2616,7 +2616,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1732 043f 03       		.byte	0x3
  1733 0440 04000000 		.4byte	spcWaitPipeBypass
  1734 0444 16       		.uleb128 0x16
- 1735 0445 C5000000 		.4byte	.LASF46
+ 1735 0445 FC000000 		.4byte	.LASF46
  1736 0449 01       		.byte	0x1
  1737 044a 30       		.byte	0x30
  1738 044b 6B000000 		.4byte	0x6b
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1754 0009 1B       		.uleb128 0x1b
  1755 000a 0E       		.uleb128 0xe
  1756 000b 55       		.uleb128 0x55
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 45
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 45
 
 
  1757 000c 17       		.uleb128 0x17
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1811 0042 00       		.byte	0
  1812 0043 06       		.uleb128 0x6
  1813 0044 35       		.uleb128 0x35
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 46
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 46
 
 
  1814 0045 00       		.byte	0
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1868 007c 3B       		.uleb128 0x3b
  1869 007d 0B       		.uleb128 0xb
  1870 007e 27       		.uleb128 0x27
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 47
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 47
 
 
  1871 007f 19       		.uleb128 0x19
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1925 00b6 0D       		.uleb128 0xd
  1926 00b7 2E       		.uleb128 0x2e
  1927 00b8 01       		.byte	0x1
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 48
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 48
 
 
  1928 00b9 3F       		.uleb128 0x3f
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  1982 00f1 01       		.uleb128 0x1
  1983 00f2 13       		.uleb128 0x13
  1984 00f3 00       		.byte	0
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 49
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 49
 
 
  1985 00f4 00       		.byte	0
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  2039 012a 05       		.uleb128 0x5
  2040 012b 49       		.uleb128 0x49
  2041 012c 13       		.uleb128 0x13
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 50
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 50
 
 
  2042 012d 02       		.uleb128 0x2
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  2096 0165 00       		.byte	0
  2097 0166 00       		.byte	0
  2098 0167 16       		.uleb128 0x16
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 51
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 51
 
 
  2099 0168 34       		.uleb128 0x34
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  2153 0004 44000000 		.4byte	.LFE0
  2154 0008 00000000 		.4byte	.LFB1
  2155 000c 44000000 		.4byte	.LFE1
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 52
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 52
 
 
  2156 0010 00000000 		.4byte	.LFB2
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  2192      7000
  2193              	.LASF44:
  2194 0045 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\CySpc.c\000"
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 53
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 53
 
 
  2194      6E657261 
@@ -3131,122 +3131,122 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  2196      7369676E 
  2196      65642069 
  2196      6E7400
- 2197              	.LASF24:
- 2198 0079 43795370 		.ascii	"CySpcReadData\000"
- 2198      63526561 
- 2198      64446174 
- 2198      6100
- 2199              	.LASF28:
- 2200 0087 73746174 		.ascii	"status\000"
- 2200      757300
- 2201              	.LASF12:
- 2202 008e 666C6F61 		.ascii	"float\000"
- 2202      7400
- 2203              	.LASF23:
- 2204 0094 73697A65 		.ascii	"size\000"
- 2204      00
- 2205              	.LASF16:
- 2206 0099 72656738 		.ascii	"reg8\000"
- 2206      00
- 2207              	.LASF21:
- 2208 009e 696E7465 		.ascii	"interruptState\000"
- 2208      72727570 
- 2208      74537461 
- 2208      746500
- 2209              	.LASF5:
- 2210 00ad 6C6F6E67 		.ascii	"long unsigned int\000"
- 2210      20756E73 
- 2210      69676E65 
- 2210      6420696E 
- 2210      7400
- 2211              	.LASF9:
- 2212 00bf 75696E74 		.ascii	"uint8\000"
- 2212      3800
- 2213              	.LASF46:
- 2214 00c5 5370634C 		.ascii	"SpcLockState\000"
- 2214      6F636B53 
- 2214      74617465 
- 2214      00
- 2215              	.LASF33:
- 2216 00d2 74656D70 		.ascii	"tempPolarity\000"
- 2216      506F6C61 
- 2216      72697479 
- 2216      00
- 2217              	.LASF26:
- 2218 00df 61727261 		.ascii	"array\000"
- 2218      7900
- 2219              	.LASF1:
- 2220 00e5 756E7369 		.ascii	"unsigned char\000"
- 2220      676E6564 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 54
+ 2197              	.LASF45:
+ 2198 0079 443A5C77 		.ascii	"D:\\workspace\\Super-Eagle\\Super-Eagle\\Super-Eagl"
+ 2198      6F726B73 
+ 2198      70616365 
+ 2198      5C537570 
+ 2198      65722D45 
+ 2199 00a8 652E6379 		.ascii	"e.cydsn\000"
+ 2199      64736E00 
+ 2200              	.LASF24:
+ 2201 00b0 43795370 		.ascii	"CySpcReadData\000"
+ 2201      63526561 
+ 2201      64446174 
+ 2201      6100
+ 2202              	.LASF28:
+ 2203 00be 73746174 		.ascii	"status\000"
+ 2203      757300
+ 2204              	.LASF12:
+ 2205 00c5 666C6F61 		.ascii	"float\000"
+ 2205      7400
+ 2206              	.LASF23:
+ 2207 00cb 73697A65 		.ascii	"size\000"
+ 2207      00
+ 2208              	.LASF16:
+ 2209 00d0 72656738 		.ascii	"reg8\000"
+ 2209      00
+ 2210              	.LASF21:
+ 2211 00d5 696E7465 		.ascii	"interruptState\000"
+ 2211      72727570 
+ 2211      74537461 
+ 2211      746500
+ 2212              	.LASF5:
+ 2213 00e4 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2213      20756E73 
+ 2213      69676E65 
+ 2213      6420696E 
+ 2213      7400
+ 2214              	.LASF9:
+ 2215 00f6 75696E74 		.ascii	"uint8\000"
+ 2215      3800
+ 2216              	.LASF46:
+ 2217 00fc 5370634C 		.ascii	"SpcLockState\000"
+ 2217      6F636B53 
+ 2217      74617465 
+ 2217      00
+ 2218              	.LASF33:
+ 2219 0109 74656D70 		.ascii	"tempPolarity\000"
+ 2219      506F6C61 
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 54
 
 
- 2220      20636861 
- 2220      7200
- 2221              	.LASF13:
- 2222 00f3 646F7562 		.ascii	"double\000"
- 2222      6C6500
- 2223              	.LASF37:
- 2224 00fa 43795370 		.ascii	"CySpcGetTemp\000"
- 2224      63476574 
- 2224      54656D70 
- 2224      00
- 2225              	.LASF10:
- 2226 0107 75696E74 		.ascii	"uint16\000"
- 2226      313600
- 2227              	.LASF39:
- 2228 010e 43795370 		.ascii	"CySpcLock\000"
- 2228      634C6F63 
- 2228      6B00
- 2229              	.LASF11:
- 2230 0118 75696E74 		.ascii	"uint32\000"
- 2230      333200
- 2231              	.LASF8:
- 2232 011f 756E7369 		.ascii	"unsigned int\000"
- 2232      676E6564 
- 2232      20696E74 
- 2232      00
- 2233              	.LASF27:
- 2234 012c 61646472 		.ascii	"address\000"
- 2234      65737300 
- 2235              	.LASF7:
- 2236 0134 6C6F6E67 		.ascii	"long long unsigned int\000"
- 2236      206C6F6E 
- 2236      6720756E 
- 2236      7369676E 
- 2236      65642069 
- 2237              	.LASF34:
- 2238 014b 74656D70 		.ascii	"tempMagnitude\000"
- 2238      4D61676E 
- 2238      69747564 
- 2238      6500
- 2239              	.LASF43:
- 2240 0159 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
- 2240      4320342E 
- 2240      382E3420 
- 2240      32303134 
- 2240      30353236 
- 2241 018c 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
- 2241      20726576 
- 2241      6973696F 
- 2241      6E203231 
- 2241      31333538 
- 2242 01bf 30202D66 		.ascii	"0 -ffunction-sections\000"
- 2242      66756E63 
- 2242      74696F6E 
- 2242      2D736563 
- 2242      74696F6E 
- 2243              	.LASF45:
- 2244 01d5 443A5C77 		.ascii	"D:\\workspace\\super-eagle\\Super-Eagle\\Super-Eagl"
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 55
+ 2219      72697479 
+ 2219      00
+ 2220              	.LASF26:
+ 2221 0116 61727261 		.ascii	"array\000"
+ 2221      7900
+ 2222              	.LASF1:
+ 2223 011c 756E7369 		.ascii	"unsigned char\000"
+ 2223      676E6564 
+ 2223      20636861 
+ 2223      7200
+ 2224              	.LASF13:
+ 2225 012a 646F7562 		.ascii	"double\000"
+ 2225      6C6500
+ 2226              	.LASF37:
+ 2227 0131 43795370 		.ascii	"CySpcGetTemp\000"
+ 2227      63476574 
+ 2227      54656D70 
+ 2227      00
+ 2228              	.LASF10:
+ 2229 013e 75696E74 		.ascii	"uint16\000"
+ 2229      313600
+ 2230              	.LASF39:
+ 2231 0145 43795370 		.ascii	"CySpcLock\000"
+ 2231      634C6F63 
+ 2231      6B00
+ 2232              	.LASF11:
+ 2233 014f 75696E74 		.ascii	"uint32\000"
+ 2233      333200
+ 2234              	.LASF8:
+ 2235 0156 756E7369 		.ascii	"unsigned int\000"
+ 2235      676E6564 
+ 2235      20696E74 
+ 2235      00
+ 2236              	.LASF27:
+ 2237 0163 61646472 		.ascii	"address\000"
+ 2237      65737300 
+ 2238              	.LASF7:
+ 2239 016b 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2239      206C6F6E 
+ 2239      6720756E 
+ 2239      7369676E 
+ 2239      65642069 
+ 2240              	.LASF34:
+ 2241 0182 74656D70 		.ascii	"tempMagnitude\000"
+ 2241      4D61676E 
+ 2241      69747564 
+ 2241      6500
+ 2242              	.LASF43:
+ 2243 0190 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 2243      4320342E 
+ 2243      382E3420 
+ 2243      32303134 
+ 2243      30353236 
+ 2244 01c3 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
+ 2244      20726576 
+ 2244      6973696F 
+ 2244      6E203231 
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 55
 
 
- 2244      6F726B73 
- 2244      70616365 
- 2244      5C737570 
- 2244      65722D65 
- 2245 0204 652E6379 		.ascii	"e.cydsn\000"
- 2245      64736E00 
+ 2244      31333538 
+ 2245 01f6 30202D66 		.ascii	"0 -ffunction-sections\000"
+ 2245      66756E63 
+ 2245      74696F6E 
+ 2245      2D736563 
+ 2245      74696F6E 
  2246              	.LASF29:
  2247 020c 43795370 		.ascii	"CySpcLoadRow\000"
  2247      634C6F61 
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 1
  2268              	.LASF4:
  2269 0289 6C6F6E67 		.ascii	"long int\000"
  2269      20696E74 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccKvQlx2.s 			page 56
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccB1OjCZ.s 			page 56
 
 
  2269      00

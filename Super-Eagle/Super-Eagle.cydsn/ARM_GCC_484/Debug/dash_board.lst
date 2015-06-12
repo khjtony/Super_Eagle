@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccrzTzFq.s 			page 1
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 1
 
 
    1              		.syntax unified
@@ -18,29 +18,49 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccrzTzFq.s 			page 1
   15              		.text
   16              	.Ltext0:
   17              		.cfi_sections	.debug_frame
-  18              		.section	.rodata
-  19              		.align	2
-  20              	.LC0:
-  21 0000 4D41494E 		.ascii	"MAIN: \000"
-  21      3A2000
-  22 0007 00       		.align	2
-  23              	.LC1:
-  24 0008 494E464F 		.ascii	"INFO:\000"
-  24      3A00
-  25 000e 0000     		.align	2
-  26              	.LC2:
-  27 0010 4572723A 		.ascii	"Err: \000"
-  27      2000
-  28              		.section	.text.Dash_display_Mode,"ax",%progbits
-  29              		.align	2
-  30              		.global	Dash_display_Mode
-  31              		.thumb
-  32              		.thumb_func
-  33              		.type	Dash_display_Mode, %function
-  34              	Dash_display_Mode:
-  35              	.LFB56:
-  36              		.file 1 ".\\dash_board.c"
+  18              		.global	STARTING_FRAME
+  19              		.bss
+  20              		.align	2
+  21              		.type	STARTING_FRAME, %object
+  22              		.size	STARTING_FRAME, 4
+  23              	STARTING_FRAME:
+  24 0000 00000000 		.space	4
+  25              		.global	ENDING_FRAME
+  26              		.data
+  27              		.align	2
+  28              		.type	ENDING_FRAME, %object
+  29              		.size	ENDING_FRAME, 4
+  30              	ENDING_FRAME:
+  31 0000 FF       		.byte	-1
+  32 0001 FF       		.byte	-1
+  33 0002 FF       		.byte	-1
+  34 0003 FF       		.byte	-1
+  35              		.section	.rodata
+  36              		.align	2
+  37              	.LC0:
+  38 0000 4D41494E 		.ascii	"MAIN: \000"
+  38      3A2000
+  39 0007 00       		.align	2
+  40              	.LC1:
+  41 0008 494E464F 		.ascii	"INFO:\000"
+  41      3A00
+  42 000e 0000     		.align	2
+  43              	.LC2:
+  44 0010 4572723A 		.ascii	"Err: \000"
+  44      2000
+  45              		.section	.text.Dash_display_Mode,"ax",%progbits
+  46              		.align	2
+  47              		.global	Dash_display_Mode
+  48              		.thumb
+  49              		.thumb_func
+  50              		.type	Dash_display_Mode, %function
+  51              	Dash_display_Mode:
+  52              	.LFB56:
+  53              		.file 1 ".\\dash_board.c"
    1:.\dash_board.c **** /* ========================================
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 2
+
+
    2:.\dash_board.c ****  *
    3:.\dash_board.c ****  * Copyright YOUR COMPANY, THE YEAR
    4:.\dash_board.c ****  * All Rights Reserved
@@ -55,1230 +75,1720 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccrzTzFq.s 			page 1
   13:.\dash_board.c **** #include "can_manager.h"
   14:.\dash_board.c **** #include "LCD_Bar.h"
   15:.\dash_board.c **** 
-  16:.\dash_board.c **** void _dash_state_drive(uint8_t);
-  17:.\dash_board.c **** void _dash_state_charging(uint8_t);
-  18:.\dash_board.c **** extern volatile Dash_Mode mode;
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccrzTzFq.s 			page 2
-
-
-  19:.\dash_board.c **** extern uint16_t info_battery_voltage;
-  20:.\dash_board.c **** extern uint16_t info_battery_current;
-  21:.\dash_board.c **** extern uint16_t info_battery_temp;
-  22:.\dash_board.c **** extern uint16_t info_car_speed;
-  23:.\dash_board.c **** extern uint16_t info_common_time;
-  24:.\dash_board.c **** 
-  25:.\dash_board.c **** void Dash_display_Mode(Dash_Mode mode){
-  37              		.loc 1 25 0
-  38              		.cfi_startproc
-  39              		@ args = 0, pretend = 0, frame = 8
-  40              		@ frame_needed = 1, uses_anonymous_args = 0
-  41 0000 80B5     		push	{r7, lr}
-  42              		.cfi_def_cfa_offset 8
-  43              		.cfi_offset 7, -8
-  44              		.cfi_offset 14, -4
-  45 0002 82B0     		sub	sp, sp, #8
-  46              		.cfi_def_cfa_offset 16
-  47 0004 00AF     		add	r7, sp, #0
-  48              		.cfi_def_cfa_register 7
-  49 0006 0346     		mov	r3, r0
-  50 0008 FB71     		strb	r3, [r7, #7]
-  26:.\dash_board.c ****     LCD_Position(0u,0u);
-  51              		.loc 1 26 0
-  52 000a 0020     		movs	r0, #0
-  53 000c 0021     		movs	r1, #0
-  54 000e FFF7FEFF 		bl	LCD_Position
-  27:.\dash_board.c ****     switch(mode){
-  55              		.loc 1 27 0
-  56 0012 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
-  57 0014 002B     		cmp	r3, #0
-  58 0016 02D0     		beq	.L3
-  59 0018 012B     		cmp	r3, #1
-  60 001a 04D0     		beq	.L4
-  61 001c 07E0     		b	.L6
-  62              	.L3:
-  28:.\dash_board.c ****         case COMMON:
-  29:.\dash_board.c ****             LCD_PrintString("MAIN: "); 
-  63              		.loc 1 29 0
-  64 001e 0748     		ldr	r0, .L7
-  65 0020 FFF7FEFF 		bl	LCD_PrintString
-  30:.\dash_board.c ****             break;
-  66              		.loc 1 30 0
-  67 0024 07E0     		b	.L1
-  68              	.L4:
-  31:.\dash_board.c **** 	    case INFO:
-  32:.\dash_board.c ****             LCD_PrintString("INFO:"); 
-  69              		.loc 1 32 0
-  70 0026 0648     		ldr	r0, .L7+4
-  71 0028 FFF7FEFF 		bl	LCD_PrintString
-  33:.\dash_board.c ****             break;
-  72              		.loc 1 33 0
-  73 002c 03E0     		b	.L1
-  74              	.L6:
-  34:.\dash_board.c **** 	    default:
-  35:.\dash_board.c ****             LCD_PrintString("Err: "); 
-  75              		.loc 1 35 0
-  76 002e 0548     		ldr	r0, .L7+8
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccrzTzFq.s 			page 3
-
-
-  77 0030 FFF7FEFF 		bl	LCD_PrintString
-  36:.\dash_board.c ****             break;
-  78              		.loc 1 36 0
-  79 0034 00BF     		nop
-  80              	.L1:
-  37:.\dash_board.c ****     }
-  38:.\dash_board.c **** }
-  81              		.loc 1 38 0
-  82 0036 0837     		adds	r7, r7, #8
-  83 0038 BD46     		mov	sp, r7
-  84              		@ sp needed
-  85 003a 80BD     		pop	{r7, pc}
-  86              	.L8:
-  87              		.align	2
-  88              	.L7:
-  89 003c 00000000 		.word	.LC0
-  90 0040 08000000 		.word	.LC1
-  91 0044 10000000 		.word	.LC2
-  92              		.cfi_endproc
-  93              	.LFE56:
-  94              		.size	Dash_display_Mode, .-Dash_display_Mode
-  95              		.section	.rodata
-  96 0016 0000     		.align	2
-  97              	.LC3:
-  98 0018 53544152 		.ascii	"START UP\000"
-  98      54205550 
-  98      00
-  99 0021 000000   		.align	2
- 100              	.LC4:
- 101 0024 4E455554 		.ascii	"NEUTRAL\000"
- 101      52414C00 
- 102              		.align	2
- 103              	.LC5:
- 104 002c 44524956 		.ascii	"DRIVING\000"
- 104      494E4700 
- 105              		.align	2
- 106              	.LC6:
- 107 0034 50524543 		.ascii	"PRECHARGE\000"
- 107      48415247 
- 107      4500
- 108 003e 0000     		.align	2
- 109              	.LC7:
- 110 0040 43484152 		.ascii	"CHARGING\000"
- 110      47494E47 
- 110      00
- 111 0049 000000   		.align	2
- 112              	.LC8:
- 113 004c 534F4654 		.ascii	"SOFT FAULT\000"
- 113      20464155 
- 113      4C5400
- 114 0057 00       		.align	2
- 115              	.LC9:
- 116 0058 48415244 		.ascii	"HARD FAULT\000"
- 116      20464155 
- 116      4C5400
- 117 0063 00       		.section	.text.Dash_display_State,"ax",%progbits
- 118              		.align	2
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccrzTzFq.s 			page 4
-
-
- 119              		.global	Dash_display_State
- 120              		.thumb
- 121              		.thumb_func
- 122              		.type	Dash_display_State, %function
- 123              	Dash_display_State:
- 124              	.LFB57:
+  16:.\dash_board.c **** uint8_t STARTING_FRAME[4]={0x00,0x00,0x00,0x00};
+  17:.\dash_board.c **** uint8_t ENDING_FRAME[4]={0xff,0xff,0xff,0xff};
+  18:.\dash_board.c **** 
+  19:.\dash_board.c **** void _dash_state_drive(uint8_t);
+  20:.\dash_board.c **** void _dash_state_charging(uint8_t);
+  21:.\dash_board.c **** extern volatile Dash_Mode mode;
+  22:.\dash_board.c **** 
+  23:.\dash_board.c **** 
+  24:.\dash_board.c **** extern uint32_t info_battery_voltage;
+  25:.\dash_board.c **** extern uint16_t info_battery_current;
+  26:.\dash_board.c **** extern uint16_t info_battery_temp;
+  27:.\dash_board.c **** extern uint16_t info_battery_status;
+  28:.\dash_board.c **** extern uint16_t info_car_speed;
+  29:.\dash_board.c **** extern uint16_t info_common_time;
+  30:.\dash_board.c **** extern uint8_t error_battery;
+  31:.\dash_board.c **** extern uint8_t error_padel;
+  32:.\dash_board.c **** extern uint8_t wdt_battery;
+  33:.\dash_board.c **** extern uint8_t wdt_padel;
+  34:.\dash_board.c **** 
+  35:.\dash_board.c **** 
+  36:.\dash_board.c **** 
+  37:.\dash_board.c **** 
+  38:.\dash_board.c **** 
   39:.\dash_board.c **** 
-  40:.\dash_board.c **** void Dash_display_State(States newState){
- 125              		.loc 1 40 0
- 126              		.cfi_startproc
- 127              		@ args = 0, pretend = 0, frame = 8
- 128              		@ frame_needed = 1, uses_anonymous_args = 0
- 129 0000 80B5     		push	{r7, lr}
- 130              		.cfi_def_cfa_offset 8
- 131              		.cfi_offset 7, -8
- 132              		.cfi_offset 14, -4
- 133 0002 82B0     		sub	sp, sp, #8
- 134              		.cfi_def_cfa_offset 16
- 135 0004 00AF     		add	r7, sp, #0
- 136              		.cfi_def_cfa_register 7
- 137 0006 0346     		mov	r3, r0
- 138 0008 FB71     		strb	r3, [r7, #7]
-  41:.\dash_board.c ****     LCD_Position(0u,6u);
- 139              		.loc 1 41 0
- 140 000a 0020     		movs	r0, #0
- 141 000c 0621     		movs	r1, #6
- 142 000e FFF7FEFF 		bl	LCD_Position
-  42:.\dash_board.c ****     switch(newState){
- 143              		.loc 1 42 0
- 144 0012 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
- 145 0014 062B     		cmp	r3, #6
- 146 0016 2ED8     		bhi	.L20
- 147 0018 01A2     		adr	r2, .L12
- 148 001a 52F823F0 		ldr	pc, [r2, r3, lsl #2]
- 149 001e 00BF     		.p2align 2
- 150              	.L12:
- 151 0020 3D000000 		.word	.L11+1
- 152 0024 45000000 		.word	.L13+1
- 153 0028 4D000000 		.word	.L14+1
- 154 002c 55000000 		.word	.L15+1
- 155 0030 5D000000 		.word	.L16+1
- 156 0034 65000000 		.word	.L17+1
- 157 0038 6D000000 		.word	.L18+1
- 158              		.p2align 1
- 159              	.L11:
-  43:.\dash_board.c ****         case STARTUP:
-  44:.\dash_board.c ****             LCD_PrintString("START UP"); 
- 160              		.loc 1 44 0
- 161 003c 1048     		ldr	r0, .L21
- 162 003e FFF7FEFF 		bl	LCD_PrintString
-  45:.\dash_board.c ****             break;
- 163              		.loc 1 45 0
- 164 0042 17E0     		b	.L10
- 165              	.L13:
-  46:.\dash_board.c **** 	    case NEUTRAL:
-  47:.\dash_board.c ****             LCD_PrintString("NEUTRAL"); 
- 166              		.loc 1 47 0
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccrzTzFq.s 			page 5
+  40:.\dash_board.c **** 
+  41:.\dash_board.c **** 
+  42:.\dash_board.c **** void Dash_display_Mode(Dash_Mode mode){
+  54              		.loc 1 42 0
+  55              		.cfi_startproc
+  56              		@ args = 0, pretend = 0, frame = 8
+  57              		@ frame_needed = 1, uses_anonymous_args = 0
+  58 0000 80B5     		push	{r7, lr}
+  59              		.cfi_def_cfa_offset 8
+  60              		.cfi_offset 7, -8
+  61              		.cfi_offset 14, -4
+  62 0002 82B0     		sub	sp, sp, #8
+  63              		.cfi_def_cfa_offset 16
+  64 0004 00AF     		add	r7, sp, #0
+  65              		.cfi_def_cfa_register 7
+  66 0006 0346     		mov	r3, r0
+  67 0008 FB71     		strb	r3, [r7, #7]
+  43:.\dash_board.c ****     LCD_Position(0u,0u);
+  68              		.loc 1 43 0
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 3
 
 
- 167 0044 0F48     		ldr	r0, .L21+4
- 168 0046 FFF7FEFF 		bl	LCD_PrintString
-  48:.\dash_board.c ****             break;
- 169              		.loc 1 48 0
- 170 004a 13E0     		b	.L10
- 171              	.L14:
-  49:.\dash_board.c **** 	    case DRIVE:
-  50:.\dash_board.c ****             LCD_PrintString("DRIVING"); 
- 172              		.loc 1 50 0
- 173 004c 0E48     		ldr	r0, .L21+8
- 174 004e FFF7FEFF 		bl	LCD_PrintString
-  51:.\dash_board.c ****             break;
- 175              		.loc 1 51 0
- 176 0052 0FE0     		b	.L10
- 177              	.L15:
-  52:.\dash_board.c **** 	    case PRECHARGE:
-  53:.\dash_board.c ****             LCD_PrintString("PRECHARGE"); 
- 178              		.loc 1 53 0
- 179 0054 0D48     		ldr	r0, .L21+12
- 180 0056 FFF7FEFF 		bl	LCD_PrintString
-  54:.\dash_board.c ****             break;
- 181              		.loc 1 54 0
- 182 005a 0BE0     		b	.L10
- 183              	.L16:
-  55:.\dash_board.c **** 	    case CHARGING:
-  56:.\dash_board.c ****             LCD_PrintString("CHARGING"); 
- 184              		.loc 1 56 0
- 185 005c 0C48     		ldr	r0, .L21+16
- 186 005e FFF7FEFF 		bl	LCD_PrintString
-  57:.\dash_board.c ****             break;
- 187              		.loc 1 57 0
- 188 0062 07E0     		b	.L10
- 189              	.L17:
-  58:.\dash_board.c **** 	    case SOFT_FAULT:
-  59:.\dash_board.c ****             LCD_PrintString("SOFT FAULT"); 
- 190              		.loc 1 59 0
- 191 0064 0B48     		ldr	r0, .L21+20
- 192 0066 FFF7FEFF 		bl	LCD_PrintString
-  60:.\dash_board.c ****             break;
- 193              		.loc 1 60 0
- 194 006a 03E0     		b	.L10
- 195              	.L18:
-  61:.\dash_board.c ****         case HARD_FAULT:
-  62:.\dash_board.c ****             LCD_PrintString("HARD FAULT"); 
- 196              		.loc 1 62 0
- 197 006c 0A48     		ldr	r0, .L21+24
- 198 006e FFF7FEFF 		bl	LCD_PrintString
-  63:.\dash_board.c ****             break;
- 199              		.loc 1 63 0
- 200 0072 00BF     		nop
- 201              	.L10:
-  64:.\dash_board.c ****     }
-  65:.\dash_board.c ****     return;
- 202              		.loc 1 65 0
- 203 0074 00BF     		nop
- 204              	.L20:
- 205 0076 00BF     		nop
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccrzTzFq.s 			page 6
+  69 000a 0020     		movs	r0, #0
+  70 000c 0021     		movs	r1, #0
+  71 000e FFF7FEFF 		bl	LCD_Position
+  44:.\dash_board.c ****     switch(mode){
+  72              		.loc 1 44 0
+  73 0012 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+  74 0014 002B     		cmp	r3, #0
+  75 0016 02D0     		beq	.L3
+  76 0018 012B     		cmp	r3, #1
+  77 001a 04D0     		beq	.L4
+  78 001c 07E0     		b	.L6
+  79              	.L3:
+  45:.\dash_board.c ****         case COMMON:
+  46:.\dash_board.c ****             LCD_PrintString("MAIN: "); 
+  80              		.loc 1 46 0
+  81 001e 0748     		ldr	r0, .L7
+  82 0020 FFF7FEFF 		bl	LCD_PrintString
+  47:.\dash_board.c ****             break;
+  83              		.loc 1 47 0
+  84 0024 07E0     		b	.L1
+  85              	.L4:
+  48:.\dash_board.c **** 	    case INFO:
+  49:.\dash_board.c ****             LCD_PrintString("INFO:"); 
+  86              		.loc 1 49 0
+  87 0026 0648     		ldr	r0, .L7+4
+  88 0028 FFF7FEFF 		bl	LCD_PrintString
+  50:.\dash_board.c ****             break;
+  89              		.loc 1 50 0
+  90 002c 03E0     		b	.L1
+  91              	.L6:
+  51:.\dash_board.c **** 	    default:
+  52:.\dash_board.c ****             LCD_PrintString("Err: "); 
+  92              		.loc 1 52 0
+  93 002e 0548     		ldr	r0, .L7+8
+  94 0030 FFF7FEFF 		bl	LCD_PrintString
+  53:.\dash_board.c ****             break;
+  95              		.loc 1 53 0
+  96 0034 00BF     		nop
+  97              	.L1:
+  54:.\dash_board.c ****     }
+  55:.\dash_board.c **** }
+  98              		.loc 1 55 0
+  99 0036 0837     		adds	r7, r7, #8
+ 100 0038 BD46     		mov	sp, r7
+ 101              		@ sp needed
+ 102 003a 80BD     		pop	{r7, pc}
+ 103              	.L8:
+ 104              		.align	2
+ 105              	.L7:
+ 106 003c 00000000 		.word	.LC0
+ 107 0040 08000000 		.word	.LC1
+ 108 0044 10000000 		.word	.LC2
+ 109              		.cfi_endproc
+ 110              	.LFE56:
+ 111              		.size	Dash_display_Mode, .-Dash_display_Mode
+ 112              		.section	.rodata
+ 113 0016 0000     		.align	2
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 4
 
 
-  66:.\dash_board.c **** }
- 206              		.loc 1 66 0
- 207 0078 0837     		adds	r7, r7, #8
- 208 007a BD46     		mov	sp, r7
- 209              		@ sp needed
- 210 007c 80BD     		pop	{r7, pc}
- 211              	.L22:
- 212 007e 00BF     		.align	2
- 213              	.L21:
- 214 0080 18000000 		.word	.LC3
- 215 0084 24000000 		.word	.LC4
- 216 0088 2C000000 		.word	.LC5
- 217 008c 34000000 		.word	.LC6
- 218 0090 40000000 		.word	.LC7
- 219 0094 4C000000 		.word	.LC8
- 220 0098 58000000 		.word	.LC9
- 221              		.cfi_endproc
- 222              	.LFE57:
- 223              		.size	Dash_display_State, .-Dash_display_State
- 224              		.section	.text.Dash_display_Event,"ax",%progbits
- 225              		.align	2
- 226              		.global	Dash_display_Event
- 227              		.thumb
- 228              		.thumb_func
- 229              		.type	Dash_display_Event, %function
- 230              	Dash_display_Event:
- 231              	.LFB58:
-  67:.\dash_board.c **** 
-  68:.\dash_board.c **** 
-  69:.\dash_board.c **** void Dash_display_Event(Events newEvent){
- 232              		.loc 1 69 0
- 233              		.cfi_startproc
- 234              		@ args = 0, pretend = 0, frame = 8
- 235              		@ frame_needed = 1, uses_anonymous_args = 0
- 236              		@ link register save eliminated.
- 237 0000 80B4     		push	{r7}
- 238              		.cfi_def_cfa_offset 4
- 239              		.cfi_offset 7, -4
- 240 0002 83B0     		sub	sp, sp, #12
- 241              		.cfi_def_cfa_offset 16
- 242 0004 00AF     		add	r7, sp, #0
- 243              		.cfi_def_cfa_register 7
- 244 0006 0346     		mov	r3, r0
- 245 0008 FB71     		strb	r3, [r7, #7]
-  70:.\dash_board.c ****     switch(newEvent){
- 246              		.loc 1 70 0
- 247 000a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
- 248 000c 092B     		cmp	r3, #9
- 249 000e 19D8     		bhi	.L37
- 250 0010 01A2     		adr	r2, .L26
- 251 0012 52F823F0 		ldr	pc, [r2, r3, lsl #2]
- 252 0016 00BF     		.p2align 2
- 253              	.L26:
- 254 0018 41000000 		.word	.L38+1
- 255 001c 41000000 		.word	.L38+1
- 256 0020 41000000 		.word	.L38+1
- 257 0024 41000000 		.word	.L38+1
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccrzTzFq.s 			page 7
+ 114              	.LC3:
+ 115 0018 53544152 		.ascii	"START UP\000"
+ 115      54205550 
+ 115      00
+ 116 0021 000000   		.align	2
+ 117              	.LC4:
+ 118 0024 4E455554 		.ascii	"NEUTRAL\000"
+ 118      52414C00 
+ 119              		.align	2
+ 120              	.LC5:
+ 121 002c 44524956 		.ascii	"DRIVING\000"
+ 121      494E4700 
+ 122              		.align	2
+ 123              	.LC6:
+ 124 0034 50524543 		.ascii	"PRECHARGE\000"
+ 124      48415247 
+ 124      4500
+ 125 003e 0000     		.align	2
+ 126              	.LC7:
+ 127 0040 43484152 		.ascii	"CHARGING\000"
+ 127      47494E47 
+ 127      00
+ 128 0049 000000   		.align	2
+ 129              	.LC8:
+ 130 004c 534F4654 		.ascii	"SOFT FAULT\000"
+ 130      20464155 
+ 130      4C5400
+ 131 0057 00       		.align	2
+ 132              	.LC9:
+ 133 0058 48415244 		.ascii	"HARD FAULT\000"
+ 133      20464155 
+ 133      4C5400
+ 134 0063 00       		.align	2
+ 135              	.LC10:
+ 136 0064 4552523A 		.ascii	"ERR:\000"
+ 136      00
+ 137              		.section	.text.Dash_display_State,"ax",%progbits
+ 138              		.align	2
+ 139              		.global	Dash_display_State
+ 140              		.thumb
+ 141              		.thumb_func
+ 142              		.type	Dash_display_State, %function
+ 143              	Dash_display_State:
+ 144              	.LFB57:
+  56:.\dash_board.c **** 
+  57:.\dash_board.c **** void Dash_display_State(States newState){
+ 145              		.loc 1 57 0
+ 146              		.cfi_startproc
+ 147              		@ args = 0, pretend = 0, frame = 8
+ 148              		@ frame_needed = 1, uses_anonymous_args = 0
+ 149 0000 80B5     		push	{r7, lr}
+ 150              		.cfi_def_cfa_offset 8
+ 151              		.cfi_offset 7, -8
+ 152              		.cfi_offset 14, -4
+ 153 0002 82B0     		sub	sp, sp, #8
+ 154              		.cfi_def_cfa_offset 16
+ 155 0004 00AF     		add	r7, sp, #0
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 5
 
 
- 258 0028 41000000 		.word	.L38+1
- 259 002c 41000000 		.word	.L38+1
- 260 0030 41000000 		.word	.L38+1
- 261 0034 41000000 		.word	.L38+1
- 262 0038 41000000 		.word	.L38+1
- 263 003c 41000000 		.word	.L38+1
- 264              		.p2align 1
- 265              	.L38:
-  71:.\dash_board.c ****         case HV_UP:
-  72:.\dash_board.c ****             break;
- 266              		.loc 1 72 0
- 267 0040 00BF     		nop
-  73:.\dash_board.c **** 	    case DRIVE_UP:
+ 156              		.cfi_def_cfa_register 7
+ 157 0006 0346     		mov	r3, r0
+ 158 0008 FB71     		strb	r3, [r7, #7]
+  58:.\dash_board.c ****     LCD_Position(0u,0u);
+ 159              		.loc 1 58 0
+ 160 000a 0020     		movs	r0, #0
+ 161 000c 0021     		movs	r1, #0
+ 162 000e FFF7FEFF 		bl	LCD_Position
+  59:.\dash_board.c ****     switch(newState){
+ 163              		.loc 1 59 0
+ 164 0012 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 165 0014 062B     		cmp	r3, #6
+ 166 0016 2DD8     		bhi	.L10
+ 167 0018 01A2     		adr	r2, .L12
+ 168 001a 52F823F0 		ldr	pc, [r2, r3, lsl #2]
+ 169 001e 00BF     		.p2align 2
+ 170              	.L12:
+ 171 0020 3D000000 		.word	.L11+1
+ 172 0024 45000000 		.word	.L13+1
+ 173 0028 4D000000 		.word	.L14+1
+ 174 002c 55000000 		.word	.L15+1
+ 175 0030 5D000000 		.word	.L16+1
+ 176 0034 65000000 		.word	.L17+1
+ 177 0038 6D000000 		.word	.L18+1
+ 178              		.p2align 1
+ 179              	.L11:
+  60:.\dash_board.c ****         case STARTUP:
+  61:.\dash_board.c ****             LCD_PrintString("START UP"); 
+ 180              		.loc 1 61 0
+ 181 003c 1D48     		ldr	r0, .L22
+ 182 003e FFF7FEFF 		bl	LCD_PrintString
+  62:.\dash_board.c ****             break;
+ 183              		.loc 1 62 0
+ 184 0042 17E0     		b	.L10
+ 185              	.L13:
+  63:.\dash_board.c **** 	    case NEUTRAL:
+  64:.\dash_board.c ****             LCD_PrintString("NEUTRAL"); 
+ 186              		.loc 1 64 0
+ 187 0044 1C48     		ldr	r0, .L22+4
+ 188 0046 FFF7FEFF 		bl	LCD_PrintString
+  65:.\dash_board.c ****             break;
+ 189              		.loc 1 65 0
+ 190 004a 13E0     		b	.L10
+ 191              	.L14:
+  66:.\dash_board.c **** 	    case DRIVE:
+  67:.\dash_board.c ****             LCD_PrintString("DRIVING"); 
+ 192              		.loc 1 67 0
+ 193 004c 1B48     		ldr	r0, .L22+8
+ 194 004e FFF7FEFF 		bl	LCD_PrintString
+  68:.\dash_board.c ****             break;
+ 195              		.loc 1 68 0
+ 196 0052 0FE0     		b	.L10
+ 197              	.L15:
+  69:.\dash_board.c **** 	    case PRECHARGE:
+  70:.\dash_board.c ****             LCD_PrintString("PRECHARGE"); 
+ 198              		.loc 1 70 0
+ 199 0054 1A48     		ldr	r0, .L22+12
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 6
+
+
+ 200 0056 FFF7FEFF 		bl	LCD_PrintString
+  71:.\dash_board.c ****             break;
+ 201              		.loc 1 71 0
+ 202 005a 0BE0     		b	.L10
+ 203              	.L16:
+  72:.\dash_board.c **** 	    case CHARGING:
+  73:.\dash_board.c ****             LCD_PrintString("CHARGING"); 
+ 204              		.loc 1 73 0
+ 205 005c 1948     		ldr	r0, .L22+16
+ 206 005e FFF7FEFF 		bl	LCD_PrintString
   74:.\dash_board.c ****             break;
-  75:.\dash_board.c **** 	    case NEUTRAL_UP:
-  76:.\dash_board.c ****             break;
-  77:.\dash_board.c **** 	    case CHARGE_UP:
-  78:.\dash_board.c ****             break;
-  79:.\dash_board.c **** 	    case PRECHARGE_DONE:
+ 207              		.loc 1 74 0
+ 208 0062 07E0     		b	.L10
+ 209              	.L17:
+  75:.\dash_board.c **** 	    case SOFT_FAULT:
+  76:.\dash_board.c ****             LCD_PrintString("SOFT FAULT"); 
+ 210              		.loc 1 76 0
+ 211 0064 1848     		ldr	r0, .L22+20
+ 212 0066 FFF7FEFF 		bl	LCD_PrintString
+  77:.\dash_board.c ****             break;
+ 213              		.loc 1 77 0
+ 214 006a 03E0     		b	.L10
+ 215              	.L18:
+  78:.\dash_board.c ****         case HARD_FAULT:
+  79:.\dash_board.c ****             LCD_PrintString("HARD FAULT"); 
+ 216              		.loc 1 79 0
+ 217 006c 1748     		ldr	r0, .L22+24
+ 218 006e FFF7FEFF 		bl	LCD_PrintString
   80:.\dash_board.c ****             break;
-  81:.\dash_board.c **** 	    case CHARGE_DOWN:
-  82:.\dash_board.c ****             break;
-  83:.\dash_board.c ****         case SOFT_FAULT_SIG:
-  84:.\dash_board.c ****             break;
-  85:.\dash_board.c ****         case SOFT_FAULT_REMEDIED:
-  86:.\dash_board.c ****             break;
-  87:.\dash_board.c ****         case HARD_FAULT_SIG:
-  88:.\dash_board.c ****             break;
-  89:.\dash_board.c ****         case NONE:
-  90:.\dash_board.c ****             break;
-  91:.\dash_board.c ****     }
-  92:.\dash_board.c ****     return;
- 268              		.loc 1 92 0
- 269 0042 00BF     		nop
- 270              	.L37:
- 271 0044 00BF     		nop
-  93:.\dash_board.c **** }
- 272              		.loc 1 93 0
- 273 0046 0C37     		adds	r7, r7, #12
- 274 0048 BD46     		mov	sp, r7
- 275              		@ sp needed
- 276 004a 5DF8047B 		ldr	r7, [sp], #4
- 277 004e 7047     		bx	lr
- 278              		.cfi_endproc
- 279              	.LFE58:
- 280              		.size	Dash_display_Event, .-Dash_display_Event
- 281              		.section	.text.Dash_display_Value,"ax",%progbits
- 282              		.align	2
- 283              		.global	Dash_display_Value
- 284              		.thumb
- 285              		.thumb_func
- 286              		.type	Dash_display_Value, %function
- 287              	Dash_display_Value:
- 288              	.LFB59:
-  94:.\dash_board.c **** 
-  95:.\dash_board.c **** void Dash_display_Value(){
- 289              		.loc 1 95 0
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccrzTzFq.s 			page 8
+ 219              		.loc 1 80 0
+ 220 0072 00BF     		nop
+ 221              	.L10:
+  81:.\dash_board.c ****     }
+  82:.\dash_board.c ****     
+  83:.\dash_board.c ****     if (error_battery || error_padel){
+ 222              		.loc 1 83 0
+ 223 0074 164B     		ldr	r3, .L22+28
+ 224 0076 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 225 0078 002B     		cmp	r3, #0
+ 226 007a 03D1     		bne	.L19
+ 227              		.loc 1 83 0 is_stmt 0 discriminator 1
+ 228 007c 154B     		ldr	r3, .L22+32
+ 229 007e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 230 0080 002B     		cmp	r3, #0
+ 231 0082 12D0     		beq	.L20
+ 232              	.L19:
+  84:.\dash_board.c ****         LCD_Position(0u,8u);
+ 233              		.loc 1 84 0 is_stmt 1
+ 234 0084 0020     		movs	r0, #0
+ 235 0086 0821     		movs	r1, #8
+ 236 0088 FFF7FEFF 		bl	LCD_Position
+  85:.\dash_board.c ****         LCD_PrintString("ERR:");
+ 237              		.loc 1 85 0
+ 238 008c 1248     		ldr	r0, .L22+36
+ 239 008e FFF7FEFF 		bl	LCD_PrintString
+  86:.\dash_board.c ****         LCD_PrintHexUint16(error_battery<<8 | error_padel);
+ 240              		.loc 1 86 0
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 7
 
 
- 290              		.cfi_startproc
- 291              		@ args = 0, pretend = 0, frame = 0
- 292              		@ frame_needed = 1, uses_anonymous_args = 0
- 293 0000 80B5     		push	{r7, lr}
- 294              		.cfi_def_cfa_offset 8
- 295              		.cfi_offset 7, -8
- 296              		.cfi_offset 14, -4
- 297 0002 00AF     		add	r7, sp, #0
- 298              		.cfi_def_cfa_register 7
-  96:.\dash_board.c ****     //display two values, msg, or err_msg
-  97:.\dash_board.c ****     if (mode == COMMON){
- 299              		.loc 1 97 0
- 300 0004 0B4B     		ldr	r3, .L41
- 301 0006 1B78     		ldrb	r3, [r3]
- 302 0008 DBB2     		uxtb	r3, r3
- 303 000a 002B     		cmp	r3, #0
- 304 000c 11D1     		bne	.L39
-  98:.\dash_board.c ****         //left voltage right current
-  99:.\dash_board.c ****         LCD_Position(1u,0u);
- 305              		.loc 1 99 0
- 306 000e 0120     		movs	r0, #1
- 307 0010 0021     		movs	r1, #0
- 308 0012 FFF7FEFF 		bl	LCD_Position
- 100:.\dash_board.c ****         LCD_PrintNumber(info_battery_voltage);
- 309              		.loc 1 100 0
- 310 0016 084B     		ldr	r3, .L41+4
- 311 0018 1B88     		ldrh	r3, [r3]
- 312 001a 1846     		mov	r0, r3
- 313 001c FFF7FEFF 		bl	LCD_PrintU32Number
- 101:.\dash_board.c ****         LCD_Position(1u,1u);
- 314              		.loc 1 101 0
- 315 0020 0120     		movs	r0, #1
- 316 0022 0121     		movs	r1, #1
- 317 0024 FFF7FEFF 		bl	LCD_Position
- 102:.\dash_board.c ****         LCD_PrintNumber(info_battery_current);
- 318              		.loc 1 102 0
- 319 0028 044B     		ldr	r3, .L41+8
- 320 002a 1B88     		ldrh	r3, [r3]
- 321 002c 1846     		mov	r0, r3
- 322 002e FFF7FEFF 		bl	LCD_PrintU32Number
- 323              	.L39:
- 103:.\dash_board.c ****     }
- 104:.\dash_board.c **** 
- 105:.\dash_board.c **** }
- 324              		.loc 1 105 0
- 325 0032 80BD     		pop	{r7, pc}
- 326              	.L42:
- 327              		.align	2
- 328              	.L41:
- 329 0034 00000000 		.word	mode
- 330 0038 00000000 		.word	info_battery_voltage
- 331 003c 00000000 		.word	info_battery_current
- 332              		.cfi_endproc
- 333              	.LFE59:
- 334              		.size	Dash_display_Value, .-Dash_display_Value
- 335              		.text
- 336              	.Letext0:
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccrzTzFq.s 			page 9
+ 241 0092 0F4B     		ldr	r3, .L22+28
+ 242 0094 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 243 0096 1B02     		lsls	r3, r3, #8
+ 244 0098 9AB2     		uxth	r2, r3
+ 245 009a 0E4B     		ldr	r3, .L22+32
+ 246 009c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 247 009e 1343     		orrs	r3, r3, r2
+ 248 00a0 9BB2     		uxth	r3, r3
+ 249 00a2 9BB2     		uxth	r3, r3
+ 250 00a4 1846     		mov	r0, r3
+ 251 00a6 FFF7FEFF 		bl	LCD_PrintInt16
+ 252              	.L20:
+  87:.\dash_board.c ****     }
+  88:.\dash_board.c ****     return;
+ 253              		.loc 1 88 0
+ 254 00aa 00BF     		nop
+  89:.\dash_board.c **** }
+ 255              		.loc 1 89 0
+ 256 00ac 0837     		adds	r7, r7, #8
+ 257 00ae BD46     		mov	sp, r7
+ 258              		@ sp needed
+ 259 00b0 80BD     		pop	{r7, pc}
+ 260              	.L23:
+ 261 00b2 00BF     		.align	2
+ 262              	.L22:
+ 263 00b4 18000000 		.word	.LC3
+ 264 00b8 24000000 		.word	.LC4
+ 265 00bc 2C000000 		.word	.LC5
+ 266 00c0 34000000 		.word	.LC6
+ 267 00c4 40000000 		.word	.LC7
+ 268 00c8 4C000000 		.word	.LC8
+ 269 00cc 58000000 		.word	.LC9
+ 270 00d0 00000000 		.word	error_battery
+ 271 00d4 00000000 		.word	error_padel
+ 272 00d8 64000000 		.word	.LC10
+ 273              		.cfi_endproc
+ 274              	.LFE57:
+ 275              		.size	Dash_display_State, .-Dash_display_State
+ 276              		.section	.text.Dash_display_Event,"ax",%progbits
+ 277              		.align	2
+ 278              		.global	Dash_display_Event
+ 279              		.thumb
+ 280              		.thumb_func
+ 281              		.type	Dash_display_Event, %function
+ 282              	Dash_display_Event:
+ 283              	.LFB58:
+  90:.\dash_board.c **** 
+  91:.\dash_board.c **** 
+  92:.\dash_board.c **** void Dash_display_Event(Events newEvent){
+ 284              		.loc 1 92 0
+ 285              		.cfi_startproc
+ 286              		@ args = 0, pretend = 0, frame = 8
+ 287              		@ frame_needed = 1, uses_anonymous_args = 0
+ 288              		@ link register save eliminated.
+ 289 0000 80B4     		push	{r7}
+ 290              		.cfi_def_cfa_offset 4
+ 291              		.cfi_offset 7, -4
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 8
 
 
- 337              		.file 2 "d:\\software\\psoccreator\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4.8.4\\a
- 338              		.file 3 "d:\\software\\psoccreator\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4.8.4\\a
- 339              		.file 4 ".\\Generated_Source\\PSoC5/cytypes.h"
- 340              		.file 5 ".\\state_event.h"
- 341              		.file 6 ".\\Generated_Source\\PSoC5/core_cm3.h"
- 342              		.section	.debug_info,"",%progbits
- 343              	.Ldebug_info0:
- 344 0000 1D020000 		.4byte	0x21d
- 345 0004 0400     		.2byte	0x4
- 346 0006 00000000 		.4byte	.Ldebug_abbrev0
- 347 000a 04       		.byte	0x4
- 348 000b 01       		.uleb128 0x1
- 349 000c 1B000000 		.4byte	.LASF49
- 350 0010 01       		.byte	0x1
- 351 0011 97000000 		.4byte	.LASF50
- 352 0015 13020000 		.4byte	.LASF51
- 353 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 354 001d 00000000 		.4byte	0
- 355 0021 00000000 		.4byte	.Ldebug_line0
- 356 0025 02       		.uleb128 0x2
- 357 0026 01       		.byte	0x1
- 358 0027 06       		.byte	0x6
- 359 0028 19010000 		.4byte	.LASF0
- 360 002c 02       		.uleb128 0x2
- 361 002d 01       		.byte	0x1
- 362 002e 08       		.byte	0x8
- 363 002f 2B010000 		.4byte	.LASF1
- 364 0033 02       		.uleb128 0x2
- 365 0034 02       		.byte	0x2
- 366 0035 05       		.byte	0x5
- 367 0036 94020000 		.4byte	.LASF2
- 368 003a 03       		.uleb128 0x3
- 369 003b 87010000 		.4byte	.LASF4
- 370 003f 02       		.byte	0x2
- 371 0040 26       		.byte	0x26
- 372 0041 45000000 		.4byte	0x45
- 373 0045 02       		.uleb128 0x2
- 374 0046 02       		.byte	0x2
- 375 0047 07       		.byte	0x7
- 376 0048 60010000 		.4byte	.LASF3
- 377 004c 03       		.uleb128 0x3
- 378 004d B1000000 		.4byte	.LASF5
- 379 0051 02       		.byte	0x2
- 380 0052 37       		.byte	0x37
- 381 0053 57000000 		.4byte	0x57
- 382 0057 02       		.uleb128 0x2
- 383 0058 04       		.byte	0x4
- 384 0059 05       		.byte	0x5
- 385 005a B2020000 		.4byte	.LASF6
- 386 005e 02       		.uleb128 0x2
- 387 005f 04       		.byte	0x4
- 388 0060 07       		.byte	0x7
- 389 0061 4E010000 		.4byte	.LASF7
- 390 0065 02       		.uleb128 0x2
- 391 0066 08       		.byte	0x8
- 392 0067 05       		.byte	0x5
- 393 0068 69020000 		.4byte	.LASF8
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccrzTzFq.s 			page 10
+ 292 0002 83B0     		sub	sp, sp, #12
+ 293              		.cfi_def_cfa_offset 16
+ 294 0004 00AF     		add	r7, sp, #0
+ 295              		.cfi_def_cfa_register 7
+ 296 0006 0346     		mov	r3, r0
+ 297 0008 FB71     		strb	r3, [r7, #7]
+  93:.\dash_board.c ****     switch(newEvent){
+ 298              		.loc 1 93 0
+ 299 000a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 300 000c 092B     		cmp	r3, #9
+ 301 000e 19D8     		bhi	.L38
+ 302 0010 01A2     		adr	r2, .L27
+ 303 0012 52F823F0 		ldr	pc, [r2, r3, lsl #2]
+ 304 0016 00BF     		.p2align 2
+ 305              	.L27:
+ 306 0018 41000000 		.word	.L39+1
+ 307 001c 41000000 		.word	.L39+1
+ 308 0020 41000000 		.word	.L39+1
+ 309 0024 41000000 		.word	.L39+1
+ 310 0028 41000000 		.word	.L39+1
+ 311 002c 41000000 		.word	.L39+1
+ 312 0030 41000000 		.word	.L39+1
+ 313 0034 41000000 		.word	.L39+1
+ 314 0038 41000000 		.word	.L39+1
+ 315 003c 41000000 		.word	.L39+1
+ 316              		.p2align 1
+ 317              	.L39:
+  94:.\dash_board.c ****         case HV_UP:
+  95:.\dash_board.c ****             break;
+ 318              		.loc 1 95 0
+ 319 0040 00BF     		nop
+  96:.\dash_board.c **** 	    case DRIVE_UP:
+  97:.\dash_board.c ****             break;
+  98:.\dash_board.c **** 	    case NEUTRAL_UP:
+  99:.\dash_board.c ****             break;
+ 100:.\dash_board.c **** 	    case CHARGE_UP:
+ 101:.\dash_board.c ****             break;
+ 102:.\dash_board.c **** 	    case PRECHARGE_DONE:
+ 103:.\dash_board.c ****             break;
+ 104:.\dash_board.c **** 	    case CHARGE_DOWN:
+ 105:.\dash_board.c ****             break;
+ 106:.\dash_board.c ****         case SOFT_FAULT_SIG:
+ 107:.\dash_board.c ****             break;
+ 108:.\dash_board.c ****         case SOFT_FAULT_REMEDIED:
+ 109:.\dash_board.c ****             break;
+ 110:.\dash_board.c ****         case HARD_FAULT_SIG:
+ 111:.\dash_board.c ****             break;
+ 112:.\dash_board.c ****         case NONE:
+ 113:.\dash_board.c ****             break;
+ 114:.\dash_board.c ****     }
+ 115:.\dash_board.c ****     return;
+ 320              		.loc 1 115 0
+ 321 0042 00BF     		nop
+ 322              	.L38:
+ 323 0044 00BF     		nop
+ 116:.\dash_board.c **** }
+ 324              		.loc 1 116 0
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 9
 
 
- 394 006c 02       		.uleb128 0x2
- 395 006d 08       		.byte	0x8
- 396 006e 07       		.byte	0x7
- 397 006f E2010000 		.4byte	.LASF9
- 398 0073 04       		.uleb128 0x4
- 399 0074 04       		.byte	0x4
- 400 0075 05       		.byte	0x5
- 401 0076 696E7400 		.ascii	"int\000"
- 402 007a 02       		.uleb128 0x2
- 403 007b 04       		.byte	0x4
- 404 007c 07       		.byte	0x7
- 405 007d D5010000 		.4byte	.LASF10
- 406 0081 03       		.uleb128 0x3
- 407 0082 A9020000 		.4byte	.LASF11
- 408 0086 03       		.byte	0x3
- 409 0087 36       		.byte	0x36
- 410 0088 3A000000 		.4byte	0x3a
- 411 008c 03       		.uleb128 0x3
- 412 008d 02010000 		.4byte	.LASF12
- 413 0091 03       		.byte	0x3
- 414 0092 41       		.byte	0x41
- 415 0093 4C000000 		.4byte	0x4c
- 416 0097 03       		.uleb128 0x3
- 417 0098 A3010000 		.4byte	.LASF13
- 418 009c 04       		.byte	0x4
- 419 009d A2       		.byte	0xa2
- 420 009e 45000000 		.4byte	0x45
- 421 00a2 02       		.uleb128 0x2
- 422 00a3 04       		.byte	0x4
- 423 00a4 04       		.byte	0x4
- 424 00a5 13010000 		.4byte	.LASF14
- 425 00a9 02       		.uleb128 0x2
- 426 00aa 08       		.byte	0x8
- 427 00ab 04       		.byte	0x4
- 428 00ac 92010000 		.4byte	.LASF15
- 429 00b0 02       		.uleb128 0x2
- 430 00b1 01       		.byte	0x1
- 431 00b2 08       		.byte	0x8
- 432 00b3 77020000 		.4byte	.LASF16
- 433 00b7 02       		.uleb128 0x2
- 434 00b8 04       		.byte	0x4
- 435 00b9 07       		.byte	0x7
- 436 00ba 60020000 		.4byte	.LASF17
- 437 00be 05       		.uleb128 0x5
- 438 00bf 01       		.byte	0x1
- 439 00c0 05       		.byte	0x5
- 440 00c1 07       		.byte	0x7
- 441 00c2 D3000000 		.4byte	0xd3
- 442 00c6 06       		.uleb128 0x6
- 443 00c7 F0020000 		.4byte	.LASF18
- 444 00cb 00       		.sleb128 0
- 445 00cc 06       		.uleb128 0x6
- 446 00cd BD010000 		.4byte	.LASF19
- 447 00d1 01       		.sleb128 1
- 448 00d2 00       		.byte	0
- 449 00d3 03       		.uleb128 0x3
- 450 00d4 44010000 		.4byte	.LASF20
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccrzTzFq.s 			page 11
+ 325 0046 0C37     		adds	r7, r7, #12
+ 326 0048 BD46     		mov	sp, r7
+ 327              		@ sp needed
+ 328 004a 5DF8047B 		ldr	r7, [sp], #4
+ 329 004e 7047     		bx	lr
+ 330              		.cfi_endproc
+ 331              	.LFE58:
+ 332              		.size	Dash_display_Event, .-Dash_display_Event
+ 333              		.section	.rodata
+ 334 0069 000000   		.align	2
+ 335              	.LC11:
+ 336 006c 6D5600   		.ascii	"mV\000"
+ 337 006f 00       		.align	2
+ 338              	.LC12:
+ 339 0070 6D4100   		.ascii	"mA\000"
+ 340 0073 00       		.section	.text.Dash_display_Value,"ax",%progbits
+ 341              		.align	2
+ 342              		.global	Dash_display_Value
+ 343              		.thumb
+ 344              		.thumb_func
+ 345              		.type	Dash_display_Value, %function
+ 346              	Dash_display_Value:
+ 347              	.LFB59:
+ 117:.\dash_board.c **** 
+ 118:.\dash_board.c **** void Dash_display_Value(){
+ 348              		.loc 1 118 0
+ 349              		.cfi_startproc
+ 350              		@ args = 0, pretend = 0, frame = 0
+ 351              		@ frame_needed = 1, uses_anonymous_args = 0
+ 352 0000 80B5     		push	{r7, lr}
+ 353              		.cfi_def_cfa_offset 8
+ 354              		.cfi_offset 7, -8
+ 355              		.cfi_offset 14, -4
+ 356 0002 00AF     		add	r7, sp, #0
+ 357              		.cfi_def_cfa_register 7
+ 119:.\dash_board.c ****     //display two values, msg, or err_msg
+ 120:.\dash_board.c ****     if (mode == COMMON){
+ 358              		.loc 1 120 0
+ 359 0004 134B     		ldr	r3, .L42
+ 360 0006 1B78     		ldrb	r3, [r3]
+ 361 0008 DBB2     		uxtb	r3, r3
+ 362 000a 002B     		cmp	r3, #0
+ 363 000c 20D1     		bne	.L40
+ 121:.\dash_board.c ****         //left voltage right current
+ 122:.\dash_board.c ****         LCD_Position(1u,0u);
+ 364              		.loc 1 122 0
+ 365 000e 0120     		movs	r0, #1
+ 366 0010 0021     		movs	r1, #0
+ 367 0012 FFF7FEFF 		bl	LCD_Position
+ 123:.\dash_board.c ****         LCD_PrintNumber(info_battery_voltage);
+ 368              		.loc 1 123 0
+ 369 0016 104B     		ldr	r3, .L42+4
+ 370 0018 1B68     		ldr	r3, [r3]
+ 371 001a 9BB2     		uxth	r3, r3
+ 372 001c 1846     		mov	r0, r3
+ 373 001e FFF7FEFF 		bl	LCD_PrintU32Number
+ 124:.\dash_board.c ****         LCD_Position(1u,6u);
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 10
 
 
- 451 00d8 05       		.byte	0x5
- 452 00d9 0A       		.byte	0xa
- 453 00da BE000000 		.4byte	0xbe
- 454 00de 05       		.uleb128 0x5
- 455 00df 01       		.byte	0x1
- 456 00e0 05       		.byte	0x5
- 457 00e1 0E       		.byte	0xe
- 458 00e2 11010000 		.4byte	0x111
- 459 00e6 06       		.uleb128 0x6
- 460 00e7 13000000 		.4byte	.LASF21
- 461 00eb 00       		.sleb128 0
- 462 00ec 06       		.uleb128 0x6
- 463 00ed CA020000 		.4byte	.LASF22
- 464 00f1 01       		.sleb128 1
- 465 00f2 06       		.uleb128 0x6
- 466 00f3 AB000000 		.4byte	.LASF23
- 467 00f7 02       		.sleb128 2
- 468 00f8 06       		.uleb128 0x6
- 469 00f9 99010000 		.4byte	.LASF24
- 470 00fd 03       		.sleb128 3
- 471 00fe 06       		.uleb128 0x6
- 472 00ff F7020000 		.4byte	.LASF25
- 473 0103 04       		.sleb128 4
- 474 0104 06       		.uleb128 0x6
- 475 0105 9E020000 		.4byte	.LASF26
- 476 0109 05       		.sleb128 5
- 477 010a 06       		.uleb128 0x6
- 478 010b 39010000 		.4byte	.LASF27
- 479 010f 06       		.sleb128 6
- 480 0110 00       		.byte	0
- 481 0111 03       		.uleb128 0x3
- 482 0112 4A020000 		.4byte	.LASF28
- 483 0116 05       		.byte	0x5
- 484 0117 16       		.byte	0x16
- 485 0118 DE000000 		.4byte	0xde
- 486 011c 05       		.uleb128 0x5
- 487 011d 01       		.byte	0x1
- 488 011e 05       		.byte	0x5
- 489 011f 1B       		.byte	0x1b
- 490 0120 61010000 		.4byte	0x161
- 491 0124 06       		.uleb128 0x6
- 492 0125 25010000 		.4byte	.LASF29
- 493 0129 00       		.sleb128 0
- 494 012a 06       		.uleb128 0x6
- 495 012b 0A010000 		.4byte	.LASF30
- 496 012f 01       		.sleb128 1
- 497 0130 06       		.uleb128 0x6
- 498 0131 C4000000 		.4byte	.LASF31
- 499 0135 02       		.sleb128 2
- 500 0136 06       		.uleb128 0x6
- 501 0137 F8000000 		.4byte	.LASF32
- 502 013b 03       		.sleb128 3
- 503 013c 06       		.uleb128 0x6
- 504 013d BB020000 		.4byte	.LASF33
- 505 0141 04       		.sleb128 4
- 506 0142 06       		.uleb128 0x6
- 507 0143 D2020000 		.4byte	.LASF34
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccrzTzFq.s 			page 12
+ 374              		.loc 1 124 0
+ 375 0022 0120     		movs	r0, #1
+ 376 0024 0621     		movs	r1, #6
+ 377 0026 FFF7FEFF 		bl	LCD_Position
+ 125:.\dash_board.c ****         LCD_PrintString("mV");
+ 378              		.loc 1 125 0
+ 379 002a 0C48     		ldr	r0, .L42+8
+ 380 002c FFF7FEFF 		bl	LCD_PrintString
+ 126:.\dash_board.c ****         LCD_Position(1u,8u);
+ 381              		.loc 1 126 0
+ 382 0030 0120     		movs	r0, #1
+ 383 0032 0821     		movs	r1, #8
+ 384 0034 FFF7FEFF 		bl	LCD_Position
+ 127:.\dash_board.c ****         LCD_PrintNumber(info_battery_current);
+ 385              		.loc 1 127 0
+ 386 0038 094B     		ldr	r3, .L42+12
+ 387 003a 1B88     		ldrh	r3, [r3]
+ 388 003c 1846     		mov	r0, r3
+ 389 003e FFF7FEFF 		bl	LCD_PrintU32Number
+ 128:.\dash_board.c ****         LCD_Position(1u,14u);
+ 390              		.loc 1 128 0
+ 391 0042 0120     		movs	r0, #1
+ 392 0044 0E21     		movs	r1, #14
+ 393 0046 FFF7FEFF 		bl	LCD_Position
+ 129:.\dash_board.c ****         LCD_PrintString("mA");
+ 394              		.loc 1 129 0
+ 395 004a 0648     		ldr	r0, .L42+16
+ 396 004c FFF7FEFF 		bl	LCD_PrintString
+ 397              	.L40:
+ 130:.\dash_board.c ****     }
+ 131:.\dash_board.c **** 
+ 132:.\dash_board.c **** }
+ 398              		.loc 1 132 0
+ 399 0050 80BD     		pop	{r7, pc}
+ 400              	.L43:
+ 401 0052 00BF     		.align	2
+ 402              	.L42:
+ 403 0054 00000000 		.word	mode
+ 404 0058 00000000 		.word	info_battery_voltage
+ 405 005c 6C000000 		.word	.LC11
+ 406 0060 00000000 		.word	info_battery_current
+ 407 0064 70000000 		.word	.LC12
+ 408              		.cfi_endproc
+ 409              	.LFE59:
+ 410              		.size	Dash_display_Value, .-Dash_display_Value
+ 411              		.section	.text.LED_update,"ax",%progbits
+ 412              		.align	2
+ 413              		.global	LED_update
+ 414              		.thumb
+ 415              		.thumb_func
+ 416              		.type	LED_update, %function
+ 417              	LED_update:
+ 418              	.LFB60:
+ 133:.\dash_board.c **** 
+ 134:.\dash_board.c **** void LED_update(RGB LED_rgb,uint8_t LED_len){
+ 419              		.loc 1 134 0
+ 420              		.cfi_startproc
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 11
 
 
- 508 0147 05       		.sleb128 5
- 509 0148 06       		.uleb128 0x6
- 510 0149 85020000 		.4byte	.LASF35
- 511 014d 06       		.sleb128 6
- 512 014e 06       		.uleb128 0x6
- 513 014f CF000000 		.4byte	.LASF36
- 514 0153 07       		.sleb128 7
- 515 0154 06       		.uleb128 0x6
- 516 0155 51020000 		.4byte	.LASF37
- 517 0159 08       		.sleb128 8
- 518 015a 06       		.uleb128 0x6
- 519 015b A6000000 		.4byte	.LASF38
- 520 015f 09       		.sleb128 9
- 521 0160 00       		.byte	0
- 522 0161 03       		.uleb128 0x3
- 523 0162 73010000 		.4byte	.LASF39
- 524 0166 05       		.byte	0x5
- 525 0167 26       		.byte	0x26
- 526 0168 1C010000 		.4byte	0x11c
- 527 016c 07       		.uleb128 0x7
- 528 016d DE020000 		.4byte	.LASF40
- 529 0171 01       		.byte	0x1
- 530 0172 19       		.byte	0x19
- 531 0173 00000000 		.4byte	.LFB56
- 532 0177 48000000 		.4byte	.LFE56-.LFB56
- 533 017b 01       		.uleb128 0x1
- 534 017c 9C       		.byte	0x9c
- 535 017d 90010000 		.4byte	0x190
- 536 0181 08       		.uleb128 0x8
- 537 0182 F9010000 		.4byte	.LASF42
- 538 0186 01       		.byte	0x1
- 539 0187 19       		.byte	0x19
- 540 0188 D3000000 		.4byte	0xd3
- 541 018c 02       		.uleb128 0x2
- 542 018d 91       		.byte	0x91
- 543 018e 77       		.sleb128 -9
- 544 018f 00       		.byte	0
- 545 0190 07       		.uleb128 0x7
- 546 0191 AA010000 		.4byte	.LASF41
- 547 0195 01       		.byte	0x1
- 548 0196 28       		.byte	0x28
- 549 0197 00000000 		.4byte	.LFB57
- 550 019b 9C000000 		.4byte	.LFE57-.LFB57
- 551 019f 01       		.uleb128 0x1
- 552 01a0 9C       		.byte	0x9c
- 553 01a1 B4010000 		.4byte	0x1b4
- 554 01a5 08       		.uleb128 0x8
- 555 01a6 7C020000 		.4byte	.LASF43
- 556 01aa 01       		.byte	0x1
- 557 01ab 28       		.byte	0x28
- 558 01ac 11010000 		.4byte	0x111
- 559 01b0 02       		.uleb128 0x2
- 560 01b1 91       		.byte	0x91
- 561 01b2 77       		.sleb128 -9
- 562 01b3 00       		.byte	0
- 563 01b4 09       		.uleb128 0x9
- 564 01b5 00000000 		.4byte	.LASF44
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccrzTzFq.s 			page 13
+ 421              		@ args = 0, pretend = 0, frame = 16
+ 422              		@ frame_needed = 1, uses_anonymous_args = 0
+ 423 0000 80B5     		push	{r7, lr}
+ 424              		.cfi_def_cfa_offset 8
+ 425              		.cfi_offset 7, -8
+ 426              		.cfi_offset 14, -4
+ 427 0002 84B0     		sub	sp, sp, #16
+ 428              		.cfi_def_cfa_offset 24
+ 429 0004 00AF     		add	r7, sp, #0
+ 430              		.cfi_def_cfa_register 7
+ 431 0006 7860     		str	r0, [r7, #4]
+ 432 0008 0B46     		mov	r3, r1
+ 433 000a FB70     		strb	r3, [r7, #3]
+ 135:.\dash_board.c ****     uint8_t i=0;
+ 434              		.loc 1 135 0
+ 435 000c 0023     		movs	r3, #0
+ 436 000e FB73     		strb	r3, [r7, #15]
+ 136:.\dash_board.c ****     uint8_t single_frame[4];
+ 137:.\dash_board.c ****     //send starting frame
+ 138:.\dash_board.c ****     LED_Strip_PutArray(STARTING_FRAME,4);
+ 437              		.loc 1 138 0
+ 438 0010 1148     		ldr	r0, .L47
+ 439 0012 0421     		movs	r1, #4
+ 440 0014 FFF7FEFF 		bl	LED_Strip_PutArray
+ 139:.\dash_board.c ****     //send N LED frame
+ 140:.\dash_board.c ****     single_frame[0]=0xff;
+ 441              		.loc 1 140 0
+ 442 0018 FF23     		movs	r3, #255
+ 443 001a 3B72     		strb	r3, [r7, #8]
+ 141:.\dash_board.c ****     single_frame[1]=LED_rgb.B;
+ 444              		.loc 1 141 0
+ 445 001c BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+ 446 001e 7B72     		strb	r3, [r7, #9]
+ 142:.\dash_board.c ****     single_frame[2]=LED_rgb.G;
+ 447              		.loc 1 142 0
+ 448 0020 7B79     		ldrb	r3, [r7, #5]	@ zero_extendqisi2
+ 449 0022 BB72     		strb	r3, [r7, #10]
+ 143:.\dash_board.c ****     single_frame[3]=LED_rgb.R;
+ 450              		.loc 1 143 0
+ 451 0024 3B79     		ldrb	r3, [r7, #4]	@ zero_extendqisi2
+ 452 0026 FB72     		strb	r3, [r7, #11]
+ 144:.\dash_board.c ****     for (i=0;i<LED_len;i++){
+ 453              		.loc 1 144 0
+ 454 0028 0023     		movs	r3, #0
+ 455 002a FB73     		strb	r3, [r7, #15]
+ 456 002c 08E0     		b	.L45
+ 457              	.L46:
+ 145:.\dash_board.c ****         LED_Strip_PutArray(single_frame,4);
+ 458              		.loc 1 145 0 discriminator 2
+ 459 002e 07F10803 		add	r3, r7, #8
+ 460 0032 1846     		mov	r0, r3
+ 461 0034 0421     		movs	r1, #4
+ 462 0036 FFF7FEFF 		bl	LED_Strip_PutArray
+ 144:.\dash_board.c ****     for (i=0;i<LED_len;i++){
+ 463              		.loc 1 144 0 discriminator 2
+ 464 003a FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 465 003c 0133     		adds	r3, r3, #1
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 12
 
 
- 565 01b9 01       		.byte	0x1
- 566 01ba 45       		.byte	0x45
- 567 01bb 00000000 		.4byte	.LFB58
- 568 01bf 50000000 		.4byte	.LFE58-.LFB58
- 569 01c3 01       		.uleb128 0x1
- 570 01c4 9C       		.byte	0x9c
- 571 01c5 D8010000 		.4byte	0x1d8
- 572 01c9 08       		.uleb128 0x8
- 573 01ca BB000000 		.4byte	.LASF45
- 574 01ce 01       		.byte	0x1
- 575 01cf 45       		.byte	0x45
- 576 01d0 61010000 		.4byte	0x161
- 577 01d4 02       		.uleb128 0x2
- 578 01d5 91       		.byte	0x91
- 579 01d6 77       		.sleb128 -9
- 580 01d7 00       		.byte	0
- 581 01d8 0A       		.uleb128 0xa
- 582 01d9 C2010000 		.4byte	.LASF52
- 583 01dd 01       		.byte	0x1
- 584 01de 5F       		.byte	0x5f
- 585 01df 00000000 		.4byte	.LFB59
- 586 01e3 40000000 		.4byte	.LFE59-.LFB59
- 587 01e7 01       		.uleb128 0x1
- 588 01e8 9C       		.byte	0x9c
- 589 01e9 0B       		.uleb128 0xb
- 590 01ea 7A010000 		.4byte	.LASF46
- 591 01ee 06       		.byte	0x6
- 592 01ef 1606     		.2byte	0x616
- 593 01f1 F5010000 		.4byte	0x1f5
- 594 01f5 0C       		.uleb128 0xc
- 595 01f6 8C000000 		.4byte	0x8c
- 596 01fa 0D       		.uleb128 0xd
- 597 01fb F9010000 		.4byte	.LASF42
- 598 01ff 01       		.byte	0x1
- 599 0200 12       		.byte	0x12
- 600 0201 05020000 		.4byte	0x205
- 601 0205 0C       		.uleb128 0xc
- 602 0206 D3000000 		.4byte	0xd3
- 603 020a 0D       		.uleb128 0xd
- 604 020b E3000000 		.4byte	.LASF47
- 605 020f 01       		.byte	0x1
- 606 0210 13       		.byte	0x13
- 607 0211 81000000 		.4byte	0x81
- 608 0215 0D       		.uleb128 0xd
- 609 0216 FE010000 		.4byte	.LASF48
- 610 021a 01       		.byte	0x1
- 611 021b 14       		.byte	0x14
- 612 021c 81000000 		.4byte	0x81
- 613 0220 00       		.byte	0
- 614              		.section	.debug_abbrev,"",%progbits
- 615              	.Ldebug_abbrev0:
- 616 0000 01       		.uleb128 0x1
- 617 0001 11       		.uleb128 0x11
- 618 0002 01       		.byte	0x1
- 619 0003 25       		.uleb128 0x25
- 620 0004 0E       		.uleb128 0xe
- 621 0005 13       		.uleb128 0x13
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccrzTzFq.s 			page 14
+ 466 003e FB73     		strb	r3, [r7, #15]
+ 467              	.L45:
+ 144:.\dash_board.c ****     for (i=0;i<LED_len;i++){
+ 468              		.loc 1 144 0 is_stmt 0 discriminator 1
+ 469 0040 FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
+ 470 0042 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 471 0044 9A42     		cmp	r2, r3
+ 472 0046 F2D3     		bcc	.L46
+ 146:.\dash_board.c ****     }
+ 147:.\dash_board.c ****     //send ending frame
+ 148:.\dash_board.c ****     LED_Strip_PutArray(ENDING_FRAME,4);
+ 473              		.loc 1 148 0 is_stmt 1
+ 474 0048 0448     		ldr	r0, .L47+4
+ 475 004a 0421     		movs	r1, #4
+ 476 004c FFF7FEFF 		bl	LED_Strip_PutArray
+ 149:.\dash_board.c **** }
+ 477              		.loc 1 149 0
+ 478 0050 1037     		adds	r7, r7, #16
+ 479 0052 BD46     		mov	sp, r7
+ 480              		@ sp needed
+ 481 0054 80BD     		pop	{r7, pc}
+ 482              	.L48:
+ 483 0056 00BF     		.align	2
+ 484              	.L47:
+ 485 0058 00000000 		.word	STARTING_FRAME
+ 486 005c 00000000 		.word	ENDING_FRAME
+ 487              		.cfi_endproc
+ 488              	.LFE60:
+ 489              		.size	LED_update, .-LED_update
+ 490              		.text
+ 491              	.Letext0:
+ 492              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.2\\psoc creator\\import\\gnu\\arm\\4.8.
+ 493              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.2\\psoc creator\\import\\gnu\\arm\\4.8.
+ 494              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 495              		.file 5 ".\\state_event.h"
+ 496              		.file 6 ".\\dash_board.h"
+ 497              		.file 7 "Generated_Source\\PSoC5/core_cm3.h"
+ 498              		.section	.debug_info,"",%progbits
+ 499              	.Ldebug_info0:
+ 500 0000 0F030000 		.4byte	0x30f
+ 501 0004 0400     		.2byte	0x4
+ 502 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 503 000a 04       		.byte	0x4
+ 504 000b 01       		.uleb128 0x1
+ 505 000c 9E000000 		.4byte	.LASF61
+ 506 0010 01       		.byte	0x1
+ 507 0011 65000000 		.4byte	.LASF62
+ 508 0015 79010000 		.4byte	.LASF63
+ 509 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 510 001d 00000000 		.4byte	0
+ 511 0021 00000000 		.4byte	.Ldebug_line0
+ 512 0025 02       		.uleb128 0x2
+ 513 0026 01       		.byte	0x1
+ 514 0027 06       		.byte	0x6
+ 515 0028 2B020000 		.4byte	.LASF0
+ 516 002c 03       		.uleb128 0x3
+ 517 002d D2010000 		.4byte	.LASF3
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 13
 
 
- 622 0006 0B       		.uleb128 0xb
- 623 0007 03       		.uleb128 0x3
- 624 0008 0E       		.uleb128 0xe
- 625 0009 1B       		.uleb128 0x1b
- 626 000a 0E       		.uleb128 0xe
- 627 000b 55       		.uleb128 0x55
- 628 000c 17       		.uleb128 0x17
- 629 000d 11       		.uleb128 0x11
- 630 000e 01       		.uleb128 0x1
- 631 000f 10       		.uleb128 0x10
- 632 0010 17       		.uleb128 0x17
- 633 0011 00       		.byte	0
- 634 0012 00       		.byte	0
- 635 0013 02       		.uleb128 0x2
- 636 0014 24       		.uleb128 0x24
- 637 0015 00       		.byte	0
- 638 0016 0B       		.uleb128 0xb
- 639 0017 0B       		.uleb128 0xb
- 640 0018 3E       		.uleb128 0x3e
- 641 0019 0B       		.uleb128 0xb
- 642 001a 03       		.uleb128 0x3
- 643 001b 0E       		.uleb128 0xe
- 644 001c 00       		.byte	0
- 645 001d 00       		.byte	0
- 646 001e 03       		.uleb128 0x3
- 647 001f 16       		.uleb128 0x16
- 648 0020 00       		.byte	0
- 649 0021 03       		.uleb128 0x3
- 650 0022 0E       		.uleb128 0xe
- 651 0023 3A       		.uleb128 0x3a
- 652 0024 0B       		.uleb128 0xb
- 653 0025 3B       		.uleb128 0x3b
- 654 0026 0B       		.uleb128 0xb
- 655 0027 49       		.uleb128 0x49
- 656 0028 13       		.uleb128 0x13
- 657 0029 00       		.byte	0
- 658 002a 00       		.byte	0
- 659 002b 04       		.uleb128 0x4
- 660 002c 24       		.uleb128 0x24
- 661 002d 00       		.byte	0
- 662 002e 0B       		.uleb128 0xb
- 663 002f 0B       		.uleb128 0xb
- 664 0030 3E       		.uleb128 0x3e
- 665 0031 0B       		.uleb128 0xb
- 666 0032 03       		.uleb128 0x3
- 667 0033 08       		.uleb128 0x8
- 668 0034 00       		.byte	0
- 669 0035 00       		.byte	0
- 670 0036 05       		.uleb128 0x5
- 671 0037 04       		.uleb128 0x4
- 672 0038 01       		.byte	0x1
- 673 0039 0B       		.uleb128 0xb
- 674 003a 0B       		.uleb128 0xb
- 675 003b 3A       		.uleb128 0x3a
- 676 003c 0B       		.uleb128 0xb
- 677 003d 3B       		.uleb128 0x3b
- 678 003e 0B       		.uleb128 0xb
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccrzTzFq.s 			page 15
+ 518 0031 02       		.byte	0x2
+ 519 0032 1C       		.byte	0x1c
+ 520 0033 37000000 		.4byte	0x37
+ 521 0037 02       		.uleb128 0x2
+ 522 0038 01       		.byte	0x1
+ 523 0039 08       		.byte	0x8
+ 524 003a F7010000 		.4byte	.LASF1
+ 525 003e 02       		.uleb128 0x2
+ 526 003f 02       		.byte	0x2
+ 527 0040 05       		.byte	0x5
+ 528 0041 28000000 		.4byte	.LASF2
+ 529 0045 03       		.uleb128 0x3
+ 530 0046 8A000000 		.4byte	.LASF4
+ 531 004a 02       		.byte	0x2
+ 532 004b 26       		.byte	0x26
+ 533 004c 50000000 		.4byte	0x50
+ 534 0050 02       		.uleb128 0x2
+ 535 0051 02       		.byte	0x2
+ 536 0052 07       		.byte	0x7
+ 537 0053 A2020000 		.4byte	.LASF5
+ 538 0057 03       		.uleb128 0x3
+ 539 0058 26030000 		.4byte	.LASF6
+ 540 005c 02       		.byte	0x2
+ 541 005d 37       		.byte	0x37
+ 542 005e 62000000 		.4byte	0x62
+ 543 0062 02       		.uleb128 0x2
+ 544 0063 04       		.byte	0x4
+ 545 0064 05       		.byte	0x5
+ 546 0065 95000000 		.4byte	.LASF7
+ 547 0069 03       		.uleb128 0x3
+ 548 006a 7A000000 		.4byte	.LASF8
+ 549 006e 02       		.byte	0x2
+ 550 006f 38       		.byte	0x38
+ 551 0070 74000000 		.4byte	0x74
+ 552 0074 02       		.uleb128 0x2
+ 553 0075 04       		.byte	0x4
+ 554 0076 07       		.byte	0x7
+ 555 0077 00000000 		.4byte	.LASF9
+ 556 007b 02       		.uleb128 0x2
+ 557 007c 08       		.byte	0x8
+ 558 007d 05       		.byte	0x5
+ 559 007e 5F010000 		.4byte	.LASF10
+ 560 0082 02       		.uleb128 0x2
+ 561 0083 08       		.byte	0x8
+ 562 0084 07       		.byte	0x7
+ 563 0085 37020000 		.4byte	.LASF11
+ 564 0089 04       		.uleb128 0x4
+ 565 008a 04       		.byte	0x4
+ 566 008b 05       		.byte	0x5
+ 567 008c 696E7400 		.ascii	"int\000"
+ 568 0090 02       		.uleb128 0x2
+ 569 0091 04       		.byte	0x4
+ 570 0092 07       		.byte	0x7
+ 571 0093 6C020000 		.4byte	.LASF12
+ 572 0097 03       		.uleb128 0x3
+ 573 0098 21010000 		.4byte	.LASF13
+ 574 009c 03       		.byte	0x3
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 14
 
 
- 679 003f 01       		.uleb128 0x1
- 680 0040 13       		.uleb128 0x13
- 681 0041 00       		.byte	0
- 682 0042 00       		.byte	0
- 683 0043 06       		.uleb128 0x6
- 684 0044 28       		.uleb128 0x28
- 685 0045 00       		.byte	0
- 686 0046 03       		.uleb128 0x3
- 687 0047 0E       		.uleb128 0xe
- 688 0048 1C       		.uleb128 0x1c
- 689 0049 0D       		.uleb128 0xd
- 690 004a 00       		.byte	0
- 691 004b 00       		.byte	0
- 692 004c 07       		.uleb128 0x7
- 693 004d 2E       		.uleb128 0x2e
- 694 004e 01       		.byte	0x1
- 695 004f 3F       		.uleb128 0x3f
- 696 0050 19       		.uleb128 0x19
- 697 0051 03       		.uleb128 0x3
- 698 0052 0E       		.uleb128 0xe
- 699 0053 3A       		.uleb128 0x3a
- 700 0054 0B       		.uleb128 0xb
- 701 0055 3B       		.uleb128 0x3b
- 702 0056 0B       		.uleb128 0xb
- 703 0057 27       		.uleb128 0x27
- 704 0058 19       		.uleb128 0x19
- 705 0059 11       		.uleb128 0x11
- 706 005a 01       		.uleb128 0x1
- 707 005b 12       		.uleb128 0x12
- 708 005c 06       		.uleb128 0x6
- 709 005d 40       		.uleb128 0x40
- 710 005e 18       		.uleb128 0x18
- 711 005f 9642     		.uleb128 0x2116
- 712 0061 19       		.uleb128 0x19
- 713 0062 01       		.uleb128 0x1
- 714 0063 13       		.uleb128 0x13
- 715 0064 00       		.byte	0
- 716 0065 00       		.byte	0
- 717 0066 08       		.uleb128 0x8
- 718 0067 05       		.uleb128 0x5
- 719 0068 00       		.byte	0
- 720 0069 03       		.uleb128 0x3
- 721 006a 0E       		.uleb128 0xe
- 722 006b 3A       		.uleb128 0x3a
- 723 006c 0B       		.uleb128 0xb
- 724 006d 3B       		.uleb128 0x3b
- 725 006e 0B       		.uleb128 0xb
- 726 006f 49       		.uleb128 0x49
- 727 0070 13       		.uleb128 0x13
- 728 0071 02       		.uleb128 0x2
- 729 0072 18       		.uleb128 0x18
- 730 0073 00       		.byte	0
- 731 0074 00       		.byte	0
- 732 0075 09       		.uleb128 0x9
- 733 0076 2E       		.uleb128 0x2e
- 734 0077 01       		.byte	0x1
- 735 0078 3F       		.uleb128 0x3f
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccrzTzFq.s 			page 16
+ 575 009d 2A       		.byte	0x2a
+ 576 009e 2C000000 		.4byte	0x2c
+ 577 00a2 03       		.uleb128 0x3
+ 578 00a3 79020000 		.4byte	.LASF14
+ 579 00a7 03       		.byte	0x3
+ 580 00a8 36       		.byte	0x36
+ 581 00a9 45000000 		.4byte	0x45
+ 582 00ad 03       		.uleb128 0x3
+ 583 00ae CB020000 		.4byte	.LASF15
+ 584 00b2 03       		.byte	0x3
+ 585 00b3 41       		.byte	0x41
+ 586 00b4 57000000 		.4byte	0x57
+ 587 00b8 03       		.uleb128 0x3
+ 588 00b9 4E020000 		.4byte	.LASF16
+ 589 00bd 03       		.byte	0x3
+ 590 00be 42       		.byte	0x42
+ 591 00bf 69000000 		.4byte	0x69
+ 592 00c3 03       		.uleb128 0x3
+ 593 00c4 1A010000 		.4byte	.LASF17
+ 594 00c8 04       		.byte	0x4
+ 595 00c9 A2       		.byte	0xa2
+ 596 00ca 50000000 		.4byte	0x50
+ 597 00ce 02       		.uleb128 0x2
+ 598 00cf 04       		.byte	0x4
+ 599 00d0 04       		.byte	0x4
+ 600 00d1 47010000 		.4byte	.LASF18
+ 601 00d5 02       		.uleb128 0x2
+ 602 00d6 08       		.byte	0x8
+ 603 00d7 04       		.byte	0x4
+ 604 00d8 10030000 		.4byte	.LASF19
+ 605 00dc 02       		.uleb128 0x2
+ 606 00dd 01       		.byte	0x1
+ 607 00de 08       		.byte	0x8
+ 608 00df BE020000 		.4byte	.LASF20
+ 609 00e3 02       		.uleb128 0x2
+ 610 00e4 04       		.byte	0x4
+ 611 00e5 07       		.byte	0x7
+ 612 00e6 4F000000 		.4byte	.LASF21
+ 613 00ea 05       		.uleb128 0x5
+ 614 00eb 01       		.byte	0x1
+ 615 00ec 05       		.byte	0x5
+ 616 00ed 07       		.byte	0x7
+ 617 00ee FF000000 		.4byte	0xff
+ 618 00f2 06       		.uleb128 0x6
+ 619 00f3 11020000 		.4byte	.LASF22
+ 620 00f7 00       		.sleb128 0
+ 621 00f8 06       		.uleb128 0x6
+ 622 00f9 82020000 		.4byte	.LASF23
+ 623 00fd 01       		.sleb128 1
+ 624 00fe 00       		.byte	0
+ 625 00ff 03       		.uleb128 0x3
+ 626 0100 45000000 		.4byte	.LASF24
+ 627 0104 05       		.byte	0x5
+ 628 0105 0A       		.byte	0xa
+ 629 0106 EA000000 		.4byte	0xea
+ 630 010a 05       		.uleb128 0x5
+ 631 010b 01       		.byte	0x1
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 15
 
 
- 736 0079 19       		.uleb128 0x19
- 737 007a 03       		.uleb128 0x3
- 738 007b 0E       		.uleb128 0xe
- 739 007c 3A       		.uleb128 0x3a
- 740 007d 0B       		.uleb128 0xb
- 741 007e 3B       		.uleb128 0x3b
- 742 007f 0B       		.uleb128 0xb
- 743 0080 27       		.uleb128 0x27
- 744 0081 19       		.uleb128 0x19
- 745 0082 11       		.uleb128 0x11
- 746 0083 01       		.uleb128 0x1
- 747 0084 12       		.uleb128 0x12
- 748 0085 06       		.uleb128 0x6
- 749 0086 40       		.uleb128 0x40
- 750 0087 18       		.uleb128 0x18
- 751 0088 9742     		.uleb128 0x2117
- 752 008a 19       		.uleb128 0x19
- 753 008b 01       		.uleb128 0x1
- 754 008c 13       		.uleb128 0x13
- 755 008d 00       		.byte	0
- 756 008e 00       		.byte	0
- 757 008f 0A       		.uleb128 0xa
- 758 0090 2E       		.uleb128 0x2e
- 759 0091 00       		.byte	0
- 760 0092 3F       		.uleb128 0x3f
- 761 0093 19       		.uleb128 0x19
- 762 0094 03       		.uleb128 0x3
- 763 0095 0E       		.uleb128 0xe
- 764 0096 3A       		.uleb128 0x3a
- 765 0097 0B       		.uleb128 0xb
- 766 0098 3B       		.uleb128 0x3b
- 767 0099 0B       		.uleb128 0xb
- 768 009a 11       		.uleb128 0x11
- 769 009b 01       		.uleb128 0x1
- 770 009c 12       		.uleb128 0x12
- 771 009d 06       		.uleb128 0x6
- 772 009e 40       		.uleb128 0x40
- 773 009f 18       		.uleb128 0x18
- 774 00a0 9642     		.uleb128 0x2116
- 775 00a2 19       		.uleb128 0x19
- 776 00a3 00       		.byte	0
- 777 00a4 00       		.byte	0
- 778 00a5 0B       		.uleb128 0xb
- 779 00a6 34       		.uleb128 0x34
- 780 00a7 00       		.byte	0
- 781 00a8 03       		.uleb128 0x3
- 782 00a9 0E       		.uleb128 0xe
- 783 00aa 3A       		.uleb128 0x3a
- 784 00ab 0B       		.uleb128 0xb
- 785 00ac 3B       		.uleb128 0x3b
- 786 00ad 05       		.uleb128 0x5
- 787 00ae 49       		.uleb128 0x49
- 788 00af 13       		.uleb128 0x13
- 789 00b0 3F       		.uleb128 0x3f
- 790 00b1 19       		.uleb128 0x19
- 791 00b2 3C       		.uleb128 0x3c
- 792 00b3 19       		.uleb128 0x19
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccrzTzFq.s 			page 17
+ 632 010c 05       		.byte	0x5
+ 633 010d 0E       		.byte	0xe
+ 634 010e 3D010000 		.4byte	0x13d
+ 635 0112 06       		.uleb128 0x6
+ 636 0113 30030000 		.4byte	.LASF25
+ 637 0117 00       		.sleb128 0
+ 638 0118 06       		.uleb128 0x6
+ 639 0119 32000000 		.4byte	.LASF26
+ 640 011d 01       		.sleb128 1
+ 641 011e 06       		.uleb128 0x6
+ 642 011f 67030000 		.4byte	.LASF27
+ 643 0123 02       		.sleb128 2
+ 644 0124 06       		.uleb128 0x6
+ 645 0125 7A030000 		.4byte	.LASF28
+ 646 0129 03       		.sleb128 3
+ 647 012a 06       		.uleb128 0x6
+ 648 012b B5020000 		.4byte	.LASF29
+ 649 012f 04       		.sleb128 4
+ 650 0130 06       		.uleb128 0x6
+ 651 0131 8E020000 		.4byte	.LASF30
+ 652 0135 05       		.sleb128 5
+ 653 0136 06       		.uleb128 0x6
+ 654 0137 3A000000 		.4byte	.LASF31
+ 655 013b 06       		.sleb128 6
+ 656 013c 00       		.byte	0
+ 657 013d 03       		.uleb128 0x3
+ 658 013e 87020000 		.4byte	.LASF32
+ 659 0142 05       		.byte	0x5
+ 660 0143 16       		.byte	0x16
+ 661 0144 0A010000 		.4byte	0x10a
+ 662 0148 05       		.uleb128 0x5
+ 663 0149 01       		.byte	0x1
+ 664 014a 05       		.byte	0x5
+ 665 014b 1B       		.byte	0x1b
+ 666 014c 8D010000 		.4byte	0x18d
+ 667 0150 06       		.uleb128 0x6
+ 668 0151 74000000 		.4byte	.LASF33
+ 669 0155 00       		.sleb128 0
+ 670 0156 06       		.uleb128 0x6
+ 671 0157 99020000 		.4byte	.LASF34
+ 672 015b 01       		.sleb128 1
+ 673 015c 06       		.uleb128 0x6
+ 674 015d 32010000 		.4byte	.LASF35
+ 675 0161 02       		.sleb128 2
+ 676 0162 06       		.uleb128 0x6
+ 677 0163 3D010000 		.4byte	.LASF36
+ 678 0167 03       		.sleb128 3
+ 679 0168 06       		.uleb128 0x6
+ 680 0169 17030000 		.4byte	.LASF37
+ 681 016d 04       		.sleb128 4
+ 682 016e 06       		.uleb128 0x6
+ 683 016f 05020000 		.4byte	.LASF38
+ 684 0173 05       		.sleb128 5
+ 685 0174 06       		.uleb128 0x6
+ 686 0175 DE020000 		.4byte	.LASF39
+ 687 0179 06       		.sleb128 6
+ 688 017a 06       		.uleb128 0x6
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 16
 
 
- 793 00b4 00       		.byte	0
- 794 00b5 00       		.byte	0
- 795 00b6 0C       		.uleb128 0xc
- 796 00b7 35       		.uleb128 0x35
- 797 00b8 00       		.byte	0
- 798 00b9 49       		.uleb128 0x49
- 799 00ba 13       		.uleb128 0x13
- 800 00bb 00       		.byte	0
- 801 00bc 00       		.byte	0
- 802 00bd 0D       		.uleb128 0xd
- 803 00be 34       		.uleb128 0x34
- 804 00bf 00       		.byte	0
- 805 00c0 03       		.uleb128 0x3
- 806 00c1 0E       		.uleb128 0xe
- 807 00c2 3A       		.uleb128 0x3a
- 808 00c3 0B       		.uleb128 0xb
- 809 00c4 3B       		.uleb128 0x3b
- 810 00c5 0B       		.uleb128 0xb
- 811 00c6 49       		.uleb128 0x49
- 812 00c7 13       		.uleb128 0x13
- 813 00c8 3F       		.uleb128 0x3f
- 814 00c9 19       		.uleb128 0x19
- 815 00ca 3C       		.uleb128 0x3c
- 816 00cb 19       		.uleb128 0x19
- 817 00cc 00       		.byte	0
- 818 00cd 00       		.byte	0
- 819 00ce 00       		.byte	0
- 820              		.section	.debug_aranges,"",%progbits
- 821 0000 34000000 		.4byte	0x34
- 822 0004 0200     		.2byte	0x2
- 823 0006 00000000 		.4byte	.Ldebug_info0
- 824 000a 04       		.byte	0x4
- 825 000b 00       		.byte	0
- 826 000c 0000     		.2byte	0
- 827 000e 0000     		.2byte	0
- 828 0010 00000000 		.4byte	.LFB56
- 829 0014 48000000 		.4byte	.LFE56-.LFB56
- 830 0018 00000000 		.4byte	.LFB57
- 831 001c 9C000000 		.4byte	.LFE57-.LFB57
- 832 0020 00000000 		.4byte	.LFB58
- 833 0024 50000000 		.4byte	.LFE58-.LFB58
- 834 0028 00000000 		.4byte	.LFB59
- 835 002c 40000000 		.4byte	.LFE59-.LFB59
- 836 0030 00000000 		.4byte	0
- 837 0034 00000000 		.4byte	0
- 838              		.section	.debug_ranges,"",%progbits
- 839              	.Ldebug_ranges0:
- 840 0000 00000000 		.4byte	.LFB56
- 841 0004 48000000 		.4byte	.LFE56
- 842 0008 00000000 		.4byte	.LFB57
- 843 000c 9C000000 		.4byte	.LFE57
- 844 0010 00000000 		.4byte	.LFB58
- 845 0014 50000000 		.4byte	.LFE58
- 846 0018 00000000 		.4byte	.LFB59
- 847 001c 40000000 		.4byte	.LFE59
- 848 0020 00000000 		.4byte	0
- 849 0024 00000000 		.4byte	0
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccrzTzFq.s 			page 18
+ 689 017b 53030000 		.4byte	.LASF40
+ 690 017f 07       		.sleb128 7
+ 691 0180 06       		.uleb128 0x6
+ 692 0181 12000000 		.4byte	.LASF41
+ 693 0185 08       		.sleb128 8
+ 694 0186 06       		.uleb128 0x6
+ 695 0187 38030000 		.4byte	.LASF42
+ 696 018b 09       		.sleb128 9
+ 697 018c 00       		.byte	0
+ 698 018d 03       		.uleb128 0x3
+ 699 018e 21000000 		.4byte	.LASF43
+ 700 0192 05       		.byte	0x5
+ 701 0193 26       		.byte	0x26
+ 702 0194 48010000 		.4byte	0x148
+ 703 0198 07       		.uleb128 0x7
+ 704 0199 03       		.byte	0x3
+ 705 019a 06       		.byte	0x6
+ 706 019b 22       		.byte	0x22
+ 707 019c BF010000 		.4byte	0x1bf
+ 708 01a0 08       		.uleb128 0x8
+ 709 01a1 5200     		.ascii	"R\000"
+ 710 01a3 06       		.byte	0x6
+ 711 01a4 23       		.byte	0x23
+ 712 01a5 97000000 		.4byte	0x97
+ 713 01a9 00       		.byte	0
+ 714 01aa 08       		.uleb128 0x8
+ 715 01ab 4700     		.ascii	"G\000"
+ 716 01ad 06       		.byte	0x6
+ 717 01ae 24       		.byte	0x24
+ 718 01af 97000000 		.4byte	0x97
+ 719 01b3 01       		.byte	0x1
+ 720 01b4 08       		.uleb128 0x8
+ 721 01b5 4200     		.ascii	"B\000"
+ 722 01b7 06       		.byte	0x6
+ 723 01b8 25       		.byte	0x25
+ 724 01b9 97000000 		.4byte	0x97
+ 725 01bd 02       		.byte	0x2
+ 726 01be 00       		.byte	0
+ 727 01bf 09       		.uleb128 0x9
+ 728 01c0 52474200 		.ascii	"RGB\000"
+ 729 01c4 06       		.byte	0x6
+ 730 01c5 26       		.byte	0x26
+ 731 01c6 98010000 		.4byte	0x198
+ 732 01ca 0A       		.uleb128 0xa
+ 733 01cb 4D010000 		.4byte	.LASF44
+ 734 01cf 01       		.byte	0x1
+ 735 01d0 2A       		.byte	0x2a
+ 736 01d1 00000000 		.4byte	.LFB56
+ 737 01d5 48000000 		.4byte	.LFE56-.LFB56
+ 738 01d9 01       		.uleb128 0x1
+ 739 01da 9C       		.byte	0x9c
+ 740 01db EE010000 		.4byte	0x1ee
+ 741 01df 0B       		.uleb128 0xb
+ 742 01e0 85000000 		.4byte	.LASF46
+ 743 01e4 01       		.byte	0x1
+ 744 01e5 2A       		.byte	0x2a
+ 745 01e6 FF000000 		.4byte	0xff
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 17
 
 
- 850              		.section	.debug_line,"",%progbits
- 851              	.Ldebug_line0:
- 852 0000 C9010000 		.section	.debug_str,"MS",%progbits,1
- 852      02005C01 
- 852      00000201 
- 852      FB0E0D00 
- 852      01010101 
- 853              	.LASF44:
- 854 0000 44617368 		.ascii	"Dash_display_Event\000"
- 854      5F646973 
- 854      706C6179 
- 854      5F457665 
- 854      6E7400
- 855              	.LASF21:
- 856 0013 53544152 		.ascii	"STARTUP\000"
- 856      54555000 
- 857              	.LASF49:
- 858 001b 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
- 858      4320342E 
- 858      382E3420 
- 858      32303134 
- 858      30353236 
- 859 004e 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
- 859      20726576 
- 859      6973696F 
- 859      6E203231 
- 859      31333538 
- 860 0081 30202D66 		.ascii	"0 -ffunction-sections\000"
- 860      66756E63 
- 860      74696F6E 
- 860      2D736563 
- 860      74696F6E 
- 861              	.LASF50:
- 862 0097 2E5C6461 		.ascii	".\\dash_board.c\000"
- 862      73685F62 
- 862      6F617264 
- 862      2E6300
- 863              	.LASF38:
- 864 00a6 4E4F4E45 		.ascii	"NONE\000"
- 864      00
- 865              	.LASF23:
- 866 00ab 44524956 		.ascii	"DRIVE\000"
- 866      4500
- 867              	.LASF5:
- 868 00b1 5F5F696E 		.ascii	"__int32_t\000"
- 868      7433325F 
- 868      7400
- 869              	.LASF45:
- 870 00bb 6E657745 		.ascii	"newEvent\000"
- 870      76656E74 
- 870      00
- 871              	.LASF31:
- 872 00c4 4E455554 		.ascii	"NEUTRAL_UP\000"
- 872      52414C5F 
- 872      555000
- 873              	.LASF36:
- 874 00cf 534F4654 		.ascii	"SOFT_FAULT_REMEDIED\000"
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccrzTzFq.s 			page 19
+ 746 01ea 02       		.uleb128 0x2
+ 747 01eb 91       		.byte	0x91
+ 748 01ec 77       		.sleb128 -9
+ 749 01ed 00       		.byte	0
+ 750 01ee 0A       		.uleb128 0xa
+ 751 01ef BF010000 		.4byte	.LASF45
+ 752 01f3 01       		.byte	0x1
+ 753 01f4 39       		.byte	0x39
+ 754 01f5 00000000 		.4byte	.LFB57
+ 755 01f9 DC000000 		.4byte	.LFE57-.LFB57
+ 756 01fd 01       		.uleb128 0x1
+ 757 01fe 9C       		.byte	0x9c
+ 758 01ff 12020000 		.4byte	0x212
+ 759 0203 0B       		.uleb128 0xb
+ 760 0204 29010000 		.4byte	.LASF47
+ 761 0208 01       		.byte	0x1
+ 762 0209 39       		.byte	0x39
+ 763 020a 3D010000 		.4byte	0x13d
+ 764 020e 02       		.uleb128 0x2
+ 765 020f 91       		.byte	0x91
+ 766 0210 77       		.sleb128 -9
+ 767 0211 00       		.byte	0
+ 768 0212 0C       		.uleb128 0xc
+ 769 0213 E4010000 		.4byte	.LASF48
+ 770 0217 01       		.byte	0x1
+ 771 0218 5C       		.byte	0x5c
+ 772 0219 00000000 		.4byte	.LFB58
+ 773 021d 50000000 		.4byte	.LFE58-.LFB58
+ 774 0221 01       		.uleb128 0x1
+ 775 0222 9C       		.byte	0x9c
+ 776 0223 36020000 		.4byte	0x236
+ 777 0227 0B       		.uleb128 0xb
+ 778 0228 4A030000 		.4byte	.LASF49
+ 779 022c 01       		.byte	0x1
+ 780 022d 5C       		.byte	0x5c
+ 781 022e 8D010000 		.4byte	0x18d
+ 782 0232 02       		.uleb128 0x2
+ 783 0233 91       		.byte	0x91
+ 784 0234 77       		.sleb128 -9
+ 785 0235 00       		.byte	0
+ 786 0236 0D       		.uleb128 0xd
+ 787 0237 18020000 		.4byte	.LASF64
+ 788 023b 01       		.byte	0x1
+ 789 023c 76       		.byte	0x76
+ 790 023d 00000000 		.4byte	.LFB59
+ 791 0241 68000000 		.4byte	.LFE59-.LFB59
+ 792 0245 01       		.uleb128 0x1
+ 793 0246 9C       		.byte	0x9c
+ 794 0247 0A       		.uleb128 0xa
+ 795 0248 D3020000 		.4byte	.LASF50
+ 796 024c 01       		.byte	0x1
+ 797 024d 86       		.byte	0x86
+ 798 024e 00000000 		.4byte	.LFB60
+ 799 0252 60000000 		.4byte	.LFE60-.LFB60
+ 800 0256 01       		.uleb128 0x1
+ 801 0257 9C       		.byte	0x9c
+ 802 0258 93020000 		.4byte	0x293
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 18
 
 
- 874      5F464155 
- 874      4C545F52 
- 874      454D4544 
- 874      49454400 
- 875              	.LASF47:
- 876 00e3 696E666F 		.ascii	"info_battery_voltage\000"
- 876      5F626174 
- 876      74657279 
- 876      5F766F6C 
- 876      74616765 
- 877              	.LASF32:
- 878 00f8 43484152 		.ascii	"CHARGE_UP\000"
- 878      47455F55 
- 878      5000
- 879              	.LASF12:
- 880 0102 696E7433 		.ascii	"int32_t\000"
- 880      325F7400 
- 881              	.LASF30:
- 882 010a 44524956 		.ascii	"DRIVE_UP\000"
- 882      455F5550 
- 882      00
- 883              	.LASF14:
- 884 0113 666C6F61 		.ascii	"float\000"
- 884      7400
- 885              	.LASF0:
- 886 0119 7369676E 		.ascii	"signed char\000"
- 886      65642063 
- 886      68617200 
- 887              	.LASF29:
- 888 0125 48565F55 		.ascii	"HV_UP\000"
- 888      5000
- 889              	.LASF1:
- 890 012b 756E7369 		.ascii	"unsigned char\000"
- 890      676E6564 
- 890      20636861 
- 890      7200
- 891              	.LASF27:
- 892 0139 48415244 		.ascii	"HARD_FAULT\000"
- 892      5F464155 
- 892      4C5400
- 893              	.LASF20:
- 894 0144 44617368 		.ascii	"Dash_Mode\000"
- 894      5F4D6F64 
- 894      6500
- 895              	.LASF7:
- 896 014e 6C6F6E67 		.ascii	"long unsigned int\000"
- 896      20756E73 
- 896      69676E65 
- 896      6420696E 
- 896      7400
- 897              	.LASF3:
- 898 0160 73686F72 		.ascii	"short unsigned int\000"
- 898      7420756E 
- 898      7369676E 
- 898      65642069 
- 898      6E7400
- 899              	.LASF39:
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccrzTzFq.s 			page 20
+ 803 025c 0B       		.uleb128 0xb
+ 804 025d DC010000 		.4byte	.LASF51
+ 805 0261 01       		.byte	0x1
+ 806 0262 86       		.byte	0x86
+ 807 0263 BF010000 		.4byte	0x1bf
+ 808 0267 02       		.uleb128 0x2
+ 809 0268 91       		.byte	0x91
+ 810 0269 6C       		.sleb128 -20
+ 811 026a 0B       		.uleb128 0xb
+ 812 026b C3020000 		.4byte	.LASF52
+ 813 026f 01       		.byte	0x1
+ 814 0270 86       		.byte	0x86
+ 815 0271 97000000 		.4byte	0x97
+ 816 0275 02       		.uleb128 0x2
+ 817 0276 91       		.byte	0x91
+ 818 0277 6B       		.sleb128 -21
+ 819 0278 0E       		.uleb128 0xe
+ 820 0279 6900     		.ascii	"i\000"
+ 821 027b 01       		.byte	0x1
+ 822 027c 87       		.byte	0x87
+ 823 027d 97000000 		.4byte	0x97
+ 824 0281 02       		.uleb128 0x2
+ 825 0282 91       		.byte	0x91
+ 826 0283 77       		.sleb128 -9
+ 827 0284 0F       		.uleb128 0xf
+ 828 0285 58000000 		.4byte	.LASF53
+ 829 0289 01       		.byte	0x1
+ 830 028a 88       		.byte	0x88
+ 831 028b 93020000 		.4byte	0x293
+ 832 028f 02       		.uleb128 0x2
+ 833 0290 91       		.byte	0x91
+ 834 0291 70       		.sleb128 -16
+ 835 0292 00       		.byte	0
+ 836 0293 10       		.uleb128 0x10
+ 837 0294 97000000 		.4byte	0x97
+ 838 0298 A3020000 		.4byte	0x2a3
+ 839 029c 11       		.uleb128 0x11
+ 840 029d E3000000 		.4byte	0xe3
+ 841 02a1 03       		.byte	0x3
+ 842 02a2 00       		.byte	0
+ 843 02a3 12       		.uleb128 0x12
+ 844 02a4 6D030000 		.4byte	.LASF54
+ 845 02a8 07       		.byte	0x7
+ 846 02a9 1606     		.2byte	0x616
+ 847 02ab AF020000 		.4byte	0x2af
+ 848 02af 13       		.uleb128 0x13
+ 849 02b0 AD000000 		.4byte	0xad
+ 850 02b4 14       		.uleb128 0x14
+ 851 02b5 B0010000 		.4byte	.LASF55
+ 852 02b9 01       		.byte	0x1
+ 853 02ba 10       		.byte	0x10
+ 854 02bb 93020000 		.4byte	0x293
+ 855 02bf 05       		.uleb128 0x5
+ 856 02c0 03       		.byte	0x3
+ 857 02c1 00000000 		.4byte	STARTING_FRAME
+ 858 02c5 14       		.uleb128 0x14
+ 859 02c6 3D030000 		.4byte	.LASF56
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 19
 
 
- 900 0173 4576656E 		.ascii	"Events\000"
- 900      747300
- 901              	.LASF46:
- 902 017a 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 902      52784275 
- 902      66666572 
- 902      00
- 903              	.LASF4:
- 904 0187 5F5F7569 		.ascii	"__uint16_t\000"
- 904      6E743136 
- 904      5F7400
- 905              	.LASF15:
- 906 0192 646F7562 		.ascii	"double\000"
- 906      6C6500
- 907              	.LASF24:
- 908 0199 50524543 		.ascii	"PRECHARGE\000"
- 908      48415247 
- 908      4500
- 909              	.LASF13:
- 910 01a3 75696E74 		.ascii	"uint16\000"
- 910      313600
- 911              	.LASF41:
- 912 01aa 44617368 		.ascii	"Dash_display_State\000"
- 912      5F646973 
- 912      706C6179 
- 912      5F537461 
- 912      746500
- 913              	.LASF19:
- 914 01bd 494E464F 		.ascii	"INFO\000"
- 914      00
- 915              	.LASF52:
- 916 01c2 44617368 		.ascii	"Dash_display_Value\000"
- 916      5F646973 
- 916      706C6179 
- 916      5F56616C 
- 916      756500
- 917              	.LASF10:
- 918 01d5 756E7369 		.ascii	"unsigned int\000"
- 918      676E6564 
- 918      20696E74 
- 918      00
- 919              	.LASF9:
- 920 01e2 6C6F6E67 		.ascii	"long long unsigned int\000"
- 920      206C6F6E 
- 920      6720756E 
- 920      7369676E 
- 920      65642069 
- 921              	.LASF42:
- 922 01f9 6D6F6465 		.ascii	"mode\000"
- 922      00
- 923              	.LASF48:
- 924 01fe 696E666F 		.ascii	"info_battery_current\000"
- 924      5F626174 
- 924      74657279 
- 924      5F637572 
- 924      72656E74 
- 925              	.LASF51:
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccrzTzFq.s 			page 21
+ 860 02ca 01       		.byte	0x1
+ 861 02cb 11       		.byte	0x11
+ 862 02cc 93020000 		.4byte	0x293
+ 863 02d0 05       		.uleb128 0x5
+ 864 02d1 03       		.byte	0x3
+ 865 02d2 00000000 		.4byte	ENDING_FRAME
+ 866 02d6 15       		.uleb128 0x15
+ 867 02d7 85000000 		.4byte	.LASF46
+ 868 02db 01       		.byte	0x1
+ 869 02dc 15       		.byte	0x15
+ 870 02dd E1020000 		.4byte	0x2e1
+ 871 02e1 13       		.uleb128 0x13
+ 872 02e2 FF000000 		.4byte	0xff
+ 873 02e6 15       		.uleb128 0x15
+ 874 02e7 57020000 		.4byte	.LASF57
+ 875 02eb 01       		.byte	0x1
+ 876 02ec 18       		.byte	0x18
+ 877 02ed B8000000 		.4byte	0xb8
+ 878 02f1 15       		.uleb128 0x15
+ 879 02f2 ED020000 		.4byte	.LASF58
+ 880 02f6 01       		.byte	0x1
+ 881 02f7 19       		.byte	0x19
+ 882 02f8 A2000000 		.4byte	0xa2
+ 883 02fc 15       		.uleb128 0x15
+ 884 02fd 02030000 		.4byte	.LASF59
+ 885 0301 01       		.byte	0x1
+ 886 0302 1E       		.byte	0x1e
+ 887 0303 97000000 		.4byte	0x97
+ 888 0307 15       		.uleb128 0x15
+ 889 0308 6D010000 		.4byte	.LASF60
+ 890 030c 01       		.byte	0x1
+ 891 030d 1F       		.byte	0x1f
+ 892 030e 97000000 		.4byte	0x97
+ 893 0312 00       		.byte	0
+ 894              		.section	.debug_abbrev,"",%progbits
+ 895              	.Ldebug_abbrev0:
+ 896 0000 01       		.uleb128 0x1
+ 897 0001 11       		.uleb128 0x11
+ 898 0002 01       		.byte	0x1
+ 899 0003 25       		.uleb128 0x25
+ 900 0004 0E       		.uleb128 0xe
+ 901 0005 13       		.uleb128 0x13
+ 902 0006 0B       		.uleb128 0xb
+ 903 0007 03       		.uleb128 0x3
+ 904 0008 0E       		.uleb128 0xe
+ 905 0009 1B       		.uleb128 0x1b
+ 906 000a 0E       		.uleb128 0xe
+ 907 000b 55       		.uleb128 0x55
+ 908 000c 17       		.uleb128 0x17
+ 909 000d 11       		.uleb128 0x11
+ 910 000e 01       		.uleb128 0x1
+ 911 000f 10       		.uleb128 0x10
+ 912 0010 17       		.uleb128 0x17
+ 913 0011 00       		.byte	0
+ 914 0012 00       		.byte	0
+ 915 0013 02       		.uleb128 0x2
+ 916 0014 24       		.uleb128 0x24
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 20
 
 
- 926 0213 443A5C77 		.ascii	"D:\\workspace\\super-eagle\\Super-Eagle\\Super-Eagl"
- 926      6F726B73 
- 926      70616365 
- 926      5C737570 
- 926      65722D65 
- 927 0242 652E6379 		.ascii	"e.cydsn\000"
- 927      64736E00 
- 928              	.LASF28:
- 929 024a 53746174 		.ascii	"States\000"
- 929      657300
- 930              	.LASF37:
- 931 0251 48415244 		.ascii	"HARD_FAULT_SIG\000"
- 931      5F464155 
- 931      4C545F53 
- 931      494700
- 932              	.LASF17:
- 933 0260 73697A65 		.ascii	"sizetype\000"
- 933      74797065 
- 933      00
- 934              	.LASF8:
- 935 0269 6C6F6E67 		.ascii	"long long int\000"
- 935      206C6F6E 
- 935      6720696E 
- 935      7400
- 936              	.LASF16:
- 937 0277 63686172 		.ascii	"char\000"
- 937      00
- 938              	.LASF43:
- 939 027c 6E657753 		.ascii	"newState\000"
- 939      74617465 
- 939      00
- 940              	.LASF35:
- 941 0285 534F4654 		.ascii	"SOFT_FAULT_SIG\000"
- 941      5F464155 
- 941      4C545F53 
- 941      494700
- 942              	.LASF2:
- 943 0294 73686F72 		.ascii	"short int\000"
- 943      7420696E 
- 943      7400
- 944              	.LASF26:
- 945 029e 534F4654 		.ascii	"SOFT_FAULT\000"
- 945      5F464155 
- 945      4C5400
- 946              	.LASF11:
- 947 02a9 75696E74 		.ascii	"uint16_t\000"
- 947      31365F74 
- 947      00
- 948              	.LASF6:
- 949 02b2 6C6F6E67 		.ascii	"long int\000"
- 949      20696E74 
- 949      00
- 950              	.LASF33:
- 951 02bb 50524543 		.ascii	"PRECHARGE_DONE\000"
- 951      48415247 
- 951      455F444F 
- 951      4E4500
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccrzTzFq.s 			page 22
+ 917 0015 00       		.byte	0
+ 918 0016 0B       		.uleb128 0xb
+ 919 0017 0B       		.uleb128 0xb
+ 920 0018 3E       		.uleb128 0x3e
+ 921 0019 0B       		.uleb128 0xb
+ 922 001a 03       		.uleb128 0x3
+ 923 001b 0E       		.uleb128 0xe
+ 924 001c 00       		.byte	0
+ 925 001d 00       		.byte	0
+ 926 001e 03       		.uleb128 0x3
+ 927 001f 16       		.uleb128 0x16
+ 928 0020 00       		.byte	0
+ 929 0021 03       		.uleb128 0x3
+ 930 0022 0E       		.uleb128 0xe
+ 931 0023 3A       		.uleb128 0x3a
+ 932 0024 0B       		.uleb128 0xb
+ 933 0025 3B       		.uleb128 0x3b
+ 934 0026 0B       		.uleb128 0xb
+ 935 0027 49       		.uleb128 0x49
+ 936 0028 13       		.uleb128 0x13
+ 937 0029 00       		.byte	0
+ 938 002a 00       		.byte	0
+ 939 002b 04       		.uleb128 0x4
+ 940 002c 24       		.uleb128 0x24
+ 941 002d 00       		.byte	0
+ 942 002e 0B       		.uleb128 0xb
+ 943 002f 0B       		.uleb128 0xb
+ 944 0030 3E       		.uleb128 0x3e
+ 945 0031 0B       		.uleb128 0xb
+ 946 0032 03       		.uleb128 0x3
+ 947 0033 08       		.uleb128 0x8
+ 948 0034 00       		.byte	0
+ 949 0035 00       		.byte	0
+ 950 0036 05       		.uleb128 0x5
+ 951 0037 04       		.uleb128 0x4
+ 952 0038 01       		.byte	0x1
+ 953 0039 0B       		.uleb128 0xb
+ 954 003a 0B       		.uleb128 0xb
+ 955 003b 3A       		.uleb128 0x3a
+ 956 003c 0B       		.uleb128 0xb
+ 957 003d 3B       		.uleb128 0x3b
+ 958 003e 0B       		.uleb128 0xb
+ 959 003f 01       		.uleb128 0x1
+ 960 0040 13       		.uleb128 0x13
+ 961 0041 00       		.byte	0
+ 962 0042 00       		.byte	0
+ 963 0043 06       		.uleb128 0x6
+ 964 0044 28       		.uleb128 0x28
+ 965 0045 00       		.byte	0
+ 966 0046 03       		.uleb128 0x3
+ 967 0047 0E       		.uleb128 0xe
+ 968 0048 1C       		.uleb128 0x1c
+ 969 0049 0D       		.uleb128 0xd
+ 970 004a 00       		.byte	0
+ 971 004b 00       		.byte	0
+ 972 004c 07       		.uleb128 0x7
+ 973 004d 13       		.uleb128 0x13
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 21
 
 
- 952              	.LASF22:
- 953 02ca 4E455554 		.ascii	"NEUTRAL\000"
- 953      52414C00 
- 954              	.LASF34:
- 955 02d2 43484152 		.ascii	"CHARGE_DOWN\000"
- 955      47455F44 
- 955      4F574E00 
- 956              	.LASF40:
- 957 02de 44617368 		.ascii	"Dash_display_Mode\000"
- 957      5F646973 
- 957      706C6179 
- 957      5F4D6F64 
- 957      6500
- 958              	.LASF18:
- 959 02f0 434F4D4D 		.ascii	"COMMON\000"
- 959      4F4E00
- 960              	.LASF25:
- 961 02f7 43484152 		.ascii	"CHARGING\000"
- 961      47494E47 
- 961      00
- 962              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br
+ 974 004e 01       		.byte	0x1
+ 975 004f 0B       		.uleb128 0xb
+ 976 0050 0B       		.uleb128 0xb
+ 977 0051 3A       		.uleb128 0x3a
+ 978 0052 0B       		.uleb128 0xb
+ 979 0053 3B       		.uleb128 0x3b
+ 980 0054 0B       		.uleb128 0xb
+ 981 0055 01       		.uleb128 0x1
+ 982 0056 13       		.uleb128 0x13
+ 983 0057 00       		.byte	0
+ 984 0058 00       		.byte	0
+ 985 0059 08       		.uleb128 0x8
+ 986 005a 0D       		.uleb128 0xd
+ 987 005b 00       		.byte	0
+ 988 005c 03       		.uleb128 0x3
+ 989 005d 08       		.uleb128 0x8
+ 990 005e 3A       		.uleb128 0x3a
+ 991 005f 0B       		.uleb128 0xb
+ 992 0060 3B       		.uleb128 0x3b
+ 993 0061 0B       		.uleb128 0xb
+ 994 0062 49       		.uleb128 0x49
+ 995 0063 13       		.uleb128 0x13
+ 996 0064 38       		.uleb128 0x38
+ 997 0065 0B       		.uleb128 0xb
+ 998 0066 00       		.byte	0
+ 999 0067 00       		.byte	0
+ 1000 0068 09       		.uleb128 0x9
+ 1001 0069 16       		.uleb128 0x16
+ 1002 006a 00       		.byte	0
+ 1003 006b 03       		.uleb128 0x3
+ 1004 006c 08       		.uleb128 0x8
+ 1005 006d 3A       		.uleb128 0x3a
+ 1006 006e 0B       		.uleb128 0xb
+ 1007 006f 3B       		.uleb128 0x3b
+ 1008 0070 0B       		.uleb128 0xb
+ 1009 0071 49       		.uleb128 0x49
+ 1010 0072 13       		.uleb128 0x13
+ 1011 0073 00       		.byte	0
+ 1012 0074 00       		.byte	0
+ 1013 0075 0A       		.uleb128 0xa
+ 1014 0076 2E       		.uleb128 0x2e
+ 1015 0077 01       		.byte	0x1
+ 1016 0078 3F       		.uleb128 0x3f
+ 1017 0079 19       		.uleb128 0x19
+ 1018 007a 03       		.uleb128 0x3
+ 1019 007b 0E       		.uleb128 0xe
+ 1020 007c 3A       		.uleb128 0x3a
+ 1021 007d 0B       		.uleb128 0xb
+ 1022 007e 3B       		.uleb128 0x3b
+ 1023 007f 0B       		.uleb128 0xb
+ 1024 0080 27       		.uleb128 0x27
+ 1025 0081 19       		.uleb128 0x19
+ 1026 0082 11       		.uleb128 0x11
+ 1027 0083 01       		.uleb128 0x1
+ 1028 0084 12       		.uleb128 0x12
+ 1029 0085 06       		.uleb128 0x6
+ 1030 0086 40       		.uleb128 0x40
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 22
+
+
+ 1031 0087 18       		.uleb128 0x18
+ 1032 0088 9642     		.uleb128 0x2116
+ 1033 008a 19       		.uleb128 0x19
+ 1034 008b 01       		.uleb128 0x1
+ 1035 008c 13       		.uleb128 0x13
+ 1036 008d 00       		.byte	0
+ 1037 008e 00       		.byte	0
+ 1038 008f 0B       		.uleb128 0xb
+ 1039 0090 05       		.uleb128 0x5
+ 1040 0091 00       		.byte	0
+ 1041 0092 03       		.uleb128 0x3
+ 1042 0093 0E       		.uleb128 0xe
+ 1043 0094 3A       		.uleb128 0x3a
+ 1044 0095 0B       		.uleb128 0xb
+ 1045 0096 3B       		.uleb128 0x3b
+ 1046 0097 0B       		.uleb128 0xb
+ 1047 0098 49       		.uleb128 0x49
+ 1048 0099 13       		.uleb128 0x13
+ 1049 009a 02       		.uleb128 0x2
+ 1050 009b 18       		.uleb128 0x18
+ 1051 009c 00       		.byte	0
+ 1052 009d 00       		.byte	0
+ 1053 009e 0C       		.uleb128 0xc
+ 1054 009f 2E       		.uleb128 0x2e
+ 1055 00a0 01       		.byte	0x1
+ 1056 00a1 3F       		.uleb128 0x3f
+ 1057 00a2 19       		.uleb128 0x19
+ 1058 00a3 03       		.uleb128 0x3
+ 1059 00a4 0E       		.uleb128 0xe
+ 1060 00a5 3A       		.uleb128 0x3a
+ 1061 00a6 0B       		.uleb128 0xb
+ 1062 00a7 3B       		.uleb128 0x3b
+ 1063 00a8 0B       		.uleb128 0xb
+ 1064 00a9 27       		.uleb128 0x27
+ 1065 00aa 19       		.uleb128 0x19
+ 1066 00ab 11       		.uleb128 0x11
+ 1067 00ac 01       		.uleb128 0x1
+ 1068 00ad 12       		.uleb128 0x12
+ 1069 00ae 06       		.uleb128 0x6
+ 1070 00af 40       		.uleb128 0x40
+ 1071 00b0 18       		.uleb128 0x18
+ 1072 00b1 9742     		.uleb128 0x2117
+ 1073 00b3 19       		.uleb128 0x19
+ 1074 00b4 01       		.uleb128 0x1
+ 1075 00b5 13       		.uleb128 0x13
+ 1076 00b6 00       		.byte	0
+ 1077 00b7 00       		.byte	0
+ 1078 00b8 0D       		.uleb128 0xd
+ 1079 00b9 2E       		.uleb128 0x2e
+ 1080 00ba 00       		.byte	0
+ 1081 00bb 3F       		.uleb128 0x3f
+ 1082 00bc 19       		.uleb128 0x19
+ 1083 00bd 03       		.uleb128 0x3
+ 1084 00be 0E       		.uleb128 0xe
+ 1085 00bf 3A       		.uleb128 0x3a
+ 1086 00c0 0B       		.uleb128 0xb
+ 1087 00c1 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 23
+
+
+ 1088 00c2 0B       		.uleb128 0xb
+ 1089 00c3 11       		.uleb128 0x11
+ 1090 00c4 01       		.uleb128 0x1
+ 1091 00c5 12       		.uleb128 0x12
+ 1092 00c6 06       		.uleb128 0x6
+ 1093 00c7 40       		.uleb128 0x40
+ 1094 00c8 18       		.uleb128 0x18
+ 1095 00c9 9642     		.uleb128 0x2116
+ 1096 00cb 19       		.uleb128 0x19
+ 1097 00cc 00       		.byte	0
+ 1098 00cd 00       		.byte	0
+ 1099 00ce 0E       		.uleb128 0xe
+ 1100 00cf 34       		.uleb128 0x34
+ 1101 00d0 00       		.byte	0
+ 1102 00d1 03       		.uleb128 0x3
+ 1103 00d2 08       		.uleb128 0x8
+ 1104 00d3 3A       		.uleb128 0x3a
+ 1105 00d4 0B       		.uleb128 0xb
+ 1106 00d5 3B       		.uleb128 0x3b
+ 1107 00d6 0B       		.uleb128 0xb
+ 1108 00d7 49       		.uleb128 0x49
+ 1109 00d8 13       		.uleb128 0x13
+ 1110 00d9 02       		.uleb128 0x2
+ 1111 00da 18       		.uleb128 0x18
+ 1112 00db 00       		.byte	0
+ 1113 00dc 00       		.byte	0
+ 1114 00dd 0F       		.uleb128 0xf
+ 1115 00de 34       		.uleb128 0x34
+ 1116 00df 00       		.byte	0
+ 1117 00e0 03       		.uleb128 0x3
+ 1118 00e1 0E       		.uleb128 0xe
+ 1119 00e2 3A       		.uleb128 0x3a
+ 1120 00e3 0B       		.uleb128 0xb
+ 1121 00e4 3B       		.uleb128 0x3b
+ 1122 00e5 0B       		.uleb128 0xb
+ 1123 00e6 49       		.uleb128 0x49
+ 1124 00e7 13       		.uleb128 0x13
+ 1125 00e8 02       		.uleb128 0x2
+ 1126 00e9 18       		.uleb128 0x18
+ 1127 00ea 00       		.byte	0
+ 1128 00eb 00       		.byte	0
+ 1129 00ec 10       		.uleb128 0x10
+ 1130 00ed 01       		.uleb128 0x1
+ 1131 00ee 01       		.byte	0x1
+ 1132 00ef 49       		.uleb128 0x49
+ 1133 00f0 13       		.uleb128 0x13
+ 1134 00f1 01       		.uleb128 0x1
+ 1135 00f2 13       		.uleb128 0x13
+ 1136 00f3 00       		.byte	0
+ 1137 00f4 00       		.byte	0
+ 1138 00f5 11       		.uleb128 0x11
+ 1139 00f6 21       		.uleb128 0x21
+ 1140 00f7 00       		.byte	0
+ 1141 00f8 49       		.uleb128 0x49
+ 1142 00f9 13       		.uleb128 0x13
+ 1143 00fa 2F       		.uleb128 0x2f
+ 1144 00fb 0B       		.uleb128 0xb
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 24
+
+
+ 1145 00fc 00       		.byte	0
+ 1146 00fd 00       		.byte	0
+ 1147 00fe 12       		.uleb128 0x12
+ 1148 00ff 34       		.uleb128 0x34
+ 1149 0100 00       		.byte	0
+ 1150 0101 03       		.uleb128 0x3
+ 1151 0102 0E       		.uleb128 0xe
+ 1152 0103 3A       		.uleb128 0x3a
+ 1153 0104 0B       		.uleb128 0xb
+ 1154 0105 3B       		.uleb128 0x3b
+ 1155 0106 05       		.uleb128 0x5
+ 1156 0107 49       		.uleb128 0x49
+ 1157 0108 13       		.uleb128 0x13
+ 1158 0109 3F       		.uleb128 0x3f
+ 1159 010a 19       		.uleb128 0x19
+ 1160 010b 3C       		.uleb128 0x3c
+ 1161 010c 19       		.uleb128 0x19
+ 1162 010d 00       		.byte	0
+ 1163 010e 00       		.byte	0
+ 1164 010f 13       		.uleb128 0x13
+ 1165 0110 35       		.uleb128 0x35
+ 1166 0111 00       		.byte	0
+ 1167 0112 49       		.uleb128 0x49
+ 1168 0113 13       		.uleb128 0x13
+ 1169 0114 00       		.byte	0
+ 1170 0115 00       		.byte	0
+ 1171 0116 14       		.uleb128 0x14
+ 1172 0117 34       		.uleb128 0x34
+ 1173 0118 00       		.byte	0
+ 1174 0119 03       		.uleb128 0x3
+ 1175 011a 0E       		.uleb128 0xe
+ 1176 011b 3A       		.uleb128 0x3a
+ 1177 011c 0B       		.uleb128 0xb
+ 1178 011d 3B       		.uleb128 0x3b
+ 1179 011e 0B       		.uleb128 0xb
+ 1180 011f 49       		.uleb128 0x49
+ 1181 0120 13       		.uleb128 0x13
+ 1182 0121 3F       		.uleb128 0x3f
+ 1183 0122 19       		.uleb128 0x19
+ 1184 0123 02       		.uleb128 0x2
+ 1185 0124 18       		.uleb128 0x18
+ 1186 0125 00       		.byte	0
+ 1187 0126 00       		.byte	0
+ 1188 0127 15       		.uleb128 0x15
+ 1189 0128 34       		.uleb128 0x34
+ 1190 0129 00       		.byte	0
+ 1191 012a 03       		.uleb128 0x3
+ 1192 012b 0E       		.uleb128 0xe
+ 1193 012c 3A       		.uleb128 0x3a
+ 1194 012d 0B       		.uleb128 0xb
+ 1195 012e 3B       		.uleb128 0x3b
+ 1196 012f 0B       		.uleb128 0xb
+ 1197 0130 49       		.uleb128 0x49
+ 1198 0131 13       		.uleb128 0x13
+ 1199 0132 3F       		.uleb128 0x3f
+ 1200 0133 19       		.uleb128 0x19
+ 1201 0134 3C       		.uleb128 0x3c
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 25
+
+
+ 1202 0135 19       		.uleb128 0x19
+ 1203 0136 00       		.byte	0
+ 1204 0137 00       		.byte	0
+ 1205 0138 00       		.byte	0
+ 1206              		.section	.debug_aranges,"",%progbits
+ 1207 0000 3C000000 		.4byte	0x3c
+ 1208 0004 0200     		.2byte	0x2
+ 1209 0006 00000000 		.4byte	.Ldebug_info0
+ 1210 000a 04       		.byte	0x4
+ 1211 000b 00       		.byte	0
+ 1212 000c 0000     		.2byte	0
+ 1213 000e 0000     		.2byte	0
+ 1214 0010 00000000 		.4byte	.LFB56
+ 1215 0014 48000000 		.4byte	.LFE56-.LFB56
+ 1216 0018 00000000 		.4byte	.LFB57
+ 1217 001c DC000000 		.4byte	.LFE57-.LFB57
+ 1218 0020 00000000 		.4byte	.LFB58
+ 1219 0024 50000000 		.4byte	.LFE58-.LFB58
+ 1220 0028 00000000 		.4byte	.LFB59
+ 1221 002c 68000000 		.4byte	.LFE59-.LFB59
+ 1222 0030 00000000 		.4byte	.LFB60
+ 1223 0034 60000000 		.4byte	.LFE60-.LFB60
+ 1224 0038 00000000 		.4byte	0
+ 1225 003c 00000000 		.4byte	0
+ 1226              		.section	.debug_ranges,"",%progbits
+ 1227              	.Ldebug_ranges0:
+ 1228 0000 00000000 		.4byte	.LFB56
+ 1229 0004 48000000 		.4byte	.LFE56
+ 1230 0008 00000000 		.4byte	.LFB57
+ 1231 000c DC000000 		.4byte	.LFE57
+ 1232 0010 00000000 		.4byte	.LFB58
+ 1233 0014 50000000 		.4byte	.LFE58
+ 1234 0018 00000000 		.4byte	.LFB59
+ 1235 001c 68000000 		.4byte	.LFE59
+ 1236 0020 00000000 		.4byte	.LFB60
+ 1237 0024 60000000 		.4byte	.LFE60
+ 1238 0028 00000000 		.4byte	0
+ 1239 002c 00000000 		.4byte	0
+ 1240              		.section	.debug_line,"",%progbits
+ 1241              	.Ldebug_line0:
+ 1242 0000 1A020000 		.section	.debug_str,"MS",%progbits,1
+ 1242      02007401 
+ 1242      00000201 
+ 1242      FB0E0D00 
+ 1242      01010101 
+ 1243              	.LASF9:
+ 1244 0000 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1244      20756E73 
+ 1244      69676E65 
+ 1244      6420696E 
+ 1244      7400
+ 1245              	.LASF41:
+ 1246 0012 48415244 		.ascii	"HARD_FAULT_SIG\000"
+ 1246      5F464155 
+ 1246      4C545F53 
+ 1246      494700
+ 1247              	.LASF43:
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 26
+
+
+ 1248 0021 4576656E 		.ascii	"Events\000"
+ 1248      747300
+ 1249              	.LASF2:
+ 1250 0028 73686F72 		.ascii	"short int\000"
+ 1250      7420696E 
+ 1250      7400
+ 1251              	.LASF26:
+ 1252 0032 4E455554 		.ascii	"NEUTRAL\000"
+ 1252      52414C00 
+ 1253              	.LASF31:
+ 1254 003a 48415244 		.ascii	"HARD_FAULT\000"
+ 1254      5F464155 
+ 1254      4C5400
+ 1255              	.LASF24:
+ 1256 0045 44617368 		.ascii	"Dash_Mode\000"
+ 1256      5F4D6F64 
+ 1256      6500
+ 1257              	.LASF21:
+ 1258 004f 73697A65 		.ascii	"sizetype\000"
+ 1258      74797065 
+ 1258      00
+ 1259              	.LASF53:
+ 1260 0058 73696E67 		.ascii	"single_frame\000"
+ 1260      6C655F66 
+ 1260      72616D65 
+ 1260      00
+ 1261              	.LASF62:
+ 1262 0065 2E5C6461 		.ascii	".\\dash_board.c\000"
+ 1262      73685F62 
+ 1262      6F617264 
+ 1262      2E6300
+ 1263              	.LASF33:
+ 1264 0074 48565F55 		.ascii	"HV_UP\000"
+ 1264      5000
+ 1265              	.LASF8:
+ 1266 007a 5F5F7569 		.ascii	"__uint32_t\000"
+ 1266      6E743332 
+ 1266      5F7400
+ 1267              	.LASF46:
+ 1268 0085 6D6F6465 		.ascii	"mode\000"
+ 1268      00
+ 1269              	.LASF4:
+ 1270 008a 5F5F7569 		.ascii	"__uint16_t\000"
+ 1270      6E743136 
+ 1270      5F7400
+ 1271              	.LASF7:
+ 1272 0095 6C6F6E67 		.ascii	"long int\000"
+ 1272      20696E74 
+ 1272      00
+ 1273              	.LASF61:
+ 1274 009e 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 1274      4320342E 
+ 1274      382E3420 
+ 1274      32303134 
+ 1274      30353236 
+ 1275 00d1 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
+ 1275      20726576 
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 27
+
+
+ 1275      6973696F 
+ 1275      6E203231 
+ 1275      31333538 
+ 1276 0104 30202D66 		.ascii	"0 -ffunction-sections\000"
+ 1276      66756E63 
+ 1276      74696F6E 
+ 1276      2D736563 
+ 1276      74696F6E 
+ 1277              	.LASF17:
+ 1278 011a 75696E74 		.ascii	"uint16\000"
+ 1278      313600
+ 1279              	.LASF13:
+ 1280 0121 75696E74 		.ascii	"uint8_t\000"
+ 1280      385F7400 
+ 1281              	.LASF47:
+ 1282 0129 6E657753 		.ascii	"newState\000"
+ 1282      74617465 
+ 1282      00
+ 1283              	.LASF35:
+ 1284 0132 4E455554 		.ascii	"NEUTRAL_UP\000"
+ 1284      52414C5F 
+ 1284      555000
+ 1285              	.LASF36:
+ 1286 013d 43484152 		.ascii	"CHARGE_UP\000"
+ 1286      47455F55 
+ 1286      5000
+ 1287              	.LASF18:
+ 1288 0147 666C6F61 		.ascii	"float\000"
+ 1288      7400
+ 1289              	.LASF44:
+ 1290 014d 44617368 		.ascii	"Dash_display_Mode\000"
+ 1290      5F646973 
+ 1290      706C6179 
+ 1290      5F4D6F64 
+ 1290      6500
+ 1291              	.LASF10:
+ 1292 015f 6C6F6E67 		.ascii	"long long int\000"
+ 1292      206C6F6E 
+ 1292      6720696E 
+ 1292      7400
+ 1293              	.LASF60:
+ 1294 016d 6572726F 		.ascii	"error_padel\000"
+ 1294      725F7061 
+ 1294      64656C00 
+ 1295              	.LASF63:
+ 1296 0179 443A5C77 		.ascii	"D:\\workspace\\Super-Eagle\\Super-Eagle\\Super-Eagl"
+ 1296      6F726B73 
+ 1296      70616365 
+ 1296      5C537570 
+ 1296      65722D45 
+ 1297 01a8 652E6379 		.ascii	"e.cydsn\000"
+ 1297      64736E00 
+ 1298              	.LASF55:
+ 1299 01b0 53544152 		.ascii	"STARTING_FRAME\000"
+ 1299      54494E47 
+ 1299      5F465241 
+ 1299      4D4500
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 28
+
+
+ 1300              	.LASF45:
+ 1301 01bf 44617368 		.ascii	"Dash_display_State\000"
+ 1301      5F646973 
+ 1301      706C6179 
+ 1301      5F537461 
+ 1301      746500
+ 1302              	.LASF3:
+ 1303 01d2 5F5F7569 		.ascii	"__uint8_t\000"
+ 1303      6E74385F 
+ 1303      7400
+ 1304              	.LASF51:
+ 1305 01dc 4C45445F 		.ascii	"LED_rgb\000"
+ 1305      72676200 
+ 1306              	.LASF48:
+ 1307 01e4 44617368 		.ascii	"Dash_display_Event\000"
+ 1307      5F646973 
+ 1307      706C6179 
+ 1307      5F457665 
+ 1307      6E7400
+ 1308              	.LASF1:
+ 1309 01f7 756E7369 		.ascii	"unsigned char\000"
+ 1309      676E6564 
+ 1309      20636861 
+ 1309      7200
+ 1310              	.LASF38:
+ 1311 0205 43484152 		.ascii	"CHARGE_DOWN\000"
+ 1311      47455F44 
+ 1311      4F574E00 
+ 1312              	.LASF22:
+ 1313 0211 434F4D4D 		.ascii	"COMMON\000"
+ 1313      4F4E00
+ 1314              	.LASF64:
+ 1315 0218 44617368 		.ascii	"Dash_display_Value\000"
+ 1315      5F646973 
+ 1315      706C6179 
+ 1315      5F56616C 
+ 1315      756500
+ 1316              	.LASF0:
+ 1317 022b 7369676E 		.ascii	"signed char\000"
+ 1317      65642063 
+ 1317      68617200 
+ 1318              	.LASF11:
+ 1319 0237 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1319      206C6F6E 
+ 1319      6720756E 
+ 1319      7369676E 
+ 1319      65642069 
+ 1320              	.LASF16:
+ 1321 024e 75696E74 		.ascii	"uint32_t\000"
+ 1321      33325F74 
+ 1321      00
+ 1322              	.LASF57:
+ 1323 0257 696E666F 		.ascii	"info_battery_voltage\000"
+ 1323      5F626174 
+ 1323      74657279 
+ 1323      5F766F6C 
+ 1323      74616765 
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 29
+
+
+ 1324              	.LASF12:
+ 1325 026c 756E7369 		.ascii	"unsigned int\000"
+ 1325      676E6564 
+ 1325      20696E74 
+ 1325      00
+ 1326              	.LASF14:
+ 1327 0279 75696E74 		.ascii	"uint16_t\000"
+ 1327      31365F74 
+ 1327      00
+ 1328              	.LASF23:
+ 1329 0282 494E464F 		.ascii	"INFO\000"
+ 1329      00
+ 1330              	.LASF32:
+ 1331 0287 53746174 		.ascii	"States\000"
+ 1331      657300
+ 1332              	.LASF30:
+ 1333 028e 534F4654 		.ascii	"SOFT_FAULT\000"
+ 1333      5F464155 
+ 1333      4C5400
+ 1334              	.LASF34:
+ 1335 0299 44524956 		.ascii	"DRIVE_UP\000"
+ 1335      455F5550 
+ 1335      00
+ 1336              	.LASF5:
+ 1337 02a2 73686F72 		.ascii	"short unsigned int\000"
+ 1337      7420756E 
+ 1337      7369676E 
+ 1337      65642069 
+ 1337      6E7400
+ 1338              	.LASF29:
+ 1339 02b5 43484152 		.ascii	"CHARGING\000"
+ 1339      47494E47 
+ 1339      00
+ 1340              	.LASF20:
+ 1341 02be 63686172 		.ascii	"char\000"
+ 1341      00
+ 1342              	.LASF52:
+ 1343 02c3 4C45445F 		.ascii	"LED_len\000"
+ 1343      6C656E00 
+ 1344              	.LASF15:
+ 1345 02cb 696E7433 		.ascii	"int32_t\000"
+ 1345      325F7400 
+ 1346              	.LASF50:
+ 1347 02d3 4C45445F 		.ascii	"LED_update\000"
+ 1347      75706461 
+ 1347      746500
+ 1348              	.LASF39:
+ 1349 02de 534F4654 		.ascii	"SOFT_FAULT_SIG\000"
+ 1349      5F464155 
+ 1349      4C545F53 
+ 1349      494700
+ 1350              	.LASF58:
+ 1351 02ed 696E666F 		.ascii	"info_battery_current\000"
+ 1351      5F626174 
+ 1351      74657279 
+ 1351      5F637572 
+ 1351      72656E74 
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cceed41x.s 			page 30
+
+
+ 1352              	.LASF59:
+ 1353 0302 6572726F 		.ascii	"error_battery\000"
+ 1353      725F6261 
+ 1353      74746572 
+ 1353      7900
+ 1354              	.LASF19:
+ 1355 0310 646F7562 		.ascii	"double\000"
+ 1355      6C6500
+ 1356              	.LASF37:
+ 1357 0317 50524543 		.ascii	"PRECHARGE_DONE\000"
+ 1357      48415247 
+ 1357      455F444F 
+ 1357      4E4500
+ 1358              	.LASF6:
+ 1359 0326 5F5F696E 		.ascii	"__int32_t\000"
+ 1359      7433325F 
+ 1359      7400
+ 1360              	.LASF25:
+ 1361 0330 53544152 		.ascii	"STARTUP\000"
+ 1361      54555000 
+ 1362              	.LASF42:
+ 1363 0338 4E4F4E45 		.ascii	"NONE\000"
+ 1363      00
+ 1364              	.LASF56:
+ 1365 033d 454E4449 		.ascii	"ENDING_FRAME\000"
+ 1365      4E475F46 
+ 1365      52414D45 
+ 1365      00
+ 1366              	.LASF49:
+ 1367 034a 6E657745 		.ascii	"newEvent\000"
+ 1367      76656E74 
+ 1367      00
+ 1368              	.LASF40:
+ 1369 0353 534F4654 		.ascii	"SOFT_FAULT_REMEDIED\000"
+ 1369      5F464155 
+ 1369      4C545F52 
+ 1369      454D4544 
+ 1369      49454400 
+ 1370              	.LASF27:
+ 1371 0367 44524956 		.ascii	"DRIVE\000"
+ 1371      4500
+ 1372              	.LASF54:
+ 1373 036d 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1373      52784275 
+ 1373      66666572 
+ 1373      00
+ 1374              	.LASF28:
+ 1375 037a 50524543 		.ascii	"PRECHARGE\000"
+ 1375      48415247 
+ 1375      4500
+ 1376              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

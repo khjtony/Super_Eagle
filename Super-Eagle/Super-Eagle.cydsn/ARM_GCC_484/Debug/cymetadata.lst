@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cclBRPiK.s 			page 1
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc0U0fNt.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cclBRPiK.s 			page 1
   51      00000000 
   52              		.global	cy_metadata
   53              		.section	.cymeta,"a",%progbits
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cclBRPiK.s 			page 2
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc0U0fNt.s 			page 2
 
 
   54              		.align	2
@@ -88,46 +88,46 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cclBRPiK.s 			page 1
   78 0006 00000000 		.4byte	.Ldebug_abbrev0
   79 000a 04       		.byte	0x4
   80 000b 01       		.uleb128 0x1
-  81 000c C4000000 		.4byte	.LASF18
+  81 000c EF000000 		.4byte	.LASF18
   82 0010 01       		.byte	0x1
   83 0011 00000000 		.4byte	.LASF19
-  84 0015 98010000 		.4byte	.LASF20
+  84 0015 26000000 		.4byte	.LASF20
   85 0019 00000000 		.4byte	.Ldebug_line0
   86 001d 02       		.uleb128 0x2
   87 001e 01       		.byte	0x1
   88 001f 06       		.byte	0x6
-  89 0020 38000000 		.4byte	.LASF0
+  89 0020 C3010000 		.4byte	.LASF0
   90 0024 02       		.uleb128 0x2
   91 0025 01       		.byte	0x1
   92 0026 08       		.byte	0x8
-  93 0027 44000000 		.4byte	.LASF1
+  93 0027 6F000000 		.4byte	.LASF1
   94 002b 02       		.uleb128 0x2
   95 002c 02       		.byte	0x2
   96 002d 05       		.byte	0x5
-  97 002e 7F010000 		.4byte	.LASF2
+  97 002e AA010000 		.4byte	.LASF2
   98 0032 02       		.uleb128 0x2
   99 0033 02       		.byte	0x2
  100 0034 07       		.byte	0x7
- 101 0035 64000000 		.4byte	.LASF3
+ 101 0035 8F000000 		.4byte	.LASF3
  102 0039 02       		.uleb128 0x2
  103 003a 04       		.byte	0x4
  104 003b 05       		.byte	0x5
- 105 003c 8F010000 		.4byte	.LASF4
+ 105 003c BA010000 		.4byte	.LASF4
  106 0040 02       		.uleb128 0x2
  107 0041 04       		.byte	0x4
  108 0042 07       		.byte	0x7
- 109 0043 52000000 		.4byte	.LASF5
+ 109 0043 7D000000 		.4byte	.LASF5
  110 0047 02       		.uleb128 0x2
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cclBRPiK.s 			page 3
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc0U0fNt.s 			page 3
 
 
  111 0048 08       		.byte	0x8
  112 0049 05       		.byte	0x5
- 113 004a 6C010000 		.4byte	.LASF6
+ 113 004a 97010000 		.4byte	.LASF6
  114 004e 02       		.uleb128 0x2
  115 004f 08       		.byte	0x8
  116 0050 07       		.byte	0x7
- 117 0051 AD000000 		.4byte	.LASF7
+ 117 0051 D8000000 		.4byte	.LASF7
  118 0055 03       		.uleb128 0x3
  119 0056 04       		.byte	0x4
  120 0057 05       		.byte	0x5
@@ -135,24 +135,24 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cclBRPiK.s 			page 1
  122 005c 02       		.uleb128 0x2
  123 005d 04       		.byte	0x4
  124 005e 07       		.byte	0x7
- 125 005f A0000000 		.4byte	.LASF8
+ 125 005f CB000000 		.4byte	.LASF8
  126 0063 04       		.uleb128 0x4
- 127 0064 89010000 		.4byte	.LASF21
+ 127 0064 B4010000 		.4byte	.LASF21
  128 0068 02       		.byte	0x2
  129 0069 A1       		.byte	0xa1
  130 006a 24000000 		.4byte	0x24
  131 006e 02       		.uleb128 0x2
  132 006f 04       		.byte	0x4
  133 0070 04       		.byte	0x4
- 134 0071 32000000 		.4byte	.LASF9
+ 134 0071 69000000 		.4byte	.LASF9
  135 0075 02       		.uleb128 0x2
  136 0076 08       		.byte	0x8
  137 0077 04       		.byte	0x4
- 138 0078 77000000 		.4byte	.LASF10
+ 138 0078 A2000000 		.4byte	.LASF10
  139 007c 02       		.uleb128 0x2
  140 007d 01       		.byte	0x1
  141 007e 08       		.byte	0x8
- 142 007f 7A010000 		.4byte	.LASF11
+ 142 007f A5010000 		.4byte	.LASF11
  143 0083 05       		.uleb128 0x5
  144 0084 63000000 		.4byte	0x63
  145 0088 93000000 		.4byte	0x93
@@ -163,9 +163,9 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cclBRPiK.s 			page 1
  150 0093 02       		.uleb128 0x2
  151 0094 04       		.byte	0x4
  152 0095 07       		.byte	0x7
- 153 0096 63010000 		.4byte	.LASF12
+ 153 0096 8E010000 		.4byte	.LASF12
  154 009a 07       		.uleb128 0x7
- 155 009b 8E000000 		.4byte	.LASF13
+ 155 009b B9000000 		.4byte	.LASF13
  156 009f 01       		.byte	0x1
  157 00a0 1C       		.byte	0x1c
  158 00a1 AB000000 		.4byte	0xab
@@ -178,14 +178,14 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cclBRPiK.s 			page 1
  165 00b1 63000000 		.4byte	0x63
  166 00b5 C0000000 		.4byte	0xc0
  167 00b9 06       		.uleb128 0x6
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cclBRPiK.s 			page 4
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc0U0fNt.s 			page 4
 
 
  168 00ba 93000000 		.4byte	0x93
  169 00be 03       		.byte	0x3
  170 00bf 00       		.byte	0
  171 00c0 07       		.uleb128 0x7
- 172 00c1 7E000000 		.4byte	.LASF14
+ 172 00c1 A9000000 		.4byte	.LASF14
  173 00c5 01       		.byte	0x1
  174 00c6 27       		.byte	0x27
  175 00c7 D1000000 		.4byte	0xd1
@@ -195,7 +195,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cclBRPiK.s 			page 1
  179 00d1 08       		.uleb128 0x8
  180 00d2 B0000000 		.4byte	0xb0
  181 00d6 07       		.uleb128 0x7
- 182 00d7 55010000 		.4byte	.LASF15
+ 182 00d7 80010000 		.4byte	.LASF15
  183 00db 01       		.byte	0x1
  184 00dc 32       		.byte	0x32
  185 00dd E7000000 		.4byte	0xe7
@@ -212,7 +212,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cclBRPiK.s 			page 1
  196 00fa FF       		.byte	0xff
  197 00fb 00       		.byte	0
  198 00fc 07       		.uleb128 0x7
- 199 00fd 40010000 		.4byte	.LASF16
+ 199 00fd 6B010000 		.4byte	.LASF16
  200 0101 01       		.byte	0x1
  201 0102 3D       		.byte	0x3d
  202 0103 0D010000 		.4byte	0x10d
@@ -229,7 +229,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cclBRPiK.s 			page 1
  213 0120 0B       		.byte	0xb
  214 0121 00       		.byte	0
  215 0122 07       		.uleb128 0x7
- 216 0123 26000000 		.4byte	.LASF17
+ 216 0123 5D000000 		.4byte	.LASF17
  217 0127 01       		.byte	0x1
  218 0128 67       		.byte	0x67
  219 0129 33010000 		.4byte	0x133
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cclBRPiK.s 			page 1
  222 012f 00000000 		.4byte	cy_metadata
  223 0133 08       		.uleb128 0x8
  224 0134 12010000 		.4byte	0x112
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cclBRPiK.s 			page 5
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc0U0fNt.s 			page 5
 
 
  225 0138 00       		.byte	0
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cclBRPiK.s 			page 1
  279 0033 01       		.uleb128 0x1
  280 0034 01       		.byte	0x1
  281 0035 49       		.uleb128 0x49
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cclBRPiK.s 			page 6
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc0U0fNt.s 			page 6
 
 
  282 0036 13       		.uleb128 0x13
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cclBRPiK.s 			page 1
  333      FB0E0D00 
  333      01010101 
  334              	.LASF19:
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cclBRPiK.s 			page 7
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc0U0fNt.s 			page 7
 
 
  335 0000 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\cymetadata.c\000"
@@ -366,121 +366,121 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cclBRPiK.s 			page 1
  335      7465645F 
  335      536F7572 
  335      63655C50 
- 336              	.LASF17:
- 337 0026 63795F6D 		.ascii	"cy_metadata\000"
- 337      65746164 
- 337      61746100 
- 338              	.LASF9:
- 339 0032 666C6F61 		.ascii	"float\000"
- 339      7400
- 340              	.LASF0:
- 341 0038 7369676E 		.ascii	"signed char\000"
- 341      65642063 
- 341      68617200 
- 342              	.LASF1:
- 343 0044 756E7369 		.ascii	"unsigned char\000"
- 343      676E6564 
- 343      20636861 
- 343      7200
- 344              	.LASF5:
- 345 0052 6C6F6E67 		.ascii	"long unsigned int\000"
- 345      20756E73 
- 345      69676E65 
- 345      6420696E 
- 345      7400
- 346              	.LASF3:
- 347 0064 73686F72 		.ascii	"short unsigned int\000"
- 347      7420756E 
- 347      7369676E 
- 347      65642069 
- 347      6E7400
- 348              	.LASF10:
- 349 0077 646F7562 		.ascii	"double\000"
- 349      6C6500
- 350              	.LASF14:
- 351 007e 63795F6D 		.ascii	"cy_meta_custnvl\000"
- 351      6574615F 
- 351      63757374 
- 351      6E766C00 
- 352              	.LASF13:
- 353 008e 63795F6D 		.ascii	"cy_meta_configecc\000"
- 353      6574615F 
- 353      636F6E66 
- 353      69676563 
- 353      6300
- 354              	.LASF8:
- 355 00a0 756E7369 		.ascii	"unsigned int\000"
- 355      676E6564 
- 355      20696E74 
- 355      00
- 356              	.LASF7:
- 357 00ad 6C6F6E67 		.ascii	"long long unsigned int\000"
- 357      206C6F6E 
- 357      6720756E 
- 357      7369676E 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cclBRPiK.s 			page 8
+ 336              	.LASF20:
+ 337 0026 443A5C77 		.ascii	"D:\\workspace\\Super-Eagle\\Super-Eagle\\Super-Eagl"
+ 337      6F726B73 
+ 337      70616365 
+ 337      5C537570 
+ 337      65722D45 
+ 338 0055 652E6379 		.ascii	"e.cydsn\000"
+ 338      64736E00 
+ 339              	.LASF17:
+ 340 005d 63795F6D 		.ascii	"cy_metadata\000"
+ 340      65746164 
+ 340      61746100 
+ 341              	.LASF9:
+ 342 0069 666C6F61 		.ascii	"float\000"
+ 342      7400
+ 343              	.LASF1:
+ 344 006f 756E7369 		.ascii	"unsigned char\000"
+ 344      676E6564 
+ 344      20636861 
+ 344      7200
+ 345              	.LASF5:
+ 346 007d 6C6F6E67 		.ascii	"long unsigned int\000"
+ 346      20756E73 
+ 346      69676E65 
+ 346      6420696E 
+ 346      7400
+ 347              	.LASF3:
+ 348 008f 73686F72 		.ascii	"short unsigned int\000"
+ 348      7420756E 
+ 348      7369676E 
+ 348      65642069 
+ 348      6E7400
+ 349              	.LASF10:
+ 350 00a2 646F7562 		.ascii	"double\000"
+ 350      6C6500
+ 351              	.LASF14:
+ 352 00a9 63795F6D 		.ascii	"cy_meta_custnvl\000"
+ 352      6574615F 
+ 352      63757374 
+ 352      6E766C00 
+ 353              	.LASF13:
+ 354 00b9 63795F6D 		.ascii	"cy_meta_configecc\000"
+ 354      6574615F 
+ 354      636F6E66 
+ 354      69676563 
+ 354      6300
+ 355              	.LASF8:
+ 356 00cb 756E7369 		.ascii	"unsigned int\000"
+ 356      676E6564 
+ 356      20696E74 
+ 356      00
+ 357              	.LASF7:
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc0U0fNt.s 			page 8
 
 
- 357      65642069 
- 358              	.LASF18:
- 359 00c4 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
- 359      4320342E 
- 359      382E3420 
- 359      32303134 
- 359      30353236 
- 360 00f7 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
- 360      20726576 
- 360      6973696F 
- 360      6E203231 
- 360      31333538 
- 361 012a 30202D66 		.ascii	"0 -ffunction-sections\000"
- 361      66756E63 
- 361      74696F6E 
- 361      2D736563 
- 361      74696F6E 
- 362              	.LASF16:
- 363 0140 63795F6D 		.ascii	"cy_meta_flashprotect\000"
- 363      6574615F 
- 363      666C6173 
- 363      6870726F 
- 363      74656374 
- 364              	.LASF15:
- 365 0155 63795F6D 		.ascii	"cy_meta_wonvl\000"
- 365      6574615F 
- 365      776F6E76 
- 365      6C00
- 366              	.LASF12:
- 367 0163 73697A65 		.ascii	"sizetype\000"
- 367      74797065 
- 367      00
- 368              	.LASF6:
- 369 016c 6C6F6E67 		.ascii	"long long int\000"
- 369      206C6F6E 
- 369      6720696E 
- 369      7400
- 370              	.LASF11:
- 371 017a 63686172 		.ascii	"char\000"
- 371      00
- 372              	.LASF2:
- 373 017f 73686F72 		.ascii	"short int\000"
- 373      7420696E 
- 373      7400
- 374              	.LASF21:
- 375 0189 75696E74 		.ascii	"uint8\000"
- 375      3800
- 376              	.LASF4:
- 377 018f 6C6F6E67 		.ascii	"long int\000"
- 377      20696E74 
- 377      00
- 378              	.LASF20:
- 379 0198 443A5C77 		.ascii	"D:\\workspace\\super-eagle\\Super-Eagle\\Super-Eagl"
- 379      6F726B73 
- 379      70616365 
- 379      5C737570 
- 379      65722D65 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cclBRPiK.s 			page 9
+ 358 00d8 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 358      206C6F6E 
+ 358      6720756E 
+ 358      7369676E 
+ 358      65642069 
+ 359              	.LASF18:
+ 360 00ef 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 360      4320342E 
+ 360      382E3420 
+ 360      32303134 
+ 360      30353236 
+ 361 0122 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
+ 361      20726576 
+ 361      6973696F 
+ 361      6E203231 
+ 361      31333538 
+ 362 0155 30202D66 		.ascii	"0 -ffunction-sections\000"
+ 362      66756E63 
+ 362      74696F6E 
+ 362      2D736563 
+ 362      74696F6E 
+ 363              	.LASF16:
+ 364 016b 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ 364      6574615F 
+ 364      666C6173 
+ 364      6870726F 
+ 364      74656374 
+ 365              	.LASF15:
+ 366 0180 63795F6D 		.ascii	"cy_meta_wonvl\000"
+ 366      6574615F 
+ 366      776F6E76 
+ 366      6C00
+ 367              	.LASF12:
+ 368 018e 73697A65 		.ascii	"sizetype\000"
+ 368      74797065 
+ 368      00
+ 369              	.LASF6:
+ 370 0197 6C6F6E67 		.ascii	"long long int\000"
+ 370      206C6F6E 
+ 370      6720696E 
+ 370      7400
+ 371              	.LASF11:
+ 372 01a5 63686172 		.ascii	"char\000"
+ 372      00
+ 373              	.LASF2:
+ 374 01aa 73686F72 		.ascii	"short int\000"
+ 374      7420696E 
+ 374      7400
+ 375              	.LASF21:
+ 376 01b4 75696E74 		.ascii	"uint8\000"
+ 376      3800
+ 377              	.LASF4:
+ 378 01ba 6C6F6E67 		.ascii	"long int\000"
+ 378      20696E74 
+ 378      00
+ 379              	.LASF0:
+ 380 01c3 7369676E 		.ascii	"signed char\000"
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc0U0fNt.s 			page 9
 
 
- 380 01c7 652E6379 		.ascii	"e.cydsn\000"
- 380      64736E00 
+ 380      65642063 
+ 380      68617200 
  381              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

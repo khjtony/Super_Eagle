@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cce2KPBU.s 			page 1
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccqYq5Wg.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cce2KPBU.s 			page 1
   29:.\Generated_Source\PSoC5/LED_Strip_INT.c **** ********************************************************************************
   30:.\Generated_Source\PSoC5/LED_Strip_INT.c **** *
   31:.\Generated_Source\PSoC5/LED_Strip_INT.c **** * Summary:
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cce2KPBU.s 			page 2
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccqYq5Wg.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/LED_Strip_INT.c **** *  Interrupt Service Routine for TX portion of the SPI Master.
@@ -84,14 +84,16 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cce2KPBU.s 			page 1
   52:.\Generated_Source\PSoC5/LED_Strip_INT.c **** {
   27              		.loc 1 52 0
   28              		.cfi_startproc
-  29              		@ args = 0, pretend = 0, frame = 0
+  29              		@ args = 0, pretend = 0, frame = 8
   30              		@ frame_needed = 1, uses_anonymous_args = 0
   31              		@ link register save eliminated.
   32 0000 80B4     		push	{r7}
   33              		.cfi_def_cfa_offset 4
   34              		.cfi_offset 7, -4
-  35 0002 00AF     		add	r7, sp, #0
-  36              		.cfi_def_cfa_register 7
+  35 0002 83B0     		sub	sp, sp, #12
+  36              		.cfi_def_cfa_offset 16
+  37 0004 00AF     		add	r7, sp, #0
+  38              		.cfi_def_cfa_register 7
   53:.\Generated_Source\PSoC5/LED_Strip_INT.c ****     #if(LED_Strip_TX_SOFTWARE_BUF_ENABLED)
   54:.\Generated_Source\PSoC5/LED_Strip_INT.c ****         uint8 tmpStatus;
   55:.\Generated_Source\PSoC5/LED_Strip_INT.c ****     #endif /* (LED_Strip_TX_SOFTWARE_BUF_ENABLED) */
@@ -104,43 +106,148 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cce2KPBU.s 			page 1
   62:.\Generated_Source\PSoC5/LED_Strip_INT.c ****     #if(LED_Strip_TX_SOFTWARE_BUF_ENABLED)
   63:.\Generated_Source\PSoC5/LED_Strip_INT.c ****         /* Check if TX data buffer is not empty and there is space in TX FIFO */
   64:.\Generated_Source\PSoC5/LED_Strip_INT.c ****         while(LED_Strip_txBufferRead != LED_Strip_txBufferWrite)
+  39              		.loc 1 64 0
+  40 0006 36E0     		b	.L2
+  41              	.L8:
   65:.\Generated_Source\PSoC5/LED_Strip_INT.c ****         {
   66:.\Generated_Source\PSoC5/LED_Strip_INT.c ****             tmpStatus = LED_Strip_GET_STATUS_TX(LED_Strip_swStatusTx);
+  42              		.loc 1 66 0
+  43 0008 294B     		ldr	r3, .L10
+  44 000a 1B78     		ldrb	r3, [r3]
+  45 000c DAB2     		uxtb	r2, r3
+  46 000e 294B     		ldr	r3, .L10+4
+  47 0010 1B78     		ldrb	r3, [r3]
+  48 0012 DBB2     		uxtb	r3, r3
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccqYq5Wg.s 			page 3
+
+
+  49 0014 03F00903 		and	r3, r3, #9
+  50 0018 DBB2     		uxtb	r3, r3
+  51 001a 1343     		orrs	r3, r3, r2
+  52 001c FB71     		strb	r3, [r7, #7]
   67:.\Generated_Source\PSoC5/LED_Strip_INT.c ****             LED_Strip_swStatusTx = tmpStatus;
+  53              		.loc 1 67 0
+  54 001e 254B     		ldr	r3, .L10+4
+  55 0020 FA79     		ldrb	r2, [r7, #7]
+  56 0022 1A70     		strb	r2, [r3]
   68:.\Generated_Source\PSoC5/LED_Strip_INT.c **** 
   69:.\Generated_Source\PSoC5/LED_Strip_INT.c ****             if(0u != (LED_Strip_swStatusTx & LED_Strip_STS_TX_FIFO_NOT_FULL))
+  57              		.loc 1 69 0
+  58 0024 234B     		ldr	r3, .L10+4
+  59 0026 1B78     		ldrb	r3, [r3]
+  60 0028 DBB2     		uxtb	r3, r3
+  61 002a 03F00403 		and	r3, r3, #4
+  62 002e 002B     		cmp	r3, #0
+  63 0030 20D0     		beq	.L3
   70:.\Generated_Source\PSoC5/LED_Strip_INT.c ****             {
   71:.\Generated_Source\PSoC5/LED_Strip_INT.c ****                 if(0u == LED_Strip_txBufferFull)
+  64              		.loc 1 71 0
+  65 0032 214B     		ldr	r3, .L10+8
+  66 0034 1B78     		ldrb	r3, [r3]
+  67 0036 DBB2     		uxtb	r3, r3
+  68 0038 002B     		cmp	r3, #0
+  69 003a 0FD1     		bne	.L4
   72:.\Generated_Source\PSoC5/LED_Strip_INT.c ****                 {
   73:.\Generated_Source\PSoC5/LED_Strip_INT.c ****                    LED_Strip_txBufferRead++;
+  70              		.loc 1 73 0
+  71 003c 1F4B     		ldr	r3, .L10+12
+  72 003e 1B78     		ldrb	r3, [r3]
+  73 0040 DBB2     		uxtb	r3, r3
+  74 0042 0133     		adds	r3, r3, #1
+  75 0044 DAB2     		uxtb	r2, r3
+  76 0046 1D4B     		ldr	r3, .L10+12
+  77 0048 1A70     		strb	r2, [r3]
   74:.\Generated_Source\PSoC5/LED_Strip_INT.c **** 
   75:.\Generated_Source\PSoC5/LED_Strip_INT.c ****                     if(LED_Strip_txBufferRead >= LED_Strip_TX_BUFFER_SIZE)
+  78              		.loc 1 75 0
+  79 004a 1C4B     		ldr	r3, .L10+12
+  80 004c 1B78     		ldrb	r3, [r3]
+  81 004e DBB2     		uxtb	r3, r3
+  82 0050 3F2B     		cmp	r3, #63
+  83 0052 06D9     		bls	.L6
   76:.\Generated_Source\PSoC5/LED_Strip_INT.c ****                     {
   77:.\Generated_Source\PSoC5/LED_Strip_INT.c ****                         LED_Strip_txBufferRead = 0u;
+  84              		.loc 1 77 0
+  85 0054 194B     		ldr	r3, .L10+12
+  86 0056 0022     		movs	r2, #0
+  87 0058 1A70     		strb	r2, [r3]
+  88 005a 02E0     		b	.L6
+  89              	.L4:
   78:.\Generated_Source\PSoC5/LED_Strip_INT.c ****                     }
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cce2KPBU.s 			page 3
-
-
   79:.\Generated_Source\PSoC5/LED_Strip_INT.c ****                 }
   80:.\Generated_Source\PSoC5/LED_Strip_INT.c ****                 else
   81:.\Generated_Source\PSoC5/LED_Strip_INT.c ****                 {
   82:.\Generated_Source\PSoC5/LED_Strip_INT.c ****                     LED_Strip_txBufferFull = 0u;
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccqYq5Wg.s 			page 4
+
+
+  90              		.loc 1 82 0
+  91 005c 164B     		ldr	r3, .L10+8
+  92 005e 0022     		movs	r2, #0
+  93 0060 1A70     		strb	r2, [r3]
+  94              	.L6:
   83:.\Generated_Source\PSoC5/LED_Strip_INT.c ****                 }
   84:.\Generated_Source\PSoC5/LED_Strip_INT.c **** 
   85:.\Generated_Source\PSoC5/LED_Strip_INT.c ****                 /* Put data element into the TX FIFO */
   86:.\Generated_Source\PSoC5/LED_Strip_INT.c ****                 CY_SET_REG8(LED_Strip_TXDATA_PTR, 
+  95              		.loc 1 86 0 discriminator 1
+  96 0062 174B     		ldr	r3, .L10+16
+  97 0064 154A     		ldr	r2, .L10+12
+  98 0066 1278     		ldrb	r2, [r2]
+  99 0068 D2B2     		uxtb	r2, r2
+ 100 006a 1649     		ldr	r1, .L10+20
+ 101 006c 8A5C     		ldrb	r2, [r1, r2]
+ 102 006e D2B2     		uxtb	r2, r2
+ 103 0070 1A70     		strb	r2, [r3]
+ 104 0072 00E0     		b	.L2
+ 105              	.L3:
   87:.\Generated_Source\PSoC5/LED_Strip_INT.c ****                                              LED_Strip_txBuffer[LED_Strip_txBufferRead]);
   88:.\Generated_Source\PSoC5/LED_Strip_INT.c ****             }
   89:.\Generated_Source\PSoC5/LED_Strip_INT.c ****             else
   90:.\Generated_Source\PSoC5/LED_Strip_INT.c ****             {
   91:.\Generated_Source\PSoC5/LED_Strip_INT.c ****                 break;
+ 106              		.loc 1 91 0
+ 107 0074 07E0     		b	.L7
+ 108              	.L2:
+  64:.\Generated_Source\PSoC5/LED_Strip_INT.c ****         while(LED_Strip_txBufferRead != LED_Strip_txBufferWrite)
+ 109              		.loc 1 64 0 discriminator 1
+ 110 0076 114B     		ldr	r3, .L10+12
+ 111 0078 1B78     		ldrb	r3, [r3]
+ 112 007a DAB2     		uxtb	r2, r3
+ 113 007c 124B     		ldr	r3, .L10+24
+ 114 007e 1B78     		ldrb	r3, [r3]
+ 115 0080 DBB2     		uxtb	r3, r3
+ 116 0082 9A42     		cmp	r2, r3
+ 117 0084 C0D1     		bne	.L8
+ 118              	.L7:
   92:.\Generated_Source\PSoC5/LED_Strip_INT.c ****             }
   93:.\Generated_Source\PSoC5/LED_Strip_INT.c ****         }
   94:.\Generated_Source\PSoC5/LED_Strip_INT.c **** 
   95:.\Generated_Source\PSoC5/LED_Strip_INT.c ****         if(LED_Strip_txBufferRead == LED_Strip_txBufferWrite)
+ 119              		.loc 1 95 0
+ 120 0086 0D4B     		ldr	r3, .L10+12
+ 121 0088 1B78     		ldrb	r3, [r3]
+ 122 008a DAB2     		uxtb	r2, r3
+ 123 008c 0E4B     		ldr	r3, .L10+24
+ 124 008e 1B78     		ldrb	r3, [r3]
+ 125 0090 DBB2     		uxtb	r3, r3
+ 126 0092 9A42     		cmp	r2, r3
+ 127 0094 07D1     		bne	.L1
   96:.\Generated_Source\PSoC5/LED_Strip_INT.c ****         {
   97:.\Generated_Source\PSoC5/LED_Strip_INT.c ****             /* TX Buffer is EMPTY: disable interrupt on TX NOT FULL */
   98:.\Generated_Source\PSoC5/LED_Strip_INT.c ****             LED_Strip_TX_STATUS_MASK_REG &= ((uint8) ~LED_Strip_STS_TX_FIFO_NOT_FULL);
+ 128              		.loc 1 98 0
+ 129 0096 0D4B     		ldr	r3, .L10+28
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccqYq5Wg.s 			page 5
+
+
+ 130 0098 0C4A     		ldr	r2, .L10+28
+ 131 009a 1278     		ldrb	r2, [r2]
+ 132 009c D2B2     		uxtb	r2, r2
+ 133 009e 22F00402 		bic	r2, r2, #4
+ 134 00a2 D2B2     		uxtb	r2, r2
+ 135 00a4 1A70     		strb	r2, [r3]
+ 136              	.L1:
   99:.\Generated_Source\PSoC5/LED_Strip_INT.c ****         }
  100:.\Generated_Source\PSoC5/LED_Strip_INT.c **** 
  101:.\Generated_Source\PSoC5/LED_Strip_INT.c ****     #endif /* (LED_Strip_TX_SOFTWARE_BUF_ENABLED) */
@@ -150,22 +257,34 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cce2KPBU.s 			page 1
  105:.\Generated_Source\PSoC5/LED_Strip_INT.c **** 
  106:.\Generated_Source\PSoC5/LED_Strip_INT.c ****     /* `#END` */
  107:.\Generated_Source\PSoC5/LED_Strip_INT.c **** }
-  37              		.loc 1 107 0
-  38 0004 BD46     		mov	sp, r7
-  39              		@ sp needed
-  40 0006 5DF8047B 		ldr	r7, [sp], #4
-  41 000a 7047     		bx	lr
-  42              		.cfi_endproc
-  43              	.LFE0:
-  44              		.size	LED_Strip_TX_ISR, .-LED_Strip_TX_ISR
-  45              		.section	.text.LED_Strip_RX_ISR,"ax",%progbits
-  46              		.align	2
-  47              		.global	LED_Strip_RX_ISR
-  48              		.thumb
-  49              		.thumb_func
-  50              		.type	LED_Strip_RX_ISR, %function
-  51              	LED_Strip_RX_ISR:
-  52              	.LFB1:
+ 137              		.loc 1 107 0
+ 138 00a6 0C37     		adds	r7, r7, #12
+ 139 00a8 BD46     		mov	sp, r7
+ 140              		@ sp needed
+ 141 00aa 5DF8047B 		ldr	r7, [sp], #4
+ 142 00ae 7047     		bx	lr
+ 143              	.L11:
+ 144              		.align	2
+ 145              	.L10:
+ 146 00b0 64640040 		.word	1073767524
+ 147 00b4 00000000 		.word	LED_Strip_swStatusTx
+ 148 00b8 00000000 		.word	LED_Strip_txBufferFull
+ 149 00bc 00000000 		.word	LED_Strip_txBufferRead
+ 150 00c0 43640040 		.word	1073767491
+ 151 00c4 00000000 		.word	LED_Strip_txBuffer
+ 152 00c8 00000000 		.word	LED_Strip_txBufferWrite
+ 153 00cc 84640040 		.word	1073767556
+ 154              		.cfi_endproc
+ 155              	.LFE0:
+ 156              		.size	LED_Strip_TX_ISR, .-LED_Strip_TX_ISR
+ 157              		.section	.text.LED_Strip_RX_ISR,"ax",%progbits
+ 158              		.align	2
+ 159              		.global	LED_Strip_RX_ISR
+ 160              		.thumb
+ 161              		.thumb_func
+ 162              		.type	LED_Strip_RX_ISR, %function
+ 163              	LED_Strip_RX_ISR:
+ 164              	.LFB1:
  108:.\Generated_Source\PSoC5/LED_Strip_INT.c **** 
  109:.\Generated_Source\PSoC5/LED_Strip_INT.c **** 
  110:.\Generated_Source\PSoC5/LED_Strip_INT.c **** /*******************************************************************************
@@ -178,10 +297,10 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cce2KPBU.s 			page 1
  117:.\Generated_Source\PSoC5/LED_Strip_INT.c **** * Parameters:
  118:.\Generated_Source\PSoC5/LED_Strip_INT.c **** *  None.
  119:.\Generated_Source\PSoC5/LED_Strip_INT.c **** *
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cce2KPBU.s 			page 4
-
-
  120:.\Generated_Source\PSoC5/LED_Strip_INT.c **** * Return:
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccqYq5Wg.s 			page 6
+
+
  121:.\Generated_Source\PSoC5/LED_Strip_INT.c **** *  None.
  122:.\Generated_Source\PSoC5/LED_Strip_INT.c **** *
  123:.\Generated_Source\PSoC5/LED_Strip_INT.c **** * Global variables:
@@ -197,16 +316,18 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cce2KPBU.s 			page 1
  133:.\Generated_Source\PSoC5/LED_Strip_INT.c **** *******************************************************************************/
  134:.\Generated_Source\PSoC5/LED_Strip_INT.c **** CY_ISR(LED_Strip_RX_ISR)
  135:.\Generated_Source\PSoC5/LED_Strip_INT.c **** {
-  53              		.loc 1 135 0
-  54              		.cfi_startproc
-  55              		@ args = 0, pretend = 0, frame = 0
-  56              		@ frame_needed = 1, uses_anonymous_args = 0
-  57              		@ link register save eliminated.
-  58 0000 80B4     		push	{r7}
-  59              		.cfi_def_cfa_offset 4
-  60              		.cfi_offset 7, -4
-  61 0002 00AF     		add	r7, sp, #0
-  62              		.cfi_def_cfa_register 7
+ 165              		.loc 1 135 0
+ 166              		.cfi_startproc
+ 167              		@ args = 0, pretend = 0, frame = 8
+ 168              		@ frame_needed = 1, uses_anonymous_args = 0
+ 169              		@ link register save eliminated.
+ 170 0000 80B4     		push	{r7}
+ 171              		.cfi_def_cfa_offset 4
+ 172              		.cfi_offset 7, -4
+ 173 0002 83B0     		sub	sp, sp, #12
+ 174              		.cfi_def_cfa_offset 16
+ 175 0004 00AF     		add	r7, sp, #0
+ 176              		.cfi_def_cfa_register 7
  136:.\Generated_Source\PSoC5/LED_Strip_INT.c ****     #if(LED_Strip_RX_SOFTWARE_BUF_ENABLED)
  137:.\Generated_Source\PSoC5/LED_Strip_INT.c ****         uint8 tmpStatus;
  138:.\Generated_Source\PSoC5/LED_Strip_INT.c ****         uint8 rxData;
@@ -220,39 +341,150 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cce2KPBU.s 			page 1
  146:.\Generated_Source\PSoC5/LED_Strip_INT.c ****     #if(LED_Strip_RX_SOFTWARE_BUF_ENABLED)
  147:.\Generated_Source\PSoC5/LED_Strip_INT.c **** 
  148:.\Generated_Source\PSoC5/LED_Strip_INT.c ****         tmpStatus = LED_Strip_GET_STATUS_RX(LED_Strip_swStatusRx);
+ 177              		.loc 1 148 0
+ 178 0006 2D4B     		ldr	r3, .L18
+ 179 0008 1B78     		ldrb	r3, [r3]
+ 180 000a DAB2     		uxtb	r2, r3
+ 181 000c 2C4B     		ldr	r3, .L18+4
+ 182 000e 1B78     		ldrb	r3, [r3]
+ 183 0010 DBB2     		uxtb	r3, r3
+ 184 0012 03F04003 		and	r3, r3, #64
+ 185 0016 DBB2     		uxtb	r3, r3
+ 186 0018 1343     		orrs	r3, r3, r2
+ 187 001a FB71     		strb	r3, [r7, #7]
  149:.\Generated_Source\PSoC5/LED_Strip_INT.c ****         LED_Strip_swStatusRx = tmpStatus;
+ 188              		.loc 1 149 0
+ 189 001c 284B     		ldr	r3, .L18+4
+ 190 001e FA79     		ldrb	r2, [r7, #7]
+ 191 0020 1A70     		strb	r2, [r3]
  150:.\Generated_Source\PSoC5/LED_Strip_INT.c **** 
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccqYq5Wg.s 			page 7
+
+
  151:.\Generated_Source\PSoC5/LED_Strip_INT.c ****         /* Check if RX data FIFO has some data to be moved into the RX Buffer */
  152:.\Generated_Source\PSoC5/LED_Strip_INT.c ****         while(0u != (LED_Strip_swStatusRx & LED_Strip_STS_RX_FIFO_NOT_EMPTY))
+ 192              		.loc 1 152 0
+ 193 0022 3FE0     		b	.L13
+ 194              	.L17:
  153:.\Generated_Source\PSoC5/LED_Strip_INT.c ****         {
  154:.\Generated_Source\PSoC5/LED_Strip_INT.c ****             rxData = CY_GET_REG8(LED_Strip_RXDATA_PTR);
+ 195              		.loc 1 154 0
+ 196 0024 274B     		ldr	r3, .L18+8
+ 197 0026 1B78     		ldrb	r3, [r3]
+ 198 0028 BB71     		strb	r3, [r7, #6]
  155:.\Generated_Source\PSoC5/LED_Strip_INT.c **** 
  156:.\Generated_Source\PSoC5/LED_Strip_INT.c ****             /* Set next pointer. */
  157:.\Generated_Source\PSoC5/LED_Strip_INT.c ****             LED_Strip_rxBufferWrite++;
+ 199              		.loc 1 157 0
+ 200 002a 274B     		ldr	r3, .L18+12
+ 201 002c 1B78     		ldrb	r3, [r3]
+ 202 002e DBB2     		uxtb	r3, r3
+ 203 0030 0133     		adds	r3, r3, #1
+ 204 0032 DAB2     		uxtb	r2, r3
+ 205 0034 244B     		ldr	r3, .L18+12
+ 206 0036 1A70     		strb	r2, [r3]
  158:.\Generated_Source\PSoC5/LED_Strip_INT.c ****             if(LED_Strip_rxBufferWrite >= LED_Strip_RX_BUFFER_SIZE)
+ 207              		.loc 1 158 0
+ 208 0038 234B     		ldr	r3, .L18+12
+ 209 003a 1B78     		ldrb	r3, [r3]
+ 210 003c DBB2     		uxtb	r3, r3
+ 211 003e 3F2B     		cmp	r3, #63
+ 212 0040 02D9     		bls	.L14
  159:.\Generated_Source\PSoC5/LED_Strip_INT.c ****             {
  160:.\Generated_Source\PSoC5/LED_Strip_INT.c ****                 LED_Strip_rxBufferWrite = 0u;
+ 213              		.loc 1 160 0
+ 214 0042 214B     		ldr	r3, .L18+12
+ 215 0044 0022     		movs	r2, #0
+ 216 0046 1A70     		strb	r2, [r3]
+ 217              	.L14:
  161:.\Generated_Source\PSoC5/LED_Strip_INT.c ****             }
  162:.\Generated_Source\PSoC5/LED_Strip_INT.c **** 
  163:.\Generated_Source\PSoC5/LED_Strip_INT.c ****             if(LED_Strip_rxBufferWrite == LED_Strip_rxBufferRead)
+ 218              		.loc 1 163 0
+ 219 0048 1F4B     		ldr	r3, .L18+12
+ 220 004a 1B78     		ldrb	r3, [r3]
+ 221 004c DAB2     		uxtb	r2, r3
+ 222 004e 1F4B     		ldr	r3, .L18+16
+ 223 0050 1B78     		ldrb	r3, [r3]
+ 224 0052 DBB2     		uxtb	r3, r3
+ 225 0054 9A42     		cmp	r2, r3
+ 226 0056 11D1     		bne	.L15
  164:.\Generated_Source\PSoC5/LED_Strip_INT.c ****             {
  165:.\Generated_Source\PSoC5/LED_Strip_INT.c ****                 LED_Strip_rxBufferRead++;
+ 227              		.loc 1 165 0
+ 228 0058 1C4B     		ldr	r3, .L18+16
+ 229 005a 1B78     		ldrb	r3, [r3]
+ 230 005c DBB2     		uxtb	r3, r3
+ 231 005e 0133     		adds	r3, r3, #1
+ 232 0060 DAB2     		uxtb	r2, r3
+ 233 0062 1A4B     		ldr	r3, .L18+16
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccqYq5Wg.s 			page 8
+
+
+ 234 0064 1A70     		strb	r2, [r3]
  166:.\Generated_Source\PSoC5/LED_Strip_INT.c ****                 if(LED_Strip_rxBufferRead >= LED_Strip_RX_BUFFER_SIZE)
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cce2KPBU.s 			page 5
-
-
+ 235              		.loc 1 166 0
+ 236 0066 194B     		ldr	r3, .L18+16
+ 237 0068 1B78     		ldrb	r3, [r3]
+ 238 006a DBB2     		uxtb	r3, r3
+ 239 006c 3F2B     		cmp	r3, #63
+ 240 006e 02D9     		bls	.L16
  167:.\Generated_Source\PSoC5/LED_Strip_INT.c ****                 {
  168:.\Generated_Source\PSoC5/LED_Strip_INT.c ****                     LED_Strip_rxBufferRead = 0u;
+ 241              		.loc 1 168 0
+ 242 0070 164B     		ldr	r3, .L18+16
+ 243 0072 0022     		movs	r2, #0
+ 244 0074 1A70     		strb	r2, [r3]
+ 245              	.L16:
  169:.\Generated_Source\PSoC5/LED_Strip_INT.c ****                 }
  170:.\Generated_Source\PSoC5/LED_Strip_INT.c **** 
  171:.\Generated_Source\PSoC5/LED_Strip_INT.c ****                 LED_Strip_rxBufferFull = 1u;
+ 246              		.loc 1 171 0
+ 247 0076 164B     		ldr	r3, .L18+20
+ 248 0078 0122     		movs	r2, #1
+ 249 007a 1A70     		strb	r2, [r3]
+ 250              	.L15:
  172:.\Generated_Source\PSoC5/LED_Strip_INT.c ****             }
  173:.\Generated_Source\PSoC5/LED_Strip_INT.c **** 
  174:.\Generated_Source\PSoC5/LED_Strip_INT.c ****             /* Move data from the FIFO to the Buffer */
  175:.\Generated_Source\PSoC5/LED_Strip_INT.c ****             LED_Strip_rxBuffer[LED_Strip_rxBufferWrite] = rxData;
+ 251              		.loc 1 175 0
+ 252 007c 124B     		ldr	r3, .L18+12
+ 253 007e 1B78     		ldrb	r3, [r3]
+ 254 0080 DBB2     		uxtb	r3, r3
+ 255 0082 144A     		ldr	r2, .L18+24
+ 256 0084 B979     		ldrb	r1, [r7, #6]
+ 257 0086 D154     		strb	r1, [r2, r3]
  176:.\Generated_Source\PSoC5/LED_Strip_INT.c **** 
  177:.\Generated_Source\PSoC5/LED_Strip_INT.c ****             tmpStatus = LED_Strip_GET_STATUS_RX(LED_Strip_swStatusRx);
+ 258              		.loc 1 177 0
+ 259 0088 0C4B     		ldr	r3, .L18
+ 260 008a 1B78     		ldrb	r3, [r3]
+ 261 008c DAB2     		uxtb	r2, r3
+ 262 008e 0C4B     		ldr	r3, .L18+4
+ 263 0090 1B78     		ldrb	r3, [r3]
+ 264 0092 DBB2     		uxtb	r3, r3
+ 265 0094 03F04003 		and	r3, r3, #64
+ 266 0098 DBB2     		uxtb	r3, r3
+ 267 009a 1343     		orrs	r3, r3, r2
+ 268 009c FB71     		strb	r3, [r7, #7]
  178:.\Generated_Source\PSoC5/LED_Strip_INT.c ****             LED_Strip_swStatusRx = tmpStatus;
+ 269              		.loc 1 178 0
+ 270 009e 084B     		ldr	r3, .L18+4
+ 271 00a0 FA79     		ldrb	r2, [r7, #7]
+ 272 00a2 1A70     		strb	r2, [r3]
+ 273              	.L13:
+ 152:.\Generated_Source\PSoC5/LED_Strip_INT.c ****         while(0u != (LED_Strip_swStatusRx & LED_Strip_STS_RX_FIFO_NOT_EMPTY))
+ 274              		.loc 1 152 0 discriminator 1
+ 275 00a4 064B     		ldr	r3, .L18+4
+ 276 00a6 1B78     		ldrb	r3, [r3]
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccqYq5Wg.s 			page 9
+
+
+ 277 00a8 DBB2     		uxtb	r3, r3
+ 278 00aa 03F02003 		and	r3, r3, #32
+ 279 00ae 002B     		cmp	r3, #0
+ 280 00b0 B8D1     		bne	.L17
  179:.\Generated_Source\PSoC5/LED_Strip_INT.c ****         }
  180:.\Generated_Source\PSoC5/LED_Strip_INT.c **** 
  181:.\Generated_Source\PSoC5/LED_Strip_INT.c ****     #endif /* (LED_Strip_RX_SOFTWARE_BUF_ENABLED) */
@@ -262,312 +494,599 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cce2KPBU.s 			page 1
  185:.\Generated_Source\PSoC5/LED_Strip_INT.c **** 
  186:.\Generated_Source\PSoC5/LED_Strip_INT.c ****     /* `#END` */
  187:.\Generated_Source\PSoC5/LED_Strip_INT.c **** }
-  63              		.loc 1 187 0
-  64 0004 BD46     		mov	sp, r7
-  65              		@ sp needed
-  66 0006 5DF8047B 		ldr	r7, [sp], #4
-  67 000a 7047     		bx	lr
-  68              		.cfi_endproc
-  69              	.LFE1:
-  70              		.size	LED_Strip_RX_ISR, .-LED_Strip_RX_ISR
-  71              		.text
-  72              	.Letext0:
-  73              		.section	.debug_info,"",%progbits
-  74              	.Ldebug_info0:
-  75 0000 A6000000 		.4byte	0xa6
-  76 0004 0400     		.2byte	0x4
-  77 0006 00000000 		.4byte	.Ldebug_abbrev0
-  78 000a 04       		.byte	0x4
-  79 000b 01       		.uleb128 0x1
-  80 000c 18010000 		.4byte	.LASF15
-  81 0010 01       		.byte	0x1
-  82 0011 82000000 		.4byte	.LASF16
-  83 0015 D7000000 		.4byte	.LASF17
-  84 0019 00000000 		.4byte	.Ldebug_ranges0+0
-  85 001d 00000000 		.4byte	0
-  86 0021 00000000 		.4byte	.Ldebug_line0
-  87 0025 02       		.uleb128 0x2
-  88 0026 01       		.byte	0x1
-  89 0027 06       		.byte	0x6
-  90 0028 C5000000 		.4byte	.LASF0
-  91 002c 02       		.uleb128 0x2
-  92 002d 01       		.byte	0x1
-  93 002e 08       		.byte	0x8
-  94 002f 66000000 		.4byte	.LASF1
-  95 0033 02       		.uleb128 0x2
-  96 0034 02       		.byte	0x2
-  97 0035 05       		.byte	0x5
-  98 0036 0E010000 		.4byte	.LASF2
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cce2KPBU.s 			page 6
+ 281              		.loc 1 187 0
+ 282 00b2 0C37     		adds	r7, r7, #12
+ 283 00b4 BD46     		mov	sp, r7
+ 284              		@ sp needed
+ 285 00b6 5DF8047B 		ldr	r7, [sp], #4
+ 286 00ba 7047     		bx	lr
+ 287              	.L19:
+ 288              		.align	2
+ 289              	.L18:
+ 290 00bc 60640040 		.word	1073767520
+ 291 00c0 00000000 		.word	LED_Strip_swStatusRx
+ 292 00c4 53640040 		.word	1073767507
+ 293 00c8 00000000 		.word	LED_Strip_rxBufferWrite
+ 294 00cc 00000000 		.word	LED_Strip_rxBufferRead
+ 295 00d0 00000000 		.word	LED_Strip_rxBufferFull
+ 296 00d4 00000000 		.word	LED_Strip_rxBuffer
+ 297              		.cfi_endproc
+ 298              	.LFE1:
+ 299              		.size	LED_Strip_RX_ISR, .-LED_Strip_RX_ISR
+ 300              		.text
+ 301              	.Letext0:
+ 302              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 303              		.file 3 ".\\Generated_Source\\PSoC5\\LED_Strip_PVT.h"
+ 304              		.section	.debug_info,"",%progbits
+ 305              	.Ldebug_info0:
+ 306 0000 7E010000 		.4byte	0x17e
+ 307 0004 0400     		.2byte	0x4
+ 308 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 309 000a 04       		.byte	0x4
+ 310 000b 01       		.uleb128 0x1
+ 311 000c 87000000 		.4byte	.LASF29
+ 312 0010 01       		.byte	0x1
+ 313 0011 27020000 		.4byte	.LASF30
+ 314 0015 24000000 		.4byte	.LASF31
+ 315 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 316 001d 00000000 		.4byte	0
+ 317 0021 00000000 		.4byte	.Ldebug_line0
+ 318 0025 02       		.uleb128 0x2
+ 319 0026 01       		.byte	0x1
+ 320 0027 06       		.byte	0x6
+ 321 0028 78020000 		.4byte	.LASF0
+ 322 002c 02       		.uleb128 0x2
+ 323 002d 01       		.byte	0x1
+ 324 002e 08       		.byte	0x8
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccqYq5Wg.s 			page 10
 
 
-  99 003a 02       		.uleb128 0x2
- 100 003b 02       		.byte	0x2
- 101 003c 07       		.byte	0x7
- 102 003d B2000000 		.4byte	.LASF3
- 103 0041 02       		.uleb128 0x2
- 104 0042 04       		.byte	0x4
- 105 0043 05       		.byte	0x5
- 106 0044 79000000 		.4byte	.LASF4
- 107 0048 02       		.uleb128 0x2
- 108 0049 04       		.byte	0x4
- 109 004a 07       		.byte	0x7
- 110 004b 1B000000 		.4byte	.LASF5
- 111 004f 02       		.uleb128 0x2
- 112 0050 08       		.byte	0x8
- 113 0051 05       		.byte	0x5
- 114 0052 00000000 		.4byte	.LASF6
- 115 0056 02       		.uleb128 0x2
- 116 0057 08       		.byte	0x8
- 117 0058 07       		.byte	0x7
- 118 0059 2D000000 		.4byte	.LASF7
- 119 005d 03       		.uleb128 0x3
- 120 005e 04       		.byte	0x4
- 121 005f 05       		.byte	0x5
- 122 0060 696E7400 		.ascii	"int\000"
- 123 0064 02       		.uleb128 0x2
- 124 0065 04       		.byte	0x4
- 125 0066 07       		.byte	0x7
- 126 0067 0E000000 		.4byte	.LASF8
- 127 006b 02       		.uleb128 0x2
- 128 006c 04       		.byte	0x4
- 129 006d 04       		.byte	0x4
- 130 006e D1000000 		.4byte	.LASF9
- 131 0072 02       		.uleb128 0x2
- 132 0073 08       		.byte	0x8
- 133 0074 04       		.byte	0x4
- 134 0075 AB000000 		.4byte	.LASF10
- 135 0079 02       		.uleb128 0x2
- 136 007a 01       		.byte	0x1
- 137 007b 08       		.byte	0x8
- 138 007c 74000000 		.4byte	.LASF11
- 139 0080 02       		.uleb128 0x2
- 140 0081 04       		.byte	0x4
- 141 0082 07       		.byte	0x7
- 142 0083 94010000 		.4byte	.LASF12
- 143 0087 04       		.uleb128 0x4
- 144 0088 55000000 		.4byte	.LASF13
- 145 008c 01       		.byte	0x1
- 146 008d 33       		.byte	0x33
- 147 008e 00000000 		.4byte	.LFB0
- 148 0092 0C000000 		.4byte	.LFE0-.LFB0
- 149 0096 01       		.uleb128 0x1
- 150 0097 9C       		.byte	0x9c
- 151 0098 04       		.uleb128 0x4
- 152 0099 44000000 		.4byte	.LASF14
- 153 009d 01       		.byte	0x1
- 154 009e 86       		.byte	0x86
- 155 009f 00000000 		.4byte	.LFB1
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cce2KPBU.s 			page 7
+ 325 002f 74000000 		.4byte	.LASF1
+ 326 0033 02       		.uleb128 0x2
+ 327 0034 02       		.byte	0x2
+ 328 0035 05       		.byte	0x5
+ 329 0036 05020000 		.4byte	.LASF2
+ 330 003a 02       		.uleb128 0x2
+ 331 003b 02       		.byte	0x2
+ 332 003c 07       		.byte	0x7
+ 333 003d 11000000 		.4byte	.LASF3
+ 334 0041 02       		.uleb128 0x2
+ 335 0042 04       		.byte	0x4
+ 336 0043 05       		.byte	0x5
+ 337 0044 65020000 		.4byte	.LASF4
+ 338 0048 02       		.uleb128 0x2
+ 339 0049 04       		.byte	0x4
+ 340 004a 07       		.byte	0x7
+ 341 004b 03010000 		.4byte	.LASF5
+ 342 004f 02       		.uleb128 0x2
+ 343 0050 08       		.byte	0x8
+ 344 0051 05       		.byte	0x5
+ 345 0052 C8010000 		.4byte	.LASF6
+ 346 0056 02       		.uleb128 0x2
+ 347 0057 08       		.byte	0x8
+ 348 0058 07       		.byte	0x7
+ 349 0059 4E010000 		.4byte	.LASF7
+ 350 005d 03       		.uleb128 0x3
+ 351 005e 04       		.byte	0x4
+ 352 005f 05       		.byte	0x5
+ 353 0060 696E7400 		.ascii	"int\000"
+ 354 0064 02       		.uleb128 0x2
+ 355 0065 04       		.byte	0x4
+ 356 0066 07       		.byte	0x7
+ 357 0067 41010000 		.4byte	.LASF8
+ 358 006b 04       		.uleb128 0x4
+ 359 006c 2D010000 		.4byte	.LASF12
+ 360 0070 02       		.byte	0x2
+ 361 0071 A1       		.byte	0xa1
+ 362 0072 2C000000 		.4byte	0x2c
+ 363 0076 02       		.uleb128 0x2
+ 364 0077 04       		.byte	0x4
+ 365 0078 04       		.byte	0x4
+ 366 0079 6E000000 		.4byte	.LASF9
+ 367 007d 02       		.uleb128 0x2
+ 368 007e 08       		.byte	0x8
+ 369 007f 04       		.byte	0x4
+ 370 0080 3A010000 		.4byte	.LASF10
+ 371 0084 02       		.uleb128 0x2
+ 372 0085 01       		.byte	0x1
+ 373 0086 08       		.byte	0x8
+ 374 0087 D6010000 		.4byte	.LASF11
+ 375 008b 05       		.uleb128 0x5
+ 376 008c 82000000 		.4byte	.LASF13
+ 377 0090 02       		.byte	0x2
+ 378 0091 4B01     		.2byte	0x14b
+ 379 0093 97000000 		.4byte	0x97
+ 380 0097 06       		.uleb128 0x6
+ 381 0098 6B000000 		.4byte	0x6b
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccqYq5Wg.s 			page 11
 
 
- 156 00a3 0C000000 		.4byte	.LFE1-.LFB1
- 157 00a7 01       		.uleb128 0x1
- 158 00a8 9C       		.byte	0x9c
- 159 00a9 00       		.byte	0
- 160              		.section	.debug_abbrev,"",%progbits
- 161              	.Ldebug_abbrev0:
- 162 0000 01       		.uleb128 0x1
- 163 0001 11       		.uleb128 0x11
- 164 0002 01       		.byte	0x1
- 165 0003 25       		.uleb128 0x25
- 166 0004 0E       		.uleb128 0xe
- 167 0005 13       		.uleb128 0x13
- 168 0006 0B       		.uleb128 0xb
- 169 0007 03       		.uleb128 0x3
- 170 0008 0E       		.uleb128 0xe
- 171 0009 1B       		.uleb128 0x1b
- 172 000a 0E       		.uleb128 0xe
- 173 000b 55       		.uleb128 0x55
- 174 000c 17       		.uleb128 0x17
- 175 000d 11       		.uleb128 0x11
- 176 000e 01       		.uleb128 0x1
- 177 000f 10       		.uleb128 0x10
- 178 0010 17       		.uleb128 0x17
- 179 0011 00       		.byte	0
- 180 0012 00       		.byte	0
- 181 0013 02       		.uleb128 0x2
- 182 0014 24       		.uleb128 0x24
- 183 0015 00       		.byte	0
- 184 0016 0B       		.uleb128 0xb
- 185 0017 0B       		.uleb128 0xb
- 186 0018 3E       		.uleb128 0x3e
- 187 0019 0B       		.uleb128 0xb
- 188 001a 03       		.uleb128 0x3
- 189 001b 0E       		.uleb128 0xe
- 190 001c 00       		.byte	0
- 191 001d 00       		.byte	0
- 192 001e 03       		.uleb128 0x3
- 193 001f 24       		.uleb128 0x24
- 194 0020 00       		.byte	0
- 195 0021 0B       		.uleb128 0xb
- 196 0022 0B       		.uleb128 0xb
- 197 0023 3E       		.uleb128 0x3e
- 198 0024 0B       		.uleb128 0xb
- 199 0025 03       		.uleb128 0x3
- 200 0026 08       		.uleb128 0x8
- 201 0027 00       		.byte	0
- 202 0028 00       		.byte	0
- 203 0029 04       		.uleb128 0x4
- 204 002a 2E       		.uleb128 0x2e
- 205 002b 00       		.byte	0
- 206 002c 3F       		.uleb128 0x3f
- 207 002d 19       		.uleb128 0x19
- 208 002e 03       		.uleb128 0x3
- 209 002f 0E       		.uleb128 0xe
- 210 0030 3A       		.uleb128 0x3a
- 211 0031 0B       		.uleb128 0xb
- 212 0032 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cce2KPBU.s 			page 8
+ 382 009c 02       		.uleb128 0x2
+ 383 009d 04       		.byte	0x4
+ 384 009e 07       		.byte	0x7
+ 385 009f AA010000 		.4byte	.LASF14
+ 386 00a3 07       		.uleb128 0x7
+ 387 00a4 00000000 		.4byte	.LASF15
+ 388 00a8 01       		.byte	0x1
+ 389 00a9 33       		.byte	0x33
+ 390 00aa 00000000 		.4byte	.LFB0
+ 391 00ae D0000000 		.4byte	.LFE0-.LFB0
+ 392 00b2 01       		.uleb128 0x1
+ 393 00b3 9C       		.byte	0x9c
+ 394 00b4 C7000000 		.4byte	0xc7
+ 395 00b8 08       		.uleb128 0x8
+ 396 00b9 6E020000 		.4byte	.LASF17
+ 397 00bd 01       		.byte	0x1
+ 398 00be 36       		.byte	0x36
+ 399 00bf 6B000000 		.4byte	0x6b
+ 400 00c3 02       		.uleb128 0x2
+ 401 00c4 91       		.byte	0x91
+ 402 00c5 77       		.sleb128 -9
+ 403 00c6 00       		.byte	0
+ 404 00c7 07       		.uleb128 0x7
+ 405 00c8 84020000 		.4byte	.LASF16
+ 406 00cc 01       		.byte	0x1
+ 407 00cd 86       		.byte	0x86
+ 408 00ce 00000000 		.4byte	.LFB1
+ 409 00d2 D8000000 		.4byte	.LFE1-.LFB1
+ 410 00d6 01       		.uleb128 0x1
+ 411 00d7 9C       		.byte	0x9c
+ 412 00d8 F9000000 		.4byte	0xf9
+ 413 00dc 08       		.uleb128 0x8
+ 414 00dd 6E020000 		.4byte	.LASF17
+ 415 00e1 01       		.byte	0x1
+ 416 00e2 89       		.byte	0x89
+ 417 00e3 6B000000 		.4byte	0x6b
+ 418 00e7 02       		.uleb128 0x2
+ 419 00e8 91       		.byte	0x91
+ 420 00e9 77       		.sleb128 -9
+ 421 00ea 08       		.uleb128 0x8
+ 422 00eb 33010000 		.4byte	.LASF18
+ 423 00ef 01       		.byte	0x1
+ 424 00f0 8A       		.byte	0x8a
+ 425 00f1 6B000000 		.4byte	0x6b
+ 426 00f5 02       		.uleb128 0x2
+ 427 00f6 91       		.byte	0x91
+ 428 00f7 76       		.sleb128 -10
+ 429 00f8 00       		.byte	0
+ 430 00f9 09       		.uleb128 0x9
+ 431 00fa B3010000 		.4byte	.LASF19
+ 432 00fe 03       		.byte	0x3
+ 433 00ff 21       		.byte	0x21
+ 434 0100 97000000 		.4byte	0x97
+ 435 0104 09       		.uleb128 0x9
+ 436 0105 50020000 		.4byte	.LASF20
+ 437 0109 03       		.byte	0x3
+ 438 010a 22       		.byte	0x22
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccqYq5Wg.s 			page 12
 
 
- 213 0033 0B       		.uleb128 0xb
- 214 0034 27       		.uleb128 0x27
- 215 0035 19       		.uleb128 0x19
- 216 0036 11       		.uleb128 0x11
- 217 0037 01       		.uleb128 0x1
- 218 0038 12       		.uleb128 0x12
- 219 0039 06       		.uleb128 0x6
- 220 003a 40       		.uleb128 0x40
- 221 003b 18       		.uleb128 0x18
- 222 003c 9742     		.uleb128 0x2117
- 223 003e 19       		.uleb128 0x19
- 224 003f 00       		.byte	0
- 225 0040 00       		.byte	0
- 226 0041 00       		.byte	0
- 227              		.section	.debug_aranges,"",%progbits
- 228 0000 24000000 		.4byte	0x24
- 229 0004 0200     		.2byte	0x2
- 230 0006 00000000 		.4byte	.Ldebug_info0
- 231 000a 04       		.byte	0x4
- 232 000b 00       		.byte	0
- 233 000c 0000     		.2byte	0
- 234 000e 0000     		.2byte	0
- 235 0010 00000000 		.4byte	.LFB0
- 236 0014 0C000000 		.4byte	.LFE0-.LFB0
- 237 0018 00000000 		.4byte	.LFB1
- 238 001c 0C000000 		.4byte	.LFE1-.LFB1
- 239 0020 00000000 		.4byte	0
- 240 0024 00000000 		.4byte	0
- 241              		.section	.debug_ranges,"",%progbits
- 242              	.Ldebug_ranges0:
- 243 0000 00000000 		.4byte	.LFB0
- 244 0004 0C000000 		.4byte	.LFE0
- 245 0008 00000000 		.4byte	.LFB1
- 246 000c 0C000000 		.4byte	.LFE1
- 247 0010 00000000 		.4byte	0
- 248 0014 00000000 		.4byte	0
- 249              		.section	.debug_line,"",%progbits
- 250              	.Ldebug_line0:
- 251 0000 6A000000 		.section	.debug_str,"MS",%progbits,1
- 251      02003F00 
- 251      00000201 
- 251      FB0E0D00 
- 251      01010101 
- 252              	.LASF6:
- 253 0000 6C6F6E67 		.ascii	"long long int\000"
- 253      206C6F6E 
- 253      6720696E 
- 253      7400
- 254              	.LASF8:
- 255 000e 756E7369 		.ascii	"unsigned int\000"
- 255      676E6564 
- 255      20696E74 
- 255      00
- 256              	.LASF5:
- 257 001b 6C6F6E67 		.ascii	"long unsigned int\000"
- 257      20756E73 
- 257      69676E65 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cce2KPBU.s 			page 9
+ 439 010b 97000000 		.4byte	0x97
+ 440 010f 0A       		.uleb128 0xa
+ 441 0110 6B000000 		.4byte	0x6b
+ 442 0114 1F010000 		.4byte	0x11f
+ 443 0118 0B       		.uleb128 0xb
+ 444 0119 9C000000 		.4byte	0x9c
+ 445 011d 3F       		.byte	0x3f
+ 446 011e 00       		.byte	0
+ 447 011f 09       		.uleb128 0x9
+ 448 0120 DB010000 		.4byte	.LASF21
+ 449 0124 03       		.byte	0x3
+ 450 0125 25       		.byte	0x25
+ 451 0126 2A010000 		.4byte	0x12a
+ 452 012a 06       		.uleb128 0x6
+ 453 012b 0F010000 		.4byte	0x10f
+ 454 012f 09       		.uleb128 0x9
+ 455 0130 93010000 		.4byte	.LASF22
+ 456 0134 03       		.byte	0x3
+ 457 0135 26       		.byte	0x26
+ 458 0136 97000000 		.4byte	0x97
+ 459 013a 09       		.uleb128 0x9
+ 460 013b 0F020000 		.4byte	.LASF23
+ 461 013f 03       		.byte	0x3
+ 462 0140 27       		.byte	0x27
+ 463 0141 97000000 		.4byte	0x97
+ 464 0145 09       		.uleb128 0x9
+ 465 0146 65010000 		.4byte	.LASF24
+ 466 014a 03       		.byte	0x3
+ 467 014b 28       		.byte	0x28
+ 468 014c 97000000 		.4byte	0x97
+ 469 0150 09       		.uleb128 0x9
+ 470 0151 5B000000 		.4byte	.LASF25
+ 471 0155 03       		.byte	0x3
+ 472 0156 2C       		.byte	0x2c
+ 473 0157 5B010000 		.4byte	0x15b
+ 474 015b 06       		.uleb128 0x6
+ 475 015c 0F010000 		.4byte	0x10f
+ 476 0160 09       		.uleb128 0x9
+ 477 0161 EE010000 		.4byte	.LASF26
+ 478 0165 03       		.byte	0x3
+ 479 0166 2D       		.byte	0x2d
+ 480 0167 97000000 		.4byte	0x97
+ 481 016b 09       		.uleb128 0x9
+ 482 016c 15010000 		.4byte	.LASF27
+ 483 0170 03       		.byte	0x3
+ 484 0171 2E       		.byte	0x2e
+ 485 0172 97000000 		.4byte	0x97
+ 486 0176 09       		.uleb128 0x9
+ 487 0177 7C010000 		.4byte	.LASF28
+ 488 017b 03       		.byte	0x3
+ 489 017c 2F       		.byte	0x2f
+ 490 017d 97000000 		.4byte	0x97
+ 491 0181 00       		.byte	0
+ 492              		.section	.debug_abbrev,"",%progbits
+ 493              	.Ldebug_abbrev0:
+ 494 0000 01       		.uleb128 0x1
+ 495 0001 11       		.uleb128 0x11
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccqYq5Wg.s 			page 13
 
 
- 257      6420696E 
- 257      7400
- 258              	.LASF7:
- 259 002d 6C6F6E67 		.ascii	"long long unsigned int\000"
- 259      206C6F6E 
- 259      6720756E 
- 259      7369676E 
- 259      65642069 
- 260              	.LASF14:
- 261 0044 4C45445F 		.ascii	"LED_Strip_RX_ISR\000"
- 261      53747269 
- 261      705F5258 
- 261      5F495352 
- 261      00
- 262              	.LASF13:
- 263 0055 4C45445F 		.ascii	"LED_Strip_TX_ISR\000"
- 263      53747269 
- 263      705F5458 
- 263      5F495352 
- 263      00
- 264              	.LASF1:
- 265 0066 756E7369 		.ascii	"unsigned char\000"
- 265      676E6564 
- 265      20636861 
- 265      7200
- 266              	.LASF11:
- 267 0074 63686172 		.ascii	"char\000"
- 267      00
- 268              	.LASF4:
- 269 0079 6C6F6E67 		.ascii	"long int\000"
- 269      20696E74 
- 269      00
- 270              	.LASF16:
- 271 0082 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\LED_Strip_INT.c\000"
- 271      6E657261 
- 271      7465645F 
- 271      536F7572 
- 271      63655C50 
- 272              	.LASF10:
- 273 00ab 646F7562 		.ascii	"double\000"
- 273      6C6500
- 274              	.LASF3:
- 275 00b2 73686F72 		.ascii	"short unsigned int\000"
- 275      7420756E 
- 275      7369676E 
- 275      65642069 
- 275      6E7400
- 276              	.LASF0:
- 277 00c5 7369676E 		.ascii	"signed char\000"
- 277      65642063 
- 277      68617200 
- 278              	.LASF9:
- 279 00d1 666C6F61 		.ascii	"float\000"
- 279      7400
- 280              	.LASF17:
- 281 00d7 443A5C77 		.ascii	"D:\\workspace\\super-eagle\\Super-Eagle\\Super-Eagl"
- 281      6F726B73 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cce2KPBU.s 			page 10
+ 496 0002 01       		.byte	0x1
+ 497 0003 25       		.uleb128 0x25
+ 498 0004 0E       		.uleb128 0xe
+ 499 0005 13       		.uleb128 0x13
+ 500 0006 0B       		.uleb128 0xb
+ 501 0007 03       		.uleb128 0x3
+ 502 0008 0E       		.uleb128 0xe
+ 503 0009 1B       		.uleb128 0x1b
+ 504 000a 0E       		.uleb128 0xe
+ 505 000b 55       		.uleb128 0x55
+ 506 000c 17       		.uleb128 0x17
+ 507 000d 11       		.uleb128 0x11
+ 508 000e 01       		.uleb128 0x1
+ 509 000f 10       		.uleb128 0x10
+ 510 0010 17       		.uleb128 0x17
+ 511 0011 00       		.byte	0
+ 512 0012 00       		.byte	0
+ 513 0013 02       		.uleb128 0x2
+ 514 0014 24       		.uleb128 0x24
+ 515 0015 00       		.byte	0
+ 516 0016 0B       		.uleb128 0xb
+ 517 0017 0B       		.uleb128 0xb
+ 518 0018 3E       		.uleb128 0x3e
+ 519 0019 0B       		.uleb128 0xb
+ 520 001a 03       		.uleb128 0x3
+ 521 001b 0E       		.uleb128 0xe
+ 522 001c 00       		.byte	0
+ 523 001d 00       		.byte	0
+ 524 001e 03       		.uleb128 0x3
+ 525 001f 24       		.uleb128 0x24
+ 526 0020 00       		.byte	0
+ 527 0021 0B       		.uleb128 0xb
+ 528 0022 0B       		.uleb128 0xb
+ 529 0023 3E       		.uleb128 0x3e
+ 530 0024 0B       		.uleb128 0xb
+ 531 0025 03       		.uleb128 0x3
+ 532 0026 08       		.uleb128 0x8
+ 533 0027 00       		.byte	0
+ 534 0028 00       		.byte	0
+ 535 0029 04       		.uleb128 0x4
+ 536 002a 16       		.uleb128 0x16
+ 537 002b 00       		.byte	0
+ 538 002c 03       		.uleb128 0x3
+ 539 002d 0E       		.uleb128 0xe
+ 540 002e 3A       		.uleb128 0x3a
+ 541 002f 0B       		.uleb128 0xb
+ 542 0030 3B       		.uleb128 0x3b
+ 543 0031 0B       		.uleb128 0xb
+ 544 0032 49       		.uleb128 0x49
+ 545 0033 13       		.uleb128 0x13
+ 546 0034 00       		.byte	0
+ 547 0035 00       		.byte	0
+ 548 0036 05       		.uleb128 0x5
+ 549 0037 16       		.uleb128 0x16
+ 550 0038 00       		.byte	0
+ 551 0039 03       		.uleb128 0x3
+ 552 003a 0E       		.uleb128 0xe
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccqYq5Wg.s 			page 14
 
 
- 281      70616365 
- 281      5C737570 
- 281      65722D65 
- 282 0106 652E6379 		.ascii	"e.cydsn\000"
- 282      64736E00 
- 283              	.LASF2:
- 284 010e 73686F72 		.ascii	"short int\000"
- 284      7420696E 
- 284      7400
- 285              	.LASF15:
- 286 0118 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
- 286      4320342E 
- 286      382E3420 
- 286      32303134 
- 286      30353236 
- 287 014b 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
- 287      20726576 
- 287      6973696F 
- 287      6E203231 
- 287      31333538 
- 288 017e 30202D66 		.ascii	"0 -ffunction-sections\000"
- 288      66756E63 
- 288      74696F6E 
- 288      2D736563 
- 288      74696F6E 
- 289              	.LASF12:
- 290 0194 73697A65 		.ascii	"sizetype\000"
- 290      74797065 
- 290      00
- 291              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br
+ 553 003b 3A       		.uleb128 0x3a
+ 554 003c 0B       		.uleb128 0xb
+ 555 003d 3B       		.uleb128 0x3b
+ 556 003e 05       		.uleb128 0x5
+ 557 003f 49       		.uleb128 0x49
+ 558 0040 13       		.uleb128 0x13
+ 559 0041 00       		.byte	0
+ 560 0042 00       		.byte	0
+ 561 0043 06       		.uleb128 0x6
+ 562 0044 35       		.uleb128 0x35
+ 563 0045 00       		.byte	0
+ 564 0046 49       		.uleb128 0x49
+ 565 0047 13       		.uleb128 0x13
+ 566 0048 00       		.byte	0
+ 567 0049 00       		.byte	0
+ 568 004a 07       		.uleb128 0x7
+ 569 004b 2E       		.uleb128 0x2e
+ 570 004c 01       		.byte	0x1
+ 571 004d 3F       		.uleb128 0x3f
+ 572 004e 19       		.uleb128 0x19
+ 573 004f 03       		.uleb128 0x3
+ 574 0050 0E       		.uleb128 0xe
+ 575 0051 3A       		.uleb128 0x3a
+ 576 0052 0B       		.uleb128 0xb
+ 577 0053 3B       		.uleb128 0x3b
+ 578 0054 0B       		.uleb128 0xb
+ 579 0055 27       		.uleb128 0x27
+ 580 0056 19       		.uleb128 0x19
+ 581 0057 11       		.uleb128 0x11
+ 582 0058 01       		.uleb128 0x1
+ 583 0059 12       		.uleb128 0x12
+ 584 005a 06       		.uleb128 0x6
+ 585 005b 40       		.uleb128 0x40
+ 586 005c 18       		.uleb128 0x18
+ 587 005d 9742     		.uleb128 0x2117
+ 588 005f 19       		.uleb128 0x19
+ 589 0060 01       		.uleb128 0x1
+ 590 0061 13       		.uleb128 0x13
+ 591 0062 00       		.byte	0
+ 592 0063 00       		.byte	0
+ 593 0064 08       		.uleb128 0x8
+ 594 0065 34       		.uleb128 0x34
+ 595 0066 00       		.byte	0
+ 596 0067 03       		.uleb128 0x3
+ 597 0068 0E       		.uleb128 0xe
+ 598 0069 3A       		.uleb128 0x3a
+ 599 006a 0B       		.uleb128 0xb
+ 600 006b 3B       		.uleb128 0x3b
+ 601 006c 0B       		.uleb128 0xb
+ 602 006d 49       		.uleb128 0x49
+ 603 006e 13       		.uleb128 0x13
+ 604 006f 02       		.uleb128 0x2
+ 605 0070 18       		.uleb128 0x18
+ 606 0071 00       		.byte	0
+ 607 0072 00       		.byte	0
+ 608 0073 09       		.uleb128 0x9
+ 609 0074 34       		.uleb128 0x34
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccqYq5Wg.s 			page 15
+
+
+ 610 0075 00       		.byte	0
+ 611 0076 03       		.uleb128 0x3
+ 612 0077 0E       		.uleb128 0xe
+ 613 0078 3A       		.uleb128 0x3a
+ 614 0079 0B       		.uleb128 0xb
+ 615 007a 3B       		.uleb128 0x3b
+ 616 007b 0B       		.uleb128 0xb
+ 617 007c 49       		.uleb128 0x49
+ 618 007d 13       		.uleb128 0x13
+ 619 007e 3F       		.uleb128 0x3f
+ 620 007f 19       		.uleb128 0x19
+ 621 0080 3C       		.uleb128 0x3c
+ 622 0081 19       		.uleb128 0x19
+ 623 0082 00       		.byte	0
+ 624 0083 00       		.byte	0
+ 625 0084 0A       		.uleb128 0xa
+ 626 0085 01       		.uleb128 0x1
+ 627 0086 01       		.byte	0x1
+ 628 0087 49       		.uleb128 0x49
+ 629 0088 13       		.uleb128 0x13
+ 630 0089 01       		.uleb128 0x1
+ 631 008a 13       		.uleb128 0x13
+ 632 008b 00       		.byte	0
+ 633 008c 00       		.byte	0
+ 634 008d 0B       		.uleb128 0xb
+ 635 008e 21       		.uleb128 0x21
+ 636 008f 00       		.byte	0
+ 637 0090 49       		.uleb128 0x49
+ 638 0091 13       		.uleb128 0x13
+ 639 0092 2F       		.uleb128 0x2f
+ 640 0093 0B       		.uleb128 0xb
+ 641 0094 00       		.byte	0
+ 642 0095 00       		.byte	0
+ 643 0096 00       		.byte	0
+ 644              		.section	.debug_aranges,"",%progbits
+ 645 0000 24000000 		.4byte	0x24
+ 646 0004 0200     		.2byte	0x2
+ 647 0006 00000000 		.4byte	.Ldebug_info0
+ 648 000a 04       		.byte	0x4
+ 649 000b 00       		.byte	0
+ 650 000c 0000     		.2byte	0
+ 651 000e 0000     		.2byte	0
+ 652 0010 00000000 		.4byte	.LFB0
+ 653 0014 D0000000 		.4byte	.LFE0-.LFB0
+ 654 0018 00000000 		.4byte	.LFB1
+ 655 001c D8000000 		.4byte	.LFE1-.LFB1
+ 656 0020 00000000 		.4byte	0
+ 657 0024 00000000 		.4byte	0
+ 658              		.section	.debug_ranges,"",%progbits
+ 659              	.Ldebug_ranges0:
+ 660 0000 00000000 		.4byte	.LFB0
+ 661 0004 D0000000 		.4byte	.LFE0
+ 662 0008 00000000 		.4byte	.LFB1
+ 663 000c D8000000 		.4byte	.LFE1
+ 664 0010 00000000 		.4byte	0
+ 665 0014 00000000 		.4byte	0
+ 666              		.section	.debug_line,"",%progbits
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccqYq5Wg.s 			page 16
+
+
+ 667              	.Ldebug_line0:
+ 668 0000 BE000000 		.section	.debug_str,"MS",%progbits,1
+ 668      02005F00 
+ 668      00000201 
+ 668      FB0E0D00 
+ 668      01010101 
+ 669              	.LASF15:
+ 670 0000 4C45445F 		.ascii	"LED_Strip_TX_ISR\000"
+ 670      53747269 
+ 670      705F5458 
+ 670      5F495352 
+ 670      00
+ 671              	.LASF3:
+ 672 0011 73686F72 		.ascii	"short unsigned int\000"
+ 672      7420756E 
+ 672      7369676E 
+ 672      65642069 
+ 672      6E7400
+ 673              	.LASF31:
+ 674 0024 443A5C77 		.ascii	"D:\\workspace\\Super-Eagle\\Super-Eagle\\Super-Eagl"
+ 674      6F726B73 
+ 674      70616365 
+ 674      5C537570 
+ 674      65722D45 
+ 675 0053 652E6379 		.ascii	"e.cydsn\000"
+ 675      64736E00 
+ 676              	.LASF25:
+ 677 005b 4C45445F 		.ascii	"LED_Strip_rxBuffer\000"
+ 677      53747269 
+ 677      705F7278 
+ 677      42756666 
+ 677      657200
+ 678              	.LASF9:
+ 679 006e 666C6F61 		.ascii	"float\000"
+ 679      7400
+ 680              	.LASF1:
+ 681 0074 756E7369 		.ascii	"unsigned char\000"
+ 681      676E6564 
+ 681      20636861 
+ 681      7200
+ 682              	.LASF13:
+ 683 0082 72656738 		.ascii	"reg8\000"
+ 683      00
+ 684              	.LASF29:
+ 685 0087 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 685      4320342E 
+ 685      382E3420 
+ 685      32303134 
+ 685      30353236 
+ 686 00ba 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
+ 686      20726576 
+ 686      6973696F 
+ 686      6E203231 
+ 686      31333538 
+ 687 00ed 30202D66 		.ascii	"0 -ffunction-sections\000"
+ 687      66756E63 
+ 687      74696F6E 
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccqYq5Wg.s 			page 17
+
+
+ 687      2D736563 
+ 687      74696F6E 
+ 688              	.LASF5:
+ 689 0103 6C6F6E67 		.ascii	"long unsigned int\000"
+ 689      20756E73 
+ 689      69676E65 
+ 689      6420696E 
+ 689      7400
+ 690              	.LASF27:
+ 691 0115 4C45445F 		.ascii	"LED_Strip_rxBufferWrite\000"
+ 691      53747269 
+ 691      705F7278 
+ 691      42756666 
+ 691      65725772 
+ 692              	.LASF12:
+ 693 012d 75696E74 		.ascii	"uint8\000"
+ 693      3800
+ 694              	.LASF18:
+ 695 0133 72784461 		.ascii	"rxData\000"
+ 695      746100
+ 696              	.LASF10:
+ 697 013a 646F7562 		.ascii	"double\000"
+ 697      6C6500
+ 698              	.LASF8:
+ 699 0141 756E7369 		.ascii	"unsigned int\000"
+ 699      676E6564 
+ 699      20696E74 
+ 699      00
+ 700              	.LASF7:
+ 701 014e 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 701      206C6F6E 
+ 701      6720756E 
+ 701      7369676E 
+ 701      65642069 
+ 702              	.LASF24:
+ 703 0165 4C45445F 		.ascii	"LED_Strip_txBufferFull\000"
+ 703      53747269 
+ 703      705F7478 
+ 703      42756666 
+ 703      65724675 
+ 704              	.LASF28:
+ 705 017c 4C45445F 		.ascii	"LED_Strip_rxBufferFull\000"
+ 705      53747269 
+ 705      705F7278 
+ 705      42756666 
+ 705      65724675 
+ 706              	.LASF22:
+ 707 0193 4C45445F 		.ascii	"LED_Strip_txBufferRead\000"
+ 707      53747269 
+ 707      705F7478 
+ 707      42756666 
+ 707      65725265 
+ 708              	.LASF14:
+ 709 01aa 73697A65 		.ascii	"sizetype\000"
+ 709      74797065 
+ 709      00
+ 710              	.LASF19:
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccqYq5Wg.s 			page 18
+
+
+ 711 01b3 4C45445F 		.ascii	"LED_Strip_swStatusTx\000"
+ 711      53747269 
+ 711      705F7377 
+ 711      53746174 
+ 711      75735478 
+ 712              	.LASF6:
+ 713 01c8 6C6F6E67 		.ascii	"long long int\000"
+ 713      206C6F6E 
+ 713      6720696E 
+ 713      7400
+ 714              	.LASF11:
+ 715 01d6 63686172 		.ascii	"char\000"
+ 715      00
+ 716              	.LASF21:
+ 717 01db 4C45445F 		.ascii	"LED_Strip_txBuffer\000"
+ 717      53747269 
+ 717      705F7478 
+ 717      42756666 
+ 717      657200
+ 718              	.LASF26:
+ 719 01ee 4C45445F 		.ascii	"LED_Strip_rxBufferRead\000"
+ 719      53747269 
+ 719      705F7278 
+ 719      42756666 
+ 719      65725265 
+ 720              	.LASF2:
+ 721 0205 73686F72 		.ascii	"short int\000"
+ 721      7420696E 
+ 721      7400
+ 722              	.LASF23:
+ 723 020f 4C45445F 		.ascii	"LED_Strip_txBufferWrite\000"
+ 723      53747269 
+ 723      705F7478 
+ 723      42756666 
+ 723      65725772 
+ 724              	.LASF30:
+ 725 0227 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\LED_Strip_INT.c\000"
+ 725      6E657261 
+ 725      7465645F 
+ 725      536F7572 
+ 725      63655C50 
+ 726              	.LASF20:
+ 727 0250 4C45445F 		.ascii	"LED_Strip_swStatusRx\000"
+ 727      53747269 
+ 727      705F7377 
+ 727      53746174 
+ 727      75735278 
+ 728              	.LASF4:
+ 729 0265 6C6F6E67 		.ascii	"long int\000"
+ 729      20696E74 
+ 729      00
+ 730              	.LASF17:
+ 731 026e 746D7053 		.ascii	"tmpStatus\000"
+ 731      74617475 
+ 731      7300
+ 732              	.LASF0:
+ 733 0278 7369676E 		.ascii	"signed char\000"
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccqYq5Wg.s 			page 19
+
+
+ 733      65642063 
+ 733      68617200 
+ 734              	.LASF16:
+ 735 0284 4C45445F 		.ascii	"LED_Strip_RX_ISR\000"
+ 735      53747269 
+ 735      705F5258 
+ 735      5F495352 
+ 735      00
+ 736              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

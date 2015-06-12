@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccjc4tYU.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
   37              		.loc 1 18 0
   38 0004 00BF     		nop
   19:.\state_event.c **** }
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 2
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccjc4tYU.s 			page 2
 
 
   39              		.loc 1 19 0
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
   87              		@ link register save eliminated.
   88 0000 80B4     		push	{r7}
   89              		.cfi_def_cfa_offset 4
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 3
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccjc4tYU.s 			page 3
 
 
   90              		.cfi_offset 7, -4
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  137              	action_charging:
  138              	.LFB60:
   33:.\state_event.c **** 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 4
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccjc4tYU.s 			page 4
 
 
   34:.\state_event.c **** void action_charging(){
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  186              		.size	action_soft_fault, .-action_soft_fault
  187 000e 00BF     		.section	.text.action_hard_fault,"ax",%progbits
  188              		.align	2
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 5
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccjc4tYU.s 			page 5
 
 
  189              		.global	action_hard_fault
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  233              		.loc 1 50 0
  234 0004 00BF     		nop
   51:.\state_event.c **** }
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 6
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccjc4tYU.s 			page 6
 
 
  235              		.loc 1 51 0
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  282              		@ frame_needed = 1, uses_anonymous_args = 0
  283              		@ link register save eliminated.
  284 0000 80B4     		push	{r7}
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 7
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccjc4tYU.s 			page 7
 
 
  285              		.cfi_def_cfa_offset 4
@@ -413,12 +413,12 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  327              		.size	get_CAN_error, .-get_CAN_error
  328              		.text
  329              	.Letext0:
- 330              		.file 2 "d:\\software\\psoccreator\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4.8.4\\a
- 331              		.file 3 "d:\\software\\psoccreator\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4.8.4\\a
+ 330              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.2\\psoc creator\\import\\gnu\\arm\\4.8.
+ 331              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.2\\psoc creator\\import\\gnu\\arm\\4.8.
  332              		.file 4 ".\\state_event.h"
- 333              		.file 5 ".\\Generated_Source\\PSoC5/core_cm3.h"
+ 333              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
  334              		.section	.debug_info,"",%progbits
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 8
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccjc4tYU.s 			page 8
 
 
  335              	.Ldebug_info0:
@@ -427,21 +427,21 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  338 0006 00000000 		.4byte	.Ldebug_abbrev0
  339 000a 04       		.byte	0x4
  340 000b 01       		.uleb128 0x1
- 341 000c C9000000 		.4byte	.LASF36
+ 341 000c 00010000 		.4byte	.LASF36
  342 0010 01       		.byte	0x1
  343 0011 09000000 		.4byte	.LASF37
- 344 0015 01020000 		.4byte	.LASF38
+ 344 0015 52000000 		.4byte	.LASF38
  345 0019 00000000 		.4byte	.Ldebug_ranges0+0
  346 001d 00000000 		.4byte	0
  347 0021 00000000 		.4byte	.Ldebug_line0
  348 0025 02       		.uleb128 0x2
  349 0026 01       		.byte	0x1
  350 0027 06       		.byte	0x6
- 351 0028 8C000000 		.4byte	.LASF0
+ 351 0028 C3000000 		.4byte	.LASF0
  352 002c 02       		.uleb128 0x2
  353 002d 01       		.byte	0x1
  354 002e 08       		.byte	0x8
- 355 002f AA000000 		.4byte	.LASF1
+ 355 002f E1000000 		.4byte	.LASF1
  356 0033 02       		.uleb128 0x2
  357 0034 02       		.byte	0x2
  358 0035 05       		.byte	0x5
@@ -449,7 +449,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  360 003a 02       		.uleb128 0x2
  361 003b 02       		.byte	0x2
  362 003c 07       		.byte	0x7
- 363 003d 57010000 		.4byte	.LASF3
+ 363 003d 8E010000 		.4byte	.LASF3
  364 0041 03       		.uleb128 0x3
  365 0042 3D000000 		.4byte	.LASF9
  366 0046 02       		.byte	0x2
@@ -462,7 +462,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  373 0053 02       		.uleb128 0x2
  374 0054 04       		.byte	0x4
  375 0055 07       		.byte	0x7
- 376 0056 45010000 		.4byte	.LASF5
+ 376 0056 7C010000 		.4byte	.LASF5
  377 005a 02       		.uleb128 0x2
  378 005b 08       		.byte	0x8
  379 005c 05       		.byte	0x5
@@ -470,7 +470,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  381 0061 02       		.uleb128 0x2
  382 0062 08       		.byte	0x8
  383 0063 07       		.byte	0x7
- 384 0064 DB010000 		.4byte	.LASF7
+ 384 0064 12020000 		.4byte	.LASF7
  385 0068 04       		.uleb128 0x4
  386 0069 04       		.byte	0x4
  387 006a 05       		.byte	0x5
@@ -478,10 +478,10 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  389 006f 02       		.uleb128 0x2
  390 0070 04       		.byte	0x4
  391 0071 07       		.byte	0x7
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 9
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccjc4tYU.s 			page 9
 
 
- 392 0072 CE010000 		.4byte	.LASF8
+ 392 0072 05020000 		.4byte	.LASF8
  393 0076 03       		.uleb128 0x3
  394 0077 38020000 		.4byte	.LASF10
  395 007b 03       		.byte	0x3
@@ -490,11 +490,11 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  398 0081 02       		.uleb128 0x2
  399 0082 04       		.byte	0x4
  400 0083 04       		.byte	0x4
- 401 0084 86000000 		.4byte	.LASF11
+ 401 0084 BD000000 		.4byte	.LASF11
  402 0088 02       		.uleb128 0x2
  403 0089 08       		.byte	0x8
  404 008a 04       		.byte	0x4
- 405 008b 90010000 		.4byte	.LASF12
+ 405 008b C7010000 		.4byte	.LASF12
  406 008f 02       		.uleb128 0x2
  407 0090 01       		.byte	0x1
  408 0091 08       		.byte	0x8
@@ -509,7 +509,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  417 00a0 1B       		.byte	0x1b
  418 00a1 E2000000 		.4byte	0xe2
  419 00a5 06       		.uleb128 0x6
- 420 00a6 97010000 		.4byte	.LASF15
+ 420 00a6 CE010000 		.4byte	.LASF15
  421 00aa 00       		.sleb128 0
  422 00ab 06       		.uleb128 0x6
  423 00ac 00000000 		.4byte	.LASF16
@@ -518,10 +518,10 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  426 00b2 47000000 		.4byte	.LASF17
  427 00b6 02       		.sleb128 2
  428 00b7 06       		.uleb128 0x6
- 429 00b8 66000000 		.4byte	.LASF18
+ 429 00b8 9D000000 		.4byte	.LASF18
  430 00bc 03       		.sleb128 3
  431 00bd 06       		.uleb128 0x6
- 432 00be AF010000 		.4byte	.LASF19
+ 432 00be E6010000 		.4byte	.LASF19
  433 00c2 04       		.sleb128 4
  434 00c3 06       		.uleb128 0x6
  435 00c4 AA020000 		.4byte	.LASF20
@@ -530,7 +530,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  438 00ca 83020000 		.4byte	.LASF21
  439 00ce 06       		.sleb128 6
  440 00cf 06       		.uleb128 0x6
- 441 00d0 52000000 		.4byte	.LASF22
+ 441 00d0 89000000 		.4byte	.LASF22
  442 00d4 07       		.sleb128 7
  443 00d5 06       		.uleb128 0x6
  444 00d6 40020000 		.4byte	.LASF23
@@ -538,12 +538,12 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  446 00db 06       		.uleb128 0x6
  447 00dc 38000000 		.4byte	.LASF24
  448 00e0 09       		.sleb128 9
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 10
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccjc4tYU.s 			page 10
 
 
  449 00e1 00       		.byte	0
  450 00e2 03       		.uleb128 0x3
- 451 00e3 7C010000 		.4byte	.LASF25
+ 451 00e3 B3010000 		.4byte	.LASF25
  452 00e7 04       		.byte	0x4
  453 00e8 26       		.byte	0x26
  454 00e9 9D000000 		.4byte	0x9d
@@ -556,7 +556,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  461 00fc 01       		.uleb128 0x1
  462 00fd 9C       		.byte	0x9c
  463 00fe 07       		.uleb128 0x7
- 464 00ff F2010000 		.4byte	.LASF27
+ 464 00ff 29020000 		.4byte	.LASF27
  465 0103 01       		.byte	0x1
  466 0104 15       		.byte	0x15
  467 0105 00000000 		.4byte	.LFB57
@@ -572,7 +572,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  477 011e 01       		.uleb128 0x1
  478 011f 9C       		.byte	0x9c
  479 0120 07       		.uleb128 0x7
- 480 0121 B8000000 		.4byte	.LASF29
+ 480 0121 EF000000 		.4byte	.LASF29
  481 0125 01       		.byte	0x1
  482 0126 1E       		.byte	0x1e
  483 0127 00000000 		.4byte	.LFB59
@@ -580,7 +580,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  485 012f 01       		.uleb128 0x1
  486 0130 9C       		.byte	0x9c
  487 0131 07       		.uleb128 0x7
- 488 0132 BE010000 		.4byte	.LASF30
+ 488 0132 F5010000 		.4byte	.LASF30
  489 0136 01       		.byte	0x1
  490 0137 22       		.byte	0x22
  491 0138 00000000 		.4byte	.LFB60
@@ -588,7 +588,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  493 0140 01       		.uleb128 0x1
  494 0141 9C       		.byte	0x9c
  495 0142 07       		.uleb128 0x7
- 496 0143 98000000 		.4byte	.LASF31
+ 496 0143 CF000000 		.4byte	.LASF31
  497 0147 01       		.byte	0x1
  498 0148 26       		.byte	0x26
  499 0149 00000000 		.4byte	.LFB61
@@ -596,9 +596,9 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  501 0151 01       		.uleb128 0x1
  502 0152 9C       		.byte	0x9c
  503 0153 07       		.uleb128 0x7
- 504 0154 9D010000 		.4byte	.LASF32
+ 504 0154 D4010000 		.4byte	.LASF32
  505 0158 01       		.byte	0x1
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 11
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccjc4tYU.s 			page 11
 
 
  506 0159 2A       		.byte	0x2a
@@ -607,7 +607,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  509 0162 01       		.uleb128 0x1
  510 0163 9C       		.byte	0x9c
  511 0164 07       		.uleb128 0x7
- 512 0165 6A010000 		.4byte	.LASF33
+ 512 0165 A1010000 		.4byte	.LASF33
  513 0169 01       		.byte	0x1
  514 016a 31       		.byte	0x31
  515 016b 00000000 		.4byte	.LFB63
@@ -615,7 +615,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  517 0173 01       		.uleb128 0x1
  518 0174 9C       		.byte	0x9c
  519 0175 07       		.uleb128 0x7
- 520 0176 70000000 		.4byte	.LASF34
+ 520 0176 A7000000 		.4byte	.LASF34
  521 017a 01       		.byte	0x1
  522 017b 36       		.byte	0x36
  523 017c 00000000 		.4byte	.LFB64
@@ -640,7 +640,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  542 01aa 01       		.uleb128 0x1
  543 01ab 9C       		.byte	0x9c
  544 01ac 09       		.uleb128 0x9
- 545 01ad 83010000 		.4byte	.LASF40
+ 545 01ad BA010000 		.4byte	.LASF40
  546 01b1 05       		.byte	0x5
  547 01b2 1606     		.2byte	0x616
  548 01b4 B8010000 		.4byte	0x1b8
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  560 0006 0B       		.uleb128 0xb
  561 0007 03       		.uleb128 0x3
  562 0008 0E       		.uleb128 0xe
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 12
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccjc4tYU.s 			page 12
 
 
  563 0009 1B       		.uleb128 0x1b
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  617 003f 01       		.uleb128 0x1
  618 0040 13       		.uleb128 0x13
  619 0041 00       		.byte	0
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 13
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccjc4tYU.s 			page 13
 
 
  620 0042 00       		.byte	0
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  674 007a 09       		.uleb128 0x9
  675 007b 34       		.uleb128 0x34
  676 007c 00       		.byte	0
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 14
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccjc4tYU.s 			page 14
 
 
  677 007d 03       		.uleb128 0x3
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  731              		.section	.debug_ranges,"",%progbits
  732              	.Ldebug_ranges0:
  733 0000 00000000 		.4byte	.LFB56
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 15
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccjc4tYU.s 			page 15
 
 
  734 0004 0E000000 		.4byte	.LFE56
@@ -866,8 +866,8 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  756 005c 00000000 		.4byte	0
  757              		.section	.debug_line,"",%progbits
  758              	.Ldebug_line0:
- 759 0000 11020000 		.section	.debug_str,"MS",%progbits,1
- 759      02005001 
+ 759 0000 17020000 		.section	.debug_str,"MS",%progbits,1
+ 759      02005601 
  759      00000201 
  759      FB0E0D00 
  759      01010101 
@@ -898,147 +898,147 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  771 003d 5F5F696E 		.ascii	"__int32_t\000"
  771      7433325F 
  771      7400
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 16
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccjc4tYU.s 			page 16
 
 
  772              	.LASF17:
  773 0047 4E455554 		.ascii	"NEUTRAL_UP\000"
  773      52414C5F 
  773      555000
- 774              	.LASF22:
- 775 0052 534F4654 		.ascii	"SOFT_FAULT_REMEDIED\000"
- 775      5F464155 
- 775      4C545F52 
- 775      454D4544 
- 775      49454400 
- 776              	.LASF18:
- 777 0066 43484152 		.ascii	"CHARGE_UP\000"
- 777      47455F55 
- 777      5000
- 778              	.LASF34:
- 779 0070 72657365 		.ascii	"reset_precharge_timer\000"
- 779      745F7072 
- 779      65636861 
- 779      7267655F 
- 779      74696D65 
- 780              	.LASF11:
- 781 0086 666C6F61 		.ascii	"float\000"
- 781      7400
- 782              	.LASF0:
- 783 008c 7369676E 		.ascii	"signed char\000"
- 783      65642063 
- 783      68617200 
- 784              	.LASF31:
- 785 0098 61637469 		.ascii	"action_soft_fault\000"
- 785      6F6E5F73 
- 785      6F66745F 
- 785      6661756C 
- 785      7400
- 786              	.LASF1:
- 787 00aa 756E7369 		.ascii	"unsigned char\000"
- 787      676E6564 
- 787      20636861 
- 787      7200
- 788              	.LASF29:
- 789 00b8 61637469 		.ascii	"action_precharge\000"
- 789      6F6E5F70 
- 789      72656368 
- 789      61726765 
- 789      00
- 790              	.LASF36:
- 791 00c9 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
- 791      4320342E 
- 791      382E3420 
- 791      32303134 
- 791      30353236 
- 792 00fc 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
- 792      20726576 
- 792      6973696F 
- 792      6E203231 
- 792      31333538 
- 793 012f 30202D66 		.ascii	"0 -ffunction-sections\000"
- 793      66756E63 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 17
+ 774              	.LASF38:
+ 775 0052 443A5C77 		.ascii	"D:\\workspace\\Super-Eagle\\Super-Eagle\\Super-Eagl"
+ 775      6F726B73 
+ 775      70616365 
+ 775      5C537570 
+ 775      65722D45 
+ 776 0081 652E6379 		.ascii	"e.cydsn\000"
+ 776      64736E00 
+ 777              	.LASF22:
+ 778 0089 534F4654 		.ascii	"SOFT_FAULT_REMEDIED\000"
+ 778      5F464155 
+ 778      4C545F52 
+ 778      454D4544 
+ 778      49454400 
+ 779              	.LASF18:
+ 780 009d 43484152 		.ascii	"CHARGE_UP\000"
+ 780      47455F55 
+ 780      5000
+ 781              	.LASF34:
+ 782 00a7 72657365 		.ascii	"reset_precharge_timer\000"
+ 782      745F7072 
+ 782      65636861 
+ 782      7267655F 
+ 782      74696D65 
+ 783              	.LASF11:
+ 784 00bd 666C6F61 		.ascii	"float\000"
+ 784      7400
+ 785              	.LASF0:
+ 786 00c3 7369676E 		.ascii	"signed char\000"
+ 786      65642063 
+ 786      68617200 
+ 787              	.LASF31:
+ 788 00cf 61637469 		.ascii	"action_soft_fault\000"
+ 788      6F6E5F73 
+ 788      6F66745F 
+ 788      6661756C 
+ 788      7400
+ 789              	.LASF1:
+ 790 00e1 756E7369 		.ascii	"unsigned char\000"
+ 790      676E6564 
+ 790      20636861 
+ 790      7200
+ 791              	.LASF29:
+ 792 00ef 61637469 		.ascii	"action_precharge\000"
+ 792      6F6E5F70 
+ 792      72656368 
+ 792      61726765 
+ 792      00
+ 793              	.LASF36:
+ 794 0100 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 794      4320342E 
+ 794      382E3420 
+ 794      32303134 
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccjc4tYU.s 			page 17
 
 
- 793      74696F6E 
- 793      2D736563 
- 793      74696F6E 
- 794              	.LASF5:
- 795 0145 6C6F6E67 		.ascii	"long unsigned int\000"
- 795      20756E73 
- 795      69676E65 
- 795      6420696E 
- 795      7400
- 796              	.LASF3:
- 797 0157 73686F72 		.ascii	"short unsigned int\000"
- 797      7420756E 
- 797      7369676E 
- 797      65642069 
- 797      6E7400
- 798              	.LASF33:
- 799 016a 72657365 		.ascii	"reset_drive_sound\000"
- 799      745F6472 
- 799      6976655F 
- 799      736F756E 
- 799      6400
- 800              	.LASF25:
- 801 017c 4576656E 		.ascii	"Events\000"
- 801      747300
- 802              	.LASF40:
- 803 0183 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 803      52784275 
- 803      66666572 
- 803      00
- 804              	.LASF12:
- 805 0190 646F7562 		.ascii	"double\000"
- 805      6C6500
- 806              	.LASF15:
- 807 0197 48565F55 		.ascii	"HV_UP\000"
- 807      5000
- 808              	.LASF32:
- 809 019d 61637469 		.ascii	"action_hard_fault\000"
- 809      6F6E5F68 
- 809      6172645F 
- 809      6661756C 
- 809      7400
- 810              	.LASF19:
- 811 01af 50524543 		.ascii	"PRECHARGE_DONE\000"
- 811      48415247 
- 811      455F444F 
- 811      4E4500
- 812              	.LASF30:
- 813 01be 61637469 		.ascii	"action_charging\000"
- 813      6F6E5F63 
- 813      68617267 
- 813      696E6700 
- 814              	.LASF8:
- 815 01ce 756E7369 		.ascii	"unsigned int\000"
- 815      676E6564 
- 815      20696E74 
- 815      00
- 816              	.LASF7:
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 18
+ 794      30353236 
+ 795 0133 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
+ 795      20726576 
+ 795      6973696F 
+ 795      6E203231 
+ 795      31333538 
+ 796 0166 30202D66 		.ascii	"0 -ffunction-sections\000"
+ 796      66756E63 
+ 796      74696F6E 
+ 796      2D736563 
+ 796      74696F6E 
+ 797              	.LASF5:
+ 798 017c 6C6F6E67 		.ascii	"long unsigned int\000"
+ 798      20756E73 
+ 798      69676E65 
+ 798      6420696E 
+ 798      7400
+ 799              	.LASF3:
+ 800 018e 73686F72 		.ascii	"short unsigned int\000"
+ 800      7420756E 
+ 800      7369676E 
+ 800      65642069 
+ 800      6E7400
+ 801              	.LASF33:
+ 802 01a1 72657365 		.ascii	"reset_drive_sound\000"
+ 802      745F6472 
+ 802      6976655F 
+ 802      736F756E 
+ 802      6400
+ 803              	.LASF25:
+ 804 01b3 4576656E 		.ascii	"Events\000"
+ 804      747300
+ 805              	.LASF40:
+ 806 01ba 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 806      52784275 
+ 806      66666572 
+ 806      00
+ 807              	.LASF12:
+ 808 01c7 646F7562 		.ascii	"double\000"
+ 808      6C6500
+ 809              	.LASF15:
+ 810 01ce 48565F55 		.ascii	"HV_UP\000"
+ 810      5000
+ 811              	.LASF32:
+ 812 01d4 61637469 		.ascii	"action_hard_fault\000"
+ 812      6F6E5F68 
+ 812      6172645F 
+ 812      6661756C 
+ 812      7400
+ 813              	.LASF19:
+ 814 01e6 50524543 		.ascii	"PRECHARGE_DONE\000"
+ 814      48415247 
+ 814      455F444F 
+ 814      4E4500
+ 815              	.LASF30:
+ 816 01f5 61637469 		.ascii	"action_charging\000"
+ 816      6F6E5F63 
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccjc4tYU.s 			page 18
 
 
- 817 01db 6C6F6E67 		.ascii	"long long unsigned int\000"
- 817      206C6F6E 
- 817      6720756E 
- 817      7369676E 
- 817      65642069 
- 818              	.LASF27:
- 819 01f2 61637469 		.ascii	"action_neutral\000"
- 819      6F6E5F6E 
- 819      65757472 
- 819      616C00
- 820              	.LASF38:
- 821 0201 443A5C77 		.ascii	"D:\\workspace\\super-eagle\\Super-Eagle\\Super-Eagl"
- 821      6F726B73 
- 821      70616365 
- 821      5C737570 
- 821      65722D65 
- 822 0230 652E6379 		.ascii	"e.cydsn\000"
- 822      64736E00 
+ 816      68617267 
+ 816      696E6700 
+ 817              	.LASF8:
+ 818 0205 756E7369 		.ascii	"unsigned int\000"
+ 818      676E6564 
+ 818      20696E74 
+ 818      00
+ 819              	.LASF7:
+ 820 0212 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 820      206C6F6E 
+ 820      6720756E 
+ 820      7369676E 
+ 820      65642069 
+ 821              	.LASF27:
+ 822 0229 61637469 		.ascii	"action_neutral\000"
+ 822      6F6E5F6E 
+ 822      65757472 
+ 822      616C00
  823              	.LASF10:
  824 0238 696E7433 		.ascii	"int32_t\000"
  824      325F7400 
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 1
  839              	.LASF4:
  840 029c 6C6F6E67 		.ascii	"long int\000"
  840      20696E74 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\cc1B2trn.s 			page 19
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccjc4tYU.s 			page 19
 
 
  840      00

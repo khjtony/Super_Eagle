@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccsZnNmz.s 			page 1
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc1XMOkX.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccsZnNmz.s 			page 1
   29:.\Generated_Source\PSoC5/BTN_Back.c **** * Summary:
   30:.\Generated_Source\PSoC5/BTN_Back.c **** *  Assign a new value to the digital port's data output register.  
   31:.\Generated_Source\PSoC5/BTN_Back.c **** *
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccsZnNmz.s 			page 2
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc1XMOkX.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/BTN_Back.c **** * Parameters:  
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccsZnNmz.s 			page 1
   69              		.section	.text.BTN_Back_SetDriveMode,"ax",%progbits
   70              		.align	2
   71              		.global	BTN_Back_SetDriveMode
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccsZnNmz.s 			page 3
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc1XMOkX.s 			page 3
 
 
   72              		.thumb
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccsZnNmz.s 			page 1
   98 0018 D1B2     		uxtb	r1, r2
   99 001a FA79     		ldrb	r2, [r7, #7]	@ zero_extendqisi2
  100 001c 02F00E02 		and	r2, r2, #14
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccsZnNmz.s 			page 4
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc1XMOkX.s 			page 4
 
 
  101 0020 D2B2     		uxtb	r2, r2
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccsZnNmz.s 			page 1
  132 0000 80B4     		push	{r7}
  133              		.cfi_def_cfa_offset 4
  134              		.cfi_offset 7, -4
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccsZnNmz.s 			page 5
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc1XMOkX.s 			page 5
 
 
  135 0002 00AF     		add	r7, sp, #0
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccsZnNmz.s 			page 1
  169 0000 80B4     		push	{r7}
  170              		.cfi_def_cfa_offset 4
  171              		.cfi_offset 7, -4
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccsZnNmz.s 			page 6
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc1XMOkX.s 			page 6
 
 
  172 0002 00AF     		add	r7, sp, #0
@@ -324,570 +324,488 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccsZnNmz.s 			page 1
  190              		.cfi_endproc
  191              	.LFE3:
  192              		.size	BTN_Back_ReadDataReg, .-BTN_Back_ReadDataReg
- 193              		.section	.text.BTN_Back_ClearInterrupt,"ax",%progbits
- 194              		.align	2
- 195              		.global	BTN_Back_ClearInterrupt
- 196              		.thumb
- 197              		.thumb_func
- 198              		.type	BTN_Back_ClearInterrupt, %function
- 199              	BTN_Back_ClearInterrupt:
- 200              	.LFB4:
- 117:.\Generated_Source\PSoC5/BTN_Back.c **** 
- 118:.\Generated_Source\PSoC5/BTN_Back.c **** 
- 119:.\Generated_Source\PSoC5/BTN_Back.c **** /* If Interrupts Are Enabled for this Pins component */ 
- 120:.\Generated_Source\PSoC5/BTN_Back.c **** #if defined(BTN_Back_INTSTAT) 
- 121:.\Generated_Source\PSoC5/BTN_Back.c **** 
- 122:.\Generated_Source\PSoC5/BTN_Back.c ****     /*******************************************************************************
- 123:.\Generated_Source\PSoC5/BTN_Back.c ****     * Function Name: BTN_Back_ClearInterrupt
- 124:.\Generated_Source\PSoC5/BTN_Back.c ****     ********************************************************************************
- 125:.\Generated_Source\PSoC5/BTN_Back.c ****     * Summary:
- 126:.\Generated_Source\PSoC5/BTN_Back.c ****     *  Clears any active interrupts attached to port and returns the value of the 
- 127:.\Generated_Source\PSoC5/BTN_Back.c ****     *  interrupt status register.
- 128:.\Generated_Source\PSoC5/BTN_Back.c ****     *
- 129:.\Generated_Source\PSoC5/BTN_Back.c ****     * Parameters:  
- 130:.\Generated_Source\PSoC5/BTN_Back.c ****     *  None 
- 131:.\Generated_Source\PSoC5/BTN_Back.c ****     *
- 132:.\Generated_Source\PSoC5/BTN_Back.c ****     * Return: 
- 133:.\Generated_Source\PSoC5/BTN_Back.c ****     *  Returns the value of the interrupt status register
- 134:.\Generated_Source\PSoC5/BTN_Back.c ****     *  
- 135:.\Generated_Source\PSoC5/BTN_Back.c ****     *******************************************************************************/
- 136:.\Generated_Source\PSoC5/BTN_Back.c ****     uint8 BTN_Back_ClearInterrupt(void) 
- 137:.\Generated_Source\PSoC5/BTN_Back.c ****     {
- 201              		.loc 1 137 0
- 202              		.cfi_startproc
- 203              		@ args = 0, pretend = 0, frame = 0
- 204              		@ frame_needed = 1, uses_anonymous_args = 0
- 205              		@ link register save eliminated.
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccsZnNmz.s 			page 7
+ 193              		.text
+ 194              	.Letext0:
+ 195              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 196              		.section	.debug_info,"",%progbits
+ 197              	.Ldebug_info0:
+ 198 0000 19010000 		.4byte	0x119
+ 199 0004 0400     		.2byte	0x4
+ 200 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 201 000a 04       		.byte	0x4
+ 202 000b 01       		.uleb128 0x1
+ 203 000c F2000000 		.4byte	.LASF20
+ 204 0010 01       		.byte	0x1
+ 205 0011 5C000000 		.4byte	.LASF21
+ 206 0015 11000000 		.4byte	.LASF22
+ 207 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 208 001d 00000000 		.4byte	0
+ 209 0021 00000000 		.4byte	.Ldebug_line0
+ 210 0025 02       		.uleb128 0x2
+ 211 0026 01       		.byte	0x1
+ 212 0027 06       		.byte	0x6
+ 213 0028 CA010000 		.4byte	.LASF0
+ 214 002c 02       		.uleb128 0x2
+ 215 002d 01       		.byte	0x1
+ 216 002e 08       		.byte	0x8
+ 217 002f 4E000000 		.4byte	.LASF1
+ 218 0033 02       		.uleb128 0x2
+ 219 0034 02       		.byte	0x2
+ 220 0035 05       		.byte	0x5
+ 221 0036 B1010000 		.4byte	.LASF2
+ 222 003a 02       		.uleb128 0x2
+ 223 003b 02       		.byte	0x2
+ 224 003c 07       		.byte	0x7
+ 225 003d 92000000 		.4byte	.LASF3
+ 226 0041 02       		.uleb128 0x2
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc1XMOkX.s 			page 7
 
 
- 206 0000 80B4     		push	{r7}
- 207              		.cfi_def_cfa_offset 4
- 208              		.cfi_offset 7, -4
- 209 0002 00AF     		add	r7, sp, #0
- 210              		.cfi_def_cfa_register 7
- 138:.\Generated_Source\PSoC5/BTN_Back.c ****         return (BTN_Back_INTSTAT & BTN_Back_MASK) >> BTN_Back_SHIFT;
- 211              		.loc 1 138 0
- 212 0004 044B     		ldr	r3, .L17
- 213 0006 1B78     		ldrb	r3, [r3]
- 214 0008 DBB2     		uxtb	r3, r3
- 215 000a DB09     		lsrs	r3, r3, #7
- 216 000c DBB2     		uxtb	r3, r3
- 139:.\Generated_Source\PSoC5/BTN_Back.c ****     }
- 217              		.loc 1 139 0
- 218 000e 1846     		mov	r0, r3
- 219 0010 BD46     		mov	sp, r7
- 220              		@ sp needed
- 221 0012 5DF8047B 		ldr	r7, [sp], #4
- 222 0016 7047     		bx	lr
- 223              	.L18:
- 224              		.align	2
- 225              	.L17:
- 226 0018 84450040 		.word	1073759620
- 227              		.cfi_endproc
- 228              	.LFE4:
- 229              		.size	BTN_Back_ClearInterrupt, .-BTN_Back_ClearInterrupt
- 230              		.text
- 231              	.Letext0:
- 232              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
- 233              		.section	.debug_info,"",%progbits
- 234              	.Ldebug_info0:
- 235 0000 2E010000 		.4byte	0x12e
- 236 0004 0400     		.2byte	0x4
- 237 0006 00000000 		.4byte	.Ldebug_abbrev0
- 238 000a 04       		.byte	0x4
- 239 000b 01       		.uleb128 0x1
- 240 000c C7000000 		.4byte	.LASF21
- 241 0010 01       		.byte	0x1
- 242 0011 31000000 		.4byte	.LASF22
- 243 0015 B7010000 		.4byte	.LASF23
- 244 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 245 001d 00000000 		.4byte	0
- 246 0021 00000000 		.4byte	.Ldebug_line0
- 247 0025 02       		.uleb128 0x2
- 248 0026 01       		.byte	0x1
- 249 0027 06       		.byte	0x6
- 250 0028 17000000 		.4byte	.LASF0
- 251 002c 02       		.uleb128 0x2
- 252 002d 01       		.byte	0x1
- 253 002e 08       		.byte	0x8
- 254 002f 23000000 		.4byte	.LASF1
- 255 0033 02       		.uleb128 0x2
- 256 0034 02       		.byte	0x2
- 257 0035 05       		.byte	0x5
- 258 0036 9E010000 		.4byte	.LASF2
- 259 003a 02       		.uleb128 0x2
- 260 003b 02       		.byte	0x2
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccsZnNmz.s 			page 8
+ 227 0042 04       		.byte	0x4
+ 228 0043 05       		.byte	0x5
+ 229 0044 C1010000 		.4byte	.LASF4
+ 230 0048 02       		.uleb128 0x2
+ 231 0049 04       		.byte	0x4
+ 232 004a 07       		.byte	0x7
+ 233 004b 80000000 		.4byte	.LASF5
+ 234 004f 02       		.uleb128 0x2
+ 235 0050 08       		.byte	0x8
+ 236 0051 05       		.byte	0x5
+ 237 0052 73010000 		.4byte	.LASF6
+ 238 0056 02       		.uleb128 0x2
+ 239 0057 08       		.byte	0x8
+ 240 0058 07       		.byte	0x7
+ 241 0059 D6000000 		.4byte	.LASF7
+ 242 005d 03       		.uleb128 0x3
+ 243 005e 04       		.byte	0x4
+ 244 005f 05       		.byte	0x5
+ 245 0060 696E7400 		.ascii	"int\000"
+ 246 0064 02       		.uleb128 0x2
+ 247 0065 04       		.byte	0x4
+ 248 0066 07       		.byte	0x7
+ 249 0067 BA000000 		.4byte	.LASF8
+ 250 006b 04       		.uleb128 0x4
+ 251 006c BB010000 		.4byte	.LASF12
+ 252 0070 02       		.byte	0x2
+ 253 0071 A1       		.byte	0xa1
+ 254 0072 2C000000 		.4byte	0x2c
+ 255 0076 02       		.uleb128 0x2
+ 256 0077 04       		.byte	0x4
+ 257 0078 04       		.byte	0x4
+ 258 0079 48000000 		.4byte	.LASF9
+ 259 007d 02       		.uleb128 0x2
+ 260 007e 08       		.byte	0x8
+ 261 007f 04       		.byte	0x4
+ 262 0080 B3000000 		.4byte	.LASF10
+ 263 0084 02       		.uleb128 0x2
+ 264 0085 01       		.byte	0x1
+ 265 0086 08       		.byte	0x8
+ 266 0087 96010000 		.4byte	.LASF11
+ 267 008b 05       		.uleb128 0x5
+ 268 008c 6E010000 		.4byte	.LASF13
+ 269 0090 02       		.byte	0x2
+ 270 0091 4B01     		.2byte	0x14b
+ 271 0093 97000000 		.4byte	0x97
+ 272 0097 06       		.uleb128 0x6
+ 273 0098 6B000000 		.4byte	0x6b
+ 274 009c 07       		.uleb128 0x7
+ 275 009d C7000000 		.4byte	.LASF14
+ 276 00a1 01       		.byte	0x1
+ 277 00a2 27       		.byte	0x27
+ 278 00a3 00000000 		.4byte	.LFB0
+ 279 00a7 34000000 		.4byte	.LFE0-.LFB0
+ 280 00ab 01       		.uleb128 0x1
+ 281 00ac 9C       		.byte	0x9c
+ 282 00ad CE000000 		.4byte	0xce
+ 283 00b1 08       		.uleb128 0x8
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc1XMOkX.s 			page 8
 
 
- 261 003c 07       		.byte	0x7
- 262 003d 67000000 		.4byte	.LASF3
- 263 0041 02       		.uleb128 0x2
- 264 0042 04       		.byte	0x4
- 265 0043 05       		.byte	0x5
- 266 0044 AE010000 		.4byte	.LASF4
- 267 0048 02       		.uleb128 0x2
- 268 0049 04       		.byte	0x4
- 269 004a 07       		.byte	0x7
- 270 004b 55000000 		.4byte	.LASF5
- 271 004f 02       		.uleb128 0x2
- 272 0050 08       		.byte	0x8
- 273 0051 05       		.byte	0x5
- 274 0052 48010000 		.4byte	.LASF6
- 275 0056 02       		.uleb128 0x2
- 276 0057 08       		.byte	0x8
- 277 0058 07       		.byte	0x7
- 278 0059 AB000000 		.4byte	.LASF7
- 279 005d 03       		.uleb128 0x3
- 280 005e 04       		.byte	0x4
- 281 005f 05       		.byte	0x5
- 282 0060 696E7400 		.ascii	"int\000"
- 283 0064 02       		.uleb128 0x2
- 284 0065 04       		.byte	0x4
- 285 0066 07       		.byte	0x7
- 286 0067 8F000000 		.4byte	.LASF8
- 287 006b 04       		.uleb128 0x4
- 288 006c A8010000 		.4byte	.LASF12
- 289 0070 02       		.byte	0x2
- 290 0071 A1       		.byte	0xa1
- 291 0072 2C000000 		.4byte	0x2c
- 292 0076 02       		.uleb128 0x2
- 293 0077 04       		.byte	0x4
- 294 0078 04       		.byte	0x4
- 295 0079 11000000 		.4byte	.LASF9
- 296 007d 02       		.uleb128 0x2
- 297 007e 08       		.byte	0x8
- 298 007f 04       		.byte	0x4
- 299 0080 88000000 		.4byte	.LASF10
- 300 0084 02       		.uleb128 0x2
- 301 0085 01       		.byte	0x1
- 302 0086 08       		.byte	0x8
- 303 0087 6B010000 		.4byte	.LASF11
- 304 008b 05       		.uleb128 0x5
- 305 008c 43010000 		.4byte	.LASF13
- 306 0090 02       		.byte	0x2
- 307 0091 4B01     		.2byte	0x14b
- 308 0093 97000000 		.4byte	0x97
- 309 0097 06       		.uleb128 0x6
- 310 0098 6B000000 		.4byte	0x6b
- 311 009c 07       		.uleb128 0x7
- 312 009d 9C000000 		.4byte	.LASF14
- 313 00a1 01       		.byte	0x1
- 314 00a2 27       		.byte	0x27
- 315 00a3 00000000 		.4byte	.LFB0
- 316 00a7 34000000 		.4byte	.LFE0-.LFB0
- 317 00ab 01       		.uleb128 0x1
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccsZnNmz.s 			page 9
+ 284 00b2 00000000 		.4byte	.LASF16
+ 285 00b6 01       		.byte	0x1
+ 286 00b7 27       		.byte	0x27
+ 287 00b8 6B000000 		.4byte	0x6b
+ 288 00bc 02       		.uleb128 0x2
+ 289 00bd 91       		.byte	0x91
+ 290 00be 6F       		.sleb128 -17
+ 291 00bf 09       		.uleb128 0x9
+ 292 00c0 06000000 		.4byte	.LASF23
+ 293 00c4 01       		.byte	0x1
+ 294 00c5 29       		.byte	0x29
+ 295 00c6 6B000000 		.4byte	0x6b
+ 296 00ca 02       		.uleb128 0x2
+ 297 00cb 91       		.byte	0x91
+ 298 00cc 77       		.sleb128 -9
+ 299 00cd 00       		.byte	0
+ 300 00ce 07       		.uleb128 0x7
+ 301 00cf 9B010000 		.4byte	.LASF15
+ 302 00d3 01       		.byte	0x1
+ 303 00d4 45       		.byte	0x45
+ 304 00d5 00000000 		.4byte	.LFB1
+ 305 00d9 38000000 		.4byte	.LFE1-.LFB1
+ 306 00dd 01       		.uleb128 0x1
+ 307 00de 9C       		.byte	0x9c
+ 308 00df F2000000 		.4byte	0xf2
+ 309 00e3 08       		.uleb128 0x8
+ 310 00e4 ED000000 		.4byte	.LASF17
+ 311 00e8 01       		.byte	0x1
+ 312 00e9 45       		.byte	0x45
+ 313 00ea 6B000000 		.4byte	0x6b
+ 314 00ee 02       		.uleb128 0x2
+ 315 00ef 91       		.byte	0x91
+ 316 00f0 77       		.sleb128 -9
+ 317 00f1 00       		.byte	0
+ 318 00f2 0A       		.uleb128 0xa
+ 319 00f3 A5000000 		.4byte	.LASF18
+ 320 00f7 01       		.byte	0x1
+ 321 00f8 5D       		.byte	0x5d
+ 322 00f9 6B000000 		.4byte	0x6b
+ 323 00fd 00000000 		.4byte	.LFB2
+ 324 0101 1C000000 		.4byte	.LFE2-.LFB2
+ 325 0105 01       		.uleb128 0x1
+ 326 0106 9C       		.byte	0x9c
+ 327 0107 0A       		.uleb128 0xa
+ 328 0108 81010000 		.4byte	.LASF19
+ 329 010c 01       		.byte	0x1
+ 330 010d 71       		.byte	0x71
+ 331 010e 6B000000 		.4byte	0x6b
+ 332 0112 00000000 		.4byte	.LFB3
+ 333 0116 1C000000 		.4byte	.LFE3-.LFB3
+ 334 011a 01       		.uleb128 0x1
+ 335 011b 9C       		.byte	0x9c
+ 336 011c 00       		.byte	0
+ 337              		.section	.debug_abbrev,"",%progbits
+ 338              	.Ldebug_abbrev0:
+ 339 0000 01       		.uleb128 0x1
+ 340 0001 11       		.uleb128 0x11
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc1XMOkX.s 			page 9
 
 
- 318 00ac 9C       		.byte	0x9c
- 319 00ad CE000000 		.4byte	0xce
- 320 00b1 08       		.uleb128 0x8
- 321 00b2 00000000 		.4byte	.LASF16
- 322 00b6 01       		.byte	0x1
- 323 00b7 27       		.byte	0x27
- 324 00b8 6B000000 		.4byte	0x6b
- 325 00bc 02       		.uleb128 0x2
- 326 00bd 91       		.byte	0x91
- 327 00be 6F       		.sleb128 -17
- 328 00bf 09       		.uleb128 0x9
- 329 00c0 06000000 		.4byte	.LASF24
- 330 00c4 01       		.byte	0x1
- 331 00c5 29       		.byte	0x29
- 332 00c6 6B000000 		.4byte	0x6b
- 333 00ca 02       		.uleb128 0x2
- 334 00cb 91       		.byte	0x91
- 335 00cc 77       		.sleb128 -9
- 336 00cd 00       		.byte	0
- 337 00ce 07       		.uleb128 0x7
- 338 00cf 70010000 		.4byte	.LASF15
- 339 00d3 01       		.byte	0x1
- 340 00d4 45       		.byte	0x45
- 341 00d5 00000000 		.4byte	.LFB1
- 342 00d9 38000000 		.4byte	.LFE1-.LFB1
- 343 00dd 01       		.uleb128 0x1
- 344 00de 9C       		.byte	0x9c
- 345 00df F2000000 		.4byte	0xf2
- 346 00e3 08       		.uleb128 0x8
- 347 00e4 C2000000 		.4byte	.LASF17
- 348 00e8 01       		.byte	0x1
- 349 00e9 45       		.byte	0x45
- 350 00ea 6B000000 		.4byte	0x6b
- 351 00ee 02       		.uleb128 0x2
- 352 00ef 91       		.byte	0x91
- 353 00f0 77       		.sleb128 -9
- 354 00f1 00       		.byte	0
- 355 00f2 0A       		.uleb128 0xa
- 356 00f3 7A000000 		.4byte	.LASF18
- 357 00f7 01       		.byte	0x1
- 358 00f8 5D       		.byte	0x5d
- 359 00f9 6B000000 		.4byte	0x6b
- 360 00fd 00000000 		.4byte	.LFB2
- 361 0101 1C000000 		.4byte	.LFE2-.LFB2
- 362 0105 01       		.uleb128 0x1
- 363 0106 9C       		.byte	0x9c
- 364 0107 0A       		.uleb128 0xa
- 365 0108 56010000 		.4byte	.LASF19
- 366 010c 01       		.byte	0x1
- 367 010d 71       		.byte	0x71
- 368 010e 6B000000 		.4byte	0x6b
- 369 0112 00000000 		.4byte	.LFB3
- 370 0116 1C000000 		.4byte	.LFE3-.LFB3
- 371 011a 01       		.uleb128 0x1
- 372 011b 9C       		.byte	0x9c
- 373 011c 0A       		.uleb128 0xa
- 374 011d 86010000 		.4byte	.LASF20
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccsZnNmz.s 			page 10
+ 341 0002 01       		.byte	0x1
+ 342 0003 25       		.uleb128 0x25
+ 343 0004 0E       		.uleb128 0xe
+ 344 0005 13       		.uleb128 0x13
+ 345 0006 0B       		.uleb128 0xb
+ 346 0007 03       		.uleb128 0x3
+ 347 0008 0E       		.uleb128 0xe
+ 348 0009 1B       		.uleb128 0x1b
+ 349 000a 0E       		.uleb128 0xe
+ 350 000b 55       		.uleb128 0x55
+ 351 000c 17       		.uleb128 0x17
+ 352 000d 11       		.uleb128 0x11
+ 353 000e 01       		.uleb128 0x1
+ 354 000f 10       		.uleb128 0x10
+ 355 0010 17       		.uleb128 0x17
+ 356 0011 00       		.byte	0
+ 357 0012 00       		.byte	0
+ 358 0013 02       		.uleb128 0x2
+ 359 0014 24       		.uleb128 0x24
+ 360 0015 00       		.byte	0
+ 361 0016 0B       		.uleb128 0xb
+ 362 0017 0B       		.uleb128 0xb
+ 363 0018 3E       		.uleb128 0x3e
+ 364 0019 0B       		.uleb128 0xb
+ 365 001a 03       		.uleb128 0x3
+ 366 001b 0E       		.uleb128 0xe
+ 367 001c 00       		.byte	0
+ 368 001d 00       		.byte	0
+ 369 001e 03       		.uleb128 0x3
+ 370 001f 24       		.uleb128 0x24
+ 371 0020 00       		.byte	0
+ 372 0021 0B       		.uleb128 0xb
+ 373 0022 0B       		.uleb128 0xb
+ 374 0023 3E       		.uleb128 0x3e
+ 375 0024 0B       		.uleb128 0xb
+ 376 0025 03       		.uleb128 0x3
+ 377 0026 08       		.uleb128 0x8
+ 378 0027 00       		.byte	0
+ 379 0028 00       		.byte	0
+ 380 0029 04       		.uleb128 0x4
+ 381 002a 16       		.uleb128 0x16
+ 382 002b 00       		.byte	0
+ 383 002c 03       		.uleb128 0x3
+ 384 002d 0E       		.uleb128 0xe
+ 385 002e 3A       		.uleb128 0x3a
+ 386 002f 0B       		.uleb128 0xb
+ 387 0030 3B       		.uleb128 0x3b
+ 388 0031 0B       		.uleb128 0xb
+ 389 0032 49       		.uleb128 0x49
+ 390 0033 13       		.uleb128 0x13
+ 391 0034 00       		.byte	0
+ 392 0035 00       		.byte	0
+ 393 0036 05       		.uleb128 0x5
+ 394 0037 16       		.uleb128 0x16
+ 395 0038 00       		.byte	0
+ 396 0039 03       		.uleb128 0x3
+ 397 003a 0E       		.uleb128 0xe
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc1XMOkX.s 			page 10
 
 
- 375 0121 01       		.byte	0x1
- 376 0122 88       		.byte	0x88
- 377 0123 6B000000 		.4byte	0x6b
- 378 0127 00000000 		.4byte	.LFB4
- 379 012b 1C000000 		.4byte	.LFE4-.LFB4
- 380 012f 01       		.uleb128 0x1
- 381 0130 9C       		.byte	0x9c
- 382 0131 00       		.byte	0
- 383              		.section	.debug_abbrev,"",%progbits
- 384              	.Ldebug_abbrev0:
- 385 0000 01       		.uleb128 0x1
- 386 0001 11       		.uleb128 0x11
- 387 0002 01       		.byte	0x1
- 388 0003 25       		.uleb128 0x25
- 389 0004 0E       		.uleb128 0xe
- 390 0005 13       		.uleb128 0x13
- 391 0006 0B       		.uleb128 0xb
- 392 0007 03       		.uleb128 0x3
- 393 0008 0E       		.uleb128 0xe
- 394 0009 1B       		.uleb128 0x1b
- 395 000a 0E       		.uleb128 0xe
- 396 000b 55       		.uleb128 0x55
- 397 000c 17       		.uleb128 0x17
- 398 000d 11       		.uleb128 0x11
- 399 000e 01       		.uleb128 0x1
- 400 000f 10       		.uleb128 0x10
- 401 0010 17       		.uleb128 0x17
- 402 0011 00       		.byte	0
- 403 0012 00       		.byte	0
- 404 0013 02       		.uleb128 0x2
- 405 0014 24       		.uleb128 0x24
- 406 0015 00       		.byte	0
- 407 0016 0B       		.uleb128 0xb
- 408 0017 0B       		.uleb128 0xb
- 409 0018 3E       		.uleb128 0x3e
- 410 0019 0B       		.uleb128 0xb
- 411 001a 03       		.uleb128 0x3
- 412 001b 0E       		.uleb128 0xe
- 413 001c 00       		.byte	0
- 414 001d 00       		.byte	0
- 415 001e 03       		.uleb128 0x3
- 416 001f 24       		.uleb128 0x24
- 417 0020 00       		.byte	0
- 418 0021 0B       		.uleb128 0xb
- 419 0022 0B       		.uleb128 0xb
- 420 0023 3E       		.uleb128 0x3e
- 421 0024 0B       		.uleb128 0xb
- 422 0025 03       		.uleb128 0x3
- 423 0026 08       		.uleb128 0x8
- 424 0027 00       		.byte	0
- 425 0028 00       		.byte	0
- 426 0029 04       		.uleb128 0x4
- 427 002a 16       		.uleb128 0x16
- 428 002b 00       		.byte	0
- 429 002c 03       		.uleb128 0x3
- 430 002d 0E       		.uleb128 0xe
- 431 002e 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccsZnNmz.s 			page 11
+ 398 003b 3A       		.uleb128 0x3a
+ 399 003c 0B       		.uleb128 0xb
+ 400 003d 3B       		.uleb128 0x3b
+ 401 003e 05       		.uleb128 0x5
+ 402 003f 49       		.uleb128 0x49
+ 403 0040 13       		.uleb128 0x13
+ 404 0041 00       		.byte	0
+ 405 0042 00       		.byte	0
+ 406 0043 06       		.uleb128 0x6
+ 407 0044 35       		.uleb128 0x35
+ 408 0045 00       		.byte	0
+ 409 0046 49       		.uleb128 0x49
+ 410 0047 13       		.uleb128 0x13
+ 411 0048 00       		.byte	0
+ 412 0049 00       		.byte	0
+ 413 004a 07       		.uleb128 0x7
+ 414 004b 2E       		.uleb128 0x2e
+ 415 004c 01       		.byte	0x1
+ 416 004d 3F       		.uleb128 0x3f
+ 417 004e 19       		.uleb128 0x19
+ 418 004f 03       		.uleb128 0x3
+ 419 0050 0E       		.uleb128 0xe
+ 420 0051 3A       		.uleb128 0x3a
+ 421 0052 0B       		.uleb128 0xb
+ 422 0053 3B       		.uleb128 0x3b
+ 423 0054 0B       		.uleb128 0xb
+ 424 0055 27       		.uleb128 0x27
+ 425 0056 19       		.uleb128 0x19
+ 426 0057 11       		.uleb128 0x11
+ 427 0058 01       		.uleb128 0x1
+ 428 0059 12       		.uleb128 0x12
+ 429 005a 06       		.uleb128 0x6
+ 430 005b 40       		.uleb128 0x40
+ 431 005c 18       		.uleb128 0x18
+ 432 005d 9742     		.uleb128 0x2117
+ 433 005f 19       		.uleb128 0x19
+ 434 0060 01       		.uleb128 0x1
+ 435 0061 13       		.uleb128 0x13
+ 436 0062 00       		.byte	0
+ 437 0063 00       		.byte	0
+ 438 0064 08       		.uleb128 0x8
+ 439 0065 05       		.uleb128 0x5
+ 440 0066 00       		.byte	0
+ 441 0067 03       		.uleb128 0x3
+ 442 0068 0E       		.uleb128 0xe
+ 443 0069 3A       		.uleb128 0x3a
+ 444 006a 0B       		.uleb128 0xb
+ 445 006b 3B       		.uleb128 0x3b
+ 446 006c 0B       		.uleb128 0xb
+ 447 006d 49       		.uleb128 0x49
+ 448 006e 13       		.uleb128 0x13
+ 449 006f 02       		.uleb128 0x2
+ 450 0070 18       		.uleb128 0x18
+ 451 0071 00       		.byte	0
+ 452 0072 00       		.byte	0
+ 453 0073 09       		.uleb128 0x9
+ 454 0074 34       		.uleb128 0x34
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc1XMOkX.s 			page 11
 
 
- 432 002f 0B       		.uleb128 0xb
- 433 0030 3B       		.uleb128 0x3b
- 434 0031 0B       		.uleb128 0xb
- 435 0032 49       		.uleb128 0x49
- 436 0033 13       		.uleb128 0x13
- 437 0034 00       		.byte	0
- 438 0035 00       		.byte	0
- 439 0036 05       		.uleb128 0x5
- 440 0037 16       		.uleb128 0x16
- 441 0038 00       		.byte	0
- 442 0039 03       		.uleb128 0x3
- 443 003a 0E       		.uleb128 0xe
- 444 003b 3A       		.uleb128 0x3a
- 445 003c 0B       		.uleb128 0xb
- 446 003d 3B       		.uleb128 0x3b
- 447 003e 05       		.uleb128 0x5
- 448 003f 49       		.uleb128 0x49
- 449 0040 13       		.uleb128 0x13
- 450 0041 00       		.byte	0
- 451 0042 00       		.byte	0
- 452 0043 06       		.uleb128 0x6
- 453 0044 35       		.uleb128 0x35
- 454 0045 00       		.byte	0
- 455 0046 49       		.uleb128 0x49
- 456 0047 13       		.uleb128 0x13
- 457 0048 00       		.byte	0
- 458 0049 00       		.byte	0
- 459 004a 07       		.uleb128 0x7
- 460 004b 2E       		.uleb128 0x2e
- 461 004c 01       		.byte	0x1
- 462 004d 3F       		.uleb128 0x3f
- 463 004e 19       		.uleb128 0x19
- 464 004f 03       		.uleb128 0x3
- 465 0050 0E       		.uleb128 0xe
- 466 0051 3A       		.uleb128 0x3a
- 467 0052 0B       		.uleb128 0xb
- 468 0053 3B       		.uleb128 0x3b
- 469 0054 0B       		.uleb128 0xb
- 470 0055 27       		.uleb128 0x27
- 471 0056 19       		.uleb128 0x19
- 472 0057 11       		.uleb128 0x11
- 473 0058 01       		.uleb128 0x1
- 474 0059 12       		.uleb128 0x12
- 475 005a 06       		.uleb128 0x6
- 476 005b 40       		.uleb128 0x40
- 477 005c 18       		.uleb128 0x18
- 478 005d 9742     		.uleb128 0x2117
- 479 005f 19       		.uleb128 0x19
- 480 0060 01       		.uleb128 0x1
- 481 0061 13       		.uleb128 0x13
- 482 0062 00       		.byte	0
- 483 0063 00       		.byte	0
- 484 0064 08       		.uleb128 0x8
- 485 0065 05       		.uleb128 0x5
- 486 0066 00       		.byte	0
- 487 0067 03       		.uleb128 0x3
- 488 0068 0E       		.uleb128 0xe
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccsZnNmz.s 			page 12
+ 455 0075 00       		.byte	0
+ 456 0076 03       		.uleb128 0x3
+ 457 0077 0E       		.uleb128 0xe
+ 458 0078 3A       		.uleb128 0x3a
+ 459 0079 0B       		.uleb128 0xb
+ 460 007a 3B       		.uleb128 0x3b
+ 461 007b 0B       		.uleb128 0xb
+ 462 007c 49       		.uleb128 0x49
+ 463 007d 13       		.uleb128 0x13
+ 464 007e 02       		.uleb128 0x2
+ 465 007f 18       		.uleb128 0x18
+ 466 0080 00       		.byte	0
+ 467 0081 00       		.byte	0
+ 468 0082 0A       		.uleb128 0xa
+ 469 0083 2E       		.uleb128 0x2e
+ 470 0084 00       		.byte	0
+ 471 0085 3F       		.uleb128 0x3f
+ 472 0086 19       		.uleb128 0x19
+ 473 0087 03       		.uleb128 0x3
+ 474 0088 0E       		.uleb128 0xe
+ 475 0089 3A       		.uleb128 0x3a
+ 476 008a 0B       		.uleb128 0xb
+ 477 008b 3B       		.uleb128 0x3b
+ 478 008c 0B       		.uleb128 0xb
+ 479 008d 27       		.uleb128 0x27
+ 480 008e 19       		.uleb128 0x19
+ 481 008f 49       		.uleb128 0x49
+ 482 0090 13       		.uleb128 0x13
+ 483 0091 11       		.uleb128 0x11
+ 484 0092 01       		.uleb128 0x1
+ 485 0093 12       		.uleb128 0x12
+ 486 0094 06       		.uleb128 0x6
+ 487 0095 40       		.uleb128 0x40
+ 488 0096 18       		.uleb128 0x18
+ 489 0097 9742     		.uleb128 0x2117
+ 490 0099 19       		.uleb128 0x19
+ 491 009a 00       		.byte	0
+ 492 009b 00       		.byte	0
+ 493 009c 00       		.byte	0
+ 494              		.section	.debug_aranges,"",%progbits
+ 495 0000 34000000 		.4byte	0x34
+ 496 0004 0200     		.2byte	0x2
+ 497 0006 00000000 		.4byte	.Ldebug_info0
+ 498 000a 04       		.byte	0x4
+ 499 000b 00       		.byte	0
+ 500 000c 0000     		.2byte	0
+ 501 000e 0000     		.2byte	0
+ 502 0010 00000000 		.4byte	.LFB0
+ 503 0014 34000000 		.4byte	.LFE0-.LFB0
+ 504 0018 00000000 		.4byte	.LFB1
+ 505 001c 38000000 		.4byte	.LFE1-.LFB1
+ 506 0020 00000000 		.4byte	.LFB2
+ 507 0024 1C000000 		.4byte	.LFE2-.LFB2
+ 508 0028 00000000 		.4byte	.LFB3
+ 509 002c 1C000000 		.4byte	.LFE3-.LFB3
+ 510 0030 00000000 		.4byte	0
+ 511 0034 00000000 		.4byte	0
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc1XMOkX.s 			page 12
 
 
- 489 0069 3A       		.uleb128 0x3a
- 490 006a 0B       		.uleb128 0xb
- 491 006b 3B       		.uleb128 0x3b
- 492 006c 0B       		.uleb128 0xb
- 493 006d 49       		.uleb128 0x49
- 494 006e 13       		.uleb128 0x13
- 495 006f 02       		.uleb128 0x2
- 496 0070 18       		.uleb128 0x18
- 497 0071 00       		.byte	0
- 498 0072 00       		.byte	0
- 499 0073 09       		.uleb128 0x9
- 500 0074 34       		.uleb128 0x34
- 501 0075 00       		.byte	0
- 502 0076 03       		.uleb128 0x3
- 503 0077 0E       		.uleb128 0xe
- 504 0078 3A       		.uleb128 0x3a
- 505 0079 0B       		.uleb128 0xb
- 506 007a 3B       		.uleb128 0x3b
- 507 007b 0B       		.uleb128 0xb
- 508 007c 49       		.uleb128 0x49
- 509 007d 13       		.uleb128 0x13
- 510 007e 02       		.uleb128 0x2
- 511 007f 18       		.uleb128 0x18
- 512 0080 00       		.byte	0
- 513 0081 00       		.byte	0
- 514 0082 0A       		.uleb128 0xa
- 515 0083 2E       		.uleb128 0x2e
- 516 0084 00       		.byte	0
- 517 0085 3F       		.uleb128 0x3f
- 518 0086 19       		.uleb128 0x19
- 519 0087 03       		.uleb128 0x3
- 520 0088 0E       		.uleb128 0xe
- 521 0089 3A       		.uleb128 0x3a
- 522 008a 0B       		.uleb128 0xb
- 523 008b 3B       		.uleb128 0x3b
- 524 008c 0B       		.uleb128 0xb
- 525 008d 27       		.uleb128 0x27
- 526 008e 19       		.uleb128 0x19
- 527 008f 49       		.uleb128 0x49
- 528 0090 13       		.uleb128 0x13
- 529 0091 11       		.uleb128 0x11
- 530 0092 01       		.uleb128 0x1
- 531 0093 12       		.uleb128 0x12
- 532 0094 06       		.uleb128 0x6
- 533 0095 40       		.uleb128 0x40
- 534 0096 18       		.uleb128 0x18
- 535 0097 9742     		.uleb128 0x2117
- 536 0099 19       		.uleb128 0x19
- 537 009a 00       		.byte	0
- 538 009b 00       		.byte	0
- 539 009c 00       		.byte	0
- 540              		.section	.debug_aranges,"",%progbits
- 541 0000 3C000000 		.4byte	0x3c
- 542 0004 0200     		.2byte	0x2
- 543 0006 00000000 		.4byte	.Ldebug_info0
- 544 000a 04       		.byte	0x4
- 545 000b 00       		.byte	0
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccsZnNmz.s 			page 13
+ 512              		.section	.debug_ranges,"",%progbits
+ 513              	.Ldebug_ranges0:
+ 514 0000 00000000 		.4byte	.LFB0
+ 515 0004 34000000 		.4byte	.LFE0
+ 516 0008 00000000 		.4byte	.LFB1
+ 517 000c 38000000 		.4byte	.LFE1
+ 518 0010 00000000 		.4byte	.LFB2
+ 519 0014 1C000000 		.4byte	.LFE2
+ 520 0018 00000000 		.4byte	.LFB3
+ 521 001c 1C000000 		.4byte	.LFE3
+ 522 0020 00000000 		.4byte	0
+ 523 0024 00000000 		.4byte	0
+ 524              		.section	.debug_line,"",%progbits
+ 525              	.Ldebug_line0:
+ 526 0000 95000000 		.section	.debug_str,"MS",%progbits,1
+ 526      02004700 
+ 526      00000201 
+ 526      FB0E0D00 
+ 526      01010101 
+ 527              	.LASF16:
+ 528 0000 76616C75 		.ascii	"value\000"
+ 528      6500
+ 529              	.LASF23:
+ 530 0006 73746174 		.ascii	"staticBits\000"
+ 530      69634269 
+ 530      747300
+ 531              	.LASF22:
+ 532 0011 443A5C77 		.ascii	"D:\\workspace\\Super-Eagle\\Super-Eagle\\Super-Eagl"
+ 532      6F726B73 
+ 532      70616365 
+ 532      5C537570 
+ 532      65722D45 
+ 533 0040 652E6379 		.ascii	"e.cydsn\000"
+ 533      64736E00 
+ 534              	.LASF9:
+ 535 0048 666C6F61 		.ascii	"float\000"
+ 535      7400
+ 536              	.LASF1:
+ 537 004e 756E7369 		.ascii	"unsigned char\000"
+ 537      676E6564 
+ 537      20636861 
+ 537      7200
+ 538              	.LASF21:
+ 539 005c 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\BTN_Back.c\000"
+ 539      6E657261 
+ 539      7465645F 
+ 539      536F7572 
+ 539      63655C50 
+ 540              	.LASF5:
+ 541 0080 6C6F6E67 		.ascii	"long unsigned int\000"
+ 541      20756E73 
+ 541      69676E65 
+ 541      6420696E 
+ 541      7400
+ 542              	.LASF3:
+ 543 0092 73686F72 		.ascii	"short unsigned int\000"
+ 543      7420756E 
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc1XMOkX.s 			page 13
 
 
- 546 000c 0000     		.2byte	0
- 547 000e 0000     		.2byte	0
- 548 0010 00000000 		.4byte	.LFB0
- 549 0014 34000000 		.4byte	.LFE0-.LFB0
- 550 0018 00000000 		.4byte	.LFB1
- 551 001c 38000000 		.4byte	.LFE1-.LFB1
- 552 0020 00000000 		.4byte	.LFB2
- 553 0024 1C000000 		.4byte	.LFE2-.LFB2
- 554 0028 00000000 		.4byte	.LFB3
- 555 002c 1C000000 		.4byte	.LFE3-.LFB3
- 556 0030 00000000 		.4byte	.LFB4
- 557 0034 1C000000 		.4byte	.LFE4-.LFB4
- 558 0038 00000000 		.4byte	0
- 559 003c 00000000 		.4byte	0
- 560              		.section	.debug_ranges,"",%progbits
- 561              	.Ldebug_ranges0:
- 562 0000 00000000 		.4byte	.LFB0
- 563 0004 34000000 		.4byte	.LFE0
- 564 0008 00000000 		.4byte	.LFB1
- 565 000c 38000000 		.4byte	.LFE1
- 566 0010 00000000 		.4byte	.LFB2
- 567 0014 1C000000 		.4byte	.LFE2
- 568 0018 00000000 		.4byte	.LFB3
- 569 001c 1C000000 		.4byte	.LFE3
- 570 0020 00000000 		.4byte	.LFB4
- 571 0024 1C000000 		.4byte	.LFE4
- 572 0028 00000000 		.4byte	0
- 573 002c 00000000 		.4byte	0
- 574              		.section	.debug_line,"",%progbits
- 575              	.Ldebug_line0:
- 576 0000 A7000000 		.section	.debug_str,"MS",%progbits,1
- 576      02004700 
- 576      00000201 
- 576      FB0E0D00 
- 576      01010101 
- 577              	.LASF16:
- 578 0000 76616C75 		.ascii	"value\000"
- 578      6500
- 579              	.LASF24:
- 580 0006 73746174 		.ascii	"staticBits\000"
- 580      69634269 
- 580      747300
- 581              	.LASF9:
- 582 0011 666C6F61 		.ascii	"float\000"
- 582      7400
- 583              	.LASF0:
- 584 0017 7369676E 		.ascii	"signed char\000"
- 584      65642063 
- 584      68617200 
- 585              	.LASF1:
- 586 0023 756E7369 		.ascii	"unsigned char\000"
- 586      676E6564 
- 586      20636861 
- 586      7200
- 587              	.LASF22:
- 588 0031 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\BTN_Back.c\000"
- 588      6E657261 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccsZnNmz.s 			page 14
+ 543      7369676E 
+ 543      65642069 
+ 543      6E7400
+ 544              	.LASF18:
+ 545 00a5 42544E5F 		.ascii	"BTN_Back_Read\000"
+ 545      4261636B 
+ 545      5F526561 
+ 545      6400
+ 546              	.LASF10:
+ 547 00b3 646F7562 		.ascii	"double\000"
+ 547      6C6500
+ 548              	.LASF8:
+ 549 00ba 756E7369 		.ascii	"unsigned int\000"
+ 549      676E6564 
+ 549      20696E74 
+ 549      00
+ 550              	.LASF14:
+ 551 00c7 42544E5F 		.ascii	"BTN_Back_Write\000"
+ 551      4261636B 
+ 551      5F577269 
+ 551      746500
+ 552              	.LASF7:
+ 553 00d6 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 553      206C6F6E 
+ 553      6720756E 
+ 553      7369676E 
+ 553      65642069 
+ 554              	.LASF17:
+ 555 00ed 6D6F6465 		.ascii	"mode\000"
+ 555      00
+ 556              	.LASF20:
+ 557 00f2 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 557      4320342E 
+ 557      382E3420 
+ 557      32303134 
+ 557      30353236 
+ 558 0125 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
+ 558      20726576 
+ 558      6973696F 
+ 558      6E203231 
+ 558      31333538 
+ 559 0158 30202D66 		.ascii	"0 -ffunction-sections\000"
+ 559      66756E63 
+ 559      74696F6E 
+ 559      2D736563 
+ 559      74696F6E 
+ 560              	.LASF13:
+ 561 016e 72656738 		.ascii	"reg8\000"
+ 561      00
+ 562              	.LASF6:
+ 563 0173 6C6F6E67 		.ascii	"long long int\000"
+ 563      206C6F6E 
+ 563      6720696E 
+ 563      7400
+ 564              	.LASF19:
+ 565 0181 42544E5F 		.ascii	"BTN_Back_ReadDataReg\000"
+ 565      4261636B 
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cc1XMOkX.s 			page 14
 
 
- 588      7465645F 
- 588      536F7572 
- 588      63655C50 
- 589              	.LASF5:
- 590 0055 6C6F6E67 		.ascii	"long unsigned int\000"
- 590      20756E73 
- 590      69676E65 
- 590      6420696E 
- 590      7400
- 591              	.LASF3:
- 592 0067 73686F72 		.ascii	"short unsigned int\000"
- 592      7420756E 
- 592      7369676E 
- 592      65642069 
- 592      6E7400
- 593              	.LASF18:
- 594 007a 42544E5F 		.ascii	"BTN_Back_Read\000"
- 594      4261636B 
- 594      5F526561 
- 594      6400
- 595              	.LASF10:
- 596 0088 646F7562 		.ascii	"double\000"
- 596      6C6500
- 597              	.LASF8:
- 598 008f 756E7369 		.ascii	"unsigned int\000"
- 598      676E6564 
- 598      20696E74 
- 598      00
- 599              	.LASF14:
- 600 009c 42544E5F 		.ascii	"BTN_Back_Write\000"
- 600      4261636B 
- 600      5F577269 
- 600      746500
- 601              	.LASF7:
- 602 00ab 6C6F6E67 		.ascii	"long long unsigned int\000"
- 602      206C6F6E 
- 602      6720756E 
- 602      7369676E 
- 602      65642069 
- 603              	.LASF17:
- 604 00c2 6D6F6465 		.ascii	"mode\000"
- 604      00
- 605              	.LASF21:
- 606 00c7 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
- 606      4320342E 
- 606      382E3420 
- 606      32303134 
- 606      30353236 
- 607 00fa 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
- 607      20726576 
- 607      6973696F 
- 607      6E203231 
- 607      31333538 
- 608 012d 30202D66 		.ascii	"0 -ffunction-sections\000"
- 608      66756E63 
- 608      74696F6E 
- 608      2D736563 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccsZnNmz.s 			page 15
-
-
- 608      74696F6E 
- 609              	.LASF13:
- 610 0143 72656738 		.ascii	"reg8\000"
- 610      00
- 611              	.LASF6:
- 612 0148 6C6F6E67 		.ascii	"long long int\000"
- 612      206C6F6E 
- 612      6720696E 
- 612      7400
- 613              	.LASF19:
- 614 0156 42544E5F 		.ascii	"BTN_Back_ReadDataReg\000"
- 614      4261636B 
- 614      5F526561 
- 614      64446174 
- 614      61526567 
- 615              	.LASF11:
- 616 016b 63686172 		.ascii	"char\000"
- 616      00
- 617              	.LASF15:
- 618 0170 42544E5F 		.ascii	"BTN_Back_SetDriveMode\000"
- 618      4261636B 
- 618      5F536574 
- 618      44726976 
- 618      654D6F64 
- 619              	.LASF20:
- 620 0186 42544E5F 		.ascii	"BTN_Back_ClearInterrupt\000"
- 620      4261636B 
- 620      5F436C65 
- 620      6172496E 
- 620      74657272 
- 621              	.LASF2:
- 622 019e 73686F72 		.ascii	"short int\000"
- 622      7420696E 
- 622      7400
- 623              	.LASF12:
- 624 01a8 75696E74 		.ascii	"uint8\000"
- 624      3800
- 625              	.LASF4:
- 626 01ae 6C6F6E67 		.ascii	"long int\000"
- 626      20696E74 
- 626      00
- 627              	.LASF23:
- 628 01b7 443A5C77 		.ascii	"D:\\workspace\\super-eagle\\Super-Eagle\\Super-Eagl"
- 628      6F726B73 
- 628      70616365 
- 628      5C737570 
- 628      65722D65 
- 629 01e6 652E6379 		.ascii	"e.cydsn\000"
- 629      64736E00 
- 630              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br
+ 565      5F526561 
+ 565      64446174 
+ 565      61526567 
+ 566              	.LASF11:
+ 567 0196 63686172 		.ascii	"char\000"
+ 567      00
+ 568              	.LASF15:
+ 569 019b 42544E5F 		.ascii	"BTN_Back_SetDriveMode\000"
+ 569      4261636B 
+ 569      5F536574 
+ 569      44726976 
+ 569      654D6F64 
+ 570              	.LASF2:
+ 571 01b1 73686F72 		.ascii	"short int\000"
+ 571      7420696E 
+ 571      7400
+ 572              	.LASF12:
+ 573 01bb 75696E74 		.ascii	"uint8\000"
+ 573      3800
+ 574              	.LASF4:
+ 575 01c1 6C6F6E67 		.ascii	"long int\000"
+ 575      20696E74 
+ 575      00
+ 576              	.LASF0:
+ 577 01ca 7369676E 		.ascii	"signed char\000"
+ 577      65642063 
+ 577      68617200 
+ 578              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

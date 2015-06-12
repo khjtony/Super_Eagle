@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
   23:.\Generated_Source\PSoC5/FSM_Timer.c **** 
   24:.\Generated_Source\PSoC5/FSM_Timer.c **** #include "FSM_Timer.h"
   25:.\Generated_Source\PSoC5/FSM_Timer.c **** 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 2
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 2
 
 
   26:.\Generated_Source\PSoC5/FSM_Timer.c **** uint8 FSM_Timer_initVar = 0u;
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
   68:.\Generated_Source\PSoC5/FSM_Timer.c **** 
   69:.\Generated_Source\PSoC5/FSM_Timer.c ****         #if (FSM_Timer_RunModeUsed == 2)
   70:.\Generated_Source\PSoC5/FSM_Timer.c ****             #if (CY_PSOC5A)
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 3
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 3
 
 
   71:.\Generated_Source\PSoC5/FSM_Timer.c ****                 /* Set last 2 bits of control2 register if one shot(halt on
@@ -170,15 +170,15 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  117:.\Generated_Source\PSoC5/FSM_Timer.c ****     /* Set Initial values from Configuration */
  118:.\Generated_Source\PSoC5/FSM_Timer.c ****     FSM_Timer_WritePeriod(FSM_Timer_INIT_PERIOD);
   45              		.loc 1 118 0
-  46 0006 46F67B40 		movw	r0, #27771
-  47 000a FFF7FEFF 		bl	FSM_Timer_WritePeriod
+  46 0006 FF20     		movs	r0, #255
+  47 0008 FFF7FEFF 		bl	FSM_Timer_WritePeriod
  119:.\Generated_Source\PSoC5/FSM_Timer.c ****     FSM_Timer_WriteCounter(FSM_Timer_INIT_PERIOD);
   48              		.loc 1 119 0
-  49 000e 46F67B40 		movw	r0, #27771
-  50 0012 FFF7FEFF 		bl	FSM_Timer_WriteCounter
+  49 000c FF20     		movs	r0, #255
+  50 000e FFF7FEFF 		bl	FSM_Timer_WriteCounter
  120:.\Generated_Source\PSoC5/FSM_Timer.c **** 
  121:.\Generated_Source\PSoC5/FSM_Timer.c ****     #if (FSM_Timer_UsingHWCaptureCounter)/* Capture counter is enabled */
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 4
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 4
 
 
  122:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_CAPTURE_COUNT_CTRL |= FSM_Timer_CNTR_ENABLE;
@@ -203,27 +203,27 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  141:.\Generated_Source\PSoC5/FSM_Timer.c ****         /* Enter Critical Region*/
  142:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_interruptState = CyEnterCriticalSection();
   51              		.loc 1 142 0
-  52 0016 FFF7FEFF 		bl	CyEnterCriticalSection
-  53 001a 0346     		mov	r3, r0
-  54 001c FB71     		strb	r3, [r7, #7]
+  52 0012 FFF7FEFF 		bl	CyEnterCriticalSection
+  53 0016 0346     		mov	r3, r0
+  54 0018 FB71     		strb	r3, [r7, #7]
  143:.\Generated_Source\PSoC5/FSM_Timer.c **** 
  144:.\Generated_Source\PSoC5/FSM_Timer.c ****         /* Use the interrupt output of the status register for IRQ output */
  145:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_STATUS_AUX_CTRL |= FSM_Timer_STATUS_ACTL_INT_EN_MASK;
   55              		.loc 1 145 0
-  56 001e 0A4B     		ldr	r3, .L2
-  57 0020 094A     		ldr	r2, .L2
-  58 0022 1278     		ldrb	r2, [r2]
-  59 0024 D2B2     		uxtb	r2, r2
-  60 0026 42F01002 		orr	r2, r2, #16
-  61 002a D2B2     		uxtb	r2, r2
-  62 002c 1A70     		strb	r2, [r3]
+  56 001a 0A4B     		ldr	r3, .L2
+  57 001c 094A     		ldr	r2, .L2
+  58 001e 1278     		ldrb	r2, [r2]
+  59 0020 D2B2     		uxtb	r2, r2
+  60 0022 42F01002 		orr	r2, r2, #16
+  61 0026 D2B2     		uxtb	r2, r2
+  62 0028 1A70     		strb	r2, [r3]
  146:.\Generated_Source\PSoC5/FSM_Timer.c **** 
  147:.\Generated_Source\PSoC5/FSM_Timer.c ****         /* Exit Critical Region*/
  148:.\Generated_Source\PSoC5/FSM_Timer.c ****         CyExitCriticalSection(FSM_Timer_interruptState);
   63              		.loc 1 148 0
-  64 002e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
-  65 0030 1846     		mov	r0, r3
-  66 0032 FFF7FEFF 		bl	CyExitCriticalSection
+  64 002a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+  65 002c 1846     		mov	r0, r3
+  66 002e FFF7FEFF 		bl	CyExitCriticalSection
  149:.\Generated_Source\PSoC5/FSM_Timer.c **** 
  150:.\Generated_Source\PSoC5/FSM_Timer.c ****         #if (FSM_Timer_EnableTriggerMode)
  151:.\Generated_Source\PSoC5/FSM_Timer.c ****             FSM_Timer_EnableTrigger();
@@ -236,26 +236,26 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  158:.\Generated_Source\PSoC5/FSM_Timer.c **** 
  159:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_ClearFIFO();
   67              		.loc 1 159 0
-  68 0036 FFF7FEFF 		bl	FSM_Timer_ClearFIFO
+  68 0032 FFF7FEFF 		bl	FSM_Timer_ClearFIFO
  160:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif /* Configure additional features of UDB implementation */
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 5
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 5
 
 
  161:.\Generated_Source\PSoC5/FSM_Timer.c **** 
  162:.\Generated_Source\PSoC5/FSM_Timer.c ****     FSM_Timer_SetInterruptMode(FSM_Timer_INIT_INTERRUPT_MODE);
   69              		.loc 1 162 0
-  70 003a 0120     		movs	r0, #1
-  71 003c FFF7FEFF 		bl	FSM_Timer_SetInterruptMode
+  70 0036 0120     		movs	r0, #1
+  71 0038 FFF7FEFF 		bl	FSM_Timer_SetInterruptMode
  163:.\Generated_Source\PSoC5/FSM_Timer.c **** }
   72              		.loc 1 163 0
-  73 0040 0837     		adds	r7, r7, #8
-  74 0042 BD46     		mov	sp, r7
+  73 003c 0837     		adds	r7, r7, #8
+  74 003e BD46     		mov	sp, r7
   75              		@ sp needed
-  76 0044 80BD     		pop	{r7, pc}
+  76 0040 80BD     		pop	{r7, pc}
   77              	.L3:
-  78 0046 00BF     		.align	2
+  78 0042 00BF     		.align	2
   79              	.L2:
-  80 0048 95640040 		.word	1073767573
+  80 0044 95640040 		.word	1073767573
   81              		.cfi_endproc
   82              	.LFE0:
   83              		.size	FSM_Timer_Init, .-FSM_Timer_Init
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  182:.\Generated_Source\PSoC5/FSM_Timer.c ****     /* Globally Enable the Fixed Function Block chosen */
  183:.\Generated_Source\PSoC5/FSM_Timer.c ****     #if (FSM_Timer_UsingFixedFunction)
  184:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_GLOBAL_ENABLE |= FSM_Timer_BLOCK_EN_MASK;
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 6
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 6
 
 
  185:.\Generated_Source\PSoC5/FSM_Timer.c ****         FSM_Timer_GLOBAL_STBY_ENABLE |= FSM_Timer_BLOCK_STBY_EN_MASK;
@@ -325,7 +325,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  115              	.L6:
  116              		.align	2
  117              	.L5:
- 118 001c 73640040 		.word	1073767539
+ 118 001c 75640040 		.word	1073767541
  119              		.cfi_endproc
  120              	.LFE1:
  121              		.size	FSM_Timer_Enable, .-FSM_Timer_Enable
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  211:.\Generated_Source\PSoC5/FSM_Timer.c **** *  FSM_Timer_initVar: Is modified when this function is called for the
  212:.\Generated_Source\PSoC5/FSM_Timer.c **** *   first time. Is used to ensure that initialization happens only once.
  213:.\Generated_Source\PSoC5/FSM_Timer.c **** *
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 7
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 7
 
 
  214:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  227:.\Generated_Source\PSoC5/FSM_Timer.c **** 
  228:.\Generated_Source\PSoC5/FSM_Timer.c **** 
  229:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 8
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 8
 
 
  230:.\Generated_Source\PSoC5/FSM_Timer.c **** * Function Name: FSM_Timer_Stop
@@ -477,8 +477,8 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  194              	.L13:
  195              		.align	2
  196              	.L12:
- 197 001c 73640040 		.word	1073767539
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 9
+ 197 001c 75640040 		.word	1073767541
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 9
 
 
  198              		.cfi_endproc
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  229 0012 BD46     		mov	sp, r7
  230              		@ sp needed
  231 0014 5DF8047B 		ldr	r7, [sp], #4
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 10
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 10
 
 
  232 0018 7047     		bx	lr
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  260 0006 1B78     		ldrb	r3, [r3]
  309:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif/* (FSM_Timer_UsingFixedFunction) */
  310:.\Generated_Source\PSoC5/FSM_Timer.c ****     /* Capture Data is now in the FIFO */
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 11
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 11
 
 
  311:.\Generated_Source\PSoC5/FSM_Timer.c **** }
@@ -610,7 +610,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  266              	.L19:
  267              		.align	2
  268              	.L18:
- 269 0010 03640040 		.word	1073767427
+ 269 0010 05640040 		.word	1073767429
  270              		.cfi_endproc
  271              	.LFE5:
  272              		.size	FSM_Timer_SoftwareCapture, .-FSM_Timer_SoftwareCapture
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  335:.\Generated_Source\PSoC5/FSM_Timer.c ****     return (FSM_Timer_STATUS);
  291              		.loc 1 335 0
  292 0004 034B     		ldr	r3, .L22
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 12
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 12
 
 
  293 0006 1B78     		ldrb	r3, [r3]
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  325              		.cfi_def_cfa_register 7
  358:.\Generated_Source\PSoC5/FSM_Timer.c ****     #if (!FSM_Timer_UDB_CONTROL_REG_REMOVED) 
  359:.\Generated_Source\PSoC5/FSM_Timer.c ****         return ((uint8)FSM_Timer_CONTROL);
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 13
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 13
 
 
  326              		.loc 1 359 0
@@ -738,7 +738,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  336              	.L27:
  337              		.align	2
  338              	.L26:
- 339 0014 73640040 		.word	1073767539
+ 339 0014 75640040 		.word	1073767541
  340              		.cfi_endproc
  341              	.LFE7:
  342              		.size	FSM_Timer_ReadControlRegister, .-FSM_Timer_ReadControlRegister
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  359 0002 83B0     		sub	sp, sp, #12
  360              		.cfi_def_cfa_offset 16
  361 0004 00AF     		add	r7, sp, #0
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 14
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 14
 
 
  362              		.cfi_def_cfa_register 7
@@ -803,7 +803,7 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  375              	.L30:
  376 001a 00BF     		.align	2
  377              	.L29:
- 378 001c 73640040 		.word	1073767539
+ 378 001c 75640040 		.word	1073767541
  379              		.cfi_endproc
  380              	.LFE8:
  381              		.size	FSM_Timer_WriteControlRegister, .-FSM_Timer_WriteControlRegister
@@ -833,12 +833,12 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  402:.\Generated_Source\PSoC5/FSM_Timer.c **** *  The present value of the counter.
  403:.\Generated_Source\PSoC5/FSM_Timer.c **** *
  404:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
- 405:.\Generated_Source\PSoC5/FSM_Timer.c **** uint32 FSM_Timer_ReadPeriod(void) 
+ 405:.\Generated_Source\PSoC5/FSM_Timer.c **** uint8 FSM_Timer_ReadPeriod(void) 
  406:.\Generated_Source\PSoC5/FSM_Timer.c **** {
  390              		.loc 1 406 0
  391              		.cfi_startproc
  392              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 15
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 15
 
 
  393              		@ frame_needed = 1, uses_anonymous_args = 0
@@ -849,25 +849,25 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  398 0002 00AF     		add	r7, sp, #0
  399              		.cfi_def_cfa_register 7
  407:.\Generated_Source\PSoC5/FSM_Timer.c ****    #if(FSM_Timer_UsingFixedFunction)
- 408:.\Generated_Source\PSoC5/FSM_Timer.c ****        return ((uint32)CY_GET_REG16(FSM_Timer_PERIOD_LSB_PTR));
+ 408:.\Generated_Source\PSoC5/FSM_Timer.c ****        return ((uint8)CY_GET_REG16(FSM_Timer_PERIOD_LSB_PTR));
  409:.\Generated_Source\PSoC5/FSM_Timer.c ****    #else
- 410:.\Generated_Source\PSoC5/FSM_Timer.c ****        return (CY_GET_REG24(FSM_Timer_PERIOD_LSB_PTR));
+ 410:.\Generated_Source\PSoC5/FSM_Timer.c ****        return (CY_GET_REG8(FSM_Timer_PERIOD_LSB_PTR));
  400              		.loc 1 410 0
- 401 0004 044B     		ldr	r3, .L33
- 402 0006 1B68     		ldr	r3, [r3]
- 403 0008 23F07F43 		bic	r3, r3, #-16777216
+ 401 0004 034B     		ldr	r3, .L33
+ 402 0006 1B78     		ldrb	r3, [r3]
+ 403 0008 DBB2     		uxtb	r3, r3
  411:.\Generated_Source\PSoC5/FSM_Timer.c ****    #endif /* (FSM_Timer_UsingFixedFunction) */
  412:.\Generated_Source\PSoC5/FSM_Timer.c **** }
  404              		.loc 1 412 0
- 405 000c 1846     		mov	r0, r3
- 406 000e BD46     		mov	sp, r7
+ 405 000a 1846     		mov	r0, r3
+ 406 000c BD46     		mov	sp, r7
  407              		@ sp needed
- 408 0010 5DF8047B 		ldr	r7, [sp], #4
- 409 0014 7047     		bx	lr
+ 408 000e 5DF8047B 		ldr	r7, [sp], #4
+ 409 0012 7047     		bx	lr
  410              	.L34:
- 411 0016 00BF     		.align	2
+ 411              		.align	2
  412              	.L33:
- 413 0018 23640040 		.word	1073767459
+ 413 0014 25640040 		.word	1073767461
  414              		.cfi_endproc
  415              	.LFE9:
  416              		.size	FSM_Timer_ReadPeriod, .-FSM_Timer_ReadPeriod
@@ -897,8 +897,8 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  428:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
  429:.\Generated_Source\PSoC5/FSM_Timer.c **** *
  430:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
- 431:.\Generated_Source\PSoC5/FSM_Timer.c **** void FSM_Timer_WritePeriod(uint32 period) 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 16
+ 431:.\Generated_Source\PSoC5/FSM_Timer.c **** void FSM_Timer_WritePeriod(uint8 period) 
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 16
 
 
  432:.\Generated_Source\PSoC5/FSM_Timer.c **** {
@@ -906,46 +906,48 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  426              		.cfi_startproc
  427              		@ args = 0, pretend = 0, frame = 8
  428              		@ frame_needed = 1, uses_anonymous_args = 0
- 429 0000 80B5     		push	{r7, lr}
- 430              		.cfi_def_cfa_offset 8
- 431              		.cfi_offset 7, -8
- 432              		.cfi_offset 14, -4
- 433 0002 82B0     		sub	sp, sp, #8
+ 429              		@ link register save eliminated.
+ 430 0000 80B4     		push	{r7}
+ 431              		.cfi_def_cfa_offset 4
+ 432              		.cfi_offset 7, -4
+ 433 0002 83B0     		sub	sp, sp, #12
  434              		.cfi_def_cfa_offset 16
  435 0004 00AF     		add	r7, sp, #0
  436              		.cfi_def_cfa_register 7
- 437 0006 7860     		str	r0, [r7, #4]
+ 437 0006 0346     		mov	r3, r0
+ 438 0008 FB71     		strb	r3, [r7, #7]
  433:.\Generated_Source\PSoC5/FSM_Timer.c ****     #if(FSM_Timer_UsingFixedFunction)
  434:.\Generated_Source\PSoC5/FSM_Timer.c ****         uint16 period_temp = (uint16)period;
  435:.\Generated_Source\PSoC5/FSM_Timer.c ****         CY_SET_REG16(FSM_Timer_PERIOD_LSB_PTR, period_temp);
  436:.\Generated_Source\PSoC5/FSM_Timer.c ****     #else
- 437:.\Generated_Source\PSoC5/FSM_Timer.c ****         CY_SET_REG24(FSM_Timer_PERIOD_LSB_PTR, period);
- 438              		.loc 1 437 0
- 439 0008 0348     		ldr	r0, .L36
- 440 000a 7968     		ldr	r1, [r7, #4]
- 441 000c FFF7FEFF 		bl	CySetReg24
+ 437:.\Generated_Source\PSoC5/FSM_Timer.c ****         CY_SET_REG8(FSM_Timer_PERIOD_LSB_PTR, period);
+ 439              		.loc 1 437 0
+ 440 000a 044B     		ldr	r3, .L36
+ 441 000c FA79     		ldrb	r2, [r7, #7]
+ 442 000e 1A70     		strb	r2, [r3]
  438:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif /*Write Period value with appropriate resolution suffix depending on UDB or fixed functi
  439:.\Generated_Source\PSoC5/FSM_Timer.c **** }
- 442              		.loc 1 439 0
- 443 0010 0837     		adds	r7, r7, #8
- 444 0012 BD46     		mov	sp, r7
- 445              		@ sp needed
- 446 0014 80BD     		pop	{r7, pc}
- 447              	.L37:
- 448 0016 00BF     		.align	2
- 449              	.L36:
- 450 0018 23640040 		.word	1073767459
- 451              		.cfi_endproc
- 452              	.LFE10:
- 453              		.size	FSM_Timer_WritePeriod, .-FSM_Timer_WritePeriod
- 454              		.section	.text.FSM_Timer_ReadCapture,"ax",%progbits
- 455              		.align	2
- 456              		.global	FSM_Timer_ReadCapture
- 457              		.thumb
- 458              		.thumb_func
- 459              		.type	FSM_Timer_ReadCapture, %function
- 460              	FSM_Timer_ReadCapture:
- 461              	.LFB11:
+ 443              		.loc 1 439 0
+ 444 0010 0C37     		adds	r7, r7, #12
+ 445 0012 BD46     		mov	sp, r7
+ 446              		@ sp needed
+ 447 0014 5DF8047B 		ldr	r7, [sp], #4
+ 448 0018 7047     		bx	lr
+ 449              	.L37:
+ 450 001a 00BF     		.align	2
+ 451              	.L36:
+ 452 001c 25640040 		.word	1073767461
+ 453              		.cfi_endproc
+ 454              	.LFE10:
+ 455              		.size	FSM_Timer_WritePeriod, .-FSM_Timer_WritePeriod
+ 456              		.section	.text.FSM_Timer_ReadCapture,"ax",%progbits
+ 457              		.align	2
+ 458              		.global	FSM_Timer_ReadCapture
+ 459              		.thumb
+ 460              		.thumb_func
+ 461              		.type	FSM_Timer_ReadCapture, %function
+ 462              	FSM_Timer_ReadCapture:
+ 463              	.LFB11:
  440:.\Generated_Source\PSoC5/FSM_Timer.c **** 
  441:.\Generated_Source\PSoC5/FSM_Timer.c **** 
  442:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
@@ -956,58 +958,58 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  447:.\Generated_Source\PSoC5/FSM_Timer.c **** *  This function returns the last value captured.
  448:.\Generated_Source\PSoC5/FSM_Timer.c **** *
  449:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 17
+
+
  450:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
  451:.\Generated_Source\PSoC5/FSM_Timer.c **** *
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 17
-
-
  452:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
  453:.\Generated_Source\PSoC5/FSM_Timer.c **** *  Present Capture value.
  454:.\Generated_Source\PSoC5/FSM_Timer.c **** *
  455:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
- 456:.\Generated_Source\PSoC5/FSM_Timer.c **** uint32 FSM_Timer_ReadCapture(void) 
+ 456:.\Generated_Source\PSoC5/FSM_Timer.c **** uint8 FSM_Timer_ReadCapture(void) 
  457:.\Generated_Source\PSoC5/FSM_Timer.c **** {
- 462              		.loc 1 457 0
- 463              		.cfi_startproc
- 464              		@ args = 0, pretend = 0, frame = 0
- 465              		@ frame_needed = 1, uses_anonymous_args = 0
- 466              		@ link register save eliminated.
- 467 0000 80B4     		push	{r7}
- 468              		.cfi_def_cfa_offset 4
- 469              		.cfi_offset 7, -4
- 470 0002 00AF     		add	r7, sp, #0
- 471              		.cfi_def_cfa_register 7
+ 464              		.loc 1 457 0
+ 465              		.cfi_startproc
+ 466              		@ args = 0, pretend = 0, frame = 0
+ 467              		@ frame_needed = 1, uses_anonymous_args = 0
+ 468              		@ link register save eliminated.
+ 469 0000 80B4     		push	{r7}
+ 470              		.cfi_def_cfa_offset 4
+ 471              		.cfi_offset 7, -4
+ 472 0002 00AF     		add	r7, sp, #0
+ 473              		.cfi_def_cfa_register 7
  458:.\Generated_Source\PSoC5/FSM_Timer.c ****    #if(FSM_Timer_UsingFixedFunction)
- 459:.\Generated_Source\PSoC5/FSM_Timer.c ****        return ((uint32)CY_GET_REG16(FSM_Timer_CAPTURE_LSB_PTR));
+ 459:.\Generated_Source\PSoC5/FSM_Timer.c ****        return ((uint8)CY_GET_REG16(FSM_Timer_CAPTURE_LSB_PTR));
  460:.\Generated_Source\PSoC5/FSM_Timer.c ****    #else
- 461:.\Generated_Source\PSoC5/FSM_Timer.c ****        return (CY_GET_REG24(FSM_Timer_CAPTURE_LSB_PTR));
- 472              		.loc 1 461 0
- 473 0004 044B     		ldr	r3, .L40
- 474 0006 1B68     		ldr	r3, [r3]
- 475 0008 23F07F43 		bic	r3, r3, #-16777216
+ 461:.\Generated_Source\PSoC5/FSM_Timer.c ****        return (CY_GET_REG8(FSM_Timer_CAPTURE_LSB_PTR));
+ 474              		.loc 1 461 0
+ 475 0004 034B     		ldr	r3, .L40
+ 476 0006 1B78     		ldrb	r3, [r3]
+ 477 0008 DBB2     		uxtb	r3, r3
  462:.\Generated_Source\PSoC5/FSM_Timer.c ****    #endif /* (FSM_Timer_UsingFixedFunction) */
  463:.\Generated_Source\PSoC5/FSM_Timer.c **** }
- 476              		.loc 1 463 0
- 477 000c 1846     		mov	r0, r3
- 478 000e BD46     		mov	sp, r7
- 479              		@ sp needed
- 480 0010 5DF8047B 		ldr	r7, [sp], #4
- 481 0014 7047     		bx	lr
- 482              	.L41:
- 483 0016 00BF     		.align	2
- 484              	.L40:
- 485 0018 43640040 		.word	1073767491
- 486              		.cfi_endproc
- 487              	.LFE11:
- 488              		.size	FSM_Timer_ReadCapture, .-FSM_Timer_ReadCapture
- 489              		.section	.text.FSM_Timer_WriteCounter,"ax",%progbits
- 490              		.align	2
- 491              		.global	FSM_Timer_WriteCounter
- 492              		.thumb
- 493              		.thumb_func
- 494              		.type	FSM_Timer_WriteCounter, %function
- 495              	FSM_Timer_WriteCounter:
- 496              	.LFB12:
+ 478              		.loc 1 463 0
+ 479 000a 1846     		mov	r0, r3
+ 480 000c BD46     		mov	sp, r7
+ 481              		@ sp needed
+ 482 000e 5DF8047B 		ldr	r7, [sp], #4
+ 483 0012 7047     		bx	lr
+ 484              	.L41:
+ 485              		.align	2
+ 486              	.L40:
+ 487 0014 45640040 		.word	1073767493
+ 488              		.cfi_endproc
+ 489              	.LFE11:
+ 490              		.size	FSM_Timer_ReadCapture, .-FSM_Timer_ReadCapture
+ 491              		.section	.text.FSM_Timer_WriteCounter,"ax",%progbits
+ 492              		.align	2
+ 493              		.global	FSM_Timer_WriteCounter
+ 494              		.thumb
+ 495              		.thumb_func
+ 496              		.type	FSM_Timer_WriteCounter, %function
+ 497              	FSM_Timer_WriteCounter:
+ 498              	.LFB12:
  464:.\Generated_Source\PSoC5/FSM_Timer.c **** 
  465:.\Generated_Source\PSoC5/FSM_Timer.c **** 
  466:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
@@ -1016,32 +1018,33 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  469:.\Generated_Source\PSoC5/FSM_Timer.c **** *
  470:.\Generated_Source\PSoC5/FSM_Timer.c **** * Summary:
  471:.\Generated_Source\PSoC5/FSM_Timer.c **** *  This funtion is used to set the counter to a specific value
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 18
+
+
  472:.\Generated_Source\PSoC5/FSM_Timer.c **** *
  473:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 18
-
-
  474:.\Generated_Source\PSoC5/FSM_Timer.c **** *  counter:  New counter value.
  475:.\Generated_Source\PSoC5/FSM_Timer.c **** *
  476:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
  477:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
  478:.\Generated_Source\PSoC5/FSM_Timer.c **** *
  479:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
- 480:.\Generated_Source\PSoC5/FSM_Timer.c **** void FSM_Timer_WriteCounter(uint32 counter) 
+ 480:.\Generated_Source\PSoC5/FSM_Timer.c **** void FSM_Timer_WriteCounter(uint8 counter) 
  481:.\Generated_Source\PSoC5/FSM_Timer.c **** {
- 497              		.loc 1 481 0
- 498              		.cfi_startproc
- 499              		@ args = 0, pretend = 0, frame = 8
- 500              		@ frame_needed = 1, uses_anonymous_args = 0
- 501 0000 80B5     		push	{r7, lr}
- 502              		.cfi_def_cfa_offset 8
- 503              		.cfi_offset 7, -8
- 504              		.cfi_offset 14, -4
- 505 0002 82B0     		sub	sp, sp, #8
- 506              		.cfi_def_cfa_offset 16
- 507 0004 00AF     		add	r7, sp, #0
- 508              		.cfi_def_cfa_register 7
- 509 0006 7860     		str	r0, [r7, #4]
+ 499              		.loc 1 481 0
+ 500              		.cfi_startproc
+ 501              		@ args = 0, pretend = 0, frame = 8
+ 502              		@ frame_needed = 1, uses_anonymous_args = 0
+ 503              		@ link register save eliminated.
+ 504 0000 80B4     		push	{r7}
+ 505              		.cfi_def_cfa_offset 4
+ 506              		.cfi_offset 7, -4
+ 507 0002 83B0     		sub	sp, sp, #12
+ 508              		.cfi_def_cfa_offset 16
+ 509 0004 00AF     		add	r7, sp, #0
+ 510              		.cfi_def_cfa_register 7
+ 511 0006 0346     		mov	r3, r0
+ 512 0008 FB71     		strb	r3, [r7, #7]
  482:.\Generated_Source\PSoC5/FSM_Timer.c ****    #if(FSM_Timer_UsingFixedFunction)
  483:.\Generated_Source\PSoC5/FSM_Timer.c ****         /* This functionality is removed until a FixedFunction HW update to
  484:.\Generated_Source\PSoC5/FSM_Timer.c ****          * allow this register to be written
@@ -1049,38 +1052,39 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  486:.\Generated_Source\PSoC5/FSM_Timer.c ****         CY_SET_REG16(FSM_Timer_COUNTER_LSB_PTR, (uint16)counter);
  487:.\Generated_Source\PSoC5/FSM_Timer.c ****         
  488:.\Generated_Source\PSoC5/FSM_Timer.c ****     #else
- 489:.\Generated_Source\PSoC5/FSM_Timer.c ****         CY_SET_REG24(FSM_Timer_COUNTER_LSB_PTR, counter);
- 510              		.loc 1 489 0
- 511 0008 0348     		ldr	r0, .L43
- 512 000a 7968     		ldr	r1, [r7, #4]
- 513 000c FFF7FEFF 		bl	CySetReg24
+ 489:.\Generated_Source\PSoC5/FSM_Timer.c ****         CY_SET_REG8(FSM_Timer_COUNTER_LSB_PTR, counter);
+ 513              		.loc 1 489 0
+ 514 000a 044B     		ldr	r3, .L43
+ 515 000c FA79     		ldrb	r2, [r7, #7]
+ 516 000e 1A70     		strb	r2, [r3]
  490:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif /* Set Write Counter only for the UDB implementation (Write Counter not available in fix
  491:.\Generated_Source\PSoC5/FSM_Timer.c **** }
- 514              		.loc 1 491 0
- 515 0010 0837     		adds	r7, r7, #8
- 516 0012 BD46     		mov	sp, r7
- 517              		@ sp needed
- 518 0014 80BD     		pop	{r7, pc}
- 519              	.L44:
- 520 0016 00BF     		.align	2
- 521              	.L43:
- 522 0018 03640040 		.word	1073767427
- 523              		.cfi_endproc
- 524              	.LFE12:
- 525              		.size	FSM_Timer_WriteCounter, .-FSM_Timer_WriteCounter
- 526              		.section	.text.FSM_Timer_ReadCounter,"ax",%progbits
- 527              		.align	2
- 528              		.global	FSM_Timer_ReadCounter
- 529              		.thumb
- 530              		.thumb_func
- 531              		.type	FSM_Timer_ReadCounter, %function
- 532              	FSM_Timer_ReadCounter:
- 533              	.LFB13:
+ 517              		.loc 1 491 0
+ 518 0010 0C37     		adds	r7, r7, #12
+ 519 0012 BD46     		mov	sp, r7
+ 520              		@ sp needed
+ 521 0014 5DF8047B 		ldr	r7, [sp], #4
+ 522 0018 7047     		bx	lr
+ 523              	.L44:
+ 524 001a 00BF     		.align	2
+ 525              	.L43:
+ 526 001c 05640040 		.word	1073767429
+ 527              		.cfi_endproc
+ 528              	.LFE12:
+ 529              		.size	FSM_Timer_WriteCounter, .-FSM_Timer_WriteCounter
+ 530              		.section	.text.FSM_Timer_ReadCounter,"ax",%progbits
+ 531              		.align	2
+ 532              		.global	FSM_Timer_ReadCounter
+ 533              		.thumb
+ 534              		.thumb_func
+ 535              		.type	FSM_Timer_ReadCounter, %function
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 19
+
+
+ 536              	FSM_Timer_ReadCounter:
+ 537              	.LFB13:
  492:.\Generated_Source\PSoC5/FSM_Timer.c **** 
  493:.\Generated_Source\PSoC5/FSM_Timer.c **** 
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 19
-
-
  494:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
  495:.\Generated_Source\PSoC5/FSM_Timer.c **** * Function Name: FSM_Timer_ReadCounter
  496:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************
@@ -1095,18 +1099,18 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  505:.\Generated_Source\PSoC5/FSM_Timer.c **** *  Present compare value.
  506:.\Generated_Source\PSoC5/FSM_Timer.c **** *
  507:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
- 508:.\Generated_Source\PSoC5/FSM_Timer.c **** uint32 FSM_Timer_ReadCounter(void) 
+ 508:.\Generated_Source\PSoC5/FSM_Timer.c **** uint8 FSM_Timer_ReadCounter(void) 
  509:.\Generated_Source\PSoC5/FSM_Timer.c **** {
- 534              		.loc 1 509 0
- 535              		.cfi_startproc
- 536              		@ args = 0, pretend = 0, frame = 0
- 537              		@ frame_needed = 1, uses_anonymous_args = 0
- 538              		@ link register save eliminated.
- 539 0000 80B4     		push	{r7}
- 540              		.cfi_def_cfa_offset 4
- 541              		.cfi_offset 7, -4
- 542 0002 00AF     		add	r7, sp, #0
- 543              		.cfi_def_cfa_register 7
+ 538              		.loc 1 509 0
+ 539              		.cfi_startproc
+ 540              		@ args = 0, pretend = 0, frame = 0
+ 541              		@ frame_needed = 1, uses_anonymous_args = 0
+ 542              		@ link register save eliminated.
+ 543 0000 80B4     		push	{r7}
+ 544              		.cfi_def_cfa_offset 4
+ 545              		.cfi_offset 7, -4
+ 546 0002 00AF     		add	r7, sp, #0
+ 547              		.cfi_def_cfa_register 7
  510:.\Generated_Source\PSoC5/FSM_Timer.c ****     /* Force capture by reading Accumulator */
  511:.\Generated_Source\PSoC5/FSM_Timer.c ****     /* Must first do a software capture to be able to read the counter */
  512:.\Generated_Source\PSoC5/FSM_Timer.c ****     /* It is up to the user code to make sure there isn't already captured data in the FIFO */
@@ -1114,47 +1118,47 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  514:.\Generated_Source\PSoC5/FSM_Timer.c ****         (void)CY_GET_REG16(FSM_Timer_COUNTER_LSB_PTR);
  515:.\Generated_Source\PSoC5/FSM_Timer.c ****     #else
  516:.\Generated_Source\PSoC5/FSM_Timer.c ****         (void)CY_GET_REG8(FSM_Timer_COUNTER_LSB_PTR_8BIT);
- 544              		.loc 1 516 0
- 545 0004 054B     		ldr	r3, .L47
- 546 0006 1B78     		ldrb	r3, [r3]
+ 548              		.loc 1 516 0
+ 549 0004 044B     		ldr	r3, .L47
+ 550 0006 1B78     		ldrb	r3, [r3]
  517:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif/* (FSM_Timer_UsingFixedFunction) */
  518:.\Generated_Source\PSoC5/FSM_Timer.c **** 
  519:.\Generated_Source\PSoC5/FSM_Timer.c ****     /* Read the data from the FIFO (or capture register for Fixed Function)*/
  520:.\Generated_Source\PSoC5/FSM_Timer.c ****     #if(FSM_Timer_UsingFixedFunction)
- 521:.\Generated_Source\PSoC5/FSM_Timer.c ****         return ((uint32)CY_GET_REG16(FSM_Timer_CAPTURE_LSB_PTR));
+ 521:.\Generated_Source\PSoC5/FSM_Timer.c ****         return ((uint8)CY_GET_REG16(FSM_Timer_CAPTURE_LSB_PTR));
  522:.\Generated_Source\PSoC5/FSM_Timer.c ****     #else
- 523:.\Generated_Source\PSoC5/FSM_Timer.c ****         return (CY_GET_REG24(FSM_Timer_CAPTURE_LSB_PTR));
- 547              		.loc 1 523 0
- 548 0008 054B     		ldr	r3, .L47+4
- 549 000a 1B68     		ldr	r3, [r3]
- 550 000c 23F07F43 		bic	r3, r3, #-16777216
+ 523:.\Generated_Source\PSoC5/FSM_Timer.c ****         return (CY_GET_REG8(FSM_Timer_CAPTURE_LSB_PTR));
+ 551              		.loc 1 523 0
+ 552 0008 044B     		ldr	r3, .L47+4
+ 553 000a 1B78     		ldrb	r3, [r3]
+ 554 000c DBB2     		uxtb	r3, r3
  524:.\Generated_Source\PSoC5/FSM_Timer.c ****     #endif /* (FSM_Timer_UsingFixedFunction) */
  525:.\Generated_Source\PSoC5/FSM_Timer.c **** }
- 551              		.loc 1 525 0
- 552 0010 1846     		mov	r0, r3
- 553 0012 BD46     		mov	sp, r7
- 554              		@ sp needed
- 555 0014 5DF8047B 		ldr	r7, [sp], #4
- 556 0018 7047     		bx	lr
- 557              	.L48:
- 558 001a 00BF     		.align	2
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 20
+ 555              		.loc 1 525 0
+ 556 000e 1846     		mov	r0, r3
+ 557 0010 BD46     		mov	sp, r7
+ 558              		@ sp needed
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 20
 
 
- 559              	.L47:
- 560 001c 03640040 		.word	1073767427
- 561 0020 43640040 		.word	1073767491
- 562              		.cfi_endproc
- 563              	.LFE13:
- 564              		.size	FSM_Timer_ReadCounter, .-FSM_Timer_ReadCounter
- 565              		.section	.text.FSM_Timer_ClearFIFO,"ax",%progbits
- 566              		.align	2
- 567              		.global	FSM_Timer_ClearFIFO
- 568              		.thumb
- 569              		.thumb_func
- 570              		.type	FSM_Timer_ClearFIFO, %function
- 571              	FSM_Timer_ClearFIFO:
- 572              	.LFB14:
+ 559 0012 5DF8047B 		ldr	r7, [sp], #4
+ 560 0016 7047     		bx	lr
+ 561              	.L48:
+ 562              		.align	2
+ 563              	.L47:
+ 564 0018 05640040 		.word	1073767429
+ 565 001c 45640040 		.word	1073767493
+ 566              		.cfi_endproc
+ 567              	.LFE13:
+ 568              		.size	FSM_Timer_ReadCounter, .-FSM_Timer_ReadCounter
+ 569              		.section	.text.FSM_Timer_ClearFIFO,"ax",%progbits
+ 570              		.align	2
+ 571              		.global	FSM_Timer_ClearFIFO
+ 572              		.thumb
+ 573              		.thumb_func
+ 574              		.type	FSM_Timer_ClearFIFO, %function
+ 575              	FSM_Timer_ClearFIFO:
+ 576              	.LFB14:
  526:.\Generated_Source\PSoC5/FSM_Timer.c **** 
  527:.\Generated_Source\PSoC5/FSM_Timer.c **** 
  528:.\Generated_Source\PSoC5/FSM_Timer.c **** #if(!FSM_Timer_UsingFixedFunction) /* UDB Specific Functions */
@@ -1194,13 +1198,13 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  562:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
  563:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
  564:.\Generated_Source\PSoC5/FSM_Timer.c **** *
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 21
+
+
  565:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
  566:.\Generated_Source\PSoC5/FSM_Timer.c **** void FSM_Timer_SetCaptureMode(uint8 captureMode) 
  567:.\Generated_Source\PSoC5/FSM_Timer.c **** {
  568:.\Generated_Source\PSoC5/FSM_Timer.c ****     /* This must only set to two bits of the control register associated */
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 21
-
-
  569:.\Generated_Source\PSoC5/FSM_Timer.c ****     captureMode = ((uint8)((uint8)captureMode << FSM_Timer_CTRL_CAP_MODE_SHIFT));
  570:.\Generated_Source\PSoC5/FSM_Timer.c ****     captureMode &= (FSM_Timer_CTRL_CAP_MODE_MASK);
  571:.\Generated_Source\PSoC5/FSM_Timer.c **** 
@@ -1254,13 +1258,13 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  619:.\Generated_Source\PSoC5/FSM_Timer.c **** #endif /* Remove API if Trigger Mode is not Software Controlled */
  620:.\Generated_Source\PSoC5/FSM_Timer.c **** 
  621:.\Generated_Source\PSoC5/FSM_Timer.c **** #if (FSM_Timer_EnableTriggerMode)
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 22
+
+
  622:.\Generated_Source\PSoC5/FSM_Timer.c **** 
  623:.\Generated_Source\PSoC5/FSM_Timer.c **** 
  624:.\Generated_Source\PSoC5/FSM_Timer.c **** /*******************************************************************************
  625:.\Generated_Source\PSoC5/FSM_Timer.c **** * Function Name: FSM_Timer_EnableTrigger
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 22
-
-
  626:.\Generated_Source\PSoC5/FSM_Timer.c **** ********************************************************************************
  627:.\Generated_Source\PSoC5/FSM_Timer.c **** *
  628:.\Generated_Source\PSoC5/FSM_Timer.c **** * Summary:
@@ -1314,13 +1318,13 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  676:.\Generated_Source\PSoC5/FSM_Timer.c **** *  This function sets the capture count before an interrupt is triggered.
  677:.\Generated_Source\PSoC5/FSM_Timer.c **** *
  678:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 23
+
+
  679:.\Generated_Source\PSoC5/FSM_Timer.c **** *  interruptCount:  A value between 0 and 3 is valid.  If the value is 0, then
  680:.\Generated_Source\PSoC5/FSM_Timer.c **** *                   an interrupt will occur each time a capture occurs.
  681:.\Generated_Source\PSoC5/FSM_Timer.c **** *                   A value of 1 to 3 will cause the interrupt
  682:.\Generated_Source\PSoC5/FSM_Timer.c **** *                   to delay by the same number of captures.
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 23
-
-
  683:.\Generated_Source\PSoC5/FSM_Timer.c **** *
  684:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
  685:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
@@ -1374,13 +1378,13 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  733:.\Generated_Source\PSoC5/FSM_Timer.c **** *  This function reads the capture count setting
  734:.\Generated_Source\PSoC5/FSM_Timer.c **** *
  735:.\Generated_Source\PSoC5/FSM_Timer.c **** * Parameters:
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 24
+
+
  736:.\Generated_Source\PSoC5/FSM_Timer.c **** *  void
  737:.\Generated_Source\PSoC5/FSM_Timer.c **** *
  738:.\Generated_Source\PSoC5/FSM_Timer.c **** * Return:
  739:.\Generated_Source\PSoC5/FSM_Timer.c **** *  Returns the Capture Count Setting
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 24
-
-
  740:.\Generated_Source\PSoC5/FSM_Timer.c **** *
  741:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
  742:.\Generated_Source\PSoC5/FSM_Timer.c **** uint8 FSM_Timer_ReadCaptureCount(void) 
@@ -1406,976 +1410,930 @@ ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 1
  762:.\Generated_Source\PSoC5/FSM_Timer.c **** *******************************************************************************/
  763:.\Generated_Source\PSoC5/FSM_Timer.c **** void FSM_Timer_ClearFIFO(void) 
  764:.\Generated_Source\PSoC5/FSM_Timer.c **** {
- 573              		.loc 1 764 0
- 574              		.cfi_startproc
- 575              		@ args = 0, pretend = 0, frame = 0
- 576              		@ frame_needed = 1, uses_anonymous_args = 0
- 577 0000 80B5     		push	{r7, lr}
- 578              		.cfi_def_cfa_offset 8
- 579              		.cfi_offset 7, -8
- 580              		.cfi_offset 14, -4
- 581 0002 00AF     		add	r7, sp, #0
- 582              		.cfi_def_cfa_register 7
+ 577              		.loc 1 764 0
+ 578              		.cfi_startproc
+ 579              		@ args = 0, pretend = 0, frame = 0
+ 580              		@ frame_needed = 1, uses_anonymous_args = 0
+ 581 0000 80B5     		push	{r7, lr}
+ 582              		.cfi_def_cfa_offset 8
+ 583              		.cfi_offset 7, -8
+ 584              		.cfi_offset 14, -4
+ 585 0002 00AF     		add	r7, sp, #0
+ 586              		.cfi_def_cfa_register 7
  765:.\Generated_Source\PSoC5/FSM_Timer.c ****     while(0u != (FSM_Timer_ReadStatusRegister() & FSM_Timer_STATUS_FIFONEMP))
- 583              		.loc 1 765 0
- 584 0004 01E0     		b	.L50
- 585              	.L51:
+ 587              		.loc 1 765 0
+ 588 0004 01E0     		b	.L50
+ 589              	.L51:
  766:.\Generated_Source\PSoC5/FSM_Timer.c ****     {
  767:.\Generated_Source\PSoC5/FSM_Timer.c ****         (void)FSM_Timer_ReadCapture();
- 586              		.loc 1 767 0
- 587 0006 FFF7FEFF 		bl	FSM_Timer_ReadCapture
- 588              	.L50:
+ 590              		.loc 1 767 0
+ 591 0006 FFF7FEFF 		bl	FSM_Timer_ReadCapture
+ 592              	.L50:
  765:.\Generated_Source\PSoC5/FSM_Timer.c ****     while(0u != (FSM_Timer_ReadStatusRegister() & FSM_Timer_STATUS_FIFONEMP))
- 589              		.loc 1 765 0 discriminator 1
- 590 000a FFF7FEFF 		bl	FSM_Timer_ReadStatusRegister
- 591 000e 0346     		mov	r3, r0
- 592 0010 03F00803 		and	r3, r3, #8
- 593 0014 002B     		cmp	r3, #0
- 594 0016 F6D1     		bne	.L51
+ 593              		.loc 1 765 0 discriminator 1
+ 594 000a FFF7FEFF 		bl	FSM_Timer_ReadStatusRegister
+ 595 000e 0346     		mov	r3, r0
+ 596 0010 03F00803 		and	r3, r3, #8
+ 597 0014 002B     		cmp	r3, #0
+ 598 0016 F6D1     		bne	.L51
  768:.\Generated_Source\PSoC5/FSM_Timer.c ****     }
  769:.\Generated_Source\PSoC5/FSM_Timer.c **** }
- 595              		.loc 1 769 0
- 596 0018 80BD     		pop	{r7, pc}
- 597              		.cfi_endproc
- 598              	.LFE14:
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 25
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 25
 
 
- 599              		.size	FSM_Timer_ClearFIFO, .-FSM_Timer_ClearFIFO
- 600 001a 00BF     		.text
- 601              	.Letext0:
- 602              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
- 603              		.section	.debug_info,"",%progbits
- 604              	.Ldebug_info0:
- 605 0000 4E020000 		.4byte	0x24e
- 606 0004 0400     		.2byte	0x4
- 607 0006 00000000 		.4byte	.Ldebug_abbrev0
- 608 000a 04       		.byte	0x4
- 609 000b 01       		.uleb128 0x1
- 610 000c 77010000 		.4byte	.LASF36
- 611 0010 01       		.byte	0x1
- 612 0011 2A020000 		.4byte	.LASF37
- 613 0015 F3010000 		.4byte	.LASF38
- 614 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 615 001d 00000000 		.4byte	0
- 616 0021 00000000 		.4byte	.Ldebug_line0
- 617 0025 02       		.uleb128 0x2
- 618 0026 01       		.byte	0x1
- 619 0027 06       		.byte	0x6
- 620 0028 C7020000 		.4byte	.LASF0
- 621 002c 02       		.uleb128 0x2
- 622 002d 01       		.byte	0x1
- 623 002e 08       		.byte	0x8
- 624 002f 93000000 		.4byte	.LASF1
- 625 0033 02       		.uleb128 0x2
- 626 0034 02       		.byte	0x2
- 627 0035 05       		.byte	0x5
- 628 0036 74020000 		.4byte	.LASF2
- 629 003a 02       		.uleb128 0x2
- 630 003b 02       		.byte	0x2
- 631 003c 07       		.byte	0x7
- 632 003d 2C000000 		.4byte	.LASF3
- 633 0041 02       		.uleb128 0x2
- 634 0042 04       		.byte	0x4
- 635 0043 05       		.byte	0x5
- 636 0044 98020000 		.4byte	.LASF4
- 637 0048 02       		.uleb128 0x2
- 638 0049 04       		.byte	0x4
- 639 004a 07       		.byte	0x7
- 640 004b A6000000 		.4byte	.LASF5
- 641 004f 02       		.uleb128 0x2
- 642 0050 08       		.byte	0x8
- 643 0051 05       		.byte	0x5
- 644 0052 58020000 		.4byte	.LASF6
- 645 0056 02       		.uleb128 0x2
- 646 0057 08       		.byte	0x8
- 647 0058 07       		.byte	0x7
- 648 0059 49010000 		.4byte	.LASF7
- 649 005d 03       		.uleb128 0x3
- 650 005e 04       		.byte	0x4
- 651 005f 05       		.byte	0x5
- 652 0060 696E7400 		.ascii	"int\000"
- 653 0064 02       		.uleb128 0x2
- 654 0065 04       		.byte	0x4
- 655 0066 07       		.byte	0x7
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 26
+ 599              		.loc 1 769 0
+ 600 0018 80BD     		pop	{r7, pc}
+ 601              		.cfi_endproc
+ 602              	.LFE14:
+ 603              		.size	FSM_Timer_ClearFIFO, .-FSM_Timer_ClearFIFO
+ 604 001a 00BF     		.text
+ 605              	.Letext0:
+ 606              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 607              		.section	.debug_info,"",%progbits
+ 608              	.Ldebug_info0:
+ 609 0000 32020000 		.4byte	0x232
+ 610 0004 0400     		.2byte	0x4
+ 611 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 612 000a 04       		.byte	0x4
+ 613 000b 01       		.uleb128 0x1
+ 614 000c A1010000 		.4byte	.LASF34
+ 615 0010 01       		.byte	0x1
+ 616 0011 1D020000 		.4byte	.LASF35
+ 617 0015 3E000000 		.4byte	.LASF36
+ 618 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 619 001d 00000000 		.4byte	0
+ 620 0021 00000000 		.4byte	.Ldebug_line0
+ 621 0025 02       		.uleb128 0x2
+ 622 0026 01       		.byte	0x1
+ 623 0027 06       		.byte	0x6
+ 624 0028 BA020000 		.4byte	.LASF0
+ 625 002c 02       		.uleb128 0x2
+ 626 002d 01       		.byte	0x1
+ 627 002e 08       		.byte	0x8
+ 628 002f C4000000 		.4byte	.LASF1
+ 629 0033 02       		.uleb128 0x2
+ 630 0034 02       		.byte	0x2
+ 631 0035 05       		.byte	0x5
+ 632 0036 67020000 		.4byte	.LASF2
+ 633 003a 02       		.uleb128 0x2
+ 634 003b 02       		.byte	0x2
+ 635 003c 07       		.byte	0x7
+ 636 003d 2B000000 		.4byte	.LASF3
+ 637 0041 02       		.uleb128 0x2
+ 638 0042 04       		.byte	0x4
+ 639 0043 05       		.byte	0x5
+ 640 0044 8B020000 		.4byte	.LASF4
+ 641 0048 02       		.uleb128 0x2
+ 642 0049 04       		.byte	0x4
+ 643 004a 07       		.byte	0x7
+ 644 004b D7000000 		.4byte	.LASF5
+ 645 004f 02       		.uleb128 0x2
+ 646 0050 08       		.byte	0x8
+ 647 0051 05       		.byte	0x5
+ 648 0052 4B020000 		.4byte	.LASF6
+ 649 0056 02       		.uleb128 0x2
+ 650 0057 08       		.byte	0x8
+ 651 0058 07       		.byte	0x7
+ 652 0059 73010000 		.4byte	.LASF7
+ 653 005d 03       		.uleb128 0x3
+ 654 005e 04       		.byte	0x4
+ 655 005f 05       		.byte	0x5
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 26
 
 
- 656 0067 28010000 		.4byte	.LASF8
- 657 006b 04       		.uleb128 0x4
- 658 006c B8000000 		.4byte	.LASF9
- 659 0070 02       		.byte	0x2
- 660 0071 A1       		.byte	0xa1
- 661 0072 2C000000 		.4byte	0x2c
- 662 0076 04       		.uleb128 0x4
- 663 0077 21010000 		.4byte	.LASF10
- 664 007b 02       		.byte	0x2
- 665 007c A3       		.byte	0xa3
- 666 007d 48000000 		.4byte	0x48
- 667 0081 02       		.uleb128 0x2
- 668 0082 04       		.byte	0x4
- 669 0083 04       		.byte	0x4
- 670 0084 76000000 		.4byte	.LASF11
- 671 0088 02       		.uleb128 0x2
- 672 0089 08       		.byte	0x8
- 673 008a 04       		.byte	0x4
- 674 008b EE000000 		.4byte	.LASF12
- 675 008f 02       		.uleb128 0x2
- 676 0090 01       		.byte	0x1
- 677 0091 08       		.byte	0x8
- 678 0092 3F000000 		.4byte	.LASF13
- 679 0096 05       		.uleb128 0x5
- 680 0097 A1000000 		.4byte	.LASF14
- 681 009b 02       		.byte	0x2
- 682 009c 4B01     		.2byte	0x14b
- 683 009e A2000000 		.4byte	0xa2
- 684 00a2 06       		.uleb128 0x6
- 685 00a3 6B000000 		.4byte	0x6b
- 686 00a7 05       		.uleb128 0x5
- 687 00a8 00000000 		.4byte	.LASF15
- 688 00ac 02       		.byte	0x2
- 689 00ad 4D01     		.2byte	0x14d
- 690 00af B3000000 		.4byte	0xb3
- 691 00b3 06       		.uleb128 0x6
- 692 00b4 76000000 		.4byte	0x76
- 693 00b8 02       		.uleb128 0x2
- 694 00b9 04       		.byte	0x4
- 695 00ba 07       		.byte	0x7
- 696 00bb 4F020000 		.4byte	.LASF16
- 697 00bf 07       		.uleb128 0x7
- 698 00c0 EC020000 		.4byte	.LASF20
- 699 00c4 01       		.byte	0x1
- 700 00c5 2B       		.byte	0x2b
- 701 00c6 00000000 		.4byte	.LFB0
- 702 00ca 4C000000 		.4byte	.LFE0-.LFB0
- 703 00ce 01       		.uleb128 0x1
- 704 00cf 9C       		.byte	0x9c
- 705 00d0 E3000000 		.4byte	0xe3
- 706 00d4 08       		.uleb128 0x8
- 707 00d5 D3020000 		.4byte	.LASF39
- 708 00d9 01       		.byte	0x1
- 709 00da 2F       		.byte	0x2f
- 710 00db 6B000000 		.4byte	0x6b
- 711 00df 02       		.uleb128 0x2
- 712 00e0 91       		.byte	0x91
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 27
+ 656 0060 696E7400 		.ascii	"int\000"
+ 657 0064 02       		.uleb128 0x2
+ 658 0065 04       		.byte	0x4
+ 659 0066 07       		.byte	0x7
+ 660 0067 52010000 		.4byte	.LASF8
+ 661 006b 04       		.uleb128 0x4
+ 662 006c E9000000 		.4byte	.LASF12
+ 663 0070 02       		.byte	0x2
+ 664 0071 A1       		.byte	0xa1
+ 665 0072 2C000000 		.4byte	0x2c
+ 666 0076 02       		.uleb128 0x2
+ 667 0077 04       		.byte	0x4
+ 668 0078 04       		.byte	0x4
+ 669 0079 A7000000 		.4byte	.LASF9
+ 670 007d 02       		.uleb128 0x2
+ 671 007e 08       		.byte	0x8
+ 672 007f 04       		.byte	0x4
+ 673 0080 1F010000 		.4byte	.LASF10
+ 674 0084 02       		.uleb128 0x2
+ 675 0085 01       		.byte	0x1
+ 676 0086 08       		.byte	0x8
+ 677 0087 00000000 		.4byte	.LASF11
+ 678 008b 05       		.uleb128 0x5
+ 679 008c D2000000 		.4byte	.LASF13
+ 680 0090 02       		.byte	0x2
+ 681 0091 4B01     		.2byte	0x14b
+ 682 0093 97000000 		.4byte	0x97
+ 683 0097 06       		.uleb128 0x6
+ 684 0098 6B000000 		.4byte	0x6b
+ 685 009c 02       		.uleb128 0x2
+ 686 009d 04       		.byte	0x4
+ 687 009e 07       		.byte	0x7
+ 688 009f 42020000 		.4byte	.LASF14
+ 689 00a3 07       		.uleb128 0x7
+ 690 00a4 DF020000 		.4byte	.LASF18
+ 691 00a8 01       		.byte	0x1
+ 692 00a9 2B       		.byte	0x2b
+ 693 00aa 00000000 		.4byte	.LFB0
+ 694 00ae 48000000 		.4byte	.LFE0-.LFB0
+ 695 00b2 01       		.uleb128 0x1
+ 696 00b3 9C       		.byte	0x9c
+ 697 00b4 C7000000 		.4byte	0xc7
+ 698 00b8 08       		.uleb128 0x8
+ 699 00b9 C6020000 		.4byte	.LASF37
+ 700 00bd 01       		.byte	0x1
+ 701 00be 2F       		.byte	0x2f
+ 702 00bf 6B000000 		.4byte	0x6b
+ 703 00c3 02       		.uleb128 0x2
+ 704 00c4 91       		.byte	0x91
+ 705 00c5 77       		.sleb128 -9
+ 706 00c6 00       		.byte	0
+ 707 00c7 09       		.uleb128 0x9
+ 708 00c8 41010000 		.4byte	.LASF15
+ 709 00cc 01       		.byte	0x1
+ 710 00cd B4       		.byte	0xb4
+ 711 00ce 00000000 		.4byte	.LFB1
+ 712 00d2 20000000 		.4byte	.LFE1-.LFB1
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 27
 
 
- 713 00e1 77       		.sleb128 -9
- 714 00e2 00       		.byte	0
- 715 00e3 09       		.uleb128 0x9
- 716 00e4 10010000 		.4byte	.LASF17
- 717 00e8 01       		.byte	0x1
- 718 00e9 B4       		.byte	0xb4
- 719 00ea 00000000 		.4byte	.LFB1
- 720 00ee 20000000 		.4byte	.LFE1-.LFB1
- 721 00f2 01       		.uleb128 0x1
- 722 00f3 9C       		.byte	0x9c
- 723 00f4 0A       		.uleb128 0xa
- 724 00f5 A1020000 		.4byte	.LASF18
- 725 00f9 01       		.byte	0x1
- 726 00fa D7       		.byte	0xd7
- 727 00fb 00000000 		.4byte	.LFB2
- 728 00ff 20000000 		.4byte	.LFE2-.LFB2
- 729 0103 01       		.uleb128 0x1
- 730 0104 9C       		.byte	0x9c
- 731 0105 09       		.uleb128 0x9
- 732 0106 84000000 		.4byte	.LASF19
- 733 010a 01       		.byte	0x1
- 734 010b F7       		.byte	0xf7
- 735 010c 00000000 		.4byte	.LFB3
- 736 0110 20000000 		.4byte	.LFE3-.LFB3
- 737 0114 01       		.uleb128 0x1
- 738 0115 9C       		.byte	0x9c
- 739 0116 0B       		.uleb128 0xb
- 740 0117 F5000000 		.4byte	.LASF21
- 741 011b 01       		.byte	0x1
- 742 011c 1701     		.2byte	0x117
- 743 011e 00000000 		.4byte	.LFB4
- 744 0122 20000000 		.4byte	.LFE4-.LFB4
- 745 0126 01       		.uleb128 0x1
- 746 0127 9C       		.byte	0x9c
- 747 0128 3C010000 		.4byte	0x13c
- 748 012c 0C       		.uleb128 0xc
- 749 012d 66020000 		.4byte	.LASF26
- 750 0131 01       		.byte	0x1
- 751 0132 1701     		.2byte	0x117
- 752 0134 6B000000 		.4byte	0x6b
- 753 0138 02       		.uleb128 0x2
- 754 0139 91       		.byte	0x91
- 755 013a 77       		.sleb128 -9
- 756 013b 00       		.byte	0
- 757 013c 0D       		.uleb128 0xd
- 758 013d 7E020000 		.4byte	.LASF22
- 759 0141 01       		.byte	0x1
- 760 0142 2E01     		.2byte	0x12e
- 761 0144 00000000 		.4byte	.LFB5
- 762 0148 14000000 		.4byte	.LFE5-.LFB5
- 763 014c 01       		.uleb128 0x1
- 764 014d 9C       		.byte	0x9c
- 765 014e 0E       		.uleb128 0xe
- 766 014f 59000000 		.4byte	.LASF23
- 767 0153 01       		.byte	0x1
- 768 0154 4D01     		.2byte	0x14d
- 769 0156 6B000000 		.4byte	0x6b
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 28
+ 713 00d6 01       		.uleb128 0x1
+ 714 00d7 9C       		.byte	0x9c
+ 715 00d8 0A       		.uleb128 0xa
+ 716 00d9 94020000 		.4byte	.LASF16
+ 717 00dd 01       		.byte	0x1
+ 718 00de D7       		.byte	0xd7
+ 719 00df 00000000 		.4byte	.LFB2
+ 720 00e3 20000000 		.4byte	.LFE2-.LFB2
+ 721 00e7 01       		.uleb128 0x1
+ 722 00e8 9C       		.byte	0x9c
+ 723 00e9 09       		.uleb128 0x9
+ 724 00ea B5000000 		.4byte	.LASF17
+ 725 00ee 01       		.byte	0x1
+ 726 00ef F7       		.byte	0xf7
+ 727 00f0 00000000 		.4byte	.LFB3
+ 728 00f4 20000000 		.4byte	.LFE3-.LFB3
+ 729 00f8 01       		.uleb128 0x1
+ 730 00f9 9C       		.byte	0x9c
+ 731 00fa 0B       		.uleb128 0xb
+ 732 00fb 26010000 		.4byte	.LASF19
+ 733 00ff 01       		.byte	0x1
+ 734 0100 1701     		.2byte	0x117
+ 735 0102 00000000 		.4byte	.LFB4
+ 736 0106 20000000 		.4byte	.LFE4-.LFB4
+ 737 010a 01       		.uleb128 0x1
+ 738 010b 9C       		.byte	0x9c
+ 739 010c 20010000 		.4byte	0x120
+ 740 0110 0C       		.uleb128 0xc
+ 741 0111 59020000 		.4byte	.LASF24
+ 742 0115 01       		.byte	0x1
+ 743 0116 1701     		.2byte	0x117
+ 744 0118 6B000000 		.4byte	0x6b
+ 745 011c 02       		.uleb128 0x2
+ 746 011d 91       		.byte	0x91
+ 747 011e 77       		.sleb128 -9
+ 748 011f 00       		.byte	0
+ 749 0120 0D       		.uleb128 0xd
+ 750 0121 71020000 		.4byte	.LASF20
+ 751 0125 01       		.byte	0x1
+ 752 0126 2E01     		.2byte	0x12e
+ 753 0128 00000000 		.4byte	.LFB5
+ 754 012c 14000000 		.4byte	.LFE5-.LFB5
+ 755 0130 01       		.uleb128 0x1
+ 756 0131 9C       		.byte	0x9c
+ 757 0132 0E       		.uleb128 0xe
+ 758 0133 8A000000 		.4byte	.LASF21
+ 759 0137 01       		.byte	0x1
+ 760 0138 4D01     		.2byte	0x14d
+ 761 013a 6B000000 		.4byte	0x6b
+ 762 013e 00000000 		.4byte	.LFB6
+ 763 0142 18000000 		.4byte	.LFE6-.LFB6
+ 764 0146 01       		.uleb128 0x1
+ 765 0147 9C       		.byte	0x9c
+ 766 0148 0E       		.uleb128 0xe
+ 767 0149 EE020000 		.4byte	.LASF22
+ 768 014d 01       		.byte	0x1
+ 769 014e 6401     		.2byte	0x164
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 28
 
 
- 770 015a 00000000 		.4byte	.LFB6
- 771 015e 18000000 		.4byte	.LFE6-.LFB6
- 772 0162 01       		.uleb128 0x1
- 773 0163 9C       		.byte	0x9c
- 774 0164 0E       		.uleb128 0xe
- 775 0165 FB020000 		.4byte	.LASF24
- 776 0169 01       		.byte	0x1
- 777 016a 6401     		.2byte	0x164
- 778 016c 6B000000 		.4byte	0x6b
- 779 0170 00000000 		.4byte	.LFB7
- 780 0174 18000000 		.4byte	.LFE7-.LFB7
- 781 0178 01       		.uleb128 0x1
- 782 0179 9C       		.byte	0x9c
- 783 017a 0B       		.uleb128 0xb
- 784 017b 0D000000 		.4byte	.LASF25
- 785 017f 01       		.byte	0x1
- 786 0180 7B01     		.2byte	0x17b
- 787 0182 00000000 		.4byte	.LFB8
- 788 0186 20000000 		.4byte	.LFE8-.LFB8
- 789 018a 01       		.uleb128 0x1
- 790 018b 9C       		.byte	0x9c
- 791 018c A0010000 		.4byte	0x1a0
- 792 0190 0C       		.uleb128 0xc
- 793 0191 BE000000 		.4byte	.LASF27
- 794 0195 01       		.byte	0x1
- 795 0196 7B01     		.2byte	0x17b
- 796 0198 6B000000 		.4byte	0x6b
- 797 019c 02       		.uleb128 0x2
- 798 019d 91       		.byte	0x91
- 799 019e 77       		.sleb128 -9
- 800 019f 00       		.byte	0
- 801 01a0 0E       		.uleb128 0xe
- 802 01a1 44000000 		.4byte	.LASF28
- 803 01a5 01       		.byte	0x1
- 804 01a6 9501     		.2byte	0x195
- 805 01a8 76000000 		.4byte	0x76
- 806 01ac 00000000 		.4byte	.LFB9
- 807 01b0 1C000000 		.4byte	.LFE9-.LFB9
- 808 01b4 01       		.uleb128 0x1
- 809 01b5 9C       		.byte	0x9c
- 810 01b6 0F       		.uleb128 0xf
- 811 01b7 C6000000 		.4byte	.LASF29
- 812 01bb 01       		.byte	0x1
- 813 01bc AF01     		.2byte	0x1af
- 814 01be 00000000 		.4byte	.LFB10
- 815 01c2 1C000000 		.4byte	.LFE10-.LFB10
- 816 01c6 01       		.uleb128 0x1
- 817 01c7 9C       		.byte	0x9c
- 818 01c8 DC010000 		.4byte	0x1dc
- 819 01cc 0C       		.uleb128 0xc
- 820 01cd 06000000 		.4byte	.LASF30
- 821 01d1 01       		.byte	0x1
- 822 01d2 AF01     		.2byte	0x1af
- 823 01d4 76000000 		.4byte	0x76
- 824 01d8 02       		.uleb128 0x2
- 825 01d9 91       		.byte	0x91
- 826 01da 74       		.sleb128 -12
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 29
+ 770 0150 6B000000 		.4byte	0x6b
+ 771 0154 00000000 		.4byte	.LFB7
+ 772 0158 18000000 		.4byte	.LFE7-.LFB7
+ 773 015c 01       		.uleb128 0x1
+ 774 015d 9C       		.byte	0x9c
+ 775 015e 0B       		.uleb128 0xb
+ 776 015f 0C000000 		.4byte	.LASF23
+ 777 0163 01       		.byte	0x1
+ 778 0164 7B01     		.2byte	0x17b
+ 779 0166 00000000 		.4byte	.LFB8
+ 780 016a 20000000 		.4byte	.LFE8-.LFB8
+ 781 016e 01       		.uleb128 0x1
+ 782 016f 9C       		.byte	0x9c
+ 783 0170 84010000 		.4byte	0x184
+ 784 0174 0C       		.uleb128 0xc
+ 785 0175 EF000000 		.4byte	.LASF25
+ 786 0179 01       		.byte	0x1
+ 787 017a 7B01     		.2byte	0x17b
+ 788 017c 6B000000 		.4byte	0x6b
+ 789 0180 02       		.uleb128 0x2
+ 790 0181 91       		.byte	0x91
+ 791 0182 77       		.sleb128 -9
+ 792 0183 00       		.byte	0
+ 793 0184 0E       		.uleb128 0xe
+ 794 0185 75000000 		.4byte	.LASF26
+ 795 0189 01       		.byte	0x1
+ 796 018a 9501     		.2byte	0x195
+ 797 018c 6B000000 		.4byte	0x6b
+ 798 0190 00000000 		.4byte	.LFB9
+ 799 0194 18000000 		.4byte	.LFE9-.LFB9
+ 800 0198 01       		.uleb128 0x1
+ 801 0199 9C       		.byte	0x9c
+ 802 019a 0B       		.uleb128 0xb
+ 803 019b F7000000 		.4byte	.LASF27
+ 804 019f 01       		.byte	0x1
+ 805 01a0 AF01     		.2byte	0x1af
+ 806 01a2 00000000 		.4byte	.LFB10
+ 807 01a6 20000000 		.4byte	.LFE10-.LFB10
+ 808 01aa 01       		.uleb128 0x1
+ 809 01ab 9C       		.byte	0x9c
+ 810 01ac C0010000 		.4byte	0x1c0
+ 811 01b0 0C       		.uleb128 0xc
+ 812 01b1 05000000 		.4byte	.LASF28
+ 813 01b5 01       		.byte	0x1
+ 814 01b6 AF01     		.2byte	0x1af
+ 815 01b8 6B000000 		.4byte	0x6b
+ 816 01bc 02       		.uleb128 0x2
+ 817 01bd 91       		.byte	0x91
+ 818 01be 77       		.sleb128 -9
+ 819 01bf 00       		.byte	0
+ 820 01c0 0E       		.uleb128 0xe
+ 821 01c1 A4020000 		.4byte	.LASF29
+ 822 01c5 01       		.byte	0x1
+ 823 01c6 C801     		.2byte	0x1c8
+ 824 01c8 6B000000 		.4byte	0x6b
+ 825 01cc 00000000 		.4byte	.LFB11
+ 826 01d0 18000000 		.4byte	.LFE11-.LFB11
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 29
 
 
- 827 01db 00       		.byte	0
- 828 01dc 0E       		.uleb128 0xe
- 829 01dd B1020000 		.4byte	.LASF31
- 830 01e1 01       		.byte	0x1
- 831 01e2 C801     		.2byte	0x1c8
- 832 01e4 76000000 		.4byte	0x76
- 833 01e8 00000000 		.4byte	.LFB11
- 834 01ec 1C000000 		.4byte	.LFE11-.LFB11
- 835 01f0 01       		.uleb128 0x1
- 836 01f1 9C       		.byte	0x9c
- 837 01f2 0F       		.uleb128 0xf
- 838 01f3 60010000 		.4byte	.LASF32
- 839 01f7 01       		.byte	0x1
- 840 01f8 E001     		.2byte	0x1e0
- 841 01fa 00000000 		.4byte	.LFB12
- 842 01fe 1C000000 		.4byte	.LFE12-.LFB12
- 843 0202 01       		.uleb128 0x1
- 844 0203 9C       		.byte	0x9c
- 845 0204 18020000 		.4byte	0x218
- 846 0208 0C       		.uleb128 0xc
- 847 0209 7C000000 		.4byte	.LASF33
- 848 020d 01       		.byte	0x1
- 849 020e E001     		.2byte	0x1e0
- 850 0210 76000000 		.4byte	0x76
- 851 0214 02       		.uleb128 0x2
- 852 0215 91       		.byte	0x91
- 853 0216 74       		.sleb128 -12
- 854 0217 00       		.byte	0
- 855 0218 0E       		.uleb128 0xe
- 856 0219 19030000 		.4byte	.LASF34
- 857 021d 01       		.byte	0x1
- 858 021e FC01     		.2byte	0x1fc
- 859 0220 76000000 		.4byte	0x76
- 860 0224 00000000 		.4byte	.LFB13
- 861 0228 24000000 		.4byte	.LFE13-.LFB13
- 862 022c 01       		.uleb128 0x1
- 863 022d 9C       		.byte	0x9c
- 864 022e 10       		.uleb128 0x10
- 865 022f 35010000 		.4byte	.LASF35
- 866 0233 01       		.byte	0x1
- 867 0234 FB02     		.2byte	0x2fb
- 868 0236 00000000 		.4byte	.LFB14
- 869 023a 1A000000 		.4byte	.LFE14-.LFB14
- 870 023e 01       		.uleb128 0x1
- 871 023f 9C       		.byte	0x9c
- 872 0240 11       		.uleb128 0x11
- 873 0241 DC000000 		.4byte	.LASF40
- 874 0245 01       		.byte	0x1
- 875 0246 1A       		.byte	0x1a
- 876 0247 6B000000 		.4byte	0x6b
- 877 024b 05       		.uleb128 0x5
- 878 024c 03       		.byte	0x3
- 879 024d 00000000 		.4byte	FSM_Timer_initVar
- 880 0251 00       		.byte	0
- 881              		.section	.debug_abbrev,"",%progbits
- 882              	.Ldebug_abbrev0:
- 883 0000 01       		.uleb128 0x1
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 30
+ 827 01d4 01       		.uleb128 0x1
+ 828 01d5 9C       		.byte	0x9c
+ 829 01d6 0B       		.uleb128 0xb
+ 830 01d7 8A010000 		.4byte	.LASF30
+ 831 01db 01       		.byte	0x1
+ 832 01dc E001     		.2byte	0x1e0
+ 833 01de 00000000 		.4byte	.LFB12
+ 834 01e2 20000000 		.4byte	.LFE12-.LFB12
+ 835 01e6 01       		.uleb128 0x1
+ 836 01e7 9C       		.byte	0x9c
+ 837 01e8 FC010000 		.4byte	0x1fc
+ 838 01ec 0C       		.uleb128 0xc
+ 839 01ed AD000000 		.4byte	.LASF31
+ 840 01f1 01       		.byte	0x1
+ 841 01f2 E001     		.2byte	0x1e0
+ 842 01f4 6B000000 		.4byte	0x6b
+ 843 01f8 02       		.uleb128 0x2
+ 844 01f9 91       		.byte	0x91
+ 845 01fa 77       		.sleb128 -9
+ 846 01fb 00       		.byte	0
+ 847 01fc 0E       		.uleb128 0xe
+ 848 01fd 0C030000 		.4byte	.LASF32
+ 849 0201 01       		.byte	0x1
+ 850 0202 FC01     		.2byte	0x1fc
+ 851 0204 6B000000 		.4byte	0x6b
+ 852 0208 00000000 		.4byte	.LFB13
+ 853 020c 20000000 		.4byte	.LFE13-.LFB13
+ 854 0210 01       		.uleb128 0x1
+ 855 0211 9C       		.byte	0x9c
+ 856 0212 0F       		.uleb128 0xf
+ 857 0213 5F010000 		.4byte	.LASF33
+ 858 0217 01       		.byte	0x1
+ 859 0218 FB02     		.2byte	0x2fb
+ 860 021a 00000000 		.4byte	.LFB14
+ 861 021e 1A000000 		.4byte	.LFE14-.LFB14
+ 862 0222 01       		.uleb128 0x1
+ 863 0223 9C       		.byte	0x9c
+ 864 0224 10       		.uleb128 0x10
+ 865 0225 0D010000 		.4byte	.LASF38
+ 866 0229 01       		.byte	0x1
+ 867 022a 1A       		.byte	0x1a
+ 868 022b 6B000000 		.4byte	0x6b
+ 869 022f 05       		.uleb128 0x5
+ 870 0230 03       		.byte	0x3
+ 871 0231 00000000 		.4byte	FSM_Timer_initVar
+ 872 0235 00       		.byte	0
+ 873              		.section	.debug_abbrev,"",%progbits
+ 874              	.Ldebug_abbrev0:
+ 875 0000 01       		.uleb128 0x1
+ 876 0001 11       		.uleb128 0x11
+ 877 0002 01       		.byte	0x1
+ 878 0003 25       		.uleb128 0x25
+ 879 0004 0E       		.uleb128 0xe
+ 880 0005 13       		.uleb128 0x13
+ 881 0006 0B       		.uleb128 0xb
+ 882 0007 03       		.uleb128 0x3
+ 883 0008 0E       		.uleb128 0xe
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 30
 
 
- 884 0001 11       		.uleb128 0x11
- 885 0002 01       		.byte	0x1
- 886 0003 25       		.uleb128 0x25
- 887 0004 0E       		.uleb128 0xe
- 888 0005 13       		.uleb128 0x13
- 889 0006 0B       		.uleb128 0xb
- 890 0007 03       		.uleb128 0x3
- 891 0008 0E       		.uleb128 0xe
- 892 0009 1B       		.uleb128 0x1b
- 893 000a 0E       		.uleb128 0xe
- 894 000b 55       		.uleb128 0x55
- 895 000c 17       		.uleb128 0x17
- 896 000d 11       		.uleb128 0x11
- 897 000e 01       		.uleb128 0x1
- 898 000f 10       		.uleb128 0x10
- 899 0010 17       		.uleb128 0x17
- 900 0011 00       		.byte	0
- 901 0012 00       		.byte	0
- 902 0013 02       		.uleb128 0x2
- 903 0014 24       		.uleb128 0x24
- 904 0015 00       		.byte	0
- 905 0016 0B       		.uleb128 0xb
- 906 0017 0B       		.uleb128 0xb
- 907 0018 3E       		.uleb128 0x3e
- 908 0019 0B       		.uleb128 0xb
- 909 001a 03       		.uleb128 0x3
- 910 001b 0E       		.uleb128 0xe
- 911 001c 00       		.byte	0
- 912 001d 00       		.byte	0
- 913 001e 03       		.uleb128 0x3
- 914 001f 24       		.uleb128 0x24
- 915 0020 00       		.byte	0
- 916 0021 0B       		.uleb128 0xb
- 917 0022 0B       		.uleb128 0xb
- 918 0023 3E       		.uleb128 0x3e
- 919 0024 0B       		.uleb128 0xb
- 920 0025 03       		.uleb128 0x3
- 921 0026 08       		.uleb128 0x8
- 922 0027 00       		.byte	0
- 923 0028 00       		.byte	0
- 924 0029 04       		.uleb128 0x4
- 925 002a 16       		.uleb128 0x16
- 926 002b 00       		.byte	0
- 927 002c 03       		.uleb128 0x3
- 928 002d 0E       		.uleb128 0xe
- 929 002e 3A       		.uleb128 0x3a
- 930 002f 0B       		.uleb128 0xb
- 931 0030 3B       		.uleb128 0x3b
- 932 0031 0B       		.uleb128 0xb
- 933 0032 49       		.uleb128 0x49
- 934 0033 13       		.uleb128 0x13
- 935 0034 00       		.byte	0
- 936 0035 00       		.byte	0
- 937 0036 05       		.uleb128 0x5
- 938 0037 16       		.uleb128 0x16
- 939 0038 00       		.byte	0
- 940 0039 03       		.uleb128 0x3
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 31
+ 884 0009 1B       		.uleb128 0x1b
+ 885 000a 0E       		.uleb128 0xe
+ 886 000b 55       		.uleb128 0x55
+ 887 000c 17       		.uleb128 0x17
+ 888 000d 11       		.uleb128 0x11
+ 889 000e 01       		.uleb128 0x1
+ 890 000f 10       		.uleb128 0x10
+ 891 0010 17       		.uleb128 0x17
+ 892 0011 00       		.byte	0
+ 893 0012 00       		.byte	0
+ 894 0013 02       		.uleb128 0x2
+ 895 0014 24       		.uleb128 0x24
+ 896 0015 00       		.byte	0
+ 897 0016 0B       		.uleb128 0xb
+ 898 0017 0B       		.uleb128 0xb
+ 899 0018 3E       		.uleb128 0x3e
+ 900 0019 0B       		.uleb128 0xb
+ 901 001a 03       		.uleb128 0x3
+ 902 001b 0E       		.uleb128 0xe
+ 903 001c 00       		.byte	0
+ 904 001d 00       		.byte	0
+ 905 001e 03       		.uleb128 0x3
+ 906 001f 24       		.uleb128 0x24
+ 907 0020 00       		.byte	0
+ 908 0021 0B       		.uleb128 0xb
+ 909 0022 0B       		.uleb128 0xb
+ 910 0023 3E       		.uleb128 0x3e
+ 911 0024 0B       		.uleb128 0xb
+ 912 0025 03       		.uleb128 0x3
+ 913 0026 08       		.uleb128 0x8
+ 914 0027 00       		.byte	0
+ 915 0028 00       		.byte	0
+ 916 0029 04       		.uleb128 0x4
+ 917 002a 16       		.uleb128 0x16
+ 918 002b 00       		.byte	0
+ 919 002c 03       		.uleb128 0x3
+ 920 002d 0E       		.uleb128 0xe
+ 921 002e 3A       		.uleb128 0x3a
+ 922 002f 0B       		.uleb128 0xb
+ 923 0030 3B       		.uleb128 0x3b
+ 924 0031 0B       		.uleb128 0xb
+ 925 0032 49       		.uleb128 0x49
+ 926 0033 13       		.uleb128 0x13
+ 927 0034 00       		.byte	0
+ 928 0035 00       		.byte	0
+ 929 0036 05       		.uleb128 0x5
+ 930 0037 16       		.uleb128 0x16
+ 931 0038 00       		.byte	0
+ 932 0039 03       		.uleb128 0x3
+ 933 003a 0E       		.uleb128 0xe
+ 934 003b 3A       		.uleb128 0x3a
+ 935 003c 0B       		.uleb128 0xb
+ 936 003d 3B       		.uleb128 0x3b
+ 937 003e 05       		.uleb128 0x5
+ 938 003f 49       		.uleb128 0x49
+ 939 0040 13       		.uleb128 0x13
+ 940 0041 00       		.byte	0
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 31
 
 
- 941 003a 0E       		.uleb128 0xe
- 942 003b 3A       		.uleb128 0x3a
- 943 003c 0B       		.uleb128 0xb
- 944 003d 3B       		.uleb128 0x3b
- 945 003e 05       		.uleb128 0x5
- 946 003f 49       		.uleb128 0x49
- 947 0040 13       		.uleb128 0x13
- 948 0041 00       		.byte	0
- 949 0042 00       		.byte	0
- 950 0043 06       		.uleb128 0x6
- 951 0044 35       		.uleb128 0x35
- 952 0045 00       		.byte	0
- 953 0046 49       		.uleb128 0x49
- 954 0047 13       		.uleb128 0x13
- 955 0048 00       		.byte	0
- 956 0049 00       		.byte	0
- 957 004a 07       		.uleb128 0x7
- 958 004b 2E       		.uleb128 0x2e
- 959 004c 01       		.byte	0x1
- 960 004d 3F       		.uleb128 0x3f
- 961 004e 19       		.uleb128 0x19
- 962 004f 03       		.uleb128 0x3
- 963 0050 0E       		.uleb128 0xe
- 964 0051 3A       		.uleb128 0x3a
- 965 0052 0B       		.uleb128 0xb
- 966 0053 3B       		.uleb128 0x3b
- 967 0054 0B       		.uleb128 0xb
- 968 0055 27       		.uleb128 0x27
- 969 0056 19       		.uleb128 0x19
- 970 0057 11       		.uleb128 0x11
- 971 0058 01       		.uleb128 0x1
- 972 0059 12       		.uleb128 0x12
- 973 005a 06       		.uleb128 0x6
- 974 005b 40       		.uleb128 0x40
- 975 005c 18       		.uleb128 0x18
- 976 005d 9642     		.uleb128 0x2116
- 977 005f 19       		.uleb128 0x19
- 978 0060 01       		.uleb128 0x1
- 979 0061 13       		.uleb128 0x13
- 980 0062 00       		.byte	0
- 981 0063 00       		.byte	0
- 982 0064 08       		.uleb128 0x8
- 983 0065 34       		.uleb128 0x34
- 984 0066 00       		.byte	0
- 985 0067 03       		.uleb128 0x3
- 986 0068 0E       		.uleb128 0xe
- 987 0069 3A       		.uleb128 0x3a
- 988 006a 0B       		.uleb128 0xb
- 989 006b 3B       		.uleb128 0x3b
- 990 006c 0B       		.uleb128 0xb
- 991 006d 49       		.uleb128 0x49
- 992 006e 13       		.uleb128 0x13
- 993 006f 02       		.uleb128 0x2
- 994 0070 18       		.uleb128 0x18
- 995 0071 00       		.byte	0
- 996 0072 00       		.byte	0
- 997 0073 09       		.uleb128 0x9
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 32
+ 941 0042 00       		.byte	0
+ 942 0043 06       		.uleb128 0x6
+ 943 0044 35       		.uleb128 0x35
+ 944 0045 00       		.byte	0
+ 945 0046 49       		.uleb128 0x49
+ 946 0047 13       		.uleb128 0x13
+ 947 0048 00       		.byte	0
+ 948 0049 00       		.byte	0
+ 949 004a 07       		.uleb128 0x7
+ 950 004b 2E       		.uleb128 0x2e
+ 951 004c 01       		.byte	0x1
+ 952 004d 3F       		.uleb128 0x3f
+ 953 004e 19       		.uleb128 0x19
+ 954 004f 03       		.uleb128 0x3
+ 955 0050 0E       		.uleb128 0xe
+ 956 0051 3A       		.uleb128 0x3a
+ 957 0052 0B       		.uleb128 0xb
+ 958 0053 3B       		.uleb128 0x3b
+ 959 0054 0B       		.uleb128 0xb
+ 960 0055 27       		.uleb128 0x27
+ 961 0056 19       		.uleb128 0x19
+ 962 0057 11       		.uleb128 0x11
+ 963 0058 01       		.uleb128 0x1
+ 964 0059 12       		.uleb128 0x12
+ 965 005a 06       		.uleb128 0x6
+ 966 005b 40       		.uleb128 0x40
+ 967 005c 18       		.uleb128 0x18
+ 968 005d 9642     		.uleb128 0x2116
+ 969 005f 19       		.uleb128 0x19
+ 970 0060 01       		.uleb128 0x1
+ 971 0061 13       		.uleb128 0x13
+ 972 0062 00       		.byte	0
+ 973 0063 00       		.byte	0
+ 974 0064 08       		.uleb128 0x8
+ 975 0065 34       		.uleb128 0x34
+ 976 0066 00       		.byte	0
+ 977 0067 03       		.uleb128 0x3
+ 978 0068 0E       		.uleb128 0xe
+ 979 0069 3A       		.uleb128 0x3a
+ 980 006a 0B       		.uleb128 0xb
+ 981 006b 3B       		.uleb128 0x3b
+ 982 006c 0B       		.uleb128 0xb
+ 983 006d 49       		.uleb128 0x49
+ 984 006e 13       		.uleb128 0x13
+ 985 006f 02       		.uleb128 0x2
+ 986 0070 18       		.uleb128 0x18
+ 987 0071 00       		.byte	0
+ 988 0072 00       		.byte	0
+ 989 0073 09       		.uleb128 0x9
+ 990 0074 2E       		.uleb128 0x2e
+ 991 0075 00       		.byte	0
+ 992 0076 3F       		.uleb128 0x3f
+ 993 0077 19       		.uleb128 0x19
+ 994 0078 03       		.uleb128 0x3
+ 995 0079 0E       		.uleb128 0xe
+ 996 007a 3A       		.uleb128 0x3a
+ 997 007b 0B       		.uleb128 0xb
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 32
 
 
- 998 0074 2E       		.uleb128 0x2e
- 999 0075 00       		.byte	0
- 1000 0076 3F       		.uleb128 0x3f
- 1001 0077 19       		.uleb128 0x19
- 1002 0078 03       		.uleb128 0x3
- 1003 0079 0E       		.uleb128 0xe
- 1004 007a 3A       		.uleb128 0x3a
- 1005 007b 0B       		.uleb128 0xb
- 1006 007c 3B       		.uleb128 0x3b
- 1007 007d 0B       		.uleb128 0xb
- 1008 007e 27       		.uleb128 0x27
- 1009 007f 19       		.uleb128 0x19
- 1010 0080 11       		.uleb128 0x11
- 1011 0081 01       		.uleb128 0x1
- 1012 0082 12       		.uleb128 0x12
- 1013 0083 06       		.uleb128 0x6
- 1014 0084 40       		.uleb128 0x40
- 1015 0085 18       		.uleb128 0x18
- 1016 0086 9742     		.uleb128 0x2117
- 1017 0088 19       		.uleb128 0x19
- 1018 0089 00       		.byte	0
- 1019 008a 00       		.byte	0
- 1020 008b 0A       		.uleb128 0xa
- 1021 008c 2E       		.uleb128 0x2e
- 1022 008d 00       		.byte	0
- 1023 008e 3F       		.uleb128 0x3f
- 1024 008f 19       		.uleb128 0x19
- 1025 0090 03       		.uleb128 0x3
- 1026 0091 0E       		.uleb128 0xe
- 1027 0092 3A       		.uleb128 0x3a
- 1028 0093 0B       		.uleb128 0xb
- 1029 0094 3B       		.uleb128 0x3b
- 1030 0095 0B       		.uleb128 0xb
- 1031 0096 27       		.uleb128 0x27
- 1032 0097 19       		.uleb128 0x19
- 1033 0098 11       		.uleb128 0x11
- 1034 0099 01       		.uleb128 0x1
- 1035 009a 12       		.uleb128 0x12
- 1036 009b 06       		.uleb128 0x6
- 1037 009c 40       		.uleb128 0x40
- 1038 009d 18       		.uleb128 0x18
- 1039 009e 9642     		.uleb128 0x2116
- 1040 00a0 19       		.uleb128 0x19
- 1041 00a1 00       		.byte	0
- 1042 00a2 00       		.byte	0
- 1043 00a3 0B       		.uleb128 0xb
- 1044 00a4 2E       		.uleb128 0x2e
- 1045 00a5 01       		.byte	0x1
- 1046 00a6 3F       		.uleb128 0x3f
- 1047 00a7 19       		.uleb128 0x19
- 1048 00a8 03       		.uleb128 0x3
- 1049 00a9 0E       		.uleb128 0xe
- 1050 00aa 3A       		.uleb128 0x3a
- 1051 00ab 0B       		.uleb128 0xb
- 1052 00ac 3B       		.uleb128 0x3b
- 1053 00ad 05       		.uleb128 0x5
- 1054 00ae 27       		.uleb128 0x27
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 33
+ 998 007c 3B       		.uleb128 0x3b
+ 999 007d 0B       		.uleb128 0xb
+ 1000 007e 27       		.uleb128 0x27
+ 1001 007f 19       		.uleb128 0x19
+ 1002 0080 11       		.uleb128 0x11
+ 1003 0081 01       		.uleb128 0x1
+ 1004 0082 12       		.uleb128 0x12
+ 1005 0083 06       		.uleb128 0x6
+ 1006 0084 40       		.uleb128 0x40
+ 1007 0085 18       		.uleb128 0x18
+ 1008 0086 9742     		.uleb128 0x2117
+ 1009 0088 19       		.uleb128 0x19
+ 1010 0089 00       		.byte	0
+ 1011 008a 00       		.byte	0
+ 1012 008b 0A       		.uleb128 0xa
+ 1013 008c 2E       		.uleb128 0x2e
+ 1014 008d 00       		.byte	0
+ 1015 008e 3F       		.uleb128 0x3f
+ 1016 008f 19       		.uleb128 0x19
+ 1017 0090 03       		.uleb128 0x3
+ 1018 0091 0E       		.uleb128 0xe
+ 1019 0092 3A       		.uleb128 0x3a
+ 1020 0093 0B       		.uleb128 0xb
+ 1021 0094 3B       		.uleb128 0x3b
+ 1022 0095 0B       		.uleb128 0xb
+ 1023 0096 27       		.uleb128 0x27
+ 1024 0097 19       		.uleb128 0x19
+ 1025 0098 11       		.uleb128 0x11
+ 1026 0099 01       		.uleb128 0x1
+ 1027 009a 12       		.uleb128 0x12
+ 1028 009b 06       		.uleb128 0x6
+ 1029 009c 40       		.uleb128 0x40
+ 1030 009d 18       		.uleb128 0x18
+ 1031 009e 9642     		.uleb128 0x2116
+ 1032 00a0 19       		.uleb128 0x19
+ 1033 00a1 00       		.byte	0
+ 1034 00a2 00       		.byte	0
+ 1035 00a3 0B       		.uleb128 0xb
+ 1036 00a4 2E       		.uleb128 0x2e
+ 1037 00a5 01       		.byte	0x1
+ 1038 00a6 3F       		.uleb128 0x3f
+ 1039 00a7 19       		.uleb128 0x19
+ 1040 00a8 03       		.uleb128 0x3
+ 1041 00a9 0E       		.uleb128 0xe
+ 1042 00aa 3A       		.uleb128 0x3a
+ 1043 00ab 0B       		.uleb128 0xb
+ 1044 00ac 3B       		.uleb128 0x3b
+ 1045 00ad 05       		.uleb128 0x5
+ 1046 00ae 27       		.uleb128 0x27
+ 1047 00af 19       		.uleb128 0x19
+ 1048 00b0 11       		.uleb128 0x11
+ 1049 00b1 01       		.uleb128 0x1
+ 1050 00b2 12       		.uleb128 0x12
+ 1051 00b3 06       		.uleb128 0x6
+ 1052 00b4 40       		.uleb128 0x40
+ 1053 00b5 18       		.uleb128 0x18
+ 1054 00b6 9742     		.uleb128 0x2117
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 33
 
 
- 1055 00af 19       		.uleb128 0x19
- 1056 00b0 11       		.uleb128 0x11
- 1057 00b1 01       		.uleb128 0x1
- 1058 00b2 12       		.uleb128 0x12
- 1059 00b3 06       		.uleb128 0x6
- 1060 00b4 40       		.uleb128 0x40
- 1061 00b5 18       		.uleb128 0x18
- 1062 00b6 9742     		.uleb128 0x2117
- 1063 00b8 19       		.uleb128 0x19
- 1064 00b9 01       		.uleb128 0x1
- 1065 00ba 13       		.uleb128 0x13
- 1066 00bb 00       		.byte	0
- 1067 00bc 00       		.byte	0
- 1068 00bd 0C       		.uleb128 0xc
- 1069 00be 05       		.uleb128 0x5
- 1070 00bf 00       		.byte	0
- 1071 00c0 03       		.uleb128 0x3
- 1072 00c1 0E       		.uleb128 0xe
- 1073 00c2 3A       		.uleb128 0x3a
- 1074 00c3 0B       		.uleb128 0xb
- 1075 00c4 3B       		.uleb128 0x3b
- 1076 00c5 05       		.uleb128 0x5
- 1077 00c6 49       		.uleb128 0x49
- 1078 00c7 13       		.uleb128 0x13
- 1079 00c8 02       		.uleb128 0x2
- 1080 00c9 18       		.uleb128 0x18
- 1081 00ca 00       		.byte	0
- 1082 00cb 00       		.byte	0
- 1083 00cc 0D       		.uleb128 0xd
- 1084 00cd 2E       		.uleb128 0x2e
- 1085 00ce 00       		.byte	0
- 1086 00cf 3F       		.uleb128 0x3f
- 1087 00d0 19       		.uleb128 0x19
- 1088 00d1 03       		.uleb128 0x3
- 1089 00d2 0E       		.uleb128 0xe
- 1090 00d3 3A       		.uleb128 0x3a
- 1091 00d4 0B       		.uleb128 0xb
- 1092 00d5 3B       		.uleb128 0x3b
- 1093 00d6 05       		.uleb128 0x5
- 1094 00d7 27       		.uleb128 0x27
- 1095 00d8 19       		.uleb128 0x19
- 1096 00d9 11       		.uleb128 0x11
- 1097 00da 01       		.uleb128 0x1
- 1098 00db 12       		.uleb128 0x12
- 1099 00dc 06       		.uleb128 0x6
- 1100 00dd 40       		.uleb128 0x40
- 1101 00de 18       		.uleb128 0x18
- 1102 00df 9742     		.uleb128 0x2117
- 1103 00e1 19       		.uleb128 0x19
- 1104 00e2 00       		.byte	0
- 1105 00e3 00       		.byte	0
- 1106 00e4 0E       		.uleb128 0xe
- 1107 00e5 2E       		.uleb128 0x2e
- 1108 00e6 00       		.byte	0
- 1109 00e7 3F       		.uleb128 0x3f
- 1110 00e8 19       		.uleb128 0x19
- 1111 00e9 03       		.uleb128 0x3
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 34
+ 1055 00b8 19       		.uleb128 0x19
+ 1056 00b9 01       		.uleb128 0x1
+ 1057 00ba 13       		.uleb128 0x13
+ 1058 00bb 00       		.byte	0
+ 1059 00bc 00       		.byte	0
+ 1060 00bd 0C       		.uleb128 0xc
+ 1061 00be 05       		.uleb128 0x5
+ 1062 00bf 00       		.byte	0
+ 1063 00c0 03       		.uleb128 0x3
+ 1064 00c1 0E       		.uleb128 0xe
+ 1065 00c2 3A       		.uleb128 0x3a
+ 1066 00c3 0B       		.uleb128 0xb
+ 1067 00c4 3B       		.uleb128 0x3b
+ 1068 00c5 05       		.uleb128 0x5
+ 1069 00c6 49       		.uleb128 0x49
+ 1070 00c7 13       		.uleb128 0x13
+ 1071 00c8 02       		.uleb128 0x2
+ 1072 00c9 18       		.uleb128 0x18
+ 1073 00ca 00       		.byte	0
+ 1074 00cb 00       		.byte	0
+ 1075 00cc 0D       		.uleb128 0xd
+ 1076 00cd 2E       		.uleb128 0x2e
+ 1077 00ce 00       		.byte	0
+ 1078 00cf 3F       		.uleb128 0x3f
+ 1079 00d0 19       		.uleb128 0x19
+ 1080 00d1 03       		.uleb128 0x3
+ 1081 00d2 0E       		.uleb128 0xe
+ 1082 00d3 3A       		.uleb128 0x3a
+ 1083 00d4 0B       		.uleb128 0xb
+ 1084 00d5 3B       		.uleb128 0x3b
+ 1085 00d6 05       		.uleb128 0x5
+ 1086 00d7 27       		.uleb128 0x27
+ 1087 00d8 19       		.uleb128 0x19
+ 1088 00d9 11       		.uleb128 0x11
+ 1089 00da 01       		.uleb128 0x1
+ 1090 00db 12       		.uleb128 0x12
+ 1091 00dc 06       		.uleb128 0x6
+ 1092 00dd 40       		.uleb128 0x40
+ 1093 00de 18       		.uleb128 0x18
+ 1094 00df 9742     		.uleb128 0x2117
+ 1095 00e1 19       		.uleb128 0x19
+ 1096 00e2 00       		.byte	0
+ 1097 00e3 00       		.byte	0
+ 1098 00e4 0E       		.uleb128 0xe
+ 1099 00e5 2E       		.uleb128 0x2e
+ 1100 00e6 00       		.byte	0
+ 1101 00e7 3F       		.uleb128 0x3f
+ 1102 00e8 19       		.uleb128 0x19
+ 1103 00e9 03       		.uleb128 0x3
+ 1104 00ea 0E       		.uleb128 0xe
+ 1105 00eb 3A       		.uleb128 0x3a
+ 1106 00ec 0B       		.uleb128 0xb
+ 1107 00ed 3B       		.uleb128 0x3b
+ 1108 00ee 05       		.uleb128 0x5
+ 1109 00ef 27       		.uleb128 0x27
+ 1110 00f0 19       		.uleb128 0x19
+ 1111 00f1 49       		.uleb128 0x49
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 34
 
 
- 1112 00ea 0E       		.uleb128 0xe
- 1113 00eb 3A       		.uleb128 0x3a
- 1114 00ec 0B       		.uleb128 0xb
- 1115 00ed 3B       		.uleb128 0x3b
- 1116 00ee 05       		.uleb128 0x5
- 1117 00ef 27       		.uleb128 0x27
- 1118 00f0 19       		.uleb128 0x19
- 1119 00f1 49       		.uleb128 0x49
- 1120 00f2 13       		.uleb128 0x13
- 1121 00f3 11       		.uleb128 0x11
- 1122 00f4 01       		.uleb128 0x1
- 1123 00f5 12       		.uleb128 0x12
- 1124 00f6 06       		.uleb128 0x6
- 1125 00f7 40       		.uleb128 0x40
- 1126 00f8 18       		.uleb128 0x18
- 1127 00f9 9742     		.uleb128 0x2117
- 1128 00fb 19       		.uleb128 0x19
- 1129 00fc 00       		.byte	0
- 1130 00fd 00       		.byte	0
- 1131 00fe 0F       		.uleb128 0xf
- 1132 00ff 2E       		.uleb128 0x2e
- 1133 0100 01       		.byte	0x1
- 1134 0101 3F       		.uleb128 0x3f
- 1135 0102 19       		.uleb128 0x19
- 1136 0103 03       		.uleb128 0x3
- 1137 0104 0E       		.uleb128 0xe
- 1138 0105 3A       		.uleb128 0x3a
- 1139 0106 0B       		.uleb128 0xb
- 1140 0107 3B       		.uleb128 0x3b
- 1141 0108 05       		.uleb128 0x5
- 1142 0109 27       		.uleb128 0x27
- 1143 010a 19       		.uleb128 0x19
- 1144 010b 11       		.uleb128 0x11
- 1145 010c 01       		.uleb128 0x1
- 1146 010d 12       		.uleb128 0x12
- 1147 010e 06       		.uleb128 0x6
- 1148 010f 40       		.uleb128 0x40
- 1149 0110 18       		.uleb128 0x18
- 1150 0111 9642     		.uleb128 0x2116
- 1151 0113 19       		.uleb128 0x19
- 1152 0114 01       		.uleb128 0x1
- 1153 0115 13       		.uleb128 0x13
- 1154 0116 00       		.byte	0
- 1155 0117 00       		.byte	0
- 1156 0118 10       		.uleb128 0x10
- 1157 0119 2E       		.uleb128 0x2e
- 1158 011a 00       		.byte	0
- 1159 011b 3F       		.uleb128 0x3f
- 1160 011c 19       		.uleb128 0x19
- 1161 011d 03       		.uleb128 0x3
- 1162 011e 0E       		.uleb128 0xe
- 1163 011f 3A       		.uleb128 0x3a
- 1164 0120 0B       		.uleb128 0xb
- 1165 0121 3B       		.uleb128 0x3b
- 1166 0122 05       		.uleb128 0x5
- 1167 0123 27       		.uleb128 0x27
- 1168 0124 19       		.uleb128 0x19
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 35
+ 1112 00f2 13       		.uleb128 0x13
+ 1113 00f3 11       		.uleb128 0x11
+ 1114 00f4 01       		.uleb128 0x1
+ 1115 00f5 12       		.uleb128 0x12
+ 1116 00f6 06       		.uleb128 0x6
+ 1117 00f7 40       		.uleb128 0x40
+ 1118 00f8 18       		.uleb128 0x18
+ 1119 00f9 9742     		.uleb128 0x2117
+ 1120 00fb 19       		.uleb128 0x19
+ 1121 00fc 00       		.byte	0
+ 1122 00fd 00       		.byte	0
+ 1123 00fe 0F       		.uleb128 0xf
+ 1124 00ff 2E       		.uleb128 0x2e
+ 1125 0100 00       		.byte	0
+ 1126 0101 3F       		.uleb128 0x3f
+ 1127 0102 19       		.uleb128 0x19
+ 1128 0103 03       		.uleb128 0x3
+ 1129 0104 0E       		.uleb128 0xe
+ 1130 0105 3A       		.uleb128 0x3a
+ 1131 0106 0B       		.uleb128 0xb
+ 1132 0107 3B       		.uleb128 0x3b
+ 1133 0108 05       		.uleb128 0x5
+ 1134 0109 27       		.uleb128 0x27
+ 1135 010a 19       		.uleb128 0x19
+ 1136 010b 11       		.uleb128 0x11
+ 1137 010c 01       		.uleb128 0x1
+ 1138 010d 12       		.uleb128 0x12
+ 1139 010e 06       		.uleb128 0x6
+ 1140 010f 40       		.uleb128 0x40
+ 1141 0110 18       		.uleb128 0x18
+ 1142 0111 9642     		.uleb128 0x2116
+ 1143 0113 19       		.uleb128 0x19
+ 1144 0114 00       		.byte	0
+ 1145 0115 00       		.byte	0
+ 1146 0116 10       		.uleb128 0x10
+ 1147 0117 34       		.uleb128 0x34
+ 1148 0118 00       		.byte	0
+ 1149 0119 03       		.uleb128 0x3
+ 1150 011a 0E       		.uleb128 0xe
+ 1151 011b 3A       		.uleb128 0x3a
+ 1152 011c 0B       		.uleb128 0xb
+ 1153 011d 3B       		.uleb128 0x3b
+ 1154 011e 0B       		.uleb128 0xb
+ 1155 011f 49       		.uleb128 0x49
+ 1156 0120 13       		.uleb128 0x13
+ 1157 0121 3F       		.uleb128 0x3f
+ 1158 0122 19       		.uleb128 0x19
+ 1159 0123 02       		.uleb128 0x2
+ 1160 0124 18       		.uleb128 0x18
+ 1161 0125 00       		.byte	0
+ 1162 0126 00       		.byte	0
+ 1163 0127 00       		.byte	0
+ 1164              		.section	.debug_aranges,"",%progbits
+ 1165 0000 8C000000 		.4byte	0x8c
+ 1166 0004 0200     		.2byte	0x2
+ 1167 0006 00000000 		.4byte	.Ldebug_info0
+ 1168 000a 04       		.byte	0x4
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 35
 
 
- 1169 0125 11       		.uleb128 0x11
- 1170 0126 01       		.uleb128 0x1
- 1171 0127 12       		.uleb128 0x12
- 1172 0128 06       		.uleb128 0x6
- 1173 0129 40       		.uleb128 0x40
- 1174 012a 18       		.uleb128 0x18
- 1175 012b 9642     		.uleb128 0x2116
- 1176 012d 19       		.uleb128 0x19
- 1177 012e 00       		.byte	0
- 1178 012f 00       		.byte	0
- 1179 0130 11       		.uleb128 0x11
- 1180 0131 34       		.uleb128 0x34
- 1181 0132 00       		.byte	0
- 1182 0133 03       		.uleb128 0x3
- 1183 0134 0E       		.uleb128 0xe
- 1184 0135 3A       		.uleb128 0x3a
- 1185 0136 0B       		.uleb128 0xb
- 1186 0137 3B       		.uleb128 0x3b
- 1187 0138 0B       		.uleb128 0xb
- 1188 0139 49       		.uleb128 0x49
- 1189 013a 13       		.uleb128 0x13
- 1190 013b 3F       		.uleb128 0x3f
- 1191 013c 19       		.uleb128 0x19
- 1192 013d 02       		.uleb128 0x2
- 1193 013e 18       		.uleb128 0x18
- 1194 013f 00       		.byte	0
- 1195 0140 00       		.byte	0
- 1196 0141 00       		.byte	0
- 1197              		.section	.debug_aranges,"",%progbits
- 1198 0000 8C000000 		.4byte	0x8c
- 1199 0004 0200     		.2byte	0x2
- 1200 0006 00000000 		.4byte	.Ldebug_info0
- 1201 000a 04       		.byte	0x4
- 1202 000b 00       		.byte	0
- 1203 000c 0000     		.2byte	0
- 1204 000e 0000     		.2byte	0
- 1205 0010 00000000 		.4byte	.LFB0
- 1206 0014 4C000000 		.4byte	.LFE0-.LFB0
- 1207 0018 00000000 		.4byte	.LFB1
- 1208 001c 20000000 		.4byte	.LFE1-.LFB1
- 1209 0020 00000000 		.4byte	.LFB2
- 1210 0024 20000000 		.4byte	.LFE2-.LFB2
- 1211 0028 00000000 		.4byte	.LFB3
- 1212 002c 20000000 		.4byte	.LFE3-.LFB3
- 1213 0030 00000000 		.4byte	.LFB4
- 1214 0034 20000000 		.4byte	.LFE4-.LFB4
- 1215 0038 00000000 		.4byte	.LFB5
- 1216 003c 14000000 		.4byte	.LFE5-.LFB5
- 1217 0040 00000000 		.4byte	.LFB6
- 1218 0044 18000000 		.4byte	.LFE6-.LFB6
- 1219 0048 00000000 		.4byte	.LFB7
- 1220 004c 18000000 		.4byte	.LFE7-.LFB7
- 1221 0050 00000000 		.4byte	.LFB8
- 1222 0054 20000000 		.4byte	.LFE8-.LFB8
- 1223 0058 00000000 		.4byte	.LFB9
- 1224 005c 1C000000 		.4byte	.LFE9-.LFB9
- 1225 0060 00000000 		.4byte	.LFB10
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 36
+ 1169 000b 00       		.byte	0
+ 1170 000c 0000     		.2byte	0
+ 1171 000e 0000     		.2byte	0
+ 1172 0010 00000000 		.4byte	.LFB0
+ 1173 0014 48000000 		.4byte	.LFE0-.LFB0
+ 1174 0018 00000000 		.4byte	.LFB1
+ 1175 001c 20000000 		.4byte	.LFE1-.LFB1
+ 1176 0020 00000000 		.4byte	.LFB2
+ 1177 0024 20000000 		.4byte	.LFE2-.LFB2
+ 1178 0028 00000000 		.4byte	.LFB3
+ 1179 002c 20000000 		.4byte	.LFE3-.LFB3
+ 1180 0030 00000000 		.4byte	.LFB4
+ 1181 0034 20000000 		.4byte	.LFE4-.LFB4
+ 1182 0038 00000000 		.4byte	.LFB5
+ 1183 003c 14000000 		.4byte	.LFE5-.LFB5
+ 1184 0040 00000000 		.4byte	.LFB6
+ 1185 0044 18000000 		.4byte	.LFE6-.LFB6
+ 1186 0048 00000000 		.4byte	.LFB7
+ 1187 004c 18000000 		.4byte	.LFE7-.LFB7
+ 1188 0050 00000000 		.4byte	.LFB8
+ 1189 0054 20000000 		.4byte	.LFE8-.LFB8
+ 1190 0058 00000000 		.4byte	.LFB9
+ 1191 005c 18000000 		.4byte	.LFE9-.LFB9
+ 1192 0060 00000000 		.4byte	.LFB10
+ 1193 0064 20000000 		.4byte	.LFE10-.LFB10
+ 1194 0068 00000000 		.4byte	.LFB11
+ 1195 006c 18000000 		.4byte	.LFE11-.LFB11
+ 1196 0070 00000000 		.4byte	.LFB12
+ 1197 0074 20000000 		.4byte	.LFE12-.LFB12
+ 1198 0078 00000000 		.4byte	.LFB13
+ 1199 007c 20000000 		.4byte	.LFE13-.LFB13
+ 1200 0080 00000000 		.4byte	.LFB14
+ 1201 0084 1A000000 		.4byte	.LFE14-.LFB14
+ 1202 0088 00000000 		.4byte	0
+ 1203 008c 00000000 		.4byte	0
+ 1204              		.section	.debug_ranges,"",%progbits
+ 1205              	.Ldebug_ranges0:
+ 1206 0000 00000000 		.4byte	.LFB0
+ 1207 0004 48000000 		.4byte	.LFE0
+ 1208 0008 00000000 		.4byte	.LFB1
+ 1209 000c 20000000 		.4byte	.LFE1
+ 1210 0010 00000000 		.4byte	.LFB2
+ 1211 0014 20000000 		.4byte	.LFE2
+ 1212 0018 00000000 		.4byte	.LFB3
+ 1213 001c 20000000 		.4byte	.LFE3
+ 1214 0020 00000000 		.4byte	.LFB4
+ 1215 0024 20000000 		.4byte	.LFE4
+ 1216 0028 00000000 		.4byte	.LFB5
+ 1217 002c 14000000 		.4byte	.LFE5
+ 1218 0030 00000000 		.4byte	.LFB6
+ 1219 0034 18000000 		.4byte	.LFE6
+ 1220 0038 00000000 		.4byte	.LFB7
+ 1221 003c 18000000 		.4byte	.LFE7
+ 1222 0040 00000000 		.4byte	.LFB8
+ 1223 0044 20000000 		.4byte	.LFE8
+ 1224 0048 00000000 		.4byte	.LFB9
+ 1225 004c 18000000 		.4byte	.LFE9
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 36
 
 
- 1226 0064 1C000000 		.4byte	.LFE10-.LFB10
- 1227 0068 00000000 		.4byte	.LFB11
- 1228 006c 1C000000 		.4byte	.LFE11-.LFB11
- 1229 0070 00000000 		.4byte	.LFB12
- 1230 0074 1C000000 		.4byte	.LFE12-.LFB12
- 1231 0078 00000000 		.4byte	.LFB13
- 1232 007c 24000000 		.4byte	.LFE13-.LFB13
- 1233 0080 00000000 		.4byte	.LFB14
- 1234 0084 1A000000 		.4byte	.LFE14-.LFB14
- 1235 0088 00000000 		.4byte	0
- 1236 008c 00000000 		.4byte	0
- 1237              		.section	.debug_ranges,"",%progbits
- 1238              	.Ldebug_ranges0:
- 1239 0000 00000000 		.4byte	.LFB0
- 1240 0004 4C000000 		.4byte	.LFE0
- 1241 0008 00000000 		.4byte	.LFB1
- 1242 000c 20000000 		.4byte	.LFE1
- 1243 0010 00000000 		.4byte	.LFB2
- 1244 0014 20000000 		.4byte	.LFE2
- 1245 0018 00000000 		.4byte	.LFB3
- 1246 001c 20000000 		.4byte	.LFE3
- 1247 0020 00000000 		.4byte	.LFB4
- 1248 0024 20000000 		.4byte	.LFE4
- 1249 0028 00000000 		.4byte	.LFB5
- 1250 002c 14000000 		.4byte	.LFE5
- 1251 0030 00000000 		.4byte	.LFB6
- 1252 0034 18000000 		.4byte	.LFE6
- 1253 0038 00000000 		.4byte	.LFB7
- 1254 003c 18000000 		.4byte	.LFE7
- 1255 0040 00000000 		.4byte	.LFB8
- 1256 0044 20000000 		.4byte	.LFE8
- 1257 0048 00000000 		.4byte	.LFB9
- 1258 004c 1C000000 		.4byte	.LFE9
- 1259 0050 00000000 		.4byte	.LFB10
- 1260 0054 1C000000 		.4byte	.LFE10
- 1261 0058 00000000 		.4byte	.LFB11
- 1262 005c 1C000000 		.4byte	.LFE11
- 1263 0060 00000000 		.4byte	.LFB12
- 1264 0064 1C000000 		.4byte	.LFE12
- 1265 0068 00000000 		.4byte	.LFB13
- 1266 006c 24000000 		.4byte	.LFE13
- 1267 0070 00000000 		.4byte	.LFB14
- 1268 0074 1A000000 		.4byte	.LFE14
- 1269 0078 00000000 		.4byte	0
- 1270 007c 00000000 		.4byte	0
- 1271              		.section	.debug_line,"",%progbits
- 1272              	.Ldebug_line0:
- 1273 0000 74010000 		.section	.debug_str,"MS",%progbits,1
- 1273      02004800 
- 1273      00000201 
- 1273      FB0E0D00 
- 1273      01010101 
- 1274              	.LASF15:
- 1275 0000 72656733 		.ascii	"reg32\000"
- 1275      3200
- 1276              	.LASF30:
- 1277 0006 70657269 		.ascii	"period\000"
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 37
+ 1226 0050 00000000 		.4byte	.LFB10
+ 1227 0054 20000000 		.4byte	.LFE10
+ 1228 0058 00000000 		.4byte	.LFB11
+ 1229 005c 18000000 		.4byte	.LFE11
+ 1230 0060 00000000 		.4byte	.LFB12
+ 1231 0064 20000000 		.4byte	.LFE12
+ 1232 0068 00000000 		.4byte	.LFB13
+ 1233 006c 20000000 		.4byte	.LFE13
+ 1234 0070 00000000 		.4byte	.LFB14
+ 1235 0074 1A000000 		.4byte	.LFE14
+ 1236 0078 00000000 		.4byte	0
+ 1237 007c 00000000 		.4byte	0
+ 1238              		.section	.debug_line,"",%progbits
+ 1239              	.Ldebug_line0:
+ 1240 0000 74010000 		.section	.debug_str,"MS",%progbits,1
+ 1240      02004800 
+ 1240      00000201 
+ 1240      FB0E0D00 
+ 1240      01010101 
+ 1241              	.LASF11:
+ 1242 0000 63686172 		.ascii	"char\000"
+ 1242      00
+ 1243              	.LASF28:
+ 1244 0005 70657269 		.ascii	"period\000"
+ 1244      6F6400
+ 1245              	.LASF23:
+ 1246 000c 46534D5F 		.ascii	"FSM_Timer_WriteControlRegister\000"
+ 1246      54696D65 
+ 1246      725F5772 
+ 1246      69746543 
+ 1246      6F6E7472 
+ 1247              	.LASF3:
+ 1248 002b 73686F72 		.ascii	"short unsigned int\000"
+ 1248      7420756E 
+ 1248      7369676E 
+ 1248      65642069 
+ 1248      6E7400
+ 1249              	.LASF36:
+ 1250 003e 443A5C77 		.ascii	"D:\\workspace\\Super-Eagle\\Super-Eagle\\Super-Eagl"
+ 1250      6F726B73 
+ 1250      70616365 
+ 1250      5C537570 
+ 1250      65722D45 
+ 1251 006d 652E6379 		.ascii	"e.cydsn\000"
+ 1251      64736E00 
+ 1252              	.LASF26:
+ 1253 0075 46534D5F 		.ascii	"FSM_Timer_ReadPeriod\000"
+ 1253      54696D65 
+ 1253      725F5265 
+ 1253      61645065 
+ 1253      72696F64 
+ 1254              	.LASF21:
+ 1255 008a 46534D5F 		.ascii	"FSM_Timer_ReadStatusRegister\000"
+ 1255      54696D65 
+ 1255      725F5265 
+ 1255      61645374 
+ 1255      61747573 
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 37
 
 
- 1277      6F6400
- 1278              	.LASF25:
- 1279 000d 46534D5F 		.ascii	"FSM_Timer_WriteControlRegister\000"
+ 1256              	.LASF9:
+ 1257 00a7 666C6F61 		.ascii	"float\000"
+ 1257      7400
+ 1258              	.LASF31:
+ 1259 00ad 636F756E 		.ascii	"counter\000"
+ 1259      74657200 
+ 1260              	.LASF17:
+ 1261 00b5 46534D5F 		.ascii	"FSM_Timer_Stop\000"
+ 1261      54696D65 
+ 1261      725F5374 
+ 1261      6F7000
+ 1262              	.LASF1:
+ 1263 00c4 756E7369 		.ascii	"unsigned char\000"
+ 1263      676E6564 
+ 1263      20636861 
+ 1263      7200
+ 1264              	.LASF13:
+ 1265 00d2 72656738 		.ascii	"reg8\000"
+ 1265      00
+ 1266              	.LASF5:
+ 1267 00d7 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1267      20756E73 
+ 1267      69676E65 
+ 1267      6420696E 
+ 1267      7400
+ 1268              	.LASF12:
+ 1269 00e9 75696E74 		.ascii	"uint8\000"
+ 1269      3800
+ 1270              	.LASF25:
+ 1271 00ef 636F6E74 		.ascii	"control\000"
+ 1271      726F6C00 
+ 1272              	.LASF27:
+ 1273 00f7 46534D5F 		.ascii	"FSM_Timer_WritePeriod\000"
+ 1273      54696D65 
+ 1273      725F5772 
+ 1273      69746550 
+ 1273      6572696F 
+ 1274              	.LASF38:
+ 1275 010d 46534D5F 		.ascii	"FSM_Timer_initVar\000"
+ 1275      54696D65 
+ 1275      725F696E 
+ 1275      69745661 
+ 1275      7200
+ 1276              	.LASF10:
+ 1277 011f 646F7562 		.ascii	"double\000"
+ 1277      6C6500
+ 1278              	.LASF19:
+ 1279 0126 46534D5F 		.ascii	"FSM_Timer_SetInterruptMode\000"
  1279      54696D65 
- 1279      725F5772 
- 1279      69746543 
- 1279      6F6E7472 
- 1280              	.LASF3:
- 1281 002c 73686F72 		.ascii	"short unsigned int\000"
- 1281      7420756E 
- 1281      7369676E 
- 1281      65642069 
- 1281      6E7400
- 1282              	.LASF13:
- 1283 003f 63686172 		.ascii	"char\000"
+ 1279      725F5365 
+ 1279      74496E74 
+ 1279      65727275 
+ 1280              	.LASF15:
+ 1281 0141 46534D5F 		.ascii	"FSM_Timer_Enable\000"
+ 1281      54696D65 
+ 1281      725F456E 
+ 1281      61626C65 
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 38
+
+
+ 1281      00
+ 1282              	.LASF8:
+ 1283 0152 756E7369 		.ascii	"unsigned int\000"
+ 1283      676E6564 
+ 1283      20696E74 
  1283      00
- 1284              	.LASF28:
- 1285 0044 46534D5F 		.ascii	"FSM_Timer_ReadPeriod\000"
+ 1284              	.LASF33:
+ 1285 015f 46534D5F 		.ascii	"FSM_Timer_ClearFIFO\000"
  1285      54696D65 
- 1285      725F5265 
- 1285      61645065 
- 1285      72696F64 
- 1286              	.LASF23:
- 1287 0059 46534D5F 		.ascii	"FSM_Timer_ReadStatusRegister\000"
- 1287      54696D65 
- 1287      725F5265 
- 1287      61645374 
- 1287      61747573 
- 1288              	.LASF11:
- 1289 0076 666C6F61 		.ascii	"float\000"
- 1289      7400
- 1290              	.LASF33:
- 1291 007c 636F756E 		.ascii	"counter\000"
- 1291      74657200 
- 1292              	.LASF19:
- 1293 0084 46534D5F 		.ascii	"FSM_Timer_Stop\000"
- 1293      54696D65 
- 1293      725F5374 
- 1293      6F7000
- 1294              	.LASF1:
- 1295 0093 756E7369 		.ascii	"unsigned char\000"
- 1295      676E6564 
- 1295      20636861 
- 1295      7200
+ 1285      725F436C 
+ 1285      65617246 
+ 1285      49464F00 
+ 1286              	.LASF7:
+ 1287 0173 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1287      206C6F6E 
+ 1287      6720756E 
+ 1287      7369676E 
+ 1287      65642069 
+ 1288              	.LASF30:
+ 1289 018a 46534D5F 		.ascii	"FSM_Timer_WriteCounter\000"
+ 1289      54696D65 
+ 1289      725F5772 
+ 1289      69746543 
+ 1289      6F756E74 
+ 1290              	.LASF34:
+ 1291 01a1 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 1291      4320342E 
+ 1291      382E3420 
+ 1291      32303134 
+ 1291      30353236 
+ 1292 01d4 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
+ 1292      20726576 
+ 1292      6973696F 
+ 1292      6E203231 
+ 1292      31333538 
+ 1293 0207 30202D66 		.ascii	"0 -ffunction-sections\000"
+ 1293      66756E63 
+ 1293      74696F6E 
+ 1293      2D736563 
+ 1293      74696F6E 
+ 1294              	.LASF35:
+ 1295 021d 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\FSM_Timer.c\000"
+ 1295      6E657261 
+ 1295      7465645F 
+ 1295      536F7572 
+ 1295      63655C50 
  1296              	.LASF14:
- 1297 00a1 72656738 		.ascii	"reg8\000"
+ 1297 0242 73697A65 		.ascii	"sizetype\000"
+ 1297      74797065 
  1297      00
- 1298              	.LASF5:
- 1299 00a6 6C6F6E67 		.ascii	"long unsigned int\000"
- 1299      20756E73 
- 1299      69676E65 
- 1299      6420696E 
+ 1298              	.LASF6:
+ 1299 024b 6C6F6E67 		.ascii	"long long int\000"
+ 1299      206C6F6E 
+ 1299      6720696E 
  1299      7400
- 1300              	.LASF9:
- 1301 00b8 75696E74 		.ascii	"uint8\000"
- 1301      3800
- 1302              	.LASF27:
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 38
+ 1300              	.LASF24:
+ 1301 0259 696E7465 		.ascii	"interruptMode\000"
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccgyXOBP.s 			page 39
 
 
- 1303 00be 636F6E74 		.ascii	"control\000"
- 1303      726F6C00 
- 1304              	.LASF29:
- 1305 00c6 46534D5F 		.ascii	"FSM_Timer_WritePeriod\000"
+ 1301      72727570 
+ 1301      744D6F64 
+ 1301      6500
+ 1302              	.LASF2:
+ 1303 0267 73686F72 		.ascii	"short int\000"
+ 1303      7420696E 
+ 1303      7400
+ 1304              	.LASF20:
+ 1305 0271 46534D5F 		.ascii	"FSM_Timer_SoftwareCapture\000"
  1305      54696D65 
- 1305      725F5772 
- 1305      69746550 
- 1305      6572696F 
- 1306              	.LASF40:
- 1307 00dc 46534D5F 		.ascii	"FSM_Timer_initVar\000"
- 1307      54696D65 
- 1307      725F696E 
- 1307      69745661 
- 1307      7200
- 1308              	.LASF12:
- 1309 00ee 646F7562 		.ascii	"double\000"
- 1309      6C6500
- 1310              	.LASF21:
- 1311 00f5 46534D5F 		.ascii	"FSM_Timer_SetInterruptMode\000"
+ 1305      725F536F 
+ 1305      66747761 
+ 1305      72654361 
+ 1306              	.LASF4:
+ 1307 028b 6C6F6E67 		.ascii	"long int\000"
+ 1307      20696E74 
+ 1307      00
+ 1308              	.LASF16:
+ 1309 0294 46534D5F 		.ascii	"FSM_Timer_Start\000"
+ 1309      54696D65 
+ 1309      725F5374 
+ 1309      61727400 
+ 1310              	.LASF29:
+ 1311 02a4 46534D5F 		.ascii	"FSM_Timer_ReadCapture\000"
  1311      54696D65 
- 1311      725F5365 
- 1311      74496E74 
- 1311      65727275 
- 1312              	.LASF17:
- 1313 0110 46534D5F 		.ascii	"FSM_Timer_Enable\000"
- 1313      54696D65 
- 1313      725F456E 
- 1313      61626C65 
- 1313      00
- 1314              	.LASF10:
- 1315 0121 75696E74 		.ascii	"uint32\000"
- 1315      333200
- 1316              	.LASF8:
- 1317 0128 756E7369 		.ascii	"unsigned int\000"
- 1317      676E6564 
- 1317      20696E74 
- 1317      00
- 1318              	.LASF35:
- 1319 0135 46534D5F 		.ascii	"FSM_Timer_ClearFIFO\000"
+ 1311      725F5265 
+ 1311      61644361 
+ 1311      70747572 
+ 1312              	.LASF0:
+ 1313 02ba 7369676E 		.ascii	"signed char\000"
+ 1313      65642063 
+ 1313      68617200 
+ 1314              	.LASF37:
+ 1315 02c6 46534D5F 		.ascii	"FSM_Timer_interruptState\000"
+ 1315      54696D65 
+ 1315      725F696E 
+ 1315      74657272 
+ 1315      75707453 
+ 1316              	.LASF18:
+ 1317 02df 46534D5F 		.ascii	"FSM_Timer_Init\000"
+ 1317      54696D65 
+ 1317      725F496E 
+ 1317      697400
+ 1318              	.LASF22:
+ 1319 02ee 46534D5F 		.ascii	"FSM_Timer_ReadControlRegister\000"
  1319      54696D65 
- 1319      725F436C 
- 1319      65617246 
- 1319      49464F00 
- 1320              	.LASF7:
- 1321 0149 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1321      206C6F6E 
- 1321      6720756E 
- 1321      7369676E 
- 1321      65642069 
- 1322              	.LASF32:
- 1323 0160 46534D5F 		.ascii	"FSM_Timer_WriteCounter\000"
- 1323      54696D65 
- 1323      725F5772 
- 1323      69746543 
- 1323      6F756E74 
- 1324              	.LASF36:
- 1325 0177 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 39
-
-
- 1325      4320342E 
- 1325      382E3420 
- 1325      32303134 
- 1325      30353236 
- 1326 01aa 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m3 -mthumb -g -O"
- 1326      20726576 
- 1326      6973696F 
- 1326      6E203231 
- 1326      31333538 
- 1327 01dd 30202D66 		.ascii	"0 -ffunction-sections\000"
- 1327      66756E63 
- 1327      74696F6E 
- 1327      2D736563 
- 1327      74696F6E 
- 1328              	.LASF38:
- 1329 01f3 443A5C77 		.ascii	"D:\\workspace\\super-eagle\\Super-Eagle\\Super-Eagl"
- 1329      6F726B73 
- 1329      70616365 
- 1329      5C737570 
- 1329      65722D65 
- 1330 0222 652E6379 		.ascii	"e.cydsn\000"
- 1330      64736E00 
- 1331              	.LASF37:
- 1332 022a 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\FSM_Timer.c\000"
- 1332      6E657261 
- 1332      7465645F 
- 1332      536F7572 
- 1332      63655C50 
- 1333              	.LASF16:
- 1334 024f 73697A65 		.ascii	"sizetype\000"
- 1334      74797065 
- 1334      00
- 1335              	.LASF6:
- 1336 0258 6C6F6E67 		.ascii	"long long int\000"
- 1336      206C6F6E 
- 1336      6720696E 
- 1336      7400
- 1337              	.LASF26:
- 1338 0266 696E7465 		.ascii	"interruptMode\000"
- 1338      72727570 
- 1338      744D6F64 
- 1338      6500
- 1339              	.LASF2:
- 1340 0274 73686F72 		.ascii	"short int\000"
- 1340      7420696E 
- 1340      7400
- 1341              	.LASF22:
- 1342 027e 46534D5F 		.ascii	"FSM_Timer_SoftwareCapture\000"
- 1342      54696D65 
- 1342      725F536F 
- 1342      66747761 
- 1342      72654361 
- 1343              	.LASF4:
- 1344 0298 6C6F6E67 		.ascii	"long int\000"
- 1344      20696E74 
- 1344      00
- 1345              	.LASF18:
-ARM GAS  C:\Users\KHJTON~1\AppData\Local\Temp\ccnRPmIC.s 			page 40
-
-
- 1346 02a1 46534D5F 		.ascii	"FSM_Timer_Start\000"
- 1346      54696D65 
- 1346      725F5374 
- 1346      61727400 
- 1347              	.LASF31:
- 1348 02b1 46534D5F 		.ascii	"FSM_Timer_ReadCapture\000"
- 1348      54696D65 
- 1348      725F5265 
- 1348      61644361 
- 1348      70747572 
- 1349              	.LASF0:
- 1350 02c7 7369676E 		.ascii	"signed char\000"
- 1350      65642063 
- 1350      68617200 
- 1351              	.LASF39:
- 1352 02d3 46534D5F 		.ascii	"FSM_Timer_interruptState\000"
- 1352      54696D65 
- 1352      725F696E 
- 1352      74657272 
- 1352      75707453 
- 1353              	.LASF20:
- 1354 02ec 46534D5F 		.ascii	"FSM_Timer_Init\000"
- 1354      54696D65 
- 1354      725F496E 
- 1354      697400
- 1355              	.LASF24:
- 1356 02fb 46534D5F 		.ascii	"FSM_Timer_ReadControlRegister\000"
- 1356      54696D65 
- 1356      725F5265 
- 1356      6164436F 
- 1356      6E74726F 
- 1357              	.LASF34:
- 1358 0319 46534D5F 		.ascii	"FSM_Timer_ReadCounter\000"
- 1358      54696D65 
- 1358      725F5265 
- 1358      6164436F 
- 1358      756E7465 
- 1359              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br
+ 1319      725F5265 
+ 1319      6164436F 
+ 1319      6E74726F 
+ 1320              	.LASF32:
+ 1321 030c 46534D5F 		.ascii	"FSM_Timer_ReadCounter\000"
+ 1321      54696D65 
+ 1321      725F5265 
+ 1321      6164436F 
+ 1321      756E7465 
+ 1322              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

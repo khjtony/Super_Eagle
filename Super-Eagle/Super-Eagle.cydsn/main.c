@@ -35,6 +35,14 @@ volatile uint8_t battery=100;
 volatile uint8_t brake;
 volatile uint8_t current_page;
 volatile Dash_Mode mode = COMMON;
+volatile RGB LED_rgb;
+volatile uint8_t LED_len;
+volatile RGB LED_test;
+extern uint8_t wdt_battery;
+extern uint8_t wdt_padel;
+extern uint8_t error_battery;
+extern uint8_t error_padel;
+
 
 
 
@@ -116,7 +124,18 @@ CY_ISR(Fake_Handler)
 
 CY_ISR(FSM_Handler){
     FSM_Timer_STATUS;
+    if (wdt_battery>1){
+        wdt_battery -= 1;
+    }else{
+        error_battery |= BAT_NO_CONNECTION;
+    }
+    if (wdt_padel>1){
+        wdt_padel -= 1;
+    }else{
+        error_padel |= PADEL_NO_CONNECTION;
+    }
     
+
     switch(state)// FSM, should be in the highest int priority
 		{
 			case STARTUP:
@@ -151,7 +170,8 @@ int main()
     CyGlobalIntEnable;
     
     //setup startup state
-    state = STARTUP;
+    //state = STARTUP;
+    state = DRIVE;
     mode = COMMON;
     
     /* Enable the Interrupt component connected to Timer interrupt */
@@ -172,13 +192,20 @@ int main()
     
     
     
-    /* Start LCD */
+    /* Start LCD and initial others */
     LCD_Start();
+    LCD_ClearDisplay();
+    wdt_battery = 100;
+    wdt_padel = 100;
+    
+    LED_test.R=0x40;
+    LED_test.G=0x40;
+    LED_test.B=0x40;
     
     for(;;)
 	{
-      
-        CyDelay(10u);
+        LED_update(LED_test, 10u);
+        CyDelay(100u);
 	} // main loop
 	return 0;
     
