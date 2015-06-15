@@ -22,7 +22,7 @@ extern volatile Dash_Mode mode;
 
 
 extern uint32_t info_battery_voltage;
-extern uint16_t info_battery_current;
+extern int16_t info_battery_current;
 extern uint16_t info_battery_temp;
 extern uint16_t info_battery_status;
 extern uint16_t info_car_speed;
@@ -56,6 +56,13 @@ void Dash_display_Mode(Dash_Mode mode){
 
 void Dash_display_State(States newState){
     LCD_Position(0u,0u);
+    
+    if (error_battery || error_padel){
+        LCD_Position(0u,8u);
+        LCD_PrintString("ERR:");
+        LCD_PrintHexUint16(error_battery<<8 | error_padel);
+    }
+    
     switch(newState){
         case STARTUP:
             LCD_PrintString("START UP"); 
@@ -80,11 +87,7 @@ void Dash_display_State(States newState){
             break;
     }
     
-    if (error_battery || error_padel){
-        LCD_Position(0u,8u);
-        LCD_PrintString("ERR:");
-        LCD_PrintHexUint16(error_battery<<8 | error_padel);
-    }
+    
     return;
 }
 
@@ -141,13 +144,13 @@ void Dash_display_Value(){
         LCD_Position(1u,7u);
         LCD_PrintString("V");
         
-        if (info_battery_current<1*10){     //0~0.9A
+        if ((info_battery_current)<1*10 | (info_battery_current)>-1*10){     //0~0.9A
             LCD_Position(1u,12u);
             LCD_PrintNumber(0);
-        }else if(info_battery_current<10*10){       //1~9.9A
+        }else if(info_battery_current<10*10 | info_battery_current>-10*10){       //1~9.9A
             LCD_Position(1u,12u);
             LCD_PrintNumber(info_battery_current/10);
-        }else if(info_battery_current<100*10){      //10~99.9A
+        }else if(info_battery_current<100*10 | info_battery_current>100*10){      //10~99.9A
             LCD_Position(1u,11u);
             LCD_PrintNumber(info_battery_current/10);
         }else{

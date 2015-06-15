@@ -29,7 +29,7 @@
 
 extern uint16_t info_battery_temp;
 extern uint32_t info_battery_voltage;
-extern uint16_t info_battery_current;
+extern int16_t info_battery_current;
 extern uint16_t info_battery_status;
 
 extern uint8_t error_battery;
@@ -38,6 +38,7 @@ extern uint8_t wdt_battery;
 extern uint8_t wdt_padel;
 extern uint8_t wdt_current;
 extern uint8_t wdt_voltage;
+extern uint8_t wdt_status;
 
 extern uint8_t warning_data;
 
@@ -621,10 +622,8 @@ void CAN_1_ReceiveMsg(uint8 rxMailbox)
     {
         uint32_t temp;
         /* `#START MESSAGE_bms_volt_RECEIVED` */
-        //info_battery_voltage = (CAN_1_RX_DATA_BYTE(1u, 4)<<24) | (CAN_1_RX_DATA_BYTE(1u, 5)<<16) | (CAN_1_RX_DATA_BYTE(1u, 6)<<8) | CAN_1_RX_DATA_BYTE(1u, 7);
-        temp = (CAN_1_RX_DATA_BYTE(1u, 0));
-        info_battery_voltage = (CAN_1_RX_DATA_BYTE(1u, 1)<<8) | (CAN_1_RX_DATA_BYTE(1u, 2));
-        info_battery_voltage = temp*0xff;
+        temp = ((CAN_1_RX_DATA_BYTE(1u, 4)&0xff) <<24) | ((CAN_1_RX_DATA_BYTE(1u, 5)&0xff) <<16) | ((CAN_1_RX_DATA_BYTE(1u, 6)&0xff) <<8) | (CAN_1_RX_DATA_BYTE(1u, 7)&0xff);
+        info_battery_voltage = temp;
         info_battery_voltage = info_battery_voltage/1000;  //convert to fixed 1-point voltage
         //LED_len = ((info_battery_voltage-Battery_Lower_Bound)/Battery_Swing)*TOTAL_LED;
         wdt_voltage = COM_TIMEOUT;
@@ -673,7 +672,7 @@ void CAN_1_ReceiveMsg(uint8 rxMailbox)
             error_battery |= BAT_UNDER_VOLTAGE;
         }
             
-            
+        wdt_status = COM_TIMEOUT;
         
         
         /* `#END` */
