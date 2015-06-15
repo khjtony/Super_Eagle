@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 1
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccP2ltLT.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 1
   29:.\Generated_Source\PSoC5/clk.c **** * Summary:
   30:.\Generated_Source\PSoC5/clk.c **** *  Assign a new value to the digital port's data output register.  
   31:.\Generated_Source\PSoC5/clk.c **** *
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 2
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccP2ltLT.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/clk.c **** * Parameters:  
@@ -80,13 +80,13 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 1
   33              		.loc 1 41 0
   34 0000 044B     		ldr	r3, .L2
   35 0002 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
-  36 0004 02F0F702 		and	r2, r2, #247
+  36 0004 02F0FB02 		and	r2, r2, #251
   37              	.LVL1:
   42:.\Generated_Source\PSoC5/clk.c ****     clk_DR = staticBits | ((uint8)(value << clk_SHIFT) & clk_MASK);
   38              		.loc 1 42 0
-  39 0008 C000     		lsls	r0, r0, #3
+  39 0008 8000     		lsls	r0, r0, #2
   40              	.LVL2:
-  41 000a 00F00800 		and	r0, r0, #8
+  41 000a 00F00400 		and	r0, r0, #4
   42 000e 0243     		orrs	r2, r2, r0
   43              	.LVL3:
   44 0010 1A70     		strb	r2, [r3]
@@ -94,7 +94,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 1
   46              	.L3:
   47              		.align	2
   48              	.L2:
-  49 0014 40510040 		.word	1073762624
+  49 0014 20510040 		.word	1073762592
   50              		.cfi_endproc
   51              	.LFE0:
   52              		.size	clk_Write, .-clk_Write
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 1
   52:.\Generated_Source\PSoC5/clk.c **** * 
   53:.\Generated_Source\PSoC5/clk.c **** * Parameters:  
   54:.\Generated_Source\PSoC5/clk.c **** *  mode:  Change the pins to one of the following drive modes.
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 3
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccP2ltLT.s 			page 3
 
 
   55:.\Generated_Source\PSoC5/clk.c **** *
@@ -156,7 +156,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 1
   76              	.L6:
   77 0012 00BF     		.align	2
   78              	.L5:
-  79 0014 23500040 		.word	1073762339
+  79 0014 12500040 		.word	1073762322
   80              		.cfi_endproc
   81              	.LFE1:
   82              		.size	clk_SetDriveMode, .-clk_SetDriveMode
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 1
   79:.\Generated_Source\PSoC5/clk.c **** * Summary:
   80:.\Generated_Source\PSoC5/clk.c **** *  Read the current value on the pins of the Digital Port in right justified 
   81:.\Generated_Source\PSoC5/clk.c **** *  form.
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 4
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccP2ltLT.s 			page 4
 
 
   82:.\Generated_Source\PSoC5/clk.c **** *
@@ -205,12 +205,12 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 1
   98 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
   96:.\Generated_Source\PSoC5/clk.c **** }
   99              		.loc 1 96 0
- 100 0004 C0F3C000 		ubfx	r0, r0, #3, #1
+ 100 0004 C0F38000 		ubfx	r0, r0, #2, #1
  101 0008 7047     		bx	lr
  102              	.L9:
  103 000a 00BF     		.align	2
  104              	.L8:
- 105 000c 41510040 		.word	1073762625
+ 105 000c 21510040 		.word	1073762593
  106              		.cfi_endproc
  107              	.LFE2:
  108              		.size	clk_Read, .-clk_Read
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 1
  110:.\Generated_Source\PSoC5/clk.c **** *  Returns the current value assigned to the Digital Port's data output register
  111:.\Generated_Source\PSoC5/clk.c **** *  
  112:.\Generated_Source\PSoC5/clk.c **** *******************************************************************************/
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 5
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccP2ltLT.s 			page 5
 
 
  113:.\Generated_Source\PSoC5/clk.c **** uint8 clk_ReadDataReg(void) 
@@ -254,12 +254,12 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 1
  124 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
  116:.\Generated_Source\PSoC5/clk.c **** }
  125              		.loc 1 116 0
- 126 0004 C0F3C000 		ubfx	r0, r0, #3, #1
+ 126 0004 C0F38000 		ubfx	r0, r0, #2, #1
  127 0008 7047     		bx	lr
  128              	.L12:
  129 000a 00BF     		.align	2
  130              	.L11:
- 131 000c 40510040 		.word	1073762624
+ 131 000c 20510040 		.word	1073762592
  132              		.cfi_endproc
  133              	.LFE3:
  134              		.size	clk_ReadDataReg, .-clk_ReadDataReg
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 1
  167 003d 7B000000 		.4byte	.LASF3
  168 0041 02       		.uleb128 0x2
  169 0042 04       		.byte	0x4
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 6
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccP2ltLT.s 			page 6
 
 
  170 0043 05       		.byte	0x5
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 1
  224 00ad D0000000 		.4byte	0xd0
  225 00b1 08       		.uleb128 0x8
  226 00b2 10000000 		.4byte	.LASF16
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 7
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccP2ltLT.s 			page 7
 
 
  227 00b6 01       		.byte	0x1
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 1
  281 0006 0B       		.uleb128 0xb
  282 0007 03       		.uleb128 0x3
  283 0008 0E       		.uleb128 0xe
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 8
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccP2ltLT.s 			page 8
 
 
  284 0009 1B       		.uleb128 0x1b
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 1
  338 003f 49       		.uleb128 0x49
  339 0040 13       		.uleb128 0x13
  340 0041 00       		.byte	0
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 9
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccP2ltLT.s 			page 9
 
 
  341 0042 00       		.byte	0
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 1
  395 0079 0B       		.uleb128 0xb
  396 007a 3B       		.uleb128 0x3b
  397 007b 0B       		.uleb128 0xb
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 10
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccP2ltLT.s 			page 10
 
 
  398 007c 49       		.uleb128 0x49
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 1
  452 0030 00000000 		.4byte	0
  453              	.LLST2:
  454 0034 00000000 		.4byte	.LVL4
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 11
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccP2ltLT.s 			page 11
 
 
  455 0038 0C000000 		.4byte	.LVL5
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 1
  502              	.LASF16:
  503 0010 76616C75 		.ascii	"value\000"
  503      6500
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 12
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccP2ltLT.s 			page 12
 
 
  504              	.LASF23:
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 1
  527 00ca 6D6F6465 		.ascii	"mode\000"
  527      00
  528              	.LASF18:
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccSeNvpR.s 			page 13
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccP2ltLT.s 			page 13
 
 
  529 00cf 636C6B5F 		.ascii	"clk_Read\000"

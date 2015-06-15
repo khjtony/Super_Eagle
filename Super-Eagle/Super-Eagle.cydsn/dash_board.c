@@ -119,14 +119,48 @@ void Dash_display_Value(){
     //display two values, msg, or err_msg
     if (mode == COMMON){
         //left voltage right current
-        LCD_Position(1u,0u);
-        LCD_PrintNumber(info_battery_voltage);
+        if (info_battery_voltage<1*10){     //0~0.9V
+            LCD_Position(1u,4u);
+            LCD_PrintNumber(0);
+        }else if(info_battery_voltage<10*10){       //1~9.9V
+            LCD_Position(1u,4u);
+            LCD_PrintNumber(info_battery_voltage/10);
+        }else if(info_battery_voltage<100*10){      //10~99.9V
+            LCD_Position(1u,3u);
+            LCD_PrintNumber(info_battery_voltage/10);
+        }else{
+            LCD_Position(1u,2u);
+            LCD_PrintNumber(info_battery_voltage/10);
+        }
+        
+        
+        LCD_Position(1u,5u);
+        LCD_PrintString(".");
         LCD_Position(1u,6u);
-        LCD_PrintString("mV");
-        LCD_Position(1u,8u);
-        LCD_PrintNumber(info_battery_current);
+        LCD_PrintNumber(info_battery_voltage%10);
+        LCD_Position(1u,7u);
+        LCD_PrintString("V");
+        
+        if (info_battery_current<1*10){     //0~0.9A
+            LCD_Position(1u,12u);
+            LCD_PrintNumber(0);
+        }else if(info_battery_current<10*10){       //1~9.9A
+            LCD_Position(1u,12u);
+            LCD_PrintNumber(info_battery_current/10);
+        }else if(info_battery_current<100*10){      //10~99.9A
+            LCD_Position(1u,11u);
+            LCD_PrintNumber(info_battery_current/10);
+        }else{
+            LCD_Position(1u,10u);
+            LCD_PrintNumber(info_battery_current/10);
+        }
+        
+        LCD_Position(1u,13u);
+        LCD_PrintString(".");
         LCD_Position(1u,14u);
-        LCD_PrintString("mA");
+        LCD_PrintNumber(info_battery_current%10);
+        LCD_Position(1u,15u);
+        LCD_PrintString("A");
     }
 
 }

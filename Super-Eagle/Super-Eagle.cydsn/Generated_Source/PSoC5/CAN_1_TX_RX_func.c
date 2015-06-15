@@ -36,6 +36,8 @@ extern uint8_t error_battery;
 extern uint8_t error_padel;
 extern uint8_t wdt_battery;
 extern uint8_t wdt_padel;
+extern uint8_t wdt_current;
+extern uint8_t wdt_voltage;
 
 extern uint8_t warning_data;
 
@@ -617,9 +619,15 @@ void CAN_1_ReceiveMsg(uint8 rxMailbox)
     *******************************************************************************/
     void CAN_1_ReceiveMsgbms_volt(void) 
     {
+        uint32_t temp;
         /* `#START MESSAGE_bms_volt_RECEIVED` */
-        info_battery_voltage = CAN_1_RX_DATA_BYTE(1u, 4)<<24 | CAN_1_RX_DATA_BYTE(1u, 5)<<16 | CAN_1_RX_DATA_BYTE(1u, 6)<<8 | CAN_1_RX_DATA_BYTE(1u, 7);
-        LED_len = ((info_battery_voltage-Battery_Lower_Bound)/Battery_Swing)*TOTAL_LED;
+        //info_battery_voltage = (CAN_1_RX_DATA_BYTE(1u, 4)<<24) | (CAN_1_RX_DATA_BYTE(1u, 5)<<16) | (CAN_1_RX_DATA_BYTE(1u, 6)<<8) | CAN_1_RX_DATA_BYTE(1u, 7);
+        temp = (CAN_1_RX_DATA_BYTE(1u, 0));
+        info_battery_voltage = (CAN_1_RX_DATA_BYTE(1u, 1)<<8) | (CAN_1_RX_DATA_BYTE(1u, 2));
+        info_battery_voltage = temp*0xff;
+        info_battery_voltage = info_battery_voltage/1000;  //convert to fixed 1-point voltage
+        //LED_len = ((info_battery_voltage-Battery_Lower_Bound)/Battery_Swing)*TOTAL_LED;
+        wdt_voltage = COM_TIMEOUT;
         /* `#END` */
     
         CAN_1_RX[1u].rxcmd.byte[0u] |= CAN_1_RX_ACK_MSG;
@@ -651,7 +659,7 @@ void CAN_1_ReceiveMsg(uint8 rxMailbox)
     void CAN_1_ReceiveMsgbms_status(void) 
     {
         /* `#START MESSAGE_bms_status_RECEIVED` */
-        info_battery_status = CAN_1_RX_DATA_BYTE(2u, 2)<<4 | CAN_1_RX_DATA_BYTE(2u, 3);
+        info_battery_status = CAN_1_RX_DATA_BYTE(2u, 2)<<8 | CAN_1_RX_DATA_BYTE(2u, 3);
         wdt_battery = 100;
         if (info_battery_status|PACK_TEMP_OVER){
             error_battery |= BAT_OVER_TEMP;
@@ -699,7 +707,8 @@ void CAN_1_ReceiveMsg(uint8 rxMailbox)
     void CAN_1_ReceiveMsgbms_current(void) 
     {
         /* `#START MESSAGE_bms_current_RECEIVED` */
-        info_battery_current = CAN_1_RX_DATA_BYTE(3u, 1)<<4 | CAN_1_RX_DATA_BYTE(3u, 2);
+        info_battery_current = CAN_1_RX_DATA_BYTE(3u, 0)<<8 | CAN_1_RX_DATA_BYTE(3u, 1);
+        wdt_current = COM_TIMEOUT;
         /* `#END` */
     
         CAN_1_RX[3u].rxcmd.byte[0u] |= CAN_1_RX_ACK_MSG;

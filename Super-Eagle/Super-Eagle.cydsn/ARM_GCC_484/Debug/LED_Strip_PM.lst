@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 1
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cctpVw6m.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 1
   22:.\Generated_Source\PSoC5/LED_Strip_PM.c ****     LED_Strip_DISABLED,
   23:.\Generated_Source\PSoC5/LED_Strip_PM.c ****     LED_Strip_BITCTR_INIT,
   24:.\Generated_Source\PSoC5/LED_Strip_PM.c **** };
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 2
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cctpVw6m.s 			page 2
 
 
   25:.\Generated_Source\PSoC5/LED_Strip_PM.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 1
   53:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
   54:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Parameters:
   55:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  None.
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 3
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cctpVw6m.s 			page 3
 
 
   56:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 1
   84:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  No.
   85:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
   86:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *******************************************************************************/
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 4
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cctpVw6m.s 			page 4
 
 
   87:.\Generated_Source\PSoC5/LED_Strip_PM.c **** void LED_Strip_Sleep(void) 
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 1
   98:.\Generated_Source\PSoC5/LED_Strip_PM.c **** ********************************************************************************
   99:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *
  100:.\Generated_Source\PSoC5/LED_Strip_PM.c **** * Summary:
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 5
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cctpVw6m.s 			page 5
 
 
  101:.\Generated_Source\PSoC5/LED_Strip_PM.c **** *  Prepare SPIM Component to wake up.
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 1
  133:.\Generated_Source\PSoC5/LED_Strip_PM.c ****         LED_Strip_txBufferFull  = 0u;
  151              		.loc 1 133 0
  152 0016 0C4B     		ldr	r3, .L8+12
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 6
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cctpVw6m.s 			page 6
 
 
  153 0018 0022     		movs	r2, #0
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 1
  194              	.Ldebug_info0:
  195 0000 63010000 		.4byte	0x163
  196 0004 0400     		.2byte	0x4
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 7
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cctpVw6m.s 			page 7
 
 
  197 0006 00000000 		.4byte	.Ldebug_abbrev0
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 1
  251 0072 2C000000 		.4byte	0x2c
  252 0076 02       		.uleb128 0x2
  253 0077 04       		.byte	0x4
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 8
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cctpVw6m.s 			page 8
 
 
  254 0078 04       		.byte	0x4
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 1
  308 00e5 01       		.byte	0x1
  309 00e6 3D       		.byte	0x3d
  310 00e7 00000000 		.4byte	.LFB1
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 9
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cctpVw6m.s 			page 9
 
 
  311 00eb 0C000000 		.4byte	.LFE1-.LFB1
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 1
  365 0160 04       		.byte	0x4
  366 0161 2F       		.byte	0x2f
  367 0162 97000000 		.4byte	0x97
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 10
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cctpVw6m.s 			page 10
 
 
  368 0166 00       		.byte	0
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 1
  422 0033 13       		.uleb128 0x13
  423 0034 00       		.byte	0
  424 0035 00       		.byte	0
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 11
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cctpVw6m.s 			page 11
 
 
  425 0036 05       		.uleb128 0x5
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 1
  479 006c 0E       		.uleb128 0xe
  480 006d 3A       		.uleb128 0x3a
  481 006e 0B       		.uleb128 0xb
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 12
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cctpVw6m.s 			page 12
 
 
  482 006f 3B       		.uleb128 0x3b
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 1
  536 00a7 00       		.byte	0
  537 00a8 03       		.uleb128 0x3
  538 00a9 0E       		.uleb128 0xe
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 13
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cctpVw6m.s 			page 13
 
 
  539 00aa 3A       		.uleb128 0x3a
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 1
  586      434B5550 
  586      5F535452 
  587              	.LASF3:
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 14
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cctpVw6m.s 			page 14
 
 
  588 0018 73686F72 		.ascii	"short unsigned int\000"
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 1
  607      20756E73 
  607      69676E65 
  607      6420696E 
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 15
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cctpVw6m.s 			page 15
 
 
  607      7400
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 1
  629      42756666 
  629      65724675 
  630              	.LASF14:
-ARM GAS  C:\Users\khjtony\AppData\Local\Temp\ccNeevhh.s 			page 16
+ARM GAS  C:\Users\khjtony\AppData\Local\Temp\cctpVw6m.s 			page 16
 
 
  631 01f6 73697A65 		.ascii	"sizetype\000"

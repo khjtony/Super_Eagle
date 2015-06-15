@@ -28,6 +28,8 @@
     #define PADEL_THROTTLE_ERROR (0x1<<1)
     #define PADEL_BRAKE_ERROR (0x1<<2)
     
+    #define COM_TIMEOUT (100u)
+    
     
 #define TOTAL_LED (16u)
     

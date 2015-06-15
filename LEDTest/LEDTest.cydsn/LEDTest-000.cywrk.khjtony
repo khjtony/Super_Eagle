@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="LEDTest-000\LEDTest\Source Files\main.c">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="LEDTest-000\LEDTest\LEDTest.cydwr">
 <ExpandedNodeIds>
 <v>LEDTest-000</v>
 <v>LEDTest-000\LEDTest</v>
@@ -184,6 +184,33 @@
 <VisibleNodeIds>
 <v>LEDTest-000</v>
 <v>LEDTest-000\LEDTest</v>
+<v>LEDTest-000\LEDTest\CortexM3</v>
+<v>LEDTest-000\LEDTest\CortexM3\ARM_GCC_484</v>
+<v>LEDTest-000\LEDTest\CortexM3\ARM_GCC_484\Debug</v>
+<v>LEDTest-000\LEDTest\CortexM3\ARM_GCC_484\Debug\Listing Files</v>
+<v>LEDTest-000\LEDTest\CortexM3\ARM_GCC_484\Debug\Listing Files\clk.lst</v>
+<v>LEDTest-000\LEDTest\CortexM3\ARM_GCC_484\Debug\Listing Files\clock_1.lst</v>
+<v>LEDTest-000\LEDTest\CortexM3\ARM_GCC_484\Debug\Listing Files\Cm3Start.lst</v>
+<v>LEDTest-000\LEDTest\CortexM3\ARM_GCC_484\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>LEDTest-000\LEDTest\CortexM3\ARM_GCC_484\Debug\Listing Files\CyDmac.lst</v>
+<v>LEDTest-000\LEDTest\CortexM3\ARM_GCC_484\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>LEDTest-000\LEDTest\CortexM3\ARM_GCC_484\Debug\Listing Files\CyFlash.lst</v>
+<v>LEDTest-000\LEDTest\CortexM3\ARM_GCC_484\Debug\Listing Files\CyLib.lst</v>
+<v>LEDTest-000\LEDTest\CortexM3\ARM_GCC_484\Debug\Listing Files\cymetadata.lst</v>
+<v>LEDTest-000\LEDTest\CortexM3\ARM_GCC_484\Debug\Listing Files\cyPm.lst</v>
+<v>LEDTest-000\LEDTest\CortexM3\ARM_GCC_484\Debug\Listing Files\CySpc.lst</v>
+<v>LEDTest-000\LEDTest\CortexM3\ARM_GCC_484\Debug\Listing Files\cyutils.lst</v>
+<v>LEDTest-000\LEDTest\CortexM3\ARM_GCC_484\Debug\Listing Files\LED_Strip.lst</v>
+<v>LEDTest-000\LEDTest\CortexM3\ARM_GCC_484\Debug\Listing Files\LED_Strip_INT.lst</v>
+<v>LEDTest-000\LEDTest\CortexM3\ARM_GCC_484\Debug\Listing Files\LED_Strip_PM.lst</v>
+<v>LEDTest-000\LEDTest\CortexM3\ARM_GCC_484\Debug\Listing Files\main.lst</v>
+<v>LEDTest-000\LEDTest\CortexM3\ARM_GCC_484\Debug\Listing Files\miso.lst</v>
+<v>LEDTest-000\LEDTest\CortexM3\ARM_GCC_484\Debug\Listing Files\mosi.lst</v>
+<v>LEDTest-000\LEDTest\CortexM3\ARM_GCC_484\Debug\Listing Files\ss.lst</v>
+<v>LEDTest-000\LEDTest\CortexM3\ARM_GCC_484\Debug\LEDTest.elf</v>
+<v>LEDTest-000\LEDTest\CortexM3\ARM_GCC_484\Debug\LEDTest.hex</v>
+<v>LEDTest-000\LEDTest\CortexM3\ARM_GCC_484\Debug\LEDTest.map</v>
+<v>LEDTest-000\LEDTest\LEDTest.gpdsc</v>
 <v>LEDTest-000\LEDTest\LEDTest.rpt</v>
 <v>LEDTest-000\LEDTest\LEDTest_timing.html</v>
 </VisibleNodeIds>
@@ -230,7 +257,11 @@
 </userData>
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
-<OpenDocs />
+<OpenDocs>
+<name v=".\main.c" />
+<name v=".\TopDesign\TopDesign.cysch" />
+<name v=".\LEDTest.cydwr" />
+</OpenDocs>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>

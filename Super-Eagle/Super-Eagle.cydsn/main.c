@@ -40,8 +40,12 @@ volatile uint8_t LED_len;
 volatile RGB LED_test;
 extern uint8_t wdt_battery;
 extern uint8_t wdt_padel;
+extern uint8_t wdt_voltage;
+extern uint8_t wdt_current;
 extern uint8_t error_battery;
 extern uint8_t error_padel;
+extern uint32_t info_battery_voltage;
+extern uint16_t info_battery_current;
 
 
 
@@ -107,6 +111,8 @@ CY_ISR(isr_back)
 
 CY_ISR(LCD_Handler)
 {
+
+    
     LCD_Timer_STATUS;
     LCD_ClearDisplay();
     Dash_display_Mode(mode);
@@ -124,18 +130,21 @@ CY_ISR(Fake_Handler)
 
 CY_ISR(FSM_Handler){
     FSM_Timer_STATUS;
-    if (wdt_battery>1){
-        wdt_battery -= 1;
+        if (wdt_voltage>1){
+        wdt_voltage -= 1;
     }else{
-        error_battery |= BAT_NO_CONNECTION;
-    }
-    if (wdt_padel>1){
-        wdt_padel -= 1;
-    }else{
-        error_padel |= PADEL_NO_CONNECTION;
+            info_battery_voltage = 0;
     }
     
-
+    if (wdt_current>1){
+        wdt_current -= 1;
+    }else{
+            info_battery_current = 0;
+    }
+    
+    
+    
+/*
     switch(state)// FSM, should be in the highest int priority
 		{
 			case STARTUP:
@@ -159,8 +168,9 @@ CY_ISR(FSM_Handler){
         }; // switch state
         event=0x0; //wipe the event signal
 }
+*/
 
-
+}
 
 
 
@@ -175,8 +185,9 @@ int main()
     mode = COMMON;
     
     /* Enable the Interrupt component connected to Timer interrupt */
-    FSM_ISR_StartEx(FSM_Handler);
+    //FSM_ISR_StartEx(FSM_Handler);
     LCD_ISR_StartEx(LCD_Handler);
+    FSM_ISR_StartEx(FSM_Handler);
     isr_OK_StartEx(isr_OK);
     isr_back_StartEx(isr_back);
     isr_rotary_StartEx(isr_rotary);
@@ -189,22 +200,32 @@ int main()
     LCD_Timer_Start();
     Fake_Timer_Start();
     can_init();
-    
+
     
     
     /* Start LCD and initial others */
     LCD_Start();
+    BackLit_Write(1);
     LCD_ClearDisplay();
-    wdt_battery = 100;
-    wdt_padel = 100;
+    wdt_battery = 255;
+    wdt_voltage = 255;
+    wdt_padel = 255;
     
-    LED_test.R=0x40;
-    LED_test.G=0x40;
-    LED_test.B=0x40;
+    LED_test.R=0x4;
+    LED_test.G=0xa;
+    LED_test.B=0x4;
+    int8_t stamp=15;
+    int8_t direction=-1;
     
     for(;;)
 	{
-        LED_update(LED_test, 10u);
+        if (stamp<=0 || stamp >= 16){
+            direction = 0-direction;
+            stamp += direction;
+        }else{
+            stamp += direction;
+        }
+        //LED_update(LED_test, stamp);
         CyDelay(100u);
 	} // main loop
 	return 0;

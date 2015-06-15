@@ -9,8 +9,10 @@ volatile uint8_t can_buffer[8];
     uint16_t info_common_time = 0;
     uint8_t error_battery =0;
     uint8_t error_padel = 0;
-    uint8_t wdt_battery = 0;
-    uint8_t wdt_padel = 0;
+    uint8_t wdt_battery = 10;
+    uint8_t wdt_voltage = 10;
+    uint8_t wdt_padel = 10;
+    uint8_t wdt_current = 10;
    
 
 /* Data Frame format for Voltage and Temperature
